@@ -49,21 +49,31 @@
     irA(desde);                       // vuelve a donde estaba (la primera vez, Picks)
     window.scrollTo({ top: 0 });
   }
+  // v514 — el alto de la barra de estado del iPhone (app instalada): la caja nunca queda debajo de la hora
+  let _seguro = null;
+  function seguro() {
+    if (_seguro == null) {
+      const d = document.createElement('div');
+      d.style.cssText = 'position:fixed;top:0;height:env(safe-area-inset-top);visibility:hidden;pointer-events:none';
+      document.body.appendChild(d); _seguro = d.offsetHeight || 0; d.remove();
+    }
+    return _seguro;
+  }
   function colocar() {
     if (!caja) return;
     const el = objetivo(PASOS[i]);
-    const m = 8;
+    const m = 8, sup = seguro() + 8;
     if (el) {
       const r = el.getBoundingClientRect(), alto = Math.min(r.height + 2 * m, window.innerHeight * 0.5);
       Object.assign(luz.style, { display: 'block', top: (r.top - m) + 'px', left: Math.max(4, r.left - m) + 'px',
         width: Math.min(window.innerWidth - 8, r.width + 2 * m) + 'px', height: alto + 'px' });
       capa.classList.add('con-luz');
       const ch = caja.offsetHeight, abajo = r.top - m + alto + 12, arriba = r.top - m - 12 - ch;
-      caja.style.top = (abajo + ch < window.innerHeight - 8 || arriba < 8 ? Math.min(abajo, window.innerHeight - ch - 8) : arriba) + 'px';
+      caja.style.top = Math.max(sup, abajo + ch < window.innerHeight - 8 || arriba < sup ? Math.min(abajo, window.innerHeight - ch - 8) : arriba) + 'px';
     } else {
       luz.style.display = 'none';
       capa.classList.remove('con-luz');
-      caja.style.top = Math.max(16, (window.innerHeight - caja.offsetHeight) / 2) + 'px';
+      caja.style.top = Math.max(sup + 8, (window.innerHeight - caja.offsetHeight) / 2) + 'px';
     }
   }
   let ocupado = false;

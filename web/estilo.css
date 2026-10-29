@@ -1010,3 +1010,8 @@ body::before, body::after { animation: none !important; }
 .top { padding-top: calc(14px + env(safe-area-inset-top)); }
 @media (max-width: 480px) { .top { padding-top: calc(12px + env(safe-area-inset-top)); } }
 .aviso-renovacion { top: env(safe-area-inset-top); }
+/* v514 — y las ventanas encima de la página (Ver partido, Entrar, Mi cuenta, Ayuda, Planes…, que usan .ficha)
+   y los avisos (.modal-app): su ✕ y su contenido empiezan debajo de la barra de estado y terminan antes de
+   la barra de inicio del iPhone. */
+.ficha { padding-top: calc(24px + env(safe-area-inset-top)); padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
+.modal-app { padding-top: calc(20px + env(safe-area-inset-top)); padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
