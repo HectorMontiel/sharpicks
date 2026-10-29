@@ -213,8 +213,9 @@ jobs:
       # tres minutos de instalarlo todo.
       - name: Instalar dependencias mínimas
         if: steps.frescura.outputs.saltar != 'true'
-        run: pip install requests pandas numpy lightgbm
-
+        run: |
+          pip install requests pandas numpy lightgbm
+          python -c "import requests; requests.get" || pip install --force-reinstall --no-cache-dir requests   # v516
       - name: Barrer las cinco casas
         if: steps.frescura.outputs.saltar != 'true'
         run: |

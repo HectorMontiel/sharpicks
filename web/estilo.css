@@ -1018,3 +1018,38 @@ body::before, body::after { animation: none !important; }
 .pulso-cta .btn { width: 100%; padding: 12px 14px; border: 0; border-radius: 12px; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer;
   color: #06231a; background: linear-gradient(135deg, var(--marca, #3ddc84), var(--marca-2, #16a864)); box-shadow: 0 6px 20px rgba(22,168,100,.25); }
 .pulso-cta .btn:disabled { opacity: .6; cursor: default; }
+
+/* v517 — Pulso compacto: burbujas en rejilla y «Mejor ahora» destacado */
+.pulso { padding: 10px; margin: 10px 0; border-radius: 16px; background: linear-gradient(160deg, rgba(61,220,132,.08), rgba(255,255,255,.03)); border: 1px solid rgba(61,220,132,.22); }
+.pulso-cab { display: flex; align-items: baseline; justify-content: space-between; font-weight: 800; font-size: 14px; margin-bottom: 8px; letter-spacing: .01em; }
+.pulso-cab small { font-weight: 600; font-size: 11px; color: var(--marca, var(--verde)); text-transform: uppercase; letter-spacing: .06em; }
+.pulso-espera { font-size: 13px; color: var(--tenue); padding: 9px 12px; }
+.pulso-top { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 10px; padding: 10px 12px; margin-bottom: 8px; border-radius: 12px;
+  background: linear-gradient(135deg, rgba(61,220,132,.22), rgba(22,168,100,.10)); border: 1px solid rgba(61,220,132,.45); }
+.pulso-top-et { grid-column: 1 / -1; font-size: 11px; font-weight: 700; color: var(--marca, var(--verde)); text-transform: uppercase; letter-spacing: .05em; }
+.pulso-top b { font-size: 15px; }
+.pulso-top-p { font-size: 22px; font-weight: 800; grid-row: 2 / 4; grid-column: 2; }
+.pulso-top small { font-size: 12px; color: var(--tenue); }
+.pulso-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 6px; }
+.pt { display: grid; gap: 1px; padding: 7px 8px; border-radius: 10px; background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.06); min-width: 0; }
+.pt-n { font-size: 11px; color: var(--tenue); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pt-p { font-size: 16px; font-weight: 800; }
+.pt-s { font-size: 10.5px; color: var(--tenue); }
+.pt.alta .pt-p { color: var(--marca, var(--verde)); }
+.pt.media .pt-p { color: var(--oro); }
+.pt.bloq { opacity: .55; }
+.pt.bloq .pt-s { color: var(--oro); font-weight: 700; }
+.pulso-abrir { width: 100%; margin-top: 8px; padding: 9px 12px; border: 0; border-radius: 10px; font: inherit; font-weight: 700; font-size: 13px; cursor: pointer;
+  color: #06231a; background: linear-gradient(135deg, var(--marca, #3ddc84), var(--marca-2, #16a864)); }
+/* «Candidatos Pulso» arriba de En vivo */
+.pulso-cand { margin: 6px 0 12px; padding: 10px; border-radius: 14px; background: linear-gradient(160deg, rgba(61,220,132,.12), rgba(255,255,255,.03)); border: 1px solid rgba(61,220,132,.3); }
+.pulso-cand .pc-tit { font-weight: 800; font-size: 14px; margin-bottom: 6px; }
+.pulso-cand .pc-tit small { font-weight: 500; color: var(--tenue); font-size: 12px; margin-left: 6px; }
+.pc-fila { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center; width: 100%; padding: 8px 10px; margin: 4px 0; border: 0; border-radius: 10px;
+  background: rgba(255,255,255,.05); color: var(--texto); font: inherit; text-align: left; cursor: pointer; }
+.pc-fila .pc-min { font-size: 12px; font-weight: 700; color: var(--vivo); }
+.pc-fila .pc-par { font-size: 13px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc-fila .pc-par small { display: block; color: var(--tenue); font-size: 11.5px; }
+.pc-fila .pc-p { font-weight: 800; color: var(--marca, var(--verde)); }
+.pulso-chip.espera { color: var(--tenue); border-left-color: rgba(255,255,255,.15); }
+.pt.bloq { padding: 6px 8px; }

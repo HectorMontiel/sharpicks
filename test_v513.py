@@ -34,7 +34,9 @@ def probar():
     check(0.38 <= p75 <= 0.54 and 0.56 <= p60 <= 0.72 and p60 > p75, 'v513: 0-0 al 60 (%.2f) y al 75 (%.2f) como lo medido (65 %% y 46 %%)' % (p60, p75))
     c = ph.prob(M, 'cor2', ph.rasgos(M, ctx, 60.0, 0, 0, 5))
     check(0.7 <= c <= 0.95, 'v513: 2 córners más desde el 60 con 5 hasta ahora (%.2f)' % c)
-    check(ph.prob(M, 'gol', ph.rasgos(M, ctx, 50.0, 0, 0, 3)) <= ph.TOPE['gol'], 'v513: el tope de lo que lo medido no sostiene')
+    check(ph.prob(M, 'gol', ph.rasgos(M, ctx, 55.0, 0, 0, 3)) <= ph.TOPE['gol'], 'v513: el tope de lo que lo medido no sostiene')
+    check(ph.prob(M, 'gol', ph.rasgos(M, ctx, 50.0, 0, 0, 3)) is None and ph.prob(M, 'cor2', ph.rasgos(M, ctx, 50.0, 0, 0, 3)) is not None,
+          "v517: goles desde el 55' y córners desde el 46' (lo medido)")
     js = leer('web', 'pulso.js')
     check("const TOPE = { gol: 0.85, gol2: 0.5, gol_l: 0.75, gol_v: 0.65 }" in js and ph.TOPE == {'gol': 0.85, 'gol2': 0.5, 'gol_l': 0.75, 'gol_v': 0.65},
           'v513: los mismos topes en la página y en el historial')
@@ -49,6 +51,17 @@ def probar():
     check('function pulsoHtml(p, v, vs, L, V, abierto)' in app and 'data-pulso-abrir' in app and 'PULSO.delPick(real, p, v, vs)' in app,
           'v513: el Pulso en «Ver partido», con monedas y tus picks en vivo')
     check('pulsoChip(p, v)' in app, 'v513: el chip del Pulso en la tarjeta en vivo')
+    check("/FIRST_HALF/.test(v.est || '')" in js and 'const DESDE = { gol: 55' in js and 'function mejor(ms, abierto)' in js,
+          'v517: el Pulso sólo en el 2.º tiempo y con su «Mejor ahora»')
+    check("/^STATUS_HALFTIME$/.test(v.est || '')" in js and "/HALF|Medio/i.test(v.est" not in js,
+          'v517: «STATUS_SECOND_HALF» no se confunde con el descanso (daba 45,5 a todo el 2.º tiempo)')
+    check('Medido en 3.424' not in app and 'pulso-grid' in app and "h = h.replace('<!--PULSO-->', pulsoArriba);" in app,
+          'v517: compacto, sin el texto de abajo y debajo de la cancha')
+    check("seccion('stats', ico('chart-column') + ' Estadísticas'" in app and "seccionStats(compensacion(p, v) + miniStats(v, p))" in app,
+          'v517: Ver partido y la tarjeta seccionados (la cancha a la vista)')
+    check("candidatosPulso(grupos)" in app and "ico('target') + ' Candidatos Pulso" in app, 'v517: Candidatos Pulso arriba de En vivo')
+    check('📈' not in app.split('const EMOJI_ICO')[1].split('};')[1] and 'id="i-activity"' in leer('web', 'iconos.svg'),
+          'v517: el Pulso con su ícono del sprite, sin emojis')
     cu = leer('web', 'cuenta.js')
     check("sb.rpc('desbloquear_pulso'" in cu and "from('pulso_desbloqueos')" in cu and "from('pulso_historial')" in cu,
           'v513: abrir con monedas y el historial público')

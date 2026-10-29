@@ -16,6 +16,8 @@
   const GRATIS = { gol: 1, cor2: 1 };
   // hasta dónde se midió cada mercado: goles del descanso al 80', córners al 85' (más allá, el modelo inventa)
   const HASTA = { gol: 80, gol2: 80, gol_l: 80, gol_v: 80, cor1: 85, cor2: 85, cor3: 85 };
+  // v517 — el Pulso es del 2.º tiempo: goles desde el 55' y córners desde el 46' (lo medido; antes, el modelo extrapola)
+  const DESDE = { gol: 55, gol2: 55, gol_l: 55, gol_v: 55, cor1: 46, cor2: 46, cor3: 46 };
 
   function interp(x, xs, ys) {
     if (!xs.length) return x;
@@ -26,7 +28,7 @@
     return ys[i - 1] + t * (ys[i] - ys[i - 1]);
   }
   function prob(k, f) {
-    const m = M && M.modelos[k]; if (!m || f.t > (HASTA[k] || 90)) return null;
+    const m = M && M.modelos[k]; if (!m || f.t > (HASTA[k] || 90) || f.t < (DESDE[k] || 46)) return null;
     let z = m.inter;
     for (let i = 0; i < m.cols.length; i++) { const v = f[m.cols[i]]; if (v == null || isNaN(v)) return null; z += m.coef[i] * v; }
     const p = interp(1 / (1 + Math.exp(-z)), m.iso_x, m.iso_y);
@@ -40,7 +42,9 @@
   const num = (s) => { const n = parseFloat(String(s == null ? '' : s).replace(',', '.')); return isNaN(n) ? null : n; };
   function minuto(v) {
     if (!v || v.fase !== 'in') return null;
-    if (/HALF|Medio/i.test(v.est || '') || /Medio tiempo/i.test(v.detalle || '')) return 45.5;
+    if (/FIRST_HALF/.test(v.est || '')) return null;                // 1.er tiempo (también su compensación, «45'+2'»)
+    // OJO: «STATUS_SECOND_HALF» también contiene «HALF»; el descanso es SÓLO «STATUS_HALFTIME» (antes daba 45,5 a todo el 2.º tiempo)
+    if (/^STATUS_HALFTIME$/.test(v.est || '') || /^Medio tiempo$/.test(v.detalle || '')) return 45.5;
     const m = String(v.reloj || '').match(/\d+/g);
     if (!m) return null;
     const t = Number(m[0]) + (m[1] ? Number(m[1]) / 100 : 0);
@@ -106,5 +110,12 @@
     return null;
   }
 
-  window.PULSO = { listo: () => !!M, mercados, delPick, nombre: (k, L, V) => NOMBRE[k].replace('%L', L).replace('%V', V), modelo: () => M };
+  // v517 — lo que conviene mirar: el mercado más probable que todavía PAGA algo (cuota justa ≥ 1,15)
+  function mejor(ms, abierto) {
+    const vis = ms.filter((m) => (abierto || m.gratis) && m.justa >= 1.15 && m.p >= 0.6);
+    return vis.sort((a, b) => b.p - a.p)[0] || null;
+  }
+  // en el 1.er tiempo y en el descanso todavía no hay Pulso (abre al reanudar)
+  const abre = (v) => !!(v && v.fase === 'in') && (/FIRST_HALF|STATUS_HALFTIME$/.test(v.est || '') || /^Medio tiempo$/.test(v.detalle || ''));
+  window.PULSO = { listo: () => !!M, mercados, delPick, mejor, enPrimerTiempo: abre, nombre: (k, L, V) => NOMBRE[k].replace('%L', L).replace('%V', V), modelo: () => M };
 })();

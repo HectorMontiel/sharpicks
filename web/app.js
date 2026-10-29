@@ -27,8 +27,8 @@
   const pct = (x) => x == null ? '—' : Math.round(100 * x) + ' %';
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));   // v508: también '
   // v454 — ÍCONOS EN VEZ DE EMOJIS (el usuario: «los emojis hacen que se vea hecha con IA»).
-  // Lucide (ISC) y Tabler (MIT) en un solo archivo propio, `iconos.svg`.
-  const ico = (n, extra) => '<svg class="ic' + (extra ? ' ' + extra : '') + '" aria-hidden="true"><use href="iconos.svg#i-' + n + '"/></svg>';
+  // Lucide (ISC) y Tabler (MIT) en un solo archivo propio, `iconos.svg` (v517: con versión, si no el navegador guarda el viejo 4 h y faltan los íconos nuevos).
+  const ico = (n, extra) => '<svg class="ic' + (extra ? ' ' + extra : '') + '" aria-hidden="true"><use href="iconos.svg?v=517#i-' + n + '"/></svg>';
   const DEP_ICO = { 'Fútbol': 'ball-football', Tenis: 'ball-tennis', NFL: 'ball-american-football', NBA: 'ball-basketball', NHL: 'ice-skating',
     MLB: 'ball-baseball', KBO: 'ball-baseball', 'Béisbol': 'ball-baseball', Mixta: 'link-2' };
   const icoDep = (d) => (DEP_ICO[d] ? ico(DEP_ICO[d], 'dep') : '');
@@ -54,6 +54,7 @@
     '🧱': ['shield-check'], '✋': ['hand'], '↗': ['trending-up'], '👤': ['user'], '👥': ['users'], '📢': ['megaphone'],
     '💬': ['message-circle'], '❓': ['circle-help'], '🔍': ['search'],
     '🟨': ['square', 'amarilla'], '🟥': ['square', 'roja-t'],
+    '📈': ['activity', 'acento'], '↩': ['undo-2'], '↔': ['arrow-left-right'], '🧩': ['puzzle'],   // v517
   };
   const RE_EMOJI = new RegExp('(' + Object.keys(EMOJI_ICO).map((e) => e.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\uFE0F?', 'g');
   function iconizar(raiz) {
@@ -696,6 +697,8 @@
   const JUGADA = { goal: ['⚽', 'Gol', 5], 'penalty---scored': ['⚽', 'Gol de penal', 5], 'shot-on-target': ['🎯', 'Tiro a puerta', 3],
     'shot-off-target': ['↗️', 'Tiro desviado', 2], 'shot-blocked': ['🧱', 'Tiro bloqueado', 1.5], 'corner-awarded': ['🚩', 'Córner', 1],
     foul: ['✋', 'Falta', 0], offside: ['🚩', 'Fuera de lugar', 0.5], 'yellow-card': ['🟨', 'Amarilla', 0], 'red-card': ['🟥', 'Roja', 0] };
+  // v517 — ESPN también manda «goal---header», «goal---left-footed»…: son goles (antes salía el texto crudo y no contaba como gol)
+  const jugada = (t) => JUGADA[t] || (/^goal/.test(t || '') ? JUGADA.goal : /^penalty.*scored/.test(t || '') ? JUGADA['penalty---scored'] : null);
   const BASE_442 = [[0, 50], [24, 10], [20, 36], [20, 64], [24, 90], [58, 10], [50, 38], [50, 62], [58, 90], [90, 38], [90, 62]];
   const minuto = (s) => { const m = String(s || '').match(/(\d+)(?:'\s*\+\s*(\d+))?/); return m ? Number(m[1]) + (m[2] ? Number(m[2]) / 10 : 0) : 0; };
   function cancha(v, p) {
@@ -713,7 +716,7 @@
     if (!fuente && !onceReal && !(pfm && (pfm.momentum || pfm.mitades))) return '';
     const once = onceReal || BASE_442.flatMap(([prof, ancho], i) => [0, 1].map((lado) => ({ lado, n: '', nombre: '', i, prof, ancho, nota: null })));
     const dibujo = fuente === '365' ? t365 : fuente === 'espn' ? espnJ.filter((j) => /goal|scored|shot/.test(j.t)).map((j) => ({ lado: j.lado, x: j.x, y: j.y,
-      xg: /goal|scored/.test(j.t) ? 0.35 : /on-target/.test(j.t) ? 0.2 : 0.1, min: j.min, gol: /goal|scored/.test(j.t), resultado: (JUGADA[j.t] || ['', ''])[1], cuerpo: j.equipo, jugador: '' })) : [];
+      xg: /goal|scored/.test(j.t) ? 0.35 : /on-target/.test(j.t) ? 0.2 : 0.1, min: j.min, gol: /goal|scored/.test(j.t), resultado: (jugada(j.t) || ['', ''])[1], cuerpo: j.equipo, jugador: '' })) : [];
     const c = (v && v.colores) || { l: '#22c55e', r: '#e879f9' };
     const col = (lado) => (lado === 0 ? c.l : c.r);
     const X = (lado, x) => ((lado === 0 ? x : 100 - x) * 1.05).toFixed(2), Y = (lado, y) => ((lado === 0 ? y : 100 - y) * 0.68).toFixed(2);
@@ -730,7 +733,7 @@
     // las jugadas REALES para el motor, de la fuente elegida
     const enTiempo = (m, per) => (per === 1 ? Math.min(m, 45.5) : per === 2 ? Math.max(m, 45.5) : m);   // v460
     const reales = (fuente === 'espn' ? js.map((j) => ({ id: 'e' + j.seg + j.t, t: j.t, src: 'espn', m: enTiempo(j.seg / 60, j.per), lado: j.lado, x: X(j.lado, j.x), y: Y(j.lado, j.y),
-      w: (JUGADA[j.t] || [0, 0, 0])[2], txt: (JUGADA[j.t] || ['•', ''])[0] + ' <b>' + esc((JUGADA[j.t] || ['', j.t])[1]) + '</b> · ' + esc(j.equipo) + ' · ' + esc(j.min) }))
+      w: (jugada(j.t) || [0, 0, 0])[2], txt: (jugada(j.t) || ['•', ''])[0] + ' <b>' + esc((jugada(j.t) || ['', 'Jugada'])[1]) + '</b> · ' + esc(j.equipo) + ' · ' + esc(j.min) }))
       : fuente === '365' ? t365.map((t) => ({ id: 't' + t.min + t.x + t.y, t: t.gol ? 'goal' : /ataj/i.test(t.resultado) ? 'shot-on-target' : 'shot-off-target', src: '365',
         m: minuto(t.min), lado: t.lado, x: X(t.lado, t.x), y: Y(t.lado, t.y),
         w: 1.5 + 8 * t.xg, txt: (t.gol ? '⚽ <b>Gol</b>' : '🎯 <b>Tiro</b>') + ' · ' + esc(t.jugador) + ' · ' + esc(t.min) }))
@@ -1361,7 +1364,9 @@
       '<div class="liga">' + esc(p.liga || '') + ' · ' + esc(horaCdmx(aFecha(p.inicio))) + '</div>' +
       contextoHtml((ps.find((x) => x.ctx) || {}).ctx, L, V, p.liga) +
       iaBloque(p, L, V, conVip(ps).ctx, conVip(ps).jug, ps.some((x) => x.vip_hay)) +
-      penalesHtml(v, L, V) + compensacion(p, v) + miniStats(v, p) + pulsoChip(p, v) + (v && (v.fase === 'in' || v.fase === 'post') ? cancha(v, p) : '') +   // v460: también al terminar
+      // v517 — «la tarjeta principal ya se hizo larga»: a la vista la cancha y el Pulso; las estadísticas, plegadas
+      penalesHtml(v, L, V) + (v && (v.fase === 'in' || v.fase === 'post') ? cancha(v, p) : '') + pulsoChip(p, v) +   // v460: también al terminar
+      seccionStats(compensacion(p, v) + miniStats(v, p)) +
       ps.map((x) => filaPick(x, v, ps.length > 1)).join('') +
       (ps.some((x) => x.espn) ? '<button class="ver" data-ficha="' + esc((ps.find((x) => x.espn) || p).id) + '">Ver partido →</button>' : '') +
       '</article>';
@@ -1369,11 +1374,37 @@
   // v513 — en la tarjeta en vivo, el Pulso gratis: «otro gol» en su tramo medido (lo demás, en «Ver partido»)
   function pulsoChip(p, v) {
     if (!window.PULSO || !v || v.fase !== 'in' || (p.deporte && p.deporte !== 'Fútbol')) return '';
-    const m = PULSO.mercados(p, v, conRespaldo(v, p)).find((x) => x.k === 'gol');
+    if (PULSO.enPrimerTiempo(v)) return '<div class="pulso-chip espera">' + ico('activity', 'acento') + ' Pulso · se abre en el 2.º tiempo</div>';
+    const ms = PULSO.mercados(p, v, conRespaldo(v, p));
+    const m = PULSO.mejor(ms, pulsoAbierto(p)) || ms.find((x) => x.k === 'gol' && x.tramo);
     if (!m || !m.tramo) return '';
-    const t = m.tramo;
+    const t = m.tramo, [L, V] = lados(p);
     return '<div class="pulso-chip ' + (m.p >= 0.7 ? 'alta' : m.p >= 0.6 ? 'media' : 'baja') + '" title="Pulso SharPicks: lo medido en el historial">' +
-      '📈 Pulso · otro gol <b>' + Math.round(100 * t.desde) + '-' + Math.round(100 * t.hasta) + ' %</b> <small>salió ' + Math.round(100 * t.fue) + ' %</small></div>';
+      ico('activity', 'acento') + ' Pulso · ' + esc(PULSO.nombre(m.k, L, V).toLowerCase()) + ' <b>' + Math.round(100 * t.desde) + '-' + Math.round(100 * t.hasta) + '%</b> <small>salió ' + Math.round(100 * t.fue) + '%</small></div>';
+  }
+  // v517 — «CANDIDATOS PULSO» arriba de En vivo: los partidos donde lo medido dice que hay algo bueno que meter
+  // ahora (lo más probable que aún paga, 70 %+). Se tocan y abren «Ver partido».
+  function candidatosPulso(grupos) {
+    if (!window.PULSO || !PULSO.listo()) return '';
+    const c = [];
+    for (const g of grupos) {
+      const p = g.find((x) => x.espn) || g[0], v = vivoDe(g);
+      if (!v || v.fase !== 'in' || (p.deporte && p.deporte !== 'Fútbol')) continue;
+      const m = PULSO.mejor(PULSO.mercados(p, v, conRespaldo(v, p)), pulsoAbierto(p));
+      if (m && m.p >= 0.7 && m.tramo) c.push({ p, v, m });
+    }
+    if (!c.length) return '';
+    c.sort((a, b) => b.m.p - a.m.p);
+    return '<div class="pulso-cand"><div class="pc-tit">' + ico('target') + ' Candidatos Pulso<small>lo más probable ahora</small></div>' + c.slice(0, 4).map(({ p, v, m }) => {
+      const [L, V] = lados(p), abierto = pulsoAbierto(p), t = m.tramo;
+      return '<button class="pc-fila" data-ficha="' + esc(p.id) + '"><span class="pc-min">' + esc(String(v.reloj || '')) + '</span>' +
+        '<span class="pc-par">' + esc(L) + ' ' + v.g[0] + '-' + v.g[1] + ' ' + esc(V) + '<small>' + esc(PULSO.nombre(m.k, L, V)) + ' · salió ' + Math.round(100 * t.fue) + '%</small></span>' +
+        '<span class="pc-p">' + (abierto ? Math.round(100 * m.p) + '%' : Math.round(100 * t.desde) + '-' + Math.round(100 * t.hasta) + '%') + '</span></button>';
+    }).join('') + '</div>';
+  }
+  // v517 — las estadísticas en vivo de la tarjeta, en su pestaña (como «Antes del partido»)
+  function seccionStats(html) {
+    return html ? '<details class="ctx"><summary>' + ico('chart-column') + ' Estadísticas en vivo</summary>' + html + '</details>' : '';
   }
   const dict = (a, b) => Object.assign({}, a, b);
   // v384 — «un H2H en las tarjetas por si la gente quiere analizar el partido»
@@ -1663,24 +1694,27 @@
   }
   function pulsoHtml(p, v, vs, L, V, abierto) {
     if (!window.PULSO || !v || v.fase !== 'in' || p.deporte && p.deporte !== 'Fútbol') return '';
+    // v517 — sólo en el 2.º tiempo (lo medido); en el 1.º, un aviso corto en vez del bloque
+    if (PULSO.enPrimerTiempo(v)) return '<div class="pulso pulso-espera">' + ico('activity', 'acento') + ' <b>Pulso</b> · se abre en el 2.º tiempo</div>';
     const ms = PULSO.mercados(p, v, vs);
-    if (!ms.length) return PULSO.listo() ? '' : '<p class="tenue">Cargando el Pulso…</p>';
-    const fila = (m) => {
+    if (!ms.length) return PULSO.listo() ? '' : '<div class="pulso pulso-espera">' + ico('activity', 'acento') + ' Cargando el Pulso…</div>';
+    const top = PULSO.mejor(ms, abierto);
+    // v517 — compacto: burbujas en rejilla; la mejor (la más probable que aún paga algo) arriba y destacada
+    const burbuja = (m) => {
       const t = m.tramo, nom = esc(PULSO.nombre(m.k, L, V));
-      if (!abierto && !m.gratis) return '<div class="pulso-f bloq"><span>' + nom + '</span><span class="pulso-vip">VIP</span></div>';
-      const banda = t ? Math.round(100 * t.desde) + '-' + Math.round(100 * t.hasta) + ' %' : '';
-      const pr = abierto ? Math.round(100 * m.p) + ' %' : banda;
-      const nivelTxt = m.p >= 0.8 ? 'Muy alta' : m.p >= 0.7 ? 'Alta' : m.p >= 0.6 ? 'Media' : 'Baja';
-      return '<div class="pulso-f ' + (m.p >= 0.7 ? 'alta' : m.p >= 0.6 ? 'media' : 'baja') + '"><span>' + nom + '</span>' +
-        '<span class="pulso-p">' + pr + ' <small>' + nivelTxt + '</small></span>' +
-        (abierto ? '<span class="pulso-j" title="Cuota justa: si tu casa paga más, tiene valor">cuota justa ' + m.justa.toFixed(2) + '</span>' : '') +
-        (t ? '<span class="pulso-m" title="Lo que salió en el historial cuando el Pulso dijo este tramo">salió ' + Math.round(100 * t.fue) + ' % (' + t.n.toLocaleString('es-MX') + ')</span>' : '') + '</div>';
+      if (!abierto && !m.gratis) return '<div class="pt bloq"><span class="pt-n">' + nom + '</span><span class="pt-s">🔒 VIP</span></div>';
+      const pr = abierto ? Math.round(100 * m.p) + '%' : (t ? Math.round(100 * t.desde) + '-' + Math.round(100 * t.hasta) + '%' : '');
+      return '<div class="pt ' + (m.p >= 0.7 ? 'alta' : m.p >= 0.6 ? 'media' : 'baja') + '" title="' + (t ? 'Salió ' + Math.round(100 * t.fue) + ' % en ' + t.n.toLocaleString('es-MX') + ' casos' : '') + '">' +
+        '<span class="pt-n">' + nom + '</span><span class="pt-p">' + pr + '</span>' +
+        '<span class="pt-s">' + (abierto ? 'justa ' + m.justa.toFixed(2) : t ? 'salió ' + Math.round(100 * t.fue) + '%' : '') + '</span></div>';
     };
+    const dest = top ? '<div class="pulso-top"><span class="pulso-top-et">' + ico('star', 'estrella') + ' Mejor ahora</span><b>' + esc(PULSO.nombre(top.k, L, V)) + '</b>' +
+      '<span class="pulso-top-p">' + (abierto ? Math.round(100 * top.p) + '%' : Math.round(100 * top.tramo.desde) + '-' + Math.round(100 * top.tramo.hasta) + '%') + '</span>' +
+      '<small>' + (abierto ? 'si tu casa paga más de ' + top.justa.toFixed(2) + ', tiene valor' : 'salió ' + Math.round(100 * top.tramo.fue) + '% en el historial') + '</small></div>' : '';
     const precio = Number((window.SPX && SPX.yo.precios.precio_pulso) || 2);
-    return '<div class="pulso"><h3>Pulso SharPicks <small>en vivo · se recalcula cada minuto</small></h3>' + ms.map(fila).join('') +
-      (abierto ? '' : '<div class="pulso-cta"><button class="btn" data-pulso-abrir="' + esc(clavePartido(p)) + '">Ver todo el Pulso de este partido · ' + precio + ' monedas</button>' +
-        '<small>Con VIP: todos los partidos, % exacto, cuota justa, tus picks en vivo y avisos.</small></div>') +
-      '<p class="tenue pulso-nota">Medido en 3.424 partidos (goles) y 2.272 (córners): cada tramo dice lo que de verdad salió. No es una garantía.</p></div>';
+    return '<div class="pulso"><div class="pulso-cab"><span>' + ico('activity', 'acento') + ' Pulso SharPicks</span><small>en vivo</small></div>' + dest +
+      '<div class="pulso-grid">' + ms.filter((m) => m !== top).map(burbuja).join('') + '</div>' +
+      (abierto ? '' : '<button class="btn pulso-abrir" data-pulso-abrir="' + esc(clavePartido(p)) + '">' + ico('lock-open', 'candado') + ' Todo el Pulso · ' + precio + ' monedas</button>') + '</div>';
   }
 
   function ficha(id) {
@@ -1699,6 +1733,7 @@
       '<div class="eq der"><span>' + esc(V) + '</span>' + escudo(p.logo_a, V, p.deporte) + '</div></div>';
     h += penalesHtml(v, L, V);           // v503
     h += cancha(v, p);                   // v427/v429 — la cancha en vivo
+    h += '<!--PULSO-->';                 // v517 — el Pulso justo debajo de la cancha, a la vista
     setTimeout(vivo365, 50);
     const vs = conRespaldo(v, p);                                      // v462 — con respaldo si ESPN no las trae
     const abierto = pulsoAbierto(p);
@@ -1711,15 +1746,21 @@
         (pr ? '<span class="progreso ' + pr.e + '">' + esc(pr.t) + '</span>' : '<span class="tenue">' + pct(x.prob) + '</span>') +
         (ahora != null ? '<span class="pulso-pick" title="Probabilidad en vivo (Pulso)">ahora ' + Math.round(100 * ahora) + ' %</span>' : '') + '</div>';
     }).join('');
-    h += pulsoHtml(p, v, vs, L, V, abierto);
+    // v517 — el usuario: «la tarjeta de Ver partido ya es muy grande, hay que seccionarla». A la vista: el
+    // marcador, la cancha, el Pulso y nuestras apuestas; las estadísticas y lo que ha pasado, plegados (y se
+    // quedan como el usuario los dejó al repintarse cada minuto).
+    const yaAbiertas = new Set([...document.querySelectorAll('#ficha-cuerpo details[data-sec][open]')].map((d) => d.dataset.sec));
+    const seccion = (k, tit, cuerpo) => '<details class="ctx ficha-sec" data-sec="' + k + '"' + (yaAbiertas.has(k) ? ' open' : '') + '><summary>' + tit + '</summary>' + cuerpo + '</details>';
+    const pulsoArriba = pulsoHtml(p, v, vs, L, V, abierto);
+    h = h.replace('<!--PULSO-->', pulsoArriba);
     if (vs && Object.keys(vs.stats || {}).length) {
-      h += compensacion(p, v) + '<h3>Estadísticas</h3><div class="leyenda"><span class="l">' + esc(L) + '</span><span class="r">' + esc(V) + '</span></div>' + estadisticas(p, vs);
+      h += seccion('stats', ico('chart-column') + ' Estadísticas', compensacion(p, v) + '<div class="leyenda"><span class="l">' + esc(L) + '</span><span class="r">' + esc(V) + '</span></div>' + estadisticas(p, vs));
     } else {
       h += '<p class="tenue">Las estadísticas aparecen aquí en cuanto empieza el partido.</p>';
     }
     if (v && v.eventos.length) {
-      h += '<h3>Lo que ha pasado</h3>' + v.eventos.slice().reverse().slice(0, 25).map((e) =>
-        '<div class="evento ' + (e.lado ? 'der' : '') + '"><b>' + esc(e.min) + '</b> ' + e.ico + ' ' + esc(e.texto) + '</div>').join('');
+      h += seccion('eventos', ico('clock') + ' Lo que ha pasado', v.eventos.slice().reverse().slice(0, 25).map((e) =>
+        '<div class="evento ' + (e.lado ? 'der' : '') + '"><b>' + esc(e.min) + '</b> ' + e.ico + ' ' + esc(e.texto) + '</div>').join(''));
     }
     // v446 — «⚠️ Reportar un error» (resultado mal, equipo equivocado, dato raro): si es real, +5 🪙
     h += '<button class="reportar" data-reportar="' + esc(p.partido) + '" data-pick="' + esc(p.id) + '">⚠️ Reportar un error</button>';
@@ -2148,7 +2189,7 @@
     const sinPickHtml = gSinPick.length ? '<button class="fin-cab sinpick-cab" data-ver-sinpick>' + (estado.verSinPick ? '▾' : '▸') + ' Sin pick · ' +
       gSinPick.length + (gSinPick.length === 1 ? ' partido' : ' partidos') + ' <small>(sólo análisis)</small></button>' +
       (estado.verSinPick ? '<section class="liga-bloque por-hora">' + gSinPick.map(seguro(filaPartido)).join('') + '</section>' : '') : '';
-    $('tarjetas').innerHTML = tog + (estado.porHora
+    $('tarjetas').innerHTML = (estado.vista === 'vivo' ? candidatosPulso(grupos) : '') + tog + (estado.porHora
       ? (gConPick.length ? '<section class="liga-bloque por-hora">' + gConPick.map(seguro(filaPartido)).join('') + '</section>' : '') + sinPickHtml
       : pintarLigas(ligas)) + finHtml;
     function pintarLigas(mapa) { return [...mapa.entries()].map(([l, gs]) => {

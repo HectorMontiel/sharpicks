@@ -33,7 +33,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Instalar requests
-        run: pip install requests
+        run: |
+          pip install requests
+          python -c "import requests; requests.get" || pip install --force-reinstall --no-cache-dir requests   # v516
       - name: Bajar la base
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}

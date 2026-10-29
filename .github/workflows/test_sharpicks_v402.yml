@@ -31,7 +31,9 @@ jobs:
         with:
           node-version: '20'
       - name: Instalar dependencias
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          python -c "import requests, pandas, numpy; requests.get" || pip install --force-reinstall --no-cache-dir -r requirements.txt   # v516: una instalación cortada a medias se repara sola
       - name: Validar sintaxis
         run: |
           node --check web/fechas.js

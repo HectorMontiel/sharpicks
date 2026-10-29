@@ -22,6 +22,7 @@ MODELO = os.path.join(AQUI, 'web', 'pulso_modelo.json')
 TOPE = {'gol': 0.85, 'gol2': 0.5, 'gol_l': 0.75, 'gol_v': 0.65}
 MINUTOS = (60, 70)
 HASTA = {'gol': 80, 'gol2': 80, 'gol_l': 80, 'gol_v': 80, 'cor1': 85, 'cor2': 85, 'cor3': 85}   # lo medido
+DESDE = {'gol': 55, 'gol2': 55, 'gol_l': 55, 'gol_v': 55, 'cor1': 46, 'cor2': 46, 'cor3': 46}
 
 
 def _interp(x: float, xs: List[float], ys: List[float]) -> float:
@@ -38,7 +39,7 @@ def _interp(x: float, xs: List[float], ys: List[float]) -> float:
 
 def prob(M: Dict, k: str, f: Dict) -> Optional[float]:
     m = M['modelos'].get(k)
-    if not m or f.get('t', 0) > HASTA.get(k, 90):
+    if not m or f.get('t', 0) > HASTA.get(k, 90) or f.get('t', 0) < DESDE.get(k, 46):
         return None
     z = m['inter']
     for c, b in zip(m['cols'], m['coef']):

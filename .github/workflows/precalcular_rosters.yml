@@ -67,8 +67,9 @@ jobs:
         # No hace falta el requirements entero: este script sólo usa requests
         # y lee `config`/`fixtures_espn`, que no traen nada pesado. Instalar
         # scikit-learn y compañía aquí serían tres minutos por nada.
-        run: pip install requests pandas
-
+        run: |
+          pip install requests pandas
+          python -c "import requests; requests.get" || pip install --force-reinstall --no-cache-dir requests   # v516
       # v190 — POR `summary`, QUE NO ESTÁ BLOQUEADO.
       #
       # `precalcular_goleadores.py` pide `/teams` y `/roster`, y ESPN devuelve
