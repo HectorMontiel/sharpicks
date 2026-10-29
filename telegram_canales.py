@@ -51,7 +51,7 @@ from typing import Dict, List, Optional, Set, Tuple
 logger = logging.getLogger('telegram_canales')
 DATOS = os.environ.get('WEB_DATOS', os.path.join('web', 'datos', 'hoy.json'))
 PRIVADO = os.environ.get('WEB_PRIVADO', os.path.join('datos_privados', 'premium.json'))
-SITIO = os.environ.get('SITIO_URL', 'https://sharpicks.pages.dev')
+SITIO = os.environ.get('SITIO_URL', 'https://sharpicksapp.com')
 VIP_URL = os.environ.get('TELEGRAM_VIP_URL', 'https://t.me/+qqtEBbAClQwxYzYx')
 HORAS_ANTES = 18
 ICONO = {'Diamante': '💎', 'Platino': '🔷', 'Oro': '🥇', 'Plata': '🥈', 'Cuota alta': '💰'}

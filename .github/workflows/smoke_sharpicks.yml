@@ -43,7 +43,7 @@ jobs:
           assert.ok(url && key, 'config.js debe tener URL y clave pública de Supabase');
 
           (async () => {
-            const origin = 'https://sharpicks.pages.dev';
+            const origin = 'https://sharpicksapp.com';
             const page = await fetch(origin + '/');
             assert.equal(page.status, 200, 'la página pública debe responder HTTP 200');
             const cuentaResponse = await fetch(origin + '/cuenta.js');

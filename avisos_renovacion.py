@@ -28,7 +28,7 @@ from typing import Dict, List, Optional
 logger = logging.getLogger(__name__)
 
 DIAS = 7
-SITIO = 'https://sharpicks.pages.dev'
+SITIO = 'https://sharpicksapp.com'
 MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto',
          'septiembre', 'octubre', 'noviembre', 'diciembre']
 

@@ -39,7 +39,7 @@ Deno.serve(async (req) => {
         if (correoE) {
           const anonE = createClient(URL_, Deno.env.get('SUPABASE_ANON_KEY')!, { auth: { persistSession: false } });
           const { error: eOtp } = await anonE.auth.resetPasswordForEmail(correoE, {
-            redirectTo: 'https://sharpicks.pages.dev/', captchaToken: captcha ? String(captcha) : undefined });
+            redirectTo: 'https://sharpicksapp.com/', captchaToken: captcha ? String(captcha) : undefined });
           if (eOtp && /captcha/i.test(eOtp.message)) return json({ error: 'Completa la verificación de abajo y vuelve a intentar.' }, 400);
           if (eOtp) return json({ error: 'No se pudo enviar el correo. Intenta en unos minutos.' }, 502);
         }

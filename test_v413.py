@@ -92,7 +92,7 @@ def probar_v414():
           'v414: el CAPTCHA va en entrar, crear cuenta y el enlace por correo')
     cfg, h, html = leer('web', 'config.js'), leer('web', '_headers'), leer('web', 'index.html')
     check("TURNSTILE_SITE_KEY: '0x4" in cfg and 'challenges.cloudflare.com/turnstile/v0/api.js' in html
-          and "script-src 'self' https://challenges.cloudflare.com;" in h and 'frame-src https://challenges.cloudflare.com;' in h,
+          and "script-src 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com;" in h and 'frame-src https://challenges.cloudflare.com;' in h,
           'v414: el CAPTCHA de Cloudflare cabe en la CSP')
     fn = leer('supabase', 'functions', 'entrar', 'index.ts')
     check('captchaToken: captcha ?' in fn, 'v414: `entrar` pasa el CAPTCHA a Supabase')

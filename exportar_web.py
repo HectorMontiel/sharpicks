@@ -38,7 +38,7 @@ PRIVADO_VIP = os.path.join(os.path.dirname(PRIVADO) or '.', 'vip.json')        #
 ANALISIS = os.environ.get('WEB_ANALISIS', os.path.join(os.path.dirname(SALIDA), 'analisis.json'))
 DIAS_ANALISIS = 3          # hoy, mañana y pasado
 # v478 — lo que se publicó en la pasada anterior (para no perder las líneas de la casa al empezar)
-PUBLICADO = os.environ.get('SITIO_URL', 'https://sharpicks.pages.dev').rstrip('/') + '/datos/'
+PUBLICADO = os.environ.get('SITIO_URL', 'https://sharpicksapp.com').rstrip('/') + '/datos/'
 CAMPOS = ('partido', 'inicio', 'fecha', 'deporte', 'liga', 'apuesta', 'cuota', 'prob',
           'elige', 'porque', 'resultado_c1', 'marcador',
           # v378 — para lo en vivo (ver `espn_vivo`)

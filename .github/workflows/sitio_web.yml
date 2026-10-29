@@ -95,7 +95,7 @@ jobs:
       # v413 — los .sql de referencia viven en el repo, no en el sitio público
       - name: Quitar los .sql del sitio publicado
         run: rm -f web/*.sql
-      - name: Publicar en Cloudflare Pages (sharpicks.pages.dev)
+      - name: Publicar en Cloudflare Pages (sharpicksapp.com)
         id: cloudflare
         if: env.CF_TOKEN != ''
         continue-on-error: true
@@ -174,10 +174,10 @@ jobs:
             echo "::warning::Una integración auxiliar falló. Consulta el resumen y los logs de ese paso."
           fi
           if [ -z "$CF_TOKEN" ]; then
-            echo "::error::Falta CLOUDFLARE_API_TOKEN: no se actualizó el sitio canónico sharpicks.pages.dev."
+            echo "::error::Falta CLOUDFLARE_API_TOKEN: no se actualizó el sitio canónico sharpicksapp.com."
             exit 1
           fi
           if [ "$CLOUDFLARE_OUTCOME" != "success" ]; then
-            echo "::error::Cloudflare Pages no confirmó el despliegue de sharpicks.pages.dev."
+            echo "::error::Cloudflare Pages no confirmó el despliegue de sharpicksapp.com."
             exit 1
           fi
