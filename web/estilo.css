@@ -982,3 +982,31 @@ body::before, body::after { animation: none !important; }
 .pen-t .pen-si { background: #22c55e; }
 .pen-t .pen-no { background: #ef4444; }
 .pen-f b { text-align: right; font-size: 16px; }
+
+/* v513 — Pulso SharPicks (probabilidad en vivo, medida) */
+.pulso { margin: 14px 0; padding: 12px; border-radius: 14px; background: var(--vidrio, rgba(255,255,255,.05)); border: 1px solid var(--borde-vidrio, rgba(255,255,255,.12)); }
+.pulso h3 { margin: 0 0 8px; font-size: 16px; }
+.pulso h3 small { font-weight: 400; color: var(--tenue); font-size: 12px; margin-left: 6px; }
+.pulso-f { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; align-items: center; padding: 8px 10px; margin: 6px 0; border-radius: 10px; background: rgba(255,255,255,.04); border-left: 3px solid rgba(255,255,255,.18); }
+.pulso-f.alta { border-left-color: var(--verde); }
+.pulso-f.media { border-left-color: var(--oro); }
+.pulso-f.baja { border-left-color: rgba(255,255,255,.25); }
+.pulso-f.bloq { opacity: .7; }
+.pulso-p { font-weight: 700; font-size: 16px; text-align: right; }
+.pulso-p small { font-weight: 500; font-size: 11px; color: var(--tenue); margin-left: 4px; }
+.pulso-j, .pulso-m { font-size: 12px; color: var(--tenue); }
+.pulso-m { text-align: right; }
+.pulso-vip { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: rgba(245,179,1,.16); color: var(--oro); justify-self: end; }
+.pulso-cta { display: grid; gap: 6px; margin-top: 10px; }
+.pulso-cta small, .pulso-nota { font-size: 12px; color: var(--tenue); }
+.pulso-pick { font-size: 12px; font-weight: 700; padding: 4px 8px; border-radius: 8px; background: rgba(61,220,132,.14); color: var(--marca, var(--verde)); margin-left: 6px; }
+.pulso-chip { margin: 8px 0 2px; padding: 6px 10px; border-radius: 10px; font-size: 13px; background: rgba(255,255,255,.05); border-left: 3px solid rgba(255,255,255,.2); }
+.pulso-chip.alta { border-left-color: var(--verde); }
+.pulso-chip.media { border-left-color: var(--oro); }
+.pulso-chip small { color: var(--tenue); margin-left: 4px; }
+
+/* v514 — iPhone con la app instalada: la barra de estado (hora y batería) va ENCIMA de la página
+   (black-translucent). La cabecera reserva su alto para que «Entrar» y la cuenta no queden debajo. */
+.top { padding-top: calc(14px + env(safe-area-inset-top)); }
+@media (max-width: 480px) { .top { padding-top: calc(12px + env(safe-area-inset-top)); } }
+.aviso-renovacion { top: env(safe-area-inset-top); }
