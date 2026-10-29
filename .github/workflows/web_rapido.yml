@@ -1,0 +1,48 @@
+name: Sitio web (rápido)
+
+# v514 — PUBLICAR UN ARREGLO DE LA PÁGINA EN ~2 MINUTOS.
+# «Sitio web» corre primero el exportador (~10 min) y después Cloudflare. Para un cambio sólo de la página
+# (web/ o functions/) eso es esperar de más: el usuario no podía entrar en el iPhone y el arreglo tardó 15 min.
+# Aquí: los cuatro ficheros que genera el exportador (web/datos/*) se bajan de lo que YA está publicado —si
+# falta alguno o no es JSON válido, no se publica nada (nunca un sitio sin datos)— y se sube a Cloudflare.
+# «Sitio web» sigue corriendo como siempre y publica con datos nuevos.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - 'functions/**'
+      - '!web/datos/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: web-rapido
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: [self-hosted, sharpicks]   # v509 — runner propio (PC del usuario): 0 minutos de Actions
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Traer los datos ya publicados
+        run: |
+          set -e
+          mkdir -p web/datos
+          for f in hoy analisis meta tablas; do
+            curl -sfL --retry 3 "https://sharpicksapp.com/datos/$f.json?t=$(date +%s)" -o "web/datos/$f.json"
+            python3 -c "import json,sys; json.load(open(sys.argv[1], encoding='utf-8'))" "web/datos/$f.json"
+          done
+          ls -la web/datos
+      - name: Quitar los .sql del sitio publicado
+        run: rm -f web/*.sql
+      - name: Publicar en Cloudflare Pages (sharpicksapp.com)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@3.114.0 pages deploy web --project-name=sharpicks --branch=main --commit-dirty=true
