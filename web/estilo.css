@@ -1015,3 +1015,6 @@ body::before, body::after { animation: none !important; }
    la barra de inicio del iPhone. */
 .ficha { padding-top: calc(24px + env(safe-area-inset-top)); padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
 .modal-app { padding-top: calc(20px + env(safe-area-inset-top)); padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
+.pulso-cta .btn { width: 100%; padding: 12px 14px; border: 0; border-radius: 12px; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer;
+  color: #06231a; background: linear-gradient(135deg, var(--marca, #3ddc84), var(--marca-2, #16a864)); box-shadow: 0 6px 20px rgba(22,168,100,.25); }
+.pulso-cta .btn:disabled { opacity: .6; cursor: default; }
