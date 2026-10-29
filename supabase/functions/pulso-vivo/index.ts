@@ -20,11 +20,13 @@ const MERCADOS = ['gol', 'gol_l', 'gol_v', 'gol2', 'cor1', 'cor2', 'cor3'];
 const NOMBRE: Record<string, string> = { gol: 'Cae otro gol', gol2: 'Caen 2 goles más', gol_l: 'Marca %L', gol_v: 'Marca %V',
   cor1: '1 córner más', cor2: '2 córners más', cor3: '3 córners más' };
 const MODELOS_IA = ['gemini-flash-latest', 'gemini-flash-lite-latest'];
+// v521 — ESPN y el sitio rechazan (403) lo que no dice ser un navegador: sin esto la función «no veía» el 2.º tiempo
+const NAV = { 'User-Agent': 'Mozilla/5.0', Accept: 'application/json' };   // ni «Deno/…» ni «compatible; …bot»: ESPN da 403
 const INSTRUCCION = 'Eres el analista en vivo de SharPicks. Te doy un partido de fútbol en el 2.º tiempo: minuto, marcador, ' +
   'estadísticas del momento y los mercados del Pulso con la probabilidad que da nuestro modelo (medido con miles de ' +
   'partidos) y lo que salió en el historial en ese tramo. Elige UNO de esos mercados: el que mejor combine probabilidad ' +
   'alta y lo que dicen las estadísticas del partido (quién ataca, tiros a puerta, córners, expulsados). No inventes ' +
-  'mercados ni probabilidades. Escribe el motivo en español sencillo, en una sola frase de 160 caracteres como máximo, sin emojis.';
+  'mercados ni probabilidades. Todos los mercados que te doy todavía pagan algo; si dudas, el de probabilidad más alta. Escribe el motivo en español sencillo, en una sola frase de 160 caracteres como máximo, sin emojis.';
 
 type Dic = Record<string, any>;
 let M: Dic | null = null, mDesde = 0;
@@ -168,7 +170,7 @@ async function partidos() {
   const out: Dic[] = [], vistos = new Set<string>();
   for (const [f, k] of [['datos/hoy.json', 'picks'], ['datos/analisis.json', 'analisis']]) {
     try {
-      const d = await (await fetch(SITIO + f + '?t=' + Date.now())).json();
+      const d = await (await fetch(SITIO + f + '?t=' + Date.now(), { headers: NAV })).json();
       for (const p of d[k] || []) {
         if (p.deporte !== 'Fútbol' || !String(p.espn || '').includes(':')) continue;
         const c = clavePartido(p); if (vistos.has(c)) continue;
@@ -183,7 +185,7 @@ const enJuego = (p: Dic, ahora: number) => { const d = aFecha(p.inicio); return 
 async function vuelta(seco: boolean) {
   const ahora = Date.now(), desde = new Date(ahora - 30 * 3600e3).toISOString().slice(0, 10);
   const lista = (await partidos()).filter((p) => enJuego(p, ahora));
-  const res: Dic = { en_juego: lista.length, segundo_tiempo: 0, avisos: 0, ia: 0, liquidadas: 0, lecturas: [] as Dic[] };
+  const res: Dic = { en_juego: lista.length, segundo_tiempo: 0, avisos: 0, ia: 0, liquidadas: 0, lecturas: [] as Dic[], sin_espn: [] as unknown[], sin_ia: 0 };
   if (!lista.length) return res;
   const env = await sbGet('telegram_enviados', 'select=pick&tipo=eq.pulso&enviado=gte.' + new Date(ahora - 2 * 864e5).toISOString() + '&limit=5000');
   const avisados = new Set<string>((env || []).map((x: Dic) => x.pick));
@@ -191,7 +193,11 @@ async function vuelta(seco: boolean) {
   for (const x of (await sbGet('pulso_ia', 'select=*&fecha=gte.' + desde + '&limit=2000')) || []) recs.set(x.clave + '#' + x.marcador, x);
   const estados = await Promise.all(lista.map(async (p) => {
     const [ruta, ev] = String(p.espn).split(':');
-    try { return estadoVivo(await (await fetch(ESPN + ruta + '/summary?event=' + ev, { signal: AbortSignal.timeout(15000) })).json(), !!p.girado); } catch (_) { return null; }
+    try {
+      const r = await fetch(ESPN + ruta + '/summary?event=' + ev, { headers: NAV, signal: AbortSignal.timeout(15000) });
+      if (!r.ok) { res.sin_espn.push(r.status); return null; }
+      return estadoVivo(await r.json(), !!p.girado);
+    } catch (err) { res.sin_espn.push(String(err).slice(0, 60)); return null; }
   }));
   for (let i = 0; i < lista.length; i++) {
     const p = lista[i], e = estados[i]; if (!e) continue;
@@ -215,13 +221,14 @@ async function vuelta(seco: boolean) {
     const marc = `${e.g[0]}-${e.g[1]}`;
     let rec = recs.get(clave + '#' + marc) || null;
     if (!rec) {                                                    // la IA, una vez por partido y marcador
-      const opciones = ms.filter((x) => x.tramo && x.p >= 0.6), r = await preguntarIA(p, e, opciones);
+      // sólo lo que aún paga (como «Mejor ahora»): un «1 córner más» al 96 % paga 1,04 y no sirve de recomendación
+      const opciones = ms.filter((x) => x.tramo && x.p >= 0.6 && 1 / x.p >= JUSTA_MIN), r = await preguntarIA(p, e, opciones);
       if (r) {
         const el = opciones.find((x) => x.k === r.mercado)!;
         rec = { ...r, clave, partido: p.partido, fecha: dia(p), marcador: marc, minuto: e.t, prob: Math.round(1000 * el.p) / 1000, corners: e.c };
         if (!seco) await sbPost('pulso_ia', rec);
         recs.set(clave + '#' + marc, rec); res.ia++;
-      }
+      } else res.sin_ia++;
     }
     const pick = `pulso|${clave}|${m.k}`;
     if (m.p >= AVISO_MIN && !avisados.has(pick)) {                 // el aviso, una vez por partido y mercado
@@ -239,7 +246,7 @@ Deno.serve(async (req) => {
   const s = await secretos();
   if (!s.pulso_cron || req.headers.get('x-pulso-clave') !== s.pulso_cron) return new Response('no', { status: 401 });
   try {
-    if (!M || Date.now() - mDesde > 3600e3) { M = await (await fetch(SITIO + 'pulso_modelo.json?t=' + Date.now())).json(); mDesde = Date.now(); }
+    if (!M || Date.now() - mDesde > 3600e3) { M = await (await fetch(SITIO + 'pulso_modelo.json?t=' + Date.now(), { headers: NAV })).json(); mDesde = Date.now(); }
     const body = await req.json().catch(() => ({}));
     if (body.simular) {                                            // la cuenta con un partido dado (verificación)
       const x = body.simular, e = estadoVivo(x.espn, !!x.girado);
