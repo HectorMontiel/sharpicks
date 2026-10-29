@@ -1,0 +1,624 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+v220 — El día cocinado: separar el CÁLCULO del SERVICIO.
+
+LA CAUSA RAÍZ QUE ESTO CIERRA
+-----------------------------
+La aplicación calculaba dentro del render. Todos los síntomas salían de ahí, y
+el propio repositorio ya tenía el número escrito en `dashboard_ui`:
+
+    «El barrido de alpha_finder pica a 1297,7 MB; dos a la vez, a 2172,2 MB»
+
+Contra un techo de **1 GB** en Streamlit Community Cloud. No es un bug: es que
+el pico no cabe. Con un usuario pasa a veces; con tres, siempre.
+
+    ANTES                              AHORA
+    -----                              -----
+    usuario abre la app                cron (GitHub Actions)
+      └─ importa xgboost                 └─ corre el barrido (pico 1,3 GB,
+      └─ carga modelos                   │   pero en un runner de 7 GB)
+      └─ CORRE EL BARRIDO  ← 1,3 GB      └─ escribe pronostico_dia.json
+      └─ pinta                                   │
+                                                 ▼
+                                       usuario abre la app
+                                         └─ LEE el JSON  ← ~10 MB
+                                         └─ pinta
+
+LO QUE HACE QUE ESTO SEA BARATO DE HACER
+----------------------------------------
+Que el resultado del barrido **ya es serializable a JSON tal cual**:
+comprobado sobre el barrido real, 1,0 MB y cero tipos que no sean str, int,
+float, bool, None, list o dict. No hace falta inventar un formato: se vuelca lo
+mismo que ya viajaba en el pickle.
+
+DÓNDE SE ENGANCHA, Y POR QUÉ AHÍ
+--------------------------------
+En `guardia_barrido.barrido()`, que es el único sitio por el que pasan TODOS
+los consumidores —«Apuestas del Día», las combinadas, el bot de Telegram y la
+exportación—. Engancharlo en la vista habría dejado a los otros tres
+calculando.
+
+EL INTERRUPTOR QUE DE VERDAD PONE EL TECHO
+------------------------------------------
+`SOLO_PRECALCULO=1` hace que la aplicación **no calcule nunca**: si no hay
+precálculo, enseña el aviso en vez de levantar 1,3 GB. Es lo que se pone en
+producción, y es la diferencia entre «normalmente no calcula» y «no puede
+calcular». Sin ese pestillo, basta un día con el JSON viejo para que vuelva el
+crash.
+
+Uso:
+    python precalculo_dia.py              # calcula y escribe el JSON
+    python precalculo_dia.py --estado     # sólo dice qué hay
+"""
+
+import argparse
+import datetime as _dt
+import json
+import logging
+import os
+import sys
+import time
+from typing import Dict, Optional
+
+logging.basicConfig(level=logging.INFO, format='%(levelname)s %(message)s')
+logger = logging.getLogger('precalculo_dia')
+
+FICHERO = os.environ.get('PRECALCULO_DIA', 'pronostico_dia.json')
+
+# Cuánto se admite un precálculo antes de considerarlo inservible. Por encima
+# de esto la aplicación lo dice en pantalla en vez de enseñarlo como si fuera
+# de hoy: un pronóstico de ayer con cuotas de ayer no es un pronóstico.
+CADUCIDAD_S = int(os.environ.get('PRECALCULO_CADUCIDAD_S', 6 * 3600))
+
+# v221 — NO CALCULAR ES EL COMPORTAMIENTO POR DEFECTO, NO UNA OPCIÓN.
+#
+# La v220 dejó esto como una variable de entorno que había que ir a poner a
+# mano en el despliegue. Estaba mal, y el usuario lo dijo con razón: «no quiero
+# hacer cosas manuales ni estarlo cambiando a cada rato».
+#
+# Un interruptor que hay que acordarse de encender no protege de nada: protege
+# los días que alguien se acordó. Y lo que hay detrás no es una preferencia
+# —es que el barrido pica a 1,3 GB y el servidor tiene 1 GB—, así que la
+# respuesta correcta no depende de la opinión de nadie.
+#
+# Ahora viene ENCENDIDO de fábrica. La variable sigue existiendo, pero para lo
+# contrario: ponerla a 0 en una máquina de desarrollo, donde sí interesa que la
+# aplicación calcule si falta el fichero.
+_CRUDO = str(os.environ.get('SOLO_PRECALCULO', '')).strip().lower()
+SOLO_PRECALCULO = _CRUDO not in ('0', 'false', 'no')
+
+# Cuánto se sigue sirviendo un precálculo viejo ANTES de rendirse. Ver
+# `guardia_barrido`: entre `CADUCIDAD_S` y esto se enseña igual, avisando de
+# su edad, porque un pronóstico de hace ocho horas es muchísimo mejor que una
+# pantalla vacía. Sólo por encima de aquí se deja de enseñar.
+RESERVA_S = int(os.environ.get('PRECALCULO_RESERVA_S', 36 * 3600))
+
+
+def _jsonable(o, prof: int = 0):
+    """Deja el árbol en tipos que JSON entiende, sin romperse por uno raro.
+
+    El barrido de hoy ya sale limpio —comprobado— pero esto es la red por si
+    alguien mete mañana un `numpy.float64` o una fecha en cualquiera de los
+    veintisiete campos. Convertir de más no cuesta nada; fallar al volcar
+    dejaría a la aplicación sin precálculo y calculando a 1,3 GB.
+    """
+    if prof > 12:
+        return None
+    if o is None or isinstance(o, (str, bool, int, float)):
+        return o
+    if isinstance(o, dict):
+        return {str(k): _jsonable(v, prof + 1) for k, v in o.items()}
+    if isinstance(o, (list, tuple, set)):
+        return [_jsonable(v, prof + 1) for v in o]
+    for attr in ('item', 'isoformat'):
+        fn = getattr(o, attr, None)
+        if callable(fn):
+            try:
+                return _jsonable(fn(), prof + 1)
+            except Exception:
+                pass
+    return str(o)
+
+
+# ---------------------------------------------------------------------------
+def construir() -> Dict:
+    """Corre el barrido entero. Es lo caro, y por eso vive en el cron."""
+    import alpha_finder
+    t0 = time.time()
+    datos = alpha_finder.apuestas_del_dia_universal()
+    logger.info('barrido en %.0f s · %d pronósticos', time.time() - t0,
+                len(datos.get('pronosticos') or []))
+    # v313 — los partidos de fútbol del tablero que el modelo no cubre, con
+    # la probabilidad de Pinnacle y su regla medida de «meter». Va en su
+    # propia lista para no mezclarse con lo que el resto del sistema da por
+    # salido del modelo (élite, combinadas, Soñadora).
+    try:
+        # v315 — la base propia de resultados, al día (1-3 peticiones), antes
+        # de entrenar el modelo propio de estas competiciones
+        import resultados_fotmob as _rf
+        logger.info('resultados propios nuevos: %d', _rf.actualizar())
+        # v316 — y la base de Flashscore de las competiciones del tablero
+        import resultados_flashscore as _rfs
+        logger.info('resultados Flashscore nuevos: %d', _rfs.actualizar())
+    except Exception as e:
+        logger.warning('[precalculo] base de resultados: %s', e)
+    try:
+        import mercado_sin_modelo as _msm
+        datos['solo_mercado'] = _msm.construir(datos)
+    except Exception as e:
+        logger.warning('[precalculo] partidos sin modelo: %s', e)
+    return datos
+
+
+def escribir(datos: Dict, ruta: Optional[str] = None) -> bool:
+    """Vuelca el día cocinado, con su sello de tiempo."""
+    ruta = _ruta(ruta)
+    doc = {
+        'version': 1,
+        'generado_ts': time.time(),
+        'generado': _dt.datetime.now(_dt.timezone.utc)
+                       .strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'datos': _jsonable(datos),
+    }
+    try:
+        import io_atomico
+        ok = bool(io_atomico.escribir_json(ruta, doc))
+    except Exception as e:
+        logger.warning('[precalculo] io_atomico falló (%s); se escribe directo', e)
+        try:
+            with open(ruta, 'w', encoding='utf-8') as f:
+                json.dump(doc, f, ensure_ascii=False)
+            ok = True
+        except Exception as e2:
+            logger.error('[precalculo] no se pudo escribir %s: %s', ruta, e2)
+            return False
+    if ok:
+        try:
+            mb = os.path.getsize(ruta) / 1024 / 1024
+            logger.info('escrito %s (%.2f MB)', ruta, mb)
+        except Exception:
+            pass
+    return ok
+
+
+def _ruta(ruta: Optional[str] = None) -> str:
+    """La ruta efectiva, resuelta EN CADA LLAMADA.
+
+    Escribir `def leer(ruta=FICHERO)` parece equivalente y no lo es: Python
+    evalúa el valor por defecto UNA vez, al definir la función, así que
+    cambiar `precalculo_dia.FICHERO` después —un test, otra ruta, una variable
+    de entorno leída más tarde— no tenía ningún efecto. Lo cazaron tres tests
+    de la v220 que apuntaban a un fichero inexistente y seguían leyendo el
+    real.
+    """
+    return ruta or FICHERO
+
+
+def leer(ruta: Optional[str] = None) -> Optional[Dict]:
+    """El día cocinado, o None. Devuelve `{'datos', 'ts', 'edad_s'}`.
+
+    Nunca lanza: si el fichero no está, está a medias o es de otro formato,
+    devuelve None y quien llama decide. Un precálculo ilegible tiene que
+    comportarse igual que uno ausente.
+    """
+    ruta = _ruta(ruta)
+    try:
+        if not os.path.exists(ruta):
+            return None
+        with open(ruta, encoding='utf-8') as f:
+            doc = json.load(f)
+        if not isinstance(doc, dict) or not isinstance(doc.get('datos'), dict):
+            logger.warning('[precalculo] %s no tiene la forma esperada', ruta)
+            return None
+        ts = float(doc.get('generado_ts') or 0.0)
+        _adjuntar_decisiones(doc)
+        return {'datos': doc['datos'], 'ts': ts,
+                'edad_s': max(0.0, time.time() - ts),
+                'generado': doc.get('generado')}
+    except Exception as e:
+        logger.warning('[precalculo] no se pudo leer %s: %s', ruta, e)
+        return None
+
+
+def _adjuntar_decisiones(doc: Dict) -> None:
+    """v323 — cuelga de cada partido su decisión ya calculada por el cron.
+
+    Sólo si sigue valiendo para el código y los datos de ESTA app (ver
+    `decisiones_dia`); si no, no toca nada y `modo_modelo.render` calcula como
+    siempre. Nunca lanza.
+    """
+    try:
+        import decisiones_dia
+        decisiones_dia.adjuntar(doc)
+    except Exception as e:
+        logger.debug('[precalculo] decisiones: %s', e)
+
+
+# De dónde se baja el día cocinado cuando el usuario pulsa «Actualizar ahora».
+# Se deriva del mismo repo que `modelos_remotos`, con su variable de entorno,
+# para que un fork no acabe sirviendo el pronóstico del repo de otro.
+REPO_PRECALCULO = os.environ.get('REPO_MODELOS',
+                                 'HectorMontiel/mundial-2026-predictor')
+RAMA_PRECALCULO = os.environ.get('RAMA_PRECALCULO', 'main')
+URL_PRECALCULO = os.environ.get(
+    'URL_PRECALCULO',
+    'https://raw.githubusercontent.com/%s/%s/pronostico_dia.json'
+    % (REPO_PRECALCULO, RAMA_PRECALCULO))
+# 20 s. El fichero pesa 880 KB y tarda ~8 s medidos; el doble largo cubre una
+# red lenta sin dejar al usuario mirando un botón que no responde.
+TIMEOUT_DESCARGA_S = float(os.environ.get('PRECALCULO_TIMEOUT_S', 20))
+
+
+def descargar(url: Optional[str] = None,
+              guardar_en: Optional[str] = None) -> Optional[Dict]:
+    """El día cocinado que hay PUBLICADO, bajado de GitHub. `None` si no se pudo.
+
+    v233 — POR QUÉ ESTO EXISTE, Y POR QUÉ RELEER EL DISCO NO BASTABA.
+
+    La v226 hizo que «Actualizar ahora» releyera el precálculo del disco en vez
+    de recalcular, y lo justificó así: «el cron reescribe el fichero cada tres
+    horas, así que el botón recoge lo último que haya publicado».
+
+    Eso es falso en Streamlit Cloud, y es la raíz del fallo. El cron NO escribe
+    en el disco del contenedor: commitea a GitHub. El contenedor recibe el
+    fichero nuevo únicamente cuando hay REDESPLIEGUE. Entre despliegues,
+    `pronostico_dia.json` en disco no cambia jamás, así que releerlo devuelve
+    exactamente lo mismo y el botón no hace nada — que es lo que el usuario
+    reportó dos veces.
+
+    La única fuente que sí tiene datos nuevos es el fichero publicado. Son 880
+    KB y una petición; ni cálculo ni memoria, o sea que cabe donde el barrido
+    de 1,3 GB no cabía.
+
+    Devuelve la misma forma que `leer()` para que quien llama no distinga de
+    dónde vino. Nunca lanza: sin red, el botón se queda como estaba y la
+    aplicación sigue sirviendo lo local, que es la degradación correcta.
+    """
+    url = url or URL_PRECALCULO
+    try:
+        import requests
+        r = requests.get(url, timeout=TIMEOUT_DESCARGA_S)
+        r.raise_for_status()
+        doc = r.json()
+    except Exception as e:
+        logger.warning('[precalculo] no se pudo bajar %s: %s: %s',
+                       url, type(e).__name__, e)
+        return None
+    if not isinstance(doc, dict) or not isinstance(doc.get('datos'), dict):
+        logger.warning('[precalculo] lo bajado no tiene la forma esperada')
+        return None
+    ts = float(doc.get('generado_ts') or 0.0)
+    if guardar_en is not None:
+        # Se guarda para que la siguiente pasada lo tenga sin volver a la red.
+        # Falla en blando: no poder escribir —disco de sólo lectura— no puede
+        # impedir que este usuario vea los datos que acaba de pedir.
+        #
+        # v271 — SE ESCRIBE APARTE Y SE MUEVE ENCIMA, NUNCA DIRECTAMENTE.
+        #
+        # Escribir sobre el fichero vivo lo deja a medias mientras se escribe,
+        # y en ese hueco otra sesion lo lee roto. No es teorico: con cinco
+        # sesiones simultaneas `test_concurrencia` lo reproduce siempre, y el
+        # error sale en un sitio distinto cada vez —«Expecting value», «line 1
+        # column 154829»— que es la firma de un fichero partido, no de un JSON
+        # mal generado.
+        #
+        # En produccion son varios usuarios a la vez sobre el mismo disco, o
+        # sea el mismo caso. `os.replace` es atomico en Windows y en POSIX: o
+        # esta el de antes o esta el nuevo, nunca medio.
+        #
+        # El temporal lleva el pid para que dos procesos que bajan a la vez no
+        # se pisen tampoco el temporal.
+        try:
+            destino = _ruta(guardar_en)
+            tmp = '%s.%d.nuevo' % (destino, os.getpid())
+            with open(tmp, 'w', encoding='utf-8') as f:
+                json.dump(doc, f, ensure_ascii=False)
+            os.replace(tmp, destino)
+        except Exception as e:
+            logger.info('[precalculo] bajado pero no guardado: %s', e)
+            try:
+                if os.path.exists(tmp):
+                    os.remove(tmp)
+            except Exception:
+                pass
+    logger.info('[precalculo] bajado el publicado (%s)', doc.get('generado'))
+    _adjuntar_decisiones(doc)
+    return {'datos': doc['datos'], 'ts': ts,
+            'edad_s': max(0.0, time.time() - ts),
+            'generado': doc.get('generado'), 'remoto': True}
+
+
+def mas_nuevo_publicado(ruta: Optional[str] = None) -> Optional[Dict]:
+    """Lo publicado si es MÁS NUEVO que lo local; si no, `None`.
+
+    La comparación por marca de tiempo evita el caso tonto: en la máquina que
+    genera el precálculo, lo local es más reciente que lo publicado, y bajarlo
+    sería retroceder. Que el botón no empeore nunca es parte de que funcione.
+    """
+    local = leer(ruta)
+    # `_ruta(ruta)` y no `ruta` a secas: con `ruta=None` —el caso normal—
+    # `descargar` entendería «no lo guardes», y entonces cada pulsación del
+    # botón volvería a la red para traer lo mismo. Resolver aquí la ruta es lo
+    # que hace que se baje UNA vez y las siguientes salgan del disco.
+    remoto = descargar(guardar_en=_ruta(ruta))
+    if remoto is None:
+        return None
+    if local is not None and local['ts'] >= remoto['ts']:
+        logger.info('[precalculo] lo publicado no es más nuevo que lo local '
+                    '(%s vs %s); se conserva lo local',
+                    remoto.get('generado'), local.get('generado'))
+        return None
+    return remoto
+
+
+def fresco(ruta: Optional[str] = None,
+           caducidad_s: Optional[float] = None) -> bool:
+    d = leer(ruta)
+    if d is None:
+        return False
+    tope = CADUCIDAD_S if caducidad_s is None else caducidad_s
+    return d['edad_s'] < tope
+
+
+def estado(ruta: Optional[str] = None) -> Dict:
+    """Qué hay, de cuándo y si sirve. Para la pantalla y para el cron."""
+    d = leer(ruta)
+    if d is None:
+        return {'hay': False, 'solo_precalculo': SOLO_PRECALCULO,
+                'motivo': 'no hay precálculo en disco'}
+    dat = d['datos']
+    return {
+        'hay': True,
+        'generado': d.get('generado'),
+        'edad_min': round(d['edad_s'] / 60.0, 1),
+        'fresco': d['edad_s'] < CADUCIDAD_S,
+        'caducidad_h': round(CADUCIDAD_S / 3600.0, 1),
+        'solo_precalculo': SOLO_PRECALCULO,
+        'pronosticos': len(dat.get('pronosticos') or []),
+        'seccion1': len(dat.get('seccion1') or []),
+        'seccion2': len(dat.get('seccion2') or []),
+        'actualizado': dat.get('actualizado'),
+    }
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--estado', action='store_true')
+    ap.add_argument('--salida', default=FICHERO)
+    a = ap.parse_args()
+
+    if a.estado:
+        print(json.dumps(estado(a.salida), ensure_ascii=False, indent=1))
+        return 0
+
+    # v236 — LOS ALIAS DE NOMBRE SE DESCUBREN ANTES DE COCINAR EL DÍA.
+    #
+    # Va PRIMERO a propósito: `construir()` empareja cada fixture con el
+    # tablero de la casa, y si un alias falta, ese partido se cocina sin
+    # escalera de goles, sin doble oportunidad y sin BTTS — la tarjeta de una
+    # sola apuesta que el usuario reportó. Descubrirlos después serviría para
+    # el barrido de dentro de tres horas, no para éste.
+    #
+    # Falla en blando: sin alias nuevos se sigue con los que ya había.
+    try:
+        import alias_equipos as _ae
+        logger.info('alias de equipo conocidos: %d', _ae.actualizar())
+    except Exception as e:
+        logger.warning('[precalculo] alias no actualizados: %s', e)
+
+    # v238 — y los de PERSONA: jugadores de futbol, lanzadores, tenistas.
+    #
+    # Se alimenta de los «sin mapear» que `name_mapper` ya registraba y tiraba.
+    # Va aqui, con los de equipo, porque los dos son lo mismo: el catalogo se
+    # amplia solo en vez de esperar a que alguien edite un JSON a mano.
+    try:
+        import alias_nombres as _an
+        logger.info('alias de nombre conocidos: %d', _an.actualizar())
+    except Exception as e:
+        logger.warning('[precalculo] alias de nombre no actualizados: %s', e)
+
+    # v238 — EL TABLERO DE LA CASA, CADA 3 h Y NO UNA VEZ AL DIA.
+    #
+    # `mercado_dia.json` lo generaba SOLO `retrain_leagues.yml`, con cron a las
+    # 05:30 UTC. El precalculo corre cada 3 h y lee ese fichero, asi que los
+    # precios de la casa llegaban con hasta 24 h de retraso — y, peor, con el
+    # emparejador VIEJO: los arreglos de nombre de la v235 (la «o» nordica, los
+    # exonimos como Napoles/Napoli) no llegaban a la pantalla hasta el dia
+    # siguiente.
+    #
+    # Medido: regenerandolo con el emparejador arreglado, Fiorentina-Napoli
+    # pasa de UNA linea de goles a la escalera entera, mas doble oportunidad y
+    # BTTS. Esa era la tarjeta de una sola apuesta roja que el usuario reporto.
+    #
+    # Cuesta ~73 s medidos, dentro de un workflow con 45 min de margen. Va
+    # ANTES del barrido: `construir()` lee este fichero.
+    try:
+        import mercado_implicito as _mi
+        # v252 — TRES DIAS, LOS MISMOS QUE ENSENA LA PANTALLA.
+        #
+        # La v250 anadio la pestana de pasado manana, pero el tablero seguia
+        # pidiendo dos dias: los partidos del tercer dia se pintaban sin
+        # precio de la casa. La ventana del tablero y la de la pantalla tienen
+        # que ser la misma o una de las dos miente.
+        #
+        # Y con tres dias entran tambien las selecciones que juegan en esa
+        # ventana, que es como Mexico-Colombia del 26-sep tendra su precio
+        # cuando llegue el dia 23 — antes no, porque antes tampoco se ve.
+        _doc = _mi.precalcular(dias=3)
+        if (_doc.get('partidos') or {}):
+            # v242 — regenerar no puede EMPOBRECER. La casa retira los
+            # mercados pre-partido en cuanto arranca el juego, y el tablero
+            # se pisaba entero: los dos partidos de la J1 del 2026-09-20
+            # pasaron de escalera completa a UNA linea porque el cron paso 21
+            # minutos despues del saque. Ver `mercado_implicito.fusionar`.
+            try:
+                _doc = _mi.fusionar(_doc, _mi.cargar(recargar=True))
+            except Exception as _e:
+                logger.warning('[precalculo] no se pudo fusionar con el '
+                               'tablero previo: %s', _e)
+            _mi.guardar(_doc)
+            logger.info('tablero de la casa: %d partidos',
+                        len(_doc['partidos']))
+        else:
+            logger.warning('[precalculo] tablero vacio: se conserva el previo')
+    except Exception as e:
+        logger.warning('[precalculo] tablero no regenerado: %s', e)
+
+    datos = construir()
+
+    # v222 — SE ARCHIVA EL CONTEXTO AQUÍ, Y NO EN LA PANTALLA.
+    #
+    # `archivo_contexto` existía desde la v217 con CERO importadores: escrito,
+    # probado y sin enchufar — el mismo patrón que este proyecto lleva
+    # señalando en `filtro_contexto` y `ventaja_ponches`. Lo cazó la propia
+    # auditoría en cuanto se le quitó el punto ciego del `__main__`.
+    #
+    # El sitio correcto es el cron y no la vista, por dos motivos: consultar
+    # bajas sale a la red (justo lo que la v220 sacó del render) y esto tiene
+    # que correr aunque nadie abra la aplicación — si sólo se archivara al
+    # mirar, los días que no entras se pierden.
+    #
+    # Falla en blando a propósito: un archivo de contexto incompleto es un
+    # problema de mañana; no escribir el precálculo es un problema de ahora.
+    try:
+        import archivo_contexto as _arc
+        _res = _arc.archivar_del_barrido(
+            (datos.get('pronosticos') or [])[:400], con_contexto=True)
+        logger.info('contexto archivado: %d nuevos, %d ya estaban',
+                    _res.get('archivados', 0), _res.get('saltados', 0))
+    except Exception as e:
+        logger.warning('[precalculo] no se pudo archivar el contexto: %s', e)
+
+    # v227 — LA FOTO DE LAS ESCALERAS DE PONCHES, POR EL MISMO MOTIVO.
+    #
+    # `ventaja_ponches` lleva sin enchufar desde la v132, y su propio docstring
+    # explica por qué no puede encenderse: no existe histórico de precios de
+    # props —cero filas entre las 155.364 de 1X2—, así que no hay ROI ni p5 que
+    # medir, y sin eso el proyecto no publica una recomendación. Es la regla y
+    # no se salta.
+    #
+    # Lo que sí se puede hacer hoy es empezar a fabricar esa muestra. Esto no
+    # elige ningún pick ni toca uno existente: escribe un CSV. En unas semanas
+    # habrá con qué contestar la pregunta que lleva abierta cinco versiones.
+    #
+    # Va aquí y no en la vista por lo mismo que el contexto: sale a la red, y
+    # el precio de hoy no se puede recuperar mañana. Cada pasada añade una foto
+    # con su hora, así que las ocho del día también capturan el movimiento de
+    # línea, que es gratis y no se podía mirar de ninguna otra forma.
+    try:
+        import ventaja_ponches as _vp
+        _n = _vp.snapshot_diario()
+        logger.info('foto de ponches: %d filas', _n)
+    except Exception as e:
+        logger.warning('[precalculo] no se pudo fotografiar los ponches: %s', e)
+
+    # v229 — LOS PARTIDOS ACABADOS, QUE VOLVIERON A COSTAR DINERO.
+    #
+    # `partidos_jugados.de_dia` salía gratis mientras ESPN rechazaba los rangos
+    # de fechas: las 62 competiciones fallaban y la lista quedaba vacía al
+    # instante. Al arreglarlo (v228) volvió a hacer su trabajo —190 partidos,
+    # 186 peticiones, 13 s medidos— y lo hacía AL PINTAR, con el usuario
+    # delante. Es el mismo error que la v220 vino a corregir, reaparecido por
+    # la puerta de atrás.
+    #
+    # Se cocinan los DOS días: el de hoy y el de ayer. La vista de «hoy» en
+    # hora de CDMX toca los dos husos, y un partido de las 19:00 de ayer sigue
+    # apareciendo esta madrugada.
+    try:
+        import datetime as _dt
+        import partidos_jugados as _pj
+        # v305 — EL DÍA DE CDMX, NO EL DEL SERVIDOR. `datetime.now()` en el
+        # runner es UTC: de 18:00 a 24:00 de CDMX cocinaba el día siguiente y
+        # la aplicación, que pide el de CDMX, no encontraba el de hoy. Y el
+        # pronóstico que se pasa es el ANTERIOR (aún en disco): de ahí salen
+        # los partidos que ya empezaron desde la última pasada.
+        import dia_picks as _dpk
+        _hoy = _dpk.hoy_local()
+        _n = _pj.escribir_dia(_hoy.strftime('%Y-%m-%d'),
+                              ruta_pronostico=a.salida)
+        logger.info('partidos jugados precocinados: %d', _n)
+        # v342 — y los marcadores que falten del día anterior (el marcador
+        # de «ayer» de la pantalla del día)
+        _pj.repasar_ayer(_hoy.strftime('%Y-%m-%d'))
+    except Exception as e:
+        logger.warning('[precalculo] no se pudieron cocinar los jugados: %s', e)
+
+    if not datos or not datos.get('pronosticos'):
+        logger.error('el barrido salió vacío: NO se escribe el precálculo')
+        # Escribir un día vacío sería peor que no escribirlo: la aplicación
+        # lo serviría como si fuera el día de hoy.
+        return 1
+    if not escribir(datos, a.salida):
+        return 1
+    # v323 — Y LAS DECISIONES DE CADA PARTIDO, PARA QUE LA APP LAS LEA.
+    #
+    # `modo_modelo.render` recalculaba en cada clic la apuesta destacada y las
+    # cuatro recomendadas de los 355 partidos del día: 21,5 s medidos en un
+    # proceso nuevo, para repetir lo que ya había calculado la pasada anterior.
+    # Se hacen aquí, una vez, en un proceso aparte que apunta de qué ficheros
+    # dependen; la app sólo las usa si esos ficheros siguen siendo los suyos.
+    # Falla en blando: sin ellas el JSON es el de siempre.
+    # v345 — LOS TIROS POR EQUIPO DEL MODELO NUEVO, ANTES DE LAS DECISIONES:
+    # la tarjeta los lee de `tiros_dia.json` (`tiros_equipo`), y las
+    # decisiones precalculadas tienen que salir con ellos. Y su seguimiento:
+    # apuntar las líneas de hoy, liquidar las jugadas y medir si la regla de
+    # apuesta ya se ganó el «meter» (`tiros_seguimiento`). Falla en blando.
+    try:
+        import tiros_equipo
+        import tiros_seguimiento
+        _n_t = tiros_equipo.precalcular(datos.get('pronosticos') or [])
+        logger.info('tiros precalculados: %d partidos', _n_t)
+        tiros_seguimiento.registrar(datos.get('pronosticos') or [])
+        tiros_seguimiento.liquidar()
+        logger.info('seguimiento de tiros: %s', tiros_seguimiento.medir())
+    except Exception as e:
+        logger.warning('[precalculo] tiros: %s', e)
+    # v361 — EL SEGUIMIENTO DEL ANÁLISIS (Método Contexto): apuntar lo que
+    # dice la tabla de cada partido por jugar y poner lo que pasó a lo jugado
+    # (`analisis_seguimiento`). Falla en blando.
+    try:
+        import analisis_seguimiento
+        logger.info('análisis: %d filas apuntadas, %d liquidadas',
+                    analisis_seguimiento.registrar(datos.get('pronosticos') or []),
+                    analisis_seguimiento.liquidar())
+    except Exception as e:
+        logger.warning('[precalculo] seguimiento del análisis: %s', e)
+    # v362 — y las patas de «🎲 apuestas arriesgadas» (`arriesgadas`)
+    try:
+        import arriesgadas
+        logger.info('arriesgadas: %d patas apuntadas, %d liquidadas',
+                    arriesgadas.registrar(datos.get('pronosticos') or []),
+                    arriesgadas.liquidar())
+    except Exception as e:
+        logger.warning('[precalculo] arriesgadas: %s', e)
+    try:
+        import decisiones_dia
+        if not decisiones_dia.anadir(a.salida):
+            logger.warning('[precalculo] sin decisiones precalculadas: la '
+                           'app las calculará en vivo')
+    except Exception as e:
+        logger.warning('[precalculo] decisiones: %s', e)
+    # v343 — y lo que la tarjeta dijo «se mete» se apunta con su hora y su
+    # cuota de entonces, para que no desaparezca si luego cambia (ver
+    # `anunciadas`). Falla en blando.
+    try:
+        import anunciadas
+        with open(a.salida, encoding='utf-8') as _f_an:
+            anunciadas.acumular(json.load(_f_an))
+    except Exception as e:
+        logger.warning('[precalculo] anunciadas: %s', e)
+    # v351 — y lo que la Capa 1 enseñó y ya terminó se liquida (FotMob y
+    # Flashscore) y se apunta en `capa1_historial.json`: de ahí sale la tasa
+    # de conversión de cada grupo. Falla en blando.
+    try:
+        import capa1_resultados
+        capa1_resultados.liquidar()
+    except Exception as e:
+        logger.warning('[precalculo] capa 1 liquidada: %s', e)
+    print(json.dumps(estado(a.salida), ensure_ascii=False, indent=1))
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

@@ -1,0 +1,429 @@
+{
+ "generado": "2026-10-26 13:01",
+ "criterios": {
+  "brier": "<= baseline",
+  "p5": ">= 0",
+  "hit_rate": ">= baseline",
+  "roi": ">= baseline",
+  "ruina_30d": "<= 5%"
+ },
+ "deportes": {
+  "modo_seguridad": {
+   "Fútbol": {
+    "A": {
+     "n": 60922,
+     "brier": 0.23656373220297922,
+     "ece": 0.009308003184399758,
+     "hit_rate": 0.49381175929877547,
+     "roi": -0.050210433012704773,
+     "p5": -0.0572276763730672,
+     "montecarlo": {
+      "prob_ruina": 0.0,
+      "roi_ic90": [
+       -0.34611424342504027,
+       0.23953061748040302
+      ],
+      "drawdown_max": 0.3930343811430027
+     }
+    },
+    "B": {
+     "n": 3649,
+     "brier": 0.21779058904614962,
+     "ece": 0.010075576870375394,
+     "hit_rate": 0.6736092080021924,
+     "roi": 0.0014551932036174378,
+     "p5": -0.01787174568374897,
+     "montecarlo": {
+      "prob_ruina": 0.0,
+      "roi_ic90": [
+       -0.20670219676027055,
+       0.23197934434469306
+      ],
+      "drawdown_max": 0.26030671155052426
+     }
+    },
+    "veredicto": {
+     "activa": false,
+     "fallos": [
+      "p5 de bootstrap negativo (-1.79%)"
+     ],
+     "notas": [
+      "brier +0.2178 vs +0.2366 OK",
+      "hit_rate +0.6736 vs +0.4938 OK",
+      "roi +0.0015 vs -0.0502 OK",
+      "p5 -0.0179 FALLA"
+     ],
+     "muestra_insuficiente": false,
+     "motivo": "no se activa: p5 de bootstrap negativo (-1.79%)"
+    },
+    "n_total": 60922,
+    "n_seguras": 3649
+   },
+   "KBO": {
+    "A": {
+     "n": 252,
+     "brier": 0.24229027591031743,
+     "ece": 0.03803404761904762,
+     "hit_rate": 0.5714285714285714,
+     "roi": 0.01738095238095238,
+     "p5": -0.080875,
+     "montecarlo": {
+      "prob_ruina": 0.0,
+      "roi_ic90": [
+       -0.2391533011645625,
+       0.3559103691809022
+      ],
+      "drawdown_max": 0.3041529087906842
+     }
+    },
+    "B": {
+     "n": 12,
+     "brier": 0.234900713625,
+     "ece": 0.0377358333333333,
+     "hit_rate": 0.5833333333333334,
+     "roi": -0.08666666666666663,
+     "p5": null,
+     "montecarlo": {
+      "prob_ruina": null,
+      "roi_ic90": null,
+      "drawdown_max": null
+     }
+    },
+    "veredicto": {
+     "activa": false,
+     "fallos": [
+      "muestra vacía o mínima"
+     ],
+     "muestra_insuficiente": true,
+     "motivo": "sólo 12 picks: no hay con qué medir"
+    },
+    "n_total": 252,
+    "n_seguras": 12
+   },
+   "NFL": {
+    "A": {
+     "n": 539,
+     "brier": 0.23879165820389608,
+     "ece": 0.033460278293135436,
+     "hit_rate": 0.5807050092764379,
+     "roi": 0.057491651205936904,
+     "p5": -0.019518552875695726,
+     "montecarlo": {
+      "prob_ruina": 0.0,
+      "roi_ic90": [
+       -0.21068620520608183,
+       0.5125078346790664
+      ],
+      "drawdown_max": 0.2971211576443777
+     }
+    },
+    "B": {
+     "n": 44,
+     "brier": 0.23146902864545452,
+     "ece": 0.026733636363636303,
+     "hit_rate": 0.6363636363636364,
+     "roi": 0.007477272727272736,
+     "p5": -0.17674318181818185,
+     "montecarlo": {
+      "prob_ruina": 0.0,
+      "roi_ic90": [
+       -0.20929102238220285,
+       0.27727403485885876
+      ],
+      "drawdown_max": 0.27120047523264124
+     }
+    },
+    "veredicto": {
+     "activa": false,
+     "fallos": [
+      "roi empeora (0.0075 contra 0.0575)",
+      "p5 de bootstrap negativo (-17.67%)"
+     ],
+     "notas": [
+      "brier +0.2315 vs +0.2388 OK",
+      "hit_rate +0.6364 vs +0.5807 OK",
+      "roi +0.0075 vs +0.0575 FALLA",
+      "p5 -0.1767 FALLA",
+      "muestra 44 < 1000"
+     ],
+     "muestra_insuficiente": true,
+     "motivo": "no se activa: roi empeora (0.0075 contra 0.0575); p5 de bootstrap negativo (-17.67%)"
+    },
+    "n_total": 539,
+    "n_seguras": 44
+   },
+   "Tenis": {
+    "A": {
+     "n": 27584,
+     "brier": 0.21455611617747972,
+     "ece": 0.033332489124129935,
+     "hit_rate": 0.654292343387471,
+     "roi": -0.043729444605568435,
+     "p5": -0.051868275087006956,
+     "montecarlo": {
+      "prob_ruina": 0.0,
+      "roi_ic90": [
+       -0.2853827392792896,
+       0.16844066970311422
+      ],
+      "drawdown_max": 0.31762073844201955
+     }
+    },
+    "B": {
+     "n": 5332,
+     "brier": 0.22703521539412977,
+     "ece": 0.039169187921980514,
+     "hit_rate": 0.6460990247561891,
+     "roi": -0.05949643660915227,
+     "p5": -0.07509377344336084,
+     "montecarlo": {
+      "prob_ruina": 0.0,
+      "roi_ic90": [
+       -0.2887886194888968,
+       0.1070539216262345
+      ],
+      "drawdown_max": 0.31949245102079016
+     }
+    },
+    "veredicto": {
+     "activa": false,
+     "fallos": [
+      "brier empeora (0.2270 contra 0.2146)",
+      "hit_rate empeora (0.6461 contra 0.6543)",
+      "roi empeora (-0.0595 contra -0.0437)",
+      "p5 de bootstrap negativo (-7.51%)"
+     ],
+     "notas": [
+      "brier +0.2270 vs +0.2146 FALLA",
+      "hit_rate +0.6461 vs +0.6543 FALLA",
+      "roi -0.0595 vs -0.0437 FALLA",
+      "p5 -0.0751 FALLA"
+     ],
+     "muestra_insuficiente": false,
+     "motivo": "no se activa: brier empeora (0.2270 contra 0.2146); hit_rate empeora (0.6461 contra 0.6543); roi empeora (-0.0595 contra -0.0437); p5 de bootstrap negativo (-7.51%)"
+    },
+    "n_total": 27584,
+    "n_seguras": 5332
+   }
+  },
+  "escalada": {
+   "A": {
+    "n": 40838,
+    "brier": 0.24721406042040014,
+    "ece": 0.006853120378079265,
+    "hit_rate": 0.5126352906606592,
+    "roi": -0.04758509231598022,
+    "p5": -0.05584764190214996,
+    "montecarlo": {
+     "prob_ruina": 0.0,
+     "roi_ic90": [
+      -0.33151328287312837,
+      0.2160771598960537
+     ],
+     "drawdown_max": 0.3719475951234925
+    }
+   },
+   "variantes": {
+    "_regla_completa_3de4": {
+     "n_escaladas": 0
+    },
+    "superior": {
+     "C": {
+      "n": 1064,
+      "brier": 0.236304940974906,
+      "ece": 0.006365328947368462,
+      "hit_rate": 0.625,
+      "roi": -0.017424812030075173,
+      "p5": -0.05509586466165413,
+      "montecarlo": {
+       "prob_ruina": 0.0,
+       "roi_ic90": [
+        -0.24333538442949582,
+        0.21753786738470898
+       ],
+       "drawdown_max": 0.2937943463907461
+      }
+     },
+     "veredicto": {
+      "activa": false,
+      "fallos": [
+       "p5 de bootstrap negativo (-5.51%)"
+      ],
+      "notas": [
+       "brier +0.2363 vs +0.2472 OK",
+       "hit_rate +0.6250 vs +0.5126 OK",
+       "roi -0.0174 vs -0.0476 OK",
+       "p5 -0.0551 FALLA"
+      ],
+      "muestra_insuficiente": false,
+      "motivo": "no se activa: p5 de bootstrap negativo (-5.51%)"
+     },
+     "n_escaladas": 1064
+    },
+    "base": {
+     "C": {
+      "n": 1064,
+      "brier": 0.236304940974906,
+      "ece": 0.006365328947368462,
+      "hit_rate": 0.625,
+      "roi": -0.017424812030075173,
+      "p5": -0.05509586466165413,
+      "montecarlo": {
+       "prob_ruina": 0.0,
+       "roi_ic90": [
+        -0.24333538442949582,
+        0.21753786738470898
+       ],
+       "drawdown_max": 0.2937943463907461
+      }
+     },
+     "veredicto": {
+      "activa": false,
+      "fallos": [
+       "p5 de bootstrap negativo (-5.51%)"
+      ],
+      "notas": [
+       "brier +0.2363 vs +0.2472 OK",
+       "hit_rate +0.6250 vs +0.5126 OK",
+       "roi -0.0174 vs -0.0476 OK",
+       "p5 -0.0551 FALLA"
+      ],
+      "muestra_insuficiente": false,
+      "motivo": "no se activa: p5 de bootstrap negativo (-5.51%)"
+     },
+     "n_escaladas": 1064
+    }
+   }
+  }
+ },
+ "reglas": {
+  "modo_seguridad": {
+   "activa": false,
+   "deportes_aprobados": [],
+   "motivo": "no supera los criterios en ningún deporte con muestra suficiente",
+   "detalle": {
+    "Fútbol": {
+     "activa": false,
+     "fallos": [
+      "p5 de bootstrap negativo (-1.79%)"
+     ],
+     "notas": [
+      "brier +0.2178 vs +0.2366 OK",
+      "hit_rate +0.6736 vs +0.4938 OK",
+      "roi +0.0015 vs -0.0502 OK",
+      "p5 -0.0179 FALLA"
+     ],
+     "muestra_insuficiente": false,
+     "motivo": "no se activa: p5 de bootstrap negativo (-1.79%)"
+    },
+    "KBO": {
+     "activa": false,
+     "fallos": [
+      "muestra vacía o mínima"
+     ],
+     "muestra_insuficiente": true,
+     "motivo": "sólo 12 picks: no hay con qué medir"
+    },
+    "NFL": {
+     "activa": false,
+     "fallos": [
+      "roi empeora (0.0075 contra 0.0575)",
+      "p5 de bootstrap negativo (-17.67%)"
+     ],
+     "notas": [
+      "brier +0.2315 vs +0.2388 OK",
+      "hit_rate +0.6364 vs +0.5807 OK",
+      "roi +0.0075 vs +0.0575 FALLA",
+      "p5 -0.1767 FALLA",
+      "muestra 44 < 1000"
+     ],
+     "muestra_insuficiente": true,
+     "motivo": "no se activa: roi empeora (0.0075 contra 0.0575); p5 de bootstrap negativo (-17.67%)"
+    },
+    "Tenis": {
+     "activa": false,
+     "fallos": [
+      "brier empeora (0.2270 contra 0.2146)",
+      "hit_rate empeora (0.6461 contra 0.6543)",
+      "roi empeora (-0.0595 contra -0.0437)",
+      "p5 de bootstrap negativo (-7.51%)"
+     ],
+     "notas": [
+      "brier +0.2270 vs +0.2146 FALLA",
+      "hit_rate +0.6461 vs +0.6543 FALLA",
+      "roi -0.0595 vs -0.0437 FALLA",
+      "p5 -0.0751 FALLA"
+     ],
+     "muestra_insuficiente": false,
+     "motivo": "no se activa: brier empeora (0.2270 contra 0.2146); hit_rate empeora (0.6461 contra 0.6543); roi empeora (-0.0595 contra -0.0437); p5 de bootstrap negativo (-7.51%)"
+    }
+   }
+  },
+  "escalada_lineas": {
+   "activa": false,
+   "no_medible": true,
+   "disparos_regla_completa": 0,
+   "motivo": "la regla de 3 de 4 fuentes no se dispara ni una vez sobre el histórico: dos de sus cuatro fuentes no existen ahí (el xG del repositorio es sintético, y las señales de contexto de partidos pasados no se archivaron). No es que falle los criterios: es que no hay con qué evaluarla, y no medible cuenta como no aprobado.",
+   "que_haria_falta": "xG observado (FotMob cubre hoy 28 partidos) y un archivo de señales de contexto por partido, que sólo se puede construir hacia delante",
+   "variante_degradada_2_fuentes": {
+    "que_es": "modelo + mercado, las dos fuentes que sí existen en el histórico. NO valida la regla del encargo.",
+    "aprueba_en": [],
+    "detalle": {
+     "superior": {
+      "activa": false,
+      "fallos": [
+       "p5 de bootstrap negativo (-5.51%)"
+      ],
+      "notas": [
+       "brier +0.2363 vs +0.2472 OK",
+       "hit_rate +0.6250 vs +0.5126 OK",
+       "roi -0.0174 vs -0.0476 OK",
+       "p5 -0.0551 FALLA"
+      ],
+      "muestra_insuficiente": false,
+      "motivo": "no se activa: p5 de bootstrap negativo (-5.51%)"
+     },
+     "base": {
+      "activa": false,
+      "fallos": [
+       "p5 de bootstrap negativo (-5.51%)"
+      ],
+      "notas": [
+       "brier +0.2363 vs +0.2472 OK",
+       "hit_rate +0.6250 vs +0.5126 OK",
+       "roi -0.0174 vs -0.0476 OK",
+       "p5 -0.0551 FALLA"
+      ],
+      "muestra_insuficiente": false,
+      "motivo": "no se activa: p5 de bootstrap negativo (-5.51%)"
+     }
+    }
+   }
+  },
+  "escalada_2_5_a_3_5": {
+   "activa": false,
+   "no_medible": true,
+   "motivo": "no existe cuota histórica de Más de 3,5 en ninguna fuente del proyecto (odds_historico.db sólo guarda la línea 2,5), así que el ROI de la línea que se apostaría no se puede medir. No medible cuenta como no aprobado.",
+   "que_haria_falta": "cuotas de cierre de Más de 3,5, por partido, en al menos 1.000 partidos por competición"
+  },
+  "modo_seguridad_nfl": {
+   "activa": false,
+   "muestra_insuficiente": true,
+   "motivo": "no existe ledger walk-forward de NFL: `historico_nfl.csv` tiene 1.095 partidos con resultado pero sin predicciones fuera de muestra ni cuota de ganador",
+   "que_haria_falta": "construir un ledger walk-forward de NFL, como `build_ledger_totales.py` hace con el fútbol"
+  },
+  "modo_seguridad_kbo": {
+   "activa": false,
+   "muestra_insuficiente": true,
+   "motivo": "no existe ledger walk-forward de KBO y `historico_kbo.csv` (13.149 partidos) NO tiene ninguna columna de cuotas, así que el ROI es inmedible por construcción",
+   "que_haria_falta": "una fuente de cuotas históricas de KBO"
+  }
+ },
+ "pliegues": {
+  "0": 18757,
+  "1": 17667,
+  "2": 17266,
+  "3": 17178,
+  "4": 18429
+ }
+}

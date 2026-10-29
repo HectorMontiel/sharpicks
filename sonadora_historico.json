@@ -1,0 +1,3551 @@
+{
+ "fecha_validacion": "2026-09-21",
+ "periodo": "2026-03-23 a 2026-09-21",
+ "meses": 6,
+ "n_patas_con_cuota": 12071,
+ "n_partidos": 4641,
+ "n_patas_tras_filtro": 2373,
+ "mercados_medidos": [
+  "1X2",
+  "Ganador",
+  "Goles 2.5"
+ ],
+ "pata_suelta": {
+  "n": 2373,
+  "acierto": 0.6768,
+  "prob_media": 0.6564,
+  "cuota_media": 1.4464,
+  "roi": -0.0373,
+  "p5": -0.0602,
+  "ece": 0.0317
+ },
+ "pata_por_mercado": {
+  "1X2": {
+   "n": 607,
+   "acierto": 0.6557,
+   "prob_media": 0.6498,
+   "cuota_media": 1.4566,
+   "roi": -0.0565,
+   "p5": -0.1045,
+   "ece": 0.0577
+  },
+  "Ganador": {
+   "n": 1276,
+   "acierto": 0.7045,
+   "prob_media": 0.6843,
+   "cuota_media": 1.3994,
+   "roi": -0.0325,
+   "p5": -0.0638,
+   "ece": 0.0259
+  },
+  "Goles 2.5": {
+   "n": 490,
+   "acierto": 0.6306,
+   "prob_media": 0.5921,
+   "cuota_media": 1.5559,
+   "roi": -0.0261,
+   "p5": -0.0836,
+   "ece": 0.0385
+  }
+ },
+ "pata_por_banda": {
+  "1.1-1.3": {
+   "n": 649,
+   "acierto": 0.8028,
+   "prob_media": 0.7296,
+   "cuota_media": 1.2208,
+   "roi": -0.0231,
+   "p5": -0.0534,
+   "ece": 0.08
+  },
+  "1.3-1.5": {
+   "n": 924,
+   "acierto": 0.6797,
+   "prob_media": 0.6565,
+   "cuota_media": 1.3997,
+   "roi": -0.0506,
+   "p5": -0.0866,
+   "ece": 0.0639
+  },
+  "1.5-1.8": {
+   "n": 1004,
+   "acierto": 0.5976,
+   "prob_media": 0.6114,
+   "cuota_media": 1.6243,
+   "roi": -0.0322,
+   "p5": -0.0748,
+   "ece": 0.0462
+  },
+  "1.1-1.8": {
+   "n": 2373,
+   "acierto": 0.6768,
+   "prob_media": 0.6564,
+   "cuota_media": 1.4464,
+   "roi": -0.0373,
+   "p5": -0.0602,
+   "ece": 0.0317
+  }
+ },
+ "ece_por_liga": {
+  "ATP": {
+   "Ganador": {
+    "n": 9198,
+    "ece": 0.0088,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   }
+  },
+  "WTA": {
+   "Ganador": {
+    "n": 8700,
+    "ece": 0.0135,
+    "acierto": 0.4999,
+    "prob_media": 0.4999
+   }
+  },
+  "argentina": {
+   "1X2": {
+    "n": 1910,
+    "ece": 0.0172,
+    "acierto": 0.3393,
+    "prob_media": 0.3464
+   },
+   "Goles 1.5": {
+    "n": 1875,
+    "ece": 0.0303,
+    "acierto": 0.6144,
+    "prob_media": 0.6103,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 1875,
+    "ece": 0.0246,
+    "acierto": 0.3355,
+    "prob_media": 0.3425,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1875,
+    "ece": 0.0127,
+    "acierto": 0.1509,
+    "prob_media": 0.1577,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1875,
+    "ece": 0.0961,
+    "acierto": 0.4176,
+    "prob_media": 0.4156,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1352,
+    "ece": 0.0044,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1352,
+    "ece": 0.021,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1352,
+    "ece": 0.0131,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1352,
+    "ece": 0.0187,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "bel_pro_league": {
+   "1X2": {
+    "n": 1118,
+    "ece": 0.0214,
+    "acierto": 0.3623,
+    "prob_media": 0.3716
+   },
+   "Goles 2.5": {
+    "n": 1128,
+    "ece": 0.0261,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 778,
+    "ece": 0.0218,
+    "acierto": 0.7596,
+    "prob_media": 0.7654,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 778,
+    "ece": 0.0421,
+    "acierto": 0.2956,
+    "prob_media": 0.3084,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 778,
+    "ece": 0.1118,
+    "acierto": 0.5296,
+    "prob_media": 0.5072,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 338,
+    "ece": 0.016,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 338,
+    "ece": 0.0264,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 338,
+    "ece": 0.0278,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 338,
+    "ece": 0.0273,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "bol_division": {
+   "1X2": {
+    "n": 418,
+    "ece": 0.0461,
+    "acierto": 0.4115,
+    "prob_media": 0.386
+   },
+   "Goles 1.5": {
+    "n": 772,
+    "ece": 0.026,
+    "acierto": 0.8109,
+    "prob_media": 0.8032,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 772,
+    "ece": 0.0344,
+    "acierto": 0.6088,
+    "prob_media": 0.5834,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 772,
+    "ece": 0.0195,
+    "acierto": 0.3782,
+    "prob_media": 0.3624,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 772,
+    "ece": 0.1465,
+    "acierto": 0.5933,
+    "prob_media": 0.4896,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "bra_serie_b": {
+   "1X2": {
+    "n": 226,
+    "ece": 0.0802,
+    "acierto": 0.4204,
+    "prob_media": 0.3507
+   },
+   "Goles 1.5": {
+    "n": 1002,
+    "ece": 0.0254,
+    "acierto": 0.6527,
+    "prob_media": 0.6415,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 1002,
+    "ece": 0.0415,
+    "acierto": 0.3922,
+    "prob_media": 0.3757,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1002,
+    "ece": 0.0123,
+    "acierto": 0.1747,
+    "prob_media": 0.1816,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1002,
+    "ece": 0.116,
+    "acierto": 0.4671,
+    "prob_media": 0.4174,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1252,
+    "ece": 0.0133,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1252,
+    "ece": 0.0163,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1252,
+    "ece": 0.0237,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1252,
+    "ece": 0.0129,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "brasil": {
+   "1X2": {
+    "n": 1400,
+    "ece": 0.0318,
+    "acierto": 0.365,
+    "prob_media": 0.3631
+   },
+   "Goles 1.5": {
+    "n": 1499,
+    "ece": 0.0256,
+    "acierto": 0.7325,
+    "prob_media": 0.708,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 1499,
+    "ece": 0.0284,
+    "acierto": 0.475,
+    "prob_media": 0.4527,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1499,
+    "ece": 0.031,
+    "acierto": 0.2248,
+    "prob_media": 0.2415,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1499,
+    "ece": 0.1037,
+    "acierto": 0.5137,
+    "prob_media": 0.4349,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1232,
+    "ece": 0.011,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1232,
+    "ece": 0.0174,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1232,
+    "ece": 0.0125,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1232,
+    "ece": 0.0142,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "bundesliga": {
+   "1X2": {
+    "n": 1162,
+    "ece": 0.04,
+    "acierto": 0.3744,
+    "prob_media": 0.377
+   },
+   "Goles 2.5": {
+    "n": 1162,
+    "ece": 0.0262,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 2426,
+    "ece": 0.0211,
+    "acierto": 0.8376,
+    "prob_media": 0.8168,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 2426,
+    "ece": 0.0243,
+    "acierto": 0.4052,
+    "prob_media": 0.3809,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 2426,
+    "ece": 0.0694,
+    "acierto": 0.5956,
+    "prob_media": 0.5828,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 994,
+    "ece": 0.0114,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 994,
+    "ece": 0.0075,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 994,
+    "ece": 0.0158,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 994,
+    "ece": 0.0229,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "chi_primera": {
+   "1X2": {
+    "n": 102,
+    "ece": 0.0893,
+    "acierto": 0.451,
+    "prob_media": 0.3683
+   },
+   "Goles 1.5": {
+    "n": 642,
+    "ece": 0.0251,
+    "acierto": 0.729,
+    "prob_media": 0.7524,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 642,
+    "ece": 0.0508,
+    "acierto": 0.5358,
+    "prob_media": 0.5109,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 642,
+    "ece": 0.0451,
+    "acierto": 0.2991,
+    "prob_media": 0.2926,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 642,
+    "ece": 0.1012,
+    "acierto": 0.514,
+    "prob_media": 0.4965,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 802,
+    "ece": 0.0064,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 802,
+    "ece": 0.0257,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 802,
+    "ece": 0.0123,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 802,
+    "ece": 0.014,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "china": {
+   "1X2": {
+    "n": 848,
+    "ece": 0.0456,
+    "acierto": 0.3738,
+    "prob_media": 0.3819
+   },
+   "Goles 1.5": {
+    "n": 899,
+    "ece": 0.017,
+    "acierto": 0.792,
+    "prob_media": 0.8048,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 899,
+    "ece": 0.0043,
+    "acierto": 0.5818,
+    "prob_media": 0.5854,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 899,
+    "ece": 0.0239,
+    "acierto": 0.3793,
+    "prob_media": 0.364,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 899,
+    "ece": 0.1091,
+    "acierto": 0.6051,
+    "prob_media": 0.502,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 786,
+    "ece": 0.0067,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 786,
+    "ece": 0.0142,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 786,
+    "ece": 0.0293,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 786,
+    "ece": 0.0161,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "dinamarca": {
+   "1X2": {
+    "n": 676,
+    "ece": 0.0352,
+    "acierto": 0.3654,
+    "prob_media": 0.3721
+   },
+   "Goles 1.5": {
+    "n": 803,
+    "ece": 0.0056,
+    "acierto": 0.8007,
+    "prob_media": 0.7964,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 803,
+    "ece": 0.0243,
+    "acierto": 0.5691,
+    "prob_media": 0.5726,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 803,
+    "ece": 0.0306,
+    "acierto": 0.3487,
+    "prob_media": 0.351,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 803,
+    "ece": 0.0977,
+    "acierto": 0.5965,
+    "prob_media": 0.5366,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "eng_championship": {
+   "1X2": {
+    "n": 2074,
+    "ece": 0.0164,
+    "acierto": 0.3635,
+    "prob_media": 0.3743
+   },
+   "Goles 2.5": {
+    "n": 2074,
+    "ece": 0.0293,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 1376,
+    "ece": 0.0142,
+    "acierto": 0.7355,
+    "prob_media": 0.7216,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1376,
+    "ece": 0.0243,
+    "acierto": 0.2427,
+    "prob_media": 0.2556,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1376,
+    "ece": 0.0788,
+    "acierto": 0.5298,
+    "prob_media": 0.4914,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1452,
+    "ece": 0.0086,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1452,
+    "ece": 0.0134,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1452,
+    "ece": 0.0175,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1452,
+    "ece": 0.0092,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "eng_fa_cup": {
+   "1X2": {
+    "n": 148,
+    "ece": 0.1012,
+    "acierto": 0.5,
+    "prob_media": 0.4316
+   }
+  },
+  "eng_league_one": {
+   "1X2": {
+    "n": 2066,
+    "ece": 0.0226,
+    "acierto": 0.3766,
+    "prob_media": 0.3732
+   },
+   "Goles 2.5": {
+    "n": 2066,
+    "ece": 0.02,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 4288,
+    "ece": 0.0045,
+    "acierto": 0.7372,
+    "prob_media": 0.7373,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 4288,
+    "ece": 0.0067,
+    "acierto": 0.2647,
+    "prob_media": 0.2714,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 4288,
+    "ece": 0.0502,
+    "acierto": 0.514,
+    "prob_media": 0.4964,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 656,
+    "ece": 0.016,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 656,
+    "ece": 0.0187,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 656,
+    "ece": 0.0202,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 656,
+    "ece": 0.014,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "eng_league_two": {
+   "1X2": {
+    "n": 2050,
+    "ece": 0.0229,
+    "acierto": 0.3634,
+    "prob_media": 0.3605
+   },
+   "Goles 2.5": {
+    "n": 2050,
+    "ece": 0.0043,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 4325,
+    "ece": 0.018,
+    "acierto": 0.7184,
+    "prob_media": 0.7336,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 4325,
+    "ece": 0.0178,
+    "acierto": 0.2506,
+    "prob_media": 0.267,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 4325,
+    "ece": 0.0444,
+    "acierto": 0.5117,
+    "prob_media": 0.4861,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 664,
+    "ece": 0.0182,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 664,
+    "ece": 0.0206,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 664,
+    "ece": 0.0108,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 664,
+    "ece": 0.0103,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "eng_national": {
+   "1X2": {
+    "n": 1948,
+    "ece": 0.0187,
+    "acierto": 0.3722,
+    "prob_media": 0.3736
+   },
+   "Goles 2.5": {
+    "n": 1970,
+    "ece": 0.0255,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 4250,
+    "ece": 0.0095,
+    "acierto": 0.7605,
+    "prob_media": 0.7673,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 4250,
+    "ece": 0.0265,
+    "acierto": 0.2979,
+    "prob_media": 0.3083,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 4250,
+    "ece": 0.0606,
+    "acierto": 0.5391,
+    "prob_media": 0.5116,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "eredivisie": {
+   "1X2": {
+    "n": 1130,
+    "ece": 0.0244,
+    "acierto": 0.3717,
+    "prob_media": 0.3727
+   },
+   "Goles 2.5": {
+    "n": 1130,
+    "ece": 0.0238,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 1339,
+    "ece": 0.019,
+    "acierto": 0.8335,
+    "prob_media": 0.8145,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1339,
+    "ece": 0.0208,
+    "acierto": 0.3936,
+    "prob_media": 0.3786,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1339,
+    "ece": 0.0773,
+    "acierto": 0.5773,
+    "prob_media": 0.5612,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1032,
+    "ece": 0.015,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1032,
+    "ece": 0.0116,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1032,
+    "ece": 0.0277,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1032,
+    "ece": 0.033,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "esp_hypermotion": {
+   "1X2": {
+    "n": 1724,
+    "ece": 0.0139,
+    "acierto": 0.3683,
+    "prob_media": 0.3558
+   },
+   "Goles 2.5": {
+    "n": 1724,
+    "ece": 0.0252,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 2045,
+    "ece": 0.0272,
+    "acierto": 0.6689,
+    "prob_media": 0.6939,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 2045,
+    "ece": 0.0051,
+    "acierto": 0.2308,
+    "prob_media": 0.2269,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 2045,
+    "ece": 0.0632,
+    "acierto": 0.4929,
+    "prob_media": 0.4368,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1380,
+    "ece": 0.0122,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1380,
+    "ece": 0.0128,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1380,
+    "ece": 0.0105,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1380,
+    "ece": 0.0138,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "finlandia": {
+   "1X2": {
+    "n": 610,
+    "ece": 0.0373,
+    "acierto": 0.377,
+    "prob_media": 0.3851
+   },
+   "Goles 1.5": {
+    "n": 646,
+    "ece": 0.0175,
+    "acierto": 0.7786,
+    "prob_media": 0.7815,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 646,
+    "ece": 0.0349,
+    "acierto": 0.5588,
+    "prob_media": 0.5514,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 646,
+    "ece": 0.0365,
+    "acierto": 0.3127,
+    "prob_media": 0.3307,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 646,
+    "ece": 0.1145,
+    "acierto": 0.5588,
+    "prob_media": 0.5021,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "fra_ligue2": {
+   "1X2": {
+    "n": 1112,
+    "ece": 0.0317,
+    "acierto": 0.3615,
+    "prob_media": 0.3678
+   },
+   "Goles 2.5": {
+    "n": 1112,
+    "ece": 0.0325,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 1560,
+    "ece": 0.0215,
+    "acierto": 0.691,
+    "prob_media": 0.7123,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1560,
+    "ece": 0.0138,
+    "acierto": 0.2481,
+    "prob_media": 0.2458,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1560,
+    "ece": 0.08,
+    "acierto": 0.4936,
+    "prob_media": 0.4616,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 366,
+    "ece": 0.0128,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 366,
+    "ece": 0.0447,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 366,
+    "ece": 0.0092,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 366,
+    "ece": 0.0212,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "ger_bundesliga2": {
+   "1X2": {
+    "n": 1124,
+    "ece": 0.0195,
+    "acierto": 0.3692,
+    "prob_media": 0.3733
+   },
+   "Goles 2.5": {
+    "n": 1124,
+    "ece": 0.0099,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 1359,
+    "ece": 0.008,
+    "acierto": 0.8079,
+    "prob_media": 0.8,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1359,
+    "ece": 0.023,
+    "acierto": 0.3422,
+    "prob_media": 0.3552,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1359,
+    "ece": 0.0981,
+    "acierto": 0.5887,
+    "prob_media": 0.5533,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 924,
+    "ece": 0.022,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 924,
+    "ece": 0.0113,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 924,
+    "ece": 0.0098,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 924,
+    "ece": 0.0061,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "gre_super_league": {
+   "1X2": {
+    "n": 860,
+    "ece": 0.0212,
+    "acierto": 0.3779,
+    "prob_media": 0.3764
+   },
+   "Goles 2.5": {
+    "n": 876,
+    "ece": 0.0553,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 1063,
+    "ece": 0.0239,
+    "acierto": 0.7422,
+    "prob_media": 0.7193,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1063,
+    "ece": 0.0253,
+    "acierto": 0.2465,
+    "prob_media": 0.2541,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1063,
+    "ece": 0.12,
+    "acierto": 0.4694,
+    "prob_media": 0.4507,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "irlanda": {
+   "1X2": {
+    "n": 670,
+    "ece": 0.0371,
+    "acierto": 0.3478,
+    "prob_media": 0.3681
+   },
+   "Goles 1.5": {
+    "n": 672,
+    "ece": 0.0454,
+    "acierto": 0.7158,
+    "prob_media": 0.6969,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 672,
+    "ece": 0.0751,
+    "acierto": 0.4673,
+    "prob_media": 0.4401,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 672,
+    "ece": 0.0248,
+    "acierto": 0.25,
+    "prob_media": 0.232,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 672,
+    "ece": 0.131,
+    "acierto": 0.5134,
+    "prob_media": 0.412,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "ita_serie_b": {
+   "1X2": {
+    "n": 1390,
+    "ece": 0.0276,
+    "acierto": 0.3374,
+    "prob_media": 0.3359
+   },
+   "Goles 2.5": {
+    "n": 1390,
+    "ece": 0.0287,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 1692,
+    "ece": 0.0481,
+    "acierto": 0.7175,
+    "prob_media": 0.7096,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1692,
+    "ece": 0.0189,
+    "acierto": 0.237,
+    "prob_media": 0.2424,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1692,
+    "ece": 0.1085,
+    "acierto": 0.5343,
+    "prob_media": 0.464,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 608,
+    "ece": 0.0167,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 608,
+    "ece": 0.0186,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 608,
+    "ece": 0.0027,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 608,
+    "ece": 0.0145,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "jpn_j1": {
+   "1X2": {
+    "n": 926,
+    "ece": 0.0232,
+    "acierto": 0.3693,
+    "prob_media": 0.3734
+   },
+   "Goles 1.5": {
+    "n": 1231,
+    "ece": 0.0201,
+    "acierto": 0.7132,
+    "prob_media": 0.7103,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 1231,
+    "ece": 0.0261,
+    "acierto": 0.4817,
+    "prob_media": 0.4563,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1231,
+    "ece": 0.0171,
+    "acierto": 0.2518,
+    "prob_media": 0.2451,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1231,
+    "ece": 0.098,
+    "acierto": 0.5158,
+    "prob_media": 0.4462,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 424,
+    "ece": 0.0113,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 424,
+    "ece": 0.018,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 424,
+    "ece": 0.0104,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 424,
+    "ece": 0.0129,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "laliga": {
+   "1X2": {
+    "n": 1408,
+    "ece": 0.0292,
+    "acierto": 0.375,
+    "prob_media": 0.3678
+   },
+   "Goles 2.5": {
+    "n": 1408,
+    "ece": 0.0321,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 3033,
+    "ece": 0.0134,
+    "acierto": 0.7287,
+    "prob_media": 0.7385,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 3033,
+    "ece": 0.0254,
+    "acierto": 0.2489,
+    "prob_media": 0.2744,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 3033,
+    "ece": 0.0686,
+    "acierto": 0.5176,
+    "prob_media": 0.5024,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1238,
+    "ece": 0.0118,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1238,
+    "ece": 0.0138,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1238,
+    "ece": 0.005,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1238,
+    "ece": 0.0188,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "liga_mx": {
+   "1X2": {
+    "n": 1236,
+    "ece": 0.023,
+    "acierto": 0.3786,
+    "prob_media": 0.3742
+   },
+   "Goles 1.5": {
+    "n": 1303,
+    "ece": 0.015,
+    "acierto": 0.7767,
+    "prob_media": 0.7701,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 1303,
+    "ece": 0.0287,
+    "acierto": 0.551,
+    "prob_media": 0.5345,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1303,
+    "ece": 0.0535,
+    "acierto": 0.3116,
+    "prob_media": 0.3139,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1303,
+    "ece": 0.1022,
+    "acierto": 0.5695,
+    "prob_media": 0.5388,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1058,
+    "ece": 0.0099,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1058,
+    "ece": 0.0181,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1058,
+    "ece": 0.0118,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1058,
+    "ece": 0.0074,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "ligue_1": {
+   "1X2": {
+    "n": 1144,
+    "ece": 0.0262,
+    "acierto": 0.3864,
+    "prob_media": 0.3794
+   },
+   "Goles 2.5": {
+    "n": 1144,
+    "ece": 0.0202,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 2856,
+    "ece": 0.0157,
+    "acierto": 0.7605,
+    "prob_media": 0.7628,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 2856,
+    "ece": 0.0169,
+    "acierto": 0.3011,
+    "prob_media": 0.3038,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 2856,
+    "ece": 0.0505,
+    "acierto": 0.5385,
+    "prob_media": 0.5188,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1098,
+    "ece": 0.0087,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1098,
+    "ece": 0.0325,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1098,
+    "ece": 0.0069,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1098,
+    "ece": 0.0088,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "mls": {
+   "1X2": {
+    "n": 1782,
+    "ece": 0.0236,
+    "acierto": 0.381,
+    "prob_media": 0.3735
+   },
+   "Goles 1.5": {
+    "n": 1849,
+    "ece": 0.0116,
+    "acierto": 0.7988,
+    "prob_media": 0.8048,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 1849,
+    "ece": 0.0233,
+    "acierto": 0.5987,
+    "prob_media": 0.5848,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1849,
+    "ece": 0.0069,
+    "acierto": 0.3613,
+    "prob_media": 0.3628,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1849,
+    "ece": 0.052,
+    "acierto": 0.6095,
+    "prob_media": 0.5775,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1670,
+    "ece": 0.0067,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1670,
+    "ece": 0.0182,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1670,
+    "ece": 0.0113,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1670,
+    "ece": 0.0109,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "ned_eerste": {
+   "1X2": {
+    "n": 936,
+    "ece": 0.0337,
+    "acierto": 0.3996,
+    "prob_media": 0.3879
+   },
+   "Goles 1.5": {
+    "n": 956,
+    "ece": 0.0384,
+    "acierto": 0.8295,
+    "prob_media": 0.8095,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 956,
+    "ece": 0.0651,
+    "acierto": 0.6224,
+    "prob_media": 0.5923,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 956,
+    "ece": 0.0561,
+    "acierto": 0.3996,
+    "prob_media": 0.3709,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 956,
+    "ece": 0.0964,
+    "acierto": 0.591,
+    "prob_media": 0.5822,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1258,
+    "ece": 0.0055,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1258,
+    "ece": 0.0145,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1258,
+    "ece": 0.0122,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1258,
+    "ece": 0.0125,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "noruega": {
+   "1X2": {
+    "n": 832,
+    "ece": 0.0363,
+    "acierto": 0.4014,
+    "prob_media": 0.3799
+   },
+   "Goles 1.5": {
+    "n": 934,
+    "ece": 0.0213,
+    "acierto": 0.803,
+    "prob_media": 0.8105,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 934,
+    "ece": 0.0223,
+    "acierto": 0.6028,
+    "prob_media": 0.5945,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 934,
+    "ece": 0.0421,
+    "acierto": 0.3801,
+    "prob_media": 0.3738,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 934,
+    "ece": 0.1093,
+    "acierto": 0.5632,
+    "prob_media": 0.5461,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "par_division": {
+   "1X2": {
+    "n": 132,
+    "ece": 0.0763,
+    "acierto": 0.3182,
+    "prob_media": 0.3613
+   },
+   "Goles 1.5": {
+    "n": 648,
+    "ece": 0.0247,
+    "acierto": 0.6806,
+    "prob_media": 0.6868,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 648,
+    "ece": 0.0157,
+    "acierto": 0.4213,
+    "prob_media": 0.4279,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 648,
+    "ece": 0.0241,
+    "acierto": 0.2114,
+    "prob_media": 0.222,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 648,
+    "ece": 0.1032,
+    "acierto": 0.4938,
+    "prob_media": 0.4264,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "polonia": {
+   "1X2": {
+    "n": 1098,
+    "ece": 0.0248,
+    "acierto": 0.3679,
+    "prob_media": 0.3681
+   },
+   "Goles 1.5": {
+    "n": 1151,
+    "ece": 0.0115,
+    "acierto": 0.7576,
+    "prob_media": 0.7522,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 1151,
+    "ece": 0.0295,
+    "acierto": 0.497,
+    "prob_media": 0.5107,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1151,
+    "ece": 0.027,
+    "acierto": 0.2876,
+    "prob_media": 0.2927,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1151,
+    "ece": 0.106,
+    "acierto": 0.5534,
+    "prob_media": 0.4846,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "premier": {
+   "1X2": {
+    "n": 1094,
+    "ece": 0.0224,
+    "acierto": 0.3748,
+    "prob_media": 0.3768
+   },
+   "Goles 2.5": {
+    "n": 1094,
+    "ece": 0.0218,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 3012,
+    "ece": 0.018,
+    "acierto": 0.7888,
+    "prob_media": 0.787,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 3012,
+    "ece": 0.0128,
+    "acierto": 0.3237,
+    "prob_media": 0.3358,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 3012,
+    "ece": 0.0661,
+    "acierto": 0.5342,
+    "prob_media": 0.5545,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1182,
+    "ece": 0.0095,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1182,
+    "ece": 0.0132,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1182,
+    "ece": 0.0248,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1182,
+    "ece": 0.0213,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "primeira": {
+   "1X2": {
+    "n": 1126,
+    "ece": 0.0333,
+    "acierto": 0.3641,
+    "prob_media": 0.3858
+   },
+   "Goles 2.5": {
+    "n": 1126,
+    "ece": 0.0308,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 1525,
+    "ece": 0.03,
+    "acierto": 0.7325,
+    "prob_media": 0.7433,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1525,
+    "ece": 0.0099,
+    "acierto": 0.2911,
+    "prob_media": 0.2813,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1525,
+    "ece": 0.0857,
+    "acierto": 0.4944,
+    "prob_media": 0.4425,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 990,
+    "ece": 0.0128,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 990,
+    "ece": 0.0118,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 990,
+    "ece": 0.0125,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 990,
+    "ece": 0.0186,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "rumania": {
+   "1X2": {
+    "n": 1142,
+    "ece": 0.0168,
+    "acierto": 0.3581,
+    "prob_media": 0.3628
+   },
+   "Goles 1.5": {
+    "n": 1200,
+    "ece": 0.0308,
+    "acierto": 0.705,
+    "prob_media": 0.6986,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 1200,
+    "ece": 0.0181,
+    "acierto": 0.4442,
+    "prob_media": 0.4415,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1200,
+    "ece": 0.033,
+    "acierto": 0.2558,
+    "prob_media": 0.2326,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1200,
+    "ece": 0.1072,
+    "acierto": 0.5133,
+    "prob_media": 0.4381,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "rus_premier": {
+   "1X2": {
+    "n": 846,
+    "ece": 0.0345,
+    "acierto": 0.3605,
+    "prob_media": 0.3712
+   },
+   "Goles 1.5": {
+    "n": 942,
+    "ece": 0.0198,
+    "acierto": 0.7633,
+    "prob_media": 0.7463,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 942,
+    "ece": 0.0148,
+    "acierto": 0.5096,
+    "prob_media": 0.5026,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 942,
+    "ece": 0.0206,
+    "acierto": 0.2951,
+    "prob_media": 0.2852,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 942,
+    "ece": 0.092,
+    "acierto": 0.535,
+    "prob_media": 0.4888,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 300,
+    "ece": 0.015,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 300,
+    "ece": 0.0198,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 300,
+    "ece": 0.0329,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 300,
+    "ece": 0.0284,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "sco_championship": {
+   "1X2": {
+    "n": 658,
+    "ece": 0.0387,
+    "acierto": 0.3541,
+    "prob_media": 0.351
+   },
+   "Goles 2.5": {
+    "n": 658,
+    "ece": 0.0232,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 753,
+    "ece": 0.0306,
+    "acierto": 0.7357,
+    "prob_media": 0.7221,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 753,
+    "ece": 0.0532,
+    "acierto": 0.2603,
+    "prob_media": 0.2579,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 753,
+    "ece": 0.107,
+    "acierto": 0.4914,
+    "prob_media": 0.4768,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "sco_premiership": {
+   "1X2": {
+    "n": 846,
+    "ece": 0.0341,
+    "acierto": 0.3818,
+    "prob_media": 0.3729
+   },
+   "Goles 2.5": {
+    "n": 846,
+    "ece": 0.0253,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 1800,
+    "ece": 0.0162,
+    "acierto": 0.7528,
+    "prob_media": 0.7634,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1800,
+    "ece": 0.0213,
+    "acierto": 0.2844,
+    "prob_media": 0.3052,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1800,
+    "ece": 0.0658,
+    "acierto": 0.4828,
+    "prob_media": 0.46,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "serie_a": {
+   "1X2": {
+    "n": 1096,
+    "ece": 0.0263,
+    "acierto": 0.3695,
+    "prob_media": 0.3608
+   },
+   "Goles 2.5": {
+    "n": 1096,
+    "ece": 0.0043,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 3015,
+    "ece": 0.0297,
+    "acierto": 0.7662,
+    "prob_media": 0.7366,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 3015,
+    "ece": 0.0202,
+    "acierto": 0.2882,
+    "prob_media": 0.2718,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 3015,
+    "ece": 0.0534,
+    "acierto": 0.5436,
+    "prob_media": 0.5306,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1226,
+    "ece": 0.0036,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1226,
+    "ece": 0.0185,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1226,
+    "ece": 0.0125,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1226,
+    "ece": 0.0105,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "suecia": {
+   "1X2": {
+    "n": 822,
+    "ece": 0.0437,
+    "acierto": 0.3771,
+    "prob_media": 0.367
+   },
+   "Goles 1.5": {
+    "n": 936,
+    "ece": 0.0355,
+    "acierto": 0.7874,
+    "prob_media": 0.7757,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 936,
+    "ece": 0.0435,
+    "acierto": 0.5459,
+    "prob_media": 0.5428,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 936,
+    "ece": 0.0378,
+    "acierto": 0.3056,
+    "prob_media": 0.3223,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 936,
+    "ece": 0.0969,
+    "acierto": 0.5321,
+    "prob_media": 0.5122,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "turquia": {
+   "1X2": {
+    "n": 982,
+    "ece": 0.0303,
+    "acierto": 0.3686,
+    "prob_media": 0.3759
+   },
+   "Goles 2.5": {
+    "n": 982,
+    "ece": 0.0287,
+    "acierto": 0.5,
+    "prob_media": 0.5
+   },
+   "Goles 1.5": {
+    "n": 1525,
+    "ece": 0.0136,
+    "acierto": 0.7862,
+    "prob_media": 0.7727,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1525,
+    "ece": 0.0253,
+    "acierto": 0.3193,
+    "prob_media": 0.3181,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1525,
+    "ece": 0.098,
+    "acierto": 0.5561,
+    "prob_media": 0.5096,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 390,
+    "ece": 0.0183,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 390,
+    "ece": 0.0101,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 390,
+    "ece": 0.0215,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 390,
+    "ece": 0.0165,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "uru_primera": {
+   "1X2": {
+    "n": 190,
+    "ece": 0.0959,
+    "acierto": 0.3421,
+    "prob_media": 0.3605
+   },
+   "Goles 1.5": {
+    "n": 771,
+    "ece": 0.0294,
+    "acierto": 0.6706,
+    "prob_media": 0.6797,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 771,
+    "ece": 0.0281,
+    "acierto": 0.4241,
+    "prob_media": 0.42,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 771,
+    "ece": 0.0205,
+    "acierto": 0.2192,
+    "prob_media": 0.2161,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 771,
+    "ece": 0.1114,
+    "acierto": 0.4825,
+    "prob_media": 0.426,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "afc_champions": {
+   "Goles 1.5": {
+    "n": 201,
+    "ece": 0.0634,
+    "acierto": 0.7413,
+    "prob_media": 0.7945,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 201,
+    "ece": 0.0808,
+    "acierto": 0.5323,
+    "prob_media": 0.5725,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 201,
+    "ece": 0.0253,
+    "acierto": 0.3483,
+    "prob_media": 0.3536,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 201,
+    "ece": 0.1285,
+    "acierto": 0.5075,
+    "prob_media": 0.5049,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 306,
+    "ece": 0.023,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 306,
+    "ece": 0.0061,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 306,
+    "ece": 0.0332,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 306,
+    "ece": 0.0157,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "arg_primera_nacional": {
+   "Goles 1.5": {
+    "n": 1744,
+    "ece": 0.0349,
+    "acierto": 0.5539,
+    "prob_media": 0.5633,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 1744,
+    "ece": 0.0274,
+    "acierto": 0.2919,
+    "prob_media": 0.2956,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1744,
+    "ece": 0.0285,
+    "acierto": 0.1078,
+    "prob_media": 0.1262,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1744,
+    "ece": 0.0908,
+    "acierto": 0.3567,
+    "prob_media": 0.3576,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "aus_aleague": {
+   "Goles 1.5": {
+    "n": 407,
+    "ece": 0.0462,
+    "acierto": 0.7912,
+    "prob_media": 0.819,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 407,
+    "ece": 0.0507,
+    "acierto": 0.5946,
+    "prob_media": 0.6075,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 407,
+    "ece": 0.0646,
+    "acierto": 0.3784,
+    "prob_media": 0.3871,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 407,
+    "ece": 0.1123,
+    "acierto": 0.6118,
+    "prob_media": 0.5757,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 584,
+    "ece": 0.0194,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 584,
+    "ece": 0.0201,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 584,
+    "ece": 0.017,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 584,
+    "ece": 0.0133,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "aut_bundesliga": {
+   "Goles 1.5": {
+    "n": 760,
+    "ece": 0.0402,
+    "acierto": 0.7711,
+    "prob_media": 0.7562,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 760,
+    "ece": 0.0218,
+    "acierto": 0.5211,
+    "prob_media": 0.5164,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 760,
+    "ece": 0.0306,
+    "acierto": 0.2961,
+    "prob_media": 0.2981,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 760,
+    "ece": 0.1073,
+    "acierto": 0.5395,
+    "prob_media": 0.5128,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "champions": {
+   "Goles 1.5": {
+    "n": 360,
+    "ece": 0.025,
+    "acierto": 0.8139,
+    "prob_media": 0.8283,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 360,
+    "ece": 0.0698,
+    "acierto": 0.6556,
+    "prob_media": 0.6236,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 360,
+    "ece": 0.086,
+    "acierto": 0.4333,
+    "prob_media": 0.4058,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 360,
+    "ece": 0.135,
+    "acierto": 0.5694,
+    "prob_media": 0.5385,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 374,
+    "ece": 0.0167,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 374,
+    "ece": 0.0278,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 374,
+    "ece": 0.0047,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 374,
+    "ece": 0.0358,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "col_primera_a": {
+   "Goles 1.5": {
+    "n": 1125,
+    "ece": 0.039,
+    "acierto": 0.6658,
+    "prob_media": 0.6664,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 1125,
+    "ece": 0.0374,
+    "acierto": 0.4204,
+    "prob_media": 0.4032,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1125,
+    "ece": 0.0506,
+    "acierto": 0.1938,
+    "prob_media": 0.2019,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1125,
+    "ece": 0.1121,
+    "acierto": 0.4702,
+    "prob_media": 0.4068,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1416,
+    "ece": 0.0083,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1416,
+    "ece": 0.0156,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1416,
+    "ece": 0.0115,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1416,
+    "ece": 0.0196,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "conference_league": {
+   "Goles 1.5": {
+    "n": 226,
+    "ece": 0.053,
+    "acierto": 0.7611,
+    "prob_media": 0.7691,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 226,
+    "ece": 0.0543,
+    "acierto": 0.5354,
+    "prob_media": 0.5348,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 226,
+    "ece": 0.0407,
+    "acierto": 0.2832,
+    "prob_media": 0.3157,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 226,
+    "ece": 0.1275,
+    "acierto": 0.4956,
+    "prob_media": 0.519,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "crc_fpd": {
+   "Goles 1.5": {
+    "n": 640,
+    "ece": 0.0636,
+    "acierto": 0.7031,
+    "prob_media": 0.7248,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 640,
+    "ece": 0.0547,
+    "acierto": 0.4656,
+    "prob_media": 0.4745,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 640,
+    "ece": 0.0467,
+    "acierto": 0.2406,
+    "prob_media": 0.2605,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 640,
+    "ece": 0.1131,
+    "acierto": 0.4844,
+    "prob_media": 0.5109,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "ecu_liga_pro": {
+   "Goles 1.5": {
+    "n": 682,
+    "ece": 0.0358,
+    "acierto": 0.7053,
+    "prob_media": 0.7073,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 682,
+    "ece": 0.0529,
+    "acierto": 0.4516,
+    "prob_media": 0.4528,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 682,
+    "ece": 0.0387,
+    "acierto": 0.239,
+    "prob_media": 0.2424,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 682,
+    "ece": 0.1259,
+    "acierto": 0.4985,
+    "prob_media": 0.4428,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "europa_league": {
+   "Goles 1.5": {
+    "n": 486,
+    "ece": 0.0313,
+    "acierto": 0.7942,
+    "prob_media": 0.7839,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 486,
+    "ece": 0.069,
+    "acierto": 0.5679,
+    "prob_media": 0.5551,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 486,
+    "ece": 0.0393,
+    "acierto": 0.3272,
+    "prob_media": 0.3344,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 486,
+    "ece": 0.1073,
+    "acierto": 0.5453,
+    "prob_media": 0.5219,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 404,
+    "ece": 0.0143,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 404,
+    "ece": 0.0147,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 404,
+    "ece": 0.0099,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 404,
+    "ece": 0.0147,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "ind_isl": {
+   "Goles 1.5": {
+    "n": 298,
+    "ece": 0.0619,
+    "acierto": 0.7919,
+    "prob_media": 0.7625,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 298,
+    "ece": 0.0654,
+    "acierto": 0.547,
+    "prob_media": 0.5259,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 298,
+    "ece": 0.0458,
+    "acierto": 0.2953,
+    "prob_media": 0.3077,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 298,
+    "ece": 0.1349,
+    "acierto": 0.5436,
+    "prob_media": 0.5138,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 336,
+    "ece": 0.0245,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 336,
+    "ece": 0.0262,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 336,
+    "ece": 0.0161,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 336,
+    "ece": 0.0097,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "ksa_pro": {
+   "Goles 1.5": {
+    "n": 584,
+    "ece": 0.0401,
+    "acierto": 0.8014,
+    "prob_media": 0.7959,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 584,
+    "ece": 0.0441,
+    "acierto": 0.5685,
+    "prob_media": 0.5734,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 584,
+    "ece": 0.0502,
+    "acierto": 0.363,
+    "prob_media": 0.3533,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 584,
+    "ece": 0.1048,
+    "acierto": 0.5685,
+    "prob_media": 0.5144,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 366,
+    "ece": 0.0085,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 366,
+    "ece": 0.0299,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 366,
+    "ece": 0.0486,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 366,
+    "ece": 0.031,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "leagues_cup": {
+   "Goles 1.5": {
+    "n": 3360,
+    "ece": 0.0125,
+    "acierto": 0.7917,
+    "prob_media": 0.7883,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 3360,
+    "ece": 0.0219,
+    "acierto": 0.5792,
+    "prob_media": 0.5593,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 3360,
+    "ece": 0.0134,
+    "acierto": 0.3432,
+    "prob_media": 0.3366,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 3360,
+    "ece": 0.0779,
+    "acierto": 0.5929,
+    "prob_media": 0.5357,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "libertadores": {
+   "Goles 1.5": {
+    "n": 282,
+    "ece": 0.0672,
+    "acierto": 0.6418,
+    "prob_media": 0.682,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 282,
+    "ece": 0.0904,
+    "acierto": 0.3759,
+    "prob_media": 0.4244,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 282,
+    "ece": 0.0566,
+    "acierto": 0.1986,
+    "prob_media": 0.2209,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 282,
+    "ece": 0.1214,
+    "acierto": 0.3865,
+    "prob_media": 0.4057,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 300,
+    "ece": 0.0335,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 300,
+    "ece": 0.0249,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 300,
+    "ece": 0.0211,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 300,
+    "ece": 0.0409,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "mex_expansion": {
+   "Goles 1.5": {
+    "n": 701,
+    "ece": 0.0295,
+    "acierto": 0.7732,
+    "prob_media": 0.7552,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 701,
+    "ece": 0.0225,
+    "acierto": 0.525,
+    "prob_media": 0.5141,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 701,
+    "ece": 0.0476,
+    "acierto": 0.3395,
+    "prob_media": 0.2952,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 701,
+    "ece": 0.1179,
+    "acierto": 0.5549,
+    "prob_media": 0.4524,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "per_liga1": {
+   "Goles 1.5": {
+    "n": 830,
+    "ece": 0.0336,
+    "acierto": 0.7398,
+    "prob_media": 0.7411,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 830,
+    "ece": 0.0711,
+    "acierto": 0.5145,
+    "prob_media": 0.4957,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 830,
+    "ece": 0.0608,
+    "acierto": 0.2795,
+    "prob_media": 0.2789,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 830,
+    "ece": 0.1242,
+    "acierto": 0.5277,
+    "prob_media": 0.4597,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 402,
+    "ece": 0.0093,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 402,
+    "ece": 0.0309,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 402,
+    "ece": 0.0461,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 402,
+    "ece": 0.0433,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "rsa_premier": {
+   "Goles 1.5": {
+    "n": 588,
+    "ece": 0.0243,
+    "acierto": 0.6173,
+    "prob_media": 0.6077,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 588,
+    "ece": 0.065,
+    "acierto": 0.3112,
+    "prob_media": 0.3413,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 588,
+    "ece": 0.0274,
+    "acierto": 0.1412,
+    "prob_media": 0.1579,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 588,
+    "ece": 0.1091,
+    "acierto": 0.4014,
+    "prob_media": 0.3625,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "slv_primera": {
+   "Goles 1.5": {
+    "n": 670,
+    "ece": 0.0477,
+    "acierto": 0.7284,
+    "prob_media": 0.7107,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 670,
+    "ece": 0.0642,
+    "acierto": 0.4612,
+    "prob_media": 0.4568,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 670,
+    "ece": 0.0339,
+    "acierto": 0.2597,
+    "prob_media": 0.2456,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 670,
+    "ece": 0.1234,
+    "acierto": 0.4955,
+    "prob_media": 0.4589,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "sudamericana": {
+   "Goles 1.5": {
+    "n": 251,
+    "ece": 0.0513,
+    "acierto": 0.7251,
+    "prob_media": 0.6905,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 251,
+    "ece": 0.0571,
+    "acierto": 0.4542,
+    "prob_media": 0.433,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 251,
+    "ece": 0.0374,
+    "acierto": 0.259,
+    "prob_media": 0.2266,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 251,
+    "ece": 0.1599,
+    "acierto": 0.4861,
+    "prob_media": 0.4062,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  },
+  "usl_championship": {
+   "Goles 1.5": {
+    "n": 1140,
+    "ece": 0.046,
+    "acierto": 0.7167,
+    "prob_media": 0.7534,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 1140,
+    "ece": 0.0602,
+    "acierto": 0.4947,
+    "prob_media": 0.5118,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 1140,
+    "ece": 0.0319,
+    "acierto": 0.2895,
+    "prob_media": 0.2932,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 1140,
+    "ece": 0.0875,
+    "acierto": 0.5175,
+    "prob_media": 0.5129,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Córners": {
+    "n": 1430,
+    "ece": 0.0131,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Tarjetas": {
+    "n": 1430,
+    "ece": 0.0115,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates": {
+    "n": 1430,
+    "ece": 0.0163,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   },
+   "Remates a puerta": {
+    "n": 1430,
+    "ece": 0.0132,
+    "fuente": "informe_calibracion (modelo contra lo observado)"
+   }
+  },
+  "ven_primera": {
+   "Goles 1.5": {
+    "n": 650,
+    "ece": 0.0424,
+    "acierto": 0.6938,
+    "prob_media": 0.6936,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 2.5": {
+    "n": 650,
+    "ece": 0.0432,
+    "acierto": 0.4446,
+    "prob_media": 0.436,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "Goles 3.5": {
+    "n": 650,
+    "ece": 0.0213,
+    "acierto": 0.24,
+    "prob_media": 0.2285,
+    "fuente": "ledger de totales (sin cuota)"
+   },
+   "BTTS": {
+    "n": 650,
+    "ece": 0.1402,
+    "acierto": 0.5108,
+    "prob_media": 0.4349,
+    "fuente": "ledger de totales (sin cuota)"
+   }
+  }
+ },
+ "meses_ece": 24,
+ "configuraciones": [
+  {
+   "n_patas": 4,
+   "rango_cuota": [
+    1.1,
+    1.3
+   ],
+   "patas_disponibles": 649,
+   "intentos": 10000,
+   "ganadas": 3589,
+   "hit_rate": 0.3589,
+   "hit_rate_teorico": 0.28688,
+   "multiplicador_medio": 2.21,
+   "multiplicador_mediana": 2.21,
+   "multiplicador_de_las_ganadoras": 2.18,
+   "roi_simulado": -0.2165,
+   "p5": -0.2332,
+   "p5_por_dia": -0.3648,
+   "dias_con_suficientes_partidos": 66,
+   "dias_que_aportan_ganadoras": 52,
+   "roi_proyectado_desde_la_pata": -0.0892,
+   "veredicto": "loteria"
+  },
+  {
+   "n_patas": 4,
+   "rango_cuota": [
+    1.3,
+    1.5
+   ],
+   "patas_disponibles": 924,
+   "intentos": 10000,
+   "ganadas": 1996,
+   "hit_rate": 0.1996,
+   "hit_rate_teorico": 0.19182,
+   "multiplicador_medio": 3.82,
+   "multiplicador_mediana": 3.82,
+   "multiplicador_de_las_ganadoras": 3.84,
+   "roi_simulado": -0.2326,
+   "p5": -0.2573,
+   "p5_por_dia": -0.4097,
+   "dias_con_suficientes_partidos": 86,
+   "dias_que_aportan_ganadoras": 69,
+   "roi_proyectado_desde_la_pata": -0.1875,
+   "veredicto": "loteria"
+  },
+  {
+   "n_patas": 4,
+   "rango_cuota": [
+    1.5,
+    1.8
+   ],
+   "patas_disponibles": 1004,
+   "intentos": 10000,
+   "ganadas": 1548,
+   "hit_rate": 0.1548,
+   "hit_rate_teorico": 0.14251,
+   "multiplicador_medio": 6.92,
+   "multiplicador_mediana": 6.88,
+   "multiplicador_de_las_ganadoras": 7.03,
+   "roi_simulado": 0.0877,
+   "p5": 0.0461,
+   "p5_por_dia": -0.2162,
+   "dias_con_suficientes_partidos": 78,
+   "dias_que_aportan_ganadoras": 55,
+   "roi_proyectado_desde_la_pata": -0.1227,
+   "veredicto": "alto_riesgo"
+  },
+  {
+   "n_patas": 4,
+   "rango_cuota": [
+    1.1,
+    1.8
+   ],
+   "patas_disponibles": 2373,
+   "intentos": 10000,
+   "ganadas": 2231,
+   "hit_rate": 0.2231,
+   "hit_rate_teorico": 0.19479,
+   "multiplicador_medio": 4.25,
+   "multiplicador_mediana": 4.17,
+   "multiplicador_de_las_ganadoras": 4.03,
+   "roi_simulado": -0.1012,
+   "p5": -0.1304,
+   "p5_por_dia": -0.234,
+   "dias_con_suficientes_partidos": 112,
+   "dias_que_aportan_ganadoras": 103,
+   "roi_proyectado_desde_la_pata": -0.1411,
+   "veredicto": "alto_riesgo"
+  },
+  {
+   "n_patas": 6,
+   "rango_cuota": [
+    1.1,
+    1.3
+   ],
+   "patas_disponibles": 649,
+   "intentos": 10000,
+   "ganadas": 2860,
+   "hit_rate": 0.286,
+   "hit_rate_teorico": 0.15093,
+   "multiplicador_medio": 3.3,
+   "multiplicador_mediana": 3.24,
+   "multiplicador_de_las_ganadoras": 3.19,
+   "roi_simulado": -0.0869,
+   "p5": -0.11,
+   "p5_por_dia": -0.3521,
+   "dias_con_suficientes_partidos": 51,
+   "dias_que_aportan_ganadoras": 37,
+   "roi_proyectado_desde_la_pata": -0.1308,
+   "veredicto": "alto_riesgo"
+  },
+  {
+   "n_patas": 6,
+   "rango_cuota": [
+    1.3,
+    1.5
+   ],
+   "patas_disponibles": 924,
+   "intentos": 10000,
+   "ganadas": 872,
+   "hit_rate": 0.0872,
+   "hit_rate_teorico": 0.08571,
+   "multiplicador_medio": 7.46,
+   "multiplicador_mediana": 7.41,
+   "multiplicador_de_las_ganadoras": 7.67,
+   "roi_simulado": -0.3316,
+   "p5": -0.3663,
+   "p5_por_dia": -0.6004,
+   "dias_con_suficientes_partidos": 66,
+   "dias_que_aportan_ganadoras": 32,
+   "roi_proyectado_desde_la_pata": -0.2677,
+   "veredicto": "loteria"
+  },
+  {
+   "n_patas": 6,
+   "rango_cuota": [
+    1.5,
+    1.8
+   ],
+   "patas_disponibles": 1004,
+   "intentos": 10000,
+   "ganadas": 610,
+   "hit_rate": 0.061,
+   "hit_rate_teorico": 0.05323,
+   "multiplicador_medio": 18.19,
+   "multiplicador_mediana": 17.87,
+   "multiplicador_de_las_ganadoras": 18.12,
+   "roi_simulado": 0.1055,
+   "p5": 0.0351,
+   "p5_por_dia": -0.5244,
+   "dias_con_suficientes_partidos": 57,
+   "dias_que_aportan_ganadoras": 30,
+   "roi_proyectado_desde_la_pata": -0.1783,
+   "veredicto": "alto_riesgo"
+  },
+  {
+   "n_patas": 6,
+   "rango_cuota": [
+    1.1,
+    1.8
+   ],
+   "patas_disponibles": 2373,
+   "intentos": 10000,
+   "ganadas": 984,
+   "hit_rate": 0.0984,
+   "hit_rate_teorico": 0.0874,
+   "multiplicador_medio": 8.77,
+   "multiplicador_mediana": 8.45,
+   "multiplicador_de_las_ganadoras": 8.4,
+   "roi_simulado": -0.1731,
+   "p5": -0.2169,
+   "p5_por_dia": -0.382,
+   "dias_con_suficientes_partidos": 101,
+   "dias_que_aportan_ganadoras": 81,
+   "roi_proyectado_desde_la_pata": -0.2039,
+   "veredicto": "alto_riesgo"
+  },
+  {
+   "n_patas": 8,
+   "rango_cuota": [
+    1.1,
+    1.3
+   ],
+   "patas_disponibles": 649,
+   "intentos": 10000,
+   "ganadas": 2454,
+   "hit_rate": 0.2454,
+   "hit_rate_teorico": 0.08536,
+   "multiplicador_medio": 4.85,
+   "multiplicador_mediana": 4.75,
+   "multiplicador_de_las_ganadoras": 4.58,
+   "roi_simulado": 0.1228,
+   "p5": 0.0896,
+   "p5_por_dia": -0.3779,
+   "dias_con_suficientes_partidos": 32,
+   "dias_que_aportan_ganadoras": 20,
+   "roi_proyectado_desde_la_pata": -0.1705,
+   "veredicto": "alto_riesgo"
+  },
+  {
+   "n_patas": 8,
+   "rango_cuota": [
+    1.3,
+    1.5
+   ],
+   "patas_disponibles": 924,
+   "intentos": 10000,
+   "ganadas": 320,
+   "hit_rate": 0.032,
+   "hit_rate_teorico": 0.03529,
+   "multiplicador_medio": 14.75,
+   "multiplicador_mediana": 14.69,
+   "multiplicador_de_las_ganadoras": 14.49,
+   "roi_simulado": -0.5363,
+   "p5": -0.5773,
+   "p5_por_dia": -0.7571,
+   "dias_con_suficientes_partidos": 43,
+   "dias_que_aportan_ganadoras": 19,
+   "roi_proyectado_desde_la_pata": -0.3399,
+   "veredicto": "loteria"
+  },
+  {
+   "n_patas": 8,
+   "rango_cuota": [
+    1.5,
+    1.8
+   ],
+   "patas_disponibles": 1004,
+   "intentos": 10000,
+   "ganadas": 364,
+   "hit_rate": 0.0364,
+   "hit_rate_teorico": 0.01949,
+   "multiplicador_medio": 48.31,
+   "multiplicador_mediana": 48.05,
+   "multiplicador_de_las_ganadoras": 46.79,
+   "roi_simulado": 0.7033,
+   "p5": 0.556,
+   "p5_por_dia": -0.7549,
+   "dias_con_suficientes_partidos": 40,
+   "dias_que_aportan_ganadoras": 18,
+   "roi_proyectado_desde_la_pata": -0.2304,
+   "veredicto": "alto_riesgo"
+  },
+  {
+   "n_patas": 8,
+   "rango_cuota": [
+    1.1,
+    1.8
+   ],
+   "patas_disponibles": 2373,
+   "intentos": 10000,
+   "ganadas": 440,
+   "hit_rate": 0.044,
+   "hit_rate_teorico": 0.03884,
+   "multiplicador_medio": 18.45,
+   "multiplicador_mediana": 17.61,
+   "multiplicador_de_las_ganadoras": 17.51,
+   "roi_simulado": -0.2296,
+   "p5": -0.2949,
+   "p5_por_dia": -0.5771,
+   "dias_con_suficientes_partidos": 94,
+   "dias_que_aportan_ganadoras": 57,
+   "roi_proyectado_desde_la_pata": -0.2622,
+   "veredicto": "loteria"
+  },
+  {
+   "n_patas": 10,
+   "rango_cuota": [
+    1.1,
+    1.3
+   ],
+   "patas_disponibles": 649,
+   "intentos": 10000,
+   "ganadas": 2497,
+   "hit_rate": 0.2497,
+   "hit_rate_teorico": 0.04594,
+   "multiplicador_medio": 7.04,
+   "multiplicador_mediana": 7.18,
+   "multiplicador_de_las_ganadoras": 6.82,
+   "roi_simulado": 0.7032,
+   "p5": 0.656,
+   "p5_por_dia": -0.3161,
+   "dias_con_suficientes_partidos": 19,
+   "dias_que_aportan_ganadoras": 10,
+   "roi_proyectado_desde_la_pata": -0.2084,
+   "veredicto": "sin_muestra"
+  },
+  {
+   "n_patas": 10,
+   "rango_cuota": [
+    1.3,
+    1.5
+   ],
+   "patas_disponibles": 924,
+   "intentos": 10000,
+   "ganadas": 134,
+   "hit_rate": 0.0134,
+   "hit_rate_teorico": 0.0142,
+   "multiplicador_medio": 29.74,
+   "multiplicador_mediana": 29.21,
+   "multiplicador_de_las_ganadoras": 29.52,
+   "roi_simulado": -0.6044,
+   "p5": -0.6569,
+   "p5_por_dia": -0.9288,
+   "dias_con_suficientes_partidos": 32,
+   "dias_que_aportan_ganadoras": 7,
+   "roi_proyectado_desde_la_pata": -0.405,
+   "veredicto": "loteria"
+  },
+  {
+   "n_patas": 10,
+   "rango_cuota": [
+    1.5,
+    1.8
+   ],
+   "patas_disponibles": 1004,
+   "intentos": 10000,
+   "ganadas": 41,
+   "hit_rate": 0.0041,
+   "hit_rate_teorico": 0.00717,
+   "multiplicador_medio": 128.14,
+   "multiplicador_mediana": 128.13,
+   "multiplicador_de_las_ganadoras": 132.07,
+   "roi_simulado": -0.4585,
+   "p5": -0.5943,
+   "p5_por_dia": -0.8311,
+   "dias_con_suficientes_partidos": 30,
+   "dias_que_aportan_ganadoras": 11,
+   "roi_proyectado_desde_la_pata": -0.2791,
+   "veredicto": "loteria"
+  },
+  {
+   "n_patas": 10,
+   "rango_cuota": [
+    1.1,
+    1.8
+   ],
+   "patas_disponibles": 2373,
+   "intentos": 10000,
+   "ganadas": 237,
+   "hit_rate": 0.0237,
+   "hit_rate_teorico": 0.01782,
+   "multiplicador_medio": 38.21,
+   "multiplicador_mediana": 35.56,
+   "multiplicador_de_las_ganadoras": 39.22,
+   "roi_simulado": -0.0705,
+   "p5": -0.1837,
+   "p5_por_dia": -0.7171,
+   "dias_con_suficientes_partidos": 88,
+   "dias_que_aportan_ganadoras": 35,
+   "roi_proyectado_desde_la_pata": -0.3162,
+   "veredicto": "alto_riesgo"
+  },
+  {
+   "n_patas": 13,
+   "rango_cuota": [
+    1.1,
+    1.3
+   ],
+   "patas_disponibles": 649,
+   "intentos": 10000,
+   "ganadas": 4080,
+   "hit_rate": 0.408,
+   "hit_rate_teorico": 0.01931,
+   "multiplicador_medio": 11.37,
+   "multiplicador_mediana": 10.46,
+   "multiplicador_de_las_ganadoras": 11.23,
+   "roi_simulado": 3.5821,
+   "p5": 3.4906,
+   "p5_por_dia": 0.5593,
+   "dias_con_suficientes_partidos": 8,
+   "dias_que_aportan_ganadoras": 5,
+   "roi_proyectado_desde_la_pata": -0.262,
+   "veredicto": "sin_muestra"
+  },
+  {
+   "n_patas": 13,
+   "rango_cuota": [
+    1.3,
+    1.5
+   ],
+   "patas_disponibles": 924,
+   "intentos": 10000,
+   "ganadas": 106,
+   "hit_rate": 0.0106,
+   "hit_rate_teorico": 0.00343,
+   "multiplicador_medio": 82.48,
+   "multiplicador_mediana": 81.78,
+   "multiplicador_de_las_ganadoras": 80.85,
+   "roi_simulado": -0.143,
+   "p5": -0.2787,
+   "p5_por_dia": -0.9881,
+   "dias_con_suficientes_partidos": 19,
+   "dias_que_aportan_ganadoras": 4,
+   "roi_proyectado_desde_la_pata": -0.4909,
+   "veredicto": "sin_muestra"
+  },
+  {
+   "n_patas": 13,
+   "rango_cuota": [
+    1.5,
+    1.8
+   ],
+   "patas_disponibles": 1004,
+   "intentos": 10000,
+   "ganadas": 0,
+   "hit_rate": 0.0,
+   "hit_rate_teorico": 0.00158,
+   "multiplicador_medio": 553.1,
+   "multiplicador_mediana": 538.65,
+   "multiplicador_de_las_ganadoras": null,
+   "roi_simulado": -1.0,
+   "p5": -1.0,
+   "p5_por_dia": -1.0,
+   "dias_con_suficientes_partidos": 24,
+   "dias_que_aportan_ganadoras": 0,
+   "roi_proyectado_desde_la_pata": -0.3465,
+   "veredicto": "sin_muestra"
+  },
+  {
+   "n_patas": 13,
+   "rango_cuota": [
+    1.1,
+    1.8
+   ],
+   "patas_disponibles": 2373,
+   "intentos": 10000,
+   "ganadas": 187,
+   "hit_rate": 0.0187,
+   "hit_rate_teorico": 0.00515,
+   "multiplicador_medio": 121.75,
+   "multiplicador_mediana": 109.69,
+   "multiplicador_de_las_ganadoras": 147.47,
+   "roi_simulado": 1.7577,
+   "p5": 1.403,
+   "p5_por_dia": -0.7533,
+   "dias_con_suficientes_partidos": 72,
+   "dias_que_aportan_ganadoras": 15,
+   "roi_proyectado_desde_la_pata": -0.3899,
+   "veredicto": "alto_riesgo"
+  }
+ ],
+ "por_deporte": {
+  "Fútbol": {
+   "deportes": [
+    "Fútbol"
+   ],
+   "pata_suelta": {
+    "n": 1097,
+    "acierto": 0.6445,
+    "prob_media": 0.624,
+    "cuota_media": 1.501,
+    "roi": -0.0429,
+    "p5": -0.0772,
+    "ece": 0.0486
+   },
+   "cuatro_patas": {
+    "n_patas": 4,
+    "rango_cuota": [
+     1.1,
+     1.8
+    ],
+    "patas_disponibles": 1097,
+    "intentos": 2500,
+    "ganadas": 354,
+    "hit_rate": 0.1416,
+    "hit_rate_teorico": 0.15019,
+    "multiplicador_medio": 5.19,
+    "multiplicador_mediana": 5.08,
+    "multiplicador_de_las_ganadoras": 5.66,
+    "roi_simulado": -0.1984,
+    "p5": -0.2631,
+    "p5_por_dia": -0.4938,
+    "dias_con_suficientes_partidos": 46,
+    "dias_que_aportan_ganadoras": 37,
+    "veredicto": "alto_riesgo"
+   }
+  },
+  "MLB": {
+   "deportes": [
+    "MLB"
+   ],
+   "pata_suelta": {
+    "n": 0
+   },
+   "cuatro_patas": {
+    "n_patas": 4,
+    "rango_cuota": [
+     1.1,
+     1.8
+    ],
+    "patas_disponibles": 0,
+    "intentos": 0,
+    "motivo": "ninguna pata pasa el filtro",
+    "veredicto": "sin_muestra"
+   }
+  },
+  "Tenis": {
+   "deportes": [
+    "Tenis"
+   ],
+   "pata_suelta": {
+    "n": 1276,
+    "acierto": 0.7045,
+    "prob_media": 0.6843,
+    "cuota_media": 1.3994,
+    "roi": -0.0325,
+    "p5": -0.0638,
+    "ece": 0.0259
+   },
+   "cuatro_patas": {
+    "n_patas": 4,
+    "rango_cuota": [
+     1.1,
+     1.8
+    ],
+    "patas_disponibles": 1276,
+    "intentos": 2500,
+    "ganadas": 570,
+    "hit_rate": 0.228,
+    "hit_rate_teorico": 0.21851,
+    "multiplicador_medio": 3.88,
+    "multiplicador_mediana": 3.82,
+    "multiplicador_de_las_ganadoras": 3.74,
+    "roi_simulado": -0.1475,
+    "p5": -0.2032,
+    "p5_por_dia": -0.3012,
+    "dias_con_suficientes_partidos": 89,
+    "dias_que_aportan_ganadoras": 76,
+    "veredicto": "alto_riesgo"
+   }
+  },
+  "Fútbol+MLB": {
+   "deportes": [
+    "Fútbol",
+    "MLB"
+   ],
+   "pata_suelta": {
+    "n": 1097,
+    "acierto": 0.6445,
+    "prob_media": 0.624,
+    "cuota_media": 1.501,
+    "roi": -0.0429,
+    "p5": -0.0772,
+    "ece": 0.0486
+   },
+   "cuatro_patas": {
+    "n_patas": 4,
+    "rango_cuota": [
+     1.1,
+     1.8
+    ],
+    "patas_disponibles": 1097,
+    "intentos": 2500,
+    "ganadas": 354,
+    "hit_rate": 0.1416,
+    "hit_rate_teorico": 0.15019,
+    "multiplicador_medio": 5.19,
+    "multiplicador_mediana": 5.08,
+    "multiplicador_de_las_ganadoras": 5.66,
+    "roi_simulado": -0.1984,
+    "p5": -0.2631,
+    "p5_por_dia": -0.4938,
+    "dias_con_suficientes_partidos": 46,
+    "dias_que_aportan_ganadoras": 37,
+    "veredicto": "alto_riesgo"
+   }
+  },
+  "Fútbol+MLB+Tenis": {
+   "deportes": [
+    "Fútbol",
+    "MLB",
+    "Tenis"
+   ],
+   "pata_suelta": {
+    "n": 2373,
+    "acierto": 0.6768,
+    "prob_media": 0.6564,
+    "cuota_media": 1.4464,
+    "roi": -0.0373,
+    "p5": -0.0602,
+    "ece": 0.0317
+   },
+   "cuatro_patas": {
+    "n_patas": 4,
+    "rango_cuota": [
+     1.1,
+     1.8
+    ],
+    "patas_disponibles": 2373,
+    "intentos": 2500,
+    "ganadas": 588,
+    "hit_rate": 0.2352,
+    "hit_rate_teorico": 0.19536,
+    "multiplicador_medio": 4.23,
+    "multiplicador_mediana": 4.15,
+    "multiplicador_de_las_ganadoras": 4.0,
+    "roi_simulado": -0.0583,
+    "p5": -0.1166,
+    "p5_por_dia": -0.2058,
+    "dias_con_suficientes_partidos": 112,
+    "dias_que_aportan_ganadoras": 97,
+    "veredicto": "alto_riesgo"
+   }
+  }
+ },
+ "cortes_ece": {
+  "1X2": {
+   "n_ligas": 41,
+   "p25": 0.0229,
+   "mediana": 0.0303,
+   "p75": 0.0373
+  },
+  "Goles 1.5": {
+   "n_ligas": 61,
+   "p25": 0.018,
+   "mediana": 0.0256,
+   "p75": 0.0384
+  },
+  "Goles 2.5": {
+   "n_ligas": 61,
+   "p25": 0.0233,
+   "mediana": 0.0287,
+   "p75": 0.0529
+  },
+  "Goles 3.5": {
+   "n_ligas": 61,
+   "p25": 0.0205,
+   "mediana": 0.0265,
+   "p75": 0.0407
+  },
+  "BTTS": {
+   "n_ligas": 61,
+   "p25": 0.0857,
+   "mediana": 0.1048,
+   "p75": 0.1145
+  },
+  "Córners": {
+   "n_ligas": 36,
+   "p25": 0.0086,
+   "mediana": 0.0122,
+   "p75": 0.016
+  },
+  "Tarjetas": {
+   "n_ligas": 36,
+   "p25": 0.0132,
+   "mediana": 0.018,
+   "p75": 0.021
+  },
+  "Remates": {
+   "n_ligas": 36,
+   "p25": 0.0105,
+   "mediana": 0.0125,
+   "p75": 0.0215
+  },
+  "Remates a puerta": {
+   "n_ligas": 36,
+   "p25": 0.0125,
+   "mediana": 0.0145,
+   "p75": 0.0212
+  }
+ },
+ "configuraciones_viables": [],
+ "medido": true,
+ "veredicto": "todas_negativas"
+}

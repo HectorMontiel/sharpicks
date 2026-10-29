@@ -1,0 +1,125 @@
+name: Precalcular goleadores (rosters de ESPN)
+
+# v147 — POR QUÉ ESTE WORKFLOW EXISTE
+#
+# En producción, el log de Streamlit Cloud repite:
+#
+#     [goleadores/liga_mx] roster 232: HTTPError: 403 Client Error: Forbidden
+#
+# No es un cambio de la API de ESPN. Verificado el 2026-08-17 desde una máquina
+# normal sobre 14 ligas: 0 de 14 fallan en `/teams` y 0 de 14 en `/roster`.
+# **El 403 depende de quién pregunta**: ESPN bloquea esos dos endpoints desde
+# IPs de centro de datos, que es donde corre Streamlit Cloud.
+#
+# El runner de GitHub sí puede, y hay prueba en el propio repositorio: el
+# commit diario de `retrain_leagues` añade partidos a los históricos de
+# `arg_primera_nacional`, `bol_division`, `chi_primera` y `per_liga1`, cuatro
+# ligas de formato `espn` cuyos datos salen EXCLUSIVAMENTE de ESPN. Si el
+# runner estuviera bloqueado, esos ficheros no crecerían.
+#
+# Así que la petición se hace aquí y el resultado viaja en el repositorio.
+# `goleadores_cache.json` es LA MISMA caché que la aplicación ya lee: no hay
+# formato nuevo ni consumidor nuevo, sólo se adelanta el trabajo a un sitio
+# donde no lo rechazan.
+
+on:
+  schedule:
+    # A las 04:30 UTC, una hora ANTES del reentrenamiento de ligas (05:30).
+    # El orden importa: así el commit de los rosters no compite con el suyo
+    # por el mismo push, que es como se generan los conflictos que luego hay
+    # que rebasar a mano.
+    - cron: '43 4 * * *'
+  workflow_dispatch:
+    inputs:
+      ligas:
+        description: 'Ligas concretas (separadas por espacios). Vacío = todas.'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: precalcular-rosters
+  cancel-in-progress: false
+
+env:
+  # v510 — repo privado: los modelos del Release se bajan con el token de la corrida
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  precalcular:
+    runs-on: [self-hosted, sharpicks]   # v509 — runner propio (PC del usuario): 0 minutos de Actions
+    # El TTL de la caché son 3 días y hay ~50 ligas a ~20 s cada una, así que
+    # con 45 minutos sobra incluso si ESPN va lento. Sin tope, un cuelgue de
+    # red dejaría el runner corriendo una hora larga sin producir nada.
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Instalar dependencias mínimas
+        # No hace falta el requirements entero: este script sólo usa requests
+        # y lee `config`/`fixtures_espn`, que no traen nada pesado. Instalar
+        # scikit-learn y compañía aquí serían tres minutos por nada.
+        run: pip install requests pandas
+
+      # v190 — POR `summary`, QUE NO ESTÁ BLOQUEADO.
+      #
+      # `precalcular_goleadores.py` pide `/teams` y `/roster`, y ESPN devuelve
+      # 403 a los dos desde IPs de centro de datos. Este workflow existía
+      # justamente para rodear ese bloqueo desde Streamlit Cloud, y desde hace
+      # tiempo bloquea también las de GitHub Actions: la última pasada se comió
+      # **1.130 errores 403**, no actualizó nada, y como la caché no cambiaba
+      # el paso de commit decía «no cambió» y todo terminaba en verde. No ha
+      # commiteado ni una sola vez.
+      #
+      # `/summary` sí responde —`stats_espn` lo usa cada día sin fallar— y trae
+      # dentro las dos alineaciones con sus jugadores. Es la misma caché, en el
+      # mismo formato, por una puerta que no está cerrada.
+      #
+      # Se FUSIONA con lo que ya hay: esto es una ventana de días y la caché
+      # lleva la temporada, así que un equipo que no jugó esta semana conserva
+      # lo suyo.
+      - name: Refrescar la caché de plantillas (vía summary de ESPN)
+        env:
+          # v508 — la entrada va por variable, nunca pegada en el script (inyección de comandos)
+          LIGAS: ${{ github.event.inputs.ligas }}
+        run: |
+          python espn_extras.py --solo-plantillas --dias 8 \
+                 $LIGAS \
+            || echo "::warning::refresco de plantillas con avisos"
+
+      - name: Comprobar que la caché creció
+        # Si el fichero no cambió, no se commitea: un commit vacío por día
+        # ensucia el histórico y hace ruido en los rebases del otro workflow.
+        id: cambios
+        run: |
+          if git diff --quiet -- goleadores_cache.json; then
+            echo "hay_cambios=no" >> "$GITHUB_OUTPUT"
+            echo "La caché no cambió; no se commitea."
+          else
+            echo "hay_cambios=si" >> "$GITHUB_OUTPUT"
+            git diff --stat -- goleadores_cache.json
+          fi
+
+      - name: Commitear la caché
+        if: steps.cambios.outputs.hay_cambios == 'si'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add goleadores_cache.json
+          git commit -m "chore(datos): caché de goleadores precalculada ($(date -u +%Y-%m-%d))
+
+          Sale del `summary` de cada partido, que ESPN si responde desde el
+          runner. `/teams` y `/roster` devuelven 403 desde cualquier IP de
+          centro de datos. Ver el encabezado de espn_extras.py."
+          # Rebase antes de empujar: el workflow de reentrenamiento puede haber
+          # empujado entre medias y sólo toca datos, nunca .py.
+          git pull --rebase origin main
+          git push origin HEAD:main

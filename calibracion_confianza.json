@@ -1,0 +1,284 @@
+{
+ "generado_de": "pick_ledger_total.csv",
+ "n_total": 89327,
+ "bandas": [
+  {
+   "desde": 0.5,
+   "hasta": 0.55,
+   "n": 11973,
+   "acierto": 0.5267,
+   "acierto_p5": 0.5193,
+   "acierto_p95": 0.5344,
+   "prob_media_modelo": 0.5244,
+   "sesgo": -0.0023,
+   "roi": -0.0319,
+   "p5": -0.0457,
+   "cuota_media": 1.842
+  },
+  {
+   "desde": 0.55,
+   "hasta": 0.6,
+   "n": 10347,
+   "acierto": 0.5742,
+   "acierto_p5": 0.5663,
+   "acierto_p95": 0.5822,
+   "prob_media_modelo": 0.5739,
+   "sesgo": -0.0002,
+   "roi": -0.0356,
+   "p5": -0.0494,
+   "cuota_media": 1.683
+  },
+  {
+   "desde": 0.6,
+   "hasta": 0.65,
+   "n": 7123,
+   "acierto": 0.6207,
+   "acierto_p5": 0.6115,
+   "acierto_p95": 0.6299,
+   "prob_media_modelo": 0.6221,
+   "sesgo": 0.0014,
+   "roi": -0.0243,
+   "p5": -0.0393,
+   "cuota_media": 1.573
+  },
+  {
+   "desde": 0.65,
+   "hasta": 0.7,
+   "n": 1696,
+   "acierto": 0.6627,
+   "acierto_p5": 0.6439,
+   "acierto_p95": 0.6816,
+   "prob_media_modelo": 0.6648,
+   "sesgo": 0.002,
+   "roi": 0.0096,
+   "p5": -0.0205,
+   "cuota_media": 1.524
+  },
+  {
+   "desde": 0.7,
+   "hasta": 0.75,
+   "n": 48,
+   "acierto": 0.7083,
+   "acierto_p5": 0.6042,
+   "acierto_p95": 0.8125,
+   "prob_media_modelo": 0.7143,
+   "sesgo": 0.006,
+   "roi": 0.0758,
+   "p5": -0.0873,
+   "cuota_media": 1.52
+  },
+  {
+   "desde": 0.75,
+   "hasta": 1.01,
+   "n": 1
+  }
+ ],
+ "umbrales": [
+  {
+   "umbral": 0.6,
+   "n": 8868,
+   "pct_partidos": 0.0993,
+   "acierto": 0.6292,
+   "roi": -0.0172,
+   "p5": -0.0301
+  },
+  {
+   "umbral": 0.65,
+   "n": 1745,
+   "pct_partidos": 0.0195,
+   "acierto": 0.6642,
+   "roi": 0.0118,
+   "p5": -0.0172
+  },
+  {
+   "umbral": 0.7,
+   "n": 49,
+   "pct_partidos": 0.0005,
+   "acierto": 0.7143,
+   "roi": 0.0876,
+   "p5": -0.0718
+  },
+  {
+   "umbral": 0.75,
+   "n": 1,
+   "pct_partidos": 0.0
+  },
+  {
+   "umbral": 0.8,
+   "n": 1,
+   "pct_partidos": 0.0
+  }
+ ],
+ "bandas_por_mercado": {
+  "Goles": [
+   {
+    "desde": 0.5,
+    "hasta": 0.55,
+    "n": 40700,
+    "acierto": 0.5215,
+    "prob_media_modelo": 0.5243,
+    "sesgo": 0.0028,
+    "acierto_p5": 0.5173
+   },
+   {
+    "desde": 0.55,
+    "hasta": 0.6,
+    "n": 31032,
+    "acierto": 0.5683,
+    "prob_media_modelo": 0.5736,
+    "sesgo": 0.0053,
+    "acierto_p5": 0.5635
+   },
+   {
+    "desde": 0.6,
+    "hasta": 0.65,
+    "n": 25597,
+    "acierto": 0.6194,
+    "prob_media_modelo": 0.6252,
+    "sesgo": 0.0058,
+    "acierto_p5": 0.6145
+   },
+   {
+    "desde": 0.65,
+    "hasta": 0.7,
+    "n": 33092,
+    "acierto": 0.6866,
+    "prob_media_modelo": 0.6767,
+    "sesgo": -0.0099,
+    "acierto_p5": 0.6825
+   },
+   {
+    "desde": 0.7,
+    "hasta": 0.75,
+    "n": 47637,
+    "acierto": 0.726,
+    "prob_media_modelo": 0.7259,
+    "sesgo": -0.0001,
+    "acierto_p5": 0.7225
+   },
+   {
+    "desde": 0.75,
+    "hasta": 1.01,
+    "n": 66382,
+    "acierto": 0.7836,
+    "prob_media_modelo": 0.7955,
+    "sesgo": 0.0119,
+    "acierto_p5": 0.7811
+   }
+  ],
+  "BTTS": [
+   {
+    "desde": 0.5,
+    "hasta": 0.55,
+    "n": 27653,
+    "acierto": 0.5106,
+    "prob_media_modelo": 0.5245,
+    "sesgo": 0.0139,
+    "acierto_p5": 0.5059
+   },
+   {
+    "desde": 0.55,
+    "hasta": 0.6,
+    "n": 22166,
+    "acierto": 0.5211,
+    "prob_media_modelo": 0.5736,
+    "sesgo": 0.0525,
+    "acierto_p5": 0.5155
+   },
+   {
+    "desde": 0.6,
+    "hasta": 0.65,
+    "n": 15107,
+    "acierto": 0.5305,
+    "prob_media_modelo": 0.6228,
+    "sesgo": 0.0922,
+    "acierto_p5": 0.5235
+   },
+   {
+    "desde": 0.65,
+    "hasta": 0.7,
+    "n": 8520,
+    "acierto": 0.5358,
+    "prob_media_modelo": 0.6725,
+    "sesgo": 0.1367,
+    "acierto_p5": 0.5272
+   },
+   {
+    "desde": 0.7,
+    "hasta": 0.75,
+    "n": 4333,
+    "acierto": 0.5352,
+    "prob_media_modelo": 0.7218,
+    "sesgo": 0.1866,
+    "acierto_p5": 0.5227
+   },
+   {
+    "desde": 0.75,
+    "hasta": 1.01,
+    "n": 3701,
+    "acierto": 0.532,
+    "prob_media_modelo": 0.8042,
+    "sesgo": 0.2722,
+    "acierto_p5": 0.519
+   }
+  ],
+  "Hándicap": [
+   {
+    "desde": 0.5,
+    "hasta": 0.55,
+    "n": 81263,
+    "acierto": 0.529,
+    "prob_media_modelo": 0.5252,
+    "sesgo": -0.0038,
+    "acierto_p5": 0.5262
+   },
+   {
+    "desde": 0.55,
+    "hasta": 0.6,
+    "n": 82523,
+    "acierto": 0.5853,
+    "prob_media_modelo": 0.575,
+    "sesgo": -0.0103,
+    "acierto_p5": 0.5826
+   },
+   {
+    "desde": 0.6,
+    "hasta": 0.65,
+    "n": 85538,
+    "acierto": 0.6356,
+    "prob_media_modelo": 0.6251,
+    "sesgo": -0.0105,
+    "acierto_p5": 0.6329
+   },
+   {
+    "desde": 0.65,
+    "hasta": 0.7,
+    "n": 91872,
+    "acierto": 0.6877,
+    "prob_media_modelo": 0.6754,
+    "sesgo": -0.0123,
+    "acierto_p5": 0.6852
+   },
+   {
+    "desde": 0.7,
+    "hasta": 0.75,
+    "n": 100971,
+    "acierto": 0.7397,
+    "prob_media_modelo": 0.7254,
+    "sesgo": -0.0144,
+    "acierto_p5": 0.7373
+   },
+   {
+    "desde": 0.75,
+    "hasta": 1.01,
+    "n": 858163,
+    "acierto": 0.8964,
+    "prob_media_modelo": 0.8945,
+    "sesgo": -0.0018,
+    "acierto_p5": 0.8958
+   }
+  ]
+ },
+ "umbral_recomendado": 0.7,
+ "nota": "Acierto REAL por banda de probabilidad, medido fuera de muestra. El acierto no crece con el umbral: se estanca en ~63 % y por encima de 0,75 baja (el modelo sobreconfía en la cola). La pestaña de Máxima Confianza lo muestra junto a la probabilidad del modelo para no prometer lo que no cumple."
+}

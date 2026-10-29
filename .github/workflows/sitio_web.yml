@@ -1,0 +1,183 @@
+name: Sitio web
+
+# v377 — EL SITIO NUEVO (carpeta `web/`), FUERA DE STREAMLIT, GRATIS.
+#
+# El sitio no calcula nada: `exportar_web.py` saca las «se mete» del
+# precálculo (las mismas funciones que la app) a `web/datos/hoy.json` y, si
+# hay secretos de Supabase, las sube a la base. Después se publica en GitHub
+# Pages. Corre detrás de cada precálculo (que es quien liquida verdes y rojas)
+# y, por si GitHub se salta algo, cada hora.
+#
+# v378 — SharPicks: además va a Cloudflare Pages (sharpicks.pages.dev, gratis
+# y sí admite negocio) cuando existen los secretos CLOUDFLARE_API_TOKEN y
+# CLOUDFLARE_ACCOUNT_ID. Sin ellos se salta, y queda GitHub Pages.
+
+on:
+  workflow_run:
+    workflows: ["Precálculo del día"]
+    types: [completed]
+  push:
+    branches: [main]
+    paths: ['web/**', 'exportar_web.py', '.github/workflows/sitio_web.yml']
+  schedule:
+    - cron: '41 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# v500 — en cola, no cancelando: cada disparo (push, precálculo, horario) cancelaba al que iba a medias y,
+# con el exportador en ~9 min y disparos cada ~10, a ratos NINGUNO llegaba a publicar (28-oct: tres
+# corridas seguidas canceladas). Ahora el que corre termina; de los que esperan, GitHub deja sólo el último.
+concurrency:
+  group: sitio-web
+  cancel-in-progress: false
+
+env:
+  # v510 — repo privado: los modelos del Release se bajan con el token de la corrida
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  publicar:
+    runs-on: [self-hosted, sharpicks]   # v509 — runner propio (PC del usuario): 0 minutos de Actions
+    timeout-minutes: 30
+    env:
+      # el `if` de un paso no ve el `env` del propio paso: va aquí
+      CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    environment:
+      name: github-pages
+      url: ${{ steps.pages.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+      # v402 — no publicar una web con JavaScript inválido o guardas críticas rotas.
+      - name: Validar código antes de publicar
+        run: |
+          node --check web/fechas.js
+          node --check web/app.js
+          node --check web/cuenta.js
+          node --check web/guia.js
+          node test_web_v402.cjs
+          python -m py_compile exportar_web.py combinadas_web.py comentarios_correo.py telegram_canales.py
+          python test_exportador_web_v402.py
+          python test_v379.py
+          python test_v389.py
+          python test_v400.py
+      - name: Sacar los pronósticos al sitio
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          # v508 — los ids de los picks llevan HMAC con esta clave (sin ella se adivinaba el pick de pago)
+          PICK_ID_CLAVE: ${{ secrets.PICK_ID_CLAVE }}
+          # v379 — vacío en el lanzamiento (todo gratis); «Diamante» u otros
+          # niveles para cobrar (variable del repositorio, no secreto)
+          PREMIUM_NIVELES: ${{ vars.PREMIUM_NIVELES }}
+        run: python exportar_web.py
+      # v379 — los dos canales de Telegram (gratis y VIP); sin canales, no hace nada
+      - name: Canales de Telegram
+        id: telegram
+        continue-on-error: true
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_VIP: ${{ secrets.TELEGRAM_CHAT_VIP }}
+          TELEGRAM_CHAT_GRATIS: ${{ secrets.TELEGRAM_CHAT_GRATIS }}
+          TELEGRAM_VIP_NIVELES: ${{ vars.TELEGRAM_VIP_NIVELES }}
+        run: python telegram_canales.py
+      # v413 — los .sql de referencia viven en el repo, no en el sitio público
+      - name: Quitar los .sql del sitio publicado
+        run: rm -f web/*.sql
+      - name: Publicar en Cloudflare Pages (sharpicks.pages.dev)
+        id: cloudflare
+        if: env.CF_TOKEN != ''
+        continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npx --yes wrangler@3.114.0 pages project create sharpicks --production-branch=main 2>/dev/null || true
+          npx --yes wrangler@3.114.0 pages deploy web --project-name=sharpicks --branch=main --commit-dirty=true
+      - continue-on-error: true   # v510 — sin GitHub Pages en privado; el sitio es Cloudflare
+        uses: actions/configure-pages@v5
+      - continue-on-error: true   # v510 — sin GitHub Pages en privado; el sitio es Cloudflare
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+      - id: pages
+        continue-on-error: true   # v510 — sin GitHub Pages en privado; el sitio es Cloudflare
+        uses: actions/deploy-pages@v4
+      # v484 — la IA, los avisos y los comentarios van DESPUÉS de publicar: sólo escriben en Supabase (no en
+      # web/), y la IA tardaba tanto que el job llegaba al tope de 20 min y se cancelaba ANTES de publicar
+      # (v484 se quedó sin salir; v483 pasó en 20m01s).
+      # v387 — la IA (Gemini) analiza y predice; se le mide aparte
+      - name: IA (Gemini)
+        id: ia
+        continue-on-error: true
+        timeout-minutes: 12
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python ia_gemini.py
+      # v395 — aviso 7 días antes de cada renovación del VIP (correo por Brevo)
+      - name: Avisos de renovación
+        id: avisos
+        continue-on-error: true
+        timeout-minutes: 3
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          BREVO_REMITENTE: ${{ secrets.BREVO_REMITENTE }}
+        run: python avisos_renovacion.py
+      # v401 — los comentarios de la página, a tu correo (el de Brevo)
+      - name: Comentarios al correo
+        id: comentarios
+        continue-on-error: true
+        timeout-minutes: 2
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          BREVO_REMITENTE: ${{ secrets.BREVO_REMITENTE }}
+        run: python comentarios_correo.py
+      # v402 — las integraciones opcionales pueden fallar sin bloquear el backup,
+      # pero sus fallos se publican en el resumen y Cloudflare (sitio canónico) no queda en silencio.
+      - name: Resumen de integraciones y estado del sitio canónico
+        if: always()
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          TELEGRAM_OUTCOME: ${{ steps.telegram.outcome }}
+          IA_OUTCOME: ${{ steps.ia.outcome }}
+          AVISOS_OUTCOME: ${{ steps.avisos.outcome }}
+          COMENTARIOS_OUTCOME: ${{ steps.comentarios.outcome }}
+          CLOUDFLARE_OUTCOME: ${{ steps.cloudflare.outcome }}
+        run: |
+          {
+            echo "## Resultado de SharPicks"
+            echo ""
+            echo "- Telegram: ${TELEGRAM_OUTCOME:-no ejecutado}"
+            echo "- IA: ${IA_OUTCOME:-no ejecutada}"
+            echo "- Avisos de renovación: ${AVISOS_OUTCOME:-no ejecutados}"
+            echo "- Comentarios por correo: ${COMENTARIOS_OUTCOME:-no ejecutados}"
+            echo "- Cloudflare Pages: ${CLOUDFLARE_OUTCOME:-no ejecutado}"
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$TELEGRAM_OUTCOME" = "failure" ] || [ "$IA_OUTCOME" = "failure" ] || [ "$AVISOS_OUTCOME" = "failure" ] || [ "$COMENTARIOS_OUTCOME" = "failure" ]; then
+            echo "::warning::Una integración auxiliar falló. Consulta el resumen y los logs de ese paso."
+          fi
+          if [ -z "$CF_TOKEN" ]; then
+            echo "::error::Falta CLOUDFLARE_API_TOKEN: no se actualizó el sitio canónico sharpicks.pages.dev."
+            exit 1
+          fi
+          if [ "$CLOUDFLARE_OUTCOME" != "success" ]; then
+            echo "::error::Cloudflare Pages no confirmó el despliegue de sharpicks.pages.dev."
+            exit 1
+          fi

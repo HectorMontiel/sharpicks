@@ -1,0 +1,104 @@
+{
+ "con_remates": [
+  "afc_champions",
+  "argentina",
+  "aus_aleague",
+  "aut_bundesliga",
+  "bel_pro_league",
+  "bol_division",
+  "bra_copa",
+  "bra_serie_b",
+  "brasil",
+  "bundesliga",
+  "chi_primera",
+  "china",
+  "col_primera_a",
+  "conference_league",
+  "dinamarca",
+  "ecu_liga_pro",
+  "eng_championship",
+  "eng_fa_cup",
+  "eng_league_one",
+  "eng_league_two",
+  "eredivisie",
+  "esp_hypermotion",
+  "europa_league",
+  "fra_ligue2",
+  "ger_bundesliga2",
+  "gre_super_league",
+  "ind_isl",
+  "ita_serie_b",
+  "jpn_j1",
+  "laliga",
+  "leagues_cup",
+  "libertadores",
+  "liga_mx",
+  "ligue_1",
+  "mls",
+  "ned_eerste",
+  "noruega",
+  "per_liga1",
+  "premier",
+  "primeira",
+  "rsa_premier",
+  "rumania",
+  "rus_premier",
+  "sco_championship",
+  "sco_premiership",
+  "serie_a",
+  "sudamericana",
+  "suecia",
+  "turquia",
+  "usl_championship"
+ ],
+ "sin_remates": [
+  {
+   "clave": "arg_primera_nacional",
+   "motivo": "sintéticos"
+  },
+  {
+   "clave": "champions",
+   "motivo": "sintéticos"
+  },
+  {
+   "clave": "crc_fpd",
+   "motivo": "sintéticos"
+  },
+  {
+   "clave": "eng_national",
+   "motivo": "sintéticos"
+  },
+  {
+   "clave": "finlandia",
+   "motivo": "sintéticos"
+  },
+  {
+   "clave": "irlanda",
+   "motivo": "sintéticos"
+  },
+  {
+   "clave": "mex_expansion",
+   "motivo": "sintéticos"
+  },
+  {
+   "clave": "par_division",
+   "motivo": "sintéticos"
+  },
+  {
+   "clave": "polonia",
+   "motivo": "sintéticos"
+  },
+  {
+   "clave": "slv_primera",
+   "motivo": "sintéticos"
+  },
+  {
+   "clave": "uru_primera",
+   "motivo": "sintéticos"
+  },
+  {
+   "clave": "ven_primera",
+   "motivo": "sintéticos"
+  }
+ ]
+}

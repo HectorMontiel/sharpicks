@@ -1,0 +1,1363 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Asistente de Parlay POR PARTIDO (v15) — agnóstico de competición.
+
+Extrae todas las selecciones apostables de la plantilla del partido (Mundial:
+`motor.plantilla`; clubes: `motor.plantilla_club`), filtra por el umbral del
+perfil de riesgo, descarta combinaciones lógicamente incompatibles o
+redundantes, aplica un haircut de correlación (0.95 por pareja correlacionada)
+y devuelve el parlay del tamaño pedido (4-8) que maximiza el EV (con cuotas
+reales) o la probabilidad conjunta (con cuotas justas).
+
+El parlay multi-partido del fixture (parlay_builder.py) queda intacto.
+"""
+
+import json
+import logging
+import os
+from dataclasses import dataclass, field
+from typing import Dict, List, Optional, Set
+
+import sgp_correlation
+
+logger = logging.getLogger(__name__)
+
+# v20 (SmartParlayBuilder): cada perfil tiene una ZONA OBJETIVO de
+# probabilidad conjunta, no solo un umbral individual. Motivo: con cuotas
+# justas (cuota = 1/prob) cualquier score prob*cuota^alpha es monótono en la
+# probabilidad, así que el greedy de v16 hacía que conservador y medio
+# eligieran EXACTAMENTE lo mismo. Las zonas disjuntas garantizan perfiles
+# distintos por construcción:
+#   conservador -> max prob conjunta, PISO conjunto 60 % (si no alcanza,
+#                  reduce el número de picks en lugar de relajar)
+#   medio       -> max prob_conj * cuota_comb^0.3 DENTRO de la zona 15-60 %
+#                  (el techo del 60 % evita que colisione con el conservador)
+#   agresivo    -> max cuota combinada con PISO conjunto del 5 % y umbral
+#                  individual del 30 % (momio alto pero factible, nunca la
+#                  quimera del 0.2 %)
+PERFILES = {
+    # v37 (§3): "Super Seguro" prioriza mercados de alta probabilidad
+    # (doble oportunidad, hándicap +0.5, BTTS bien calibrado) para maximizar
+    # el PFP — el criterio rey del cambio de paradigma "de no perder a ganar".
+    'super_seguro': {'min_prob': 0.70, 'zona': (0.55, 1.01), 'objetivo': 'prob',
+                     'reduce_picks': True, 'preferir_alta_prob': True},
+    'conservador': {'min_prob': 0.65, 'zona': (0.60, 1.01), 'objetivo': 'prob',
+                    'reduce_picks': True},
+    'medio':       {'min_prob': 0.50, 'zona': (0.15, 0.60), 'objetivo': 'balance',
+                    'alpha': 0.3},
+    'agresivo':    {'min_prob': 0.30, 'zona': (0.05, 1.01), 'objetivo': 'cuota'},
+}
+
+# v37 (§2): PFP = Parlay Force Point = probabilidad conjunta REAL de acertar
+# todas las patas (ya ajustada por correlación). Es el criterio rey: solo se
+# sugieren parlays con PFP ≥ este umbral, salvo modo avanzado.
+PFP_MINIMO = 0.45
+
+# v37 (§3): mercados de ALTA probabilidad individual — con ellos se arma un
+# PFP elevado aunque la cuota sea moderada. Son la "lista blanca" del perfil
+# Super Seguro.
+MERCADOS_ALTA_PROB = {
+    'dc_1x', 'dc_x2', 'home_or_draw_prob', 'draw_or_away_prob',
+    'home_plus05_prob', 'away_plus05_prob', 'ah_home_mas05', 'ah_away_mas05',
+    'over05', 'over15', 'under35', 'btts_si', 'btts_no',
+    'btts_yes_prob', 'btts_no_prob',
+}
+# v25: el haircut fijo 0.95 fue reemplazado por factores de correlación
+# EMPÍRICOS por pareja de mercados (sgp_correlation.py, cópula gaussiana
+# simplificada con φ de 3 temporadas; validado fuera de muestra: el error de
+# la conjunta baja de 0.049 a 0.003). La constante queda solo como respaldo
+# para parejas sin dato (dentro de sgp_correlation.factor_par).
+HAIRCUT_CORRELACION = 0.95
+CUOTA_MAXIMA_COMBINADA = 1000.0
+MIN_SELECCIONES = 2
+# Estados vivos por nivel en la búsqueda combinatoria. Las podas (piso con
+# lookahead por grupos, contradicciones, topes de familia) dejan el árbol en
+# ~10-20k estados, así que este ancho es en la práctica EXHAUSTIVO — un haz
+# chico (160) devolvía cuotas muy por debajo del óptimo en el perfil agresivo.
+ANCHO_HAZ = 20000
+
+# v20: diversidad de categorías (macro-familias) obligatoria y tope por
+# familia — nunca más de un mercado de córners ni de tarjetas por parlay
+# (la causa de que "siempre salieran córners y remates").
+MAX_POR_FAMILIA = {'corners': 1, 'tarjetas': 1}
+
+
+def _min_familias(n: int) -> int:
+    """Diversidad mínima: al menos min(3, N-1) categorías distintas."""
+    return max(1, min(3, n - 1))
+
+# ---------------------------------------------------------------------------
+# Semántica de los campos de la plantilla
+# ---------------------------------------------------------------------------
+# grupo   -> solo UNA selección por grupo (opciones mutuamente excluyentes)
+# familia -> selecciones de familias distintas de la MISMA macro-familia se
+#            consideran correlacionadas (haircut); p. ej. 1X2 con hándicap.
+# Los ids no listados aquí se clasifican por heurística de prefijo.
+_RESULTADO = 'resultado'      # macro-familia: todo lo que depende del ganador
+_GOLES = 'goles'              # macro-familia: volumen de goles
+_CORNERS = 'corners'
+_TARJETAS = 'tarjetas'
+_REMATES = 'remates'          # v55: remates y remates a puerta
+_MITAD = 'mitad'              # v55: mercados de 1ª/2ª mitad
+
+CAMPOS = {
+    # --- comunes (Mundial y clubes) ---
+    'home_win_prob': ('1x2', _RESULTADO), 'draw_prob': ('1x2', _RESULTADO),
+    'away_win_prob': ('1x2', _RESULTADO),
+    # doble oportunidad (Mundial usa *_or_*; clubes usa dc_*)
+    'home_or_draw_prob': ('dc', _RESULTADO), 'home_or_away_prob': ('dc', _RESULTADO),
+    'draw_or_away_prob': ('dc', _RESULTADO),
+    'dc_1x': ('dc', _RESULTADO), 'dc_12': ('dc', _RESULTADO), 'dc_x2': ('dc', _RESULTADO),
+    # total de goles — v16: UNA sola línea o/u de goles por parlay (las líneas
+    # del mismo stat son redundantes entre sí: over 2.5 ⊂ over 1.5)
+    'over25_prob': ('ou_goles', _GOLES), 'under25_prob': ('ou_goles', _GOLES),
+    'over05': ('ou_goles', _GOLES), 'over15': ('ou_goles', _GOLES),
+    'over25': ('ou_goles', _GOLES), 'over35': ('ou_goles', _GOLES),
+    'over45': ('ou_goles', _GOLES), 'over55': ('ou_goles', _GOLES),
+    'over15_goles': ('ou_goles', _GOLES), 'over35_goles': ('ou_goles', _GOLES),
+    # btts / momentos de gol / paridad
+    'btts_yes_prob': ('btts', _GOLES), 'btts_no_prob': ('btts', _GOLES),
+    'btts_si': ('btts', _GOLES), 'btts_no': ('btts', _GOLES),
+    'sin_goles': ('btts', _GOLES),
+    'primer_gol_home': ('primer_gol', _GOLES), 'primer_gol_away': ('primer_gol', _GOLES),
+    'ultimo_gol_home': ('ultimo_gol', _GOLES),
+    'total_par': ('paridad', _GOLES), 'total_impar': ('paridad', _GOLES),
+    # córners — v16: UNA sola línea o/u de córners por parlay
+    'over65_corners': ('ou_ck', _CORNERS), 'over75_corners': ('ou_ck', _CORNERS),
+    'over85_corners': ('ou_ck', _CORNERS), 'over95_corners': ('ou_ck', _CORNERS),
+    'ck_o85': ('ou_ck', _CORNERS), 'ck_o95': ('ou_ck', _CORNERS),
+    'ck_o105': ('ou_ck', _CORNERS),
+    # v54: córners por equipo, 1X2, hándicap y paridad
+    'ck_par': ('ck_paridad', _CORNERS), 'ck_impar': ('ck_paridad', _CORNERS),
+    'corners_par_prob': ('ck_paridad', _CORNERS),
+    'corners_1h_par_prob': ('ck_paridad_1h', _CORNERS),
+    'first_corner_home_prob': ('primer_ck', _CORNERS),
+    'last_corner_home_prob': ('ultimo_ck', _CORNERS),
+    'last_corner_1h_home_prob': ('ultimo_ck_1h', _CORNERS),
+    # tarjetas — v16: UNA sola línea o/u de tarjetas por parlay
+    'over35_tarjetas': ('ou_cards', _TARJETAS), 'over55_tarjetas': ('ou_cards', _TARJETAS),
+    'cards_over45_prob': ('ou_cards', _TARJETAS),
+    'cards_o35': ('ou_cards', _TARJETAS), 'cards_o45': ('ou_cards', _TARJETAS),
+    'penalty_prob': ('penalty', _TARJETAS),
+}
+
+# v67 — TENIS. Sin esto, `obtener_selecciones` no reconocía un solo mercado de
+# la plantilla de tenis (33 campos) y el parlay salía siempre vacío: el tenis
+# era el único deporte de la app sin combinadas.
+# Macro-familia: todo lo que se deriva del ganador va a _RESULTADO (para que el
+# haircut de correlación se aplique); el volumen de juegos va a _JUEGOS.
+_JUEGOS = 'juegos'
+_PREFIJOS_TENIS = [
+    ('ml_', '1x2', _RESULTADO),                 # ganador del partido
+    ('set1_', 'set1', _RESULTADO),              # ganador del 1er set
+    ('set_2_', 'score_sets', _RESULTADO),       # marcador exacto de sets
+    ('set_0_', 'score_sets', _RESULTADO),
+    ('set_1_', 'score_sets', _RESULTADO),
+    ('set_3_', 'score_sets', _RESULTADO),
+    ('exact1_', 'sets_exactos', _RESULTADO),
+    ('ambos_set', 'ambos_set', _RESULTADO),
+    ('set_home', 'set_al_menos', _RESULTADO),
+    ('set_away', 'set_al_menos', _RESULTADO),
+    ('hset_', 'hand_sets', _RESULTADO),         # hándicap de sets
+    ('dr_', 'doble_res', _RESULTADO),           # 1er set / partido
+    ('juegos_over', 'ou_juegos', _JUEGOS),
+    ('juegos_under', 'ou_juegos', _JUEGOS),
+    ('hand_home_', 'hand_juegos', _JUEGOS),     # hándicap de juegos
+    ('hand_away_', 'hand_juegos', _JUEGOS),
+]
+
+_PREFIJOS = _PREFIJOS_TENIS + [
+    # (prefijo, grupo, familia). v16: TODOS los prefijos colapsan a un grupo
+    # único por mercado — nunca dos líneas del mismo stat en el parlay.
+    ('ah_', 'ah', _RESULTADO), ('h1x2_', 'h1x2', _RESULTADO),
+    ('home_plus', 'ah', _RESULTADO), ('home_minus', 'ah', _RESULTADO),
+    ('away_plus', 'ah', _RESULTADO), ('away_minus', 'ah', _RESULTADO),
+    ('score_', 'score', _RESULTADO), ('mv_', 'margen', _RESULTADO),
+    ('htft_', 'htft', _RESULTADO),
+    ('over', 'ou_goles', _GOLES), ('under', 'ou_goles', _GOLES),  # v55: incl. Under
+    ('th_o', 'th', _GOLES), ('ta_o', 'ta', _GOLES),
+    ('multi_', 'multi', _GOLES),
+    ('player_', 'goleador', _GOLES), ('shooter_', 'rematador', _GOLES),
+    # v57: goleadores desde el roster de ESPN. Cada jugador es su propio grupo
+    # (se pueden combinar dos goleadores distintos), familia común _GOLES para
+    # que el haircut de correlación con los totales se aplique.
+    ('scorer2_', 'goleador2', _GOLES), ('scorer_', 'goleador', _GOLES),
+    # v54: córners por equipo / 1X2 / hándicap y tarjetas por equipo / 1X2.
+    # Cada uno su propio grupo (no excluyente entre sí) pero misma familia
+    # (_CORNERS / _TARJETAS) → se les aplica el haircut de correlación.
+    ('ck_home_o', 'ou_ck_home', _CORNERS), ('ck_away_o', 'ou_ck_away', _CORNERS),
+    ('ck1x2_', 'ck_1x2', _CORNERS), ('ckhand_', 'ck_hand', _CORNERS),
+    ('cards1x2_', 'cards_1x2', _TARJETAS),
+    ('cards_home_o', 'ou_cards_home', _TARJETAS),
+    ('cards_away_o', 'ou_cards_away', _TARJETAS),
+    # v55: remates y medias partes.
+    #
+    # v71 — los totales de remates POR EQUIPO y DE PARTIDO salen de aquí: no
+    # son mercados reales. Ninguna casa lista «Más de 9.5 remates a puerta del
+    # partido» ni «X remates del equipo»; lo que publican son props de JUGADOR
+    # («1+ remate de Fulano», «2+ remates a puerta»). Ofrecer un mercado que no
+    # se puede jugar era peor que no ofrecerlo: el parlay quedaba inservible.
+    # Las medias y totales siguen en la plantilla como INFORMACIÓN (tipo
+    # 'media'), simplemente ya no son seleccionables.
+    #
+    # Los props de jugador entran por el prefijo `shooter_` (abajo, familia
+    # _GOLES), que sí es un mercado real y ya existía para selecciones.
+    ('1h_1x2_', '1h_1x2', _MITAD), ('1h_over', '1h_ou', _MITAD),
+    ('1h_under', '1h_ou', _MITAD), ('1h_btts_', '1h_btts', _MITAD),
+    ('2h_1x2_', '2h_1x2', _MITAD), ('2h_over', '2h_ou', _MITAD),
+    ('2h_under', '2h_ou', _MITAD), ('2h_btts_', '2h_btts', _MITAD),
+    # v56: MLB (béisbol). Reutiliza el motor de parlay. tt_home/tt_away y
+    # over/under ya los cubren los prefijos de arriba; se añaden los propios.
+    ('ml_', '1x2', _RESULTADO), ('rl_', 'ah', _RESULTADO),
+    ('tt_home', 'th', _GOLES), ('tt_away', 'ta', _GOLES),
+    ('inn1_', 'inn1', _MITAD), ('f5_', 'f5', _MITAD),
+    ('extra_', 'extra', _RESULTADO), ('tot_par', 'paridad', _GOLES),
+    ('tot_impar', 'paridad', _GOLES),
+]
+
+# Parejas EQUIVALENTES entre grupos (misma apuesta con otro nombre): nunca
+# juntas; se queda la de mayor probabilidad. AH ±0.5 == 1X2/DC.
+EQUIVALENCIAS = [
+    ({'home_minus05_prob', 'ah_home_1'}, {'home_win_prob'}),
+    ({'away_minus05_prob'}, {'away_win_prob'}),
+    ({'home_plus05_prob', 'ah_home_mas05'}, {'home_or_draw_prob', 'dc_1x'}),
+    ({'away_plus05_prob', 'ah_away_mas05'}, {'draw_or_away_prob', 'dc_x2'}),
+    # v67 TENIS: el hándicap de sets en un bo3 es la MISMA apuesta que el
+    # marcador exacto o que "gana al menos un set". Sin esto el parlay pagaba
+    # dos veces por el mismo suceso.
+    ({'hset_home_-1.5'}, {'set_2_0'}),
+    ({'hset_away_-1.5'}, {'set_0_2'}),
+    ({'hset_home_+1.5'}, {'set_home'}),
+    ({'hset_away_+1.5'}, {'set_away'}),
+    ({'exact1_home'}, {'set_1_2'}),
+    ({'exact1_away'}, {'set_2_1'}),
+]
+
+# 1X2 vs doble oportunidad CONTRADICTORIAS (estrictamente incompatibles)
+CONTRADICCIONES = [
+    ({'home_win_prob'}, {'draw_or_away_prob', 'dc_x2'}),
+    ({'draw_prob'}, {'home_or_away_prob', 'dc_12'}),
+    ({'away_win_prob'}, {'home_or_draw_prob', 'dc_1x'}),
+    ({'btts_si', 'btts_yes_prob'}, {'sin_goles', 'under25_prob'}),  # btts≥2 goles
+    ({'btts_si', 'btts_yes_prob'}, {'over05', 'over15', 'over15_goles'}),  # redundante
+    # v67 TENIS: incompatibilidades duras de un bo3
+    ({'ml_home'}, {'set_0_2', 'set_1_2', 'dr_ha', 'dr_aa', 'hset_away_-1.5'}),
+    ({'ml_away'}, {'set_2_0', 'set_2_1', 'dr_hh', 'dr_ah', 'hset_home_-1.5'}),
+    ({'ambos_set'}, {'set_2_0', 'set_0_2'}),      # 2-0 no deja ganar un set al rival
+    ({'set_2_0'}, {'set_away', 'exact1_away'}),
+    ({'set_0_2'}, {'set_home', 'exact1_home'}),
+]
+
+
+@dataclass
+class Seleccion:
+    id: str
+    mercado: str          # título de la sección
+    apuesta: str          # etiqueta legible del campo
+    prob: float           # 0-1
+    cuota: float
+    cuota_fuente: str     # 'justa' | 'real'
+    grupo: str
+    familia: str
+    ev: float = 0.0
+
+
+def _clasificar(id_: str):
+    if id_ in CAMPOS:
+        return CAMPOS[id_]
+    # v57: cada GOLEADOR es su propio grupo — dos jugadores distintos pueden
+    # marcar ambos, así que no deben tratarse como opciones excluyentes. Pero
+    # «X marca» y «X marca 2+» del MISMO jugador sí comparten grupo (redundantes).
+    if id_.startswith(('scorer_', 'scorer2_')):
+        pid = id_.split('_')[-1]
+        return f'goleador_{pid}', _GOLES
+    for prefijo, grupo, familia in _PREFIJOS:
+        if id_.startswith(prefijo):
+            return grupo, familia
+    return None, None
+
+
+# v55: categorías FINAS para la UI del parlay (más granulares que las 4
+# macro-familias). Permiten al usuario incluir explícitamente «Ambos marcan»,
+# «Menos de goles», «Remates», «1ª/2ª mitad», etc.
+_GRUPO_A_CAT = {
+    '1x2': 'Resultado', 'dc': 'Doble oportunidad', 'ah': 'Hándicap',
+    'h1x2': 'Hándicap', 'score': 'Marcador exacto', 'margen': 'Margen de victoria',
+    'htft': 'Descanso/Final', 'btts': 'Ambos marcan',
+    'th': 'Goles por equipo', 'ta': 'Goles por equipo', 'multi': 'Multigoles',
+    'primer_gol': 'Goles especiales', 'ultimo_gol': 'Goles especiales',
+    'paridad': 'Par/Impar goles',
+    'ou_ck': 'Córners', 'ck_1x2': 'Córners', 'ck_hand': 'Córners',
+    'ck_paridad': 'Córners',
+    'ou_ck_home': 'Córners por equipo', 'ou_ck_away': 'Córners por equipo',
+    'ou_cards': 'Tarjetas', 'cards_1x2': 'Tarjetas',
+    'ou_cards_home': 'Tarjetas por equipo', 'ou_cards_away': 'Tarjetas por equipo',
+    'sh_tot': 'Remates', 'sot_tot': 'Remates',
+    'sh_home': 'Remates por equipo', 'sh_away': 'Remates por equipo',
+    'sot_home': 'Remates por equipo', 'sot_away': 'Remates por equipo',
+    '1h_1x2': '1ª mitad', '1h_ou': '1ª mitad', '1h_btts': '1ª mitad',
+    '2h_1x2': '2ª mitad', '2h_ou': '2ª mitad', '2h_btts': '2ª mitad',
+    'goleador': 'Goleadores', 'rematador': 'Remates',
+    # v56: MLB
+    'inn1': 'Primeros innings', 'f5': 'Primeros innings', 'extra': 'Extra innings',
+}
+
+# orden de las categorías para el selector de la UI
+CATEGORIAS_UI = ['Resultado', 'Doble oportunidad', 'Hándicap', 'Más de goles',
+                 'Menos de goles', 'Ambos marcan', 'Goles por equipo',
+                 'Multigoles', 'Marcador exacto', 'Margen de victoria',
+                 'Par/Impar goles', 'Goles especiales', 'Córners',
+                 'Córners por equipo', 'Tarjetas', 'Tarjetas por equipo',
+                 'Remates', 'Remates por equipo', '1ª mitad', '2ª mitad',
+                 'Primeros innings', 'Extra innings']    # v56: MLB
+
+
+# v57: los ids de MLB usan guion bajo tras el prefijo ('over_7.5', 'under_8.5',
+# 'tt_home_over_3.5'), mientras que los de fútbol no ('over05'). Eso permite
+# nombrar las categorías con el vocabulario de CADA deporte (carreras vs goles).
+_CAT_MLB = {
+    '1x2': 'Resultado', 'ah': 'Run line (hándicap)',
+    'margen': 'Margen de victoria', 'paridad': 'Par/Impar carreras',
+    'th': 'Carreras por equipo', 'ta': 'Carreras por equipo',
+    'inn1': 'Primer inning', 'f5': 'Primeras 5 entradas',
+    'extra': 'Extra innings', 'props_k': 'Ponches (pitcher)',
+    'props_bat': 'Bateadores',
+}
+
+
+def _es_id_mlb(id_: str) -> bool:
+    return (id_.startswith(('rl_', 'inn1_', 'f5_', 'extra_', 'tot_par',
+                            'tot_impar', 'k_', 'bat_'))
+            or id_.startswith(('over_', 'under_', 'tt_home_', 'tt_away_')))
+
+
+def categoria_ui(id_: str) -> Optional[str]:
+    grupo, _ = _clasificar(id_)
+    if grupo is None:
+        return None
+    if grupo.startswith('goleador_'):
+        return 'Goleadores'                       # v57
+    mlb = _es_id_mlb(id_)
+    if grupo == 'ou_goles':
+        unidad = 'carreras' if mlb else 'goles'
+        return (f'Menos de {unidad}' if id_.startswith('under')
+                else f'Más de {unidad}')
+    if mlb and grupo in _CAT_MLB:
+        return _CAT_MLB[grupo]
+    return _GRUPO_A_CAT.get(grupo)
+
+
+def categorias_disponibles(pl: Dict) -> List[str]:
+    """v57: categorías que EXISTEN realmente en la plantilla de este partido,
+    en el orden canónico. Así el selector del parlay muestra las de béisbol en
+    MLB y las de fútbol en fútbol (antes era una lista fija de fútbol)."""
+    presentes = {c for c in (categoria_ui(s.id) for s in obtener_selecciones(pl))
+                 if c}
+    orden: Dict[str, int] = {}
+    for i, c in enumerate(CATEGORIAS_UI + ['Más de carreras', 'Menos de carreras',
+                                           'Descanso/Final']
+                          + list(_CAT_MLB.values())):
+        orden.setdefault(c, i)          # conserva la PRIMERA aparición
+    return sorted(presentes, key=lambda c: orden.get(c, 999))
+
+
+def _cuotas_reales_del_partido(pl: Dict) -> Dict[str, float]:
+    """Cuotas reales de odds_actuales.json para ESTE partido, por campo.
+
+    El MATCH_ID lleva fecha, que la plantilla no fija: se busca por sufijo
+    de nombres de equipo. Cubre 1X2 y over/under 2.5 (lo que publican las
+    fuentes gratuitas).
+    """
+    # v114 — EL TABLÓN EN VIVO MANDA SOBRE EL FICHERO DEL PIPELINE.
+    #
+    # `odds_actuales.json` lo escribe la tarea diaria y sólo cubre 1X2,
+    # over/under 2.5, BTTS y el hándicap de ±0,5. Si la interfaz ya ha
+    # consultado el tablón de las cinco casas (`cuotas_tablon`), sus precios
+    # son más frescos, cubren más mercados y son el MEJOR de las casas, no el
+    # de una. Se ponen encima de los del fichero, no en su lugar: cada uno
+    # rellena lo que el otro no tiene.
+    del_tablon = {}
+    if isinstance(pl, dict) and isinstance(pl.get('cuotas_tablon'), dict):
+        for k, v in pl['cuotas_tablon'].items():
+            try:
+                f = float(v)
+            except (TypeError, ValueError):
+                continue
+            if f > 1.0:
+                del_tablon[k] = f
+    if not os.path.exists('odds_actuales.json'):
+        return del_tablon
+    try:
+        with open('odds_actuales.json', encoding='utf-8') as f:
+            cuotas = json.load(f).get('cuotas', {})
+    except Exception:
+        return del_tablon
+    cod = pl.get('codigos', {})
+    h = str(cod.get('home', '')).replace(' ', '-')
+    a = str(cod.get('away', '')).replace(' ', '-')
+    if not h or not a:
+        return {}
+    sufijo = f"_{h}_{a}"
+    for mid, o in cuotas.items():
+        if mid.endswith(sufijo):
+            reales = {}
+            if o.get('odd_home'):
+                reales['home_win_prob'] = float(o['odd_home'])
+                reales['draw_prob'] = float(o['odd_draw'])
+                reales['away_win_prob'] = float(o['odd_away'])
+            if o.get('odd_over25'):
+                reales['over25_prob'] = reales['over25'] = float(o['odd_over25'])
+            if o.get('odd_under25'):
+                reales['under25_prob'] = float(o['odd_under25'])
+            # v25: BTTS real (The Odds API vía almacén CLV)
+            if o.get('odd_btts_yes'):
+                reales['btts_si'] = reales['btts_yes_prob'] = float(o['odd_btts_yes'])
+            if o.get('odd_btts_no'):
+                reales['btts_no'] = reales['btts_no_prob'] = float(o['odd_btts_no'])
+            # v19: hándicap asiático — solo cuando la línea es exactamente
+            # ±0.5 (los campos de la plantilla son de esa línea)
+            linea = o.get('ah_linea')
+            if linea is not None and o.get('odd_ah_home') and o.get('odd_ah_away'):
+                try:
+                    linea = float(linea)
+                except (TypeError, ValueError):
+                    linea = None
+                if linea == -0.5:      # local −0.5 / visitante +0.5
+                    reales['home_minus05_prob'] = float(o['odd_ah_home'])
+                    reales['away_plus05_prob'] = float(o['odd_ah_away'])
+                    reales['ah_away_mas05'] = float(o['odd_ah_away'])
+                elif linea == 0.5:     # local +0.5 / visitante −0.5
+                    reales['home_plus05_prob'] = float(o['odd_ah_home'])
+                    reales['ah_home_mas05'] = float(o['odd_ah_home'])
+                    reales['away_minus05_prob'] = float(o['odd_ah_away'])
+            reales.update(del_tablon)      # el precio en vivo, el último
+            return reales
+    return del_tablon
+
+
+def obtener_selecciones(pl: Dict) -> List[Seleccion]:
+    """Convierte la plantilla (Mundial o club) en selecciones apostables."""
+    reales = _cuotas_reales_del_partido(pl)
+    out: List[Seleccion] = []
+    for seccion in pl.get('secciones', []):
+        for c in seccion.get('campos', []):
+            if c.get('tipo') != 'pct':
+                continue
+            grupo, familia = _clasificar(c['id'])
+            if grupo is None:
+                continue
+            try:
+                prob = float(c['valor']) / 100.0
+            except (TypeError, ValueError):
+                continue
+            if not (0.0 < prob < 1.0):
+                continue
+            if c['id'] in reales:
+                cuota, fuente = reales[c['id']], 'real'
+            else:
+                cuota, fuente = round(1.0 / prob, 2), 'justa'
+            out.append(Seleccion(
+                id=c['id'], mercado=seccion.get('titulo', ''),
+                apuesta=c.get('etiqueta', c['id']), prob=prob,
+                cuota=cuota, cuota_fuente=fuente,
+                grupo=grupo, familia=familia,
+                ev=round(cuota * prob - 1.0, 3),
+            ))
+    return out
+
+
+def _ids_en(par_conjuntos, id_a: str, id_b: str) -> bool:
+    for lado_a, lado_b in par_conjuntos:
+        if (id_a in lado_a and id_b in lado_b) or (id_b in lado_a and id_a in lado_b):
+            return True
+    return False
+
+
+def _compatibles(a: Seleccion, b: Seleccion) -> bool:
+    if a.grupo == b.grupo:
+        return False                       # opciones excluyentes del mismo grupo
+    if _ids_en(CONTRADICCIONES, a.id, b.id):
+        return False
+    if _ids_en(EQUIVALENCIAS, a.id, b.id):
+        return False                       # misma apuesta con otro nombre
+    return True
+
+
+def _correlacionadas(a: Seleccion, b: Seleccion) -> bool:
+    """Correlación no excluyente -> haircut. Misma macro-familia."""
+    return a.familia == b.familia
+
+
+def _riesgo_partido(pl: Dict) -> str:
+    try:
+        with open('risk_flags.json', encoding='utf-8') as f:
+            flags = json.load(f)
+        cod = pl.get('codigos', {})
+        h, a = cod.get('home', ''), cod.get('away', '')
+        return flags.get(f"{h}|{a}") or flags.get(f"{a}|{h}") or 'bajo'
+    except Exception:
+        return 'bajo'
+
+
+# ---------------------------------------------------------------------------
+# v20 — SmartParlayBuilder: búsqueda combinatoria por haz (beam search)
+# ---------------------------------------------------------------------------
+
+def _score_combo(sels: tuple, prob_adj: float, cuota: float, cfg: Dict,
+                 hay_reales: bool) -> float:
+    """Puntuación de una combinación según el objetivo del perfil."""
+    objetivo = cfg['objetivo']
+    if objetivo == 'prob':
+        return prob_adj
+    if objetivo == 'cuota':
+        if hay_reales:
+            ev = sum(max(s.ev, 0.0) for s in sels)
+            return cuota * (1.0 + 0.1 * ev)
+        return cuota
+    alpha = cfg.get('alpha', 0.3)
+    score = prob_adj * cuota ** alpha
+    if hay_reales:
+        score *= 1.0 + max(sum(s.ev for s in sels), 0.0)
+    return score
+
+
+def _buscar_combinaciones(candidatas: List[Seleccion], n: int, cfg: Dict,
+                          hay_reales: bool, exigir_diversidad: bool) -> List[tuple]:
+    """
+    Beam search sobre combinaciones de tamaño n. Cada estado es
+    (sels, prob_ajustada_con_haircut, cuota, n_haircuts). Respeta grupos
+    excluyentes, contradicciones, topes por familia y (opcional) que la
+    diversidad mínima de categorías siga siendo alcanzable.
+    """
+    import math
+    min_fam = _min_familias(n) if exigir_diversidad else 1
+    piso = cfg['zona'][0]
+    zona_hi = cfg['zona'][1]
+    # Para el perfil MEDIO el haz se guía hacia el CENTRO de su zona (no hacia
+    # la prob máxima): con cuotas justas el score es monótono en la prob y el
+    # haz convergería a los mismos picks que el conservador.
+    log_objetivo = None
+    if cfg['objetivo'] == 'balance' and zona_hi <= 1.0:
+        log_objetivo = math.log(math.sqrt(piso * zona_hi))   # media geométrica
+    # Orden de enumeración (determinista; id desempata). La enumeración va
+    # por índice creciente, así que un estado solo puede AÑADIR candidatos
+    # posteriores: el perfil agresivo enumera de menor a mayor probabilidad
+    # (arranca por los picks de cuota alta y se "rescata" con picks seguros
+    # para cumplir el piso); el resto, de mayor a menor.
+    if cfg['objetivo'] == 'cuota':
+        cands = sorted(candidatas, key=lambda s: (s.prob, s.id))
+    else:
+        cands = sorted(candidatas, key=lambda s: (-s.prob, s.id))
+    # Lookahead de factibilidad del piso: mejor producto alcanzable con los
+    # k picks restantes. Optimista pero AJUSTADO a las reglas: máximo una
+    # selección por grupo y tope por familia (córners/tarjetas). Sin esto,
+    # el haz del perfil agresivo se llena de estados de cuota máxima que
+    # mueren TODOS contra el piso en los últimos niveles.
+    mejor_por_grupo: Dict[str, Seleccion] = {}
+    for s in candidatas:
+        if s.grupo not in mejor_por_grupo or s.prob > mejor_por_grupo[s.grupo].prob:
+            mejor_por_grupo[s.grupo] = s
+    disponibles = []
+    usadas_familia: Dict[str, int] = {}
+    for s in sorted(mejor_por_grupo.values(), key=lambda s: -s.prob):
+        tope_fam = MAX_POR_FAMILIA.get(s.familia)
+        if tope_fam is not None and usadas_familia.get(s.familia, 0) >= tope_fam:
+            continue
+        usadas_familia[s.familia] = usadas_familia.get(s.familia, 0) + 1
+        disponibles.append(s.prob)
+    mejor_resto = [1.0]
+    for p in disponibles:
+        mejor_resto.append(mejor_resto[-1] * p)
+
+    # Estructuras precomputadas (la compatibilidad par a par domina el costo)
+    m = len(cands)
+    probs = [s.prob for s in cands]
+    cuotas = [s.cuota for s in cands]
+    fams = [s.familia for s in cands]
+    compat = [[True] * m for _ in range(m)]
+    # v25: factor multiplicativo de correlación por pareja (≤1, empírico)
+    factor = [[1.0] * m for _ in range(m)]
+    for i in range(m):
+        for j in range(i + 1, m):
+            c = _compatibles(cands[i], cands[j])
+            compat[i][j] = compat[j][i] = c
+            f = sgp_correlation.factor_par(
+                cands[i].id, cands[i].prob, cands[j].id, cands[j].prob,
+                misma_familia=_correlacionadas(cands[i], cands[j]))
+            factor[i][j] = factor[j][i] = f
+
+    objetivo = cfg['objetivo']
+    alpha = cfg.get('alpha', 0.3)
+    # estado: (índices, prob con haircut, cuota, n_haircuts, familias usadas)
+    estados = [((), 1.0, 1.0, 0, frozenset())]
+    for nivel in range(n):
+        restantes = n - nivel - 1
+        tope_resto = mejor_resto[min(restantes, len(mejor_resto) - 1)]
+        siguientes = []
+        for idxs, prob, cuota, n_hc, famset in estados:
+            inicio = idxs[-1] + 1 if idxs else 0
+            for j in range(inicio, m):
+                fila_c = compat[j]
+                if not all(fila_c[i] for i in idxs):
+                    continue
+                fj = fams[j]
+                tope = MAX_POR_FAMILIA.get(fj)
+                if tope is not None and sum(1 for i in idxs if fams[i] == fj) >= tope:
+                    continue
+                f_par = 1.0
+                add_hc = 0
+                for i in idxs:
+                    fij = factor[j][i]
+                    f_par *= fij
+                    add_hc += fij < 0.999
+                prob2 = prob * probs[j] * f_par
+                if prob2 * tope_resto < piso:   # ya no puede cumplir el piso
+                    continue
+                famset2 = famset | {fj}
+                if len(famset2) + restantes < min_fam:
+                    continue              # ya no puede alcanzar la diversidad
+                siguientes.append((idxs + (j,), prob2, cuota * cuotas[j],
+                                   n_hc + add_hc, famset2))
+        if not siguientes:
+            return []
+        if len(siguientes) > ANCHO_HAZ:
+            if log_objetivo is not None:
+                # trayectoria ideal: prob parcial que aterriza en el centro de la zona
+                objetivo_nivel = log_objetivo * (nivel + 1) / n
+                clave_haz = lambda e: (abs(math.log(max(e[1], 1e-12)) - objetivo_nivel), e[0])
+            elif objetivo == 'cuota':
+                clave_haz = lambda e: (-e[2], e[0])
+            else:
+                clave_haz = lambda e: (-e[1], e[0])
+            siguientes.sort(key=clave_haz)
+            siguientes = siguientes[:ANCHO_HAZ]
+        estados = siguientes
+    if exigir_diversidad:
+        estados = [e for e in estados if len(e[4]) >= min_fam]
+    return [(tuple(cands[i] for i in idxs), prob, cuota, n_hc)
+            for idxs, prob, cuota, n_hc, _ in estados]
+
+
+def _elegir_combo(candidatas: List[Seleccion], n: int, cfg: Dict,
+                  hay_reales: bool):
+    """
+    Devuelve (estado, avisos). Tres niveles de degradación honesta:
+      1. combinación en la ZONA del perfil con diversidad de categorías
+      2. ídem sin diversidad (avisa)
+      3. sin piso de probabilidad: la combinación más segura posible (avisa)
+    """
+    zona_lo, zona_hi = cfg['zona']
+    # v55: margen para no aterrizar EXACTAMENTE en el borde superior (el redondeo
+    # a 4 decimales de la prob reportada podía cruzar el límite; p.ej. 0.59996 →
+    # 0.6). Solo afecta al perfil MEDIO (los demás tienen tope 1.01).
+    for diversidad in (True, False):
+        finales = _buscar_combinaciones(candidatas, n, cfg, hay_reales, diversidad)
+        en_zona = [e for e in finales if zona_lo <= e[1] < zona_hi - 1e-3]
+        if en_zona:
+            mejor = max(en_zona, key=lambda e: _score_combo(e[0], e[1], e[2], cfg, hay_reales))
+            avisos = [] if diversidad else \
+                [f"⚠️ Este partido no permite {_min_familias(n)} categorías distintas "
+                 f"con el perfil elegido: se relajó la diversidad."]
+            return mejor, avisos
+    # nivel 3: ignorar el piso — buscar la combinación MÁS PROBABLE posible
+    cfg_libre = dict(cfg, zona=(0.0, 1.01), objetivo='prob')
+    for diversidad in (True, False):
+        finales = _buscar_combinaciones(candidatas, n, cfg_libre, hay_reales, diversidad)
+        if finales:
+            mejor = max(finales, key=lambda e: e[1])
+            avisos = [(f"⚠️ Ninguna combinación de {n} picks alcanza el piso de "
+                       f"probabilidad conjunta del perfil ({zona_lo*100:.0f} %): "
+                       f"se muestra la más segura disponible "
+                       f"({mejor[1]*100:.1f} %).")]
+            if not diversidad:
+                avisos.append("⚠️ Tampoco fue posible la diversidad mínima de categorías.")
+            return mejor, avisos
+    return None, []
+
+
+_NOMBRE_FAMILIA = {'resultado': 'Resultado', 'goles': 'Goles',
+                   'corners': 'Córners', 'tarjetas': 'Tarjetas/Disciplina'}
+
+
+def _explicar_categorias(sels: List[Seleccion]) -> List[str]:
+    """Explica qué categorías eligió el parlay y qué apuesta las ancla."""
+    lineas = []
+    for fam in ('resultado', 'goles', 'corners', 'tarjetas'):
+        del_fam = [s for s in sels if s.familia == fam]
+        if not del_fam:
+            continue
+        ancla = max(del_fam, key=lambda s: s.prob)
+        lineas.append(f"{_NOMBRE_FAMILIA[fam]} ({len(del_fam)}): ancla "
+                      f"«{ancla.apuesta}» con {ancla.prob*100:.0f} % según el modelo.")
+    return lineas
+
+
+def limite_patas_por_bankroll(bankroll: float, n_pedido: int,
+                              cuota_combinada_tipica: float = 6.0) -> int:
+    """v37 (§4): degradación dinámica del nº de patas según el bankroll.
+
+    Si el stake mínimo razonable de un parlay de N patas superaría el 10 %
+    del capital, se recorta el número de patas para proteger la banca. Con
+    bankroll 0 o desconocido no se recorta (el usuario no lo configuró).
+    """
+    if not bankroll or bankroll <= 0:
+        return n_pedido
+    # unidad mínima práctica ≈ 1 % del bankroll; un parlay largo de cuota alta
+    # es una apuesta de baja probabilidad → limitar exposición al 10 %.
+    # Regla escalonada del spec: 4→3, 3→2, 2→simple según agresividad.
+    if bankroll < 50:
+        return min(n_pedido, 2)
+    if bankroll < 150:
+        return min(n_pedido, 3)
+    return n_pedido
+
+
+def construir_parlay_partido(motor, home: str, away: str,
+                             num_selecciones: int = 6,
+                             perfil: str = 'medio',
+                             usar_cuotas_reales: bool = True,
+                             excluir_alto_riesgo: bool = True,
+                             solo_cuotas_reales: bool = False,
+                             categorias: Optional[Set[str]] = None,
+                             bankroll: float = 0.0,
+                             aplicar_pfp: bool = True,
+                             modo_avanzado: bool = False) -> Dict:
+    """Parlay óptimo dentro de UN partido (v20: SmartParlayBuilder).
+
+    v25 (§2.1):
+      solo_cuotas_reales — lista blanca dinámica: solo mercados presentes en
+        odds_actuales.json (1X2, O/U 2.5, BTTS, AH ±0.5); el EV es 100 %
+        accionable pero hay menos mercados disponibles.
+      categorias — macro-familias permitidas ({'resultado','goles','corners',
+        'tarjetas'}); None = todas.
+    v37:
+      bankroll — si >0, recorta las patas para no exponer >10 % del capital (§4).
+      aplicar_pfp — si True (defecto), rechaza parlays con PFP < 45 % salvo
+        que modo_avanzado sea True (§2).
+    """
+    num_pedido = max(MIN_SELECCIONES, min(8, int(num_selecciones)))
+    # §4: límite dinámico por bankroll ANTES de construir
+    num_selecciones = limite_patas_por_bankroll(bankroll, num_pedido)
+    aviso_bankroll = None
+    if num_selecciones < num_pedido:
+        aviso_bankroll = ("💡 Tu bankroll actual favorece apuestas de menor "
+                          "riesgo para hacer crecer tu capital de forma "
+                          f"consistente: el parlay se limitó a {num_selecciones} "
+                          f"patas (pediste {num_pedido}).")
+    cfg = PERFILES.get(perfil, PERFILES['medio'])
+    umbral = cfg['min_prob']
+
+    # plantilla según el tipo de motor (clubes primero: ClubEngine no tiene .plantilla)
+    if hasattr(motor, 'plantilla_club'):
+        pl = motor.plantilla_club(home, away)
+    else:
+        pl = motor.plantilla(home, away)
+    if 'error' in pl:
+        return {'error': pl['error']}
+
+    riesgo = _riesgo_partido(pl)
+    if riesgo == 'alto' and excluir_alto_riesgo:
+        return {'error': '🔴 Este partido tiene riesgo de mercado ALTO '
+                         '(divergencia/liquidez en mercados de predicción). '
+                         'Desactiva la exclusión de riesgo si aun así quieres el parlay.'}
+
+    todas = obtener_selecciones(pl)
+    if not usar_cuotas_reales:
+        for s in todas:
+            if s.cuota_fuente == 'real':
+                s.cuota, s.cuota_fuente = round(1.0 / s.prob, 2), 'justa'
+                s.ev = 0.0
+
+    candidatas = [s for s in todas if s.prob >= umbral]
+    # v37 (§3): el perfil Super Seguro prioriza mercados de alta probabilidad
+    # (doble oportunidad, hándicap +0.5, BTTS) — si hay al menos MIN de ellos,
+    # se restringe a esos; si no, se usa todo para no quedarse sin parlay.
+    if cfg.get('preferir_alta_prob'):
+        alta = [s for s in candidatas if s.id in MERCADOS_ALTA_PROB]
+        if len(alta) >= MIN_SELECCIONES:
+            candidatas = alta
+    # v25 (§2.1): lista blanca dinámica y control de categorías
+    if solo_cuotas_reales:
+        candidatas = [s for s in candidatas if s.cuota_fuente == 'real']
+        if len(candidatas) < MIN_SELECCIONES:
+            return {'error': 'Con la lista blanca de cuotas reales no hay '
+                             'suficientes mercados vigentes para este partido '
+                             '(llegan a diario en temporada). Desactívala para '
+                             'usar también cuotas justas del modelo.'}
+    if categorias:
+        # v55: filtro por CATEGORÍA FINA (Ambos marcan, Menos de goles, Remates,
+        # 1ª/2ª mitad, ...). Compatibilidad: si llega una macro-familia antigua
+        # ('goles','corners'...) también se acepta.
+        _macro = {'resultado', 'goles', 'corners', 'tarjetas', 'remates', 'mitad'}
+        candidatas = [s for s in candidatas
+                      if categoria_ui(s.id) in categorias
+                      or (categorias & _macro and s.familia in categorias)]
+        if len(candidatas) < MIN_SELECCIONES:
+            return {'error': 'Las categorías elegidas dejan menos de 2 mercados '
+                             'con la probabilidad mínima del perfil.'}
+    if len(candidatas) < MIN_SELECCIONES:
+        return {'error': 'Este partido no tiene suficientes mercados con la '
+                         'probabilidad mínima del perfil elegido.'}
+    hay_reales = any(s.cuota_fuente == 'real' for s in candidatas)
+
+    # búsqueda: el conservador reduce el nº de picks antes que bajar su piso;
+    # cualquier perfil reduce si simplemente no existen N picks compatibles.
+    avisos: List[str] = []
+    estado = None
+    reduccion_por_piso = False
+    n_obj = num_selecciones
+    while n_obj >= MIN_SELECCIONES:
+        estado, avisos_n = _elegir_combo(candidatas, n_obj, cfg, hay_reales)
+        if estado is None:                       # no hay N picks compatibles
+            n_obj -= 1
+            continue
+        piso_ok = estado[1] >= cfg['zona'][0]
+        if piso_ok or not cfg.get('reduce_picks') or n_obj == MIN_SELECCIONES:
+            avisos = avisos_n
+            break
+        reduccion_por_piso = True
+        n_obj -= 1
+    if estado is None:
+        return {'error': 'No hay suficientes selecciones compatibles en este partido.'}
+    if n_obj < num_selecciones:
+        if reduccion_por_piso:
+            avisos.insert(0, (f"⚠️ Con {num_selecciones} picks no se alcanzaba el piso del "
+                              f"{cfg['zona'][0]*100:.0f} % de probabilidad conjunta: el parlay "
+                              f"se redujo a {n_obj} picks (filosofía conservadora)."))
+        else:
+            avisos.insert(0, (f"⚠️ Solo hay {n_obj} selecciones compatibles con el "
+                              f"perfil {perfil} (pediste {num_selecciones})."))
+
+    elegidas, prob_conjunta, cuota_combinada, n_haircuts = estado
+    elegidas = sorted(elegidas, key=lambda s: -s.prob)
+    cuota_combinada = min(cuota_combinada, CUOTA_MAXIMA_COMBINADA)
+    ev_parlay = round(cuota_combinada * prob_conjunta - 1.0, 3) if hay_reales else 0.0
+
+    if aviso_bankroll:
+        avisos.insert(0, aviso_bankroll)
+
+    # v37 (§2): PFP = probabilidad conjunta real. El PFP SIEMPRE se muestra
+    # (criterio rey). El filtro duro del 45 % solo bloquea los perfiles cuya
+    # razón de ser es la seguridad (super_seguro, conservador); elegir MEDIO o
+    # AGRESIVO ya es optar por el riesgo — son el "modo avanzado" del spec §2.2,
+    # donde el PFP se avisa pero no oculta.
+    es_avanzado = modo_avanzado or perfil in ('agresivo', 'medio')
+    pfp = round(float(prob_conjunta), 4)
+    cumple_pfp = pfp >= PFP_MINIMO
+    if aplicar_pfp and not cumple_pfp and len(elegidas) > 1 and not es_avanzado:
+        return {'error': (f"🛡️ El parlay más seguro posible para este partido "
+                          f"tiene un PFP (probabilidad real de acertar todas "
+                          f"las patas) del {pfp*100:.0f} %, por debajo del "
+                          f"umbral del {PFP_MINIMO*100:.0f} %. Activa el modo "
+                          f"avanzado si aun así quieres verlo, o reduce el "
+                          f"número de patas / elige el perfil Super Seguro."),
+                'pfp': pfp, 'pfp_bajo': True}
+    if aplicar_pfp and not cumple_pfp and es_avanzado:
+        avisos.insert(0, f"⚠️ MODO AVANZADO: PFP {pfp*100:.0f} % < "
+                         f"{PFP_MINIMO*100:.0f} % — parlay de riesgo elevado.")
+
+    return {
+        'partido': pl.get('partido', f'{home} vs {away}'),
+        'perfil': perfil, 'umbral_usado': umbral,
+        'piso_conjunto': cfg['zona'][0],
+        'pfp': pfp, 'cumple_pfp': cumple_pfp, 'pfp_minimo': PFP_MINIMO,
+        'riesgo_partido': riesgo,
+        'selecciones': [{
+            # v122 — EL `id` DEL CAMPO, QUE FALTABA.
+            #
+            # Sin él, todo lo que la v114 construyó para razonar sobre las
+            # patas fallaba EN SILENCIO: la interfaz busca el mercado con
+            # `m.get('id') == s.get('id')` y `cuotas_tablon.recomendar_combinada`
+            # hace lo mismo, así que ninguna pata encontraba nunca su mercado.
+            # El efecto visible era una recomendación que siempre decía
+            # «ninguna pata tiene un segundo precio con el que compararse»,
+            # incluso con seis casas cotizando esa pata, y la anotación
+            # «N casas comparadas» que no salía jamás.
+            'id': s.id,
+            'mercado': s.mercado, 'apuesta': s.apuesta,
+            'prob': round(s.prob, 3), 'cuota': s.cuota,
+            'cuota_fuente': s.cuota_fuente, 'ev': s.ev,
+            'categoria': _NOMBRE_FAMILIA.get(s.familia, s.familia),
+        } for s in elegidas],
+        'n_selecciones': len(elegidas),
+        'categorias': sorted({_NOMBRE_FAMILIA.get(s.familia, s.familia) for s in elegidas}),
+        'explicacion': _explicar_categorias(list(elegidas)),
+        'cuota_combinada': round(cuota_combinada, 2),
+        'prob_conjunta': round(prob_conjunta, 4),
+        'n_parejas_correlacionadas': n_haircuts,
+        'ev_parlay': ev_parlay,
+        'cuotas_reales': hay_reales,
+        'avisos': avisos,
+        'nota': ('EV calculado con cuotas reales de mercado.' if hay_reales else
+                 '⚠️ EV teórico (cuotas justas del modelo) — no accionable; '
+                 'compara contra las cuotas de tu casa para encontrar valor.'),
+    }
+
+
+# ---------------------------------------------------------------------------
+# v37 (§1): constructor de SGP+ — pares correlacionados POSITIVAMENTE del
+# mismo partido que las casas tienden a infrapreciar. A diferencia del parlay
+# diversificado (que busca patas independientes), aquí buscamos DOS patas
+# correlacionadas cuya prob conjunta real supera lo que la casa paga.
+# ---------------------------------------------------------------------------
+def combinar_patas(patas: List[Dict], bankroll: float = 0.0) -> Dict:
+    """v41 (§3.2): combina 2-4 patas elegidas por el usuario (de 'Mejores
+    Patas') en un parlay, calculando el PFP real. Aplica el factor de
+    correlación empírico a los pares del MISMO partido (SGP), la cuota
+    combinada, el EV y el riesgo por PFP. Las patas son dicts con al menos
+    {partido, apuesta, prob, cuota, mercado}.
+    """
+    patas = [p for p in patas if p.get('prob') and p.get('cuota')]
+    if len(patas) < 2:
+        return {'error': 'Elige al menos 2 patas para combinar.'}
+    if len(patas) > 6:
+        return {'error': 'Máximo 6 patas (un parlay más largo casi nunca acierta).'}
+
+    # detectar pares del mismo partido y aplicar factor de correlación (≤1)
+    from collections import defaultdict
+    por_partido = defaultdict(list)
+    for i, p in enumerate(patas):
+        por_partido[p.get('partido', f'_{i}')].append(i)
+    # incompatibilidad: dos patas del mismo partido y mismo "grupo" (1X2 con
+    # 1X2) o mutuamente excluyentes → se avisa
+    avisos = []
+    prob = 1.0
+    for p in patas:
+        prob *= float(p['prob'])
+    pares_corr = 0
+    for partido, idxs in por_partido.items():
+        for a in range(len(idxs)):
+            for b in range(a + 1, len(idxs)):
+                pa, pb = patas[idxs[a]], patas[idxs[b]]
+                # mismo mercado en el mismo partido = casi seguro excluyente
+                if pa.get('mercado') and pa.get('mercado') == pb.get('mercado'):
+                    avisos.append(f"⚠️ '{pa['apuesta']}' y '{pb['apuesta']}' son del "
+                                  f"mismo mercado del mismo partido: probablemente "
+                                  f"excluyentes (no se pueden dar a la vez).")
+                ida = _id_desde_apuesta(pa)
+                idb = _id_desde_apuesta(pb)
+                pares_corr += 1
+                if ida and idb:
+                    prob *= sgp_correlation.factor_par(
+                        ida, pa['prob'], idb, pb['prob'], misma_familia=True)
+                else:
+                    prob *= HAIRCUT_CORRELACION
+
+    cuota = 1.0
+    for p in patas:
+        cuota *= float(p['cuota'])
+    cuota = min(cuota, CUOTA_MAXIMA_COMBINADA)
+    pfp = round(float(prob), 4)
+    ev = round(cuota * prob - 1.0, 3)
+    riesgo = ('🟢 PFP alto' if pfp >= 0.45 else
+              '🟡 PFP medio' if pfp >= 0.30 else '🔴 PFP bajo')
+    if pfp < 0.30:
+        avisos.append("🔴 Este parlay tiene BAJA probabilidad de acierto "
+                      "(PFP < 30 %). Considera reducir patas o elegir opciones "
+                      "más seguras.")
+    salida = {
+        'n_patas': len(patas), 'pfp': pfp, 'cuota_combinada': round(cuota, 2),
+        'ev_parlay': ev, 'riesgo': riesgo, 'pares_mismo_partido': pares_corr,
+        'patas': [{'partido': p.get('partido'), 'apuesta': p.get('apuesta'),
+                   'mercado': p.get('mercado'), 'prob': round(p['prob'], 3),
+                   'cuota': p['cuota']} for p in patas],
+        'avisos': avisos,
+    }
+    if bankroll and pfp > 0:
+        from bankroll_manager import calcular_stake
+        k = calcular_stake(pfp, cuota, bankroll)
+        salida['stake'] = k
+    return salida
+
+
+def _id_desde_apuesta(p: Dict) -> Optional[str]:
+    """Mapea una pata (mercado + etiqueta) a un id canónico de sgp_correlation
+    para el factor de correlación. Devuelve None si no se reconoce."""
+    m = str(p.get('mercado', '')).upper()
+    ap = str(p.get('apuesta', '')).lower()
+    if m == '1X2':
+        if ap.startswith('gana'):
+            return None            # ganador local/visit (ambiguo sin lado)
+        if 'empate' in ap:
+            return 'draw_prob'
+    if m == 'BTTS':
+        return 'btts_si' if ('sí' in ap or 'si' in ap.split()) else 'btts_no'
+    if m == 'GOLES':
+        if 'más de 2.5' in ap:
+            return 'over25'
+        if 'menos de 2.5' in ap:
+            return 'under25'
+    return None
+
+
+def construir_sgp_plus(motor, home: str, away: str) -> Dict:
+    """Mejor SGP+ de 2 patas del partido (o aviso si no hay ninguno).
+
+    EXIGE cuotas REALES en ambas patas: sin precio de mercado no se puede
+    afirmar que la casa infraprecia, y con cuotas justas (1/prob) el EV
+    degenera en un artefacto (la trampa de EV+ ilusorio de la v25). Recorre
+    parejas compatibles y devuelve la de mayor EV estimado que supere el +5 %
+    conjunto (spec §1.2).
+    """
+    if hasattr(motor, 'plantilla_club'):
+        pl = motor.plantilla_club(home, away)
+    else:
+        pl = motor.plantilla(home, away)
+    if 'error' in pl:
+        return {'error': pl['error']}
+
+    todas = obtener_selecciones(pl)
+    reales = [s for s in todas if s.cuota_fuente == 'real']   # SIEMPRE reales
+    if len(reales) < 2:
+        return {'error': ('SGP+ necesita cuotas REALES en al menos 2 mercados '
+                          'del partido (1X2, O/U 2.5, BTTS, AH ±0.5). Hoy no '
+                          'hay suficientes cuotas vigentes para este partido.')}
+
+    mejor = None
+    evaluadas = 0
+    for i in range(len(reales)):
+        for j in range(i + 1, len(reales)):
+            a, b = reales[i], reales[j]
+            if not _compatibles(a, b):
+                continue
+            evaluadas += 1
+            señal = sgp_correlation.senal_sgp_plus(
+                a.id, a.prob, a.cuota, b.id, b.prob, b.cuota)
+            if señal is None:
+                continue
+            if mejor is None or señal['ev_estimado'] > mejor['senal']['ev_estimado']:
+                mejor = {'a': a, 'b': b, 'senal': señal}
+    if mejor is None:
+        return {'error': ('Sin SGP+ accionable en este partido: ninguna pareja '
+                          'de mercados con cuota real muestra correlación '
+                          'positiva infravalorada (EV conjunto > +5 %). Esto es '
+                          'lo normal — un SGP+ real es infrecuente.'),
+                'sin_senal': True, 'parejas_evaluadas': evaluadas}
+    a, b, s = mejor['a'], mejor['b'], mejor['senal']
+    return {
+        'partido': pl.get('partido', f'{home} vs {away}'),
+        'tipo': 'SGP+',
+        'selecciones': [
+            {'mercado': a.mercado, 'apuesta': a.apuesta, 'prob': round(a.prob, 3),
+             'cuota': a.cuota},
+            {'mercado': b.mercado, 'apuesta': b.apuesta, 'prob': round(b.prob, 3),
+             'cuota': b.cuota}],
+        'phi': s['phi'],
+        'prob_conjunta_real': s['prob_conjunta_real'],
+        'prob_si_independientes': s['prob_producto'],
+        'boost_correlacion': s['boost_correlacion'],
+        'cuota_sgp_estimada': s['cuota_sgp_estimada'],
+        'ev_estimado': s['ev_estimado'],
+        'parejas_evaluadas': evaluadas,
+        'nota': ('Prob conjunta REAL ajustada por correlación empírica (φ de 3 '
+                 'temporadas). La casa suele preciar el SGP como producto × '
+                 'recorte genérico; cuando la correlación real es más fuerte, '
+                 'infraprecia. Verifica el precio del SGP en tu libro: si es '
+                 'cercano al producto de cuotas, tiene EV+ esperado. Sin feed '
+                 'histórico de SGP no se puede backtestear el ROI (documentado).'),
+    }
+
+
+# ---------------------------------------------------------------------------
+# v53 — COMBINADOR MANUAL: el usuario elige los mercados y la app calcula la
+# probabilidad conjunta REAL (ajustada por correlación entre mercados del mismo
+# partido) y la cuota combinada. Funciona en cualquier liga/deporte cuya
+# plantilla exponga 'secciones' con campos 'pct' (todas las de clubes y Mundial).
+# ---------------------------------------------------------------------------
+def combinar_manual(pl: Dict, ids: List[str]) -> Dict:
+    """Combina las selecciones elegidas por el usuario (por id) del MISMO
+    partido y devuelve la probabilidad conjunta ajustada por correlación, la
+    cuota combinada (justa y real si la hay) y el EV. Avisa de picks
+    incompatibles (excluyentes/contradictorios)."""
+    sels = {s.id: s for s in obtener_selecciones(pl)}
+    elegidas = [sels[i] for i in ids if i in sels]
+    if len(elegidas) < 2:
+        return {'error': 'Elige al menos 2 mercados para combinar.'}
+
+    # incompatibilidades (mismo grupo excluyente / contradicciones / equivalencias)
+    incompatibles = []
+    for i in range(len(elegidas)):
+        for j in range(i + 1, len(elegidas)):
+            if not _compatibles(elegidas[i], elegidas[j]):
+                incompatibles.append((elegidas[i].apuesta, elegidas[j].apuesta))
+
+    # probabilidad conjunta con corrección de correlación por pareja (mismo
+    # motor empírico φ que usa el proponedor automático y el SGP+)
+    prob = 1.0
+    for s in elegidas:
+        prob *= s.prob
+    factores = []
+    for i in range(len(elegidas)):
+        for j in range(i + 1, len(elegidas)):
+            f = sgp_correlation.factor_par(
+                elegidas[i].id, elegidas[i].prob,
+                elegidas[j].id, elegidas[j].prob,
+                misma_familia=_correlacionadas(elegidas[i], elegidas[j]))
+            prob *= f
+            if f < 0.999 or f > 1.001:
+                factores.append(round(f, 3))
+    prob = max(min(prob, 1.0), 1e-9)
+
+    cuota_justa_comb = round(1.0 / prob, 2)               # combinada "justa"
+    hay_reales = all(s.cuota_fuente == 'real' for s in elegidas)
+    cuota_real_comb = None
+    ev = None
+    if hay_reales:
+        cuota_real_comb = 1.0
+        for s in elegidas:
+            cuota_real_comb *= s.cuota
+        cuota_real_comb = round(cuota_real_comb, 2)
+        ev = round(cuota_real_comb * prob - 1.0, 3)
+
+    return {
+        'n': len(elegidas),
+        'prob_conjunta': round(prob, 4),
+        'cuota_justa_combinada': cuota_justa_comb,
+        'cuota_real_combinada': cuota_real_comb,
+        'ev': ev,
+        'hay_cuotas_reales': hay_reales,
+        'correlacion_aplicada': bool(factores),
+        'patas': [{'id': s.id, 'mercado': s.mercado, 'apuesta': s.apuesta,
+                   'prob': round(s.prob, 3), 'cuota': s.cuota,
+                   'cuota_fuente': s.cuota_fuente} for s in elegidas],
+        'incompatibles': incompatibles,
+        'nota': ('Probabilidad conjunta REAL ajustada por la correlación entre '
+                 'mercados del mismo partido (no es el simple producto). Cuota '
+                 'justa = 1/prob. Si hay cuotas reales, el EV es accionable; '
+                 'si no, compara la cuota combinada contra tu casa.'),
+    }
+
+
+# ---------------------------------------------------------------------------
+# v58 — MULTI-PARLAY: varias opciones de combinada para el MISMO partido, con
+# cuotas combinadas, de perfiles distintos (no solo el "súper seguro"), para
+# que el usuario elija según su apetito de riesgo. Escalable a cualquier
+# deporte cuyo motor exponga `plantilla_club`/`plantilla` con 'secciones'.
+# ---------------------------------------------------------------------------
+# (perfil, nº patas, etiqueta, descripción, PFP mínimo propio). El PFP mínimo
+# baja al subir la ambición: así hay una ESCALERA de cuotas (de ~1.4 a ~5) sin
+# caer en parlays soñadores — el más agresivo aún exige 1 de cada 5 de acierto.
+MIN_CUOTA_OPCION = 1.25      # por debajo, la combinada no compensa el riesgo
+
+_ETIQUETAS_OPCION = [
+    ('super_seguro', 2, '🛡️ Ancla', 'La más probable: dos patas muy seguras.', 0.55),
+    ('conservador', 3, '🔒 Segura+', 'Tres patas de alta probabilidad.', 0.50),
+    ('medio', 3, '⚖️ Equilibrada', 'Balance entre probabilidad y cuota.', 0.33),
+    ('medio', 4, '📈 Valor', 'Cuatro patas: más cuota, riesgo contenido.', 0.26),
+    ('agresivo', 4, '🚀 Cuota', 'Cuota alta asumiendo más riesgo.', 0.20),
+    ('agresivo', 5, '💥 Cuota+', 'Cinco patas para maximizar el premio.', 0.15),
+]
+
+
+def proponer_parlays(motor, home: str, away: str, max_opciones: int = 5,
+                     solo_cuotas_reales: bool = False,
+                     bankroll: float = 0.0) -> List[Dict]:
+    """v58: devuelve VARIAS combinadas del mismo partido (perfiles y tamaños
+    distintos), ordenadas por calidad. Cada una trae cuota combinada, PFP
+    (probabilidad real de acertar todo) y EV cuando hay cuotas reales.
+
+    Criterio de orden (no 'parlays soñadores'): se exige PFP >= PFP_MINIMO y se
+    puntúa por PFP × cuota^0.35 — premia la cuota pero domina la probabilidad.
+    Se descartan duplicados (misma combinación de patas)."""
+    vistas: Set[tuple] = set()
+    opciones: List[Dict] = []
+    # v60: variantes ANCLADAS EN EL RESULTADO — el usuario quiere ver siempre
+    # la parte de «quién gana». Una con doble oportunidad (más segura) y otra
+    # con el 1X2 puro (ganador directo, más cuota).
+    for n, etiq, desc, pref1x2, minp in (
+            (3, '🥅 Con resultado', 'Incluye doble oportunidad (1X/12/X2).', False, 0.55),
+            (3, '🎯 Ganador directo', 'Incluye el 1X2 puro: gana local, empate o visitante.', True, 0.0)):
+        try:
+            r = construir_parlay_con_resultado(
+                motor, home, away, num_selecciones=n, perfil='medio',
+                preferir_1x2=pref1x2, min_prob_ancla=minp,
+                solo_cuotas_reales=solo_cuotas_reales)
+        except Exception as e:
+            logger.warning(f"[multiparlay/resultado] {type(e).__name__}: {e}")
+            continue
+        if 'error' in r:
+            continue
+        firma = tuple(sorted(s['apuesta'] for s in r['selecciones']))
+        if firma in vistas:
+            continue
+        pfp = float(r.get('prob_conjunta') or 0)
+        cuota = float(r.get('cuota_combinada') or 1)
+        if pfp < 0.15 or cuota < MIN_CUOTA_OPCION:
+            continue
+        vistas.add(firma)
+        r['etiqueta_opcion'] = etiq
+        r['descripcion_opcion'] = desc
+        r['score_opcion'] = round(pfp * (cuota ** 0.5), 4)
+        opciones.append(r)
+    for perfil, n, etiqueta, desc, min_pfp in _ETIQUETAS_OPCION:
+        try:
+            r = construir_parlay_partido(
+                motor, home, away, num_selecciones=n, perfil=perfil,
+                solo_cuotas_reales=solo_cuotas_reales, bankroll=bankroll,
+                aplicar_pfp=False, modo_avanzado=True)
+        except Exception as e:
+            logger.warning(f"[multiparlay] {perfil}/{n}: {type(e).__name__}: {e}")
+            continue
+        if 'error' in r:
+            continue
+        firma = tuple(sorted(s['apuesta'] for s in r['selecciones']))
+        if firma in vistas:
+            continue
+        pfp = float(r.get('prob_conjunta') or 0)
+        if pfp < min_pfp:
+            continue                       # nada de combinadas soñadoras
+        cuota = float(r.get('cuota_combinada') or 1)
+        if cuota < MIN_CUOTA_OPCION:
+            continue                       # cuota irrelevante: no aporta valor
+        vistas.add(firma)
+        r['etiqueta_opcion'] = etiqueta
+        r['descripcion_opcion'] = desc
+        # score informativo (prob × cuota^0.5): premia la cuota sin que domine
+        r['score_opcion'] = round(pfp * (cuota ** 0.5), 4)
+        opciones.append(r)
+    # se presentan como ESCALERA: de la más segura a la de más cuota
+    opciones.sort(key=lambda x: float(x.get('cuota_combinada') or 1))
+    return opciones[:max_opciones]
+
+
+def plantilla_a_texto(pl: Dict) -> str:
+    """v58: TODAS las estadísticas/mercados del partido en texto plano, para el
+    botón de copiar al portapapeles. Genérico: sirve a cualquier deporte cuya
+    plantilla tenga 'secciones' (fútbol, MLB, ...)."""
+    lineas = [f"ESTADÍSTICAS Y MERCADOS — {pl.get('partido', '?')}"]
+    if pl.get('liga'):
+        lineas.append(f"Competición: {pl['liga']}")
+    if pl.get('fecha'):
+        lineas.append(f"Fecha: {pl['fecha']}")
+    base = pl.get('prediccion_base') or pl.get('prediccion') or {}
+    pr = base.get('prediction', base)
+    probs = pr.get('probabilities') if isinstance(pr, dict) else None
+    if probs:
+        lineas.append(f"1X2 del modelo: local {probs.get('home', 0)*100:.0f}% · "
+                      f"empate {probs.get('draw', 0)*100:.0f}% · "
+                      f"visitante {probs.get('away', 0)*100:.0f}%")
+    elif base.get('prob_home') is not None:
+        lineas.append(f"Ganador: local {base['prob_home']*100:.0f}% · "
+                      f"visitante {base.get('prob_away', 0)*100:.0f}%")
+    lineas.append('')
+    for sec in pl.get('secciones', []):
+        lineas.append(f"== {sec.get('titulo', '')} ==")
+        for c in sec.get('campos', []):
+            val = c.get('valor')
+            if c.get('tipo') == 'media':
+                lineas.append(f"  {c.get('etiqueta', '')}: {val}")
+            else:
+                try:
+                    justa = round(100 / max(float(val), 1e-6), 2)
+                    lineas.append(f"  {c.get('etiqueta', '')}: {float(val):.1f}% "
+                                  f"(cuota justa {justa})")
+                except (TypeError, ValueError):
+                    lineas.append(f"  {c.get('etiqueta', '')}: {val}")
+        lineas.append('')
+    for obs in pl.get('observaciones', []):
+        lineas.append(f"* {obs}")
+    lineas.append('')
+    lineas.append('Cuotas justas = 1/probabilidad (sin margen de casa). '
+                  'Juego responsable.')
+    return '\n'.join(lineas)
+
+
+# ---------------------------------------------------------------------------
+# v60 — PARLAYS CON MERCADO DE RESULTADO. El buscador maximiza probabilidad, y
+# los mercados de resultado (1X2 / doble oportunidad) casi nunca ganaban a un
+# «Menos de 5.5 goles» al 98 %. Pero el usuario quiere ver SIEMPRE la parte de
+# quién gana. Estas variantes fijan un ANCLA de resultado y completan alrededor.
+# ---------------------------------------------------------------------------
+GRUPOS_RESULTADO = {'1x2', 'dc'}
+# Una pata con prob > 0.95 tiene cuota < 1.05: no paga, solo alarga el boleto.
+MAX_PROB_RELLENO = 0.95
+
+
+def _mejor_ancla_resultado(sels: List['Seleccion'], min_prob: float,
+                           preferir_1x2: bool = False) -> Optional['Seleccion']:
+    """Elige la pata de resultado a fijar: la de mayor probabilidad que supere
+    `min_prob`. Con `preferir_1x2` se restringe al 1X2 puro (gana local /
+    empate / gana visitante), que es lo que más busca el usuario."""
+    grupos = {'1x2'} if preferir_1x2 else GRUPOS_RESULTADO
+    cands = [s for s in sels if _clasificar(s.id)[0] in grupos and s.prob >= min_prob]
+    if not cands:
+        return None
+    return max(cands, key=lambda s: (s.prob, s.cuota))
+
+
+def construir_parlay_con_resultado(motor, home: str, away: str,
+                                   num_selecciones: int = 3,
+                                   perfil: str = 'conservador',
+                                   preferir_1x2: bool = False,
+                                   min_prob_ancla: float = 0.0,
+                                   solo_cuotas_reales: bool = False) -> Dict:
+    """Parlay que SIEMPRE incluye un mercado de resultado (1X2 o doble
+    oportunidad) como ancla, completado con los mejores mercados compatibles.
+    Devuelve la misma estructura que `construir_parlay_partido`."""
+    pl = (motor.plantilla_club(home, away) if hasattr(motor, 'plantilla_club')
+          else motor.plantilla(home, away))
+    if 'error' in pl:
+        return {'error': pl['error']}
+    sels = obtener_selecciones(pl)
+    if solo_cuotas_reales:
+        sels = [s for s in sels if s.cuota_fuente == 'real']
+    ancla = _mejor_ancla_resultado(sels, min_prob_ancla, preferir_1x2)
+    if ancla is None:
+        return {'error': 'Este partido no tiene mercado de resultado utilizable.'}
+    cfg = PERFILES.get(perfil, PERFILES['conservador'])
+    # candidatas compatibles con el ancla (y que no sean equivalentes a ella)
+    # v60: se excluyen las patas "de relleno" (prob > MAX_PROB_RELLENO): un
+    # mercado al 98 % tiene cuota ~1.02 y no aporta premio, solo alarga el
+    # boleto. El ancla de resultado sí puede tener cualquier probabilidad.
+    resto = [s for s in sels
+             if s.id != ancla.id and _compatibles(ancla, s)
+             and cfg['min_prob'] <= s.prob <= MAX_PROB_RELLENO]
+    elegidas = [ancla]
+    usadas_fam: Dict[str, int] = {ancla.familia: 1}
+    # completado voraz por probabilidad, respetando compatibilidad y topes
+    for s in sorted(resto, key=lambda x: -x.prob):
+        if len(elegidas) >= num_selecciones:
+            break
+        if not all(_compatibles(s, e) for e in elegidas):
+            continue
+        tope = MAX_POR_FAMILIA.get(s.familia)
+        if tope is not None and usadas_fam.get(s.familia, 0) >= tope:
+            continue
+        elegidas.append(s)
+        usadas_fam[s.familia] = usadas_fam.get(s.familia, 0) + 1
+    if len(elegidas) < MIN_SELECCIONES:
+        return {'error': 'No hay mercados compatibles suficientes con el '
+                         'mercado de resultado.'}
+    # probabilidad conjunta ajustada por correlación (mismo motor que el resto)
+    prob = 1.0
+    for s in elegidas:
+        prob *= s.prob
+    for i in range(len(elegidas)):
+        for j in range(i + 1, len(elegidas)):
+            prob *= sgp_correlation.factor_par(
+                elegidas[i].id, elegidas[i].prob,
+                elegidas[j].id, elegidas[j].prob,
+                misma_familia=_correlacionadas(elegidas[i], elegidas[j]))
+    cuota = 1.0
+    for s in elegidas:
+        cuota *= s.cuota
+    hay_reales = all(s.cuota_fuente == 'real' for s in elegidas)
+    return {
+        'partido': f'{home} vs {away}',
+        'n_selecciones': len(elegidas),
+        'prob_conjunta': round(max(min(prob, 1.0), 1e-9), 4),
+        'cuota_combinada': round(cuota, 2),
+        'ev_parlay': round(cuota * prob - 1.0, 3) if hay_reales else 0.0,
+        'cuotas_reales': hay_reales,
+        'riesgo_partido': _riesgo_partido(pl),
+        'avisos': [],
+        'selecciones': [{'id': s.id, 'mercado': s.mercado, 'apuesta': s.apuesta,
+                         'prob': round(s.prob, 3), 'cuota': s.cuota,
+                         'cuota_fuente': s.cuota_fuente,
+                         'categoria': categoria_ui(s.id) or s.familia}
+                        for s in elegidas],
+        'nota': ('Combinada anclada en el mercado de RESULTADO; el resto de '
+                 'patas se eligen entre las compatibles de mayor probabilidad. '
+                 'Probabilidad conjunta ajustada por correlación.'),
+    }

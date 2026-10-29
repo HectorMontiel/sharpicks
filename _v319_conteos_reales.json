@@ -1,0 +1,452 @@
+{
+ "goles_equipo": {
+  "partidos": 77840,
+  "franja_70_80": {
+   "elegir": {
+    "n": 63980,
+    "partidos": 44413,
+    "acierto": 0.7128,
+    "p_media": 0.7474
+   },
+   "juzgar": {
+    "n": 26420,
+    "partidos": 18472,
+    "acierto": 0.7124,
+    "p_media": 0.748
+   },
+   "mas_de_0.5": {
+    "n": 52265,
+    "partidos": 41968,
+    "acierto": 0.7367,
+    "p_media": 0.7491
+   },
+   "menos_de_0.5": {
+    "n": 1000,
+    "partidos": 994,
+    "acierto": 0.425,
+    "p_media": 0.7431
+   },
+   "mas_de_1.5": {
+    "n": 3763,
+    "partidos": 3739,
+    "acierto": 0.6359,
+    "p_media": 0.7428
+   },
+   "menos_de_1.5": {
+    "n": 33372,
+    "partidos": 30148,
+    "acierto": 0.6924,
+    "p_media": 0.7458
+   }
+  },
+  "recomendable": false
+ },
+ "produccion_tarjetas": {
+  "partidos": 2812,
+  "franja_70_80": {
+   "observado_con_historico_real": {
+    "n": 4090,
+    "partidos": 1779,
+    "acierto": 0.724,
+    "p_media": 0.7487
+   },
+   "observado_sin_historico_real": {
+    "n": 1243,
+    "partidos": 534,
+    "acierto": 0.7506,
+    "p_media": 0.7475
+   },
+   "estimado": {
+    "n": 938,
+    "partidos": 387,
+    "acierto": 0.7292,
+    "p_media": 0.7587
+   }
+  },
+  "recomendable": true
+ },
+ "produccion_corners": {
+  "partidos": 2812,
+  "franja_70_80": {
+   "observado_con_historico_real": {
+    "n": 8304,
+    "partidos": 1868,
+    "acierto": 0.7349,
+    "p_media": 0.7475
+   },
+   "observado_sin_historico_real": {
+    "n": 2458,
+    "partidos": 557,
+    "acierto": 0.7555,
+    "p_media": 0.7449
+   },
+   "estimado": {
+    "n": 2076,
+    "partidos": 387,
+    "acierto": 0.7413,
+    "p_media": 0.7436
+   }
+  },
+  "recomendable": true
+ },
+ "corners": {
+  "partidos_juzgados": 18815,
+  "con_historico_real": 11876,
+  "ligas": 56,
+  "corte": "2025-07-01",
+  "total": {
+   "log_loss_media_competicion": 0.61376,
+   "log_loss_suma_equipos": 0.61219,
+   "mejora_suma": 0.00157,
+   "p5": 0.00115,
+   "adopta_suma": true
+  },
+  "franja_70_80": {
+   "datos_reales": {
+    "n": 52917,
+    "partidos": 11876,
+    "acierto": 0.7543,
+    "p_media": 0.7488
+   },
+   "sin_historico_real": {
+    "n": 15506,
+    "partidos": 3490,
+    "acierto": 0.7492,
+    "p_media": 0.7488
+   },
+   "reales_liga_completa": {
+    "n": 12839,
+    "partidos": 2823,
+    "acierto": 0.7571,
+    "p_media": 0.7492
+   },
+   "reales_liga_parcial": {
+    "n": 40078,
+    "partidos": 9053,
+    "acierto": 0.7534,
+    "p_media": 0.7487
+   },
+   "reales_total": {
+    "n": 21183,
+    "partidos": 11876,
+    "acierto": 0.7453,
+    "p_media": 0.7485
+   },
+   "reales_por_equipo": {
+    "n": 31734,
+    "partidos": 11840,
+    "acierto": 0.7603,
+    "p_media": 0.749
+   },
+   "estimado_mismos_partidos": {
+    "n": 59615,
+    "partidos": 11876,
+    "acierto": 0.7528,
+    "p_media": 0.7434
+   },
+   "reales_partido_parejo_fav_menor_65": {
+    "n": 34750,
+    "partidos": 7526,
+    "acierto": 0.7527,
+    "p_media": 0.7486
+   },
+   "reales_favorito_65_o_mas": {
+    "n": 3255,
+    "partidos": 859,
+    "acierto": 0.7634,
+    "p_media": 0.7488
+   },
+   "reales_visitante_favorito": {
+    "n": 11965,
+    "partidos": 2512,
+    "acierto": 0.7547,
+    "p_media": 0.7502
+   },
+   "reales_local_favorito": {
+    "n": 40350,
+    "partidos": 9208,
+    "acierto": 0.754,
+    "p_media": 0.7483
+   },
+   "total_con_media_competicion": {
+    "n": 21610,
+    "partidos": 11876,
+    "acierto": 0.7457,
+    "p_media": 0.7487
+   },
+   "total_con_suma_equipos": {
+    "n": 21183,
+    "partidos": 11876,
+    "acierto": 0.7453,
+    "p_media": 0.7485
+   }
+  },
+  "recomendable": true,
+  "por_liga": {
+   "afc_champions": {
+    "n": 294,
+    "partidos": 71,
+    "acierto": 0.7857,
+    "p_media": 0.7481
+   },
+   "argentina": {
+    "n": 1699,
+    "partidos": 425,
+    "acierto": 0.7534,
+    "p_media": 0.7487
+   },
+   "aus_aleague": {
+    "n": 572,
+    "partidos": 133,
+    "acierto": 0.7762,
+    "p_media": 0.7465
+   },
+   "bel_pro_league": {
+    "n": 1402,
+    "partidos": 285,
+    "acierto": 0.7739,
+    "p_media": 0.7547
+   },
+   "bra_serie_b": {
+    "n": 2147,
+    "partidos": 467,
+    "acierto": 0.7401,
+    "p_media": 0.7507
+   },
+   "brasil": {
+    "n": 1843,
+    "partidos": 401,
+    "acierto": 0.758,
+    "p_media": 0.7487
+   },
+   "bundesliga": {
+    "n": 1190,
+    "partidos": 261,
+    "acierto": 0.7613,
+    "p_media": 0.7493
+   },
+   "champions": {
+    "n": 557,
+    "partidos": 128,
+    "acierto": 0.7558,
+    "p_media": 0.748
+   },
+   "chi_primera": {
+    "n": 1001,
+    "partidos": 212,
+    "acierto": 0.7213,
+    "p_media": 0.7456
+   },
+   "china": {
+    "n": 1295,
+    "partidos": 280,
+    "acierto": 0.7514,
+    "p_media": 0.7489
+   },
+   "col_primera_a": {
+    "n": 1744,
+    "partidos": 447,
+    "acierto": 0.7626,
+    "p_media": 0.748
+   },
+   "conference_league": {
+    "n": 306,
+    "partidos": 68,
+    "acierto": 0.7484,
+    "p_media": 0.7489
+   },
+   "dinamarca": {
+    "n": 740,
+    "partidos": 153,
+    "acierto": 0.7568,
+    "p_media": 0.7481
+   },
+   "eng_championship": {
+    "n": 2206,
+    "partidos": 473,
+    "acierto": 0.7665,
+    "p_media": 0.7508
+   },
+   "eng_league_one": {
+    "n": 2461,
+    "partidos": 513,
+    "acierto": 0.7464,
+    "p_media": 0.7499
+   },
+   "eng_league_two": {
+    "n": 2442,
+    "partidos": 515,
+    "acierto": 0.7654,
+    "p_media": 0.7468
+   },
+   "eredivisie": {
+    "n": 1205,
+    "partidos": 276,
+    "acierto": 0.7593,
+    "p_media": 0.7499
+   },
+   "esp_hypermotion": {
+    "n": 1785,
+    "partidos": 414,
+    "acierto": 0.7339,
+    "p_media": 0.7438
+   },
+   "europa_league": {
+    "n": 467,
+    "partidos": 115,
+    "acierto": 0.7537,
+    "p_media": 0.7462
+   },
+   "fra_ligue2": {
+    "n": 1224,
+    "partidos": 278,
+    "acierto": 0.7827,
+    "p_media": 0.7488
+   },
+   "ger_bundesliga2": {
+    "n": 1122,
+    "partidos": 235,
+    "acierto": 0.7522,
+    "p_media": 0.754
+   },
+   "ind_isl": {
+    "n": 255,
+    "partidos": 53,
+    "acierto": 0.7843,
+    "p_media": 0.752
+   },
+   "ita_serie_b": {
+    "n": 1488,
+    "partidos": 330,
+    "acierto": 0.748,
+    "p_media": 0.7465
+   },
+   "jpn_j1": {
+    "n": 903,
+    "partidos": 192,
+    "acierto": 0.7497,
+    "p_media": 0.7461
+   },
+   "ksa_pro": {
+    "n": 1291,
+    "partidos": 276,
+    "acierto": 0.773,
+    "p_media": 0.7497
+   },
+   "laliga": {
+    "n": 1515,
+    "partidos": 343,
+    "acierto": 0.7472,
+    "p_media": 0.748
+   },
+   "libertadores": {
+    "n": 138,
+    "partidos": 38,
+    "acierto": 0.6667,
+    "p_media": 0.7464
+   },
+   "liga_mx": {
+    "n": 1524,
+    "partidos": 321,
+    "acierto": 0.7631,
+    "p_media": 0.7488
+   },
+   "ligue_1": {
+    "n": 1020,
+    "partidos": 227,
+    "acierto": 0.7216,
+    "p_media": 0.746
+   },
+   "mls": {
+    "n": 2307,
+    "partidos": 475,
+    "acierto": 0.7347,
+    "p_media": 0.7481
+   },
+   "ned_eerste": {
+    "n": 1515,
+    "partidos": 337,
+    "acierto": 0.7531,
+    "p_media": 0.7514
+   },
+   "noruega": {
+    "n": 823,
+    "partidos": 190,
+    "acierto": 0.7716,
+    "p_media": 0.7465
+   },
+   "per_liga1": {
+    "n": 1230,
+    "partidos": 323,
+    "acierto": 0.7537,
+    "p_media": 0.7492
+   },
+   "premier": {
+    "n": 1497,
+    "partidos": 330,
+    "acierto": 0.7589,
+    "p_media": 0.7495
+   },
+   "primeira": {
+    "n": 1214,
+    "partidos": 271,
+    "acierto": 0.757,
+    "p_media": 0.7485
+   },
+   "rsa_premier": {
+    "n": 727,
+    "partidos": 164,
+    "acierto": 0.7827,
+    "p_media": 0.7539
+   },
+   "rus_premier": {
+    "n": 626,
+    "partidos": 132,
+    "acierto": 0.7524,
+    "p_media": 0.7493
+   },
+   "sco_premiership": {
+    "n": 908,
+    "partidos": 209,
+    "acierto": 0.7456,
+    "p_media": 0.7509
+   },
+   "selecciones": {
+    "n": 602,
+    "partidos": 156,
+    "acierto": 0.7674,
+    "p_media": 0.7505
+   },
+   "serie_a": {
+    "n": 1301,
+    "partidos": 330,
+    "acierto": 0.7579,
+    "p_media": 0.7488
+   },
+   "sudamericana": {
+    "n": 231,
+    "partidos": 62,
+    "acierto": 0.7403,
+    "p_media": 0.7497
+   },
+   "suecia": {
+    "n": 1087,
+    "partidos": 268,
+    "acierto": 0.7351,
+    "p_media": 0.7458
+   },
+   "turquia": {
+    "n": 1193,
+    "partidos": 261,
+    "acierto": 0.7427,
+    "p_media": 0.7466
+   },
+   "usl_championship": {
+    "n": 1820,
+    "partidos": 438,
+    "acierto": 0.7621,
+    "p_media": 0.7487
+   }
+  }
+ }
+}

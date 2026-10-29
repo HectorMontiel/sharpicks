@@ -1,0 +1,499 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+v152 — VALIDACIÓN DE RENDER DIRIGIDA: las vistas que tocó el cambio, y nada más.
+
+Por qué existe
+--------------
+`smoke_botones.py` abre las ocho vistas y pulsa los botones caros de cada una.
+Es la red más completa que tiene el proyecto y sigue siendo la que manda para
+los cambios de motor. Lo que no puede ser es la puerta de CADA push: medido en
+esta máquina el 2026-08-22, no terminó en 55 minutos en dos intentos seguidos
+(EXIT 124 las dos veces), y sólo la vista de «Apuestas del Día» tarda 254 s.
+
+Una puerta que cuesta media jornada deja de usarse, y una puerta que no se usa
+no protege nada. Así que el reparto es:
+
+    test_catalogo_y_cuotas.py   siempre, sin excepción
+    valida_render.py <vistas>   cuando cambia la interfaz  ← esto
+    smoke_botones.py            cuando cambia el motor, y una vez por semana
+
+LO QUE NO SE RELAJA
+-------------------
+Que el render se valide. `py_compile` y el AST no ven un `UnboundLocalError`
+dentro de un `if st.button(...)`: eso sólo lo ve AppTest, y ésa es la lección
+que hizo nacer el smoke. Lo que cambia es el ALCANCE —las vistas que el cambio
+toca en vez de las ocho— no el método.
+
+Y no basta con «no lanzó excepción»: una vista puede renderizar vacía sin
+lanzar nada. Por eso cada vista puede pedir textos que TIENEN que aparecer.
+
+Uso
+---
+    python valida_render.py                      # las vistas de siempre
+    python valida_render.py "Apuestas del Día"   # una vista suelta (subcadena)
+"""
+import io
+import sys
+import time
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8',
+                              errors='replace')
+# v177.1 — LOS VALIDADORES ARRANCAN SIN PREFERENCIAS HEREDADAS.
+#
+# Desde la v177 la pantalla RECUERDA la vista y los filtros en
+# `preferencias_usuario.json`. Eso es lo que se pidió para el usuario y
+# está bien; para un validador es veneno: pasa a comprobar la vista que
+# dejó abierta la ejecución anterior, no la que dice comprobar.
+#
+# Medido en cuanto se puso: esta misma pasada dio tres FALLOS —«Partidos
+# de hoy» no aparece, falta `mm_orden`, falta `mm_solo_altas`— porque una
+# prueba previa había dejado guardada la vista de mañana. No estaba roto
+# nada; estaba mirando otra pantalla.
+#
+# Se apunta la preferencia a un fichero de usar y tirar ANTES de que nada
+# importe `preferencias_usuario` —lee la ruta del entorno al importarse—
+# así que cada pasada empieza igual y no toca lo que el usuario tenga
+# elegido en su máquina.
+import os as _os
+import tempfile as _tempfile
+_os.environ['PREFERENCIAS_USUARIO'] = _os.path.join(
+    _tempfile.mkdtemp(prefix='prefs_valida_'), 'preferencias_usuario.json')
+
+from streamlit.testing.v1 import AppTest
+
+APP = 'dashboard_ui.py'
+
+# vista -> {textos que TIENEN que salir, controles que TIENEN que existir}
+#
+# Los controles van POR VISTA y no en una lista global: la primera versión los
+# exigía en todas y marcaba como rotas la Premier y la Liga MX, que no tienen
+# —ni deben tener— el filtro de competiciones de «Apuestas del Día». Un
+# validador que pide lo mismo a pantallas distintas produce fallos que no lo
+# son, y a los tres días nadie lo mira.
+VISTAS = {
+    # v286 — LA ESCALERA, QUE AHORA ES UNA SECCION APARTE.
+    #
+    # Se valida como las demas porque el fallo que mas duele aqui no es que se
+    # vea fea: es que no arranque. Y el dia que no haya candidata tiene que
+    # decirlo sin romperse, que es el camino que mas veces se va a recorrer
+    # —solo el 55,6 % de los dias hay una de las buenas—.
+    '🪜 La Escalera': {
+        'textos': [
+            # el rotulo de la seccion, que solo pinta ella
+            'La Escalera',
+            # y la promesa que la define: una sola apuesta
+            'Una sola apuesta',
+        ],
+        'controles': [],
+        'que': 'la seccion de la Escalera',
+    },
+    '💎 Apuestas del Día': {
+        'textos': [
+            # La pantalla de partidos, por el rótulo que sólo pinta ella.
+            'Partidos de hoy',
+            # Y la advertencia medida, que vive plegada al pie: los textos
+            # técnicos salieron de las tarjetas, pero el porcentaje sigue
+            # siendo el del modelo y en algún sitio tiene que poder leerse lo
+            # que rinde. Si este check falla, es que se perdió del todo.
+            'probabilidad del modelo',
+        ],
+        'controles': [
+            ('_filtro_grupo_liga', 'filtro de competiciones'),
+            ('mm_solo_altas', 'filtro de alta probabilidad'),
+            ('mm_orden', 'selector de orden de hoy'),
+            # v177 — `_vista_principal` sustituye a `st.tabs`, que no tiene
+            # estado de servidor: la pestaña abierta vivía en el navegador
+            # y cualquier interacción la devolvía a «Hoy».
+            ('_vista_principal', 'selector de vista'),
+            # v196 — los dos envíos del DÍA COMPLETO a Telegram. Van aquí y no
+            # sólo en la suite porque lo que puede romperse es el RENDER: un
+            # botón que no se registra en la pasada deja de estar vivo, y eso
+            # el AST no lo ve (misma lección que el `KeyError: parlay_base`).
+            ('tg_send_top', 'envío del resumen a Telegram'),
+            ('tg_send_hoy', 'envío de todo lo de hoy'),
+            ('tg_send_manana', 'envío de todo lo de mañana'),
+            # v312 — pasado mañana y los tres días juntos
+            ('tg_send_pasado', 'envío de todo lo de pasado mañana'),
+            ('tg_send_todo', 'envío de hoy, mañana y pasado'),
+        ],
+        # Botones que además se PULSAN. Se eligen los del día completo
+        # porque su rama construye el documento entero —368 partidos y 5.951
+        # mercados— y es código nuevo; el de arriba ya lo cubría el smoke.
+        'pulsar': [
+            ('tg_send_hoy', 'envío de todo lo de hoy', 'dl_dia_completo'),
+            ('tg_send_manana', 'envío de todo lo de mañana',
+             'dl_dia_completo'),
+            ('tg_send_todo', 'envío de hoy, mañana y pasado',
+             'dl_dia_completo'),
+        ],
+        # `man_orden` YA NO ESTÁ, y no es un descuido. La vista que no se
+        # ha elegido se descarta al final del render, así que sus widgets
+        # no llegan vivos al cierre y Streamlit recoge su estado. Lo que
+        # conserva la elección entre vistas y entre sesiones es
+        # `preferencias_usuario`, en disco, no `st.session_state`.
+    },
+    # v197 — la Soñadora. Es una vista NUEVA y entera, y lo que puede
+    # romperse es justo lo que el AST no ve: que la advertencia se pinte antes
+    # que las patas, que los deslizadores se registren y que la lista se arme
+    # sin reventar cuando no hay ninguna pata que pase los filtros.
+    '🎰 Armar Soñadora': {
+        # v257 — UN SOLO ARMADOR, Y ES EL DE LOS PICKS DEL DÍA.
+        #
+        # «Quiero que sólo dejes uno, vas a dejar el de picks del día.» El
+        # armador manual y su escalera de permutaciones se fueron, y con ellos
+        # sus textos y sus siete controles. Lo que NO se fue —y por eso sigue
+        # comprobándose aquí— es el cierre del boleto: el premio, el
+        # rendimiento medido, la casilla de riesgo y el botón de confirmar.
+        # Era la mitad honesta de aquella pantalla y se trasladó entera.
+        'textos': [
+            'Sección de entretenimiento',
+            'Una pata por partido',
+        ],
+        # Sólo van aquí los controles que se pintan SIEMPRE. El selector de
+        # deportes necesita dos deportes en el barrido, y el premio, la
+        # casilla de riesgo y el botón de confirmar necesitan que el boleto
+        # tenga al menos una pata. Exigirlos aquí convertiría un día flojo en
+        # un fallo de validación, que es la clase de alarma que enseña a
+        # ignorar las alarmas. Que existan y estén bien cableados lo comprueba
+        # `test_la_sonadora_avisa_sin_asustar_y_ensena_lo_medido`.
+        'controles': [
+            ('son_v_patas', 'número de patas'),
+            ('son_v_cuota', 'cuota mínima por pata'),
+            ('son_v_principales', 'interruptor de sólo principales'),
+        ],
+    },
+    '🏴 Premier League': {},      # rama de córners OBSERVADOS
+    '🇲🇽 Liga MX': {},            # rama de córners SIN observar
+    # v237 — LAS QUE EL SMOKE SÓLO CARGABA, AHORA AQUÍ.
+    #
+    # En `smoke_botones` estas cuatro no pulsaban ningún botón: se limitaban a
+    # abrir la vista y comprobar que no reventara. Eso es literalmente lo que
+    # hace este fichero, y aquí cuesta ~20 s por vista en vez de arrastrar al
+    # smoke a durar horas.
+    #
+    # La cobertura NO baja: sigue siendo AppTest abriendo la vista entera, que
+    # es lo que caza un `UnboundLocalError` de render. Lo que se queda en el
+    # smoke es lo único que sólo él puede hacer: PULSAR.
+    '🎾 Tenis (ATP/WTA)': {},
+    '🌍 Partidos Internacionales': {},
+    '⚾ KBO (béisbol coreano)': {},
+    '🏆 Leagues Cup': {},
+}
+
+# v177 — LAS OTRAS DOS VISTAS DE LA PANTALLA PRINCIPAL.
+#
+# El encargo pide validar «Hoy, Mañana y Finalizados». Hasta ahora sólo se
+# probaba la de hoy, y las tres se pintan con el MISMO `modo_modelo.render`
+# con banderas distintas — o sea que un fallo en la de mañana no lo veía
+# nadie hasta abrirla. La vista se elige por `_vista_principal`, que desde
+# la v177 es un control con estado y no `st.tabs`.
+VISTAS_EXTRA = {
+    'manana': {
+        # el valor del selector es una CLAVE estable, no el rotulo: el
+        # rotulo lleva el numero de partidos dentro y cambia cada dia.
+        'sesion': {'_vista_principal': 'manana'},
+        'textos': ['Análisis previo'],
+        'que': 'la vista de MAÑANA',
+    },
+    # v323 — DESDE QUE SÓLO SE EJECUTA LA VISTA ELEGIDA, LAS OTRAS TRES SE
+    # PRUEBAN COMO ÉSTA. Antes se generaban siempre —escondidas con CSS— y
+    # cualquier fallo suyo saltaba abriendo «Hoy»; ahora sólo se ejecutan si
+    # se eligen, así que hay que elegirlas.
+    #
+    # Y en «Estado» se PULSA el envío de Telegram: es exactamente el caso que
+    # tiró la página en la v177.2 (`KeyError: parlay_base`, un botón pulsado
+    # con la vista de hoy escondida). La huella es el botón de descarga que
+    # sólo aparece si el documento se armó.
+    'estado': {
+        'sesion': {'_vista_principal': 'estado'},
+        'textos': ['Simulador de bankroll'],
+        'que': 'la vista de ESTADO',
+        'pulsar': [('tg_send_hoy', 'envío de todo lo de hoy desde Estado',
+                    'dl_dia_completo')],
+    },
+    'combi': {
+        'sesion': {'_vista_principal': 'combi'},
+        'textos': ['Combinadas que cruzan'],
+        'que': 'la vista de COMBINADAS',
+    },
+    'pasado': {
+        'sesion': {'_vista_principal': 'pasado'},
+        'textos': ['pasado mañana'],
+        'que': 'la vista de PASADO MAÑANA',
+    },
+}
+
+FALLOS = []
+
+
+def check(cond, msg):
+    print(('OK    ' if cond else 'FALLO ') + msg, flush=True)
+    if not cond:
+        FALLOS.append(msg)
+
+
+def textos(at):
+    """Todo lo que quedó escrito en pantalla, en una sola cadena."""
+    trozos = []
+    for coleccion in ('markdown', 'caption', 'subheader', 'header', 'info',
+                      'warning', 'error', 'text'):
+        try:
+            trozos += [str(e.value) for e in getattr(at, coleccion)]
+        except Exception:
+            pass
+    return ' \n '.join(trozos)
+
+
+def valida(vista, pedido, timeout=900):
+    t0 = time.time()
+    at = AppTest.from_file(APP, default_timeout=timeout).run()
+    if at.exception:
+        check(False, f'{vista}: la app no arranca ({at.exception[0].message})')
+        return
+    try:
+        at.selectbox(key='competencia').select(vista).run()
+    except Exception as e:
+        check(False, f'{vista}: no se pudo seleccionar ({e})')
+        return
+    print(f'   [{vista}] {time.time() - t0:.1f} s', flush=True)
+    if at.exception:
+        check(False, f'{vista}: excepción al cargar '
+                     f'({at.exception[0].message})')
+        return
+    check(True, f'{vista} carga sin excepciones')
+    t = textos(at)
+    for exigido in (pedido.get('textos') or []):
+        check(exigido in t,
+              f'{vista}: «{exigido}» aparece en pantalla')
+    # Los CONTROLES, que no salen en los textos y son los que el usuario toca.
+    # Un render que pinta la lista pero se deja el filtro fuera pasa todos los
+    # checks de arriba y aun así está roto para quien lo usa.
+    for clave_widget, que in (pedido.get('controles') or []):
+        # Se miran TODOS los tipos de control, no sólo los que usa hoy la
+        # pantalla: el selector de orden pasó de `radio` a `selectbox` y este
+        # check falló por eso, no porque faltara. Un validador que sólo conoce
+        # dos widgets convierte cada cambio de control en un falso negativo.
+        if not any(clave_widget in str(getattr(w, 'key', '') or '')
+                   for col in ('radio', 'checkbox', 'selectbox',
+                               'multiselect', 'toggle',
+                               # v177 — el selector de vista sustituyo
+                               # a `st.tabs` y es un
+                               # `segmented_control`. Sin añadirlo
+                               # aqui, este validador daba justo el
+                               # falso negativo que su propio
+                               # comentario de arriba describe.
+                               'segmented_control', 'pills',
+                               # v196 - y los BOTONES. No estaban, asi
+                               # que un boton nunca se encontraba y
+                               # cualquier control de esta familia daba
+                               # «falta» aunque estuviera en pantalla:
+                               # el mismo falso negativo que describe el
+                               # comentario de arriba, con otro widget.
+                               'button', 'download_button',
+                               # v197 - la Sonadora usa deslizadores y un
+                               # campo numerico; sin estos dos, sus controles
+                               # daban «falta» aunque estuvieran en pantalla.
+                               'slider', 'number_input')
+                   for w in getattr(at, col, [])):
+            check(False, f'{vista}: falta el {que} ({clave_widget})')
+        else:
+            check(True, f'{vista}: está el {que}')
+    for clave_boton, que, huella in (pedido.get('pulsar') or []):
+        pulsa(at, clave_boton, que, huella, vista)
+    if 'Apuestas del Día' in vista:
+        ver_mas(at, vista)
+
+
+def _tarjetas_pintadas(at, clave='mm'):
+    """Cuántas tarjetas hay en pantalla: cada una lleva su «Ver ficha»."""
+    return sum(1 for b in getattr(at, 'button', [])
+               if str(getattr(b, 'key', '') or '').startswith(
+                   'mm_ir_%s_' % clave))
+
+
+def ver_mas(at, vista):
+    """
+    v323 — LAS TARJETAS VAN DE 20 EN 20, Y «VER MÁS» TRAE LAS SIGUIENTES.
+
+    Se comprueba lo que el usuario vería: como mucho 20 al abrir y, si hay
+    más, que el botón exista, que pulsarlo no rompa nada y que después haya
+    MÁS tarjetas que antes. Un botón que no cambia la lista pasaría el «no
+    lanzó excepción» y estaría roto igual.
+    """
+    antes = _tarjetas_pintadas(at)
+    check(antes <= 20, f'{vista}: se pintan como mucho 20 tarjetas al abrir '
+                       f'({antes})')
+    boton = [b for b in getattr(at, 'button', [])
+             if str(getattr(b, 'key', '') or '') == 'mm_ver_mas']
+    if not boton:
+        print(f'   [{vista}] sin «Ver más»: la lista de hoy cabe en una '
+              f'página ({antes} tarjetas)', flush=True)
+        return
+    try:
+        boton[0].click().run()
+    except Exception as e:
+        check(False, f'{vista}: al pulsar «Ver más» ({type(e).__name__}: {e})')
+        return
+    if at.exception:
+        check(False, f'{vista}: «Ver más» lanzó {at.exception[0].message}')
+        return
+    despues = _tarjetas_pintadas(at)
+    check(despues > antes,
+          f'{vista}: «Ver más» trae más tarjetas ({antes} → {despues})')
+
+
+def pulsa(at, clave_boton, que, huella, vista):
+    """
+    PULSA el botón y comprueba que hizo su trabajo.
+
+    v196 — que el botón EXISTA no prueba nada de lo que hay dentro. Un
+    `UnboundLocalError` en la rama de un `if st.button(...)` no lo ve ni el AST
+    ni `py_compile`: sólo se ve pulsando, y ésa es la lección que hizo nacer
+    `smoke_botones.py`. Lo que hace el smoke con las ocho vistas y hora y media
+    por delante, aquí se hace con los botones que el cambio tocó.
+
+    Y NO BASTA CON «no lanzó excepción», que es la trampa evidente: esa rama
+    envuelve su trabajo en un `try/except` que pinta un `st.error`, así que
+    `at.exception` sigue vacío aunque todo haya fallado. Un check que no puede
+    fallar no está probando nada. Por eso se exige una HUELLA: el widget que
+    sólo aparece si el trabajo salió bien.
+    """
+    try:
+        at.button(key=clave_boton).click().run()
+    except Exception as e:
+        check(False, f'{vista}: al pulsar el {que} ({type(e).__name__}: {e})')
+        return
+    if at.exception:
+        check(False, f'{vista}: el {que} lanzó '
+                     f'{at.exception[0].message}')
+        return
+    # Se miran SOLO los errores de esta rama, no todos los de la pantalla:
+    # «Apuestas del Día» pinta de continuo un `st.error` con la advertencia
+    # medida sobre apostar picks sueltos, que es contenido y no un fallo.
+    # Exigir cero errores marcaba ese aviso como rotura.
+    errores = [str(e.value) for e in getattr(at, 'error', [])
+               if 'No se pudo preparar el día completo' in str(e.value)]
+    check(not errores,
+          f'{vista}: el {que} no deja ningún error propio en pantalla '
+          f'({errores[:1]})')
+    presentes = [str(getattr(w, 'key', '') or '')
+                 for col in ('button', 'download_button')
+                 for w in getattr(at, col, [])]
+    check(any(huella in k for k in presentes),
+          f'{vista}: el {que} produjo su resultado ({huella})')
+
+
+def valida_vista_extra(clave, pedido, timeout=900):
+    """
+    v177 — la MISMA pantalla con otra vista elegida.
+
+    Se arranca, se selecciona «💎 Apuestas del Día» y luego se pulsa el
+    selector de vista. Es la única forma de probar la de mañana: las tres
+    vistas salen del mismo `modo_modelo.render` con banderas distintas, y
+    hasta la v177 sólo se ejercitaba la de hoy.
+    """
+    que = pedido.get('que', clave)
+    at = AppTest.from_file(APP, default_timeout=timeout).run()
+    if at.exception:
+        check(False, f'{que}: la app no arranca')
+        return
+    try:
+        at.selectbox(key='competencia').select('💎 Apuestas del Día').run()
+    except Exception as e:
+        check(False, f'{que}: no se pudo abrir Apuestas del Día ({e})')
+        return
+    try:
+        sc = [w for w in at.segmented_control
+              if str(getattr(w, 'key', '')) == '_vista_principal'][0]
+    except Exception as e:
+        check(False, f'{que}: no hay selector de vista ({e})')
+        return
+    marca = (pedido.get('sesion') or {}).get('_vista_principal', '')
+    # `AppTest` expone en `.options` los ROTULOS ya formateados (pasan
+    # por el `format_func` de la pantalla), no los valores. Asi que no
+    # se busca ahi: se manda directamente la clave, que es lo que el
+    # widget guarda, y si no existiera fallaria aqui mismo.
+    destino = marca
+    try:
+        sc.set_value(destino).run()
+    except Exception as e:
+        check(False, f'{que}: no se pudo cambiar a «{marca}» ({e}); '
+                     f'rotulos={list(sc.options)}')
+        return
+    if at.exception:
+        check(False, f'{que}: excepción al cambiar de vista '
+                     f'({at.exception[0].message})')
+        return
+    check(True, f'{que} carga sin excepciones')
+    # QUÉ COMPRUEBA ESTE BLOQUE.
+    #
+    # v323 — desde que sólo se ejecuta la vista elegida, «se genera» quiere
+    # decir «se ve»: ya no hay vistas escondidas por CSS en el árbol.
+    t = textos(at)
+    for exigido in (pedido.get('textos') or []):
+        check(exigido in t, f'{que}: «{exigido}» se genera')
+    # LA COMPROBACIÓN QUE DA SENTIDO A TODO ESTO: la vista elegida SIGUE
+    # elegida. Con `st.tabs` cualquier interacción devolvía al usuario a
+    # «Hoy», que es el defecto que el encargo mandó arreglar.
+    # `SafeSessionState` no expone `.get`: se accede por clave, que es
+    # como lo hace el resto de este validador.
+    try:
+        quedo = str(at.session_state['_vista_principal'])
+    except Exception:
+        quedo = ''
+    check(quedo == str(destino),
+          f'{que}: la vista elegida sobrevive a la recarga '
+          f'({quedo!r})')
+    # v178 — LOS DOS CHECKS QUE FALTABAN, Y QUE SÍ PUEDEN FALLAR.
+    #
+    # Lo que el usuario reportó —«no cambia nada, me mantiene los de hoy»—
+    # pasaba con `_vista_principal` correcto y con el cuerpo de mañana
+    # generado, así que los dos checks de arriba lo daban por bueno. El
+    # defecto estaba en el ORDEN de lo que se manda al navegador: la hoja
+    # de estilo que esconde las vistas se emitía al final de la pasada, y
+    # hasta que llegaba seguía aplicada la de la pasada anterior. Medido
+    # en el navegador: **153 s enseñando la vista equivocada.**
+    #
+    # v323 — EL ESTILO QUE ESCONDÍA LAS VISTAS YA NO EXISTE, y su check (que
+    # fuera ANTES del cuerpo, v178) se sustituye por el que importa ahora:
+    # que la vista NO elegida no se genere en absoluto. Si se generara, el
+    # usuario la vería debajo de la suya — ya no hay CSS que la esconda.
+    check('⚽ Partidos de hoy (' not in t,
+          f'{que}: la lista de HOY no se genera con otra vista elegida')
+    otra = 'mm' if destino != 'hoy' else 'man'
+    botones = [str(getattr(b, 'key', '') or '') for b in getattr(at, 'button', [])]
+    check(not any(k.startswith('mm_ir_%s_' % otra) for k in botones),
+          f'{que}: la vista no elegida no pinta sus tarjetas')
+    for clave_boton, que_b, huella in (pedido.get('pulsar') or []):
+        pulsa(at, clave_boton, que_b, huella, que)
+
+
+def main():
+    pedidas = sys.argv[1:]
+    if pedidas:
+        objetivo = {v: e for v, e in VISTAS.items()
+                    if any(p.lower() in v.lower() for p in pedidas)}
+        if not objetivo:
+            print(f'Ninguna vista conocida casa con {pedidas}. '
+                  f'Conocidas: {list(VISTAS)}')
+            return 2
+    else:
+        objetivo = VISTAS
+    for vista, pedido in objetivo.items():
+        valida(vista, pedido)
+    # v323 — las otras vistas de «Apuestas del Día» van con ella: desde que
+    # sólo se ejecuta la elegida, validar la pantalla sin elegirlas dejaría
+    # cuatro de sus cinco vistas sin abrir.
+    if not pedidas or any('apuestas' in x.lower() for x in pedidas):
+        for clave, pedido in VISTAS_EXTRA.items():
+            valida_vista_extra(clave, pedido)
+    print()
+    print(f'{len(FALLOS)} FALLOS' if FALLOS else 'TODO OK')
+    for f in FALLOS:
+        print('  - ' + f)
+    return 1 if FALLOS else 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

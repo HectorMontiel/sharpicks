@@ -1,0 +1,70 @@
+name: Bot Telegram - Día completo (hoy y mañana)
+
+# Al empezar el día en Ciudad de México. CDMX va 6 horas por detrás de UTC, así
+# que 06:05 UTC son las 00:05 de CDMX: el primer mensaje del día nuevo llega
+# con el día ya cambiado y no con el anterior a punto de terminar.
+#
+# Va en su propio workflow y no dentro de `telegram_bot.yml` a propósito: aquél
+# manda los picks a las 10:00 UTC y es el mensaje que el usuario ya usa a
+# diario. Un fallo aquí no puede llevárselo por delante.
+on:
+  schedule:
+    - cron: '41 6 * * *'
+  workflow_dispatch:
+    inputs:
+      solo_hoy:
+        description: 'Mandar sólo el día de hoy'
+        type: boolean
+        default: false
+      deportes:
+        description: 'Deportes (vacío = todos). Ej.: futbol · nba · futbol,nba · tenis,nhl'
+        type: string
+        default: ''
+
+# v508 — el token del workflow, sólo de lectura (no hace commits)
+permissions:
+  contents: read
+
+env:
+  # v510 — repo privado: los modelos del Release se bajan con el token de la corrida
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  enviar_dia_completo:
+    runs-on: [self-hosted, sharpicks]   # v509 — runner propio (PC del usuario): 0 minutos de Actions
+    timeout-minutes: 60
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Datos frescos del día
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        run: |
+          # El runner es un entorno estéril: primero los datos del día.
+          python pipeline_total.py --update-only || echo "pipeline con avisos, se continúa"
+
+      - name: Enviar hoy y mañana
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          PYTHONIOENCODING: utf-8
+          PYTHONUTF8: '1'
+          DEPORTES_ENVIO: ${{ inputs.deportes }}
+        run: |
+          python bot_dia_completo.py ${{ inputs.solo_hoy && '--solo-hoy' || '' }} --deportes "$DEPORTES_ENVIO"

@@ -1,0 +1,3147 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Motor multi-liga de clubes (Mejora 5, v12): Liga MX, Premier League, LaLiga.
+
+Reutiliza TODA la maquinaria validada del Mundial:
+  * feature_engineering.EstadoRodante (agnóstico a nombres de equipo)
+  * ensemble XGB+RF+LGBM calibrado + entropías topológicas (train_tda_model)
+  * regresores Poisson de goles y Monte Carlo de marcadores (prediction_api)
+  * relleno determinista por MATCH_ID para las métricas ausentes
+
+Datos: football-data.co.uk (resultados REALES; en formato 'main' además
+remates/córners/tarjetas REALES y cuotas de cierre). Modelos independientes
+por liga en modelos/{liga}/ y estado en team_stats_{liga}.json.
+
+Uso:
+    python league_engine.py --build           # descarga+entrena las 3 ligas
+    python league_engine.py --build liga_mx   # solo una
+"""
+
+import io
+import json
+import logging
+import os
+import sys
+import threading
+from typing import Dict, List, Optional, Tuple
+
+import joblib
+import numpy as np
+import pandas as pd
+import requests
+
+import feature_engineering as fe
+import features_v26 as f26
+import features_v59 as f59
+import mls_features
+import cdi_futbol
+import momentum_tactico as mt
+import statsbomb_calibration
+from config import LEAGUES
+from correlated_synthetic_generator import CorrelatedSyntheticGenerator
+
+logger = logging.getLogger(__name__)
+
+# v153 — Súbela cuando cambie el CÓDIGO del entrenamiento (features, modelo,
+# calibración). Invalida todas las firmas de datos a la vez, y esa madrugada se
+# reentrena el catálogo entero. Sin esto, tocar las features no tendría ningún
+# efecto sobre las ligas que no hayan jugado, y el modelo viejo seguiría
+# sirviéndose en silencio.
+VERSION_ENTRENAMIENTO = 1
+
+# Interruptor de emergencia: `--forzar` en la línea de órdenes, o la variable
+# de entorno, reentrenan aunque no haya datos nuevos.
+FORZAR_REENTRENO = bool(os.environ.get('FORZAR_REENTRENO'))
+
+
+def _firma_datos(df) -> str:
+    """
+    Firma del histórico que alimenta a una liga.
+
+    Se calcula sobre las columnas que DECIDEN el modelo —fecha, equipos y
+    marcador— y no sobre el dataframe entero: las derivadas (`elo_diff`, el xG
+    del generador) se recalculan en cada descarga y arrastran su propio ruido,
+    así que incluirlas haría que la firma cambiara siempre y el salto no se
+    activara nunca. Que es exactamente lo que le pasa al `.tar.gz` con la marca
+    de tiempo de gzip.
+    """
+    import hashlib
+
+    cols = [c for c in ('date', 'home_team', 'away_team',
+                        'home_goals', 'away_goals') if c in df.columns]
+    if not cols:
+        return ''
+    sub = df[cols].sort_values(cols).astype(str)
+    h = hashlib.sha256()
+    h.update(str(VERSION_ENTRENAMIENTO).encode('utf-8'))
+    h.update(('|'.join(cols)).encode('utf-8'))
+    h.update(sub.to_csv(index=False).encode('utf-8'))
+    return h.hexdigest()
+
+
+def _entropias_ripser(nube) -> np.ndarray:
+    """Entropías de persistencia H0/H1 con ripser (mismo cálculo que
+    prediction_api._entropias; aquí replicado para no cargar el motor Mundial)."""
+    import ripser
+    result = ripser.ripser(np.asarray(nube, dtype=float), maxdim=1)
+    ents = []
+    for dgm in result['dgms']:
+        finite = dgm[np.isfinite(dgm[:, 1])]
+        if len(finite) == 0:
+            ents.append(0.0)
+            continue
+        vidas = finite[:, 1] - finite[:, 0]
+        total = vidas.sum()
+        if total == 0:
+            ents.append(0.0)
+        else:
+            p = vidas / total
+            ents.append(float(-np.sum(p * np.log(p + 1e-10))))
+    return np.array(ents)
+
+
+class ModeloBetaCalibrado:
+    """Ensemble XGB+RF+LGBM SIN isotónica + beta calibration one-vs-rest
+    (Kull et al. 2017), calibrada con el último 20 % del train (cronológico).
+
+    v18/M1: adoptada para Serie A — el modelo con cuotas de cierre pasaba de
+    49.0 %/1.047 a 53.4 %/1.062 (log-loss fuera de regla); con beta
+    calibration queda en 52.2 %/0.998 en walk-forward (VALIDACION_v18.md).
+    """
+
+    def __init__(self):
+        from train_tda_model import construir_ensemble
+        self.ensemble = construir_ensemble().estimator   # VotingClassifier crudo
+        self.calibradores = []
+        self.classes_ = np.array([0, 1, 2])
+
+    def fit(self, X, y):
+        from sklearn.linear_model import LogisticRegression
+        X, y = np.asarray(X), np.asarray(y)
+        n_cal = max(int(len(X) * 0.2), 150)
+        self.ensemble.fit(X[:-n_cal], y[:-n_cal])
+        self.classes_ = self.ensemble.classes_
+        p_cal = self.ensemble.predict_proba(X[-n_cal:])
+        y_cal = y[-n_cal:]
+        eps = 1e-6
+        self.calibradores = []
+        for k_idx, k in enumerate(self.classes_):
+            Xc = np.column_stack([
+                np.log(np.clip(p_cal[:, k_idx], eps, 1 - eps)),
+                -np.log(np.clip(1 - p_cal[:, k_idx], eps, 1 - eps))])
+            lr = LogisticRegression(max_iter=1000)
+            lr.fit(Xc, (y_cal == k).astype(int))
+            self.calibradores.append(lr)
+        return self
+
+    def predict_proba(self, X):
+        eps = 1e-6
+        p = self.ensemble.predict_proba(np.asarray(X))
+        out = np.zeros_like(p)
+        for k_idx, lr in enumerate(self.calibradores):
+            Xt = np.column_stack([
+                np.log(np.clip(p[:, k_idx], eps, 1 - eps)),
+                -np.log(np.clip(1 - p[:, k_idx], eps, 1 - eps))])
+            out[:, k_idx] = lr.predict_proba(Xt)[:, 1]
+        out /= out.sum(axis=1, keepdims=True)
+        return out
+
+    def predict(self, X):
+        return self.classes_[self.predict_proba(X).argmax(axis=1)]
+
+
+# ---------------------------------------------------------------------------
+# v70 (Mejora D) — familia de modelo por liga
+#
+# El spec proponía «si len(partidos) < 800, usa LogisticRegressionCV». Al medir,
+# esa regla no encaja: de las 15 competiciones de v68 que perdieron contra el
+# ELO, sólo 4 tienen menos de 800 partidos, y ligas de 2.144 partidos (EFL
+# Championship) también perdían. El problema no es el tamaño sino la relación
+# señal/ruido, así que la familia se elige POR LIGA con walk-forward
+# (`_v70_wf_modelos.py`) y se persiste en `modelos_familia.json`.
+#
+# Una liga sin entrada en ese fichero usa el ensemble de siempre: el cambio no
+# puede degradar nada que ya funcionase.
+# ---------------------------------------------------------------------------
+ARCHIVO_FAMILIAS = 'modelos_familia.json'
+FAMILIAS = ('ensemble', 'logistica', 'logistica_base', 'elo_logit',
+            'gbm_regular', 'blend_elo')
+
+
+class ModeloSubconjunto:
+    """
+    Envuelve un estimador que sólo usa ALGUNAS columnas del vector.
+
+    Hace falta porque `ClubEngine` construye siempre el vector completo
+    (features base + extras + 6 entropías topológicas) y lo pasa tal cual al
+    modelo. Las familias `logistica_base` y `elo_logit` se entrenan con un
+    subconjunto, así que el recorte tiene que viajar DENTRO del artefacto; si
+    no, en inferencia habría que saber qué columnas quitar y sería una fuente
+    silenciosa de desalineación (el fallo que casi rompe el modelo WTA en v67).
+    """
+
+    def __init__(self, base, indices):
+        self.base = base
+        self.indices = list(indices)
+        self.classes_ = np.array([0, 1, 2])
+
+    def _corte(self, X):
+        return np.asarray(X)[:, self.indices]
+
+    def fit(self, X, y):
+        self.base.fit(self._corte(X), y)
+        self.classes_ = self.base.classes_
+        return self
+
+    def predict_proba(self, X):
+        return self.base.predict_proba(self._corte(X))
+
+    def predict(self, X):
+        return self.classes_[self.predict_proba(X).argmax(axis=1)]
+
+
+class ModeloBlendElo:
+    """
+    Mezcla convexa del ensemble con una logística de UN SOLO grado de libertad
+    (DIFF_ELO), con el peso ajustado en el último 25 % del train.
+
+    La idea: en una liga con poca señal, el ensemble sobreajusta y el ELO solo
+    se queda corto; el peso óptimo entre ambos lo dicen los datos. A diferencia
+    del argmax del ELO —que nunca puede devolver un empate y no tiene
+    probabilidades— esta rama sí está calibrada, así que sirve para EV y Kelly.
+
+    El peso se busca minimizando log-loss sobre un tramo del TRAIN que ninguno
+    de los dos modelos ha visto, nunca sobre validación.
+    """
+
+    def __init__(self, indice_elo: int = 0):
+        self.indice_elo = indice_elo
+        self.ensemble = None
+        self.elo = None
+        self.w = 0.5
+        self.classes_ = np.array([0, 1, 2])
+
+    @staticmethod
+    def _logistica():
+        from sklearn.linear_model import LogisticRegressionCV
+        from sklearn.model_selection import TimeSeriesSplit
+        return LogisticRegressionCV(
+            Cs=np.logspace(-3, 2, 10), cv=TimeSeriesSplit(n_splits=3),
+            penalty='l2', solver='lbfgs', max_iter=3000,
+            scoring='neg_log_loss', n_jobs=-1, random_state=42)
+
+    @staticmethod
+    def _p3(modelo, X):
+        pr = modelo.predict_proba(X)
+        p = np.full((len(X), 3), 1e-9)
+        for i, k in enumerate(modelo.classes_):
+            p[:, int(k)] = pr[:, i]
+        return p / p.sum(axis=1, keepdims=True)
+
+    def fit(self, X, y):
+        from sklearn.metrics import log_loss
+        from train_tda_model import construir_ensemble
+        X, y = np.asarray(X), np.asarray(y)
+        Xe = X[:, [self.indice_elo]]
+
+        # 1) buscar el peso con un corte interno del train
+        corte = int(len(X) * 0.75)
+        if corte > 100 and len(np.unique(y[:corte])) == 3:
+            e_i = construir_ensemble().fit(X[:corte], y[:corte])
+            l_i = self._logistica().fit(Xe[:corte], y[:corte])
+            pa = self._p3(e_i, X[corte:])
+            pe = self._p3(l_i, Xe[corte:])
+            mejor_w, mejor_ll = 0.5, np.inf
+            for w in np.linspace(0.0, 1.0, 11):
+                ll = log_loss(y[corte:], w * pa + (1 - w) * pe, labels=[0, 1, 2])
+                if ll < mejor_ll:
+                    mejor_ll, mejor_w = ll, float(w)
+            self.w = mejor_w
+
+        # 2) reajustar ambos con TODO el train
+        self.ensemble = construir_ensemble().fit(X, y)
+        self.elo = self._logistica().fit(Xe, y)
+        self.classes_ = np.array([0, 1, 2])
+        return self
+
+    def predict_proba(self, X):
+        X = np.asarray(X)
+        p = (self.w * self._p3(self.ensemble, X)
+             + (1 - self.w) * self._p3(self.elo, X[:, [self.indice_elo]]))
+        return p / p.sum(axis=1, keepdims=True)
+
+    def predict(self, X):
+        return self.classes_[self.predict_proba(X).argmax(axis=1)]
+
+
+def familia_de_liga(clave: str) -> str:
+    """Familia adoptada para esa liga; `ensemble` si no hay nada registrado."""
+    try:
+        if os.path.exists(ARCHIVO_FAMILIAS):
+            with open(ARCHIVO_FAMILIAS, encoding='utf-8') as f:
+                fam = (json.load(f).get('ligas') or {}).get(clave)
+            if fam in FAMILIAS:
+                return fam
+    except Exception as e:
+        logger.warning(f"[{clave}] no se pudo leer {ARCHIVO_FAMILIAS}: {e}")
+    return 'ensemble'
+
+
+def construir_modelo_familia(familia: str, n_base: int, n_total: int):
+    """
+    Instancia el clasificador de esa familia.
+
+    `n_base` es cuántas columnas del vector son features base (las primeras) y
+    `n_total` el ancho completo con extras y topológicas. DIFF_ELO es siempre la
+    columna 0 (ver `feature_engineering.FEATURES_MODELO`).
+    """
+    from train_tda_model import construir_ensemble
+
+    if familia == 'ensemble':
+        return construir_ensemble()
+
+    if familia == 'blend_elo':
+        import league_engine as _le
+        return _le.ModeloBlendElo(indice_elo=0)
+
+    if familia == 'gbm_regular':
+        # un solo LGBM muy regularizado: sin voting ni isotónica, que es lo que
+        # más varianza añade cuando hay poco dato
+        from lightgbm import LGBMClassifier
+        return LGBMClassifier(
+            n_estimators=180, num_leaves=7, max_depth=3, learning_rate=0.04,
+            min_child_samples=40, subsample=0.8, subsample_freq=1,
+            colsample_bytree=0.6, reg_lambda=20.0, reg_alpha=1.0,
+            objective='multiclass', random_state=42, n_jobs=-1, verbose=-1)
+
+    from sklearn.linear_model import LogisticRegressionCV
+    from sklearn.model_selection import TimeSeriesSplit
+
+    def _logistica():
+        return LogisticRegressionCV(
+            Cs=np.logspace(-3, 2, 10), cv=TimeSeriesSplit(n_splits=3),
+            penalty='l2', solver='lbfgs', max_iter=3000,
+            scoring='neg_log_loss', n_jobs=-1, random_state=42)
+
+    if familia == 'logistica':
+        return _logistica()
+    if familia == 'logistica_base':
+        import league_engine as _le
+        return _le.ModeloSubconjunto(_logistica(), range(n_base))
+    if familia == 'elo_logit':
+        import league_engine as _le
+        return _le.ModeloSubconjunto(_logistica(), [0])       # DIFF_ELO
+    raise ValueError(f'familia desconocida: {familia}')
+
+
+# ---------------------------------------------------------------------------
+# Features extra v17 (adoptadas por liga tras walk-forward — VALIDACION_v17)
+# ---------------------------------------------------------------------------
+COLS_CUOTAS = ['PROB_IMP_H', 'PROB_IMP_D', 'PROB_IMP_A', 'OVERROUND']
+COLS_EXTRAS = ['H2H_GD3', 'DIFF_DESCANSO', 'DIFF_RACHA_V', 'DIFF_SIN_PERDER',
+               'DIFF_PPG', 'DIFF_POSICION']
+COLS_MX = ['ALT_SEDE', 'DIFF_ALT_HABITUAL', 'DIST_VIAJE', 'LIGUILLA', 'APERTURA']
+
+# v19: geografía Liga MX — (altitud msnm, lat, lon) de la sede habitual
+GEO_MX = {
+    'Toluca': (2660, 19.29, -99.67), 'Pachuca': (2432, 20.10, -98.75),
+    'Club America': (2240, 19.30, -99.15), 'America': (2240, 19.30, -99.15),
+    'Cruz Azul': (2240, 19.30, -99.15), 'U.N.A.M.- Pumas': (2240, 19.31, -99.19),
+    'Pumas UNAM': (2240, 19.31, -99.19), 'Puebla': (2135, 19.08, -98.16),
+    'Necaxa': (1888, 21.89, -102.31), 'Queretaro': (1820, 20.55, -100.44),
+    'Leon': (1815, 21.11, -101.66), 'Atl. San Luis': (1860, 22.15, -100.98),
+    'Guadalajara Chivas': (1566, 20.68, -103.46), 'Guadalajara': (1566, 20.68, -103.46),
+    'Atlas': (1566, 20.70, -103.34), 'Club Tijuana': (20, 32.50, -116.99),
+    'Tijuana': (20, 32.50, -116.99), 'Mazatlan FC': (10, 23.26, -106.40),
+    'Mazatlan': (10, 23.26, -106.40), 'Monterrey': (540, 25.67, -100.24),
+    'Tigres UANL': (540, 25.72, -100.31), 'Tigres': (540, 25.72, -100.31),
+    'Santos Laguna': (1120, 25.58, -103.42), 'FC Juarez': (1140, 31.72, -106.42),
+    'Juarez': (1140, 31.72, -106.42), 'Veracruz': (10, 19.15, -96.11),
+    'Lobos BUAP': (2135, 19.02, -98.24), 'Morelia': (1920, 19.71, -101.17),
+    'Atlante': (1600, 21.16, -86.85),
+}
+
+
+def _liquidar_ah(adj: float, cuota: float) -> float:
+    """v45: PnL de 1 unidad en un hándicap asiático dado el margen NETO ya
+    ajustado por la línea (adj = margen_real + línea, desde la óptica del
+    apostante). Maneja líneas de cuarto (medio-gana/medio-pierde) y push."""
+    if adj >= 0.5:
+        return cuota - 1.0            # gana entero
+    if abs(adj - 0.25) < 1e-6:
+        return (cuota - 1.0) / 2.0     # medio gana (cuarto)
+    if abs(adj) < 1e-6:
+        return 0.0                     # push
+    if abs(adj + 0.25) < 1e-6:
+        return -0.5                    # medio pierde (cuarto)
+    return -1.0                        # pierde entero
+
+
+def _mercados_mitad(lam_h, lam_a, f1h, f2h, home, away, campo, pct, poisson, np):
+    """v55: mercados de 1ª y 2ª mitad. Reparte el xG del partido por mitad
+    (f1h/f2h) y construye una mini-matriz de marcador por mitad (Poisson
+    independiente) para derivar 1X2, totales y ambos-marcan de cada mitad.
+    Asunción declarada: goles i.i.d. dentro de cada mitad."""
+    def _mat(lh, la):
+        kk = np.arange(0, 8)
+        ph, pa = poisson.pmf(kk, lh), poisson.pmf(kk, la)
+        return np.outer(ph, pa)
+
+    campos = []
+    for etq, lh, la, lineas, ident in (
+            ('1ª mitad', lam_h * f1h, lam_a * f1h, (0.5, 1.5), '1h'),
+            ('2ª mitad', lam_h * f2h, lam_a * f2h, (0.5, 1.5, 2.5), '2h')):
+        M = _mat(lh, la)
+        idx = np.arange(M.shape[0])
+        diff = idx[:, None] - idx[None, :]
+        total = idx[:, None] + idx[None, :]
+        p1 = float(M[diff > 0].sum()); px = float(M[diff == 0].sum())
+        p2 = float(M[diff < 0].sum())
+        btts = float(M[(idx[:, None] >= 1) & (idx[None, :] >= 1)].sum())
+        campos += [
+            campo(f'{ident}_1x2_home', f'{etq}: gana {home}', pct(p1)),
+            campo(f'{ident}_1x2_empate', f'{etq}: empate', pct(px)),
+            campo(f'{ident}_1x2_away', f'{etq}: gana {away}', pct(p2)),
+        ]
+        for l in lineas:
+            po = float(M[total > l].sum())
+            campos.append(campo(f'{ident}_over{str(l).replace(".", "")}',
+                                f'{etq}: más de {l} goles', pct(po)))
+            campos.append(campo(f'{ident}_under{str(l).replace(".", "")}',
+                                f'{etq}: menos de {l} goles', pct(1 - po)))
+        campos += [
+            campo(f'{ident}_btts_si', f'{etq}: ambos marcan Sí', pct(btts)),
+            campo(f'{ident}_btts_no', f'{etq}: ambos marcan No', pct(1 - btts)),
+        ]
+    return campos
+
+
+def _haversine_km(lat1, lon1, lat2, lon2) -> float:
+    p1, p2 = np.radians(lat1), np.radians(lat2)
+    dp, dl = np.radians(lat2 - lat1), np.radians(lon2 - lon1)
+    a = np.sin(dp / 2) ** 2 + np.cos(p1) * np.cos(p2) * np.sin(dl / 2) ** 2
+    return float(2 * 6371.0 * np.arcsin(np.sqrt(a)))
+
+
+def _fila_mx(home: str, away: str, fecha) -> dict:
+    """Features específicas de Liga MX para un partido (v19, walk-forward
+    +1.0 pp junto con cuotas y beta calibration)."""
+    gh = GEO_MX.get(home, (1200, 23.0, -102.0))
+    ga = GEO_MX.get(away, (1200, 23.0, -102.0))
+    mes, dia = fecha.month, fecha.day
+    return {
+        'ALT_SEDE': gh[0] / 2700.0,
+        'DIFF_ALT_HABITUAL': (gh[0] - ga[0]) / 2700.0,
+        'DIST_VIAJE': _haversine_km(gh[1], gh[2], ga[1], ga[2]) / 2500.0,
+        'LIGUILLA': 1.0 if (mes == 5 or mes == 12 or (mes == 11 and dia >= 20)) else 0.0,
+        'APERTURA': 1.0 if mes >= 7 else 0.0,
+    }
+
+
+def features_mx(df: pd.DataFrame) -> pd.DataFrame:
+    filas = [{'MATCH_ID': f.MATCH_ID, **_fila_mx(f.home_team, f.away_team, f.date)}
+             for f in df.itertuples(index=False)]
+    return pd.DataFrame(filas).set_index('MATCH_ID')
+
+
+def columnas_extra(clave: str) -> list:
+    """Columnas extra configuradas para la liga, en orden de entrenamiento."""
+    grupos = LEAGUES.get(clave, {}).get('features_extra', [])
+    cols = []
+    if 'extras' in grupos:
+        cols += COLS_EXTRAS
+    if 'cuotas' in grupos:
+        cols += COLS_CUOTAS
+    if 'mx' in grupos:
+        cols += COLS_MX
+    if 'imt' in grupos:
+        cols += mt.COLS_IMT
+    if 'imt_c' in grupos:          # v24: variante de índice compuesto
+        cols += mt.COLS_IMT_C
+    if 'mls_geo' in grupos:        # v25: geografía continental MLS
+        cols += mls_features.COLS_MLS_GEO
+    if 'mls_clima' in grupos:      # v25: clima extremo MLS
+        cols += mls_features.COLS_MLS_CLIMA
+    if 'ent' in grupos:            # v26: entropía táctica y volatilidad
+        cols += f26.COLS_ENT
+    if 'elo_d' in grupos:          # v26: derivadas del ELO
+        cols += f26.COLS_ELO_D
+    if 'urg' in grupos:            # v26: urgencia asimétrica
+        cols += f26.COLS_URG
+    if 'cdi' in grupos:            # v35: desincronización circadiana
+        cols += cdi_futbol.COLS_CDI
+    if 'ck' in grupos:             # v59: dominio territorial (córners/remates)
+        cols += f59.COLS_CK
+    return cols
+
+
+def features_extra_liga(df: pd.DataFrame):
+    """Features extra por MATCH_ID en un pase cronológico SIN fuga, más el
+    estado FINAL por equipo/pareja para reproducirlas en inferencia."""
+    ultima_fecha, racha_v, racha_sp = {}, {}, {}
+    h2h_gd = {}
+    pts, pj = {}, {}
+    temporada_actual = None
+
+    filas = []
+    for f in df.itertuples(index=False):
+        h, a, fecha = f.home_team, f.away_team, f.date
+        temp = fecha.year if fecha.month >= 7 else fecha.year - 1
+        if temp != temporada_actual:
+            temporada_actual = temp
+            pts, pj = {}, {}
+
+        desc_h = min((fecha - ultima_fecha[h]).days, 21) if h in ultima_fecha else 21
+        desc_a = min((fecha - ultima_fecha[a]).days, 21) if a in ultima_fecha else 21
+        clave_par = tuple(sorted((h, a)))
+        prev = h2h_gd.get(clave_par, [])[-3:]
+        gd3 = float(np.mean([gd if ref == h else -gd for ref, gd in prev])) if prev else 0.0
+        ppg_h = pts.get(h, 0) / pj[h] if pj.get(h) else 1.3
+        ppg_a = pts.get(a, 0) / pj[a] if pj.get(a) else 1.3
+        tabla = sorted(pts, key=lambda e: -pts[e])
+        pos_h = tabla.index(h) + 1 if h in tabla else len(tabla) // 2 + 1
+        pos_a = tabla.index(a) + 1 if a in tabla else len(tabla) // 2 + 1
+
+        fila = {
+            'MATCH_ID': f.MATCH_ID,
+            'H2H_GD3': float(np.clip(gd3, -3, 3)) / 3.0,
+            'DIFF_DESCANSO': (desc_h - desc_a) / 21.0,
+            'DIFF_RACHA_V': (racha_v.get(h, 0) - racha_v.get(a, 0)) / 5.0,
+            'DIFF_SIN_PERDER': (racha_sp.get(h, 0) - racha_sp.get(a, 0)) / 10.0,
+            'DIFF_PPG': (ppg_h - ppg_a) / 3.0,
+            'DIFF_POSICION': (pos_a - pos_h) / 20.0,
+        }
+        oh, od, oa = getattr(f, 'odd_home', None), getattr(f, 'odd_draw', None), \
+            getattr(f, 'odd_away', None)
+        if oh and od and oa and oh > 1 and od > 1 and oa > 1:
+            inv = np.array([1 / oh, 1 / od, 1 / oa])
+            imp = inv / inv.sum()
+            fila.update({'PROB_IMP_H': imp[0], 'PROB_IMP_D': imp[1],
+                         'PROB_IMP_A': imp[2], 'OVERROUND': float(inv.sum() - 1)})
+        else:
+            fila.update({c: np.nan for c in COLS_CUOTAS})
+        filas.append(fila)
+
+        gh, ga = float(f.home_goals), float(f.away_goals)
+        ultima_fecha[h] = ultima_fecha[a] = fecha
+        for eq, propios, rival in ((h, gh, ga), (a, ga, gh)):
+            racha_v[eq] = racha_v.get(eq, 0) + 1 if propios > rival else 0
+            racha_sp[eq] = racha_sp.get(eq, 0) + 1 if propios >= rival else 0
+            pj[eq] = pj.get(eq, 0) + 1
+            pts[eq] = pts.get(eq, 0) + (3 if propios > rival else (1 if propios == rival else 0))
+        h2h_gd.setdefault(clave_par, []).append((h, gh - ga))
+
+    # --- estado final para inferencia ---
+    tabla = sorted(pts, key=lambda e: -pts[e])
+    equipos = sorted(set(df['home_team']) | set(df['away_team']))
+    estado = {'equipos': {}, 'parejas': {}}
+    for eq in equipos:
+        estado['equipos'][eq] = {
+            'ultima_fecha': ultima_fecha[eq].strftime('%Y-%m-%d') if eq in ultima_fecha else None,
+            'racha_v': int(racha_v.get(eq, 0)), 'racha_sp': int(racha_sp.get(eq, 0)),
+            'ppg': round(pts.get(eq, 0) / pj[eq], 4) if pj.get(eq) else 1.3,
+            'pos': tabla.index(eq) + 1 if eq in tabla else len(tabla) // 2 + 1,
+        }
+    for par, historial in h2h_gd.items():
+        prev = historial[-3:]
+        ref = par[0]   # perspectiva del primero en orden alfabético
+        gd3 = float(np.mean([gd if r == ref else -gd for r, gd in prev]))
+        estado['parejas'][f'{par[0]}|{par[1]}'] = round(gd3, 3)
+    return pd.DataFrame(filas).set_index('MATCH_ID'), estado
+
+
+def _match_id(fecha: pd.Timestamp, home: str, away: str) -> str:
+    h = str(home).replace(' ', '-')
+    a = str(away).replace(' ', '-')
+    return f"{fecha.strftime('%Y%m%d')}_{h}_{a}"
+
+
+# ---------------------------------------------------------------------------
+# Descarga y normalización al esquema del histórico
+# ---------------------------------------------------------------------------
+def _descargar_api_football(clave: str, cfg: Dict) -> pd.DataFrame:
+    """v21: histórico desde API-Football (Champions). 1 request por temporada
+    (cacheado de forma permanente por el gateway). Sin clave ni crédito, cae
+    al último historico_{clave}.csv guardado para no romper el build."""
+    import api_football_manager as afm
+    filas = []
+    for season in cfg['api_seasons']:
+        data = afm.api_call('fixtures',
+                            {'league': cfg['api_league_id'], 'season': season},
+                            prioridad=3, ttl=None)
+        if not data or not data.get('response'):
+            logger.warning(f"[{clave}] API-Football sin datos para {season} "
+                           f"({(data or {}).get('errors')})")
+            continue
+        for p in data['response']:
+            if p['fixture']['status']['short'] not in ('FT', 'AET', 'PEN'):
+                continue
+            # score de los 90' (fulltime): el empate se conserva para el 1X2
+            ft = p['score']['fulltime']
+            if ft['home'] is None:
+                continue
+            filas.append({
+                'date': pd.to_datetime(p['fixture']['date']).tz_localize(None),
+                'home_team': p['teams']['home']['name'],
+                'away_team': p['teams']['away']['name'],
+                'home_goals': float(ft['home']), 'away_goals': float(ft['away']),
+                'api_fixture_id': p['fixture']['id'],
+                'api_home_id': p['teams']['home']['id'],
+                'api_away_id': p['teams']['away']['id'],
+            })
+    if not filas:
+        ruta = f'historico_{clave}.csv'
+        if os.path.exists(ruta):
+            logger.warning(f"[{clave}] sin acceso a API-Football: se reutiliza {ruta}.")
+            df = pd.read_csv(ruta, parse_dates=['date'])
+            return df[['date', 'home_team', 'away_team', 'home_goals', 'away_goals']
+                      + [c for c in ('api_fixture_id', 'api_home_id', 'api_away_id')
+                         if c in df.columns]]
+        raise RuntimeError(f"{clave}: API-Football no disponible y no hay CSV previo.")
+    df = pd.DataFrame(filas)
+    # Nombre canónico por ID de equipo: la API renombra clubes entre
+    # temporadas (p. ej. 'Bayern Munich' 2022 → 'Bayern München' 2024) y eso
+    # partiría su historial. Se usa el nombre MÁS RECIENTE de cada id.
+    df = df.sort_values('date')
+    nombre_por_id = {}
+    for lado in ('home', 'away'):
+        for tid, nombre in zip(df[f'api_{lado}_id'], df[f'{lado}_team']):
+            nombre_por_id[tid] = nombre          # el último (más reciente) gana
+    df['home_team'] = df['api_home_id'].map(nombre_por_id)
+    df['away_team'] = df['api_away_id'].map(nombre_por_id)
+    df['odd_home'] = np.nan
+    df['odd_draw'] = np.nan
+    df['odd_away'] = np.nan
+    return df
+
+
+def _fusionar_fbref_champions(df_api: pd.DataFrame) -> pd.DataFrame:
+    """v22: amplía la Champions con los resultados de FBref (2017-presente,
+    incluida la temporada en curso que el plan Free de API-Football bloquea).
+
+    - Los nombres FBref se traducen a los canónicos de API-Football con un
+      mapeo APRENDIDO del solape 2022-23 (unión por fecha+marcador cuando el
+      candidato es único) + fuzzy 0.85 de respaldo; los clubes que solo
+      existen en FBref conservan su nombre.
+    - Se excluyen los partidos con prórroga/penales de FBref (su calendario
+      no publica el marcador de los 90'; ~8 partidos).
+    - Solo se añaden fechas FUERA de la cobertura de API-Football (que tiene
+      marcadores de 90' exactos y por eso manda en su rango).
+    """
+    from collections import Counter, defaultdict
+    from difflib import SequenceMatcher
+    try:
+        import fbref_scraper_v3 as fb3
+        df_fb = fb3.resultados_champions()
+    except Exception as e:
+        logger.warning(f"[champions] FBref no disponible ({e}): solo API-Football.")
+        return df_api
+    if df_fb.empty:
+        return df_api
+
+    # Alias verificados a mano FBref -> API (el solape 2022-23 solo enseña a
+    # quienes jugaron ESA temporada y el fuzzy 0.85 no llega a estos).
+    # OJO con falsos amigos que NO se fusionan: Rīga FC ≠ Rīgas FS,
+    # Kauno Žalgiris ≠ FK Zalgiris Vilnius, Tre Fiori ≠ Tre Penne,
+    # FK Partizan ≠ Partizani, Atlètic ≠ Inter Club d'Escaldes.
+    ALIAS_FBREF_API = {
+        'Manchester Utd': 'Manchester United',
+        'Olympiacos': 'Olympiakos Piraeus',
+        'Qarabağ': 'Qarabag',
+        'PSV': 'PSV Eindhoven',
+        'Slavia Prague': 'Slavia Praha',
+        'Red Star': 'FK Crvena Zvezda',
+        'Young Boys': 'BSC Young Boys',
+        'Bodø/Glimt': 'Bodo/Glimt',
+        'APOEL FC': 'Apoel Nicosia',
+        'NK Maribor': 'Maribor',
+        'AEK Athens': 'AEK Athens FC',
+        'Ferencváros': 'Ferencvarosi TC',
+        'Midtjylland': 'FC Midtjylland',
+        'Malmö': 'Malmo FF',
+        'Union SG': 'Union St. Gilloise',
+        'Larne FC': 'Larne',
+        'Shamrock': 'Shamrock Rovers',
+        'Lincoln FC': 'Lincoln Red Imps FC',
+        "Inter d'Escaldes": "Inter Club d'Escaldes",
+        'FC Flora': 'Flora Tallinn',
+        'KÍ Klaksvík': 'KI Klaksvik',
+        'FK Egnatia': 'Egnatia Rrogozhinë',
+        'Sutjeska Nikšić': 'Sutjeska',
+        'B. Banja Luka': 'Borac Banja Luka',
+    }
+
+    indice_api = defaultdict(list)
+    for r in df_api.itertuples():
+        indice_api[(r.date.date(), r.home_goals, r.away_goals)].append(r)
+    votos = defaultdict(Counter)
+    for r in df_fb.itertuples():
+        cands = indice_api.get((r.date.date(), r.home_goals, r.away_goals), [])
+        if len(cands) == 1:
+            votos[r.home_team][cands[0].home_team] += 1
+            votos[r.away_team][cands[0].away_team] += 1
+    mapa = {fb: c.most_common(1)[0][0] for fb, c in votos.items()}
+    mapa.update(ALIAS_FBREF_API)          # los alias verificados mandan
+    nombres_api = sorted(set(df_api['home_team']) | set(df_api['away_team']))
+    for nombre in sorted(set(df_fb['home_team']) | set(df_fb['away_team'])):
+        if nombre in mapa:
+            continue
+        mejor, ratio = None, 0.0
+        for n in nombres_api:
+            s = SequenceMatcher(None, nombre.lower(), n.lower()).ratio()
+            if s > ratio:
+                mejor, ratio = n, s
+        if ratio >= 0.85:
+            mapa[nombre] = mejor
+    df_fb = df_fb.copy()
+    df_fb['home_team'] = df_fb['home_team'].map(lambda n: mapa.get(n, n))
+    df_fb['away_team'] = df_fb['away_team'].map(lambda n: mapa.get(n, n))
+
+    df_fb = df_fb[~df_fb['prorroga']]
+    api_min, api_max = df_api['date'].min(), df_api['date'].max()
+    df_fb = df_fb[(df_fb['date'] < api_min) | (df_fb['date'] > api_max)]
+    columnas = ['date', 'home_team', 'away_team', 'home_goals', 'away_goals']
+    fusion = pd.concat([df_api, df_fb[columnas]], ignore_index=True)
+    logger.info(f"[champions] fusión FBref: +{len(df_fb)} partidos "
+                f"({len(mapa)} nombres mapeados) → {len(fusion)} totales.")
+    return fusion
+
+
+# Descargas crudas ya hechas en ESTE proceso, por tupla de URLs. Ver el bloque
+# que lo usa dentro de `descargar_liga`.
+_MEMO_CRUDO: Dict[tuple, 'pd.DataFrame'] = {}
+# v148 — la cola de ESPN, por el mismo motivo (ver `_completar_desde_espn`).
+_MEMO_COLA_ESPN: Dict = {}
+
+
+# v148 — UNA TEMPORADA QUE AÚN NO EXISTE NO PUEDE TUMBAR EL ENTRENAMIENTO.
+#
+# Desde que la lista de temporadas se deriva de la fecha (`temporadas_fd`), en
+# la lista viaja SIEMPRE el curso en marcha. Y en agosto la mitad de las ligas
+# todavía no lo tienen publicado: el sondeo del 2026-08-21 encontró catorce
+# ficheros de 2627 vivos y seis que no (E0, I1, I2, D1, F1, G1), porque esas
+# ligas arrancaban días después.
+#
+# El detalle que obliga a validar el CONTENIDO y no sólo el código: cuando el
+# fichero no existe, football-data no devuelve 404 — devuelve **300 Multiple
+# Choices con una página HTML** que ofrece nombres parecidos. `raise_for_status`
+# no levanta nada ante un 300 y `read_csv(..., on_bad_lines='skip')` se traga
+# el HTML tan campante, produciendo un marco con columnas inventadas. La
+# siguiente línea (`crudo['Date']`) revienta con KeyError y la liga se queda
+# sin reentrenar sin que nadie sepa por qué.
+#
+# La distinción importa: «no publicada todavía» se salta con un aviso, pero un
+# fallo de red (timeout, 5xx) SÍ levanta. Entrenar en silencio con menos
+# historia de la debida por un corte de red pasajero es peor que no entrenar.
+_COLUMNAS_CLAVE = ('HomeTeam', 'Home')
+
+
+def _csv_temporada(url: str, clave: str):
+    """Una temporada de football-data, o None si aún no está publicada."""
+    r = requests.get(url, timeout=30)
+    if r.status_code in (300, 301, 302, 303, 307, 308, 404, 410):
+        return None
+    r.raise_for_status()               # 5xx, timeouts → que se note
+    texto = r.text
+    if texto.lstrip()[:400].lower().lstrip('﻿').startswith(('<!doctype', '<html')):
+        return None                    # la página de «Multiple Choices»
+    try:
+        hoja = pd.read_csv(io.StringIO(texto), on_bad_lines='skip',
+                           encoding_errors='ignore')
+    except Exception as e:
+        logger.warning(f"[{clave}] {url.rsplit('/', 2)[-2]} ilegible: "
+                       f"{type(e).__name__}: {e}")
+        return None
+    if hoja.empty or not any(c in hoja.columns for c in _COLUMNAS_CLAVE):
+        return None                    # no es un CSV de partidos
+    return hoja
+
+
+def descargar_liga(clave: str, temporadas: int = None) -> pd.DataFrame:
+    cfg = LEAGUES[clave]
+    if cfg['formato'] == 'api_football':
+        df = _descargar_api_football(clave, cfg)
+        if clave == 'champions':
+            df = _fusionar_fbref_champions(df)
+        if cfg.get('desde'):        # profundidad validada en walk-forward
+            df = df[df['date'] >= pd.Timestamp(cfg['desde'])]
+        crudo = None
+    elif cfg['formato'] == 'espn':
+        # v35 (§2): Europa League / Conference League desde el JSON de ESPN
+        # con cadena de resiliencia (ESPN → API-Football → CSV local).
+        import uefa_scraper
+        df = uefa_scraper.historico_uefa(clave, cfg['espn_liga'], cfg['desde'],
+                                         cfg.get('api_league_id'))
+        df = df[df['date'] >= pd.Timestamp(cfg['desde'])].copy()
+        for c in ('odd_home', 'odd_draw', 'odd_away'):
+            df[c] = np.nan
+        crudo = None
+        # v479 — UNA COPA NACIONAL SE ENTRENA CON SUS LIGAS (como la Leagues Cup, v97).
+        #
+        # En la Pokal y la Copa del Rey cada club juega 1-2 partidos por temporada: con la copa sola
+        # quedaban 109 y 126 partidos utilizables (hacen falta 300). Lo que dice lo fuerte que es el
+        # Bayern o el Girona es su liga: se junta la copa con los históricos de `agrupar_con` en un solo
+        # hilo cronológico (ELO común), cada fila con su `competicion`.
+        # Los NOMBRES se unifican: ESPN dice «Borussia Dortmund» y la liga (football-data) «Dortmund»; sin
+        # esto sólo coincidían 8 de 45 equipos y el ELO común no unía nada. Simulado (cierres de
+        # BetExplorer, 1X2 a los 90', 2.ª mitad): log-loss ELO común 0,822 / 0,949 contra la copa sola
+        # 1,020 / 1,085 (Pokal / Copa del Rey); la casa sigue mejor (0,766 / 0,853).
+        if cfg.get('agrupar_con'):
+            marcos = []
+            for liga in cfg['agrupar_con']:
+                try:
+                    d = pd.read_csv(f'historico_{liga}.csv', parse_dates=['date'])
+                    d = d[d['date'] >= pd.Timestamp(cfg['desde'])].dropna(
+                        subset=['date', 'home_team', 'away_team', 'home_goals', 'away_goals'])
+                    marcos.append(d.assign(competicion=liga))
+                except Exception as e:
+                    logger.warning(f'[{clave}] sin el histórico de {liga} para agrupar: {type(e).__name__}: {e}')
+            catalogo = sorted({t for d in marcos for t in pd.concat([d['home_team'], d['away_team']]).unique()})
+            if catalogo:
+                import name_mapper as _nm
+                nombres = pd.concat([df['home_team'], df['away_team']]).dropna().unique()
+                mapa = {n: (_nm.mapear(n, catalogo, contexto=f'{clave}_agrupado') or n) for n in nombres}
+                df = df.assign(home_team=df['home_team'].map(mapa), away_team=df['away_team'].map(mapa))
+            marcos.insert(0, df.assign(competicion=clave))
+            df = (pd.concat(marcos, ignore_index=True, sort=False)
+                    .sort_values('date')
+                    .drop_duplicates(subset=['date', 'home_team', 'away_team'], keep='first')
+                    .reset_index(drop=True))
+            for c in ('odd_home', 'odd_draw', 'odd_away'):
+                df[c] = np.nan
+            logger.info(f"[{clave}] histórico agrupado: {len(df)} partidos "
+                        f"({df['competicion'].value_counts().to_dict()})")
+    elif cfg['formato'] == 'leagues_cup':
+        # v97 — histórico AGRUPADO (MLS + Liga MX + Leagues Cup).
+        #
+        # La competición sola son 230 partidos entre 47 equipos: ~5 por equipo.
+        # Lo que hace predecible un México-Seattle no es la historia de la
+        # Leagues Cup, es la de la MLS y la Liga MX, que el proyecto ya tiene
+        # con 3.719 y 2.660 partidos. Ver `leagues_cup.py`.
+        import leagues_cup as _lc
+        df = _lc.historico(con_ligas=True)
+        df = df[df['date'] >= pd.Timestamp(cfg['desde'])].copy()
+        for c in ('odd_home', 'odd_draw', 'odd_away'):
+            if c not in df.columns:
+                df[c] = np.nan
+        crudo = None
+    else:
+        # v147 — LA DESCARGA CRUDA SE MEMORIZA EN EL PROCESO.
+        #
+        # Desde que `entrenar_liga` pide DOS marcos por liga —el completo para
+        # el CSV y el de la ventana para entrenar— esta función se llama dos
+        # veces seguidas con las mismas URLs. Sin memo, eso duplicaba las
+        # descargas: con las listas ampliadas son 226 ficheros por pasada, o
+        # sea 452 en vez de 226, unos tres minutos de más en el runner
+        # bajando exactamente los mismos bytes.
+        #
+        # El memo vive en el proceso y no en disco a propósito: el runner
+        # arranca limpio cada día, así que no hay riesgo de servir una
+        # temporada rancia. Dentro de una ejecución, el contenido de un CSV de
+        # football-data no cambia.
+        _clave_memo = tuple(cfg['urls'])
+        crudo = _MEMO_CRUDO.get(_clave_memo)
+        if crudo is None:
+            frames, ausentes = [], []
+            for url in cfg['urls']:
+                hoja = _csv_temporada(url, clave)
+                if hoja is None:
+                    ausentes.append(url.rsplit('/', 2)[-2])
+                    continue
+                frames.append(hoja)
+            if not frames:
+                raise RuntimeError(
+                    f"{clave}: ninguna de las {len(cfg['urls'])} temporadas "
+                    f"de football-data se pudo descargar.")
+            if ausentes:
+                logger.info(f"[{clave}] temporadas aún no publicadas por "
+                            f"football-data: {', '.join(ausentes)} "
+                            f"(se entrena con las {len(frames)} que sí están)")
+            crudo = pd.concat(frames, ignore_index=True)
+            _MEMO_CRUDO[_clave_memo] = crudo
+        crudo = crudo.copy()          # cada llamada trabaja sobre lo suyo
+
+    if cfg['formato'] in ('api_football', 'espn', 'leagues_cup'):
+        pass                                   # df ya construido arriba
+    elif cfg['formato'] == 'main':
+        df = pd.DataFrame({
+            'date': pd.to_datetime(crudo['Date'], dayfirst=True, errors='coerce'),
+            'home_team': crudo['HomeTeam'], 'away_team': crudo['AwayTeam'],
+            'home_goals': pd.to_numeric(crudo['FTHG'], errors='coerce'),
+            'away_goals': pd.to_numeric(crudo['FTAG'], errors='coerce'),
+            'home_shots_on': pd.to_numeric(crudo.get('HST'), errors='coerce'),
+            'away_shots_on': pd.to_numeric(crudo.get('AST'), errors='coerce'),
+            'home_shots_off': pd.to_numeric(crudo.get('HS'), errors='coerce') -
+                              pd.to_numeric(crudo.get('HST'), errors='coerce'),
+            'away_shots_off': pd.to_numeric(crudo.get('AS'), errors='coerce') -
+                              pd.to_numeric(crudo.get('AST'), errors='coerce'),
+            'home_corners': pd.to_numeric(crudo.get('HC'), errors='coerce'),
+            'away_corners': pd.to_numeric(crudo.get('AC'), errors='coerce'),
+            'home_yellow': pd.to_numeric(crudo.get('HY'), errors='coerce'),
+            'away_yellow': pd.to_numeric(crudo.get('AY'), errors='coerce'),
+            'home_red': pd.to_numeric(crudo.get('HR'), errors='coerce'),
+            'away_red': pd.to_numeric(crudo.get('AR'), errors='coerce'),
+            'odd_home': pd.to_numeric(crudo.get('B365H'), errors='coerce'),
+            'odd_draw': pd.to_numeric(crudo.get('B365D'), errors='coerce'),
+            'odd_away': pd.to_numeric(crudo.get('B365A'), errors='coerce'),
+            # v44: cuotas de cierre de OVER/UNDER 2.5 (media de mercado, con
+            # respaldo B365 de cierre) — para validar el mercado de goles.
+            'odd_over25': pd.to_numeric(crudo.get('AvgC>2.5'), errors='coerce')
+                            .fillna(pd.to_numeric(crudo.get('Avg>2.5'), errors='coerce'))
+                            .fillna(pd.to_numeric(crudo.get('B365C>2.5'), errors='coerce')),
+            'odd_under25': pd.to_numeric(crudo.get('AvgC<2.5'), errors='coerce')
+                            .fillna(pd.to_numeric(crudo.get('Avg<2.5'), errors='coerce'))
+                            .fillna(pd.to_numeric(crudo.get('B365C<2.5'), errors='coerce')),
+            # v45: HÁNDICAP ASIÁTICO de cierre — línea (AHCh) + cuotas home/away
+            # (media de mercado, respaldo B365 de cierre). Para validar el
+            # mercado de hándicap.
+            'ah_linea': pd.to_numeric(crudo.get('AHCh'), errors='coerce')
+                          .fillna(pd.to_numeric(crudo.get('AHh'), errors='coerce')),
+            'odd_ah_home': pd.to_numeric(crudo.get('AvgCAHH'), errors='coerce')
+                            .fillna(pd.to_numeric(crudo.get('B365CAHH'), errors='coerce')),
+            'odd_ah_away': pd.to_numeric(crudo.get('AvgCAHA'), errors='coerce')
+                            .fillna(pd.to_numeric(crudo.get('B365CAHA'), errors='coerce')),
+            # v26: cierre de PINNACLE (PSC*) para CLV/Shadow — la casa más
+            # eficiente; con respaldo PS* (apertura Pinnacle) si falta
+            'odd_home_pin': pd.to_numeric(crudo.get('PSCH'), errors='coerce')
+                              .fillna(pd.to_numeric(crudo.get('PSH'), errors='coerce')),
+            'odd_draw_pin': pd.to_numeric(crudo.get('PSCD'), errors='coerce')
+                              .fillna(pd.to_numeric(crudo.get('PSD'), errors='coerce')),
+            'odd_away_pin': pd.to_numeric(crudo.get('PSCA'), errors='coerce')
+                              .fillna(pd.to_numeric(crudo.get('PSA'), errors='coerce')),
+            'referee': crudo.get('Referee'),
+        })
+    else:  # 'new': goles + cuotas de CIERRE (v18: AvgC* tiene 100 % de
+        # cobertura en MEX.csv; AvgH/PH de apertura no existen en este formato)
+        def _odds(*cols):
+            serie = None
+            for c in cols:
+                s = pd.to_numeric(crudo.get(c), errors='coerce') \
+                    if c in crudo.columns else None
+                serie = s if serie is None else serie.fillna(s)
+            return serie
+        df = pd.DataFrame({
+            'date': pd.to_datetime(crudo['Date'], dayfirst=True, errors='coerce'),
+            'home_team': crudo['Home'], 'away_team': crudo['Away'],
+            'home_goals': pd.to_numeric(crudo['HG'], errors='coerce'),
+            'away_goals': pd.to_numeric(crudo['AG'], errors='coerce'),
+            'odd_home': _odds('AvgCH', 'PSCH', 'B365CH', 'AvgH', 'PH'),
+            'odd_draw': _odds('AvgCD', 'PSCD', 'B365CD', 'AvgD', 'PD'),
+            'odd_away': _odds('AvgCA', 'PSCA', 'B365CA', 'AvgA', 'PA'),
+            # v26: cierre Pinnacle puro (CLV/Shadow)
+            'odd_home_pin': _odds('PSCH'),
+            'odd_draw_pin': _odds('PSCD'),
+            'odd_away_pin': _odds('PSCA'),
+        })
+        # Liga MX: ventana configurable de temporadas (v13: 8 años)
+        anios = cfg.get('anios_ventana', 4)
+        df = df[df['date'] >= df['date'].max() - pd.DateOffset(years=anios)]
+
+    df = df.dropna(subset=['date', 'home_team', 'away_team', 'home_goals', 'away_goals'])
+    # v74: cola reciente desde ESPN para las ligas cuya fuente publica por lotes
+    if cfg['formato'] in ('main', 'new'):
+        df = _completar_desde_espn(df, clave)
+    df['tournament'] = cfg['nombre']
+    df['stadium'] = None
+    df['MATCH_ID'] = [
+        _match_id(f, h, a) for f, h, a in zip(df['date'], df['home_team'], df['away_team'])]
+    df = df.drop_duplicates(subset='MATCH_ID', keep='last')
+    df = df.sort_values(['date', 'MATCH_ID'], kind='mergesort').reset_index(drop=True)
+
+    # v147 — EL RECORTE VA AQUÍ, ANTES DE DERIVAR, Y NO DESPUÉS.
+    #
+    # Es el detalle que hace que el desacople sea exacto en vez de aproximado.
+    # Las dos columnas que se calculan debajo dependen de TODO el dataframe:
+    #
+    #   · `elo_diff` acumula desde el primer partido del fichero. Con 16
+    #     temporadas, el ELO de agosto de 2023 llega con 13 años de historia
+    #     detrás en vez de arrancar frío.
+    #   · `home_xg`/`away_xg` los rellena `CorrelatedSyntheticGenerator`, cuya
+    #     secuencia depende del tamaño del marco.
+    #
+    # Medido al ampliar la Premier recortando DESPUÉS: las 1.140 filas de
+    # entrenamiento coincidían en goles, remates, córners y cuotas... y
+    # `elo_diff` difería en las 1.140 y `home_xg` en 697. El modelo cambiaba
+    # (precisión 0,4545 → 0,4727 pero log-loss 1,0455 → 1,2006) aunque la
+    # ventana fuera la misma. O sea: ampliar el CSV movía el modelo por la
+    # puerta de atrás, que es justo lo que el desacople venía a impedir.
+    #
+    # Recortando ANTES, `entrenar_liga` pide dos marcos: el completo para el
+    # CSV (que alimenta el H2H) y el de la ventana para entrenar, cada uno con
+    # sus derivadas calculadas sobre lo que le corresponde. El modelo recibe
+    # exactamente lo que recibía.
+    if temporadas:
+        _f = pd.to_datetime(df['date'], errors='coerce')
+        # temporada europea: arranca en julio. Por año natural, agosto y mayo
+        # de la misma campaña caerían en cubos distintos.
+        _temp = _f.dt.year - (_f.dt.month < 7).astype(int)
+        _ultimas = sorted(_temp.dropna().unique())[-int(temporadas):]
+        _rec = df[_temp.isin(_ultimas)]
+        if len(_rec) >= 300:
+            df = _rec.reset_index(drop=True)
+
+    # ELO por liga + relleno determinista de lo que falte (xG siempre; en
+    # formato 'new' también remates/córners/tarjetas) — mismo método auditado
+    df['elo_diff'] = _elo_diff_liga(df)
+
+    # v14/M8: el xG real de Understat se evaluó como feature y EMPEORÓ el
+    # log-loss en LaLiga (1.014→1.108) y Premier (también la precisión):
+    # el relleno sintético condicionado a goles reales lleva más señal.
+    # understat_scraper.inyectar_xg queda disponible pero DESACTIVADO
+    # (ver VALIDACION_v14.md).
+    # v162 — LAS ESTADÍSTICAS REALES DE ESPN, ANTES DEL GENERADOR.
+    #
+    # Este orden es todo el truco y por eso va comentado. El generador de abajo
+    # promete —y cumple— que «sólo rellena valores faltantes: si una columna ya
+    # trae datos reales, esos se respetan». Así que inyectar aquí significa que
+    # córners, tarjetas, remates, faltas y posesión de ESPN GANAN, y el relleno
+    # sintético se queda para los partidos que ESPN no cubre.
+    #
+    # Va aquí y no en un parche al CSV porque esta función RECONSTRUYE el
+    # histórico entero desde su fuente en cada `--build`: cualquier cosa
+    # escrita directamente en `historico_<liga>.csv` la borraría la noche
+    # siguiente. Las estadísticas viven en `stats_espn/<liga>.csv.gz`.
+    #
+    # Coste: es una lectura de disco y un emparejado en memoria. La descarga la
+    # hace `stats_espn.backfill`, que corre en el bot.
+    try:
+        import stats_espn as _se
+        df = _se.inyectar(df, clave)
+        # v393 — y después FotMob, para las ligas que ESPN no cubre (Polonia,
+        # Finlandia, Suiza, Irlanda…). Sólo rellena huecos: ESPN y
+        # football-data mandan donde ya tienen el dato. Ver `stats_fotmob`.
+        df = _se.inyectar(df, clave, directorio='stats_fotmob', origen='fotmob')
+        # y Flashscore, para las ocho que ni ESPN ni FotMob publican
+        # (Expansión, Uruguay, Costa Rica…). Ver `stats_flashscore`.
+        df = _se.inyectar(df, clave, directorio='stats_flashscore', origen='flashscore')
+    except Exception as e:
+        # Que esto falle no puede tumbar un reentrenamiento: sin estadísticas
+        # reales la liga vuelve al relleno sintético, que es donde estaba.
+        logger.warning(f"[{clave}] estadísticas de ESPN no inyectadas: "
+                       f"{type(e).__name__}: {e}")
+
+    cal = statsbomb_calibration.calibrar()
+    gen = CorrelatedSyntheticGenerator()
+    df = gen.generate_advanced_metrics(df, cal)
+    logger.info(f"[{clave}] {len(df)} partidos reales "
+                f"({df['date'].min().date()} → {df['date'].max().date()}), "
+                f"cuotas de cierre en {df['odd_home'].notna().mean()*100:.0f} % de filas.")
+    return df
+
+
+def _completar_desde_espn(df: pd.DataFrame, clave: str,
+                          margen_dias: int = 45) -> pd.DataFrame:
+    """
+    v74 — añade al histórico los partidos RECIENTES que su fuente aún no ha
+    publicado, tomándolos de ESPN.
+
+    El problema
+    -----------
+    Las ligas de formato `main` y `new` vienen de football-data.co.uk, que
+    publica **por lotes semanales**. Entre lote y lote el histórico se queda
+    atrás y la app avisa «datos de hace N días», con dos consecuencias: la
+    cuarentena de pretemporada baja los picks a Capa 2 y el estado del modelo
+    (forma, ELO, medias móviles) ignora la última jornada.
+
+    Medido el 2026-07-28 sobre las 57 competiciones desplegadas: **9 tenían
+    partidos que ESPN ya publicaba y el histórico no**, desde 2 días
+    (Argentina) hasta **71** (Dinamarca).
+
+    Cómo
+    ----
+    football-data sigue siendo la base: es la única que trae **cuotas de
+    cierre**, y sin ellas no hay CLV ni backtest de EV. ESPN solo aporta la
+    COLA: los partidos posteriores a la última fecha publicada. Esas filas
+    entran sin cuotas —el resto del pipeline ya imputa lo que falta— y con las
+    estadísticas avanzadas que genera `CorrelatedSyntheticGenerator`, igual que
+    cualquier partido de formato `new`.
+
+    Los nombres se traducen con `name_mapper` contra el catálogo que ya tiene
+    el histórico, así que un equipo que ESPN escriba distinto no crea un
+    duplicado: si no se puede mapear con confianza, la fila se descarta (mejor
+    perder un partido que partir el historial de un equipo en dos).
+    """
+    liga_espn = LEAGUES.get(clave, {}).get('espn_liga') or _ESPN_POR_LIGA.get(clave)
+    if not liga_espn or df.empty:
+        return df
+    # v103 — TAMBIÉN LA FASE PREVIA. Mismo hallazgo que en `fixtures_espn`
+    # (v102), aquí del lado del HISTÓRICO: la Europa League ingiere de
+    # `uefa.europa` y la Conference de `uefa.europa.conf`, que son los códigos
+    # de la liguilla. En agosto lo que se juega es la previa, publicada bajo
+    # `uefa.europa_qual` y `uefa.europa.conf_qual`.
+    #
+    # El efecto era visible en la interfaz: «sin datos nuevos desde hace 78
+    # días» sobre una competición que estaba jugando ESE MISMO DÍA. Y no era
+    # sólo un cartel — con el estado congelado, el modelo predice esos partidos
+    # con la forma y el ELO de mayo, y la cuarentena de pretemporada baja los
+    # picks a Capa 2.
+    codigos = [liga_espn]
+    try:
+        import fixtures_espn as _fe
+        codigos += [c for c in _fe.ESPN_COMPANEROS.get(clave, [])
+                    if c not in codigos]
+    except Exception:
+        pass
+    try:
+        ultima = pd.Timestamp(df['date'].max()).normalize()
+    except Exception:
+        return df
+    hoy = pd.Timestamp.utcnow().tz_localize(None).normalize()
+    if (hoy - ultima).days <= 1:
+        return df                      # ya está al día
+    desde = max(ultima + pd.Timedelta(days=1), hoy - pd.Timedelta(days=margen_dias))
+    if desde > hoy:
+        return df
+
+    # v148 — LA COLA SE PIDE UNA VEZ POR LIGA, NO DOS.
+    #
+    # Desde que `entrenar_liga` pide DOS marcos por competición —el completo
+    # para el CSV y el de la ventana para el modelo (v147)—, `descargar_liga`
+    # corre entera dos veces seguidas. La v147 memorizó la descarga cruda de
+    # football-data, pero no ésta: la cola de ESPN se pedía dos veces por liga,
+    # con las mismas fechas y el mismo resultado. Sobre 57 competiciones son
+    # ~57 peticiones de más en cada pase del bot, que ya roza su límite de 60
+    # minutos.
+    #
+    # La clave lleva la última fecha del histórico porque es lo único de lo que
+    # depende el resultado: mismo `desde`, misma respuesta.
+    _memo_k = (clave, tuple(codigos), str(ultima.date()))
+    if _memo_k in _MEMO_COLA_ESPN:
+        nuevos = _MEMO_COLA_ESPN[_memo_k]
+        if nuevos is None:
+            return df
+        nuevos = nuevos.copy()
+        partes = None
+    else:
+        partes = []
+    for _code in (codigos if partes is not None else []):
+        try:
+            import uefa_scraper
+            _n = uefa_scraper.descargar_espn(_code, desde.strftime('%Y-%m-%d'))
+        except Exception as e:
+            logger.warning(f"[{clave}] cola ESPN {_code} no disponible: "
+                           f"{type(e).__name__}: {e}")
+            continue
+        if _n is not None and not _n.empty:
+            partes.append(_n)
+            if _code != liga_espn:
+                logger.info(f'[{clave}] {len(_n)} partidos de la fase previa '
+                            f'({_code})')
+    if partes is not None:
+        if not partes:
+            _MEMO_COLA_ESPN[_memo_k] = None
+            return df
+        nuevos = pd.concat(partes, ignore_index=True)
+        # un partido no puede estar en la liguilla y en la previa a la vez, pero
+        # se deduplica igual: duplicarlo contaría dos veces en la forma y el ELO
+        nuevos = nuevos.drop_duplicates(subset=['date', 'home_team', 'away_team'])
+        nuevos = nuevos[
+            pd.to_datetime(nuevos['date']).dt.normalize() > ultima].copy()
+        _MEMO_COLA_ESPN[_memo_k] = None if nuevos.empty else nuevos.copy()
+    if nuevos is None or nuevos.empty:
+        return df
+
+    catalogo = sorted(set(df['home_team']) | set(df['away_team']))
+    # v148 — LA COLA DE ESPN PUEDE DAR DE ALTA A UN ASCENDIDO.
+    #
+    # Hasta aquí no podía, y no por descuido sino por construcción: el catálogo
+    # contra el que compara SALE DEL PROPIO HISTÓRICO, así que un equipo recién
+    # ascendido nunca estaba en él, `_map` devolvía None y la fila se tiraba.
+    # Cada agosto, hasta que football-data publicaba el curso nuevo, los
+    # ascendidos salían «sin pronóstico del modelo».
+    #
+    # Y no siempre llega ese rescate: el 2026-08-21, seis de las veinte ligas
+    # (E0, I1, I2, D1, F1, G1) todavía no tenían fichero de 2627. Para la
+    # Premier, la única vía de que Coventry existiera era ésta.
+    #
+    # El motivo original del descarte sigue siendo válido y no se toca: dar de
+    # alta «Sporting Gijón» donde el catálogo dice «Sp Gijon» PARTE EL HISTORIAL
+    # de un club en dos, que es peor que perder un partido. Lo que cambia es que
+    # las dos situaciones dejan de confundirse. `mejor_candidato` devuelve el
+    # parecido sin decidir:
+    #
+    #   · ratio alto  → es el mismo club mal escrito. Se descarta, como siempre,
+    #                   y se registra para que se le ponga un alias.
+    #   · ratio bajo  → es un club que de verdad no estaba. Se admite.
+    #
+    # El corte en 0,62 no es redondo por gusto: el umbral de `mapear` es 0,78 y
+    # entre 0,62 y 0,78 vive justo lo dudoso («Sporting Gijón» contra «Sp Gijon»
+    # da 0,71; «Atlético Madrid» contra «Ath Madrid», 0,72). Debajo de 0,62 no
+    # hay pareja plausible en el catálogo. Ante la duda, NO se da de alta.
+    UMBRAL_ALTA = 0.62
+    altas = set()
+    try:
+        import name_mapper
+        def _map(n):
+            if n in catalogo:
+                return n
+            m = name_mapper.mapear(n, catalogo, contexto=f'espn→{clave}')
+            if m:
+                return m
+            _cand, _ratio = name_mapper.mejor_candidato(n, catalogo)
+            if _ratio < UMBRAL_ALTA:
+                altas.add(n)
+                return n
+            return None
+    except Exception:
+        def _map(n):
+            return n if n in catalogo else None
+
+    filas = []
+    descartados = 0
+    for r in nuevos.itertuples(index=False):
+        h, a = _map(r.home_team), _map(r.away_team)
+        if not h or not a or h == a:
+            descartados += 1
+            continue
+        filas.append({'date': pd.Timestamp(r.date).normalize(),
+                      'home_team': h, 'away_team': a,
+                      'home_goals': float(r.home_goals),
+                      'away_goals': float(r.away_goals)})
+    if not filas:
+        if descartados:
+            logger.info(f"[{clave}] cola ESPN: {descartados} partidos sin "
+                        f"equipo mapeable, no se añade nada.")
+        return df
+
+    cola = pd.DataFrame(filas)
+    for c in df.columns:
+        if c not in cola.columns:
+            cola[c] = np.nan
+    cola = cola[df.columns] if set(df.columns) <= set(cola.columns) else cola
+    salida = pd.concat([df, cola], ignore_index=True)
+    salida = salida.dropna(subset=['date', 'home_team', 'away_team',
+                                   'home_goals', 'away_goals'])
+    logger.info(f"[{clave}] cola ESPN: +{len(cola)} partidos "
+                f"({ultima.date()} → {cola['date'].max().date()})"
+                + (f", {descartados} descartados por nombre" if descartados else ""))
+    if altas:
+        # Un alta es una decisión, no un detalle: si el nombre estaba mal, aquí
+        # es donde se ve antes de que el catálogo se parta en dos.
+        logger.info(f"[{clave}] equipos NUEVOS en el catálogo desde ESPN: "
+                    f"{', '.join(sorted(altas))}")
+    return salida
+
+
+def _elo_diff_liga(df: pd.DataFrame) -> pd.Series:
+    """ELO cronológico local a la liga (sin tocar elo_actual.csv del Mundial)."""
+    elo: Dict[str, float] = {}
+    diffs = np.zeros(len(df))
+    for i, fila in enumerate(df.itertuples(index=False)):
+        h, a = fila.home_team, fila.away_team
+        r_h, r_a = elo.get(h, 1500.0), elo.get(a, 1500.0)
+        diffs[i] = r_h - r_a
+        e_h = 1 / (1 + 10 ** ((r_a - r_h) / 400))
+        s_h = 1.0 if fila.home_goals > fila.away_goals else (0.5 if fila.home_goals == fila.away_goals else 0.0)
+        elo[h] = r_h + 24 * (s_h - e_h)
+        elo[a] = r_a + 24 * ((1 - s_h) - (1 - e_h))
+    return pd.Series(diffs, index=df.index)
+
+
+# ---------------------------------------------------------------------------
+# Entrenamiento por liga (mismo pipeline validado del Mundial)
+# ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# v75: construcción de features extra COMPARTIDA entre entrenamiento y backtest
+# ---------------------------------------------------------------------------
+def preparar_features_extra(clave, df, ds, X_df, corte_imt):
+    """
+    Añade a `X_df` las features extra adoptadas por la liga y devuelve
+    (X_df, cols_extra, estados).
+
+    Extraída de `entrenar_liga` en la v75 para que el BACKTEST
+    (`build_pick_ledger.py`) construya EXACTAMENTE la misma matriz de features
+    que el entrenamiento de producción. Antes este bloque solo vivía dentro de
+    `entrenar_liga`, así que cualquier backtest tenía que reimplementarlo y
+    habría derivado en silencio en cuanto se añadiese una feature nueva. Un
+    backtest que mide un modelo distinto del desplegado es peor que no tener
+    backtest: da una cifra de ROI en la que se confía y que no corresponde a
+    nada que esté en producción.
+    """
+    # v17: features extra adoptadas por liga tras walk-forward (VALIDACION_v17)
+    cols_extra = columnas_extra(clave)
+    estado_extra = None
+    estado_imt = None
+    imt_df = None
+    estado_v26 = None
+    estado_ck = None
+    mapa_tz = None
+    imt_coef = None
+    medias_cuotas = {}
+    if cols_extra:
+        grupos = LEAGUES[clave].get('features_extra', [])
+        extras_df, estado_extra = features_extra_liga(df)
+        if 'mx' in grupos:
+            extras_df = extras_df.join(features_mx(df))
+        # v24: Índice de Momentum Táctico (walk-forward por liga en
+        # run_wf_imt_v24.py; solo las ligas donde superó la regla de oro
+        # llevan 'imt' — componentes — o 'imt_c' — índice compuesto con
+        # α,β,γ,δ ajustados en train-only — en features_extra)
+        if 'imt' in grupos or 'imt_c' in grupos:
+            imt_df, estado_imt = mt.features_imt(df)
+            if 'imt_c' in grupos:
+                # `corte_imt` NO puede ser None: `optimizar_coeficientes`
+                # interpreta None como "usa todo el histórico", que dentro de
+                # un backtest sería fuga temporal pura (los coeficientes del
+                # índice habrían visto el futuro del pliegue). Se exige que el
+                # llamante diga hasta dónde puede mirar.
+                if corte_imt is None:
+                    raise ValueError(
+                        f"[{clave}] corte_imt es obligatorio: sin él los "
+                        f"coeficientes del IMT se ajustarían con datos "
+                        f"posteriores al partido que se predice.")
+                imt_coef = mt.optimizar_coeficientes(
+                    df, imt_df, hasta_fecha=corte_imt)['coef']
+                imt_df = imt_df.join(mt.indice_compuesto(imt_df, imt_coef))
+            extras_df = extras_df.join(imt_df)
+        # v25: geografía + clima extremo MLS (walk-forward run_wf_mls_v25.py)
+        if any(g.startswith('mls_') for g in grupos):
+            extras_df = extras_df.join(mls_features.features_mls(df))
+        # v26: features ortogonales (walk-forward run_wf_feats_v26.py)
+        if any(g in grupos for g in ('ent', 'elo_d', 'urg')):
+            v26_df, estado_v26 = f26.features_v26(df)
+            extras_df = extras_df.join(v26_df)
+        # v35 (§3): CDI — solo en las competiciones donde el walk-forward lo
+        # adoptó (run_wf_v35.py). El mapa club→huso se guarda en team_stats
+        # para poder reproducir la feature en inferencia.
+        # v59: dominio territorial (walk-forward run_wf_ck_v59.py)
+        if 'ck' in grupos:
+            ck_df, estado_ck = f59.features_ck(df)
+            extras_df = extras_df.join(ck_df)
+        if 'cdi' in grupos:
+            mapa_tz = cdi_futbol.mapa_tz_liga(clave, df)
+            extras_df = extras_df.join(cdi_futbol.features_cdi(df, mapa_tz))
+            cdi_futbol.guardar_mapa({clave: mapa_tz})
+        ids = [m[3] for m in ds['meta']]
+        ext = extras_df.reindex(ids).reset_index(drop=True)
+        X_df = X_df.reset_index(drop=True).copy()
+        for c in cols_extra:
+            X_df[c] = ext[c].values
+    estados = {'extra': estado_extra, 'imt': estado_imt, 'v26': estado_v26,
+               'ck': estado_ck, 'mapa_tz': mapa_tz, 'imt_coef': imt_coef,
+               # `imt_df` lo necesita `entrenar_liga` para dejar α,β,γ,δ en la
+               # metadata (interpretabilidad); vive solo dentro de la rama IMT.
+               'imt_df': imt_df}
+    return X_df, cols_extra, estados
+
+
+
+# v178 — UN HISTÓRICO NO SE SOBRESCRIBE CON UNO MUCHO MÁS PEQUEÑO.
+#
+# QUÉ PASÓ, con fechas: `historico_leagues_cup.csv` tenía 6.758 filas el
+# 2026-09-03 y 291 el 2026-09-06. `football-data.co.uk` lleva devolviendo 503
+# —comprobado sobre `/new/USA.csv` y `/new/MEX.csv`— y `leagues_cup.historico()`
+# construye su agrupado descargando esos dos CSV; cuando fallan devuelve sólo
+# los partidos de la propia competición. Aquí se escribía encima del bueno sin
+# mirar, y el commit nocturno lo subía.
+#
+# EL CORTE SEPARA DOS COSAS QUE NO SE PARECEN. Medido sobre los 75 históricos
+# del repositorio: siete encogieron, seis de ellos entre 0,1 % y 0,4 % —la
+# ventana móvil de años dejando fuera partidos viejos, que es correcto— y uno
+# el 95,7 %. No hay nada en medio, así que cualquier umbral razonable acierta;
+# se elige 30 % por dejar margen de sobra a un recorte legítimo.
+#
+# Y SE LEVANTA EXCEPCIÓN, no basta con no escribir: si la descarga vino
+# degradada, entrenar con ella produciría un modelo peor que el que ya hay.
+# `entrenar_ligas_v68.entrenar_una` captura por liga y sigue con las demás, así
+# que abortar ésta no tumba la noche entera.
+#
+# Salida de emergencia para el día que un recorte grande SÍ sea intencionado
+# —una liga que cambia de fuente, por ejemplo—: `PERMITIR_HISTORICO_MENOR=1`.
+CAIDA_MAXIMA = float(os.environ.get('CAIDA_MAXIMA_HISTORICO', '0.30'))
+# Y el techo por arriba: x2 en una sola pasada ya no es una liga creciendo.
+CRECIMIENTO_MAXIMO = float(os.environ.get('CRECIMIENTO_MAXIMO_HISTORICO',
+                                          '2.0'))
+
+
+def _guardar_historico(clave: str, df) -> None:
+    """Escribe `historico_<clave>.csv`, salvo que sea una pérdida de datos."""
+    ruta = f'historico_{clave}.csv'
+    if os.environ.get('PERMITIR_HISTORICO_MENOR') == '1':
+        df.to_csv(ruta, index=False)
+        return
+    previas = 0
+    if os.path.exists(ruta):
+        try:
+            with open(ruta, 'rb') as f:
+                previas = max(sum(1 for _ in f) - 1, 0)   # sin la cabecera
+        except OSError as e:
+            logger.warning(f'[{clave}] no se pudo leer {ruta} para '
+                           f'compararlo: {type(e).__name__}: {e}')
+            previas = 0
+    # v188 — Y TAMBIEN SI CRECE DE FORMA IMPOSIBLE.
+    #
+    # La guarda de la v178.9 solo vigilaba que un historico no ENCOGIERA, y por
+    # ese hueco se colo lo contrario: un script de medicion parcheo
+    # `descargar_liga` para devolver el historico AGRUPADO de la Champions y
+    # esto escribio **53.264 filas encima de las 895** de produccion, sin un
+    # solo aviso. Se restauro a mano porque alguien miro el `git status`.
+    #
+    # Una liga crece unos diez partidos por semana sobre miles: duplicarse en
+    # una pasada no es una temporada nueva, es otra cosa. El fichero que NO
+    # existia se escribe sin mirar —esa es la primera descarga— y lo demas pasa
+    # por aqui.
+    if previas and len(df) > previas * CRECIMIENTO_MAXIMO:
+        raise RuntimeError(
+            f'{clave}: la descarga trae {len(df)} partidos y el histórico en '
+            f'disco tiene {previas} (x{len(df) / max(previas, 1):.1f}). NO se '
+            f'sobrescribe: una liga no se multiplica en una pasada. Si es a '
+            f'propósito —un agrupado, un cambio de fuente— '
+            f'PERMITIR_HISTORICO_MENOR=1 lo salta.')
+    if previas and len(df) < previas * (1.0 - CAIDA_MAXIMA):
+        raise RuntimeError(
+            f'{clave}: la descarga trae {len(df)} partidos y el histórico en '
+            f'disco tiene {previas} ({100.0 * (previas - len(df)) / previas:.1f} '
+            f'% menos). NO se sobrescribe ni se reentrena: casi siempre es la '
+            f'fuente caída, no una temporada que desaparece. '
+            f'PERMITIR_HISTORICO_MENOR=1 si esta vez es a propósito.')
+    df.to_csv(ruta, index=False)
+
+
+def entrenar_liga(clave: str, con_ratings: bool = False) -> Dict:
+    """Entrena el modelo de una liga.
+
+    con_ratings (v14/M9, experimental): añade VAL_LOG_RATIO (log del cociente
+    de valores de plantilla Transfermarkt) como feature y NO guarda artefactos
+    — es solo para el A/B de backtesting. ADVERTENCIA: los valores son los
+    actuales, así que el backtest con ratings tiene sesgo de anticipación.
+    """
+    from train_tda_model import construir_ensemble, calcular_features_topologicas
+    from sklearn.ensemble import HistGradientBoostingRegressor
+    from sklearn.metrics import accuracy_score, log_loss
+
+    df = descargar_liga(clave)
+    # v147 — EL CSV Y EL ENTRENAMIENTO DEJAN DE COMPARTIR VENTANA.
+    #
+    # Hasta aquí, el mismo dataframe se escribía en disco y se usaba para
+    # entrenar, así que la ventana del modelo decidía también cuánta historia
+    # veía el H2H. Y eso empujaba en direcciones opuestas:
+    #
+    #   · el MODELO quiere ventana corta, y está MEDIDO liga por liga. La
+    #     Premier se mantiene en 3 temporadas porque con 5 la precisión bajó
+    #     de 49,5 % a 48,9 %; la Serie A igual (+0,9 pp sobre ELO con 3 contra
+    #     +0,0 pp con 5). Esas decisiones no se tocan.
+    #
+    #   · el H2H quiere ventana LARGA, y aquí la muestra manda. Medido sobre
+    #     las parejas de equipos vigentes:
+    #
+    #         Premier   ventana actual : 5,0 cruces de media · 0 % de parejas
+    #                                    con 10 o más
+    #                   16 temporadas  : 17,6 de media · 76 % con 10 o más
+    #         Serie A   actual 4,7 y 0 % · 16 temporadas 18,8 y 71 %
+    #
+    #     Con la ventana de hoy, en la Premier NINGUNA pareja llega a diez
+    #     enfrentamientos: el gráfico de cara a cara se dibuja sobre cuatro o
+    #     seis partidos, que es ruido.
+    #
+    # Se separan: al disco va TODO lo descargado, y a entrenar sólo la ventana.
+    # `temporadas_modelo` la fija cada liga y por defecto es el número de
+    # temporadas que ya entrenaba, así que el modelo no cambia ni un dígito.
+    if not con_ratings:
+        _guardar_historico(clave, df)
+
+    # v153 — UNA LIGA SIN PARTIDOS NUEVOS NO SE REENTRENA.
+    #
+    # `--build` reentrenaba las 54 competiciones todos los días, jugaran o no.
+    # Y reentrenar con los MISMOS datos no produce el mismo fichero: medido
+    # sobre `gre_super_league`, dos entrenamientos seguidos con idéntico
+    # histórico dan `.joblib` con bytes distintos. O sea que cada madrugada se
+    # regeneraban 54 modelos, la mitad de ellos idénticos en todo salvo en los
+    # bytes, y luego había que subirlos todos al Release.
+    #
+    # Eso es lo que reventaba el workflow: 26 minutos de reentrenamiento y 34
+    # de subida, tope de 60, y el commit de los CSV al final. Dos días seguidos
+    # el job murió antes de guardar los datos (ver el §4i del traspaso).
+    #
+    # El salto se decide por el CONTENIDO del histórico, que es lo único que
+    # puede cambiar la respuesta del modelo. La firma se guarda en el
+    # `metadata.json` de la propia liga, así que viaja con sus pesos y no hace
+    # falta un fichero de control aparte.
+    #
+    # `VERSION_ENTRENAMIENTO` es la salida para cuando lo que cambia es el
+    # CÓDIGO y no los datos: subirla invalida todas las firmas de golpe y la
+    # noche siguiente se reentrena el catálogo entero. Sin ella, tocar las
+    # features no tendría efecto sobre las ligas en receso, que es un modo de
+    # fallo silencioso y muy caro de encontrar.
+    if not con_ratings and not FORZAR_REENTRENO:
+        firma = _firma_datos(df)
+        carpeta_prev = os.path.join('modelos', clave)
+        try:
+            with open(os.path.join(carpeta_prev, 'metadata.json'),
+                      encoding='utf-8') as _f:
+                _meta_prev = json.load(_f)
+        except Exception:
+            _meta_prev = {}
+        completa = all(
+            os.path.exists(os.path.join(carpeta_prev, n))
+            for n in ('modelo.joblib', 'escalador.joblib',
+                      'reg_local.joblib', 'reg_visit.joblib'))
+        if completa and _meta_prev.get('firma_datos') == firma:
+            logger.info(f"[{clave}] sin partidos nuevos desde el último "
+                        f"entrenamiento: se conserva el modelo y no se re-sube")
+            return {**_meta_prev, 'reentrenado': False}
+
+    # El marco del MODELO se pide aparte, con la ventana medida de la liga, para
+    # que sus derivadas (ELO, xG) se calculen sobre ella y no sobre los 16 años.
+    # Ver el bloque de `descargar_liga`.
+    _n_temp = (LEAGUES.get(clave) or {}).get('temporadas_modelo')
+    # Sin ventana declarada, el marco del modelo ES el completo: el desacople
+    # sólo existe en las ligas que midieron una ventana más corta.
+    df_modelo = descargar_liga(clave, temporadas=_n_temp) if _n_temp else df
+    ds = fe.construir_dataset_supervisado(df_modelo)
+    X_df, y, fechas = ds['X_df'], ds['y'], ds['fechas']
+    if len(X_df) < 300:
+        raise RuntimeError(f"{clave}: solo {len(X_df)} partidos utilizables.")
+
+    if con_ratings:
+        import transfermarkt_scraper as tm
+        vals = tm.mapear_a_football_data(
+            tm.valores_liga(clave),
+            sorted(set(df['home_team']) | set(df['away_team'])))
+        if not vals:
+            raise RuntimeError(f"{clave}: Transfermarkt sin datos; A/B cancelado.")
+        mediana = float(np.median(list(vals.values())))
+        X_df = X_df.copy()
+        X_df['VAL_LOG_RATIO'] = [
+            np.log(max(vals.get(m[0], mediana), 1e-6) /
+                   max(vals.get(m[1], mediana), 1e-6))
+            for m in ds['meta']]
+        logger.info(f"[{clave}] A/B ratings: {len(vals)} equipos con valor de "
+                    f"plantilla (mediana €{mediana:.0f}M).")
+
+    topo = calcular_features_topologicas(ds)
+
+    # v75: mismo constructor de features que usa el backtest — ver
+    # `preparar_features_extra`, para que ambos no puedan divergir.
+    # v148 — LAS FEATURES EXTRA TAMBIÉN SON DEL MODELO, ASÍ QUE VAN CON SU MARCO.
+    #
+    # La v147 separó el CSV del entrenamiento y dejó escrito que «el modelo
+    # recibe exactamente lo que recibía». No era así: aquí se seguía pasando
+    # `df` —las dieciséis temporadas— y `features_extra_liga`, `features_imt`,
+    # `features_v26`, `features_ck` y el CDI son todas ACUMULATIVAS. Calculadas
+    # sobre 16 años en vez de sobre la ventana, salen con trece años de arrastre
+    # y no valen lo mismo, exactamente el mecanismo que la propia v147 midió y
+    # quiso impedir para `elo_diff` y `home_xg`.
+    #
+    # No llegó a desplegarse: el bot de reentrenamiento no ha corrido desde que
+    # la v147 entró, así que los modelos del repo son todos anteriores. Se
+    # corrige antes de que el primer pase lo fije.
+    X_df, cols_extra, _estados = preparar_features_extra(clave, df_modelo, ds, X_df,
+                                                       fechas.quantile(0.80))
+    estado_extra = _estados['extra']
+    estado_imt = _estados['imt']
+    estado_v26 = _estados['v26']
+    estado_ck = _estados['ck']
+    mapa_tz = _estados['mapa_tz']
+    imt_coef = _estados['imt_coef']
+    imt_df = _estados['imt_df']
+    medias_cuotas = {}
+
+    corte = fechas.quantile(0.80)
+    m_tr = (fechas < corte).values
+    m_va = ~m_tr
+    if cols_extra:
+        # cuotas ausentes -> media del TRAIN (misma imputación en inferencia);
+        # el resto de extras ausentes -> 0 (neutro)
+        for c in cols_extra:
+            if c in COLS_CUOTAS:
+                media = float(pd.to_numeric(X_df.loc[m_tr, c], errors='coerce').mean())
+                medias_cuotas[c] = round(media, 4)
+                X_df[c] = X_df[c].fillna(media)
+            else:
+                X_df[c] = X_df[c].fillna(0.0)
+    X_tr_n, X_va_n, escalador = fe.normalizar_features(X_df[m_tr], X_df[m_va])
+    X_tr = np.hstack([X_tr_n, topo[m_tr]])
+    X_va = np.hstack([X_va_n, topo[m_va]])
+
+    # v18: calibración configurable por liga (Serie A usa beta calibration).
+    # La clase se toma del módulo IMPORTADO para que el pickle guarde
+    # 'league_engine.ModeloBetaCalibrado' aunque este archivo corra como
+    # __main__ (si no, ClubEngine no podría deserializarlo).
+    if LEAGUES[clave].get('calibracion') == 'beta':
+        import league_engine as _le
+        modelo = _le.ModeloBetaCalibrado()
+        familia = 'beta'
+    else:
+        # v70 (Mejora D): familia elegida por liga en walk-forward
+        familia = familia_de_liga(clave)
+        modelo = construir_modelo_familia(
+            familia, n_base=len(fe.FEATURES_MODELO), n_total=X_tr.shape[1])
+    if familia not in ('ensemble', 'beta'):
+        logger.info(f"[{clave}] familia de modelo: {familia} (v70)")
+    modelo.fit(X_tr, y[m_tr])
+    proba = modelo.predict_proba(X_va)
+    if proba.shape[1] == 3 and list(getattr(modelo, 'classes_', [0, 1, 2])) != [0, 1, 2]:
+        # reordenar a [local, empate, visitante] si el estimador barajó clases
+        p = np.zeros_like(proba)
+        for i, k in enumerate(modelo.classes_):
+            p[:, int(k)] = proba[:, i]
+        proba = p / p.sum(axis=1, keepdims=True)
+    acc = accuracy_score(y[m_va], proba.argmax(axis=1))
+    ll = log_loss(y[m_va], proba, labels=[0, 1, 2])
+    base = accuracy_score(y[m_va], np.where(X_df[m_va]['DIFF_ELO'].values > 0, 0, 2))
+
+    # Línea base del MERCADO (cuotas de cierre reales): referencia honesta
+    acc_mercado = None
+    ids_val = [m[3] for m, keep in zip(ds['meta'], m_va) if keep]
+    odds = df.set_index('MATCH_ID')[['odd_home', 'odd_draw', 'odd_away']]
+    disponibles = odds.reindex(ids_val).dropna()
+    if len(disponibles) > 50:
+        pick = disponibles.values.argmin(axis=1)   # cuota mínima = favorito
+        reales = pd.Series(y[m_va], index=ids_val).loc[disponibles.index].values
+        acc_mercado = float((pick == reales).mean())
+
+    # v20/M3-M4: simulación de apuestas sobre la validación con cuotas de
+    # cierre reales — apuesta 1 u al pick del modelo si conf>70 % o EV>0.
+    # Se persisten las apuestas para el panel de ROI y el simulador de banca.
+    roi_sim = None
+    if len(disponibles) > 50:
+        fechas_val = pd.Series([f for f, keep in zip(fechas, m_tr) if not keep],
+                               index=ids_val)
+        proba_val = pd.DataFrame(proba, index=ids_val)
+        # v26 (§3.1): mismas apuestas valoradas también con el cierre de
+        # PINNACLE (la casa más eficiente) — el edge contra Pinnacle es la
+        # medida realista del CLV.
+        odds_pin = None
+        if {'odd_home_pin', 'odd_draw_pin', 'odd_away_pin'} <= set(df.columns):
+            odds_pin = df.set_index('MATCH_ID')[
+                ['odd_home_pin', 'odd_draw_pin', 'odd_away_pin']].reindex(ids_val)
+        apuestas = []
+        for mid in disponibles.index:
+            p = proba_val.loc[mid].values
+            k = int(p.argmax())
+            cuota = float(disponibles.loc[mid].values[k])
+            ev = cuota * float(p[k]) - 1.0
+            if p[k] <= 0.70 and ev <= 0:
+                continue
+            gano = int(k == int(pd.Series(y[m_va], index=ids_val).loc[mid]))
+            fila_bet = {'fecha': str(pd.Timestamp(fechas_val.loc[mid]).date()),
+                        'prob': round(float(p[k]), 4), 'cuota': round(cuota, 3),
+                        'ev': round(ev, 4), 'gano': gano}
+            if odds_pin is not None and mid in odds_pin.index:
+                cp = odds_pin.loc[mid].values[k]
+                if pd.notna(cp) and cp > 1:
+                    fila_bet['cuota_pin'] = round(float(cp), 3)
+            apuestas.append(fila_bet)
+        if apuestas:
+            ganancia = sum(a['gano'] * (a['cuota'] - 1) - (1 - a['gano']) for a in apuestas)
+            roi_sim = {'n_apuestas': len(apuestas),
+                       'roi_pct': round(100 * ganancia / len(apuestas), 2),
+                       'aciertos': int(sum(a['gano'] for a in apuestas))}
+            con_pin = [a for a in apuestas if 'cuota_pin' in a]
+            if len(con_pin) >= 30:
+                gan_pin = sum(a['gano'] * (a['cuota_pin'] - 1) - (1 - a['gano'])
+                              for a in con_pin)
+                roi_sim['roi_pct_pinnacle'] = round(100 * gan_pin / len(con_pin), 2)
+                roi_sim['n_con_pinnacle'] = len(con_pin)
+            with open(f'roi_bets_{clave}.json', 'w', encoding='utf-8') as f:
+                json.dump(sorted(apuestas, key=lambda a: a['fecha']), f)
+
+        # v44: backtest del mercado OVER/UNDER 2.5 (solo si hay cuotas O/U de
+        # cierre — formato 'main'). Regresores Poisson LOCALES entrenados con
+        # X_tr (mismas features ya calculadas); over2.5 = 1−P(≤2 goles) con el
+        # total ~ Poisson(λ_local+λ_visit). Apuesta al lado con EV>0. Valida si
+        # el mercado de goles es rentable — antes solo teníamos 1X2.
+        if {'odd_over25', 'odd_under25'} <= set(df.columns):
+            from sklearn.ensemble import HistGradientBoostingRegressor
+            from scipy.stats import poisson as _poisson
+            rl = HistGradientBoostingRegressor(loss='poisson', max_iter=250,
+                                               learning_rate=0.05).fit(X_tr, ds['goles'][m_tr][:, 0])
+            rv = HistGradientBoostingRegressor(loss='poisson', max_iter=250,
+                                               learning_rate=0.05).fit(X_tr, ds['goles'][m_tr][:, 1])
+            lam = np.clip(rl.predict(X_va), 0.15, 4) + np.clip(rv.predict(X_va), 0.15, 4)
+            p_over = 1.0 - _poisson.cdf(2, lam)         # P(total > 2.5)
+            ou_odds = df.set_index('MATCH_ID')[['odd_over25', 'odd_under25']].reindex(ids_val)
+            gtot = pd.Series(ds['goles'][m_va].sum(axis=1), index=ids_val)
+            ou_bets = []
+            for i, mid in enumerate(ids_val):
+                oo = ou_odds.loc[mid]
+                if pd.isna(oo['odd_over25']) or pd.isna(oo['odd_under25']):
+                    continue
+                po = float(p_over[i])
+                # elegir el lado con EV>0 usando su cuota de cierre
+                lado, prob, cuota = ('over', po, float(oo['odd_over25']))
+                if (1 - po) * float(oo['odd_under25']) > po * float(oo['odd_over25']):
+                    lado, prob, cuota = ('under', 1 - po, float(oo['odd_under25']))
+                ev = cuota * prob - 1.0
+                if ev <= 0:
+                    continue
+                real_over = int(gtot.loc[mid] > 2.5)
+                gano = int((lado == 'over') == bool(real_over))
+                ou_bets.append({'fecha': str(pd.Timestamp(fechas_val.loc[mid]).date()),
+                                'prob': round(prob, 4), 'cuota': round(cuota, 3),
+                                'ev': round(ev, 4), 'gano': gano, 'lado': lado})
+            if ou_bets:
+                gou = sum(a['gano'] * (a['cuota'] - 1) - (1 - a['gano']) for a in ou_bets)
+                logger.info(f"[{clave}] O/U 2.5 backtest: {len(ou_bets)} apuestas, "
+                            f"ROI {100 * gou / len(ou_bets):+.1f}%")
+                with open(f'roi_bets_ou_{clave}.json', 'w', encoding='utf-8') as f:
+                    json.dump(sorted(ou_bets, key=lambda a: a['fecha']), f)
+
+            # v45: backtest del HÁNDICAP ASIÁTICO en la línea de cierre real.
+            # Reparto de margen (home−away) por convolución de dos Poisson
+            # (marginales de arriba). Liquidación AH estándar con cuartos.
+            if {'ah_linea', 'odd_ah_home', 'odd_ah_away'} <= set(df.columns):
+                lam_h = np.clip(rl.predict(X_va), 0.15, 4)
+                lam_a = np.clip(rv.predict(X_va), 0.15, 4)
+                ah_cols = df.set_index('MATCH_ID')[
+                    ['ah_linea', 'odd_ah_home', 'odd_ah_away']].reindex(ids_val)
+                gd = pd.Series([g0 - g1 for g0, g1 in ds['goles'][m_va]], index=ids_val)
+                kk = np.arange(0, 11)
+                ah_bets = []
+                for i, mid in enumerate(ids_val):
+                    fila = ah_cols.loc[mid]
+                    linea, oh, oa = (fila['ah_linea'], fila['odd_ah_home'],
+                                     fila['odd_ah_away'])
+                    if pd.isna(linea) or pd.isna(oh) or pd.isna(oa) or oh <= 1 or oa <= 1:
+                        continue
+                    ph = _poisson.pmf(kk, lam_h[i]); pa = _poisson.pmf(kk, lam_a[i])
+                    # distribución del margen home−away
+                    pm = {}
+                    for a_ in kk:
+                        for b_ in kk:
+                            m_ = int(a_ - b_)
+                            pm[m_] = pm.get(m_, 0.0) + ph[a_] * pa[b_]
+                    # prob de que el LOCAL cubra la línea (>0.5 = cubre neto)
+                    p_home = sum(p for m_, p in pm.items()
+                                 if (m_ + linea) > 0.25) + 0.5 * sum(
+                                 p for m_, p in pm.items() if abs(m_ + linea) <= 0.25)
+                    lado, prob, cuota = ('home', p_home, float(oh))
+                    if (1 - p_home) * float(oa) > p_home * float(oh):
+                        lado, prob, cuota = ('away', 1 - p_home, float(oa))
+                    ev = cuota * prob - 1.0
+                    if ev <= 0:
+                        continue
+                    # liquidación real del margen con la línea de cierre
+                    adj = (gd.loc[mid] + linea) if lado == 'home' else (-gd.loc[mid] - linea)
+                    pnl = _liquidar_ah(adj, cuota)
+                    ah_bets.append({'fecha': str(pd.Timestamp(fechas_val.loc[mid]).date()),
+                                    'prob': round(float(prob), 4), 'cuota': round(cuota, 3),
+                                    'ev': round(float(ev), 4),
+                                    'gano': int(pnl > 0), 'pnl': round(pnl, 3),
+                                    'lado': lado, 'linea': float(linea)})
+                if ah_bets:
+                    gah = sum(a['pnl'] for a in ah_bets)
+                    logger.info(f"[{clave}] Hándicap asiático backtest: "
+                                f"{len(ah_bets)} apuestas, ROI {100*gah/len(ah_bets):+.1f}%")
+                    with open(f'roi_bets_ah_{clave}.json', 'w', encoding='utf-8') as f:
+                        json.dump(sorted(ah_bets, key=lambda a: a['fecha']), f)
+
+    # ------------------------------------------------------------------
+    # v23 (MESM): meta-ensemble de superación de mercado. Protocolo SIN
+    # fuga: un modelo con la MISMA config de la liga se entrena con el
+    # primer 75 % del train y sus probs out-of-sample (25 % final) ajustan
+    # el meta con pesos asimétricos; se valida aplicándolo a las probs del
+    # modelo de PRODUCCIÓN sobre la validación (solo filas con cuotas).
+    # El artefacto mesm.joblib solo se escribe si supera la regla de oro.
+    # ------------------------------------------------------------------
+    mesm_info = None
+    try:
+        import meta_ensemble as me
+        ids_all = [m[3] for m in ds['meta']]
+        mkt_all = me.probs_mercado(odds.reindex(ids_all))
+        idx_tr = np.where(m_tr)[0]
+        corte75 = int(len(idx_tr) * 0.75)
+        idx_fit, idx_meta = idx_tr[:corte75], idx_tr[corte75:]
+        ok_meta = np.isfinite(mkt_all[idx_meta]).all(axis=1)
+        idx_va = np.where(m_va)[0]
+        ok_va = np.isfinite(mkt_all[idx_va]).all(axis=1)
+        if ok_meta.sum() >= 100 and ok_va.sum() >= 50:
+            Xf_n, Xm_n, _ = fe.normalizar_features(X_df.iloc[idx_fit],
+                                                   X_df.iloc[idx_meta])
+            if LEAGUES[clave].get('calibracion') == 'beta':
+                import league_engine as _le
+                base75 = _le.ModeloBetaCalibrado()
+            else:
+                base75 = construir_ensemble()
+            base75.fit(np.hstack([Xf_n, topo[idx_fit]]), y[idx_fit])
+
+            def _probs3(mod, Xn, t):
+                pr = mod.predict_proba(np.hstack([Xn, t]))
+                p = np.zeros((len(Xn), 3))
+                for k_idx, k in enumerate(mod.classes_):
+                    p[:, int(k)] = pr[:, k_idx]
+                return p / p.sum(axis=1, keepdims=True)
+
+            p_meta = _probs3(base75, Xm_n[ok_meta], topo[idx_meta][ok_meta])
+            meta = me.MetaEnsemble().fit(y[idx_meta][ok_meta], p_meta,
+                                         mkt_all[idx_meta][ok_meta])
+            # validación con las probs de PRODUCCIÓN (mismas filas con cuotas)
+            p_prod = proba[ok_va]
+            p_mesm = meta.predict_proba(p_prod, mkt_all[idx_va][ok_va])
+            y_sub = y[m_va][ok_va]
+            acc_sub = accuracy_score(y_sub, p_prod.argmax(axis=1))
+            ll_sub = log_loss(y_sub, p_prod, labels=[0, 1, 2])
+            acc_mesm = accuracy_score(y_sub, p_mesm.argmax(axis=1))
+            ll_mesm = log_loss(y_sub, p_mesm, labels=[0, 1, 2])
+            golden = bool((acc_mesm - acc_sub >= 0.003 and ll_mesm - ll_sub <= 0.01)
+                          or (acc_mesm > acc_sub and ll_mesm < ll_sub))
+            mesm_info = {
+                'n_val_con_cuotas': int(ok_va.sum()),
+                'acc_prod': round(float(acc_sub), 4),
+                'acc_mesm': round(float(acc_mesm), 4),
+                'll_prod': round(float(ll_sub), 4),
+                'll_mesm': round(float(ll_mesm), 4),
+                'adoptado': golden,
+            }
+            logger.info(f"[{clave}] MESM: prod {acc_sub:.3f}/{ll_sub:.3f} → "
+                        f"mesm {acc_mesm:.3f}/{ll_mesm:.3f} · "
+                        f"{'ADOPTADO' if golden else 'descartado'}")
+            if golden and not con_ratings:
+                carpeta_mesm = os.path.join('modelos', clave)
+                os.makedirs(carpeta_mesm, exist_ok=True)
+                joblib.dump(meta, os.path.join(carpeta_mesm, 'mesm.joblib'),
+                            compress=3)
+            elif not golden:
+                ruta_vieja = os.path.join('modelos', clave, 'mesm.joblib')
+                if os.path.exists(ruta_vieja) and not con_ratings:
+                    os.remove(ruta_vieja)
+    except Exception as e:
+        logger.warning(f"[{clave}] MESM omitido: {type(e).__name__}: {e}")
+
+    if con_ratings:   # A/B experimental: solo métricas, sin artefactos
+        resultado = {
+            'liga': LEAGUES[clave]['nombre'], 'experimento': 'ratings_transfermarkt',
+            'precision_validacion': round(float(acc), 4),
+            'precision_linea_base_elo': round(float(base), 4),
+            'precision_mercado_cuotas': round(acc_mercado, 4) if acc_mercado else None,
+            'log_loss_validacion': round(float(ll), 4),
+        }
+        logger.info(f"[{clave}] A/B RATINGS: acc={acc:.3f} logloss={ll:.3f} "
+                    f"(sin guardar artefactos).")
+        return resultado
+
+    reg_l = HistGradientBoostingRegressor(loss='poisson', max_iter=300,
+                                          learning_rate=0.06, max_depth=6, random_state=42)
+    reg_v = HistGradientBoostingRegressor(loss='poisson', max_iter=300,
+                                          learning_rate=0.06, max_depth=6, random_state=42)
+    reg_l.fit(X_tr, ds['goles'][m_tr][:, 0])
+    reg_v.fit(X_tr, ds['goles'][m_tr][:, 1])
+
+    carpeta = os.path.join('modelos', clave)
+    os.makedirs(carpeta, exist_ok=True)
+    # v151 — EL MODELO SE GUARDA SIN COMPRIMIR, Y NO CUESTA DESCARGA.
+    #
+    # `modelo.joblib` es el **96 %** del coste de construir un `ClubEngine`
+    # (medido sobre premier, laliga y argentina: 7,52 s de 7,80). El escalador
+    # es 0,00 s y los dos regresores un 2 % cada uno — por eso NO se cargan de
+    # forma perezosa: ahorraría dos segundos de cincuenta y añadiría un camino
+    # de código que puede fallar.
+    #
+    # Comparación justa, reserializando el MISMO objeto en la misma máquina
+    # para que lo único distinto sea la compresión (4 modelos, 3 cargas cada
+    # uno, se queda la mejor):
+    #
+    #     zlib-3 (antes)   carga 2,68 s   12,0 MB en disco   11,9 MB en tar.gz
+    #     sin comprimir    carga 2,07 s   32,8 MB en disco   11,2 MB en tar.gz
+    #                      = 1,29x más rápido
+    #
+    # La clave está en la última columna: desde la v148 el modelo viaja al
+    # contenedor **dentro de un `.tar.gz`**, así que ya iba comprimido por
+    # fuera. Comprimirlo también por dentro no ahorraba descarga —de hecho el
+    # tar sale algo MÁS pequeño sin la doble compresión— y se pagaba `zlib` en
+    # cada arranque.
+    #
+    # El precio es disco en el contenedor: 2,7x. Con ~20 competiciones bajadas
+    # por barrido son ~680 MB en vez de ~250. Se acepta; lo que no se acepta es
+    # pagar CPU en cada arranque por una compresión que la capa de transporte
+    # ya estaba haciendo.
+    #
+    # `joblib.load` lee los dos formatos, así que los modelos comprimidos que
+    # ya están publicados siguen abriendo mientras el bot no los reemplace.
+    joblib.dump(modelo, os.path.join(carpeta, 'modelo.joblib'), compress=0)
+    joblib.dump(escalador, os.path.join(carpeta, 'escalador.joblib'), compress=3)
+    joblib.dump(reg_l, os.path.join(carpeta, 'reg_local.joblib'), compress=3)
+    joblib.dump(reg_v, os.path.join(carpeta, 'reg_visit.joblib'), compress=3)
+
+    # Estado por equipo (mismas claves que el Mundial => paridad de features)
+    estado = ds['estado']
+    # v148 — EL CATÁLOGO SALE DEL MARCO QUE EL ESTADO CONOCE, NO DEL CSV.
+    #
+    # Esto leía `df` (las dieciséis temporadas) mientras `estado` venía de
+    # `df_modelo` (la ventana). Todo equipo que jugó en 2011 y no en la ventana
+    # entraba en el catálogo con lo que devuelve un `defaultdict`: ELO 1500,
+    # ventanas vacías, PERF10 vacío. En la Premier son 16 clubes fantasma de 41.
+    #
+    # Y no se quedaban quietos: `name_mapper` los ve, así que un Arsenal-Blackburn
+    # de copa habría salido con una probabilidad calculada sobre un equipo del que
+    # el modelo no sabe nada. Inventar un número es peor que dejar el hueco, que
+    # es la regla de la casa desde la v145.
+    equipos_liga = sorted(set(df_modelo['home_team']) | set(df_modelo['away_team']))
+    equipos = {}
+    for t in equipos_liga:
+        s = estado.stats_equipo(t)
+        s['PERF10'] = [list(map(float, v)) for v in estado.perf10[t]]
+        equipos[t] = s
+    h2h = {}
+    for i, a in enumerate(equipos_liga):
+        for b in equipos_liga[i + 1:]:
+            bal = estado.h2h_balance(a, b)
+            if bal != 0.0:
+                h2h[f"{a}|{b}"] = round(bal, 3)
+    with open(f'team_stats_{clave}.json', 'w', encoding='utf-8') as f:
+        json.dump({'generado': pd.Timestamp.today().strftime('%Y-%m-%d'),
+                   'ultima_fecha_historico': str(df['date'].max().date()),
+                   'equipos': equipos, 'h2h': h2h,
+                   'estado_extra': estado_extra,
+                   'estado_imt': estado_imt,
+                   'estado_v26': estado_v26,
+                   'estado_ck': estado_ck,
+                   'mapa_tz': mapa_tz,
+                   'imt_coef': imt_coef}, f, ensure_ascii=False)
+
+    metadata = {
+        'liga': LEAGUES[clave]['nombre'],
+        # v153 — la firma del histórico con el que se entrenó ESTE modelo. Es
+        # lo que permite saltarse el reentrenamiento la próxima madrugada si la
+        # liga no ha jugado. Viaja dentro de los pesos, así que no hace falta un
+        # fichero de control aparte que pudiera desincronizarse.
+        'firma_datos': _firma_datos(df),
+        'version_entrenamiento': VERSION_ENTRENAMIENTO,
+        'reentrenado': True,
+        'n_train': int(m_tr.sum()), 'n_validacion': int(m_va.sum()),
+        'fecha_corte': str(pd.Timestamp(corte).date()),
+        'precision_validacion': round(float(acc), 4),
+        'precision_linea_base_elo': round(float(base), 4),
+        'precision_mercado_cuotas': round(acc_mercado, 4) if acc_mercado else None,
+        'log_loss_validacion': round(float(ll), 4),
+        'n_equipos': len(equipos_liga),
+        # v70 (Mejora D): qué familia de modelo se entrenó, para que la UI lo
+        # muestre y para poder auditar por qué una liga rinde como rinde
+        'familia_modelo': familia,
+        'features_extra_cols': cols_extra,
+        'medias_cuotas': medias_cuotas,
+        'roi_sim': roi_sim,
+        'mesm': mesm_info,
+        # v24: α,β,γ,δ del índice lineal IMT (train-only, interpretabilidad)
+        'imt': (mt.optimizar_coeficientes(df, imt_df, hasta_fecha=corte)
+                if estado_imt is not None else None),
+    }
+    with open(os.path.join(carpeta, 'metadata.json'), 'w', encoding='utf-8') as f:
+        json.dump(metadata, f, ensure_ascii=False, indent=2)
+    logger.info(f"[{clave}] acc={acc:.3f} (base ELO {base:.3f}"
+                + (f", mercado {acc_mercado:.3f}" if acc_mercado else "")
+                + f") logloss={ll:.3f} — artefactos en {carpeta}/")
+    return metadata
+
+
+def _props_rematadores(home: str, away: str, sh_h: float, sh_a: float,
+                       sot_h: float, sot_a: float, clave_liga: str = None,
+                       max_jug: int = 4) -> list:
+    """
+    v71 — props de remates POR JUGADOR para clubes.
+
+    Por qué
+    -------
+    Hasta v70 la plantilla de clubes solo ofrecía totales de equipo y de
+    partido («Más de 9.5 remates a puerta»), y esos mercados **las casas no los
+    listan**: lo que sí publican son props de JUGADOR («X remates o más de
+    Fulano»). El motor de selecciones ya tenía props por jugador desde v57;
+    esto los trae a las ligas de clubes, que es donde se usan.
+
+    Cómo
+    ----
+    Los remates por jugador NO se estiman desde el xG: se leen OBSERVADOS del
+    bloque `rosters` de ESPN vía `remates_jugadores.remates_equipo()`, que da
+    remates y remates a puerta por partido de los últimos encuentros. La cuota
+    de cada jugador sobre el volumen de su equipo se reparte con esas medias
+    observadas, y el volumen del equipo lo pone el modelo (sh_h/sot_h). Así el
+    reparto es empírico y el nivel, del modelo.
+
+    P(remata ≥1) = 1 − e^(−λ) con λ = remates esperados del jugador (Poisson).
+    Se publican además las líneas .5 que ofrecen las casas (1.5, 2.5).
+
+    Si ESPN no tiene datos del equipo, no se inventa nada: se devuelve lista
+    vacía y la sección se queda con los totales, como hasta ahora.
+    """
+    salida = []
+    try:
+        import remates_jugadores as rj
+    except Exception:
+        return salida
+
+    liga_espn = None
+    if clave_liga:
+        liga_espn = LEAGUES.get(clave_liga, {}).get('espn_liga')
+    if not liga_espn:
+        liga_espn = _ESPN_POR_LIGA.get(clave_liga or '')
+    if not liga_espn:
+        return salida
+
+    def _pct(x):
+        return round(float(x) * 100, 1)
+
+    for equipo, nombre_eq, shots_eq, sot_eq, pref in (
+            (home, home, sh_h, sot_h, 'h'), (away, away, sh_a, sot_a, 'a')):
+        try:
+            nombre_espn = rj.resolver_equipo(liga_espn, equipo)
+            if not nombre_espn:
+                continue
+            tabla = rj.remates_equipo(liga_espn, nombre_espn)
+        except Exception:
+            continue
+        if tabla is None or tabla.empty:
+            continue
+        # solo jugadores con presencia real y con remates observados
+        t = tabla[(tabla.get('partidos', 0) >= 2) & (tabla.get('remates', 0) > 0)]
+        if t.empty:
+            continue
+        # v99 — EL DENOMINADOR ERAN SÓLO LOS CUATRO PUBLICADOS, Y ESO DUPLICABA
+        # LOS REMATES DE CADA UNO.
+        #
+        # La cuota de cada jugador se repartía sobre la suma del TOP-4
+        # (`t.head(max_jug)`) y luego se multiplicaba por 0,85 «para dejar
+        # margen al resto de la plantilla». Pero si el denominador ya son sólo
+        # cuatro, esas cuatro cuotas suman 1 por construcción y el 0,85 no deja
+        # margen a nadie: le da al top-4 el 85 % de los remates del equipo.
+        #
+        # Medido en Atlas (Leagues Cup, 39 jugadores con datos): el top-4 suma
+        # **7,83 remates/partido de los 18,25** observados del equipo, o sea el
+        # **42,9 %** — y el reparto les asignaba el **85 %**. Consecuencia
+        # visible: «Diego González, 3+ remates: 75,6 %», que para un jugador
+        # real no se sostiene.
+        #
+        # El denominador correcto es la suma de TODOS los que tienen datos.
+        # Se conserva un 0,95 por los minutos que reparten suplentes sin
+        # historial, y el reparto pasa a ser el observado.
+        peso_total = float(t['remates_pp'].sum()) or 1.0
+        t = t.head(max_jug)
+        for i, r in enumerate(t.itertuples(index=False), start=1):
+            cuota = float(r.remates_pp) / peso_total
+            lam_sh = float(min(6.0, shots_eq * cuota * 0.95))
+            punteria = float(r.punteria) if pd.notna(getattr(r, 'punteria', None)) else 0.35
+            lam_sot = float(min(3.5, lam_sh * max(0.15, min(punteria, 0.75))))
+            if lam_sh < 0.2:
+                continue
+            base = f'shooter_{pref}{i}'
+            etq = f'{r.jugador} ({nombre_eq})'
+            salida.extend([
+                campo_prop(f'{base}_shots', f'{etq} — remates esperados',
+                           round(lam_sh, 2), 'media'),
+                campo_prop(f'{base}_s05', f'{etq} — 1+ remate', _pct(1 - np.exp(-lam_sh))),
+                campo_prop(f'{base}_s15', f'{etq} — 2+ remates',
+                           _pct(1 - np.exp(-lam_sh) * (1 + lam_sh))),
+                campo_prop(f'{base}_s25', f'{etq} — 3+ remates',
+                           _pct(1 - np.exp(-lam_sh) * (1 + lam_sh + lam_sh ** 2 / 2))),
+                campo_prop(f'{base}_sot05', f'{etq} — 1+ remate a puerta',
+                           _pct(1 - np.exp(-lam_sot))),
+                campo_prop(f'{base}_sot15', f'{etq} — 2+ remates a puerta',
+                           _pct(1 - np.exp(-lam_sot) * (1 + lam_sot))),
+            ])
+    return salida
+
+
+def campo_prop(id_, etiqueta, valor, tipo='pct'):
+    return {'id': id_, 'etiqueta': etiqueta, 'valor': valor, 'tipo': tipo}
+
+
+# nombre ESPN por liga para las que no lo llevan en config (formato 'main'/'new')
+#
+# v74: completado. Faltaban 18 competiciones desplegadas, y sin este mapeo no
+# se podía ni medir su retraso ni refrescarlas a diario desde ESPN.
+# v99 — ESTE MAPA SE COMPLETA SOLO CON `fixtures_espn`.
+#
+# `_props_rematadores` necesita el slug de ESPN para leer los remates POR
+# JUGADOR del bloque `rosters`; si falta, devuelve lista vacía y la ficha se
+# queda sólo con las medias de EQUIPO — sin decir por qué. Pasaba en tres
+# competiciones disponibles (`rus_premier`, `gre_super_league` y la
+# `leagues_cup` recién añadida), y las tres SÍ tenían su código en
+# `fixtures_espn.ESPN_CODIGOS`: eran dos listas del mismo dato mantenidas por
+# separado, que es lo que garantiza que se desincronicen.
+#
+# Ahora esta tabla es la excepción (nombres que difieren) y el resto se hereda,
+# así que añadir una liga al catálogo le da props de jugador sin tocar nada.
+_ESPN_POR_LIGA = {
+    'liga_mx': 'mex.1', 'brasil': 'bra.1', 'mls': 'usa.1', 'premier': 'eng.1',
+    'laliga': 'esp.1', 'serie_a': 'ita.1', 'bundesliga': 'ger.1',
+    'ligue_1': 'fra.1', 'argentina': 'arg.1', 'eredivisie': 'ned.1',
+    'portugal': 'por.1', 'eng_championship': 'eng.2', 'esp_hypermotion': 'esp.2',
+    'ita_serie_b': 'ita.2', 'ger_bundesliga2': 'ger.2', 'fra_ligue2': 'fra.2',
+    # v74
+    'noruega': 'nor.1', 'suecia': 'swe.1', 'finlandia': 'fin.1',
+    'rumania': 'rou.1', 'irlanda': 'irl.1', 'turquia': 'tur.1',
+    'dinamarca': 'den.1', 'china': 'chn.1', 'polonia': 'pol.1',
+    'primeira': 'por.1', 'champions': 'uefa.champions',
+    'eng_league_one': 'eng.3', 'eng_league_two': 'eng.4',
+    'eng_national': 'eng.5', 'sco_premiership': 'sco.1',
+    'sco_championship': 'sco.2', 'bel_pro_league': 'bel.1', 'jpn_j1': 'jpn.1',
+}
+
+# Se hereda de `fixtures_espn` todo lo que no esté escrito arriba (ver la
+# nota de la v99). `setdefault` para que un nombre explícito mande sobre el
+# heredado, y en try/except porque un fallo aquí no puede tumbar el módulo.
+try:
+    import fixtures_espn as _fe_props
+    for _k, _v in _fe_props.ESPN_CODIGOS.items():
+        _ESPN_POR_LIGA.setdefault(_k, _v)
+except Exception:
+    pass
+
+
+# ---------------------------------------------------------------------------
+# Motor de inferencia por liga
+# ---------------------------------------------------------------------------
+# v148 — `odds_actuales.json` SE LEE UNA VEZ, NO UNA POR PREDICCIÓN.
+#
+# `ClubEngine._cuotas_partido` abría el fichero y lo parseaba ENTERO en cada
+# llamada, y `predecir` la llama hasta dos veces (MESM y blend de mercado). En
+# un barrido con 326 fixtures eso son ~650 aperturas del mismo fichero para
+# obtener siempre lo mismo. Cuando el fichero no existe —que es el caso en
+# local y en cualquier clon nuevo— son 650 FileNotFoundError construidas y
+# tragadas por un `except`, que no es gratis.
+#
+# El memo mira la fecha de modificación, así que si el fichero cambia a mitad
+# de la sesión (lo reescribe el barrido de cuotas) la siguiente lectura lo ve.
+# Es un memo, no una foto.
+_CUOTAS_ACT = {'mtime': None, 'datos': {}}
+_CUOTAS_ACT_LOCK = threading.Lock()
+
+
+def _cuotas_actuales() -> Dict:
+    """El bloque `cuotas` de odds_actuales.json, releído sólo si cambió."""
+    try:
+        mtime = os.path.getmtime('odds_actuales.json')
+    except OSError:
+        return {}
+    with _CUOTAS_ACT_LOCK:
+        if _CUOTAS_ACT['mtime'] == mtime:
+            return _CUOTAS_ACT['datos']
+        try:
+            with open('odds_actuales.json', encoding='utf-8') as f:
+                datos = json.load(f).get('cuotas', {}) or {}
+        except Exception:
+            datos = {}
+        _CUOTAS_ACT['mtime'] = mtime
+        _CUOTAS_ACT['datos'] = datos
+        return datos
+
+
+class ClubEngine:
+    """Predicción y plantilla extendida para una liga de clubes."""
+
+    def __init__(self, clave: str):
+        from prediction_api import PredictionEngine  # reutiliza MC/timeline
+        self._pe = PredictionEngine  # solo métodos estáticos
+        self.clave = clave
+        self.listo, self.error = False, None
+        try:
+            carpeta = os.path.join('modelos', clave)
+            # v148 — si la carpeta no está en disco, se baja del Release.
+            #
+            # Los pesos entrenados dejan de viajar en la historia de git (650 MB
+            # por commit del bot, 15 GB de `.git`) y pasan a ser assets de un
+            # Release. Ver `modelos_remotos.py`: en un clon de desarrollo, o en
+            # un contenedor que ya la bajó, la carpeta está y esto no toca la
+            # red. Si no hay nada publicado todavía, devuelve False sin ruido y
+            # el `except` de abajo informa del error de siempre.
+            try:
+                import modelos_remotos
+                modelos_remotos.asegurar(clave)
+            except Exception as _e:
+                logger.debug(f"[{clave}] modelos remotos no disponibles: {_e}")
+            # v87 — se carga por `modelos_portables`, que repara los boosters
+            # serializados en otra plataforma. El workflow entrena en el runner
+            # de Linux y esos `modelo.joblib` no abrían en Windows («input
+            # stream corrupted»): 43 de 43 ligas reentrenadas. La reparación
+            # recorta la sección «Model» del buffer —que sí es portable— y la
+            # carga con `Booster.load_model`. Medido: 43 de 43 recuperadas, y
+            # sobre modelos que ya abrían las predicciones salen idénticas
+            # (diferencia máxima 1,7e-16, el épsilon de la máquina).
+            # En Linux no cambia nada: el joblib abre a la primera y no se
+            # llega a tocar el camino de reparación.
+            import modelos_portables as _mp
+            self.modelo = _mp.cargar(os.path.join(carpeta, 'modelo.joblib'))
+            self.escalador = joblib.load(os.path.join(carpeta, 'escalador.joblib'))
+            self.reg_l = joblib.load(os.path.join(carpeta, 'reg_local.joblib'))
+            self.reg_v = joblib.load(os.path.join(carpeta, 'reg_visit.joblib'))
+            with open(os.path.join(carpeta, 'metadata.json'), 'r', encoding='utf-8') as f:
+                self.metadata = json.load(f)
+            # v23: meta-ensemble de superación de mercado (si fue adoptado)
+            self.mesm = None
+            ruta_mesm = os.path.join(carpeta, 'mesm.joblib')
+            if os.path.exists(ruta_mesm):
+                try:
+                    import meta_ensemble  # noqa: F401 — ruta de clase del pickle
+                    self.mesm = _mp.cargar(ruta_mesm)
+                except Exception as e:
+                    logger.warning(f"[{clave}] mesm.joblib ilegible: {e}")
+            # v79 — n_jobs=1 en inferencia. Los modelos se entrenaron con
+            # `n_jobs=-1` (correcto para miles de filas), pero esa opción viaja
+            # dentro del pickle y en producción se predice UNA fila por
+            # partido: repartir 200 árboles entre todos los núcleos costaba
+            # 0,12 s por predicción en pura coordinación de procesos. Medido en
+            # el perfil del barrido: 44,3 s de 112 s. Las predicciones no
+            # cambian, solo se calculan sin montar la maquinaria de reparto.
+            try:
+                import inferencia_rapida
+                inferencia_rapida.preparar(self.modelo, self.reg_l,
+                                           self.reg_v, self.mesm)
+            except Exception as e:
+                logger.debug(f"[{clave}] inferencia_rapida no aplicada: {e}")
+            with open(f'team_stats_{clave}.json', 'r', encoding='utf-8') as f:
+                ts = json.load(f)
+            self.stats = ts['equipos']
+            self.h2h = ts.get('h2h', {})
+            self.estado_extra = ts.get('estado_extra')
+            self.estado_imt = ts.get('estado_imt')   # v24 (IMT)
+            self.imt_coef = ts.get('imt_coef')       # v24 (índice compuesto)
+            self.estado_v26 = ts.get('estado_v26')   # v26 (ortogonales)
+            self.estado_ck = ts.get('estado_ck')     # v59 (territorial)
+            self.mapa_tz = ts.get('mapa_tz')         # v35 (CDI: club→huso)
+            self.fecha_estado = ts.get('ultima_fecha_historico', '?')
+            with open('calibracion_statsbomb.json', 'r', encoding='utf-8') as f:
+                self.calibracion = json.load(f)
+            self.equipos = sorted(self.stats.keys())
+            self.listo = True
+        except Exception as e:
+            self.error = f"{type(e).__name__}: {e}"
+
+    def _h2h(self, home, away):
+        if f"{home}|{away}" in self.h2h:
+            return float(self.h2h[f"{home}|{away}"])
+        if f"{away}|{home}" in self.h2h:
+            return -float(self.h2h[f"{away}|{home}"])
+        return 0.0
+
+    def _cuotas_partido(self, home: str, away: str) -> Dict:
+        """Probabilidades implícitas del partido desde odds_actuales.json."""
+        cuotas = _cuotas_actuales()
+        if not cuotas:
+            return {}
+        sufijo = f"_{home.replace(' ', '-')}_{away.replace(' ', '-')}"
+        for mid, o in cuotas.items():
+            if mid.endswith(sufijo) and o.get('odd_home'):
+                inv = np.array([1 / o['odd_home'], 1 / o['odd_draw'], 1 / o['odd_away']])
+                imp = inv / inv.sum()
+                return {'PROB_IMP_H': float(imp[0]), 'PROB_IMP_D': float(imp[1]),
+                        'PROB_IMP_A': float(imp[2]), 'OVERROUND': float(inv.sum() - 1)}
+        return {}
+
+    # Segundos que la ficha está dispuesta a esperar por el tablón de cuotas.
+    PRESUPUESTO_MERCADO_S = float(os.environ.get('PRESUPUESTO_MERCADO_S', '6'))
+
+    def _tablon_con_presupuesto(self, home: str, away: str) -> Optional[Dict]:
+        """`cuotas_multi.cuotas_partido` con tope de tiempo (ver `_mercado_ficha`)."""
+        import threading
+        import cuotas_multi as _cm
+
+        caja: Dict[str, object] = {}
+
+        def _trabajo():
+            try:
+                caja['res'] = _cm.cuotas_partido('futbol', home, away)
+            except Exception as e:
+                caja['err'] = e
+
+        h = threading.Thread(target=_trabajo, daemon=True)
+        h.start()
+        h.join(self.PRESUPUESTO_MERCADO_S)
+        if h.is_alive():
+            logger.debug(f'[{self.clave}] tablón de cuotas por encima del '
+                         f'presupuesto; la ficha sigue sin ancla de mercado')
+            return None
+        return caja.get('res')
+
+    def _mercado_ficha(self, home: str, away: str) -> Dict[str, float]:
+        """
+        v87 — Probabilidad JUSTA del mercado para la ficha, de TODAS las fuentes.
+
+        `_cuotas_partido` sólo lee `odds_actuales.json`, que es el volcado de
+        The Odds API y hoy trae 4 partidos. `cuotas_multi.cuotas_partido`
+        consulta además Pinnacle, Playdoit y Bovada, y está cacheado en disco
+        con TTL de 30 min — es de donde ya salen los picks.
+
+        Ésa era la incoherencia: los picks se anclan al mercado desde la v75 y
+        la ficha no, aunque las cuotas estén ahí. En Puebla vs Chivas la ficha
+        decía Puebla 50,0 % mientras Pinnacle, devigado, daba Puebla 19,6 % y
+        Chivas 58,2 %.
+
+        Se prefiere Pinnacle (precio sharp) y, si no está, la media del resto.
+        Devuelve {} si no hay nada: nunca inventa un ancla.
+        """
+        # 1) lo barato primero: el volcado local, sin red
+        imp = self._cuotas_partido(home, away)
+        if imp:
+            return {'home': imp['PROB_IMP_H'], 'draw': imp['PROB_IMP_D'],
+                    'away': imp['PROB_IMP_A']}
+        # 2) el tablón multi-casa. Está cacheado por DEPORTE (30 min, memoria y
+        # disco), así que en caliente esto no toca la red. En frío sí, y los
+        # timeouts de `cuotas_multi._get` llegan a 40 s con 3 intentos: una
+        # ficha bloqueada dos minutos es peor que una ficha sin anclar. Se le
+        # pone presupuesto: si no vuelve a tiempo se sigue sin mercado y el
+        # hilo termina en segundo plano dejando el tablón caliente, así que el
+        # siguiente render sí lo aprovecha.
+        try:
+            res = self._tablon_con_presupuesto(home, away)
+            if not res:
+                return {}
+            import cuotas_multi as _cm
+            pin = res.get('pinnacle') or {}
+            cuotas = {k: v for k, v in pin.items() if v and v > 1}
+            if len(cuotas) < 3:
+                casas = res.get('casas') or {}
+                acum: Dict[str, list] = {}
+                for cu in casas.values():
+                    for k, v in (cu or {}).items():
+                        if v and v > 1:
+                            acum.setdefault(k, []).append(float(v))
+                cuotas = {k: sum(v) / len(v) for k, v in acum.items()
+                          if len(v) and k in ('home', 'draw', 'away')}
+            if len(cuotas) >= 3:
+                justa = _cm.devig(cuotas, metodo='potencia')
+                if len(justa) >= 3:
+                    return {k: float(justa[k]) for k in ('home', 'draw', 'away')}
+        except Exception as e:
+            logger.debug(f'[{self.clave}] mercado de ficha no disponible: {e}')
+        return {}
+
+    def _vector_extra(self, home: str, away: str) -> np.ndarray:
+        """Reproduce en inferencia las features extra v17 desde el estado
+        guardado en team_stats (y cuotas vigentes si las hay)."""
+        cols = self.metadata.get('features_extra_cols', [])
+        ee = self.estado_extra or {'equipos': {}, 'parejas': {}}
+        eq = ee.get('equipos', {})
+        eh, ea = eq.get(home, {}), eq.get(away, {})
+        hoy = pd.Timestamp.today().normalize()
+
+        def descanso(e):
+            f = e.get('ultima_fecha')
+            return min((hoy - pd.Timestamp(f)).days, 21) if f else 21
+
+        par = tuple(sorted((home, away)))
+        gd3 = float(ee.get('parejas', {}).get(f'{par[0]}|{par[1]}', 0.0))
+        gd3 = gd3 if par[0] == home else -gd3
+        valores = {
+            'H2H_GD3': float(np.clip(gd3, -3, 3)) / 3.0,
+            'DIFF_DESCANSO': (descanso(eh) - descanso(ea)) / 21.0,
+            'DIFF_RACHA_V': (eh.get('racha_v', 0) - ea.get('racha_v', 0)) / 5.0,
+            'DIFF_SIN_PERDER': (eh.get('racha_sp', 0) - ea.get('racha_sp', 0)) / 10.0,
+            'DIFF_PPG': (eh.get('ppg', 1.3) - ea.get('ppg', 1.3)) / 3.0,
+            'DIFF_POSICION': (ea.get('pos', 10) - eh.get('pos', 10)) / 20.0,
+        }
+        # cuotas: reales del snapshot vigente o medias del train (imputación
+        # idéntica a la del entrenamiento)
+        reales = self._cuotas_partido(home, away)
+        medias = self.metadata.get('medias_cuotas', {})
+        for c in COLS_CUOTAS:
+            valores[c] = reales.get(c, medias.get(c, 0.0))
+        # features MX (v19): geografía + calendario, computables al vuelo
+        if any(c in cols for c in COLS_MX):
+            valores.update(_fila_mx(home, away, hoy))
+        # IMT (v24): componentes o índice compuesto desde el estado guardado
+        if any(c in cols for c in mt.COLS_IMT + mt.COLS_IMT_C):
+            v_imt = mt.vector_imt(self.estado_imt, home, away, hoy)
+            valores.update(v_imt)
+            if 'IMT_DIFF' in cols:
+                valores['IMT_DIFF'] = mt.valor_compuesto(v_imt, self.imt_coef or {})
+        # MLS (v25): geografía continental + clima extremo (forecast memoizado)
+        if any(c in cols for c in mls_features.COLS_MLS):
+            valores.update(mls_features.fila_inferencia(home, away))
+        # v26: entropía/volatilidad, derivadas ELO y urgencia desde el estado
+        if any(c in cols for c in f26.COLS_V26):
+            valores.update(f26.vector_v26(self.estado_v26, home, away))
+        if any(c in cols for c in f59.COLS_CK):
+            valores.update(f59.vector_ck(getattr(self, 'estado_ck', None),
+                                         home, away))
+        # v35: CDI del partido (huso de la sede del local − huso del visitante)
+        if any(c in cols for c in cdi_futbol.COLS_CDI):
+            valores.update(cdi_futbol.vector_cdi(self.mapa_tz, home, away))
+        return np.array([[valores[c] for c in cols]])
+
+    def predecir(self, home: str, away: str, prior_elo: bool = True,
+                 anclar: bool = None) -> Dict:
+        """
+        `anclar` controla la corrección de la probabilidad que MUESTRA la ficha,
+        en este orden de preferencia:
+
+            MESM  >  blend_mercado  >  mercado (v87)  >  prior de ELO (v86)
+
+        v87 — la ficha se ancla al mercado igual que los picks desde la v75.
+        Antes no lo hacía y por eso Puebla salía al 50 % mientras Pinnacle lo
+        ponía al 19,6 %.
+
+        v86 — el prior de ELO queda de último recurso, para cuando no hay
+        mercado en ninguna fuente. Se midió que el modelo apenas responde a la
+        fuerza de los equipos (subir 600 puntos de ELO mueve P(local) +0,075 de
+        mediana; en Liga MX +0,017).
+
+        `alpha_finder` lo pasa a False para que los picks de Capa 1 y Capa 2
+        salgan idénticos: ahí la corrección la aplica él mismo, con su propio
+        ancla y sus propios umbrales.
+
+        `prior_elo` se mantiene como nombre antiguo del mismo interruptor para
+        no romper a quien ya lo pasaba.
+        """
+        if anclar is None:
+            anclar = prior_elo
+        if home not in self.stats or away not in self.stats:
+            return {'error': f"Equipo desconocido en {self.clave}."}
+        if home == away:
+            return {'error': 'Local y visitante no pueden ser el mismo equipo.'}
+        s_l, s_v = self.stats[home], self.stats[away]
+        ctx = {'CHOQUE_ESTILOS': 0.0, 'ALTURA_NORM': 0.0, 'VENTAJA_LOCALIA': 0.55,
+               'CLIMA_TEMP_NORM': 25 / 40.0, 'H2H_BALANCE': self._h2h(home, away)}
+        vec = np.array([fe.vector_features(s_l, s_v, ctx)])
+        columnas = fe.FEATURES_MODELO + self.metadata.get('features_extra_cols', [])
+        if self.metadata.get('features_extra_cols'):
+            vec = np.hstack([vec, self._vector_extra(home, away)])
+        vec_n = self.escalador.transform(pd.DataFrame(vec, columns=columnas))
+        # entropías con ripser (v17: gtda eliminado también aquí — en el cloud
+        # ya no está instalado y este era el último import que quedaba)
+        ents = [_entropias_ripser(n) for n in (
+            fe.nube_de_puntos(s_l, s_v, ctx),
+            fe.nube_equipo(s_l.get('PERF10') or [[1, 1, 1, 1, 4, 4]]),
+            fe.nube_equipo(s_v.get('PERF10') or [[1, 1, 1, 1, 4, 4]]))]
+        X = np.hstack([vec_n, np.concatenate(ents).reshape(1, -1)])
+        crudas = self.modelo.predict_proba(X)[0]
+        probs = np.zeros(3)
+        for c, v in zip(self.modelo.classes_, crudas):
+            probs[int(c)] = v
+        probs /= probs.sum()
+        # v23 (MESM): si el meta fue adoptado en validación Y hay cuotas
+        # reales vigentes de ESTE partido, la probabilidad final es la del
+        # meta-ensemble (modelo + mercado con objetivo asimétrico).
+        mesm_aplicado = False
+        if self.mesm is not None:
+            imp = self._cuotas_partido(home, away)
+            if imp:
+                mkt = np.array([[imp['PROB_IMP_H'], imp['PROB_IMP_D'],
+                                 imp['PROB_IMP_A'], imp['OVERROUND']]])
+                probs = self.mesm.predict_proba(probs.reshape(1, -1), mkt)[0]
+                mesm_aplicado = True
+        # v25: blending fijo modelo/mercado (LaLiga y Ligue 1, walk-forward
+        # VALIDACION_v25). Solo si hay cuotas vigentes y el MESM no actuó.
+        blend_aplicado = False
+        w_blend = LEAGUES[self.clave].get('blend_mercado')
+        if w_blend and not mesm_aplicado:
+            imp = self._cuotas_partido(home, away)
+            if imp:
+                pm = np.array([imp['PROB_IMP_H'], imp['PROB_IMP_D'],
+                               imp['PROB_IMP_A']])
+                probs = w_blend * probs + (1 - w_blend) * pm
+                probs /= probs.sum()
+                blend_aplicado = True
+        # v87 — LA FICHA SE ANCLA AL MERCADO, igual que los picks desde la v75.
+        #
+        # El caso que lo destapó: Puebla vs Chivas. La ficha decía Puebla 50,0 %
+        # mientras Pinnacle, quitado el margen, daba Puebla 19,6 % · empate
+        # 22,2 % · Chivas 58,2 %. Treinta puntos de diferencia contra la casa
+        # más eficiente del mercado — y esas cuotas ESTABAN en la app, sólo que
+        # la ficha no las miraba (ver `_mercado_ficha`).
+        #
+        # Medido sobre 28.555 filas del ledger con cuota utilizable (70 % con
+        # Pinnacle), usando el w por liga ya validado de `calibracion_mercado`:
+        #
+        #                              ECE    log-loss   precisión
+        #   modelo crudo (antes)     0,0068    1,02579     0,4926
+        #   encogido al mercado      0,0090    0,99946     0,5054
+        #
+        # Y donde de verdad importa, los partidos en que el modelo se aleja del
+        # mercado más de 0,25 (el caso Puebla, 0,4 % de los partidos):
+        #
+        #   modelo crudo             0,2795    1,32849     0,3359
+        #   encogido al mercado      0,0644    0,99931     0,5547
+        #
+        # O sea: +22 puntos de precisión y el error de calibración dividido por
+        # cuatro justo en las fichas que estaban mal. El ECE global sube 0,002,
+        # que es el precio de arreglar un 0,28 en la cola.
+        #
+        # ORDEN DE PREFERENCIA: MESM > blend > mercado > prior de ELO. El prior
+        # de ELO (v86) queda como último recurso, para cuando no hay mercado
+        # ninguno — que es donde se midió y donde sigue siendo lo mejor
+        # disponible.
+        mercado_info = {'aplicado': False}
+        elo_info = {'aplicado': False}
+        if anclar and not mesm_aplicado and not blend_aplicado:
+            try:
+                mk = self._mercado_ficha(home, away)
+                if mk:
+                    import calibracion_mercado as _cmer
+                    _p, mercado_info = _cmer.corregir(
+                        {'home': probs[0], 'draw': probs[1], 'away': probs[2]},
+                        mk, self.clave)
+                    if mercado_info.get('aplicado'):
+                        probs = np.array([_p['home'], _p['draw'], _p['away']])
+                        probs /= probs.sum()
+            except Exception as _e:
+                logger.debug(f'ancla de mercado no aplicada: {_e}')
+
+        if anclar and not mesm_aplicado and not blend_aplicado \
+                and not mercado_info.get('aplicado'):
+            # Sin mercado de ninguna fuente: se cae al prior de ELO (v86).
+            # Medido sobre las 9.870 filas del ledger SIN mercado, eligiendo w
+            # en los pliegues 1-2 y validando en los 3-4:
+            #     w=1,00 (antes)  log-loss 1,04769  ECE 0,0106  precisión 0,4771
+            #     w=0,90 (v86)    log-loss 1,03789  ECE 0,0045  precisión 0,4797
+            try:
+                import calibracion_elo as _celo
+                d_elo = ((float(s_l.get('ELO', 0)) - float(s_v.get('ELO', 0)))
+                         / 400.0)
+                _p, elo_info = _celo.corregir(
+                    {'home': probs[0], 'draw': probs[1], 'away': probs[2]},
+                    d_elo)
+                if elo_info.get('aplicado'):
+                    probs = np.array([_p['home'], _p['draw'], _p['away']])
+                    probs /= probs.sum()
+            except Exception as _e:
+                logger.debug(f'prior de ELO no aplicado: {_e}')
+        lam_h = float(np.clip(self.reg_l.predict(X)[0], 0.2, 3.8))
+        lam_a = float(np.clip(self.reg_v.predict(X)[0], 0.2, 3.8))
+        # v70 (Mejora G): los regresores Poisson separan demasiado las dos λ
+        # (correlación −0.19/−0.24 entre λ_h−λ_a y el residuo del margen). El
+        # encogimiento conserva el total de goles y sólo reparte menos extremo.
+        # Liga sin coeficiente adoptado -> s=1 -> λ intactas.
+        import distributions as _dist
+        s_shrink = _dist.factor_shrink(self.clave)
+        lam_h, lam_a = _dist.encoger_lambdas(lam_h, lam_a, s=s_shrink)
+        M, marcador, p_marc = self._pe._monte_carlo(lam_h, lam_a, probs)
+        timeline = self._pe._linea_de_tiempo(lam_h, lam_a)
+        ganador_idx = int(np.argmax(probs))
+        # v24: insight de momentum en lenguaje llano (solo si el IMT está
+        # adoptado en esta liga y hay estado suficiente)
+        insights_imt = []
+        cols_liga = self.metadata.get('features_extra_cols', [])
+        if self.estado_imt and any(c.startswith('IMT') for c in cols_liga):
+            v_imt = mt.vector_imt(self.estado_imt, home, away)
+            d_m, d_f = v_imt['IMT_M_DIFF'], v_imt['IMT_FAT_DIFF']
+            if abs(d_m) >= 0.15:
+                mejor = home if d_m > 0 else away
+                insights_imt.append(
+                    f"📈 Momentum: {mejor} llega en mejor racha reciente "
+                    f"(índice táctico {abs(d_m):+.2f} a su favor).")
+            if abs(d_f) >= 0.25:
+                fresco = home if d_f > 0 else away
+                insights_imt.append(
+                    f"🔋 Calendario: {fresco} llega más descansado "
+                    f"(menos partidos en los últimos 14 días).")
+        return {
+            'match': f'{home} vs {away}', 'liga': LEAGUES[self.clave]['nombre'],
+            'estado_al': self.fecha_estado,
+            'prediction': {
+                'winner': [home, 'Empate', away][ganador_idx],
+                'confidence': round(float(probs[ganador_idx]), 3),
+                'probabilities': {'home': round(float(probs[0]), 3),
+                                  'draw': round(float(probs[1]), 3),
+                                  'away': round(float(probs[2]), 3)},
+                'most_likely_score': f'{marcador[0]}-{marcador[1]}',
+                'score_probability': round(p_marc, 3),
+                'total_goals_expected': round(lam_h + lam_a, 2),
+                'expected_goals': {'home': round(lam_h, 2), 'away': round(lam_a, 2)},
+            },
+            'score_matrix': M.round(4).tolist(), 'timeline': timeline,
+            'insights': [
+                f"Nivel dinámico: {home} {s_l['ELO']:.0f} vs {away} {s_v['ELO']:.0f}.",
+                f"Forma (últimos 5): {home} {s_l['FORMA_MA5']:.2f} · {away} {s_v['FORMA_MA5']:.2f}.",
+            ] + insights_imt
+              + (["🧠 Probabilidades del meta-ensemble MESM: el modelo se combina "
+                  "con las cuotas vigentes del partido (objetivo asimétrico "
+                  "validado en walk-forward)."] if mesm_aplicado else [])
+              + ([f"⚖️ Probabilidades combinadas {int((w_blend or 0)*100)}/"
+                  f"{int((1-(w_blend or 0))*100)} con el mercado (blending "
+                  "validado en walk-forward v25)."] if blend_aplicado else [])
+              + ([f"⚓ Probabilidad ajustada con las cuotas reales de este "
+                  f"partido ({int((1 - (mercado_info.get('w') or 0)) * 100)} % "
+                  f"de peso al mercado). Medido: en los partidos donde el "
+                  f"modelo se aleja mucho del mercado, hacerlo sube el acierto "
+                  f"del 33,6 % al 55,5 %."]
+                 if mercado_info.get('aplicado') else [])
+              + ([f"🧭 Sin cuotas para este partido, así que la probabilidad se "
+                  f"acerca un {int((1 - elo_info.get('w', 1)) * 100)} % a lo que "
+                  f"dice la diferencia de nivel (ELO {s_l['ELO']:.0f} vs "
+                  f"{s_v['ELO']:.0f}). Se midió que el modelo solo apenas "
+                  f"reacciona al nivel, y corregirlo mejora la fidelidad del "
+                  f"número mostrado."] if elo_info.get('aplicado') else []),
+            'model': {'accuracy_backtest': self.metadata['precision_validacion'],
+                      'log_loss_backtest': self.metadata['log_loss_validacion'],
+                      'mercado_ref': self.metadata.get('precision_mercado_cuotas'),
+                      'mesm_aplicado': mesm_aplicado,
+                      'blend_aplicado': blend_aplicado,
+                      # v86 / v87
+                      'prior_elo_aplicado': bool(elo_info.get('aplicado')),
+                      'prior_elo_w': elo_info.get('w') if elo_info.get('aplicado') else None,
+                      'ancla_mercado_aplicada': bool(mercado_info.get('aplicado')),
+                      'ancla_mercado_w': mercado_info.get('w') if mercado_info.get('aplicado') else None,
+                      # v70
+                      'familia_modelo': self.metadata.get('familia_modelo', 'ensemble'),
+                      'shrink_lambda': round(s_shrink, 3) if s_shrink < 1.0 else None},
+        }
+
+    # ------------------------------------------------------------------ #
+    def plantilla_club(self, home: str, away: str) -> Dict:
+        """Plantilla extendida de clubes (mismo formato que la del Mundial)."""
+        from prediction_api import prob_over, cuota_americana
+        pred = self.predecir(home, away)
+        if 'error' in pred:
+            return pred
+        M = np.array(pred['score_matrix'])
+        idx = np.arange(M.shape[0])
+        diff = idx[:, None] - idx[None, :]
+        total = idx[:, None] + idx[None, :]
+        lam_h = pred['prediction']['expected_goals']['home']
+        lam_a = pred['prediction']['expected_goals']['away']
+        s_l, s_v = self.stats[home], self.stats[away]
+        pct = lambda x: round(float(x) * 100, 1)
+
+        def campo(id_, etiqueta, valor, tipo='pct'):
+            return {'id': id_, 'etiqueta': etiqueta, 'valor': valor, 'tipo': tipo}
+
+        p1 = float(M[diff > 0].sum()); px = float(M[diff == 0].sum()); p2 = float(M[diff < 0].sum())
+        secciones = [
+            {'titulo': '1. Resultado (1X2) con cuota justa', 'campos': [
+                campo('home_win_prob', f'Gana {home} ({cuota_americana(p1)})', pct(p1)),
+                campo('draw_prob', f'Empate ({cuota_americana(px)})', pct(px)),
+                campo('away_win_prob', f'Gana {away} ({cuota_americana(p2)})', pct(p2)),
+            ]},
+            {'titulo': '2. Doble oportunidad', 'campos': [
+                campo('dc_1x', f'{home} o Empate', pct(p1 + px)),
+                campo('dc_12', f'{home} o {away}', pct(p1 + p2)),
+                campo('dc_x2', f'Empate o {away}', pct(px + p2)),
+            ]},
+        ]
+
+        # 3. Over/Under con línea deslizable (0.5 a 5.5) — v55: + MENOS DE (Under)
+        campos_ou = []
+        for l in (0.5, 1.5, 2.5, 3.5, 4.5, 5.5):
+            p_over = float(M[total > l].sum())
+            sl = str(l).replace('.', '')
+            campos_ou.append(campo(f'over{sl}', f'Más de {l} goles', pct(p_over)))
+            campos_ou.append(campo(f'under{sl}', f'Menos de {l} goles', pct(1 - p_over)))
+        secciones.append({'titulo': '3. Total de goles (línea deslizable)',
+                          'campos': campos_ou})
+
+        # 4. BTTS, primer/último gol, par/impar
+        btts = float(M[(idx[:, None] >= 1) & (idx[None, :] >= 1)].sum())
+        p_algun = 1 - float(M[0, 0])
+        cuota_h = lam_h / max(lam_h + lam_a, 1e-6)
+        par = float(M[(total % 2) == 0].sum())
+        secciones.append({'titulo': '4. Ambos marcan · Primer/último gol · Par-Impar', 'campos': [
+            campo('btts_si', 'Ambos equipos marcan: Sí', pct(btts)),
+            campo('btts_no', 'Ambos equipos marcan: No', pct(1 - btts)),
+            campo('primer_gol_home', f'Primer gol de {home}', pct(cuota_h * p_algun)),
+            campo('primer_gol_away', f'Primer gol de {away}', pct((1 - cuota_h) * p_algun)),
+            campo('sin_goles', 'Sin goles (0-0)', pct(M[0, 0])),
+            campo('ultimo_gol_home', f'Último gol de {home}', pct(cuota_h * p_algun)),
+            campo('total_par', 'Total de goles PAR (0 cuenta)', pct(par)),
+            campo('total_impar', 'Total de goles IMPAR', pct(1 - par)),
+        ]})
+
+        # 5. Hándicap asiático COMPLETO — ambos lados y ambos signos (v53.1).
+        # Antes solo salían el local NEGATIVO (-0.5..-3.5) y el visitante
+        # POSITIVO (+0.5..+3.5): faltaban el local POSITIVO (p.ej. «Atlante
+        # +1.5», un mercado seguro para el ligero favorito) y el visitante
+        # NEGATIVO. Se AÑADEN sin renombrar los ids existentes (los usa el motor
+        # de parlay para detectar contradicciones y la correlación).
+        campos_h = []
+        for k, v in [(1, '0.5'), (2, '1.5'), (3, '2.5'), (4, '3.5')]:
+            pk = float(M[diff >= k].sum())                    # local gana por ≥k
+            campos_h.append(campo(f'ah_home_{k}', f'{home} -{v}', pct(pk)))
+            campos_h.append(campo(f'ah_away_{k}', f'{away} +{v}', pct(1 - pk)))
+            # visitante NEGATIVO (gana por ≥k) — mercado que faltaba
+            campos_h.append(campo(f'ah_away_m{k}', f'{away} -{v}',
+                                  pct(float(M[diff <= -k].sum()))))
+            # local POSITIVO (no pierde por ≥k) — «home +1.5/+2.5/+3.5».
+            # El +0.5 ya existe como ah_home_mas05, así que solo k≥2.
+            if k >= 2:
+                campos_h.append(campo(f'ah_home_p{k}', f'{home} +{v}',
+                                      pct(float(M[diff >= -(k - 1)].sum()))))
+        campos_h.insert(0, campo('ah_home_mas05', f'{home} +0.5 (no pierde)', pct(p1 + px)))
+        campos_h.insert(1, campo('ah_away_mas05', f'{away} +0.5 (no pierde)', pct(p2 + px)))
+        secciones.append({'titulo': '5. Hándicap asiático', 'campos': campos_h})
+
+        # 6. Hándicap 1X2 (con ventaja de -1 gol para el favorito)
+        fav_es_home = p1 >= p2
+        d = diff if fav_es_home else -diff
+        fav, dog = (home, away) if fav_es_home else (away, home)
+        secciones.append({'titulo': f'6. Hándicap 1X2 ({fav} -1)', 'campos': [
+            campo('h1x2_fav', f'{fav} gana por 2+', pct(M[d >= 2].sum())),
+            campo('h1x2_empate', f'{fav} gana por exactamente 1', pct(M[d == 1].sum())),
+            campo('h1x2_dog', f'{dog} +1 (empata o gana)', pct(M[d <= 0].sum())),
+        ]})
+
+        # 7. Marcador exacto (top 8 con cuota justa americana)
+        planos = [(int(i), int(j), float(M[i, j])) for i in idx for j in idx]
+        planos.sort(key=lambda t: t[2], reverse=True)
+        secciones.append({'titulo': '7. Marcador exacto (top 8)', 'campos': [
+            campo(f'score_{gh}_{ga}', f'{home} {gh}-{ga} {away} ({cuota_americana(p)})', pct(p))
+            for gh, ga, p in planos[:8]]})
+
+        # 8. Margen de victoria
+        secciones.append({'titulo': '8. Margen de victoria', 'campos': [
+            campo('mv_h1', f'{home} por 1', pct(M[diff == 1].sum())),
+            campo('mv_h2', f'{home} por 2', pct(M[diff == 2].sum())),
+            campo('mv_h3', f'{home} por 3+', pct(M[diff >= 3].sum())),
+            campo('mv_x', 'Empate', pct(px)),
+            campo('mv_a1', f'{away} por 1', pct(M[diff == -1].sum())),
+            campo('mv_a2', f'{away} por 2', pct(M[diff == -2].sum())),
+            campo('mv_a3', f'{away} por 3+', pct(M[diff <= -3].sum())),
+        ]})
+
+        # 9. Mitades (HT/FT con mitades Poisson 45 %/55 % del ritmo real)
+        from math import exp, factorial
+        def poisson_vec(lam, n=7):
+            return np.array([exp(-lam) * lam ** k / factorial(k) for k in range(n)])
+        res_ht, res_ft2 = {}, {}
+        for etq, frac in (('1T', 0.45), ('2T', 0.55)):
+            Mh = np.outer(poisson_vec(lam_h * frac), poisson_vec(lam_a * frac))
+            i2 = np.arange(7)
+            d2 = i2[:, None] - i2[None, :]
+            (res_ht if etq == '1T' else res_ft2)['H'] = float(Mh[d2 > 0].sum())
+            (res_ht if etq == '1T' else res_ft2)['D'] = float(Mh[d2 == 0].sum())
+            (res_ht if etq == '1T' else res_ft2)['A'] = float(Mh[d2 < 0].sum())
+        etiquetas = {'H': home, 'D': 'Empate', 'A': away}
+        campos_htft = []
+        for r1 in 'HDA':
+            for r2 in 'HDA':
+                # aproximación de mitades independientes; el FT se deriva del 2T
+                # condicionado al 1T vía convolución simple del marcador
+                p_combo = res_ht[r1] * res_ft2[r2]
+                campos_htft.append(campo(f'htft_{r1}{r2}',
+                                         f'Descanso: {etiquetas[r1]} / 2ª mitad: {etiquetas[r2]}',
+                                         pct(p_combo)))
+        secciones.append({'titulo': '9. Mitades (resultado al descanso / 2ª mitad)',
+                          'campos': campos_htft})
+
+        # 10. Totales por equipo y multigoles
+        g_h = M.sum(axis=1); g_a = M.sum(axis=0)
+        secciones.append({'titulo': '10. Goles por equipo y multigoles', 'campos': [
+            campo('th_o05', f'{home} más de 0.5 goles', pct(g_h[1:].sum())),
+            campo('th_o15', f'{home} más de 1.5 goles', pct(g_h[2:].sum())),
+            campo('th_o25', f'{home} más de 2.5 goles', pct(g_h[3:].sum())),
+            campo('ta_o05', f'{away} más de 0.5 goles', pct(g_a[1:].sum())),
+            campo('ta_o15', f'{away} más de 1.5 goles', pct(g_a[2:].sum())),
+            campo('ta_o25', f'{away} más de 2.5 goles', pct(g_a[3:].sum())),
+            campo('multi_h', f'{home} marca 2 o más', pct(g_h[2:].sum())),
+            campo('multi_a', f'{away} marca 2 o más', pct(g_a[2:].sum())),
+        ]})
+
+        # 11. Córners y tarjetas (bases MA5 reales en formato 'main')
+        spx = float(self.calibracion.get('shots_on_por_xg', 3.1))
+        tpo = float(self.calibracion.get('shots_total_por_on', 2.6))
+        # v146 — LA BASE SE QUEDA EN 4,0, Y ESTO ES UNA CORRECCIÓN DE MI PROPIO
+        # ERROR DE MEDICIÓN. Se deja escrito para que nadie repita el atajo.
+        #
+        # Sobre 94.045 partidos con córners reales salió que esta fórmula
+        # predice **1,3 córners de menos**, con 13,5 puntos de error de
+        # calibración, y se subió la base a 5,3. El número era correcto para lo
+        # que se midió — y lo que se midió no era esto.
+        #
+        # El experimento alimentaba la fórmula con el xG **OBSERVADO** que
+        # guarda el histórico (`home_xg`/`away_xg`). Producción la alimenta con
+        # `lam_h`/`lam_a`, que son el xG **PREDICHO** por el modelo. No son la
+        # misma magnitud ni tienen la misma escala, así que el sesgo de una no
+        # se traslada a la otra.
+        #
+        # Comprobado contra el mercado, que es el mejor estimador disponible
+        # del total real (n=4 partidos con línea de córner publicada, correlación
+        # modelo/línea +0,81):
+        #
+        #     línea pivote de la casa .............  9,00
+        #     modelo con la base 4,0 ..............  10,07   (+1,07)
+        #     modelo con la base 5,3 ..............  11,38   (+2,38)
+        #
+        # O sea que la «corrección» alejaba el modelo del mercado en vez de
+        # acercarlo. Con esa base, el cruce con el tablero de Playdoit producía
+        # EV de **+136 %** en «Más de 12 córners» — la firma exacta de
+        # `EV_SOSPECHOSO`, y justo lo que la bitácora §2 dice que hay que leer
+        # como «el modelo se equivoca», no como «la casa regala».
+        #
+        # Qué queda pendiente y cómo se mide bien: replicar el experimento
+        # alimentando la fórmula con los lambdas que produce el propio motor
+        # (no con el xG observado), o comparar contra la línea de la casa sobre
+        # una muestra grande. Con n=4 tampoco se puede afirmar lo contrario.
+        # Hasta entonces la base no se toca.
+        #
+        # Un hallazgo del experimento que SÍ se sostiene, porque no depende de
+        # la entrada: el comentario de abajo dice que la fórmula usa xG «porque
+        # las ligas nuevas no traen córners en football-data». **Sí los traen**:
+        # las 50 ligas disponibles tienen `home_corners`/`away_corners` al
+        # 100 % en 2023-2026. Queda como material para el modelo bueno.
+        # v152 — LA MEDICIÓN QUE FALTABA, Y LO QUE DECIDIÓ.
+        #
+        # El bloque de arriba dejó pendiente medir el sesgo alimentando la
+        # fórmula con los lambdas de PRODUCCIÓN. Hecho, sobre 11.856 partidos
+        # con córners 100 % reales en 15 competiciones:
+        #
+        #     sesgo ponderado ............  +0,435   (no −1,3)
+        #     base que calibra el nivel ..   3,565   (no 5,3)
+        #     correlación con el real ....  −0,0012  ← el número que importa
+        #
+        # La base 4,0 estaba bien y la corrección de la v146 iba en dirección
+        # contraria: bien revertida. Pero la correlación es CERO —0 de 15 ligas
+        # pasan de 0,1 en valor absoluto, y encima es una correlación optimista
+        # porque el motor predice cada partido pasado con el estado ACTUAL de
+        # los equipos. **La fórmula no distingue un partido de otro.**
+        #
+        # Validado después con split temporal y sin fuga, 20 competiciones y
+        # 8.889 partidos de juicio:
+        #
+        #     media de la competición ...........  MAE 2,6996
+        #     esta fórmula ......................  MAE 3,0749   peor en 19 de 20
+        #     esta fórmula recalibrando la base .  MAE 3,0609
+        #     córners y remates REALES (ridge) ..  MAE 2,6942   mejora 0,005
+        #
+        # Recalibrar la base recupera 0,014 de los 0,375 que la fórmula pierde:
+        # **el 96 % del daño lo hace la parte variable**, que es ruido. Sumar
+        # ruido a una media añade varianza sin añadir señal.
+        #
+        # Así que donde hay córners observados se usa la media de la
+        # competición, que es el mejor estimador medido. Y donde no los hay
+        # —55 de las 75 competiciones: la columna existe pero la escribió el
+        # generador sintético— se conserva la fórmula, porque no hay nada mejor
+        # con que sustituirla, y el mercado sale marcado como estimación.
+        #
+        # No se adopta el ridge: mejora 0,005 córners sobre una desviación
+        # típica de 3,3, y su percentil 5 sólo cruza cero en 2 de 20 ligas, que
+        # es lo que da el azar al hacer veinte pruebas.
+        # Y EN LAS COMPETICIONES SIN CÓRNERS OBSERVADOS, TAMPOCO LA FÓRMULA.
+        #
+        # Son 55 de 75, y ahí no hay media con la que calibrar. Se podría dejar
+        # la fórmula, pero lo que produce es peor que no saber: en Liga MX da
+        # 13,4 córners de total, cuando el rango observado en las 20
+        # competiciones que SÍ publican córners es [8,81 – 10,54] y su media
+        # ponderada 9,613 sobre 11.856 partidos. Un 13,4 contra una línea de
+        # casa en 9,5 produce «Más de 9.5: 86 %», y ese porcentaje es
+        # íntegramente el desfase del modelo.
+        #
+        # Así que se usa la media de las competiciones comparables. Es una
+        # SUPOSICIÓN —que una liga sin datos se parece a las que los tienen— y
+        # va declarada como tal; lo que la sostiene es que el rango observado
+        # entre 20 competiciones es estrecho, así que su error de nivel está
+        # acotado en ~1 córner, contra los ~3,8 que comete hoy la fórmula.
+        #
+        # Es peor que un dato y mejor que una estimación medida como sesgada.
+        # Deja de hacer falta en cuanto la competición publique córners.
+        CK_MEDIA_COMPARABLES = 9.613
+        ck_observado = None
+        try:
+            import rendimiento_equipos as _rq_ck
+            ck_observado = _rq_ck.media_corners_liga(self.clave)
+        except Exception as _e_ck:
+            logger.debug(f"[{self.clave}] media de córners: {_e_ck}")
+        ck_de_datos = ck_observado is not None
+        ck = float(ck_observado) if ck_de_datos else CK_MEDIA_COMPARABLES
+        cards = (s_l['AMAR_MA5'] + s_v['AMAR_MA5'] +
+                 s_l['ROJAS_MA5'] + s_v['ROJAS_MA5'])
+        # v54: CÓRNERS POR EQUIPO — el total se reparte por la cuota de ataque
+        # (xG) de cada equipo, con base de 2 córners cada uno. Funciona en TODAS
+        # las ligas (usa xG, disponible en todas), incluidas las 'new' (Liga MX,
+        # MLS...) que no traen córners en football-data. Es una estimación del
+        # modelo (declarada), coherente con que el total = ck.
+        from scipy.stats import poisson as _po
+        import numpy as _np
+        # v158 — LOS CÓRNERS DE CADA EQUIPO, DE SUS PROPIOS DATOS.
+        #
+        # El reparto de arriba parte el total por la cuota de xG, así que los
+        # córners de un equipo salían de su ataque ESPERADO y no de sus córners
+        # observados. Donde la competición los publica se usa el estimador que
+        # ganó la comparación, medido sobre 30.454 equipos-partido en 6 ligas
+        # con el error de calibración contra la frecuencia real en las líneas
+        # 3,5 / 4,5 / 5,5 / 6,5:
+        #
+        #     ataque + defensa del rival, binomial negativa ....  0,0056
+        #     media móvil de 5, Poisson ........................  0,0093
+        #     media de la competición, binomial negativa .......  0,0101
+        #     media de la competición, Poisson .................  0,0369
+        #
+        # Seis veces mejor que la referencia. Y la dispersión que se usa es la
+        # de UN EQUIPO (1,58 medida), no la del total (1,16): el racimo ocurre
+        # dentro del ataque del mismo equipo, así que se nota más equipo a
+        # equipo que cuando se suman los dos.
+        #
+        # Donde no hay córners observados —55 de 75 competiciones— se conserva
+        # el reparto por xG de siempre, declarado como lo que es.
+        _ck_eq = None
+        try:
+            import rendimiento_equipos as _rq_e
+            _ck_eq = _rq_e.corners_equipo(self.clave, home, away)
+        except Exception as _e_e:
+            logger.debug(f"[{self.clave}] córners por equipo: {_e_e}")
+
+        _sh = lam_h / (lam_h + lam_a) if (lam_h + lam_a) > 0 else 0.5
+        ck_var = max(ck - 4.0, 0.0)
+        if _ck_eq:
+            ck_h = max(float(_ck_eq['lambda_home']), 0.3)
+            ck_a = max(float(_ck_eq['lambda_away']), 0.3)
+            _disp_ck_eq = float(_ck_eq['dispersion'])
+        else:
+            ck_h = max(2.0 + ck_var * _sh, 0.3)
+            ck_a = max(2.0 + ck_var * (1 - _sh), 0.3)
+            _disp_ck_eq = None
+
+        def _p_ck_eq(media: float, linea: float) -> float:
+            """P(córners del equipo > línea), con su sobredispersión."""
+            if _disp_ck_eq:
+                try:
+                    import rendimiento_equipos as _rq_pe
+                    v = _rq_pe.prob_mas_de(media, linea, _disp_ck_eq)
+                    if v is not None:
+                        return float(v)
+                except Exception:
+                    pass
+            return float(prob_over(media, linea))
+        _kk = _np.arange(0, 31)
+        _ph, _pa = _po.pmf(_kk, ck_h), _po.pmf(_kk, ck_a)
+        # córners 1X2 (quién saca más) y hándicap por convolución de la diferencia
+        p_ck_home = float(sum(_ph[i] * _pa[:i].sum() for i in range(1, 31)))
+        p_ck_away = float(sum(_pa[j] * _ph[:j].sum() for j in range(1, 31)))
+        p_ck_eq = max(1.0 - p_ck_home - p_ck_away, 0.0)
+        _tot = _np.convolve(_ph, _pa)                    # distrib. del total
+        p_ck_par = float(_tot[0::2].sum())
+        def _ck_hand(margen):                            # P(home_ck - away_ck >= margen)
+            return float(sum(_ph[i] * _pa[:max(i - margen + 1, 0)].sum()
+                             for i in range(31)))
+
+        def _mercados_tarjetas():
+            # v54: tarjetas 1X2 y por equipo (rojas cuentan doble, como en las
+            # casas). Medias por MA5 de cada equipo → Poisson independiente.
+            ch = max(s_l['AMAR_MA5'] + 2 * s_l['ROJAS_MA5'], 0.2)
+            ca = max(s_v['AMAR_MA5'] + 2 * s_v['ROJAS_MA5'], 0.2)
+            kk = _np.arange(0, 16)
+            pch, pca = _po.pmf(kk, ch), _po.pmf(kk, ca)
+            p_home_mas = float(sum(pch[i] * pca[:i].sum() for i in range(1, 16)))
+            p_away_mas = float(sum(pca[j] * pch[:j].sum() for j in range(1, 16)))
+            p_eq = max(1.0 - p_home_mas - p_away_mas, 0.0)
+            return [
+                campo('cards1x2_home', f'{home} recibe más tarjetas', pct(p_home_mas)),
+                campo('cards1x2_empate', 'Empate en tarjetas', pct(p_eq)),
+                campo('cards1x2_away', f'{away} recibe más tarjetas', pct(p_away_mas)),
+                campo('cards_home_media', f'{home} tarjetas (media)', round(ch, 1), 'media'),
+                campo('cards_home_o15', f'{home} más de 1.5 tarjetas', pct(prob_over(ch, 1.5))),
+                campo('cards_home_o25', f'{home} más de 2.5 tarjetas', pct(prob_over(ch, 2.5))),
+                campo('cards_away_media', f'{away} tarjetas (media)', round(ca, 1), 'media'),
+                campo('cards_away_o15', f'{away} más de 1.5 tarjetas', pct(prob_over(ca, 1.5))),
+                campo('cards_away_o25', f'{away} más de 2.5 tarjetas', pct(prob_over(ca, 2.5))),
+            ]
+        # v146 — LAS LÍNEAS ENTERAS, PORQUE SON LAS QUE COTIZA LA CASA.
+        #
+        # El modelo publicaba 8.5, 9.5 y 10.5, y Playdoit cotiza el total de
+        # córners en líneas ENTERAS: «Más de 6 … Más de 11» (mercado «Total de
+        # tiros de esquina 3 opciones», verificado sobre 14 tableros). Ninguna
+        # de las tres del modelo existe en la casa, así que su mercado
+        # principal de córners no tenía con qué cruzarse.
+        #
+        # Una línea entera no es media línea con otro nombre: **tiene EMPUJE**.
+        # Con 9 córners exactos, «Más de 9» devuelve la apuesta. La
+        # probabilidad que hay que comparar contra la cuota no es P(>9), sino
+        # la condicionada a que la apuesta se resuelva:
+        #
+        #     P_justa = P(total > L) / (1 − P(total = L))
+        #
+        # Cruzar «Más de 9» contra el P(>9.5) del modelo sería comparar dos
+        # sucesos distintos y fabricar un EV — el mismo modo de fallo que el
+        # veto por seña existe para atrapar.
+        # v157 — LOS CÓRNERS NO SON POISSON, Y SE NOTA EN LAS COLAS.
+        #
+        # Llegan en racimo: un ataque genera el córner, el saque se desvía o
+        # rebota en la barrera, y sale otro. Eso infla la varianza sin mover la
+        # media. Medido sobre 20 competiciones, la razón varianza/media es 1,16
+        # y no 1, y la binomial negativa ajusta la distribución bastante mejor
+        # que Poisson (error total 0,079 contra 0,102).
+        #
+        # Importa donde están las líneas que cotiza la casa. Comparando la
+        # probabilidad calculada contra la frecuencia REAL en 24 líneas de 6
+        # competiciones:
+        #
+        #     Poisson ..............  error medio 0,0093
+        #     binomial negativa ....  error medio 0,0043    ← la mitad
+        #
+        # Es la única de las cuatro vías propuestas para mejorar los córners que
+        # dio resultado, y no mejora la PREDICCIÓN de la media —eso sigue igual
+        # de difícil, ver el §10.7 de la bitácora— sino la conversión de esa
+        # media en probabilidades. Con `dispersion=None` (competición sin
+        # córners observados) se comporta exactamente como antes.
+        _disp_ck = None
+        try:
+            import rendimiento_equipos as _rq_d
+            _disp_ck = _rq_d.dispersion_corners_liga(self.clave)
+        except Exception as _e_d:
+            logger.debug(f"[{self.clave}] dispersión de córners: {_e_d}")
+
+        def _p_ck(linea: float) -> float:
+            """P(total > línea), con la sobredispersión de esta competición."""
+            if _disp_ck:
+                try:
+                    import rendimiento_equipos as _rq_p
+                    v = _rq_p.prob_mas_de(ck, linea, _disp_ck)
+                    if v is not None:
+                        return float(v)
+                except Exception:
+                    pass
+            return float(prob_over(ck, linea))
+
+        def _ck_over_entero(L: int) -> float:
+            p_igual = float(_tot[L]) if 0 <= L < len(_tot) else 0.0
+            p_mayor = float(_tot[L + 1:].sum()) if L + 1 < len(_tot) else 0.0
+            vivo = 1.0 - p_igual
+            return p_mayor / vivo if vivo > 1e-9 else 0.0
+
+        _campos_ck_enteros = [
+            campo(f'ck_o{L}', f'Más de {L} córners', pct(_ck_over_entero(L)))
+            for L in range(6, 13)
+        ]
+        # v152 — LA PROCEDENCIA DEL NÚMERO DE CÓRNERS VIAJA CON LA SECCIÓN.
+        #
+        # Las dos ramas producen un número con la misma pinta y no valen lo
+        # mismo: una es la media observada de la competición y la otra una
+        # estimación derivada del xG sintético, medida como peor que esa media
+        # en 19 de 20 ligas. Sin este campo, la interfaz no puede distinguirlas
+        # y las enseñaría igual — que es el modo de fallo que la v150 dejó
+        # escrito: un hueco se ve, un relleno no.
+        _proc_ck = (
+            'media observada de la competición en las 3 últimas temporadas '
+            '(los córners de esta liga son datos de la fuente, no estimados)'
+            if ck_de_datos else
+            'esta competición NO publica córners, así que no hay media suya '
+            'con la que calibrar: se usa la media de las 20 competiciones que '
+            'sí los publican (9,6 por partido, rango 8,8-10,5). Es una '
+            'suposición declarada, no una medición de esta liga')
+        # v158 — POR QUÉ EL TOTAL Y LA SUMA POR EQUIPO NO CUADRAN AL DECIMAL.
+        #
+        # Son DOS estimadores distintos, y cada uno es el mejor medido para su
+        # mercado: el total sale de la media observada de la competición (error
+        # de calibración 0,0043 con binomial negativa) y los de cada equipo del
+        # cruce ataque/defensa (0,0056). Forzar que sumaran exacto obligaría a
+        # empeorar uno de los dos para que cuadrase con el otro, y lo que se
+        # apuesta son las líneas, no la suma.
+        #
+        # Se declara en vez de disimularlo: quien sume 5,6 y 4,4 y vea 10,4
+        # arriba tiene derecho a saber que no es un error de redondeo.
+        _nota_ck = ''
+        if ck_de_datos and _ck_eq:
+            _nota_ck = (
+                'El total y los córners por equipo salen de dos cálculos '
+                'distintos —la media de la competición y el cruce '
+                'ataque/defensa— así que pueden no sumar exacto. Cada uno es '
+                'el más ajustado para su mercado.')
+        secciones.append({'titulo': '11. Córners y tarjetas',
+                          'corners_de_datos': bool(ck_de_datos),
+                          'corners_procedencia': _proc_ck,
+                          'corners_nota': _nota_ck,
+                          'corners_por_equipo_de_datos': bool(_ck_eq),
+                          'campos': [
+            campo('corners_media', 'Córners totales (media)', round(ck, 1), 'media'),
+            campo('ck_o85', 'Más de 8.5 córners', pct(_p_ck(8.5))),
+            campo('ck_o95', 'Más de 9.5 córners', pct(_p_ck(9.5))),
+            campo('ck_o105', 'Más de 10.5 córners', pct(_p_ck(10.5))),
+        ] + _campos_ck_enteros + [
+            # córners por EQUIPO (v54)
+            campo('ck_home_media', f'{home} córners (media)', round(ck_h, 1), 'media'),
+            campo('ck_home_o35', f'{home} más de 3.5 córners', pct(_p_ck_eq(ck_h, 3.5))),
+            campo('ck_home_o45', f'{home} más de 4.5 córners', pct(_p_ck_eq(ck_h, 4.5))),
+            campo('ck_home_o55', f'{home} más de 5.5 córners', pct(_p_ck_eq(ck_h, 5.5))),
+            campo('ck_away_media', f'{away} córners (media)', round(ck_a, 1), 'media'),
+            campo('ck_away_o35', f'{away} más de 3.5 córners', pct(_p_ck_eq(ck_a, 3.5))),
+            campo('ck_away_o45', f'{away} más de 4.5 córners', pct(_p_ck_eq(ck_a, 4.5))),
+            campo('ck_away_o55', f'{away} más de 5.5 córners', pct(_p_ck_eq(ck_a, 5.5))),
+            # córners 1X2 y hándicap (v54)
+            campo('ck1x2_home', f'{home} saca más córners', pct(p_ck_home)),
+            campo('ck1x2_empate', 'Empate en córners', pct(p_ck_eq)),
+            campo('ck1x2_away', f'{away} saca más córners', pct(p_ck_away)),
+            campo('ckhand_home_15', f'{home} −1.5 córners', pct(_ck_hand(2))),
+            campo('ckhand_away_15', f'{away} +1.5 córners', pct(1 - _ck_hand(2))),
+            campo('ckhand_home_25', f'{home} −2.5 córners', pct(_ck_hand(3))),
+            campo('ckhand_away_25', f'{away} +2.5 córners', pct(1 - _ck_hand(3))),
+            campo('ck_par', 'Córners totales PAR', pct(p_ck_par)),
+            campo('ck_impar', 'Córners totales IMPAR', pct(1 - p_ck_par)),
+            # tarjetas (v54: 1X2 y por equipo; rojas cuentan doble)
+            campo('cards_media', 'Tarjetas totales (media)', round(cards, 1), 'media'),
+            campo('cards_o35', 'Más de 3.5 tarjetas', pct(prob_over(cards, 3.5))),
+            campo('cards_o45', 'Más de 4.5 tarjetas', pct(prob_over(cards, 4.5))),
+        ] + _mercados_tarjetas()})
+
+        # 12. REMATES (v55) — remates a puerta ≈ xG × factor, total ≈ a-puerta ×
+        # factor. Derivado del xG → funciona en TODAS las ligas (las 'main'
+        # afinarían con HST/AST reales, pendiente de enriquecer stats).
+        sot_h, sot_a = lam_h * spx, lam_a * spx          # remates a puerta
+        sh_h, sh_a = sot_h * tpo, sot_a * tpo            # remates totales
+        sot_tot, sh_tot = sot_h + sot_a, sh_h + sh_a
+        # v71: fuera los totales de remates por EQUIPO y de PARTIDO con
+        # probabilidad. Ninguna casa lista «Más de 9.5 remates a puerta del
+        # partido» ni «X remates del equipo»: lo que publican son props de
+        # JUGADOR. Ofrecer un mercado que no se puede jugar era ruido que
+        # además se colaba en las combinadas.
+        #
+        # Se conservan las MEDIAS como contexto (tipo 'media', no
+        # seleccionables) porque sirven para leer el partido, y el volumen del
+        # equipo es justo lo que reparte los props de jugador.
+        secciones.append({'titulo': '12. Remates', 'campos': [
+            campo('sh_tot_media', 'Remates totales (media)', round(sh_tot, 1), 'media'),
+            campo('sot_tot_media', 'Remates a puerta (media)', round(sot_tot, 1), 'media'),
+            campo('sh_home_media', f'{home} remates (media)', round(sh_h, 1), 'media'),
+            campo('sot_home_media', f'{home} a puerta (media)', round(sot_h, 1), 'media'),
+            campo('sh_away_media', f'{away} remates (media)', round(sh_a, 1), 'media'),
+            campo('sot_away_media', f'{away} a puerta (media)', round(sot_a, 1), 'media'),
+        ] + _props_rematadores(home, away, sh_h, sh_a, sot_h, sot_a,
+                               clave_liga=self.clave)})
+
+        # 13. MEDIAS PARTES (v55) — modelo de goles por mitad bajo el reparto
+        # observado (señal G2H_MA5: fracción de goles en la 2ª mitad; por
+        # defecto 55/45). Se construye una mini-matriz de marcador por mitad
+        # (Poisson independiente) y de ahí 1X2, totales y BTTS por mitad.
+        f2h = float(_np.clip((s_l.get('G2H_MA5', 0.55) + s_v.get('G2H_MA5', 0.55)) / 2,
+                             0.4, 0.65))
+        f1h = 1 - f2h
+        secciones.append({'titulo': '13. 1ª y 2ª mitad',
+                          'campos': _mercados_mitad(lam_h, lam_a, f1h, f2h,
+                                                    home, away, campo, pct, _po, _np)})
+
+        # 14. GOLEADORES (v57) — jugadores desde el roster de ESPN (gratis, sin
+        # clave, cobertura de todas nuestras ligas). Degrada en silencio si la
+        # liga o el equipo no tienen datos.
+        try:
+            import goleadores
+            campos_gol = goleadores.mercados_goleadores(self.clave, home, away,
+                                                        lam_h, lam_a)
+            if campos_gol:
+                secciones.append({'titulo': '14. Goleadores', 'campos': campos_gol})
+        except Exception as e:
+            logger.warning(f"[{self.clave}] goleadores no disponibles: {e}")
+
+        return {
+            'partido': f'{home} vs {away}',
+            'codigos': {'home': home, 'away': away},
+            'liga': LEAGUES[self.clave]['nombre'],
+            'fecha': pd.Timestamp.today().strftime('%Y-%m-%d'),
+            'estado_al': self.fecha_estado,
+            'secciones': secciones,
+            'observaciones': pred['insights'] + [
+                f"Modelo de {LEAGUES[self.clave]['nombre']}: precisión de backtesting "
+                f"{self.metadata['precision_validacion']*100:.1f} % "
+                + (f"(mercado con cuotas de cierre: {self.metadata['precision_mercado_cuotas']*100:.1f} %)"
+                   if self.metadata.get('precision_mercado_cuotas') else ''),
+                "Cuotas mostradas = cuotas JUSTAS del modelo en formato americano "
+                "(sin margen de casa).",
+            ],
+            'prediccion_base': pred,
+        }
+
+
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    con_ratings = '--ratings' in sys.argv
+    argumentos = [a for a in sys.argv[1:] if not a.startswith('--')]
+    objetivo = argumentos[0] if argumentos else None
+    if '--forzar' in sys.argv:
+        # v153 — reentrena aunque no haya datos nuevos. Para cuando lo que
+        # cambia es el código y no se subió `VERSION_ENTRENAMIENTO`.
+        FORZAR_REENTRENO = True
+        globals()['FORZAR_REENTRENO'] = True
+    if '--build' in sys.argv:
+        _saltadas, _hechas = [], []
+        for clave, cfg in LEAGUES.items():
+            if not cfg.get('disponible'):
+                logger.info(f"[{clave}] omitida: {cfg.get('nota', 'no disponible')}")
+                continue
+            if objetivo and clave != objetivo:
+                continue
+            try:
+                _r = entrenar_liga(clave, con_ratings=con_ratings)
+                if isinstance(_r, dict) and _r.get('reentrenado') is False:
+                    _saltadas.append(clave)
+                else:
+                    _hechas.append(clave)
+            except Exception as e:
+                logger.error(f"[{clave}] falló: {type(e).__name__}: {e}")
+        logger.info(f"reentrenadas {len(_hechas)}, sin datos nuevos "
+                    f"{len(_saltadas)} ({', '.join(_saltadas) or 'ninguna'})")

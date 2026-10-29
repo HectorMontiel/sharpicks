@@ -1,0 +1,363 @@
+name: Recalibrar la cadena completa (semanal)
+
+# v93 — POR QUÉ HACE FALTA UN WORKFLOW APARTE
+#
+# El diario (`retrain_leagues.yml`) reentrena los modelos de fútbol y refresca
+# `team_stats`, así que las PREDICCIONES mejoran cada día. Pero las
+# CALIBRACIONES que corrigen esas predicciones estaban congeladas en el día en
+# que alguien las generó a mano. Auditado el 2026-08-03:
+#
+#     modelos de fútbol            1 día    ← se regeneraba
+#     calibracion_mercado.json     1 día    ← se regeneraba
+#     ───────────────────────────────────────────────────────
+#     pick_ledger_total.csv        5 días   ← NUNCA
+#     calibracion_confianza.json   3 días   ← NUNCA
+#     umbrales_capa1.json          6 días   ← NUNCA
+#     edge_map.json               11 días   ← NUNCA
+#
+# La inconsistencia es peor que la antigüedad: `calibracion_confianza` mide
+# cuánto acierta DE VERDAD cada banda de probabilidad, y si el modelo se
+# reentrena a diario y esa medición no, se está corrigiendo con la huella de un
+# modelo que ya no existe.
+#
+# Va SEMANAL y no diario a propósito: reconstruir el ledger re-predice decenas
+# de miles de partidos (~40 min). Las calibraciones se mueven despacio; hacerlo
+# a diario sería gastar una hora de CI para cambiar el cuarto decimal.
+
+on:
+  schedule:
+    - cron: '29 5 * * 1'          # lunes 05:00 UTC, después del reentrenamiento
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  # v510 — repo privado: los modelos del Release se bajan con el token de la corrida
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  recalibrar:
+    runs-on: [self-hosted, sharpicks]   # v509 — runner propio (PC del usuario): 0 minutos de Actions
+    # v189 — el paso 1 vuelve a re-predecir el histórico de verdad, que
+    # es lo que este workflow siempre dijo que hacía: ~45 min de fútbol
+    # más el tenis y el MLB. Antes concatenaba dos CSV y terminaba en 7.
+    timeout-minutes: 180
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # El orden es estrictamente secuencial: todo cuelga del ledger. Cada paso
+      # falla de forma independiente — un artefacto viejo es peor que uno
+      # nuevo, pero mucho mejor que ninguno, así que lo que no se regenere
+      # conserva el anterior en vez de quedarse a medias.
+      # v96 — El histórico de ITF y challenger viene de un espejo de archivo
+      # (los repos originales de Sackmann están borrados). Se refresca aquí,
+      # semanalmente, y el resultado se commitea: una vez ingerido el dato ya
+      # no depende de que ese espejo siga existiendo.
+      - name: Refrescar el histórico de ITF y challenger
+        run: python ingesta_itf.py --desde 2015 || echo "::warning::ingesta ITF con avisos"
+
+      # v162 — EL FONDO DE HISTÓRICO DE ESTADÍSTICAS, UNA VEZ POR SEMANA.
+      #
+      # El paso diario de `retrain_leagues` sólo mira los últimos diez días,
+      # que es lo que hace falta para no quedarse atrás. Esto es lo otro: bajar
+      # las temporadas pasadas de las competiciones a las que aún les falten.
+      #
+      # Es caro la PRIMERA vez —unas 3-4 h para las 61, a ~0,05 s por partido—
+      # y casi gratis después: `backfill` salta los `event_id` que ya están
+      # guardados, así que en las semanas siguientes sólo baja lo que se haya
+      # añadido. Va aquí y no en el job diario justamente por eso.
+      #
+      # Sin este fondo, una competición con dos temporadas de datos calibra
+      # peor que con cinco, y las que ESPN no cubría en su día se quedarían
+      # estimadas para siempre aunque ESPN las haya incorporado después.
+      - name: Fondo histórico de estadísticas de ESPN
+        continue-on-error: true
+        # v189 — 100 min, no 240. El job entero dura 180 y el paso 1 de la
+        # recalibración se lleva ahora unos 50: un paso con permiso para
+        # tardar 240 mataba el job ANTES del commit, y entonces se pierde
+        # todo lo demás. El fondo es lo prescindible de este workflow —por eso
+        # lleva `continue-on-error`—, así que es el que cede el tiempo.
+        timeout-minutes: 100
+        run: |
+          python stats_espn.py --desde 2021-01-01 || echo "::warning::fondo histórico con avisos"
+          python stats_espn.py --limpiar || echo "::warning::limpieza con avisos"
+          python stats_estimadas.py --ajustar || echo "::warning::ajuste con avisos"
+          python informe_calibracion.py --md INFORME_CALIBRACION.md || echo "::warning::informe con avisos"
+
+      # v290 — LA BASE DE CUOTAS, ANTES DE USARLA.
+      #
+      # EL FALLO QUE ARREGLA, QUE COSTO LAS 26.666 CUOTAS DE PINNACLE.
+      #
+      # `build_pick_ledger.adjuntar_cuotas` saca el precio de cierre de
+      # `odds_historico.db`. Ese fichero pesa 57 MB, esta en .gitignore y NO
+      # viaja al repositorio: en una maquina local tiene 64.879 cierres de
+      # Pinnacle, y en el runner no existe.
+      #
+      # Resultado, medido el 2026-09-21 en cuanto la recalibracion pudo
+      # publicar por primera vez en ocho semanas (v284):
+      #
+      #     ledger construido en local   47.948 filas · 26.666 con Pinnacle
+      #     ledger construido en CI      81.030 filas ·      0 con Pinnacle
+      #
+      # Mas cobertura y CERO Pinnacle, que es el unico precio con el que se
+      # puede validar `valor_vs_sharp` —el canal que de verdad gana— y el
+      # unico con el que entrena el radar de errores.
+      #
+      # LA SOLUCION NO ERA SUBIR LOS 57 MB. El dato ya esta en el repositorio:
+      # los `historico_*.csv` traen `odd_home_pin`, `odd_draw_pin` y
+      # `odd_away_pin`, y `import_historical_odds.py` reconstruye la base
+      # entera a partir de ellos. Medido: 36 ligas, 125.752 partidos, 109.125
+      # con cierre de Pinnacle — CUATRO VECES lo que el ledger tenia.
+      #
+      # `retrain_leagues` ya ejecuta este mismo script a diario, pero en OTRO
+      # runner: la base que construye alli muere con su job. Cada workflow que
+      # necesite la base tiene que rehacerla, y cuesta segundos.
+      - name: Reconstruir la base de cuotas de cierre
+        run: |
+          python import_historical_odds.py \
+            || echo "::warning::importacion de cuotas de cierre con avisos"
+
+      - name: Recalibrar la cadena completa
+        run: python recalibrar_todo.py || echo "::warning::recalibración con avisos"
+
+      # v169 — EL RANKING DE ESTABILIDAD, REGENERADO AQUI Y NO A MANO.
+      #
+      # `mercado_estable_por_liga.json` decide de que mercado sale la
+      # recomendacion de cada liga. Se construyo a mano en la v168 y eso tiene
+      # fecha de caducidad: lee `_v162_calibracion_por_liga.json` y los TRES
+      # ledgers walk-forward.
+      #
+      # v189 — Y POR ESO BAJA AQUI, detras de la recalibracion. Estaba dentro
+      # del paso del fondo ESPN, o sea ANTES de que se reconstruyeran los
+      # ledgers: coronaba a los mercados con la foto de la semana pasada. Su
+      # otra condicion —ir despues del informe de calibracion— se sigue
+      # cumpliendo, porque el informe queda mas arriba todavia.
+      - name: Ranking de estabilidad por mercado
+        run: python mercado_estabilidad.py || echo "::warning::ranking de estabilidad con avisos"
+
+      # v202 — EL ÍNDICE DE RIESGO POR COMPETICIÓN, AQUÍ Y NO EN EL DIARIO.
+      #
+      # Cuelga de `pick_ledger_totales.csv`, que es justo lo que el paso de
+      # recalibración acaba de reconstruir: generarlo en el workflow diario
+      # sería medir el error de calibración contra un ledger de la semana
+      # pasada, que es el mismo fallo que la v189 arregló con el ranking de
+      # estabilidad. Va detrás por la misma razón y no por costumbre.
+      - name: Índice de riesgo por competición
+        run: python riesgo_liga.py || echo "::warning::índice de riesgo con avisos"
+
+      # v302 — EL CARÁCTER DE CADA LIGA, REAPRENDIDO CADA SEMANA.
+      #
+      # `patrones_liga` aprende, liga por liga, lo que el modelo no sabe de
+      # la tabla: que los de arriba golean más de lo que predice y los de
+      # abajo menos. Cuelga de `pick_ledger_totales.csv` y de los históricos,
+      # así que va DETRÁS de la recalibración que acaba de reconstruirlos.
+      #
+      # Se re-mide cada vez contra el 30 % más reciente y la línea base
+      # calibrada: un mercado que deje de ganar con p5 positivo se APAGA solo
+      # en el fichero, y una liga nueva entra en cuanto tiene histórico. Es lo
+      # que el usuario pidió: «que tenga cada vez mayor precisión».
+      # v307 — los ids de FotMob de las 67 ligas, re-verificados por sus
+      # equipos: si FotMob renumera una liga, el id viejo deja de casar y se
+      # busca el nuevo en vez de seguir leyendo bajas y remates de otra.
+      - name: Verificar los ids de FotMob de las ligas
+        continue-on-error: true
+        timeout-minutes: 20
+        run: python fotmob_ligas.py --forzar || echo "::warning::ids de FotMob con avisos"
+
+      - name: Patrones por liga
+        run: python patrones_liga.py --entrenar || echo "::warning::patrones por liga con avisos"
+
+      # v303 — Y EL MOTOR DE GOLES DE LAS LIGAS SIN MOTOR, RE-VALIDADO. Una
+      # liga sólo publica pronósticos si le gana a su línea base fuera de
+      # muestra; si una semana deja de ganarle, deja de salir sola.
+      - name: Validar el motor de goles
+        run: python motor_goles.py mex_femenil champions_femenil fem_inglaterra fem_espana fem_alemania fem_francia fem_italia || echo "::warning::motor de goles con avisos"
+
+      # v212 — LA PUERTA DE ACTIVACIÓN, Y POR QUÉ VA JUSTO AQUÍ.
+      #
+      # `backtest_v212.py` mide las reglas nuevas contra los ledgers
+      # walk-forward y escribe `activacion_v212.json`, que es el interruptor
+      # que leen `modo_seguridad` y `escalada_lineas`. Va DETRÁS de la
+      # recalibración por la misma razón que el índice de riesgo: los ledgers
+      # que mide son los que el paso de arriba acaba de reconstruir. Medirlos
+      # antes sería juzgar las reglas con la foto de la semana pasada.
+      #
+      # ESTO IMPLEMENTA LAS DOS MITADES DEL §7:
+      #   · §7.7 activación automática — una regla que pasa los cuatro
+      #     criterios se enciende sola en el siguiente despliegue, sin que
+      #     nadie apruebe nada.
+      #   · §7.8 auditoría post-activación — al correr cada semana sobre datos
+      #     nuevos, una regla que DEJA de cumplirlos se apaga sola. El encargo
+      #     pedía 30 días; semanal es más estricto y sale gratis aquí.
+      #
+      # Falla en blando como el resto: sin fichero de activación, los dos
+      # motores arrancan APAGADOS, que es el lado seguro del error.
+      - name: Puerta de activación de las reglas v212
+        run: python backtest_v212.py || echo "::warning::backtest v212 con avisos"
+
+      - name: Publicar el estado de la recalibración
+        run: |
+          python - <<'PY'
+          import json, os, sys
+          if not os.path.exists('recalibracion_estado.json'):
+              print('::warning::no se generó recalibracion_estado.json')
+              sys.exit(0)
+          d = json.load(open('recalibracion_estado.json', encoding='utf-8'))
+          print(f"{d['ok']}/{len(d['pasos'])} pasos OK en {d['segundos_total']:.0f}s")
+          for p in d['pasos']:
+              print(f"  {'OK ' if p['ok'] else 'FALLO'} {p['paso']}: "
+                    f"{p.get('detalle') or p.get('error')}")
+          for f in d.get('fallos') or []:
+              print(f'::warning::paso fallido: {f}')
+          PY
+
+      # v188 — Y SE MIRA QUE NADA SE HAYA QUEDADO PARADO.
+      #
+      # Va DESPUÉS de recalibrar y ANTES de commitear, que es el único
+      # momento en que se sabe si la pasada de esta semana movió algo.
+      # Tres ficheros llevaban entre tres y seis semanas congelados sin
+      # que nada avisara, y el workflow terminaba en verde cada lunes.
+      #
+      # No rompe la pasada: avisa. Un check que la tumba por una liga en
+      # receso se desactiva a la tercera semana.
+      - name: Vigilar la frescura de los datos que aprenden
+        run: |
+          python frescura_datos.py \
+            || echo "::warning::hay datos parados, mira frescura_datos.json"
+
+      - name: Commitear las calibraciones actualizadas
+        run: |
+          git config user.name  "recalibrar-bot"
+          git config user.email "actions@github.com"
+          # v186 — SIN `modelos/`, Y SIN TRAGARSE EL FALLO.
+          #
+          # Este `git add` llevaba `modelos/tennis` y `modelos/tennis_wta`,
+          # y desde la v161 (2026-08-22) `modelos/` está en .gitignore: sus
+          # pesos viajan por el GitHub Release, no por el repositorio.
+          # `git add` con un path ignorado **falla entero y no añade
+          # NINGUNO de los demás** —comprobado, devuelve exit 1— y el
+          # `|| true` se lo tragaba.
+          #
+          # Efecto medido: la recalibración corría cada lunes y sólo
+          # commiteaba `_v162_calibracion_por_liga.json`, que va en su
+          # propio `git add`. `pick_ledger_total.csv` llevaba desde el
+          # 2026-07-29 sin actualizarse y `umbrales_capa1.json` desde el
+          # 2026-07-28: seis semanas sin medir si los pronósticos
+          # aciertan, con el workflow en verde.
+          git add -A historico_itf.csv.gz \
+                     pick_ledger_total.csv calibracion_confianza.json \
+                     precision_ligas.json edge_map.json deportes_capa1.json \
+                     calibracion_mercado.json umbrales_capa1.json \
+                     recalibracion_estado.json frescura_datos.json \
+                     _v75_pick_ledger.json _v78_ledger_deportes.json \
+            || echo "::warning::git add de las calibraciones falló"
+          # v162 — el fondo histórico de estadísticas de ESPN y lo que
+          # se deriva de él. Sin commitearlo, el trabajo de 3-4 h del paso
+          # de arriba se pierde con el runner.
+          # v186 — aquí había un «\n» LITERAL en medio del comando, en
+          # vez de un salto de línea: el shell lo pasaba como argumento y
+          # el `git add` se rompía. Otro fallo callado por el `|| true`.
+          git add -A stats_espn/ stats_fotmob/ stats_flashscore/ calibracion_stats_liga.json \
+                     INFORME_CALIBRACION.md \
+            || echo "::warning::git add del fondo de estadísticas falló"
+          # v169 — y el ranking de estabilidad, que sale del informe de arriba.
+          # v189 — sin `2>/dev/null || true`. Ese era EXACTAMENTE el patron
+          # que escondio el bug de la v186 durante seis semanas: un `git add`
+          # que falla, se calla, y el workflow termina en verde sin haber
+          # anadido nada. Si falla, que se vea.
+          git add -A mercado_estable_por_liga.json || echo "::warning::git add del ranking de estabilidad fallo"
+          # v256 - LO QUE ANTES SE REHACIA A MANO Y POR ESO ENVEJECIA SOLO.
+          #
+          # `pick_ledger_totales.csv` alimenta la calibracion por banda de
+          # cuota, que corrige TODAS las probabilidades publicadas. Se
+          # encontro con 42 dias mientras este workflow corria en verde cada
+          # lunes, porque no estaba en la cadena. Y `calibracion_bandas.json`
+          # se entrenaba ejecutando su script a mano.
+          #
+          # Bucle por fichero, como en `precalculo_dia`: un `git add` con un
+          # pathspec que no existe falla ENTERO y se lleva los demas.
+          # v263 — `pick_ledger.csv` y `pick_ledger_total.csv` FALTABAN.
+          #
+          # El paso 1 los reconstruye cada lunes —76 minutos medidos el
+          # 2026-09-14: futbol 80.908 filas (+32.960), deportes 328.865
+          # (+256.733)— y al no estar en esta lista el runner se destruia
+          # con el trabajo dentro. Produccion se quedo con la version del
+          # 2026-07-28: OCHO SEMANAS, mientras el workflow salia en verde
+          # cada lunes y su propio informe decia «ok: true».
+          #
+          # `pick_ledger.csv` no es uno cualquiera: es el 1X2 de futbol,
+          # el unico que guarda el precio de Pinnacle (26.666 filas) y por
+          # tanto el unico con el que se puede validar `valor_vs_sharp`,
+          # que es el canal que de verdad gana. Tambien es el que impide
+          # medir el movimiento de linea: el historico de precios empieza
+          # el 2026-07-30 y el de resultados acaba el 2026-07-28, con dos
+          # dias de separacion y cero solape.
+          for _f in memoria_equipos.json selector_apuestas.txt selector_apuestas.json radar_errores.txt radar_errores.json radar_capturas.csv pick_ledger.csv pick_ledger_total.csv pick_ledger_totales.csv calibracion_bandas.json calibracion_goles.json pick_ledger_handicap.csv pick_ledger_deportes.csv pronosticos_emitidos.json; do
+            if [ -e "$_f" ]; then
+              git add "$_f" || echo "::warning::git add de $_f fallo"
+            fi
+          done
+          git add -A _v162_calibracion_por_liga.json || echo "::warning::git add de la calibracion por liga fallo"
+          # v202 — el indice de riesgo por competicion, que sale del ledger de
+          # totales reconstruido arriba. Sin commitearlo, la app desplegada
+          # ordena las patas con el indice del dia en que alguien lo genero a
+          # mano, que es exactamente lo que le paso a umbrales_capa1.json.
+          git add -A indice_volatilidad_liga.json || echo "::warning::git add del indice de riesgo fallo"
+          git add -A patrones_liga.json || echo "::warning::git add de los patrones por liga fallo"
+          git add -A motor_goles.json || echo "::warning::git add del motor de goles fallo"
+          git add -A fotmob_ligas.json || echo "::warning::git add de los ids de FotMob fallo"
+          # v212 — el veredicto de la puerta. Sin commitearlo, la app
+          # desplegada leeria la activacion del dia en que alguien corrio el
+          # backtest a mano, y una regla que dejo de cumplir los criterios
+          # seguiria encendida en produccion. Es el mismo fallo que la v202
+          # arreglo con el indice de riesgo.
+          git add -A activacion_v212.json backtesting_v212.md || echo "::warning::git add de la activacion v212 fallo"
+          # v284 — EL PUSH SIN REBASE TIRABA HORA Y MEDIA DE TRABAJO.
+          #
+          # El 2026-09-21 este job corrio 1 h 36 min, commiteo 26 ficheros con
+          # 923.854 lineas... y el push salio rechazado:
+          #
+          #     ! [rejected]  main -> main (fetch first)
+          #     hint: the remote contains work that you do not have locally
+          #
+          # Entre que el runner hizo `checkout` y que llego aqui, el workflow
+          # de las cuotas (cada 2 h) y un empujon manual habian movido `main`.
+          # El commit se quedo DENTRO del runner, el runner se destruyo, y la
+          # recalibracion semanal entera se perdio.
+          #
+          # Esto es el mismo tipo de fallo que este propio fichero documenta
+          # tres veces mas arriba: un paso que falla al final y se lleva por
+          # delante el trabajo de todo el job. La diferencia es que aqui ni
+          # siquiera se callaba —el job salio en rojo— pero el resultado para
+          # el proyecto es identico: cero.
+          #
+          # Y era el UNICO workflow del repositorio con `git push` a secas.
+          # `cuotas_mx`, `precalculo_dia`, `precalcular_rosters`, `radar_diario`
+          # y `retrain_leagues` ya rebasan antes. Este bucle es literalmente el
+          # de `retrain_leagues`, que lleva funcionando desde la v186.
+          if git diff --cached --quiet; then
+            echo "Las calibraciones no cambiaron esta semana."
+          else
+            fecha=$(date -u +%Y-%m-%d)
+            git commit -m "chore(calibracion): recalibración semanal de la cadena ($fecha)"
+            # v312 — ver `git_sin_conflictos.py` (el `|| true` de antes podía
+            # dejar ficheros a medio fundir)
+            if ! python git_sin_conflictos.py publicar; then
+              echo "::error::No se pudo publicar la recalibración."
+              exit 1
+            fi
+            echo "Calibraciones actualizadas y publicadas."
+          fi

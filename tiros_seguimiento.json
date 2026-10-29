@@ -1,0 +1,48 @@
+{
+ "regla": {
+  "mercado": "tiros",
+  "ventaja": 0.1,
+  "prob_min": 0.5,
+  "cuota_max": 3.0
+ },
+ "desde": "2026-09-10",
+ "min_apuestas": 150,
+ "n": 386,
+ "activo": false,
+ "medido": "2026-10-29T04:45:36Z",
+ "partidos": 179,
+ "acierto": 0.6399,
+ "promete": 0.6581,
+ "cuota_media": 1.801,
+ "roi": 0.1394,
+ "p5": 0.0351,
+ "p5_mitades": [
+  -0.0959,
+  0.088
+ ],
+ "vivas": 302,
+ "alta": {
+  "regla": {
+   "mercados": [
+    "tiros",
+    "a_puerta"
+   ],
+   "prob_min": 0.72,
+   "cuota_max": 2.0
+  },
+  "desde": "2026-09-10",
+  "min_apuestas": 100,
+  "n": 400,
+  "activo": false,
+  "partidos": 281,
+  "acierto": 0.7525,
+  "promete": 0.7705,
+  "cuota_media": 1.38,
+  "roi": 0.0304,
+  "p5": -0.0217,
+  "p5_mitades": [
+   -0.0598,
+   -0.0299
+  ]
+ }
+}

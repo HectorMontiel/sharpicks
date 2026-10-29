@@ -1,0 +1,63 @@
+name: Respaldo nocturno de la base
+
+# v497 — el plan gratis de Supabase no tiene respaldos. Cada noche: todas las tablas + las cuentas,
+# empacadas y CIFRADAS (AES-256, clave en el secreto RESPALDO_CLAVE: el repositorio es público) y
+# guardadas 30 días como archivo de la corrida. El cron de GitHub a veces no dispara (ver relevo.yml):
+# por eso también corre al terminar el reentrenamiento diario.
+on:
+  schedule:
+    - cron: '15 9 * * *'          # 03:15 CDMX
+  workflow_run:
+    workflows: ['Reentrenar modelos de ligas (datos frescos)']
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: respaldo-base
+  cancel-in-progress: false
+
+env:
+  # v510 — repo privado: los modelos del Release se bajan con el token de la corrida
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  respaldo:
+    runs-on: [self-hosted, sharpicks]   # v509 — runner propio (PC del usuario): 0 minutos de Actions
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar requests
+        run: pip install requests
+      - name: Bajar la base
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: python respaldo_base.py --salida respaldo
+      - name: Empacar y cifrar
+        env:
+          RESPALDO_CLAVE: ${{ secrets.RESPALDO_CLAVE }}
+        run: |
+          test -n "$RESPALDO_CLAVE" || { echo "falta el secreto RESPALDO_CLAVE"; exit 1; }
+          F="sharpicks-$(date -u +%Y-%m-%d)"
+          tar czf "$F.tgz" respaldo
+          openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -in "$F.tgz" -out "$F.tgz.enc" -pass env:RESPALDO_CLAVE
+          rm -rf respaldo "$F.tgz"          # lo que no va cifrado no se sube
+          # v508 — FIRMA (HMAC-SHA256, clave derivada de RESPALDO_CLAVE): AES-CBC cifra pero no avisa si el
+          # archivo se alteró. Antes de restaurar: comprobar la firma (ver la nota de memoria del respaldo).
+          python -c "import hashlib,hmac,os,sys; k=hashlib.sha256(b'firma|'+os.environ['RESPALDO_CLAVE'].encode()).digest(); print(hmac.new(k,open(sys.argv[1],'rb').read(),hashlib.sha256).hexdigest())" "$F.tgz.enc" > "$F.tgz.enc.hmac"
+          ls -la "$F.tgz.enc" "$F.tgz.enc.hmac"
+          echo "ARCHIVO=$F.tgz.enc" >> "$GITHUB_ENV"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: respaldo-${{ github.run_id }}
+          path: |
+            ${{ env.ARCHIVO }}
+            ${{ env.ARCHIVO }}.hmac
+          retention-days: 30
+          if-no-files-found: error

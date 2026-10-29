@@ -1,0 +1,708 @@
+name: Reentrenar modelos de ligas (datos frescos)
+
+# CAUSA RAÍZ (v51): los modelos de liga solo se refrescaban con un commit
+# manual, así que `team_stats_*.json` se quedaba semanas atrás y la UI marcaba
+# "sin datos nuevos desde hace 60+ días". Este workflow reentrena todas las
+# ligas con los CSV más recientes de football-data y commitea los artefactos,
+# de modo que Streamlit Cloud (que despliega desde el repo) siempre sirva
+# modelos al día. Las ligas en receso no cambian (no hay datos nuevos) — es
+# correcto y honesto.
+
+# v74 — DE DOS VECES POR SEMANA A DIARIO.
+#
+# El diagnóstico de v71/v73 culpó a football-data.co.uk de publicar «por lotes
+# semanales». Se comprobó y es FALSO: el 2026-07-28 la fuente estaba al día de
+# ayer en Dinamarca, Liga MX, Suecia y China. Lo que iba atrasado eran los CSV
+# del repo, que solo se reescriben cuando corre este workflow.
+#
+# Con cron los lunes y jueves, un partido del viernes tardaba hasta 4 días en
+# entrar en el estado del modelo. Medido en local: Dinamarca 71 días de desfase,
+# China 8, Suecia 7, Liga MX 5.
+#
+# Diario a las 05:30 UTC: después de que football-data cierre la jornada
+# europea y antes de la hora punta de uso.
+on:
+  schedule:
+    - cron: '47 5 * * *'    # todos los días 05:30 UTC
+  workflow_dispatch:          # ejecución manual desde la web de GitHub
+
+# permiso para que el runner pueda commitear los modelos actualizados
+permissions:
+  contents: write
+
+concurrency:
+  group: retrain-leagues
+  cancel-in-progress: false
+
+env:
+  # v510 — repo privado: los modelos del Release se bajan con el token de la corrida
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  retrain:
+    runs-on: [self-hosted, sharpicks]   # v509 — runner propio (PC del usuario): 0 minutos de Actions
+    # v153 — 60 → 90. El tope de 60 no era holgado: era el que estaba matando
+    # el job. Dos ejecuciones seguidas se perdieron por él (2026-08-21 failure,
+    # 2026-08-22 cancelada a los 60m21s). La causa de fondo se ataca en
+    # `publicar_modelos.py` (sólo se re-suben los assets que cambiaron), y esto
+    # es la red por debajo: con la subida ya recortada debería sobrar tiempo,
+    # pero un día con muchas competiciones reentrenadas no puede volver a
+    # costar el día entero.
+    # v480 — de 90 a 150: el 26 y el 27-oct se cortó en «MLB, tenis y NBA» y no publicó nada
+    timeout-minutes: 150
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # v162 — LAS ESTADÍSTICAS REALES DE ESPN, AL DÍA.
+      #
+      # `stats_espn` guarda córners, tarjetas, faltas, remates y posesión de
+      # cada partido jugado, y `league_engine` las inyecta en el histórico
+      # antes del generador sintético. Sin esta captura diaria, la ventana se
+      # queda atrás y las competiciones que dependen de ella vuelven a la
+      # estimación.
+      #
+      # Va DELANTE del reentrenamiento a propósito: `league_engine --build`
+      # inyecta lo que haya en `stats_espn/`, así que descargarlo después
+      # costaría un día entero de desfase en cada competición. Son ~2 min: diez
+      # días de ventana, y los partidos ya conocidos se saltan, así que el
+      # coste real es sólo el de los nuevos (~0,05 s por partido con 8 hilos).
+      - name: Estadísticas reales de ESPN (córners, tarjetas, faltas)
+        continue-on-error: true
+        run: |
+          python stats_espn.py --dias 10 || echo "::warning::stats de ESPN con avisos"
+          python stats_espn.py --limpiar || echo "::warning::limpieza con avisos"
+          # v393 — y de FotMob las ligas que ESPN no cubre (Polonia, Suiza...)
+          python stats_fotmob.py --dias 10 || echo "::warning::stats de FotMob con avisos"
+          # y de Flashscore las ocho que ni ESPN ni FotMob publican
+          python stats_flashscore.py --dias 10 || echo "::warning::stats de Flashscore con avisos"
+
+      # v190 — Y DEL MISMO `summary`, LAS CUOTAS Y LAS PLANTILLAS.
+      #
+      # `football-data.co.uk` lleva caido (503 en todo el sitio) y de ahi
+      # salian las columnas `odd_*`. Pero el agujero era mayor que la caida:
+      # de 2.405 partidos posteriores al 1 de agosto, 1.225 no tenian precio,
+      # y en su mayoria son ligas que esa fuente NUNCA cubrio — la Saudi, la
+      # Leagues Cup, la Libertadores, Colombia, Peru, Ecuador.
+      #
+      # Sin precio se puede medir si el modelo acierta, pero no si gana
+      # dinero: el ledger entra sin cuota y el EV de esas ligas no se liquida.
+      #
+      # Medido contra 60 cierres conocidos de LaLiga: error 0,0162 en
+      # probabilidad implicita y sobreredondeo 1,0482, MENOS margen que la
+      # propia football-data. Solo rellena huecos: si football-data vuelve,
+      # su cierre manda y esto no pisa nada.
+      - name: Cuotas y plantillas del summary de ESPN
+        continue-on-error: true
+        run: |
+          python espn_extras.py --dias 10 \
+            || echo "::warning::cuotas/plantillas de ESPN con avisos"
+
+      # v191 — LA NFL TAMBIEN SE ACTUALIZA SOLA.
+      #
+      # `historico_nfl.csv` solo lo construia `nfl_datos.construir_historico`
+      # llamado A MANO, y por eso se quedo en el 2026-08-14: pretemporada.
+      # La temporada arranco el 7 de septiembre y sus resultados no entraban,
+      # asi que el modelo predecia la jornada 1 con lo aprendido en febrero.
+      #
+      # Trae ademas los touchdowns de cada partido, que salen de la lista de
+      # anotaciones del mismo `summary` y son la base del mercado de totales.
+      - name: Historico de la NFL
+        continue-on-error: true
+        run: |
+          python -c "import nfl_datos as nd, datetime as dt; nd.construir_historico([dt.date.today().year])" \
+            || echo "::warning::historico de NFL con avisos"
+
+      - name: Reentrenar todas las ligas disponibles
+        run: |
+          # league_engine --build descarga los CSV frescos de football-data y
+          # reentrena cada liga disponible. Un fallo puntual no aborta el resto.
+          python league_engine.py --build || echo "reentrenamiento con avisos, se continúa"
+
+      # v68: NUNCA se commitea un modelo que no se pueda volver a cargar.
+      # Contexto: el 2026-07-27 el bot publicó 22 `modelo.joblib` que no abrían
+      # fuera del runner. El workflow había terminado "con éxito" porque nadie
+      # comprobaba que el artefacto fuese legible — sólo que el proceso saliera
+      # con código 0. Esta verificación cierra ese hueco: si un modelo no carga,
+      # se restaura su versión anterior y el resto del reentrenamiento sigue.
+      - name: Verificar que todos los modelos se pueden cargar
+        run: |
+          python - <<'PY'
+          import glob, os, subprocess, sys
+          import joblib
+          malos = []
+          for f in sorted(glob.glob('modelos/*/*.joblib')):
+              try:
+                  joblib.load(f)
+              except Exception as e:
+                  malos.append((f, f'{type(e).__name__}: {e}'))
+          for f, err in malos:
+              print(f'::warning::modelo ilegible, se restaura el anterior: {f} ({err})')
+              subprocess.run(['git', 'checkout', '--', f], check=False)
+          print(f'Modelos verificados. Ilegibles restaurados: {len(malos)}')
+          if len(malos) > 10:
+              print('::error::demasiados modelos ilegibles; no se publica nada.')
+              sys.exit(1)
+          PY
+
+      # v75 — HISTÓRICO DE CUOTAS.
+      #
+      # 28 de las 64 competiciones no tienen NINGUNA cuota histórica y no la
+      # tendrán nunca por la vía del backfill: son las de ESPN, y ESPN borra el
+      # bloque `odds` en cuanto el partido acaba (medido: 0 de 40+ partidos
+      # pasados lo conservan, frente a 25/25 de los futuros). La única forma de
+      # tener historia ahí es fotografiar la línea ANTES del pitido inicial, y
+      # eso solo se consigue ejecutándolo todos los días.
+      #
+      # Va DESPUÉS del reentrenamiento a propósito: así la importación de
+      # cierres ve los CSV ya actualizados de hoy, y los snapshots resuelven los
+      # nombres contra los `team_stats_*.json` recién escritos.
+      #
+      # Ningún paso puede tumbar el workflow: el valor principal del job es el
+      # reentrenamiento, y un fallo de red de Pinnacle no debe impedir que se
+      # publiquen los modelos.
+      # `odds_historico.db` está en .gitignore (49 MB y creciendo), así que el
+      # runner clona SIN base de datos. Los cierres se vuelven a derivar de los
+      # `historico_*.csv` del repo; las fotos, que son irrepetibles, se recargan
+      # de `odds_snapshots.csv` y se vuelven a volcar ahí al terminar. Sin este
+      # ida y vuelta, cada ejecución empezaría de cero y el histórico de líneas
+      # nunca pasaría de un día.
+      # v94 — LOS OTROS TRES DEPORTES TAMBIÉN SE REENTRENAN SOLOS.
+      #
+      # Hasta aquí el workflow sólo hacía `league_engine --build`, que es
+      # fútbol. MLB, tenis (ATP y WTA) y NBA se reentrenaban A MANO y sus
+      # modelos llevaban 5-7 días de retraso: el sistema predecía la MLB de
+      # agosto con el estado de julio. Cada motor ya traía su CLI de
+      # entrenamiento; sólo faltaba llamarla.
+      #
+      # Fuera de temporada no hay datos nuevos y el entrenamiento no cambia
+      # nada — es correcto y barato, así que no se condiciona por calendario.
+      # Un fallo en un deporte no aborta los demás ni el resto del workflow.
+      - name: Reentrenar MLB, tenis (ATP/WTA) y NBA
+        run: |
+          python -m engines.mlb_engine    || echo "::warning::MLB con avisos"
+          python -m engines.tennis_engine atp wta || echo "::warning::tenis con avisos"
+          python -m engines.nba_engine    || echo "::warning::NBA con avisos"
+          # v330 — el histórico largo de la NBA (19 temporadas con el cierre
+          # de la casa) con lo que nba_api acaba de añadir: es de donde
+          # `modelo_nba` saca el estado de cada equipo para Apuestas del Día.
+          # Sin red se queda el último commiteado (lo añade `historico_*.csv`).
+          python nba_historico.py         || echo "::warning::histórico largo de la NBA sin actualizar"
+          # v97 — KBO. Naver publica los resultados el mismo dia, asi que el
+          # estado del modelo puede ir al dia igual que el de la MLB.
+          python -m engines.kbo_engine    || echo "::warning::KBO con avisos"
+
+      # v123 — El perfil de JUEGOS por partido del tenis.
+      #
+      # Sale del mismo histórico unificado que acaba de usar el reentrenamiento
+      # (la columna `Score`, con cobertura del 100 % sobre 354.250 partidos del
+      # ATP), así que va justo detrás y aprovecha la descarga ya hecha. Deja
+      # `tenis_juegos_atp.json` y `tenis_juegos_wta.json`, que es lo que lee la
+      # ficha del partido para enseñar cuántos juegos duran los partidos de
+      # cada tenista y de la pareja.
+      #
+      # Recorrer 365.000 marcadores es inaceptable dentro de la interfaz, y por
+      # eso se precalcula aquí. Si falla, la app se queda con el fichero
+      # anterior y la sección desaparece sola: no puede tumbar el workflow.
+      - name: Perfil de juegos del tenis
+        run: python tenis_juegos.py || echo "::warning::juegos de tenis con avisos"
+
+      # v126 — EL BARRIDO DE PRIORIDAD, AUTOMÁTICO.
+      #
+      # Decide qué ligas merecen un reentrenamiento y cuáles se dejan en paz,
+      # con tres filtros: margen contra el techo del mercado, volumen de
+      # partidos y p5 del ROI simulado. Lee el metadata que el paso anterior
+      # acaba de reescribir, así que va DESPUÉS del reentrenamiento y refleja
+      # siempre el estado real.
+      #
+      # Por qué a diario y no «al final de temporada»: no existe una fecha de
+      # fin de temporada única —hay ligas de año natural, de agosto a mayo y de
+      # dos torneos por año— y cualquier calendario codificado se rompe en
+      # cuanto una liga cambia de formato (misma lección que
+      # `panel_equipos.temporada_actual`). El barrido cuesta segundos porque
+      # sólo cruza metadatos, así que ejecutarlo siempre es más barato que
+      # acertar cuándo hay que ejecutarlo, y el fichero sólo cambia cuando
+      # cambian los datos.
+      - name: Barrido de prioridad por liga
+        run: python barrido_ligas.py --json || echo "::warning::barrido con avisos"
+
+      # Mismo blindaje que el fútbol (v68): NUNCA se commitea un modelo que no
+      # se pueda volver a cargar. Si uno no abre, se restaura su versión
+      # anterior desde git y el resto sigue.
+      - name: Verificar que los modelos de MLB, tenis y NBA cargan
+        run: |
+          python - <<'PY'
+          import subprocess, sys
+          casos = [('MLB', 'engines.mlb_engine', 'MLBEngine', ()),
+                   ('tenis ATP', 'engines.tennis_engine', 'TennisEngine', ('atp',)),
+                   ('tenis WTA', 'engines.tennis_engine', 'TennisEngine', ('wta',)),
+                   ('NBA', 'engines.nba_engine', 'NBAEngine', ()),
+                   ('KBO', 'engines.kbo_engine', 'KBOEngine', ())]
+          malos = []
+          for etq, mod, clase, args in casos:
+              try:
+                  m = __import__(mod, fromlist=[clase])
+                  eng = getattr(m, clase)(*args).cargar_modelo()
+                  if not getattr(eng, 'listo', False):
+                      raise RuntimeError(getattr(eng, 'error', 'no listo'))
+                  print(f'OK  {etq}')
+              except Exception as e:
+                  print(f'::warning::{etq} no carga tras reentrenar: '
+                        f'{type(e).__name__}: {e}')
+                  malos.append((etq, mod))
+          if malos:
+              # restaurar los artefactos del deporte que falló
+              carpetas = {'engines.mlb_engine': 'modelos/mlb',
+                          'engines.tennis_engine': 'modelos/tennis modelos/tennis_wta',
+                          'engines.nba_engine': 'modelos/nba',
+                          'engines.kbo_engine': 'modelos/kbo'}
+              for etq, mod in malos:
+                  for c in carpetas.get(mod, '').split():
+                      subprocess.run(['git', 'checkout', '--', c], check=False)
+                      print(f'restaurado {c} (el reentrenamiento de {etq} no sirve)')
+          PY
+
+      # v148 — LOS PESOS SALEN DE LA HISTORIA DE GIT.
+      #
+      # Medido: `.git` pesa 15 GB y hay 23 commits de este bot. Son ~650 MB por
+      # ejecución, porque los 246 `.joblib` (712 MB) se reescriben enteros cada
+      # madrugada y git no puede delta-comprimir un binario ya comprimido. A ese
+      # ritmo el repositorio crece ~19 GB al mes y el `fetch` pasa de diez
+      # minutos.
+      #
+      # Los assets de un Release NO viven en la historia: reemplazarlos no añade
+      # un byte al `.git`. Uno por competición (mediana 12 MB) para que la
+      # aplicación baje sólo lo que va a usar. Ver `publicar_modelos.py` y
+      # `modelos_remotos.py`.
+      #
+      # `--verificar` se baja del Release una muestra y la vuelve a cargar. Es
+      # la misma disciplina de la v68 con el commit de modelos: nunca se publica
+      # un artefacto que no se haya abierto después.
+      # `continue-on-error` a propósito: un hipo de la API de GitHub no puede
+      # llevarse por delante el commit de datos del día, que es el valor
+      # principal del job. Si la publicación falla, los assets del día anterior
+      # siguen ahí y la aplicación sigue sirviendo con ellos; lo único que NO
+      # se hace es la transición, que va condicionada al resultado.
+      # v153 — LOS DATOS SE GUARDAN ANTES DE LO LENTO, Y NO DESPUÉS.
+      #
+      # El commit de artefactos era el ÚLTIMO paso del job, detrás de la
+      # publicación de assets. Medido en el run 32555539614 (2026-08-22): el
+      # reentrenamiento acabó hacia las 06:20, la subida de assets se comió 34
+      # minutos y el job murió cancelado por tiempo en el asset 40 de 54. El
+      # runner tenía la J1 con sus partidos del 21 de agosto desde las 06:11 y
+      # **no llegaron nunca a `main`**. El día anterior, lo mismo con failure.
+      #
+      # O sea que dos días seguidos se tiró una hora de reentrenamiento porque
+      # lo barato y valioso (los CSV que lee la aplicación) estaba detrás de lo
+      # caro y prescindible (re-subir pesos que en su mayoría no cambiaron).
+      #
+      # Este paso guarda los históricos y el estado de los equipos EN CUANTO
+      # existen. Es idempotente y no sustituye al commit final: aquel sigue
+      # recogiendo todo lo que se genere después (snapshots, liquidación,
+      # calibración). Lo que cambia es que un fallo posterior ya no se lleva
+      # por delante los datos del día.
+      # v153 — LAS PREDICCIONES DEL DÍA, CALCULADAS AQUÍ Y NO EN CADA ARRANQUE.
+      #
+      # El arranque en frío de la aplicación son ~119 s, de los cuales 50 son
+      # cargar los modelos y 51 predecir. Ese trabajo da el MISMO resultado
+      # durante todo el día —el 1X2 sólo cambia cuando corre este workflow— así
+      # que pagarlo en cada arranque de cada usuario es repetirlo de balde.
+      #
+      # Va DESPUÉS del reentrenamiento (usa los modelos recién hechos) y ANTES
+      # del guardado, para que el JSON viaje en el mismo commit que los CSV: si
+      # se guardaran por separado, habría un rato con predicciones de unos pesos
+      # e históricos de otros.
+      #
+      # `continue-on-error` a propósito: si esto falla, la aplicación cae al
+      # camino de siempre (cargar y predecir en vivo). Es más lento, no está
+      # roto, y no puede tumbar el reentrenamiento.
+      - name: Precalcular las predicciones del día
+        continue-on-error: true
+        run: |
+          python predicciones_dia.py --dias 3 || echo "::warning::precálculo con avisos"
+
+      # v160 — EL ÁRBITRO DEL DÍA, Y LAS LÍNEAS DE TARJETAS.
+      #
+      # Va ANTES de la captura de tarjetas y en este orden a propósito: la
+      # lección de la v153 fue que lo barato y valioso no puede ir detrás de lo
+      # caro y prescindible, porque el día que el job se pase de tiempo se
+      # pierde justo lo que no se puede recuperar. Un árbitro designado que no
+      # se guarda hoy ya no se puede recuperar mañana: FotMob lo sustituye por
+      # el que efectivamente pitó.
+      #
+      # ESPN no vale para esto y está medido: da el árbitro en 89,8 % de los
+      # partidos JUGADOS y en 0 de 41 de los que faltan por jugar. FotMob sí lo
+      # publica antes, con sus amarillas por partido y la media de su
+      # competición. Coste medido: 48 fixtures, 3 índices de día y 48 detalles
+      # en unos 20 s.
+      - name: Precalcular el árbitro designado de cada partido
+        continue-on-error: true
+        run: |
+          python arbitro_partido.py --dias 2 || echo "::warning::árbitros con avisos"
+
+      # v163 — LA ALINEACIÓN PROBABLE, POR EL MISMO MOTIVO Y CON EL MISMO COSTE.
+      #
+      # Va aquí y no en la pantalla porque la tarjeta de «Apuestas del Día» se
+      # pinta una vez por partido y hay sesenta: a un `matchDetails` de FotMob
+      # por partido (1,7 s) serían dos minutos añadidos a una pantalla que ya
+      # tarda 85. Aquí es una petición al índice por día más una por partido
+      # NUESTRO, una sola vez.
+      #
+      # Y como con el árbitro, es un dato que caduca: medido el 2026-08-23,
+      # ESPN publica el once en 50 de 50 partidos JUGADOS y en 0 de 54 por
+      # jugar, así que después ya no sirve. FotMob sí lo da antes —27 de 50 por
+      # jugar, 21 de ellos como `predicted`— y es lo que se guarda.
+      - name: Precalcular la alineación probable de cada partido
+        continue-on-error: true
+        run: |
+          python remates_jugador.py --dias 2 || echo "::warning::alineaciones con avisos"
+
+      # v164 — LAS LÍNEAS DE REMATES POR JUGADOR QUE COTIZA LA CASA.
+      #
+      # Playdoit publica «Remates - <Jugador> (<COD>)» y «Remates a Puerta -
+      # …» con tres líneas cada una: unas 80 familias por partido. Sin esto, la
+      # tarjeta tendría que bajarse el tablero entero de cada partido (250-320
+      # KB) para leerlas, y son sesenta partidos por pantalla — la misma
+      # trampa que costó dos regresiones en la v163.
+      #
+      # Aquí es una petición por partido, una vez, y el fichero que queda es
+      # pequeño porque sólo guarda lo de remates.
+      - name: Precalcular las líneas de remates por jugador
+        continue-on-error: true
+        run: |
+          python lineas_jugador.py --dias 2 || echo "::warning::líneas de jugador con avisos"
+
+      # v165 — EL PRECIO DE LA CASA DE LOS TRES MERCADOS DE LA TARJETA.
+      #
+      # La tarjeta anunciaba «Menos de 2.5 — 80 %» sin nada con qué
+      # contrastarlo, y la casa pagaba ese mismo lado al 63 %. El pronóstico no
+      # llevaba el precio encima: medido sobre el barrido del 2026-08-23,
+      # ninguno de los 156 partidos de fútbol traía `cuota` en sus mercados.
+      #
+      # Va JUSTO DESPUÉS de las líneas de jugador y no es casual: las dos
+      # cosas salen del MISMO tablero por evento, que `cuotas_multi` acaba de
+      # dejar en la caché de disco con TTL de 30 min. Ejecutados seguidos, éste
+      # casi no descarga nada.
+      - name: Precalcular el precio de la casa (1X2, goles y ambos marcan)
+        continue-on-error: true
+        run: |
+          python mercado_implicito.py --dias 2 || echo "::warning::precio de la casa con avisos"
+
+      - name: Guardar históricos y estado (antes de lo lento)
+        run: |
+          git config user.name  "retrain-bot"
+          git config user.email "actions@github.com"
+          git add -A historico_*.csv team_stats_*.json barrido_ligas.json || echo "::warning::git add de historico_*.csv y 2 mas fallo"
+          git add -A predicciones_dia.json || echo "::warning::git add de predicciones_dia.json fallo"
+          git add -A arbitros_dia.json || echo "::warning::git add de arbitros_dia.json fallo"
+          git add -A alineaciones_dia.json || echo "::warning::git add de alineaciones_dia.json fallo"
+          if git diff --cached --quiet; then
+            echo "Sin cambios en históricos (ligas en receso). Nada que guardar."
+          else
+            fecha=$(date -u +%Y-%m-%d)
+            git commit -m "chore(datos): históricos y estado de equipos ($fecha)"
+            # v312 — antes: `git pull --rebase --autostash || true`. Cuando
+            # otro bot había empujado, el autostash chocaba al devolver
+            # `lineas_jugador_hist/*.csv`, lo dejaba a medio fundir («U») y el
+            # `|| true` lo escondía; el paso FINAL moría una hora después
+            # (24, 25, 27 y 28 de septiembre). `git_sin_conflictos.py` une
+            # las filas de los CSV de histórico, se queda con lo recién
+            # generado en el resto y nunca deja un fichero en «U».
+            python git_sin_conflictos.py publicar \
+              || echo "::warning::los históricos se publicarán en el paso final"
+          fi
+
+      # v345 — el modelo de TIROS POR EQUIPO (la metodología del usuario:
+      # tabla, posesión, faltas del rival, plantilla), con los históricos y
+      # `stats_espn/` de hoy. Se guarda en `modelos/tiros_equipo/` y viaja
+      # como asset del Release, como los demás pesos (`tiros_equipo.py`).
+      - name: Entrenar el modelo de tiros por equipo
+        continue-on-error: true
+        run: python tiros_equipo.py --entrenar || echo "::warning::modelo de tiros con avisos"
+
+      - name: Publicar los modelos como assets del Release
+        id: publicar
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python publicar_modelos.py --verificar
+
+      # LA TRANSICIÓN, UNA SOLA VEZ Y SÓLO SI LA PUBLICACIÓN SE VERIFICÓ.
+      #
+      # Dejar de versionar `modelos/` en el mismo commit que introduce la
+      # descarga sería apostar la aplicación a que el primer `publicar` sale
+      # bien: si fallara, Streamlit Cloud desplegaría un clon SIN modelos y sin
+      # assets de los que bajarlos. Por eso el paso anterior tiene que haber
+      # terminado en verde para que éste se ejecute (`success()` es la condición
+      # por defecto, y `--verificar` ya ha hecho el viaje de ida y vuelta).
+      #
+      # Es idempotente: en cuanto `modelos/` deja de estar versionado, el
+      # `git ls-files` sale vacío y no vuelve a hacer nada.
+      - name: Dejar de versionar los pesos (transición, idempotente)
+        if: steps.publicar.outcome == 'success'
+        run: |
+          # SÓLO LOS SUBDIRECTORIOS. La raíz de `modelos/` se queda.
+          #
+          # La primera versión de este paso hacía `git rm -r --cached modelos/`
+          # y escribía `modelos/` en .gitignore. Se llevó por delante los once
+          # artefactos que viven en la RAÍZ y que no son de ninguna liga —el
+          # modelo del Mundial, el MAT, la NFL, la supervivencia de BTTS— y la
+          # aplicación se cayó con
+          # `FileNotFoundError: './modelos/modelo_tda.joblib'`.
+          #
+          # Esos ficheros no los regenera este workflow y sólo cambian cuando
+          # alguien reentrena el Mundial a mano: son 64 MB estáticos, no los
+          # 712 MB diarios que la v148 vino a sacar de la historia.
+          _subdirs=$(git ls-files 'modelos/*/*' | head -1)
+          if [ -n "$_subdirs" ]; then
+            echo "los modelos por competición siguen versionados: se retiran del índice."
+            git rm -r --cached --quiet 'modelos/*/'
+            if ! grep -qx 'modelos/\*/' .gitignore; then
+              {
+                echo ""
+                echo "# v148 - los pesos POR COMPETICION viajan como assets del Release"
+                echo "# modelos-latest. La RAIZ de modelos/ se queda versionada."
+                echo "modelos/*/"
+              } >> .gitignore
+            fi
+          else
+            echo "los modelos por competición ya no están versionados. Nada que hacer."
+          fi
+
+      - name: Importar cuotas de cierre al histórico
+        run: python import_historical_odds.py || echo "::warning::importación de cuotas con avisos"
+
+      - name: Fotografiar la línea de hoy (snapshots + CLV)
+        run: python daily_snapshots.py || echo "::warning::snapshots con avisos"
+
+      # v159 — LAS LÍNEAS DE CÓRNERS, QUE NADIE PUBLICA HACIA ATRÁS.
+      #
+      # La probabilidad de córners ya está calibrada (0,0043 el total, 0,0056
+      # por equipo), así que se puede calcular un EV frente a la cuota de la
+      # casa. Lo que NO se puede es saber si ese EV gana dinero: no existe
+      # histórico de líneas de córners, football-data no las publica y el de
+      # The Odds API es de pago. Sin líneas pasadas no hay apuestas que
+      # liquidar, y la regla de oro del proyecto no se puede ni aplicar.
+      #
+      # Esto empieza a construirlo. Una foto al día por partido y mercado; en
+      # unos meses habrá con qué medir. Medido hoy: 4.200 filas de 48 partidos
+      # en 29 s, así que no compite por el tiempo del job.
+      - name: Fotografiar las líneas de córners
+        continue-on-error: true
+        run: |
+          python snapshots_corners.py --dias 2 || echo "::warning::córners con avisos"
+
+      # v160 — igual que los córners, y por lo mismo: la probabilidad de
+      # tarjetas está calibrada (0,0119 en el total, 0,0117 por equipo contra
+      # la frecuencia real) pero no hay histórico de líneas con el que saber si
+      # su EV gana. Esto lo empieza a construir. Medido: 2.010 filas de 48
+      # partidos en 25 s.
+      - name: Fotografiar las líneas de tarjetas
+        continue-on-error: true
+        run: |
+          python snapshots_tarjetas.py --dias 2 || echo "::warning::tarjetas con avisos"
+
+      # v163 — y los remates, tercer mercado con el mismo problema. Su
+      # probabilidad está calibrada (0,0131 por equipo en remates totales y
+      # 0,0129 a puerta contra la frecuencia real, sobre 41.000
+      # equipos-partido) y NO hay histórico de líneas con el que saber si su EV
+      # gana. Sin este paso, los remates no pueden salir de ámbar nunca.
+      #
+      # Guarda los dos mercados por separado —«Total de remates» y «Total de
+      # remates a puerta» tienen dispersiones y niveles distintos— con una
+      # columna `objetivo` que los distingue.
+      - name: Fotografiar las líneas de remates
+        continue-on-error: true
+        run: |
+          python snapshots_remates.py --dias 2 || echo "::warning::remates con avisos"
+
+      # v95 — EL CATÁLOGO DE TENIS CRECE SOLO.
+      #
+      # 182 partidos salían como «con cuota, sin modelo propio» porque el
+      # histórico tiene 58.941 partidos del circuito principal y sólo 1.225 de
+      # challenger. ESPN sí publica los challengers (medido: 785 partidos y 488
+      # jugadores en 15 días) pero sólo sirve una ventana reciente: si no se
+      # guardan cada día, se pierden. Esto los acumula para que el próximo
+      # reentrenamiento amplíe el catálogo.
+      - name: Acumular resultados de tenis (amplía el catálogo)
+        run: python acumular_tenis.py --dias 7 || echo "::warning::acumulación de tenis con avisos"
+
+      # v97 — EL ITF, EN VIVO.
+      #
+      # `ingesta_itf` (semanal, en recalibrar.yml) trae el ARCHIVO de Sackmann,
+      # que se quedó en el 2026-06-01. Esto recoge lo que BetExplorer publica
+      # cada día (~275 partidos ITF por semana, masculino y femenino), que es
+      # lo que mantiene vivo el estado de forma de los jugadores de M15/W15.
+      # Igual que el acumulador de tenis: si no se guarda hoy, se pierde.
+      - name: Acumular resultados de ITF (fuente viva)
+        run: python acumular_itf.py || echo "::warning::acumulación de ITF con avisos"
+
+      # v99 — EL MONITOR DE PLAYDOIT NO CORRIA EN NINGUN SITIO.
+      #
+      # Su docstring decia "se ejecuta en el workflow diario" y era falso: no
+      # estaba en ningun workflow. Consecuencia medida: playdoit_cobertura.json
+      # tenia 164 HORAS y la interfaz mostraba "Playdoit no cotiza HOY
+      # bol_division" con la foto de la semana pasada — cuando Playdoit si
+      # cotizaba los cinco partidos bolivianos. Mismo patron que la v93.
+      - name: Refrescar la cobertura de Playdoit
+        run: python monitor_playdoit.py || echo "::warning::monitor de Playdoit con avisos"
+
+      # v176 — DEJA ANOTADO LO QUE LA APLICACION VA A RECOMENDAR HOY.
+      #
+      # Va JUSTO DESPUES del monitor de Playdoit y eso no es cosmetico:
+      # la recomendacion es probabilidad x CUOTA, asi que necesita el
+      # tablero recien bajado. Antes del monitor, `mercado_dia.json`
+      # seria el de ayer y el registro guardaria una cuota que ya no
+      # existe.
+      #
+      # POR QUE HACE FALTA EN CI Y NO BASTA CON LA APLICACION. Streamlit
+      # Cloud reinicia el contenedor cuando le parece y se lleva lo que
+      # la aplicacion escribio en disco. Un registro que no sobrevive al
+      # reinicio no puede validarse al dia siguiente, que es justo para
+      # lo que existe. Aqui viaja en el repositorio, como
+      # `predicciones_dia.json`.
+      #
+      # Y cubre los partidos que NADIE mira: la aplicacion solo puede
+      # anotar la tarjeta que pinta.
+      - name: Anotar los pronosticos del dia
+        run: python pronosticos_guardados.py || echo "::warning::anotacion de pronosticos con avisos"
+
+      # v249 — Y LIQUIDAR LOS QUE YA SE JUGARON.
+      #
+      # Anotar sin resolver no sirve para nada: habia 1.591 partidos
+      # guardados, CERO resueltos, y a los 21 dias se borraban. Sin esto no
+      # existe el historico con el que calibrar corners, tarjetas ni remates,
+      # ni con el que el modelo puede aprender de lo que recomendo.
+      #
+      # Va DESPUES de anotar y despues del backfill de estadisticas, porque
+      # lee los dos: el marcador del historico de la liga y los conteos de
+      # `stats_espn`. Es de solo-escritura sobre lo que falta, asi que correrlo
+      # dos veces no cambia nada.
+      - name: Resolver los pronosticos ya jugados
+        run: python -c "import pronosticos_guardados as p; print(p.resolver_pendientes())" || echo "::warning::resolucion de pronosticos con avisos"
+
+      # v99 — CUOTAS DE CIERRE DE KBO, que solo se pueden reunir dia a dia.
+      # El archivo por temporadas de BetExplorer solo sirve playoffs (la
+      # temporada regular esta tras ?stage=, prohibido por robots.txt), pero
+      # la pagina de la temporada en curso publica los ultimos resultados CON
+      # su cierre. Acumulandolos se construye el historico de regular que hoy
+      # no existe en ninguna fuente gratuita.
+      - name: Acumular cuotas de cierre de KBO
+        run: python ingesta_cuotas_kbo.py || echo "::warning::cuotas KBO con avisos"
+
+      # v92 — CIERRA EL CIRCUITO. El proyecto registraba los picks de cada día
+      # desde la v32 y nunca los resolvía (`liquidar()` no tenía llamador):
+      # 315 registrados, 0 liquidados. Sin esto no hay forma de saber si el
+      # edge validado en backtest se cobra de verdad en producción.
+      - name: Liquidar los picks ya jugados contra el resultado
+        run: python liquidador.py --dias 10 || echo "::warning::liquidación con avisos"
+
+      - name: Comprobar que las fotos quedaron persistidas
+        run: |
+          python - <<'PY'
+          import csv, os, sys
+          ruta = 'odds_snapshots.csv'
+          if not os.path.exists(ruta):
+              print('::warning::no se generó odds_snapshots.csv — el histórico de '
+                    'líneas NO se está acumulando')
+              sys.exit(0)
+          with open(ruta, encoding='utf-8', newline='') as f:
+              filas = list(csv.DictReader(f))
+          dias = len({r['snapshot_key'].split('|')[0][:10] for r in filas})
+          print(f'{len(filas)} fotos acumuladas a lo largo de {dias} días.')
+          PY
+
+      - name: Recalibrar encogimiento al mercado
+        run: |
+          # Solo si hay ledger: reconstruirlo entero cada día costaría ~40 min.
+          # Lo regenera `build_pick_ledger.py` a mano cuando cambian modelos o
+          # features; aquí únicamente se refresca el peso con lo que ya hay.
+          if [ -f pick_ledger.csv ]; then
+            python recalibrate_from_history.py || echo "::warning::recalibración con avisos"
+          else
+            echo "sin pick_ledger.csv: se conserva calibracion_mercado.json"
+          fi
+
+      - name: Commitear artefactos actualizados (si cambiaron)
+        run: |
+          git config user.name  "retrain-bot"
+          git config user.email "actions@github.com"
+          # v312 — si algún paso anterior dejó un fichero a medio fundir, se
+          # resuelve AQUÍ, antes de tocar nada: era lo que mataba este paso
+          # («Committing is not possible because you have unmerged files»).
+          python git_sin_conflictos.py resolver
+          # v148 — `modelos/` ya no entra: sus pesos viajan como assets del
+          # Release. El `git add` se conserva por si el paso de transición
+          # aún no ha corrido; con la carpeta ignorada es un no-op.
+          git add -A team_stats_*.json historico_*.csv roi_bets_*.json || echo "::warning::git add de team_stats_*.json y 2 mas fallo"
+          git add -A modelos/ || echo "::warning::git add de modelos fallo"
+          git add -A .gitignore || echo "::warning::git add de .gitignore fallo"
+          # odds_historico.db NO: está en .gitignore y es regenerable. Lo que
+          # se commitea es `odds_snapshots.csv`, que contiene lo único que no
+          # se puede reconstruir (la línea antes del partido).
+          git add -A corners_snapshots.csv || echo "::warning::git add de corners_snapshots.csv fallo"
+          # v160 — lo mismo para tarjetas, y el árbitro designado del día.
+          # `arbitros_dia.json` NO es regenerable: FotMob sustituye al
+          # designado por el que efectivamente pitó en cuanto el partido
+          # acaba, así que la foto de hoy no se puede recuperar mañana.
+          git add -A tarjetas_snapshots.csv arbitros_dia.json || echo "::warning::git add de tarjetas_snapshots.csv y 1 mas fallo"
+          # v163 — lo mismo para remates, y la alineación probable del día.
+          # `alineaciones_dia.json` tampoco es regenerable: en cuanto el
+          # partido empieza, el once probable pasa a ser el once real y el que
+          # se publicó antes ya no existe en ninguna parte.
+          git add -A remates_snapshots.csv alineaciones_dia.json || echo "::warning::git add de remates_snapshots.csv y 1 mas fallo"
+          # v164 — y las líneas de jugador del día. Tampoco son regenerables:
+          # la casa las mueve durante el día y las de esta mañana ya no se
+          # pueden recuperar mañana.
+          git add -A lineas_jugador_dia.json || echo "::warning::git add de lineas_jugador_dia.json fallo"
+          # v165 — y el precio de la casa del día, por el mismo motivo: es la
+          # única referencia con la que la tarjeta puede contrastar su propio
+          # porcentaje, y la casa mueve sus líneas durante el día.
+          git add -A mercado_dia.json || echo "::warning::git add de mercado_dia.json fallo"
+          # v176 — y el registro de lo que se recomendo, que es lo
+          # unico contra lo que se puede validar manana. Se AÑADE,
+          # nunca se reescribe: `pronosticos_guardados.guardar` es de
+          # solo-insercion, asi que el commit de hoy no puede borrar
+          # el pronostico de ayer.
+          git add -A pronosticos_emitidos.json || echo "::warning::git add de pronosticos_emitidos.json fallo"
+          # v162 — las estadísticas reales de ESPN. Son la fuente de que
+          # córners y tarjetas dejen de ser sintéticos en 40 competiciones;
+          # sin commitearlas, cada despliegue empezaría de cero.
+          git add -A stats_espn/ stats_fotmob/ stats_flashscore/ calibracion_stats_liga.json || echo "::warning::git add de stats_espn y 1 mas fallo"
+          git add -A odds_snapshots.csv calibracion_mercado.json umbrales_capa1.json \
+                     _v75_import_odds.json _v75_snapshots.json playdoit_cobertura.json cuotas_kbo_cierre.csv \
+            || echo "::warning::git add de odds_snapshots y 6 mas fallo"
+          # v123 — el perfil de juegos del tenis, que la ficha del partido lee
+          # al vuelo y no puede recalcular (365.000 marcadores).
+          git add -A tenis_juegos_atp.json tenis_juegos_wta.json || echo "::warning::git add de tenis_juegos_atp.json y 1 mas fallo"
+          # v126 — el ranking de prioridad por liga, que la app lee para saber
+          # qué competiciones están en cola de reentrenamiento y cuáles no.
+          git add -A barrido_ligas.json || echo "::warning::git add de barrido_ligas.json fallo"
+          if git diff --cached --quiet; then
+            echo "Sin cambios en los modelos (ligas en receso). Nada que commitear."
+          else
+            fecha=$(date -u +%Y-%m-%d)
+            git commit -m "chore(datos): reentrenamiento automático de ligas ($fecha)"
+            # v148 → v195.3 → v312 — UN PUSH AJENO A MITAD DEL JOB NO TIRA EL
+            # DÍA. La historia de este bucle (un push humano que tiraba 52 min
+            # de trabajo, un rebase que no llegaba a empezar, un `abort` que
+            # mataba el paso con `bash -e`) terminó con un fichero en «U» que
+            # nadie resolvía. Ahora todo eso vive en `git_sin_conflictos.py`:
+            # une las filas de los CSV de histórico, gana lo recién generado en
+            # el resto de artefactos, no pisa código y nunca deja nada a medio
+            # fundir. Probado con los dos casos del fallo real (conflicto al
+            # devolver el autostash y conflicto dentro del rebase).
+            python git_sin_conflictos.py publicar \
+              || echo "::warning::no se pudo publicar tras varios intentos; los artefactos se regeneran mañana."
+          fi

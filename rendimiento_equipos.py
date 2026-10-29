@@ -1,0 +1,1922 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+v152 — CÓMO LLEGA CADA EQUIPO, CON DATOS OBSERVADOS Y NADA MÁS.
+
+Para qué
+--------
+El «Modo Modelo» ordena por probabilidad del modelo y enseña, al lado, el
+rendimiento reciente del equipo recomendado. Este módulo es la fuente de ese
+rendimiento: una llamada por equipo que devuelve racha, goles, córners y
+remates de sus últimos partidos.
+
+LA REGLA DE ESTE MÓDULO: SÓLO SALE LO QUE LA COMPETICIÓN PUBLICA
+----------------------------------------------------------------
+Un campo que la fuente no trae vuelve como `None` y la interfaz no lo pinta. No
+hay medias de relleno, ni ceros por defecto, ni estimaciones «razonables». Es la
+lección de la v149-v150 escrita como código: *un hueco se ve, un relleno no*, y
+en cuanto se rellena un dato con una estimación plausible nadie vuelve a saber
+cuál es cuál.
+
+POR QUÉ AQUÍ NO HAY xG
+----------------------
+El plan pedía enseñar «xG a favor y en contra de los últimos 5». No se puede, y
+no por falta de código: **el xG de este proyecto es sintético**. Lo rellena
+`CorrelatedSyntheticGenerator.generate_advanced_metrics` como
+
+    xG = xg_intercept + xg_slope_goles · goles_reales + ruido(xg_residual_std)
+
+Medido el 2026-08-21 sobre los históricos guardados, ajustando xG contra goles:
+
+    liga             n        intercepto   pendiente   sd residual
+    Bundesliga       9.792    0,785        0,201       0,519
+    Argentina        7.610    0,785        0,200       0,498
+    Liga MX          5.302    0,776        0,203       0,509
+    Brasileirão      6.174    0,775        0,208       0,505
+
+    calibración del generador:  0,776       0,200       0,529
+
+Los cuatro reproducen la calibración con tres decimales. O sea que el «xG» de
+estos ficheros **es una función afín de los goles con ruido encima**: no lleva
+ni un gramo de información que los goles no tengan ya, y lleva ruido que los
+goles no tienen. Enseñarlo etiquetado como xG le diría al usuario que está
+viendo calidad de ocasiones cuando está viendo el marcador multiplicado por 0,2.
+
+Lo que sí es observado, y por eso es lo que sale aquí: **goles, córners, remates
+y tarjetas**, que football-data publica partido a partido en sus 20 ligas de
+formato 'main' (cobertura de córners medida: 100 %).
+
+El xG REAL existe y es alcanzable —FotMob lo publica junto con posesión y
+ocasiones claras, y `fotmob_scraper.py` ya lo sabe leer— pero hoy hay 28
+partidos cacheados. Cuando la cobertura permita validarlo, entra por aquí sin
+tocar la interfaz: basta con que `stats_disponibles` empiece a incluirlo.
+"""
+import logging
+import os
+
+import numpy as np
+import pandas as pd
+from typing import Dict, List, Optional
+
+logger = logging.getLogger(__name__)
+
+VENTANA = 5          # «los últimos 5», que es lo que se pidió y lo que se pinta
+MIN_PARTIDOS = 3     # con menos, una racha no es una racha
+
+# v182 — el respaldo cuando un equipo no tiene pasado en la competición.
+# Se importa arriba y no dentro de cada lambda: son tres funciones que se
+# llaman por partido y por bando, y un import por llamada se nota.
+try:
+    import perfil_liga_local as _plc
+except Exception:                                    # pragma: no cover
+    class _plc:                                      # respaldo inerte
+        @staticmethod
+        def completar(serie, *a, **k):
+            return serie, False
+
+
+def _num(v) -> Optional[float]:
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    return None if f != f else f      # NaN fuera
+
+
+def _media(xs: List[float]) -> Optional[float]:
+    xs = [x for x in xs if x is not None]
+    return round(sum(xs) / len(xs), 2) if xs else None
+
+
+def _historico(clave: str):
+    """El histórico de la competición. Se apoya en `panel_equipos`, que ya lo
+    cachea, normaliza fechas y sabe de los históricos que no son de fútbol."""
+    try:
+        import panel_equipos
+        return panel_equipos._historico(clave)
+    except Exception as e:
+        logger.debug('[rendimiento] %s: %s', clave, e)
+        import pandas as pd
+        return pd.DataFrame()
+
+
+_MEMO_FORMA: Dict = {}
+
+
+def olvidar_forma() -> None:
+    """Vacía la memoria de `forma`. La usan los tests y quien reescriba un CSV."""
+    _MEMO_FORMA.clear()
+
+
+def forma(clave: str, equipo: str, n: int = VENTANA,
+          solo_bando: Optional[str] = None) -> Dict:
+    """La forma del equipo, memorizada. El cálculo está en `_forma`.
+
+    v216 — POR QUÉ SE MEMORIZA. Es pura respecto a sus argumentos: lo demás
+    que lee es `_historico(clave)`, el CSV de la competición, que no cambia
+    mientras dura un render. Y se llamaba 1.318 veces en un rerun de «Apuestas
+    del Día» para unas pocas docenas de (liga, equipo): 13 s de la pasada,
+    filtrando y recorriendo el mismo histórico una vez por tarjeta.
+
+    SE DEVUELVE UNA COPIA, y no es paranoia: el diccionario lleva dentro la
+    lista `partidos`, y si un consumidor la modificara, el siguiente en pedir
+    la misma forma recibiría la versión mutada. Copiar cuesta microsegundos
+    contra los 10 ms que costaba recalcular.
+    """
+    llave = (clave, equipo, n, solo_bando)
+    guardado = _MEMO_FORMA.get(llave)
+    if guardado is None:
+        guardado = _forma(clave, equipo, n, solo_bando)
+        _MEMO_FORMA[llave] = guardado
+    copia = dict(guardado)
+    if isinstance(copia.get('partidos'), list):
+        copia['partidos'] = list(copia['partidos'])
+    return copia
+
+
+def _forma(clave: str, equipo: str, n: int = VENTANA,
+           solo_bando: Optional[str] = None) -> Dict:
+    """
+    Cómo llega `equipo` a su próximo partido, en `n` partidos.
+
+    `solo_bando` ('casa' | 'fuera') restringe a los partidos de ese bando. Sirve
+    para la lectura que más cambia un pronóstico y que menos se mira: un equipo
+    puede sacar 7 córners en casa y 3 fuera, y el partido que se va a jugar
+    tiene bandos asignados.
+
+    Devuelve siempre las mismas claves. Las que la competición no publica valen
+    `None`, y la interfaz las omite en vez de pintar un cero.
+    """
+    # v153.1 — EL ESQUEMA COMPLETO, SIEMPRE. Este diccionario existe porque el
+    # docstring de arriba prometía «devuelve siempre las mismas claves» y no era
+    # verdad: los dos caminos de «pocos partidos» devolvían `n` con un valor
+    # mayor que cero y sin `pts_por_partido` detrás. La interfaz comprobaba `n`,
+    # lo veía positivo, accedía al resto y reventaba con KeyError — en
+    # producción, tumbando la pestaña entera del Modo Modelo.
+    #
+    # Un contrato a medias es peor que ninguno: el consumidor comprueba lo que
+    # el contrato le dice que compruebe y aun así falla. Ahora todas las claves
+    # existen desde el principio, con `None` donde no hay dato, que es
+    # exactamente lo que el resto del módulo promete.
+    vacio = {'equipo': equipo, 'clave_liga': clave, 'n': 0, 'bando': solo_bando,
+             'racha': '', 'ganados': 0, 'empatados': 0, 'perdidos': 0,
+             'pts_por_partido': None, 'gf_media': None, 'gc_media': None,
+             'ck_favor': None, 'ck_contra': None, 'ck_total': None,
+             'remates_favor': None, 'remates_contra': None, 'amarillas': None,
+             'partidos': []}
+    d = _historico(clave)
+    if d is None or getattr(d, 'empty', True):
+        return vacio
+    en_casa_col = d['home_team'] == equipo
+    de_fuera_col = d['away_team'] == equipo
+    if solo_bando == 'casa':
+        suyos = d[en_casa_col]
+    elif solo_bando == 'fuera':
+        suyos = d[de_fuera_col]
+    else:
+        suyos = d[en_casa_col | de_fuera_col]
+    if suyos.empty:
+        return vacio
+    suyos = suyos.sort_values('date', ascending=False).head(int(n))
+    if len(suyos) < MIN_PARTIDOS:
+        return {**vacio, 'n': int(len(suyos)),
+                'aviso': 'sólo %d partidos en el histórico: no hay racha que '
+                         'leer' % len(suyos)}
+
+    racha, gf, gc, ck_f, ck_c, rem_f, rem_c, amar = [], [], [], [], [], [], [], []
+    partidos = []
+    # v245 — LA SERIE PARTIDO A PARTIDO, NO SOLO LA MEDIA.
+    #
+    # Hasta aqui esto devolvia `ck_total` (una media) y con una media no se
+    # puede responder a «¿cuantos de sus ultimos partidos pasaron de 7,5
+    # corners?». Y esa pregunta resulto valer: medida sobre 180.103 partidos de
+    # 67 ligas, la fraccion historica sobre la linea mezclada al 50 % con el
+    # modelo baja el log-loss de 0,61062 a 0,59187, con p5 +0,0186 y el 100 %
+    # de los remuestreos a favor.
+    #
+    # Se guardan solo los partidos con AMBOS lados presentes: medio dato no es
+    # un total, y meterlo desviaria la serie hacia abajo.
+    serie_ck, serie_rem, serie_amar, serie_on = [], [], [], []
+    serie_gol = []          # v246
+    for _, r in suyos.iterrows():
+        casa = (r['home_team'] == equipo)
+        yo, otro = ('home', 'away') if casa else ('away', 'home')
+        g_yo, g_otro = _num(r.get(yo + '_goals')), _num(r.get(otro + '_goals'))
+        if g_yo is None or g_otro is None:
+            continue
+        res = 'G' if g_yo > g_otro else ('E' if g_yo == g_otro else 'P')
+        racha.append(res)
+        gf.append(g_yo)
+        gc.append(g_otro)
+        # v246 — el total del partido, para la pata histórica de goles. Aquí
+        # los dos lados ya están comprobados por el `continue` de arriba, así
+        # que la serie no puede descolgarse de la racha.
+        serie_gol.append(float(g_yo) + float(g_otro))
+        c_yo, c_otro = _num(r.get(yo + '_corners')), _num(r.get(otro + '_corners'))
+        if c_yo is not None:
+            ck_f.append(c_yo)
+        if c_otro is not None:
+            ck_c.append(c_otro)
+        # remates totales = a puerta + fuera, que es como los publica
+        # football-data (HST/HS − HST). Si falta cualquiera de los dos, no se
+        # suma un total a medias.
+        for destino, quien in ((rem_f, yo), (rem_c, otro)):
+            on = _num(r.get(quien + '_shots_on'))
+            off = _num(r.get(quien + '_shots_off'))
+            if on is not None and off is not None:
+                destino.append(on + off)
+        a = _num(r.get(yo + '_yellow'))
+        if a is not None:
+            amar.append(a)
+        # v245 — los totales del partido, para la pata historica
+        if c_yo is not None and c_otro is not None:
+            serie_ck.append(float(c_yo) + float(c_otro))
+        _r_yo = _num(r.get(yo + '_shots_on')), _num(r.get(yo + '_shots_off'))
+        _r_ot = _num(r.get(otro + '_shots_on')), _num(r.get(otro + '_shots_off'))
+        if all(v is not None for v in _r_yo + _r_ot):
+            serie_rem.append(float(sum(_r_yo)) + float(sum(_r_ot)))
+        _a_ot = _num(r.get(otro + '_yellow'))
+        if a is not None and _a_ot is not None:
+            serie_amar.append(float(a) + float(_a_ot))
+        _on_yo, _on_ot = (_num(r.get(yo + '_shots_on')),
+                          _num(r.get(otro + '_shots_on')))
+        if _on_yo is not None and _on_ot is not None:
+            serie_on.append(float(_on_yo) + float(_on_ot))
+        partidos.append({
+            'fecha': str(r['date'].date()) if hasattr(r['date'], 'date') else '',
+            'rival': r['away_team'] if casa else r['home_team'],
+            'casa': bool(casa), 'resultado': res,
+            'goles': int(g_yo), 'encajados': int(g_otro),
+            'corners': int(c_yo) if c_yo is not None else None,
+        })
+
+    pj = len(racha)
+    if pj < MIN_PARTIDOS:
+        return {**vacio, 'n': pj}
+    g, e = racha.count('G'), racha.count('E')
+    return {
+        'equipo': equipo, 'clave_liga': clave, 'n': pj,
+        'bando': solo_bando,
+        # La racha se lee del más reciente al más antiguo en la lista, pero se
+        # PINTA del más antiguo al más nuevo: «PGGEG» se lee mal si el último
+        # partido está a la izquierda.
+        'racha': ''.join(reversed(racha)),
+        'ganados': g, 'empatados': e, 'perdidos': pj - g - e,
+        'pts_por_partido': round((g * 3 + e) / pj, 2),
+        'gf_media': _media(gf), 'gc_media': _media(gc),
+        'ck_favor': _media(ck_f), 'ck_contra': _media(ck_c),
+        'ck_total': (round(_media(ck_f) + _media(ck_c), 2)
+                     if _media(ck_f) is not None and _media(ck_c) is not None
+                     else None),
+        'remates_favor': _media(rem_f), 'remates_contra': _media(rem_c),
+        'amarillas': _media(amar),
+        # v245 — las series de TOTALES del partido. Ver la nota de arriba.
+        'serie_corners': list(serie_ck),
+        'serie_remates': list(serie_rem),
+        'serie_tarjetas': list(serie_amar),
+        'serie_remates_on': list(serie_on),
+        'serie_goles': list(serie_gol),      # v246
+        'partidos': partidos,
+    }
+
+
+def momentum(clave: str, equipo: str, n: int = VENTANA) -> Optional[Dict]:
+    """
+    Si el equipo va a más o a menos: los últimos `n` contra los `n` anteriores.
+
+    Es una comparación de dos medias de cinco partidos, así que su margen de
+    error es enorme y el texto lo dice. Vale para ordenar la lectura, no para
+    decidir una apuesta.
+    """
+    d = _historico(clave)
+    if d is None or getattr(d, 'empty', True):
+        return None
+    suyos = d[(d['home_team'] == equipo) | (d['away_team'] == equipo)]
+    suyos = suyos.sort_values('date', ascending=False).head(int(n) * 2)
+    if len(suyos) < int(n) * 2:
+        return None
+
+    def ppp(sub):
+        pts = 0
+        for _, r in sub.iterrows():
+            casa = (r['home_team'] == equipo)
+            g_yo = _num(r['home_goals'] if casa else r['away_goals'])
+            g_ot = _num(r['away_goals'] if casa else r['home_goals'])
+            if g_yo is None or g_ot is None:
+                return None
+            pts += 3 if g_yo > g_ot else (1 if g_yo == g_ot else 0)
+        return pts / len(sub)
+
+    rec, ant = ppp(suyos.head(int(n))), ppp(suyos.tail(int(n)))
+    if rec is None or ant is None:
+        return None
+    dif = rec - ant
+    return {
+        'reciente': round(rec, 2), 'anterior': round(ant, 2),
+        'delta': round(dif, 2),
+        # El umbral es 0,4 puntos por partido —dos puntos en cinco jornadas—
+        # porque por debajo de eso un solo resultado cambia el signo.
+        'tendencia': 'sube' if dif >= 0.4 else ('baja' if dif <= -0.4 else 'igual'),
+    }
+
+
+_CACHE_SINT: Dict[str, Dict[str, bool]] = {}
+_MUESTRA_SINT = 400
+_FICHERO_SINT = 'cache_columnas_sinteticas.json'
+_DISCO_SINT = None
+
+
+def _firma(clave: str):
+    """Tamaño y fecha del histórico. Si cambian, la respuesta guardada caduca."""
+    import os
+    ruta = 'historico_%s.csv' % clave
+    try:
+        s = os.stat(ruta)
+        return '%d|%d' % (s.st_size, int(s.st_mtime))
+    except OSError:
+        return None
+
+
+def _disco_sint() -> Dict:
+    """
+    El resultado de la prueba, guardado entre ejecuciones.
+
+    La prueba cuesta ~0,3 s por competición (regenera 400 filas por cada
+    columna) y su respuesta sólo cambia si cambia el fichero. Sin este caché,
+    la pestaña nueva añadiría ~6 s al arranque en frío de una app que ya tarda
+    119 s, y los añadiría **siempre**: `st.tabs` renderiza el contenido de
+    todas las pestañas, se mire o no.
+    """
+    global _DISCO_SINT
+    if _DISCO_SINT is None:
+        import json
+        import os
+        _DISCO_SINT = {}
+        if os.path.exists(_FICHERO_SINT):
+            try:
+                with open(_FICHERO_SINT, 'r', encoding='utf-8') as f:
+                    _DISCO_SINT = json.load(f) or {}
+            except Exception as e:
+                logger.debug('[rendimiento] caché ilegible: %s', e)
+                _DISCO_SINT = {}
+    return _DISCO_SINT
+
+
+def _guarda_sint(clave: str, firma: str, valor: Dict) -> None:
+    import json
+    d = _disco_sint()
+    d[clave] = {'firma': firma, 'cols': valor}
+    try:
+        with open(_FICHERO_SINT, 'w', encoding='utf-8') as f:
+            json.dump(d, f, ensure_ascii=False, indent=1, sort_keys=True)
+    except Exception as e:
+        logger.debug('[rendimiento] no se pudo guardar la caché: %s', e)
+
+
+def _columnas_sinteticas(clave: str, d) -> Dict[str, bool]:
+    """
+    Qué columnas de este histórico las escribió el generador sintético.
+
+    NO es una inferencia estadística: es una REPRODUCCIÓN. El generador es
+    determinista por `MATCH_ID` (`_uniformes_por_partido`: hash estable con una
+    sal por variable), así que se le vuelve a pedir la columna sobre una muestra
+    del propio fichero y se compara valor a valor. Si coincide, la columna no es
+    un dato observado que casualmente se parece a la fórmula: **es la fórmula**.
+
+    Se hace así, y no con una lista de columnas prohibidas escrita a mano,
+    porque una lista se queda vieja en silencio: el día que una liga traiga xG
+    de verdad, la lista seguiría diciendo que no y nadie se enteraría. Esto
+    responde por el fichero que tiene delante.
+
+    Cada columna se prueba SOLA —se borra esa y se dejan las demás— porque el
+    generador encadena: los remates salen del xG y los córners de los remates.
+    Borrando todas a la vez, una columna real se recalcularía a partir de
+    entradas sintéticas y saldría distinta, o sea «real», que es el error
+    peligroso.
+    """
+    if clave in _CACHE_SINT:
+        return _CACHE_SINT[clave]
+    firma = _firma(clave)
+    guardado = _disco_sint().get(clave)
+    if guardado and firma and guardado.get('firma') == firma:
+        _CACHE_SINT[clave] = guardado.get('cols') or {}
+        return _CACHE_SINT[clave]
+    salida: Dict[str, bool] = {}
+    try:
+        import numpy as np
+        import statsbomb_calibration
+        from correlated_synthetic_generator import CorrelatedSyntheticGenerator
+        cal = statsbomb_calibration.calibrar()
+        gen = CorrelatedSyntheticGenerator()
+        # v162 — LA MUESTRA SALE DE LA COLA, NO DE LA CABECERA.
+        #
+        # Estaba en `head`, o sea en los partidos MÁS ANTIGUOS del fichero, y
+        # eso dejó de servir en cuanto `stats_espn` empezó a inyectar
+        # estadísticas reales: su cobertura arranca en 2021 y varios históricos
+        # empiezan en 2018, así que la cabecera seguiría siendo sintética para
+        # siempre y `stats_disponibles` diría «no hay datos» de una competición
+        # que ya los tiene.
+        #
+        # La cola es además lo correcto por lo que se usa: los estimadores
+        # miran `.tail(10)` de cada equipo, o sea partidos recientes. Lo que
+        # importa es si ESOS son reales, no si lo eran los de hace ocho años.
+        #
+        # Comprobado que el generador reproduce igual sobre un trozo: pedirle
+        # `home_corners` sobre la cola de 400 filas de la Liga MX devuelve
+        # 1,000 de coincidencia, igual que sobre la cabecera. El ruido es un
+        # hash por `MATCH_ID`, así que no depende de qué filas se le pasen.
+        base = d.tail(_MUESTRA_SINT).copy()
+        if 'MATCH_ID' not in base.columns or len(base) < 50:
+            _CACHE_SINT[clave] = {}
+            return {}
+        for col in ('home_xg', 'home_possession', 'home_corners',
+                    'home_shots_on', 'home_shots_off', 'home_yellow'):
+            if col not in base.columns or not base[col].notna().any():
+                continue
+            prueba = base.drop(columns=[col])
+            try:
+                rehecho = gen.generate_advanced_metrics(prueba, cal)
+            except Exception:
+                continue
+            a = pd.to_numeric(base[col], errors='coerce').to_numpy(float)
+            b = pd.to_numeric(rehecho[col], errors='coerce').to_numpy(float)
+            m = ~(np.isnan(a) | np.isnan(b))
+            if m.sum() < 50:
+                continue
+            # 0,01 de tolerancia: el fichero guarda el xG redondeado a 2
+            # decimales, así que exigir igualdad binaria daría «real» a una
+            # columna sintética que sólo pasó por un round().
+            iguales = float(np.mean(np.abs(a[m] - b[m]) <= 0.011))
+            salida[col] = bool(iguales >= 0.95)
+    except Exception as e:
+        logger.debug('[rendimiento] prueba de síntesis en %s: %s', clave, e)
+    _CACHE_SINT[clave] = salida
+    if firma and salida:
+        _guarda_sint(clave, firma, salida)
+    return salida
+
+
+def stats_disponibles(clave: str) -> Dict[str, bool]:
+    """
+    Qué publica esta competición **de verdad**, mirando su fichero.
+
+    La interfaz pregunta ANTES de pintar: así una liga sin córners no enseña una
+    fila de córners vacía. Y ninguna estadística sale por tener columna: sale
+    por no ser reproducible con el generador sintético (`_columnas_sinteticas`).
+    """
+    d = _historico(clave)
+    if d is None or getattr(d, 'empty', True):
+        return {}
+    cols = set(d.columns)
+    sint = _columnas_sinteticas(clave, d)
+
+    def hay(sufijo):
+        c = 'home_' + sufijo
+        if c not in cols or not bool(d[c].notna().any()):
+            return False
+        return not sint.get(c, False)
+
+    return {
+        'goles': ('home_goals' in cols and bool(d['home_goals'].notna().any())),
+        'corners': hay('corners'),
+        'remates': hay('shots_on') and hay('shots_off'),
+        'tarjetas': hay('yellow'), 'posesion': hay('possession'),
+        'xg': hay('xg'),
+    }
+
+
+def resumen_partido(clave: str, home: str, away: str,
+                    n: int = VENTANA) -> Dict:
+    """
+    Las dos formas de un partido, más el momentum de cada uno, en una llamada.
+
+    Es lo que consume la tarjeta del Modo Modelo. Cada equipo se mide DOS veces:
+    en todos sus partidos y sólo en el bando que le toca jugar.
+    """
+    return {
+        'clave_liga': clave, 'home': home, 'away': away,
+        'disponible': stats_disponibles(clave),
+        'forma_home': forma(clave, home, n),
+        'forma_away': forma(clave, away, n),
+        'casa_home': forma(clave, home, n, solo_bando='casa'),
+        'fuera_away': forma(clave, away, n, solo_bando='fuera'),
+        'momentum_home': momentum(clave, home, n),
+        'momentum_away': momentum(clave, away, n),
+    }
+
+
+def _solo_reales(d, col: str):
+    """
+    El histórico recortado a las filas cuya estadística es OBSERVADA.
+
+    v162 — HACE FALTA PORQUE UNA COLUMNA PUEDE ESTAR MEZCLADA. `stats_espn`
+    cubre desde 2021 y varios históricos arrancan en 2018, así que en medio
+    fichero los córners son de ESPN y en la otra mitad los escribió el
+    generador sintético. Promediar los dos juntos da un número que no es ni una
+    cosa ni la otra: medido en la Liga MX, la razón varianza/media de los
+    córners por equipo salía 1,92 mezclando, contra el 1,5-1,7 de las
+    competiciones con datos limpios.
+
+    `stats_espn.inyectar` marca cada fila que rellenó con `stats_origen`. Si la
+    columna existe y cubre lo suficiente, se usa ese filtro; si no —las 20
+    competiciones de football-data, donde TODO es observado— se devuelve el
+    histórico entero, que es lo correcto ahí.
+
+    El umbral de 200 filas es el mismo que usan las funciones que llaman a
+    ésta: por debajo, una media no es una media.
+    """
+    if d is None or getattr(d, 'empty', True):
+        return d
+    if 'stats_origen' not in d.columns:
+        return d
+    marcadas = d['stats_origen'].notna()
+    n = int(marcadas.sum())
+    if n == 0:
+        # Ninguna fila viene de ESPN: o es una competición de football-data
+        # —donde la columna entera es observada— o no hay datos y quien llama
+        # ya lo detectará con `stats_disponibles`.
+        return d
+    # v392 — LAS FILAS SIN MARCA SE COMPRUEBAN, NO SE SUPONEN.
+    #
+    # Antes se daba por hecho que, si había ALGUNA fila marcada por ESPN, las
+    # demás eran del generador. Falso en las ligas de football-data (Premier,
+    # LaLiga, Bundesliga, Eredivisie): desde el 10-oct ESPN completó ~10
+    # partidos recientes y los marcó; con 10 marcadas (< 200) esto devolvía
+    # NADA, y las 6.130 filas OBSERVADAS de football-data quedaban fuera. Las
+    # cuatro ligas grandes perdieron la media de córners, tarjetas y remates
+    # (5 comprobaciones del catálogo en rojo desde entonces). Ahora: si las
+    # filas sin marca NO las reproduce el generador sintético, son reales y se
+    # usan todas; si las reproduce, sólo valen las marcadas.
+    sin = d[~marcadas]
+    if len(sin) >= 50 and _sin_marca_es_real(sin, col):
+        return d
+    if n < 200:
+        return d.iloc[0:0]        # hay marcas, pero no dan para promediar
+    return d[marcadas]
+
+
+_CACHE_SIN_MARCA: Dict = {}
+
+
+def _sin_marca_es_real(sin, col: str) -> bool:
+    """¿La columna de las filas SIN marca de ESPN es observada? Misma prueba
+    que `_columnas_sinteticas`: se le pide al generador sintético (determinista
+    por MATCH_ID) y, si la reproduce, es suya. Ante la duda, no (conservador).
+    Nunca lanza."""
+    c = 'home_' + col
+    try:
+        if c not in sin.columns or 'MATCH_ID' not in sin.columns:
+            return False
+        base = sin[sin[c].notna()].tail(_MUESTRA_SINT).copy()
+        if len(base) < 50:
+            return False
+        k = (len(sin), str(sin['date'].max()) if 'date' in sin.columns else '', c)
+        if k in _CACHE_SIN_MARCA:
+            return _CACHE_SIN_MARCA[k]
+        import numpy as np
+        import statsbomb_calibration
+        from correlated_synthetic_generator import CorrelatedSyntheticGenerator
+        rehecho = CorrelatedSyntheticGenerator().generate_advanced_metrics(
+            base.drop(columns=[c]), statsbomb_calibration.calibrar())
+        a = pd.to_numeric(base[c], errors='coerce').to_numpy(float)
+        b = pd.to_numeric(rehecho[c], errors='coerce').to_numpy(float)
+        m = ~(np.isnan(a) | np.isnan(b))
+        real = bool(m.sum() >= 50 and float(np.mean(np.abs(a[m] - b[m]) <= 0.011)) < 0.95)
+        _CACHE_SIN_MARCA[k] = real
+        return real
+    except Exception as e:
+        logger.debug('[rendimiento] filas sin marca (%s): %s', col, e)
+        return False
+
+
+_CACHE_GOLES: Dict[str, Optional[float]] = {}
+
+
+def media_goles_liga(clave: str,
+                     temporadas_recientes: int = 3) -> Optional[float]:
+    """
+    v165 — Goles totales por partido de esta competición, OBSERVADOS.
+
+    A diferencia de los córners, aquí no hay duda de origen: los goles son la
+    única estadística que las 62 competiciones publican de verdad y con la que
+    se entrenan todos los modelos del proyecto. El generador sintético no toca
+    esta columna, así que no hace falta el filtro de `_solo_reales`.
+
+    Para qué sirve, y para qué NO. La usa `cordura_probabilidad` como techo de
+    lo que se puede anunciar en una línea de goles: en una liga de 3,0 goles
+    por partido, «menos de 2,5» al 80 % no lo sostiene la aritmética. NO es un
+    predictor del partido —la media de la liga es idéntica en los diez partidos
+    de la jornada, que es justo por lo que los córners no se recomiendan (§10)—
+    sino un límite superior de la convicción que cabe publicar.
+
+    La ventana son las últimas temporadas por el mismo motivo que en córners:
+    el nivel de goles de una competición se mueve con los años, y es la misma
+    ventana con la que se entrenan los modelos de liga.
+    """
+    if clave in _CACHE_GOLES:
+        return _CACHE_GOLES[clave]
+    valor = None
+    try:
+        d = _historico(clave)
+        if d is not None and not getattr(d, 'empty', True):
+            tot = (pd.to_numeric(d.get('home_goals'), errors='coerce')
+                   + pd.to_numeric(d.get('away_goals'), errors='coerce')).dropna()
+            if len(tot) >= 100:
+                corte = d['date'].max() - pd.Timedelta(
+                    days=365 * int(temporadas_recientes))
+                recientes = tot[d['date'] >= corte]
+                usar = recientes if len(recientes) >= 100 else tot
+                v = float(usar.mean())
+                # el mismo cerco de cordura que `stats_estimadas._media_goles`:
+                # fuera de esta horquilla lo que hay es un fichero roto, no una
+                # competición rara, y devolverlo pondría techos absurdos.
+                valor = round(v, 3) if 0.5 < v < 7.0 else None
+    except Exception as e:
+        logger.debug('[rendimiento] media de goles de %s: %s', clave, e)
+    _CACHE_GOLES[clave] = valor
+    return valor
+
+
+_CACHE_CK: Dict[str, Optional[float]] = {}
+
+
+def media_corners_liga(clave: str, temporadas_recientes: int = 3) -> Optional[float]:
+    """
+    Total medio de córners por partido en esta competición, OBSERVADO.
+
+    Devuelve `None` si la competición no publica córners de verdad. Eso es lo
+    que separa esta función de un `mean()`: en 55 de las 75 competiciones del
+    proyecto la columna existe y la escribió el generador sintético, y promediar
+    el relleno del generador daría un número con aspecto de medición.
+
+    Por qué existe, y qué sustituye
+    -------------------------------
+    La fórmula de producción deriva los córners del xG:
+    `ck = 4,0 + 0,25·(lam_h+lam_a)·spx·tpo`. Medida sobre 20 competiciones y
+    8.889 partidos de juicio, con split temporal y sin fuga:
+
+        media de la competición ..............  MAE 2,6996
+        fórmula actual .......................  MAE 3,0749   (peor en 19 de 20)
+        fórmula con el nivel recalibrado .....  MAE 3,0609
+        córners y remates reales (ridge) .....  MAE 2,6942   (mejora 0,005)
+
+    Las dos lecturas que decidieron el cambio:
+
+      · **La constante 4,0 no era el problema.** Recalibrar el nivel por liga
+        recupera 0,014 de los 0,375 que la fórmula pierde. El 96 % del daño lo
+        hace la parte variable.
+      · **La parte variable es ruido.** Su correlación con el total real es
+        −0,0012 de media sobre 11.856 partidos, y 0 de 15 ligas pasan de 0,1 en
+        valor absoluto. Sumarla a una media añade varianza sin añadir señal, y
+        por eso la empeora.
+
+    Así que el mejor estimador medido del total de córners de un partido es la
+    media de su competición. No es un modelo brillante: es el que menos se
+    equivoca de los que se han probado, y decir eso es más útil que enseñar un
+    número que parece específico del partido y no lo es.
+
+    La ventana son las últimas temporadas y no el histórico entero porque el
+    número de córners de una liga se mueve con los años (cambios de reglamento,
+    de estilo); 3 temporadas es la misma ventana con la que se entrenan los
+    modelos de liga.
+    """
+    if clave in _CACHE_CK:
+        return _CACHE_CK[clave]
+    valor = None
+    try:
+        if stats_disponibles(clave).get('corners'):
+            d = _solo_reales(_historico(clave), 'corners')
+            tot = (pd.to_numeric(d['home_corners'], errors='coerce')
+                   + pd.to_numeric(d['away_corners'], errors='coerce')).dropna()
+            if len(tot) >= 200:
+                # las últimas ~3 temporadas: se cuenta por fecha, no por número
+                # de filas, porque las competiciones no tienen el mismo tamaño
+                corte = d['date'].max() - pd.Timedelta(days=365 * int(temporadas_recientes))
+                recientes = tot[d['date'] >= corte]
+                usar = recientes if len(recientes) >= 200 else tot
+                valor = round(float(usar.mean()), 3)
+    except Exception as e:
+        logger.debug('[rendimiento] media de córners de %s: %s', clave, e)
+    _CACHE_CK[clave] = valor
+    return valor
+
+
+# ---------------------------------------------------------------------------
+# TENIS
+#
+# No pasa por `panel_equipos`: su histórico usa `jugador_1`/`jugador_2` y ese
+# módulo lo descarta a propósito (no es un histórico de equipos). Aquí se lee
+# aparte, y con la misma regla que el resto del módulo — si no hay partidos
+# suficientes, sale `n` y nada más.
+#
+# La cobertura es la que es: 784 jugadores en el fichero, 349 con 5 partidos o
+# más. Los otros 435 no enseñan racha, que es la respuesta correcta.
+# ---------------------------------------------------------------------------
+_RUTA_TENIS = 'historico_tenis_espn.csv'
+_CACHE_TENIS = {}
+
+
+def _historico_tenis():
+    if 'd' not in _CACHE_TENIS:
+        try:
+            d = pd.read_csv(_RUTA_TENIS)
+            d['fecha'] = pd.to_datetime(d['fecha'], errors='coerce')
+            _CACHE_TENIS['d'] = d.dropna(
+                subset=['fecha', 'jugador_1', 'jugador_2', 'ganador'])
+        except Exception as e:
+            logger.debug('[rendimiento] histórico de tenis: %s', e)
+            _CACHE_TENIS['d'] = pd.DataFrame()
+    return _CACHE_TENIS['d']
+
+
+def forma_tenis(jugador: str, n: int = VENTANA) -> Dict:
+    """
+    Cómo llega un jugador: racha y porcentaje de SETS de sus últimos `n`.
+
+    El porcentaje de sets se separa del de partidos a propósito: ganar 2-0 y
+    ganar 2-1 cuentan igual en la racha y no cuentan igual en la pista, y es la
+    lectura que el plan pedía para el tenis.
+
+    La superficie NO se cruza aquí. El pick del barrido ya trae la del partido
+    y el modelo de tenis tiene ELO por superficie desde hace versiones
+    (`DIFF_ELO_SUP`, con la pista cubierta como superficie propia); partir estos
+    cinco partidos por superficie dejaría muestras de uno o dos, que no dicen
+    nada.
+    """
+    # v175 — EL ESQUEMA COMPLETO, SIEMPRE. Es el mismo defecto que la
+    # v153.1 arreglo en `forma` y que el docstring de aquella llamo «un
+    # contrato a medias»: los dos caminos de «pocos partidos» devolvian
+    # `n` y nada mas, la interfaz veia `n` positivo, accedia a `racha` y
+    # reventaba. Medido en `valida_render` de la v172 y de la v174: dos
+    # `KeyError: 'racha'` por pasada, y cada uno se lleva por delante la
+    # pestaña ENTERA del Modo Modelo, no solo el bloque de tenis.
+    vacio = {'n': 0, 'jugador': jugador, 'racha': '', 'ganados': 0,
+             'perdidos': 0, 'sets_favor': 0, 'sets_contra': 0,
+             'pct_sets': None}
+    d = _historico_tenis()
+    if d is None or getattr(d, 'empty', True) or not jugador:
+        return vacio
+    suyos = d[(d['jugador_1'] == jugador) | (d['jugador_2'] == jugador)]
+    if suyos.empty:
+        return vacio
+    suyos = suyos.sort_values('fecha', ascending=False).head(int(n))
+    if len(suyos) < MIN_PARTIDOS:
+        return {**vacio, 'n': int(len(suyos))}
+
+    racha, sg, sp = [], 0.0, 0.0
+    for _, r in suyos.iterrows():
+        es_1 = (r['jugador_1'] == jugador)
+        racha.append('G' if str(r['ganador']).strip() == str(jugador).strip()
+                     else 'P')
+        s1, s2 = _num(r.get('sets_1')), _num(r.get('sets_2'))
+        if s1 is None or s2 is None:
+            continue
+        sg += s1 if es_1 else s2
+        sp += s2 if es_1 else s1
+    tot = sg + sp
+    return {
+        'jugador': jugador, 'n': len(racha),
+        'racha': ''.join(reversed(racha)),
+        'ganados': racha.count('G'), 'perdidos': racha.count('P'),
+        'sets_favor': int(sg), 'sets_contra': int(sp),
+        'pct_sets': round(sg / tot, 3) if tot else None,
+    }
+
+
+_CACHE_DISP: Dict[str, Optional[float]] = {}
+
+
+def dispersion_corners_liga(clave: str) -> Optional[float]:
+    """
+    Razón varianza/media del total de córners de esta competición.
+
+    Es el número que dice cuánto se aparta el fenómeno de un Poisson, y sirve
+    para una cosa muy concreta: calcular bien las probabilidades de «más de N
+    córners».
+
+    POR QUÉ NO BASTA POISSON, MEDIDO
+    --------------------------------
+    Los córners no llegan sueltos: un ataque genera un racimo —el saque se
+    desvía, rebota en la barrera, otro córner— y eso infla la varianza sin que
+    la media cambie. Medido sobre 20 competiciones, la razón varianza/media es
+    **1,16**, no 1.
+
+    Ignorarlo sesga las colas, que es justo donde están las líneas que cotiza la
+    casa. Comparando la probabilidad calculada contra la frecuencia REAL en 24
+    líneas de 6 competiciones:
+
+        Poisson ..............  error medio 0,0093
+        binomial negativa ....  error medio 0,0043   ← la mitad
+
+    Devuelve `None` cuando la competición no publica córners observados: sin
+    datos no hay dispersión que medir, y suponer 1,0 sería volver a Poisson por
+    la puerta de atrás sin decirlo.
+    """
+    if clave in _CACHE_DISP:
+        return _CACHE_DISP[clave]
+    valor = None
+    try:
+        if stats_disponibles(clave).get('corners'):
+            d = _solo_reales(_historico(clave), 'corners')
+            tot = (pd.to_numeric(d['home_corners'], errors='coerce')
+                   + pd.to_numeric(d['away_corners'], errors='coerce')).dropna()
+            if len(tot) >= 400:
+                m, v = float(tot.mean()), float(tot.var())
+                if m > 0:
+                    # Por debajo de 1 el conteo está MENOS disperso que un
+                    # Poisson y la binomial negativa no existe: se corta en 1,0,
+                    # que devuelve el comportamiento de Poisson.
+                    valor = round(max(v / m, 1.0), 4)
+    except Exception as e:
+        logger.debug('[rendimiento] dispersión de córners de %s: %s', clave, e)
+    _CACHE_DISP[clave] = valor
+    return valor
+
+
+def prob_mas_de(media: float, linea: float,
+                dispersion: Optional[float] = None) -> Optional[float]:
+    """
+    P(total > linea) para un conteo con sobredispersión conocida.
+
+    Con `dispersion` a None o 1,0 es exactamente Poisson. Por encima usa la
+    binomial negativa con la misma media y esa razón varianza/media, que es la
+    parametrización que ajusta el racimo sin tocar el nivel.
+    """
+    try:
+        from scipy import stats as _st
+        m = float(media)
+        if m <= 0:
+            return None
+        k = int(np.floor(float(linea)))
+        d = float(dispersion or 1.0)
+        if d <= 1.0001:
+            return float(1.0 - _st.poisson.cdf(k, m))
+        # var = d·m  ->  r = m² / (var − m) = m / (d − 1)
+        r = m / (d - 1.0)
+        p = r / (r + m)
+        return float(1.0 - _st.nbinom.cdf(k, r, p))
+    except Exception as e:
+        logger.debug('[rendimiento] prob_mas_de: %s', e)
+        return None
+
+
+_CACHE_DISP_EQ: Dict[str, Optional[float]] = {}
+
+
+def dispersion_corners_equipo(clave: str) -> Optional[float]:
+    """
+    Razón varianza/media de los córners DE UN EQUIPO en esta competición.
+
+    No es la del total, y la diferencia importa: medido sobre 6 competiciones,
+    el total va a 1,16 y un equipo suelto a **1,58**. Tiene sentido — el racimo
+    (un córner que genera otro) ocurre dentro del ataque del MISMO equipo, así
+    que se nota más cuando se mira equipo a equipo que cuando se suman los dos y
+    las rachas de uno rellenan los huecos del otro.
+
+    Usar la dispersión del total para las líneas por equipo sería quedarse corto
+    justo en las colas, que es donde están las líneas que cotiza la casa.
+    """
+    if clave in _CACHE_DISP_EQ:
+        return _CACHE_DISP_EQ[clave]
+    valor = None
+    try:
+        if stats_disponibles(clave).get('corners'):
+            d = _solo_reales(_historico(clave), 'corners')
+            serie = pd.concat([
+                pd.to_numeric(d['home_corners'], errors='coerce'),
+                pd.to_numeric(d['away_corners'], errors='coerce')]).dropna()
+            if len(serie) >= 800:
+                m, v = float(serie.mean()), float(serie.var())
+                if m > 0:
+                    valor = round(max(v / m, 1.0), 4)
+    except Exception as e:
+        logger.debug('[rendimiento] dispersión por equipo de %s: %s', clave, e)
+    _CACHE_DISP_EQ[clave] = valor
+    return valor
+
+
+def lambda_corners_equipo(clave: str, equipo: str, rival: str,
+                          en_casa: bool, n: int = 10) -> Optional[float]:
+    """
+    Córners esperados de `equipo` contra `rival`, jugando en su bando.
+
+    ES EL ESTIMADOR QUE GANÓ, y por bastante. Medido sobre 30.454
+    equipos-partido en 6 competiciones, comparando el error de calibración
+    contra la frecuencia real en las líneas 3,5 / 4,5 / 5,5 / 6,5:
+
+        ataque + defensa del rival, binomial negativa ....  0,0056
+        media móvil de 5, Poisson ........................  0,0093
+        media de la competición, binomial negativa .......  0,0101
+        media del equipo, Poisson ........................  0,0296
+        media de la competición, Poisson .................  0,0369
+
+    O sea: seis veces mejor que la referencia. Dos cosas lo explican, y las dos
+    hacen falta —cambiar sólo una de ellas se queda a mitad de camino:
+
+      · **quién enfrente también cuenta.** Los córners que saca un equipo
+        dependen de a quién ataca tanto como de cómo ataca, y `B_equipo` y
+        `C_movil5` sólo miran a uno de los dos.
+      · **cada bando por separado.** Lo que un equipo saca en casa y lo que saca
+        fuera son dos cosas distintas, y el partido que se predice tiene bandos
+        asignados.
+
+    La ventana es de 10 y no de 5 a propósito: la media móvil de 5 salió PEOR
+    (0,0093 con Poisson, 0,0149 con binomial negativa). Cinco partidos de un
+    equipo son una muestra de cinco, y su propio ruido de Poisson es mayor que
+    la señal que se busca.
+
+    v162 — mira sólo las filas con córners OBSERVADOS (`_solo_reales`). Sin
+    ese filtro, en una competición cubierta por ESPN desde 2021 la media móvil
+    de los diez últimos podría arrastrar valores del generador sintético de
+    2020 y mezclar dos cosas distintas en el mismo número.
+    """
+    d = _solo_reales(_historico(clave), 'corners')
+    if d is None or getattr(d, 'empty', True):
+        return None
+    try:
+        # LAS DOS COLUMNAS SON LA MISMA, Y NO ES UNA ERRATA.
+        #
+        # «Lo que saca el equipo en su bando» y «lo que el rival recibe en el
+        # bando contrario» son córners del MISMO lado del marcador: si el equipo
+        # juega en casa, los suyos son `home_corners`, y los que el rival encaja
+        # jugando fuera también son `home_corners` (los del local de aquel
+        # partido). Lo que cambia entre los dos es por QUIÉN se filtra, no qué
+        # columna se lee.
+        #
+        # La primera versión puso aquí la columna contraria y las dos lambdas
+        # del partido salían IDÉNTICAS —6,10 y 6,10 en Man City-Arsenal, 5,50 y
+        # 5,50 en Liverpool-Everton—, que es lo que delató el fallo antes de
+        # integrarlo. Con las columnas bien, ese partido da 6,10 y 4,40.
+        col_eq = 'home_team' if en_casa else 'away_team'
+        col_riv = 'away_team' if en_casa else 'home_team'
+        col_saca = 'home_corners' if en_casa else 'away_corners'
+        col_rec = col_saca
+
+        saca = pd.to_numeric(
+            d.loc[d[col_eq] == equipo, col_saca], errors='coerce').dropna()
+        recibe = pd.to_numeric(
+            d.loc[d[col_riv] == rival, col_rec], errors='coerce').dropna()
+        # v182 — SIN MUESTRA EN LA COMPETICIÓN, SE MIRA SU LIGA.
+        #
+        # En la Champions la mediana por equipo es de 16 partidos y el 37 %
+        # baja de 10; Viking FK, Sabah FK y Como tienen CERO. Con menos de
+        # `MIN_PARTIDOS` esto devolvía `None` y el partido caía al estimador de
+        # la competición, que reparte el nivel medio y deja a los dos equipos
+        # con el mismo número.
+        #
+        # Medido walk-forward sobre 1.548 equipos-partido: en los que llegan
+        # con menos de 5 partidos previos, el error absoluto medio baja un
+        # **6,20 %** en córners. Ver `perfil_liga_local`.
+        saca, _ = _plc.completar(saca, equipo, clave, 'corners', en_casa, n,
+                                 'hace')
+        recibe, _ = _plc.completar(recibe, rival, clave, 'corners', en_casa, n,
+                                   'concede')
+        if len(saca) < MIN_PARTIDOS or len(recibe) < MIN_PARTIDOS:
+            return None
+        return round((float(saca.tail(n).mean())
+                      + float(recibe.tail(n).mean())) / 2.0, 3)
+    except Exception as e:
+        logger.debug('[rendimiento] lambda de córners %s: %s', clave, e)
+        return None
+
+
+def _estimado(clave: str, objetivo: str) -> Optional[Dict]:
+    """
+    v162 — el respaldo cuando la competición no publica la estadística.
+
+    Se pidió que NINGUNA liga se quede sin la sección. Lo que devuelve
+    `stats_estimadas` es el nivel de la competición derivado de sus goles,
+    repartido por bando, y viene marcado con `origen: 'estimado'` y su error de
+    calibración medido dejando una liga fuera. La interfaz lo pinta con su
+    etiqueta; nunca se mezcla con lo observado.
+    """
+    try:
+        import stats_estimadas
+        return stats_estimadas.estimar(clave, objetivo)
+    except Exception as e:
+        logger.debug('[rendimiento] estimación %s de %s: %s', objetivo, clave, e)
+        return None
+
+
+def _corners_equipo_crudo(clave: str, home: str, away: str,
+                          n: int = 10) -> Optional[Dict]:
+    """
+    Los córners esperados de los dos equipos y del partido, con la dispersión
+    con la que convertirlos en probabilidades.
+
+    v162 — YA NO DEVUELVE `None` POR FALTA DE DATOS. Si la competición no
+    publica córners observados, cae al estimador de respaldo y lo marca con
+    `origen: 'estimado'`. Sólo devuelve `None` cuando no hay ni goles con los
+    que situar el nivel, que es lo único que no se puede suplir.
+
+    El TOTAL de un partido con datos observados sigue siendo la media de la
+    competición y no la suma de las dos lambdas, y eso está medido: la parte
+    variable del total de córners tiene correlación −0,0012 con el total real
+    (§10.7 de la bitácora), así que sumar las lambdas añadiría varianza sin
+    señal. En tarjetas es al revés y por eso allí sí se suman.
+    """
+    disp = dispersion_corners_equipo(clave)
+    lh = lambda_corners_equipo(clave, home, away, True, n) if disp else None
+    la = lambda_corners_equipo(clave, away, home, False, n) if disp else None
+    if disp is None or lh is None or la is None:
+        return _estimado(clave, 'ck')
+    # v316 — LOS CÓRNERS DE CADA EQUIPO CON LA TABLA DE GOLES. Medido contra
+    # este mismo estimador en 1.952 partidos de producción fuera de muestra
+    # (`_v316_corners_tabla.py`, misma dispersión, líneas 2,5 a 6,5; sólo
+    # córners observados y el histórico recortado a cada fecha): log-loss
+    # 0,59786 -> 0,58331 (p5 +0,01022); lo ofrecido al 70 % acierta 78,4 % ->
+    # 80,9 % y la franja de meter (70-80 %) 74,3 % -> 77,2 %. Sólo si el
+    # fichero dice que ganó; si no, sigue el estimador de siempre.
+    fuente = 'ataque_defensa'
+    try:
+        import corners_tabla as _ct
+        lt = _ct.lambdas(clave, home, away)
+        if lt:
+            lh, la = lt
+            fuente = 'tabla'
+    except Exception:
+        pass
+    media_tot = media_corners_liga(clave)
+    disp_tot = dispersion_corners_liga(clave)
+    return {'lambda_home': lh, 'lambda_away': la, 'dispersion': disp,
+            'fuente_lambda': fuente,
+            'lambda_total': media_tot, 'dispersion_total': disp_tot,
+            'origen': 'observado', 'clave_liga': clave}
+
+
+# ---------------------------------------------------------------------------
+# v160 — TARJETAS
+#
+# La misma metodología con la que se cerraron los córners, aplicada al mercado
+# de tarjetas: estimador ataque/defensa del rival con ventana 10, y binomial
+# negativa con la razón varianza/media medida de la propia competición.
+#
+# QUÉ CUENTA UNA «TARJETA» AQUÍ: AMARILLAS **MÁS ROJAS**
+# ------------------------------------------------------
+# Esto no es un detalle de nomenclatura, es lo que decide si el EV que se
+# calcule después sirve para algo. La primera versión contaba sólo amarillas
+# —que es lo que football-data publica con más limpieza— y al cruzarla contra
+# las líneas reales de la casa apareció un sesgo sistemático:
+#
+#     línea de la casa   P(más) del modelo   P(más) del mercado   diferencia
+#         3,5                 0,565                0,622            −0,056
+#         4,5                 0,406                0,489            −0,083
+#         5,5                 0,232                0,368            −0,136
+#         6,5                 0,134                0,242            −0,108
+#
+#     centro de la casa 4,43 · lambda del modelo 4,16 · −0,27 tarjetas
+#
+# El modelo veía MENOS tarjetas que la casa, y cada vez más según subía la
+# línea — la firma exacta de estar contando una magnitud más pequeña. Y las
+# rojas valen 0,25 por partido de media (0,13 en la Premier, 0,27 en Portugal),
+# o sea casi exactamente los 0,27 que faltaban.
+#
+# Contarlas mejora TODO lo medible, no sólo el nivel:
+#
+#                              sólo amarillas   amarillas + rojas
+#     calibración por equipo       0,0141            0,0117
+#     correlación por equipo       0,146             0,150
+#     calibración del total        0,0121            0,0119
+#     correlación del total        0,107             0,110
+#
+# Queda una pregunta que estos datos no cierran y que `snapshots_tarjetas.py`
+# está acumulando para cerrarla: si la casa cuenta una segunda amarilla como
+# UNA tarjeta o como DOS. football-data suma la roja de la doble amarilla en
+# `home_red` y las dos amarillas en `home_yellow`, así que aquí cuenta como
+# tres. Cuando haya líneas liquidadas se sabrá; hasta entonces, esto es lo más
+# cerca del mercado que se puede estar con datos y no con supuestos.
+#
+# LO QUE SE MIDIÓ
+# ---------------
+# 20 competiciones con tarjetas OBSERVADAS (las de formato 'main' de
+# football-data; en las otras 55 la columna la escribió el generador sintético
+# y `stats_disponibles` ya lo distingue). Split temporal, último 30 % como
+# tramo de juicio, medias móviles desplazadas un partido — nada ve su propio
+# resultado. Error de calibración contra la frecuencia REAL en las líneas que
+# cotiza la casa:
+#
+#     POR EQUIPO (líneas 0,5 / 1,5 / 2,5 / 3,5, n = 52.648)
+#       ataque + defensa del rival, ventana 10 ....  0,0117   corr 0,150
+#       sólo lo que comete el equipo, ventana 10 ..  0,0155   corr 0,112
+#       media móvil de 5 del equipo ...............  0,0227   corr 0,098
+#       media de la competición en ese bando ......  0,0312   corr 0,101
+#
+#     TOTAL DEL PARTIDO (líneas 2,5 / 3,5 / 4,5 / 5,5, n = 26.324)
+#       ataque + defensa del rival, binneg ........  0,0119   corr 0,110
+#       ataque + defensa del rival, Poisson .......  0,0134   corr 0,110
+#       media de la competición ...................  0,0488   corr 0,003
+#
+# DOS DIFERENCIAS CON LOS CÓRNERS QUE HAY QUE TENER PRESENTES
+# -----------------------------------------------------------
+# 1) **En el TOTAL, aquí sí gana el estimador del partido.** En córners la
+#    media de la competición era imbatible (su parte variable tenía correlación
+#    −0,0012 con el total real) y por eso `corners_tarjeta` la usa para el
+#    total. En tarjetas la media de la liga tiene correlación 0,003 —o sea,
+#    ninguna— y el estimador ataque/defensa llega a 0,110 y cuadruplica su
+#    calibración. La indisciplina SÍ es un rasgo estable del equipo; sacar
+#    córners depende del rival tanto como de uno.
+#
+# 2) **La binomial negativa aporta, pero por las ROJAS.** Contando sólo
+#    amarillas la razón varianza/media salía 1,0 o por debajo en 19 de las 20
+#    competiciones —un conteo sin sobredispersión, donde la binomial negativa
+#    degenera en Poisson y no cambia nada—. Sumando las rojas sube a 1,35 en
+#    Turquía, 1,37 en Portugal, 1,28 en la Eredivisie: una roja es un suceso
+#    raro que arrastra más tarjetas detrás, y eso engorda la cola justo donde
+#    están las líneas altas. Con eso, binneg gana a Poisson en el total
+#    (0,0119 contra 0,0134). Los córners llegaban a 1,58 por equipo, así que
+#    esto sigue siendo un racimo más flojo que aquél, pero ya no es cero.
+#
+# El detalle está en `_v160_tarjetas_estimadores.py` (sólo amarillas),
+# `_v160_tarjetas_con_rojas.py` (lo adoptado) y `_v160_contra_mercado.py`.
+# ---------------------------------------------------------------------------
+
+_CACHE_DISP_TJ: Dict[str, Optional[float]] = {}
+_CACHE_DISP_TJ_EQ: Dict[str, Optional[float]] = {}
+
+
+def _tarjetas_de(d, bando: str):
+    """
+    Las tarjetas de un bando: amarillas MÁS rojas.
+
+    Una fila a la que le falte cualquiera de las dos columnas sale `NaN` y no
+    se cuenta, en vez de tratar la roja ausente como un cero. Un cero
+    inventado aquí bajaría la media de la competición sin que se notara.
+    """
+    return (pd.to_numeric(d[bando + '_yellow'], errors='coerce')
+            + pd.to_numeric(d[bando + '_red'], errors='coerce'))
+
+
+def _serie_tarjetas(clave: str):
+    """Las tarjetas de los dos bandos, si la competición las publica."""
+    if not stats_disponibles(clave).get('tarjetas'):
+        return None, None
+    d = _solo_reales(_historico(clave), 'yellow')
+    if d is None or getattr(d, 'empty', True):
+        return None, None
+    if 'home_red' not in d.columns or 'away_red' not in d.columns:
+        return None, None
+    return d, (_tarjetas_de(d, 'home'), _tarjetas_de(d, 'away'))
+
+
+def dispersion_tarjetas_liga(clave: str) -> Optional[float]:
+    """
+    Razón varianza/media del TOTAL de tarjetas de la competición.
+
+    Medida contando amarillas + rojas: entre 1,00 y 1,37 según la liga, contra
+    el 1,16 de los córners. Se corta en 1,0 por abajo —por debajo la binomial
+    negativa no existe— y ahí `prob_mas_de` se comporta como Poisson, que es lo
+    correcto: el conteo no está sobredisperso y forzar una cola más gorda sería
+    inventarla.
+
+    `None` si la competición no publica tarjetas observadas.
+    """
+    if clave in _CACHE_DISP_TJ:
+        return _CACHE_DISP_TJ[clave]
+    valor = None
+    try:
+        d, cols = _serie_tarjetas(clave)
+        if cols is not None:
+            tot = (cols[0] + cols[1]).dropna()
+            if len(tot) >= 400:
+                m, v = float(tot.mean()), float(tot.var())
+                if m > 0:
+                    valor = round(max(v / m, 1.0), 4)
+    except Exception as e:
+        logger.debug('[rendimiento] dispersión de tarjetas de %s: %s', clave, e)
+    _CACHE_DISP_TJ[clave] = valor
+    return valor
+
+
+def dispersion_tarjetas_equipo(clave: str) -> Optional[float]:
+    """
+    Razón varianza/media de las tarjetas DE UN EQUIPO en la competición.
+
+    Más baja que la del total —1,12 en Turquía contra 1,35, por ejemplo—, que
+    es lo contrario de lo que pasaba en córners (1,58 por equipo contra 1,16 en
+    el total). Tiene una explicación y conviene tenerla presente al leer los
+    dos módulos: el racimo de córners ocurre DENTRO del ataque de un equipo, y
+    el de tarjetas ocurre ENTRE los dos —una entrada dura trae la represalia—,
+    así que sumar los dos bandos concentra el efecto en vez de diluirlo.
+    """
+    if clave in _CACHE_DISP_TJ_EQ:
+        return _CACHE_DISP_TJ_EQ[clave]
+    valor = None
+    try:
+        d, cols = _serie_tarjetas(clave)
+        if cols is not None:
+            serie = pd.concat([cols[0], cols[1]]).dropna()
+            if len(serie) >= 800:
+                m, v = float(serie.mean()), float(serie.var())
+                if m > 0:
+                    valor = round(max(v / m, 1.0), 4)
+    except Exception as e:
+        logger.debug('[rendimiento] dispersión de tarjetas por equipo de %s: %s',
+                     clave, e)
+    _CACHE_DISP_TJ_EQ[clave] = valor
+    return valor
+
+
+def lambda_tarjetas_equipo(clave: str, equipo: str, rival: str,
+                           en_casa: bool, n: int = 10) -> Optional[float]:
+    """
+    Tarjetas esperadas de `equipo` contra `rival`, jugando en su bando.
+
+    Mismo estimador que ganó en córners y por la misma razón: lo que el equipo
+    RECIBE en su bando promediado con lo que el rival PROVOCA en el bando
+    contrario. Las dos partes hacen falta —quitar cualquiera empeora la
+    calibración de 0,0117 a 0,0155, medido— porque una tarjeta la saca el
+    árbitro por algo que hacen los dos: uno que va a destiempo y otro que
+    provoca.
+
+    LAS DOS LECTURAS USAN LA MISMA COLUMNA, Y NO ES UNA ERRATA. Es el mismo
+    caso que en `lambda_corners_equipo`, escrito aquí otra vez porque la
+    primera versión de aquélla se equivocó justo en esto: si el equipo juega en
+    casa, las tarjetas que él ve son las del bando local, y las que el rival
+    provoca cuando visita también son las del bando local —las del local de
+    aquellos partidos—. Lo que cambia entre las dos no es la columna, es POR
+    QUIÉN se filtra. Poner la columna contraria devuelve las dos lambdas del
+    partido IGUALES, que es la señal que delató el fallo entonces y la que
+    comprueba `test_tarjetas_lambdas_distintas` ahora.
+
+    Ventana 10, como en córners: cinco partidos de un equipo son una muestra de
+    cinco y su propio ruido tapa la señal (la móvil de 5 midió 0,0227 contra
+    0,0117 de esto).
+    """
+    d, _ = _serie_tarjetas(clave)
+    if d is None:
+        return None
+    try:
+        col_eq = 'home_team' if en_casa else 'away_team'
+        col_riv = 'away_team' if en_casa else 'home_team'
+        bando = 'home' if en_casa else 'away'
+        serie = _tarjetas_de(d, bando)
+        recibe = serie[d[col_eq] == equipo].dropna()
+        provoca = serie[d[col_riv] == rival].dropna()
+        # v182 — igual que en córners: −5,11 % de error en los equipos con
+        # menos de 5 partidos en la competición. El factor de tarjetas medido
+        # es 0,9981, o sea que en Champions se sacan LAS MISMAS que en la liga
+        # de origen; el ajuste casi no mueve el número y lo que aporta es tener
+        # número donde no había.
+        recibe, _ = _plc.completar(recibe, equipo, clave, 'yellow', en_casa, n,
+                                   'hace')
+        provoca, _ = _plc.completar(provoca, rival, clave, 'yellow', en_casa, n,
+                                    'concede')
+        if len(recibe) < MIN_PARTIDOS or len(provoca) < MIN_PARTIDOS:
+            return None
+        return round((float(recibe.tail(n).mean())
+                      + float(provoca.tail(n).mean())) / 2.0, 3)
+    except Exception as e:
+        logger.debug('[rendimiento] lambda de tarjetas %s: %s', clave, e)
+        return None
+
+
+# ---------------------------------------------------------------------------
+# v310 — TARJETAS Y REMATES, A MEDIO CAMINO DE LA MEDIA DE SU COMPETICIÓN
+# ---------------------------------------------------------------------------
+# El usuario: «analiza las estadísticas de UEFA, CONCACAF y Liga MX; siento
+# que el modelo no está bien». Medido fuera de muestra (`_v310_conteos.py`:
+# ~2.800 partidos de Liga MX, selecciones y copas UEFA, cada uno predicho sólo
+# con lo anterior a su fecha, con ESTE código):
+#
+#   · TARJETAS: el estimador ataque/defensa del rival PIERDE contra la simple
+#     media de la competición en Liga MX (Brier 0,2028 contra 0,1998),
+#     selecciones UEFA (0,2031 / 0,1990) y amistosos (0,2061 / 0,1767, se
+#     pasaba +1,2 tarjetas: en un amistoso se pita mucho menos).
+#   · REMATES: se quedaba corto ~1,2 en copas UEFA y selecciones.
+#
+# `_v310_ajuste_conteos.py` probó mezclas λ = w·λ_modelo + (1−w)·λ_media con
+# w ∈ {0; 0,25; 0,5; 0,75} y el reescalado por sesgo. Con w = 0,5, log-loss
+# de todas las líneas, mejora contra el modelo solo y p5 del bootstrap:
+#
+#     tarjetas      elección +0,0070 (p5 +0,0003) · juicio +0,0259 (p5 +0,0194)
+#     remates       elección +0,0327 (p5 +0,0196) · juicio +0,0184 (p5 +0,0102)
+#     a puerta      elección +0,0128 (p5 +0,0053) · juicio +0,0058 (p5 +0,0005)
+#
+# Los córners NO se tocan: ninguna mezcla pasó el tramo de juicio.
+#
+# La media es la del TIPO de torneo: en selecciones, amistosos por un lado y
+# partidos oficiales por otro (lo decide el nombre de la competición que trae
+# el pick). Se aplica sólo a lo observado, que es lo medido; lo estimado ya es
+# el nivel de la competición. Los dos equipos se escalan con el mismo factor
+# que el total, para que las líneas por equipo sumen lo mismo.
+MEZCLA_MEDIA = {'tarjetas': 0.5, 'remates': 0.5, 'a_puerta': 0.5}
+DIAS_MEDIA = 730
+MIN_PARTIDOS_MEDIA = 20
+_COL_MEDIA = {'tarjetas': ('yellow',), 'a_puerta': ('shots_on',),
+              'remates': ('shots_on', 'shots_off')}
+_CACHE_MEDIA: Dict = {}
+
+
+def es_amistoso(torneo: str) -> bool:
+    import re as _re
+    return bool(_re.search(r'amistos|friendl', str(torneo or ''), _re.I))
+
+
+def media_competicion(clave: str, mercado: str,
+                      torneo: str = '') -> Optional[float]:
+    """La media del total de `mercado` en la competición (sus últimos dos
+    años de datos), y en selecciones la del TIPO de torneo. None sin datos."""
+    tipo = ''
+    if clave == 'selecciones':
+        tipo = 'amistoso' if es_amistoso(torneo) else 'oficial'
+    k = (clave, mercado, tipo)
+    if k in _CACHE_MEDIA:
+        return _CACHE_MEDIA[k]
+    valor = None
+    try:
+        d = _historico(clave)
+        cols = _COL_MEDIA.get(mercado)
+        if d is not None and not d.empty and cols:
+            ok = all('home_' + c in d.columns and 'away_' + c in d.columns
+                     for c in cols)
+            if ok:
+                x = d
+                if 'date' in x.columns and x['date'].notna().any():
+                    x = x[x['date'] >= x['date'].max()
+                          - pd.Timedelta(days=DIAS_MEDIA)]
+                if tipo and 'tournament' in x.columns:
+                    ama = x['tournament'].astype(str).map(es_amistoso)
+                    x = x[ama] if tipo == 'amistoso' else x[~ama]
+                tot = sum(pd.to_numeric(x['home_' + c], errors='coerce')
+                          + pd.to_numeric(x['away_' + c], errors='coerce')
+                          for c in cols).dropna()
+                if len(tot) >= MIN_PARTIDOS_MEDIA:
+                    valor = float(tot.mean())
+    except Exception as e:
+        logger.debug('[rendimiento] media de %s/%s: %s', clave, mercado, e)
+    _CACHE_MEDIA[k] = valor
+    return valor
+
+
+def _a_la_media(bloque: Optional[Dict], clave: str, mercado: str,
+                torneo: str = '') -> Optional[Dict]:
+    """v310 — la mezcla medida (ver arriba). Devuelve un bloque NUEVO."""
+    w = MEZCLA_MEDIA.get(mercado)
+    if (not bloque or w is None or bloque.get('origen') != 'observado'
+            or not bloque.get('lambda_total')):
+        return bloque
+    media = media_competicion(clave, mercado, torneo)
+    if not media:
+        return bloque
+    lt = float(bloque['lambda_total'])
+    nuevo_t = w * lt + (1.0 - w) * media
+    r = nuevo_t / lt if lt > 0 else 1.0
+    b = dict(bloque)
+    b['lambda_total_modelo'] = round(lt, 3)
+    b['media_competicion'] = round(media, 3)
+    b['lambda_total'] = round(nuevo_t, 3)
+    for kk in ('lambda_home', 'lambda_away'):
+        if b.get(kk) is not None:
+            b[kk] = round(float(b[kk]) * r, 3)
+    return b
+
+
+def _tarjetas_equipo_crudo(clave: str, home: str, away: str, n: int = 10,
+                    factor_arbitro: Optional[float] = None,
+                    torneo: str = '') -> Optional[Dict]:
+    """
+    Las tarjetas esperadas de los dos equipos y del partido, con la dispersión
+    con la que convertirlas en probabilidades.
+
+    `factor_arbitro` es el ajuste por el árbitro designado, ya encogido, tal y
+    como lo devuelve `arbitro_partido.factor()`. Multiplica a los dos equipos
+    por igual: lo que el árbitro cambia es cuánto se pita en el partido, y
+    repartirlo asimétricamente exigiría un sesgo local medido que aquí no está
+    (el `sesgo_local` de `referees.json` es de la tabla mundialista, otra cosa).
+    Con `None` no se toca nada y sale el estimador desnudo.
+
+    `None` cuando la competición no publica tarjetas observadas — 55 de las 75.
+    """
+    disp_eq = dispersion_tarjetas_equipo(clave)
+    disp_tot = dispersion_tarjetas_liga(clave)
+    lh = lambda_tarjetas_equipo(clave, home, away, True, n) if disp_eq else None
+    la = lambda_tarjetas_equipo(clave, away, home, False, n) if disp_eq else None
+    if disp_eq is None or disp_tot is None or lh is None or la is None:
+        # v162 — respaldo estimado en vez de `None`. Con el factor del árbitro
+        # aplicado igual: si se sabe quién pita, esa parte no es una
+        # estimación aunque el nivel de la liga sí lo sea.
+        est = _estimado(clave, 'tj')
+        if est and factor_arbitro:
+            try:
+                f = float(factor_arbitro)
+                if 0.5 <= f <= 1.6:
+                    for k in ('lambda_home', 'lambda_away', 'lambda_total'):
+                        est[k] = round(est[k] * f, 3)
+                    est['factor_arbitro'] = round(f, 4)
+            except (TypeError, ValueError):
+                pass
+        if est:
+            est.setdefault('factor_arbitro', 1.0)
+        return est
+    f = 1.0
+    if factor_arbitro is not None:
+        try:
+            f = float(factor_arbitro)
+        except (TypeError, ValueError):
+            f = 1.0
+        if not (0.5 <= f <= 1.6):    # fuera de rango no se aplica, se ignora
+            f = 1.0
+    # v310 — primero a medio camino de la media de la competición (medido
+    # sin árbitro), y después el árbitro, que mueve el partido entero
+    b = _a_la_media({'lambda_home': lh, 'lambda_away': la,
+                     'lambda_total': lh + la, 'origen': 'observado'},
+                    clave, 'tarjetas', torneo)
+    lh, la = float(b['lambda_home']), float(b['lambda_away'])
+    fuera = {'lambda_home': round(lh * f, 3), 'lambda_away': round(la * f, 3),
+             'lambda_total': round((lh + la) * f, 3),
+             'dispersion': disp_eq, 'dispersion_total': disp_tot,
+             'factor_arbitro': round(f, 4), 'origen': 'observado',
+             'clave_liga': clave}
+    for kk in ('lambda_total_modelo', 'media_competicion'):
+        if kk in b:
+            fuera[kk] = b[kk]
+    return fuera
+
+
+# ---------------------------------------------------------------------------
+# v163 — REMATES
+#
+# El tercer mercado físico, con la misma metodología que cerró córners (§10) y
+# tarjetas (§11). Dos objetivos que se cotizan por separado y se calculan por
+# separado: remates TOTALES ('tot') y remates A PUERTA ('on').
+#
+# LO QUE SE MIDIÓ, Y POR QUÉ NO SE HEREDÓ DE LOS OTROS DOS
+# --------------------------------------------------------
+# Sobre 41.000 equipos-partido de 17 competiciones con remates observados,
+# comparando cuatro estimadores por dos distribuciones
+# (`_v163_remates_estimadores.py`):
+#
+#     remates TOTALES por equipo            marginal    Brier      ECE
+#       ataque/defensa v10, binneg .......   0,01315   0,19501   0,03132  <--
+#       ataque/defensa v10, Poisson ......   0,03323   0,19602   0,04389
+#       media del equipo, binneg .........   0,02067   0,20441   0,03310
+#       media de la competición, binneg ..   0,02077   0,21282   0,03200
+#       media móvil de 5, Poisson ........   0,01476   0,22477   0,11418
+#
+#     remates A PUERTA por equipo
+#       ataque/defensa v10, binneg .......   0,01287   0,20154   0,02734  <--
+#       ataque/defensa v10, Poisson ......   0,01281   0,20169   0,02907
+#       media móvil de 5, Poisson ........   0,00706   0,22218   0,09824
+#
+# CUIDADO CON LA PRIMERA COLUMNA, QUE ES LA QUE SE USÓ EN CÓRNERS Y TARJETAS.
+# El error marginal —|media de la probabilidad dicha − frecuencia real|— mide
+# que el nivel no esté sesgado y NO mide resolución. Aquí eso deja de ser un
+# tecnicismo: la media móvil de 5 con Poisson gana esa columna en los dos
+# objetivos (0,01476 y 0,00706, los mejores de la tabla) y es el PEOR
+# estimador de todos por Brier y por ECE, con la calibración por deciles cuatro
+# veces peor que la del ganador. Son dos sesgos que se cancelan en la media:
+# la móvil de 5 es ruidosa, lo que engorda las colas, y Poisson las adelgaza
+# justo lo bastante para que el promedio cuadre. Por eso la elección se hizo
+# por ECE y Brier, y por eso quedan anotados los tres números.
+#
+# El resultado, con eso resuelto, es el mismo que en los otros dos mercados:
+# (lo que TIRA él en su bando + lo que CONCEDE el rival en el contrario) / 2,
+# ventana 10, con binomial negativa. Tres mercados independientes y el mismo
+# estimador ganador: ya no es una casualidad de córners.
+#
+# LA SOBREDISPERSIÓN ES MUCHO MAYOR AQUÍ, Y POR ESO POISSON SE HUNDE
+# ------------------------------------------------------------------
+# Razón varianza/media por equipo: 2,09 en remates totales, 1,36 a puerta,
+# contra 1,58 de córners y 1,12-1,35 de tarjetas. Con 2,09, usar Poisson
+# multiplica por 2,5 el error marginal (0,01315 -> 0,03323). El racimo tiene
+# la misma explicación que en córners y es más fuerte: un ataque genera varios
+# remates seguidos, y un equipo que se adelanta cambia de plan y deja de tirar.
+#
+# EL TOTAL DEL PARTIDO SE SUMA, COMO EN TARJETAS Y AL REVÉS QUE EN CÓRNERS
+# ------------------------------------------------------------------------
+# Medido en `_v163_remates_total.py` sobre 20.000 partidos:
+#
+#     remates totales del partido    marginal    Brier      ECE
+#       suma de las dos lambdas ...   0,01511   0,21155   0,03840  <--
+#       media de la competición ...   0,03598   0,21724   0,04983
+#
+# La correlación de la suma con el total real es 0,10-0,27 según la
+# competición, o sea señal de verdad — en córners era −0,0012 y por eso allí
+# se usa la media de la liga. La dispersión del TOTAL (1,35 y 1,13) es mucho
+# más baja que la de un equipo suelto (2,09 y 1,36), igual que en córners: el
+# racimo ocurre dentro del ataque de un equipo y sumar los dos bandos lo
+# diluye.
+# ---------------------------------------------------------------------------
+
+_CACHE_DISP_RM: Dict[str, Optional[float]] = {}
+_CACHE_DISP_RM_EQ: Dict[str, Optional[float]] = {}
+
+# 'tot' = a puerta + fuera · 'on' = sólo a puerta
+OBJETIVOS_REMATES = ('tot', 'on')
+
+
+def _remates_de(d, bando: str, objetivo: str):
+    """
+    Los remates de un bando: los TOTALES son a puerta más fuera, que es como
+    los publica football-data (HS = HST + los que se van fuera) y como los
+    reconstruye `stats_espn` a partir de `totalShots` y `shotsOnTarget`.
+
+    Si falta cualquiera de las dos columnas la fila sale `NaN` y no se cuenta,
+    en vez de tratar el hueco como un cero — el mismo criterio que
+    `_tarjetas_de` con las rojas ausentes.
+    """
+    on = pd.to_numeric(d[bando + '_shots_on'], errors='coerce')
+    if objetivo == 'on':
+        return on
+    return on + pd.to_numeric(d[bando + '_shots_off'], errors='coerce')
+
+
+def _serie_remates(clave: str, objetivo: str):
+    """Los remates de los dos bandos, si la competición los publica."""
+    if objetivo not in OBJETIVOS_REMATES:
+        return None, None
+    if not stats_disponibles(clave).get('remates'):
+        return None, None
+    d = _solo_reales(_historico(clave), 'shots_on')
+    if d is None or getattr(d, 'empty', True):
+        return None, None
+    if not {'home_shots_on', 'away_shots_on'} <= set(d.columns):
+        return None, None
+    if objetivo == 'tot' and not {'home_shots_off',
+                                  'away_shots_off'} <= set(d.columns):
+        return None, None
+    d = _recientes(d)
+    if d is None or getattr(d, 'empty', True):
+        return None, None
+    return d, (_remates_de(d, 'home', objetivo),
+               _remates_de(d, 'away', objetivo))
+
+
+# Las temporadas que se miran para medir el NIVEL y la DISPERSIÓN. Las lambdas
+# por equipo no la necesitan: ya cogen `.tail(10)`, que es recientísimo.
+#
+# SEIS Y NO CUATRO, y el motivo es un equipo recién ascendido. Con cuatro, el
+# Coventry City tenía UN partido como visitante en la ventana, `lambda_*` se
+# quedaba sin muestra y el partido entero caía al estimador de liga. Seis
+# temporadas siguen muy por detrás de la ruptura de la Premier (2013-2014) y
+# dan dos temporadas más de histórico a los que suben. Medida la razón
+# varianza/media del total a puerta con cada ventana:
+#
+#     ventana        3T     4T     6T     8T    todo
+#     premier      1,05   1,06   1,07   1,09   1,62   <- la ruptura
+#     laliga       1,17   1,14   1,19   1,20   1,21
+#     serie_a      1,07   1,03   1,22   1,26   1,22
+#     turquia      1,30   1,29   1,22   1,19   1,20
+#
+# Sólo la Premier tiene el salto, y hasta ocho temporadas se queda dentro de su
+# época actual. Seis es el punto donde ninguna liga se mueve y todas ganan
+# muestra.
+TEMPORADAS_REMATES = 6
+
+
+def _recientes(d, temporadas: int = TEMPORADAS_REMATES):
+    """
+    El histórico recortado a las últimas temporadas.
+
+    HACE FALTA, Y LO DEMUESTRA LA PREMIER. Su fichero arranca en 2010, y los
+    remates a puerta por partido de aquellos años no son los de ahora:
+
+        2010  13,4      2014   8,6      2020   8,4      2024   9,9
+        2011  14,4      2016   8,5      2022   8,9      2025   8,5
+        2013  11,3      2018   8,7      2023   9,0      2026   8,5
+
+    Entre 2013 y 2014 la media se parte por la mitad. Eso no es que el fútbol
+    cambiara: es que la fuente cambió qué cuenta. Promediando las dos épocas
+    juntas, la razón varianza/media del TOTAL sale 1,62 cuando dentro de cada
+    año va entre 0,90 y 1,22 — o sea que la «sobredispersión» medida era en
+    realidad la distancia entre dos definiciones distintas, y con ella la
+    binomial negativa engordaría las colas por un motivo inventado.
+
+    Cuatro temporadas es la misma idea que las tres de `media_corners_liga`,
+    con una más porque la dispersión necesita más muestra que una media. Si el
+    recorte deja menos filas de las que hacen falta, quien llama se queda sin
+    número y la interfaz cae al estimado, que es preferible a un número malo.
+    """
+    if d is None or getattr(d, 'empty', True) or 'date' not in d.columns:
+        return d
+    try:
+        corte = d['date'].max() - pd.Timedelta(days=365 * int(temporadas))
+        recorte = d[d['date'] >= corte]
+        return recorte if len(recorte) >= 400 else d
+    except Exception:
+        return d
+
+
+def dispersion_remates_liga(clave: str,
+                            objetivo: str = 'tot') -> Optional[float]:
+    """
+    Razón varianza/media del TOTAL de remates del partido en esta competición.
+
+    Medida entre 1,05 y 1,47 según la liga y el objetivo (mediana 1,35 en
+    totales y 1,13 a puerta). Se corta en 1,0 por abajo, donde la binomial
+    negativa no existe y `prob_mas_de` se comporta como Poisson.
+
+    `None` si la competición no publica remates observados.
+    """
+    ck = '%s|%s' % (clave, objetivo)
+    if ck in _CACHE_DISP_RM:
+        return _CACHE_DISP_RM[ck]
+    valor = None
+    try:
+        d, cols = _serie_remates(clave, objetivo)
+        if cols is not None:
+            tot = (cols[0] + cols[1]).dropna()
+            if len(tot) >= 400:
+                m, v = float(tot.mean()), float(tot.var())
+                if m > 0:
+                    valor = round(max(v / m, 1.0), 4)
+    except Exception as e:
+        logger.debug('[rendimiento] dispersión de remates de %s: %s', clave, e)
+    _CACHE_DISP_RM[ck] = valor
+    return valor
+
+
+def dispersion_remates_equipo(clave: str,
+                              objetivo: str = 'tot') -> Optional[float]:
+    """
+    Razón varianza/media de los remates DE UN EQUIPO en esta competición.
+
+    Bastante más alta que la del total —2,09 contra 1,35 en remates totales—
+    por lo mismo que en córners: el racimo ocurre DENTRO del ataque del mismo
+    equipo, así que sumar los dos bandos lo diluye. Usar la del total para las
+    líneas por equipo se quedaría corto justo en las colas, que es donde están
+    las líneas que cotiza la casa.
+    """
+    ck = '%s|%s' % (clave, objetivo)
+    if ck in _CACHE_DISP_RM_EQ:
+        return _CACHE_DISP_RM_EQ[ck]
+    valor = None
+    try:
+        d, cols = _serie_remates(clave, objetivo)
+        if cols is not None:
+            serie = pd.concat([cols[0], cols[1]]).dropna()
+            if len(serie) >= 800:
+                m, v = float(serie.mean()), float(serie.var())
+                if m > 0:
+                    valor = round(max(v / m, 1.0), 4)
+    except Exception as e:
+        logger.debug('[rendimiento] dispersión de remates por equipo de %s: %s',
+                     clave, e)
+    _CACHE_DISP_RM_EQ[ck] = valor
+    return valor
+
+
+_MEMO_REMATES: Dict = {}
+
+
+def olvidar_remates() -> None:
+    """Vacía la memoria de `lambda_remates_equipo`."""
+    _MEMO_REMATES.clear()
+
+
+def lambda_remates_equipo(clave: str, equipo: str, rival: str, en_casa: bool,
+                          n: int = 10,
+                          objetivo: str = 'tot') -> Optional[float]:
+    """Memoriza `_lambda_remates_equipo`. El cálculo está allí.
+
+    v216 — Pura respecto a sus argumentos (lo demás que lee es el histórico de
+    la competición, que no cambia durante un render) y se llamaba 1.136 veces
+    en un rerun de «Apuestas del Día»: 10,9 s de la pasada, recorriendo el
+    mismo CSV una vez por tarjeta y por objetivo.
+    """
+    llave = (clave, equipo, rival, bool(en_casa), n, objetivo)
+    if llave in _MEMO_REMATES:
+        return _MEMO_REMATES[llave]
+    v = _lambda_remates_equipo(clave, equipo, rival, en_casa, n, objetivo)
+    _MEMO_REMATES[llave] = v
+    return v
+
+
+def _lambda_remates_equipo(clave: str, equipo: str, rival: str, en_casa: bool,
+                           n: int = 10,
+                           objetivo: str = 'tot') -> Optional[float]:
+    """
+    Remates esperados de `equipo` contra `rival`, jugando en su bando.
+
+    El mismo estimador que ganó en córners y en tarjetas: lo que el equipo TIRA
+    en su bando promediado con lo que el rival CONCEDE en el bando contrario.
+    Medido aquí sobre 41.000 equipos-partido, gana por Brier y por ECE en los
+    dos objetivos (ver el bloque de cabecera de esta sección).
+
+    LAS DOS LECTURAS USAN LA MISMA COLUMNA, Y NO ES UNA ERRATA. Es el tercer
+    sitio del proyecto donde hace falta escribirlo, porque la primera versión
+    de `lambda_corners_equipo` se equivocó justo aquí: si el equipo juega en
+    casa, los remates que él tira son los del bando local, y los que el rival
+    concede cuando visita también son los del bando local —los del local de
+    aquellos partidos—. Lo que cambia entre las dos no es la columna, es POR
+    QUIÉN se filtra. Con la columna contraria las dos lambdas del partido salen
+    IDÉNTICAS, que es lo que comprueba `test_remates_lambdas_distintas`.
+
+    Ventana 10 y no 5, igual que en los otros dos: la móvil de 5 sale la peor
+    de la tabla por ECE (0,11418 contra 0,03132) porque cinco partidos de un
+    equipo son una muestra de cinco y su propio ruido tapa la señal.
+    """
+    d, _ = _serie_remates(clave, objetivo)
+    if d is None:
+        return None
+    try:
+        col_eq = 'home_team' if en_casa else 'away_team'
+        col_riv = 'away_team' if en_casa else 'home_team'
+        bando = 'home' if en_casa else 'away'
+        serie = _remates_de(d, bando, objetivo)
+        tira = serie[d[col_eq] == equipo].dropna()
+        concede = serie[d[col_riv] == rival].dropna()
+        # v182 — es donde más aporta: −7,79 % de error en los equipos con poca
+        # muestra. `objetivo` decide qué columna se completa, porque «a puerta»
+        # y «fuera» tienen factores distintos (0,8510 y 0,8873).
+        _stat_r = 'shots_on' if str(objetivo).startswith('on') else 'shots_off'
+        tira, _ = _plc.completar(tira, equipo, clave, _stat_r, en_casa, n,
+                                 'hace')
+        concede, _ = _plc.completar(concede, rival, clave, _stat_r, en_casa, n,
+                                    'concede')
+        if len(tira) < MIN_PARTIDOS or len(concede) < MIN_PARTIDOS:
+            return None
+        return round((float(tira.tail(n).mean())
+                      + float(concede.tail(n).mean())) / 2.0, 3)
+    except Exception as e:
+        logger.debug('[rendimiento] lambda de remates %s: %s', clave, e)
+        return None
+
+
+def _remates_de_objetivo(clave: str, home: str, away: str, n: int,
+                         objetivo: str) -> Optional[Dict]:
+    """Un objetivo suelto, con la forma que devuelven córners y tarjetas."""
+    disp_eq = dispersion_remates_equipo(clave, objetivo)
+    disp_tot = dispersion_remates_liga(clave, objetivo)
+    lh = (lambda_remates_equipo(clave, home, away, True, n, objetivo)
+          if disp_eq else None)
+    la = (lambda_remates_equipo(clave, away, home, False, n, objetivo)
+          if disp_eq else None)
+    if disp_eq is None or disp_tot is None or lh is None or la is None:
+        est = _estimado(clave, 'rem' if objetivo == 'tot' else 'rem_on')
+        # v307 — ANTES DE ESTIMAR, LO OBSERVADO EN FOTMOB. Las ligas cuyo
+        # histórico no trae remates (la femenil, sobre todo) caían al nivel
+        # de la competición derivado de sus goles: el mismo número para
+        # todos sus partidos. `remates_fotmob` guarda los remates y a puerta
+        # de cada partido terminado; con ellos la λ es la de ESTOS dos
+        # equipos. La dispersión se queda la del estimador, que es la
+        # medida para la competición.
+        try:
+            import remates_fotmob
+            fm = (remates_fotmob.lambdas_partido(clave, home, away) or {}).get(
+                'totales' if objetivo == 'tot' else 'a_puerta')
+        except Exception as e:
+            logger.debug('[rendimiento] FotMob %s: %s', clave, e)
+            fm = None
+        if fm and est:
+            est = dict(est)
+            est.update({k: fm[k] for k in ('lambda_home', 'lambda_away',
+                                           'lambda_total')})
+            est['origen'] = 'observado'
+            est['base'] = ('últimos partidos de cada equipo (FotMob; en la '
+                           'Liga MX Femenil, Flashscore)')
+            # el error medido era el del ESTIMADOR por goles, no el de esto
+            est.pop('error_calibracion', None)
+            est.pop('aceptable', None)
+        return est
+    return {'lambda_home': lh, 'lambda_away': la,
+            'lambda_total': round(lh + la, 3),
+            'dispersion': disp_eq, 'dispersion_total': disp_tot,
+            'origen': 'observado', 'clave_liga': clave}
+
+
+def _remates_equipo_crudo(clave: str, home: str, away: str,
+                          n: int = 10, torneo: str = '') -> Optional[Dict]:
+    """
+    Los remates esperados del partido, en sus dos mercados.
+
+    OJO CON EL NOMBRE: `remates_jugadores.remates_equipo` existe y es otra
+    cosa —los remates POR JUGADOR de los últimos partidos de un equipo,
+    pedidos a ESPN en vivo—. Ésta se llama así por simetría con
+    `corners_equipo` y `tarjetas_equipo`, que están unas funciones más arriba y
+    devuelven exactamente la misma forma. Las dos se usan siempre con el
+    módulo delante, así que no se pisan.
+
+    Devuelve `{'totales': {...}, 'a_puerta': {...}}`, cada uno con la forma que
+    consumen `modo_modelo._filas_de` y la ficha: lambda_home, lambda_away,
+    lambda_total, dispersion, dispersion_total y origen.
+
+    Como en córners y tarjetas desde la v162, no devuelve `None` por falta de
+    datos: cae al estimador de respaldo marcado con `origen: 'estimado'`. Sólo
+    `None` cuando no hay ni goles con los que situar el nivel de la
+    competición, que es lo único que no se puede suplir.
+    """
+    salida = {}
+    for nombre, objetivo in (('totales', 'tot'), ('a_puerta', 'on')):
+        bloque = _remates_de_objetivo(clave, home, away, n, objetivo)
+        # v310 — a medio camino de la media de la competición (ver arriba)
+        bloque = _a_la_media(bloque, clave,
+                             'remates' if objetivo == 'tot' else 'a_puerta',
+                             torneo)
+        if bloque:
+            salida[nombre] = bloque
+    return salida or None
+
+
+# ---------------------------------------------------------------------------
+# v319 — HISTÓRICO REAL O NADA
+#
+# El usuario: «no quiero nada con estimado… prefiero tener cero picks de
+# córners en un día donde no hay datos reales, a tener picks basadas en
+# promedios genéricos». Y lo mismo para tarjetas y el resto.
+#
+# Las tres funciones de abajo son las que usa TODO el proyecto (tarjeta,
+# candidatas a «meter», Telegram, mercados del día, Soñadora, motor de
+# ligas). Devuelven `None` —ni número, ni apuesta— cuando:
+#   · el bloque es `estimado` (el nivel de la liga sacado de sus goles), o
+#   · alguno de los dos equipos no tiene 5 partidos con esa estadística
+#     OBSERVADA en la competición esta temporada (`historico_real`).
+# Cuando sí hay histórico real, llevan además cuántos partidos y los
+# promedios con el papel correcto (el local en casa, el visitante fuera).
+#
+# Medido antes de activarlo (`_v319_conteos_reales.py`, 56 ligas, 18.811
+# partidos fuera de muestra, 11.874 con histórico real), franja 70-80 %:
+#     córners con datos reales ...... 75,4 %  (umbral del usuario: 72 %)
+#     tarjetas (producción) ......... 72,4 %
+# Y el TOTAL de córners pasa a ser la suma de lo esperado de los dos equipos:
+# log-loss 0,61378 (media de la competición) → 0,61228, p5 +0,00108. Es lo
+# que dejaba el «9,1» repetido en toda la Liga de Naciones.
+#
+# LO QUE NO HACE, PARA QUE CONSTE: no sube el acierto. Sin histórico real
+# los córners acertaban lo mismo (75,1 % contra 75,4 %) y el estimado en los
+# mismos partidos 75,3 %: su defecto era dar el mismo número a todos los
+# partidos de una liga, no fallar más. En la simulación de la tarjeta
+# (20-29 sep, 391 partidos) lo metido pasó de 78,3 % (651) a 77,1 % (634),
+# dentro del ruido. Es una decisión del usuario («menos picks de mejor
+# calidad»), no una mejora medida. Tampoco se baja la confianza en partidos
+# parejos ni con visitante favorito, como se propuso: medido, aciertan lo
+# mismo (75,3 % contra 76,2 %; 75,4 % contra 75,4 %).
+# ---------------------------------------------------------------------------
+def _con_historico_real(r: Optional[Dict], clave: str, home: str, away: str,
+                        stat: str) -> Optional[Dict]:
+    # sólo para las simulaciones que comparan con la versión anterior
+    if os.environ.get('V319_VERSION_VIEJA'):
+        return r
+    if not r or (r.get('origen') or 'observado') == 'estimado':
+        return None
+    try:
+        import historico_real as _hr
+        ev = _hr.evaluar(clave, home, away, stat)
+    except Exception as e:
+        logger.debug('[rendimiento] histórico real %s: %s', clave, e)
+        return None
+    if not ev.get('ok'):
+        return None
+    r = dict(r)
+    r.update({'historico_real': True, 'n_local': ev['n_local'],
+              'n_visita': ev['n_visita'], 'n_local_casa': ev['n_local_casa'],
+              'n_visita_fuera': ev['n_visita_fuera'],
+              'prom_local_casa': ev['prom_local_casa'],
+              'prom_visita_fuera': ev['prom_visita_fuera']})
+    return r
+
+
+def corners_equipo(clave: str, home: str, away: str,
+                   n: int = 10) -> Optional[Dict]:
+    """Los córners del partido SÓLO con histórico real (ver arriba). El total
+    es la suma de lo esperado de los dos equipos."""
+    if os.environ.get('V319_VERSION_VIEJA'):
+        return _corners_equipo_crudo(clave, home, away, n)
+    r = _con_historico_real(_corners_equipo_crudo(clave, home, away, n),
+                            clave, home, away, 'corners')
+    # v319 — la competición no publica córners en su histórico: los REALES
+    # de FotMob de cada equipo (`corners_fotmob`, con su backtest: 77,7 % en
+    # la franja 70-80 % en las 20 ligas que lo usan)
+    if r is None and not (stats_disponibles(clave) or {}).get('corners'):
+        try:
+            import corners_fotmob as _cf
+            return _cf.lambdas(clave, home, away)
+        except Exception as e:
+            logger.debug('[rendimiento] córners de FotMob %s: %s', clave, e)
+            return None
+    if r and r.get('lambda_home') and r.get('lambda_away'):
+        r['lambda_total'] = round(float(r['lambda_home'])
+                                  + float(r['lambda_away']), 3)
+        r['total'] = 'suma de los dos equipos'
+    return r
+
+
+def tarjetas_equipo(clave: str, home: str, away: str, n: int = 10,
+                    factor_arbitro: Optional[float] = None,
+                    torneo: str = '') -> Optional[Dict]:
+    """Las tarjetas del partido SÓLO con histórico real (ver arriba)."""
+    return _con_historico_real(
+        _tarjetas_equipo_crudo(clave, home, away, n, factor_arbitro=factor_arbitro,
+                               torneo=torneo),
+        clave, home, away, 'tarjetas')
+
+
+def remates_equipo(clave: str, home: str, away: str,
+                   n: int = 10, torneo: str = '') -> Optional[Dict]:
+    """Los remates del partido SÓLO con datos reales: los del histórico con
+    sus 5 partidos, o los de FotMob de cada equipo (`remates_fotmob`), que
+    también son observados. Nunca el estimado."""
+    r = _remates_equipo_crudo(clave, home, away, n, torneo=torneo)
+    if not r:
+        return None
+    salida = {}
+    for k, b in r.items():
+        if not b or (b.get('origen') or 'observado') == 'estimado':
+            continue
+        if 'FotMob' in str(b.get('base') or ''):
+            salida[k] = b
+            continue
+        g = _con_historico_real(b, clave, home, away, 'remates')
+        if g:
+            salida[k] = g
+    return salida or None

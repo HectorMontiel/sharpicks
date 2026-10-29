@@ -1,0 +1,42 @@
+{
+ "activo": false,
+ "medicion": {
+  "n_entrenamiento": 52474,
+  "n_juicio": 22490,
+  "tablero_real": {
+   "n": 23894,
+   "suficiente": true,
+   "auc": 0.517,
+   "tasa_base": 0.1599,
+   "top_20": 0.1762,
+   "mejora_pp": 1.69,
+   "p5_pp": 0.87
+  },
+  "desde_juicio": "2026-09-23",
+  "tasa_base": 0.1639,
+  "auc": 0.5216,
+  "ganancia": {
+   "top_05": {
+    "n": 1124,
+    "tasa": 0.1895,
+    "veces": 1.16
+   },
+   "top_10": {
+    "n": 2249,
+    "tasa": 0.1779,
+    "veces": 1.09
+   },
+   "top_20": {
+    "n": 4498,
+    "tasa": 0.1765,
+    "veces": 1.08
+   },
+   "top_50": {
+    "n": 11245,
+    "tasa": 0.1714,
+    "veces": 1.05
+   }
+  },
+  "activo": false
+ }
+}

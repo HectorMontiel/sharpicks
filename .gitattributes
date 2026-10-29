@@ -1,0 +1,35 @@
+# v68 — Los artefactos de modelo son BINARIOS. Sin esto, un clon con
+# core.autocrlf=true (el valor por defecto en Windows) puede intentar convertir
+# saltos de línea dentro del binario y dejarlo ilegible.
+# Git suele detectar el binario solo, pero declararlo elimina la posibilidad.
+*.joblib   binary
+*.npz      binary
+*.db       binary
+*.parquet  binary
+*.png      binary
+*.xlsx     binary
+
+# Los CSV y JSON de datos se normalizan a LF para que el diff sea estable
+# entre el runner de GitHub (Linux) y las máquinas locales (Windows).
+*.csv      text eol=lf
+*.json     text eol=lf
+*.py       text eol=lf
+*.md       text eol=lf
+*.yml      text eol=lf
+
+# v264 - El modelo del selector es un .txt, asi que git lo trata como
+# texto y le cambia los saltos de linea. Es el MISMO fallo que la v68
+# documenta arriba, sin la ventaja de que git lo detecte solo: la
+# extension dice «texto» y el contenido es un booster de LightGBM.
+# `-text` desactiva toda conversion.
+selector_apuestas.txt  -text
+
+# v270 - el radar de errores es otro booster de LightGBM con extension
+# .txt. Sin esta linea, un clon en Windows lo recibe con CRLF y
+# LightGBM lo rechaza con "Model format error, expect a tree here".
+# No es hipotetico: le paso al selector el 2026-09-20.
+radar_errores.txt      -text
+# v308 — el modelo de LightGBM se guarda como TEXTO pero es un artefacto: con
+# autocrlf=true la copia de Windows salía con CRLF y LightGBM no la leía
+# («Model format error»). Se declara binario para que git no lo toque.
+modelos/remates_ml_*.txt binary

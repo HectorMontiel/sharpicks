@@ -1,0 +1,16 @@
+{
+ "generado": "2026-10-29T04:56Z",
+ "partidos_registrados": 782,
+ "senales": 73,
+ "umbral": 0.02,
+ "minimo": 300,
+ "con_cierre": 69,
+ "clv_medio": 0.012679262590431301,
+ "clv_p5": 0.0034406366316996045,
+ "liquidadas": 46,
+ "acierto": 0.4782608695652174,
+ "rinde": -0.1512608695652174,
+ "rinde_p5": -0.3728190909090908,
+ "listo_para_decidir": false,
+ "motivo": "faltan señales (46 de 300 liquidadas)"
+}

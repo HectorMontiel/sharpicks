@@ -1,0 +1,291 @@
+name: Precálculo del día
+
+# v220 — EL CÁLCULO SALE DEL RENDER, Y ESTE WORKFLOW ES LA MITAD QUE LO PAGA.
+#
+# POR QUÉ EXISTE
+# --------------
+# La aplicación calculaba el barrido dentro de la pantalla. El propio
+# `dashboard_ui` lo tenía medido y escrito:
+#
+#     «El barrido de alpha_finder pica a 1297,7 MB; dos a la vez, a 2172,2 MB»
+#
+# contra el **1 GB** de Streamlit Community Cloud. No era un bug: el pico no
+# cabe, y con tres usuarios no cabe nunca. Medido de nuevo en esta tanda:
+#
+#     sin precálculo (barrido real) ..... 86,7 s   pico +647 MB
+#     con precálculo (leer el JSON) .....  0,0 s   pico  +0 MB
+#
+# Aquí el pico no molesta: el runner de GitHub tiene 7 GB y nadie está
+# esperando delante de una pantalla.
+#
+# CADA 3 HORAS, Y NO UNA VEZ AL DÍA
+# ---------------------------------
+# `precalculo_dia.CADUCIDAD_S` son 6 h, y el contenido son PRECIOS. Un
+# pronóstico con las cuotas de esta mañana no es el pronóstico de ahora. Con
+# una pasada diaria estaría caducado la mayor parte del tiempo, que es el mismo
+# razonamiento que ya llevó a `cuotas_mx` a correr cada seis.
+#
+# Se cuelga detrás de las cuotas mexicanas a propósito: el barrido las lee, y
+# correr antes que ellas sería cocinar el día con los precios de la pasada
+# anterior.
+
+on:
+  schedule:
+    # v300 — MISMO PATRON QUE `cuotas_mx`: se declara mucho, se ejecuta poco.
+    #
+    # El usuario lo pidio explicito —«quiero que sea cada 2 horas... que sea
+    # automatico y QUE FUNCIONE»— y con `53 */3` declarado el programador de
+    # GitHub daba huecos de mas de seis horas. Declarar la frecuencia deseada
+    # no la consigue; declararla cuatro veces mas a menudo y salir gratis
+    # cuando no toca, si.
+    #
+    # El :23 y el :53 caen DESPUES del :07 y el :37 de las cuotas, que es el
+    # orden que hace falta: el precalculo lee el tablero que aquellas dejan.
+    - cron: '23,53 * * * *'
+  workflow_dispatch:
+    inputs:
+      rapido:
+        # v507 — para publicar un cambio de reglas sin esperar 30 min: salta los pasos que no tocan los
+        # picks (selecciones/Femenil 7,5 min, remates y líneas por jugador ~12 min) y usa los del git.
+        # `gh workflow run "Precálculo del día" -f rapido=true` → ~10 min.
+        description: 'Rápido: sólo cocinar el día (salta selecciones y remates por jugador)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+# Dos pasadas a la vez escribirían el mismo fichero: la segunda gana y la
+# primera fue tiempo de CI tirado. Se cancela la vieja.
+concurrency:
+  group: precalculo-dia
+  cancel-in-progress: true
+
+env:
+  # v510 — repo privado: los modelos del Release se bajan con el token de la corrida
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  precalcular:
+    runs-on: [self-hosted, sharpicks]   # v509 — runner propio (PC del usuario): 0 minutos de Actions
+    timeout-minutes: 45
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      # v300 — LA GUARDA DE FRESCURA. Ver `cuotas_mx.yml` para el por que
+      # entero: se declaran 48 pasadas al dia y la inmensa mayoria muere aqui
+      # en quince segundos, que es lo que convierte «cada dos horas
+      # declarado» en «cada dos horas de verdad».
+      #
+      # La edad sale de `generado` DENTRO del JSON, no de `stat`: el checkout
+      # le pone la hora actual a todo lo que escribe, asi que mirar el disco
+      # diria «recien creado» siempre.
+      - name: ¿Hace falta cocinar el día?
+        id: frescura
+        run: |
+          FRESCURA_MINUTOS=100
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "Lanzado a mano: se cocina sin mirar la edad."
+            echo "saltar=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ ! -f pronostico_dia.json ]; then
+            echo "No hay precalculo todavia: se cocina."
+            echo "saltar=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          GEN=$(python3 -c "import json;print(json.load(open('pronostico_dia.json',encoding='utf-8')).get('generado') or '')" 2>/dev/null || echo '')
+          SEG=$(date -u -d "$GEN" +%s 2>/dev/null || echo 0)
+          if [ -z "$GEN" ] || [ "$SEG" = "0" ]; then
+            echo "Sin fecha legible ($GEN): se cocina."
+            echo "saltar=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          EDAD=$(( ( $(date -u +%s) - SEG ) / 60 ))
+          echo "El dia se cocino hace $EDAD min (umbral $FRESCURA_MINUTOS) — $GEN"
+          # v327 — UN PRECÁLCULO DE AYER (UTC) NO ES FRESCO. Las decisiones
+          # precalculadas sólo valen el mismo día (`decisiones_dia._dia`), así
+          # que a medianoche UTC —las 18:00 en CDMX— dejaban de servir y esta
+          # pasada se saltaba el cocinado por «fresco» hasta 100 min más.
+          if [ "$(date -u -d "$GEN" +%F)" != "$(date -u +%F)" ]; then
+            echo "Cocinado otro día (UTC): se cocina."
+            echo "saltar=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$EDAD" -lt "$FRESCURA_MINUTOS" ] && [ "$EDAD" -ge 0 ]; then
+            echo "Fresco: esta pasada no hace nada."
+            echo "saltar=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Viejo: se cocina."
+            echo "saltar=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Configurar Python
+        if: steps.frescura.outputs.saltar != 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        if: steps.frescura.outputs.saltar != 'true'
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Con reintento: el barrido depende de media docena de fuentes externas
+      # y una caída de ESPN de treinta segundos no puede costar tres horas de
+      # datos. Dos intentos con dos minutos en medio cubren lo transitorio; lo
+      # que no se arregle así es una avería de verdad y se ve en el aviso.
+      # v303 — LOS HISTÓRICOS QUE NO SALEN DE FOOTBALL-DATA NI DE LAS LIGAS
+      # DE ESPN: selecciones (resultado + boxscore REAL de ESPN, porque el
+      # de `historico_partidos` trae córners y tarjetas sintéticos) y la Liga
+      # MX Femenil (resultados de FotMob). Son incrementales: los partidos que
+      # ya están no se vuelven a pedir. Van ANTES de cocinar porque la tarjeta
+      # saca de ellos la forma, los córners y el porqué de cada apuesta.
+      - name: Refrescar selecciones y Femenil
+        if: steps.frescura.outputs.saltar != 'true' && inputs.rapido != true
+        continue-on-error: true
+        timeout-minutes: 15
+        run: |
+          python historico_selecciones.py || echo "::warning::historico de selecciones con avisos"
+          # v323 — el motor de selecciones, al día: los resultados nuevos de
+          # ESPN pasan a `historico_partidos.csv` y se regenera
+          # `team_stats.json`. Estaba congelado el 2026-07-15; medido en 146
+          # partidos fuera de muestra, log-loss 1,017 -> 0,988 (p5 +0,015).
+          # Ver la cabecera de `actualizar_selecciones.py`.
+          python actualizar_selecciones.py || echo "::warning::motor de selecciones sin actualizar"
+          python historico_fotmob.py || echo "::warning::historico de FotMob con avisos"
+          # v306 — las bajas (lesiones y sanciones) de los partidos próximos
+          python bajas_fotmob.py || echo "::warning::bajas con avisos"
+          # v325 — la NFL de nflverse: marcadores, EPA y el QUARTERBACK PREVISTO
+          # de los partidos que faltan (lo que mueve una línea de la NFL). El
+          # modelo `modelo_nfl` (v325) lee este fichero; sin red se queda con
+          # el último commiteado.
+          python nfl_nflverse.py || echo "::warning::histórico de nflverse sin actualizar"
+          # v480 — los resultados de ITF (BetExplorer) en CADA pasada, no sólo en el reentrenamiento
+          # diario: el 26 y el 27-oct el reentrenamiento se cortó a los 90 min, no publicó y ~430 picks
+          # de tenis se quedaron sin cerrar (el feed del día de Flashscore se recorta en días pasados).
+          python acumular_itf.py || echo "::warning::acumulación de ITF con avisos"
+
+      # v307 — REMATES Y REMATES A PUERTA POR JUGADOR Y POR EQUIPO, de las
+      # 67 ligas y de las selecciones (FotMob, ficha de cada partido). Es
+      # incremental: sólo pide los partidos terminados que aún no están, con
+      # tope de 500 fichas por pasada. Sin esto «quién remata» no sale en
+      # selecciones ni en la femenil (ESPN no publica sus plantillas).
+      - name: Remates por jugador (FotMob)
+        if: steps.frescura.outputs.saltar != 'true' && inputs.rapido != true
+        continue-on-error: true
+        timeout-minutes: 20
+        run: |
+          python remates_fotmob.py --max 500 || echo "::warning::remates de FotMob con avisos"
+          # la Liga MX Femenil: FotMob sólo da su marcador; los remates de
+          # cada equipo salen de Flashscore
+          python remates_flashscore.py || echo "::warning::remates de Flashscore con avisos"
+
+      - name: Cocinar el día
+        if: steps.frescura.outputs.saltar != 'true'
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: |
+          if python precalculo_dia.py; then
+            exit 0
+          fi
+          echo "::warning::primer intento sin resultado; se reintenta en 120 s"
+          sleep 120
+          if python precalculo_dia.py; then
+            exit 0
+          fi
+          echo "::warning::el precalculo no se pudo generar. La app sigue sirviendo el anterior mientras tenga menos de 36 h."
+
+      # v308 — LAS LÍNEAS DE REMATES POR JUGADOR, EN CADA PASADA Y CON SU
+      # HISTÓRICO. Sólo corrían una vez al día a las 05:30 UTC en
+      # `retrain_leagues`, y Playdoit publica los mercados de jugador más
+      # cerca del partido: el 2026-09-23 había 2 partidos con líneas; con el
+      # mismo código a media tarde, 23. Va DESPUÉS de cocinar porque lee los
+      # partidos del pronóstico (selecciones incluidas). Guarda la escalera
+      # 1+/2+/3+ y el precio de cada peldaño en `lineas_jugador_hist/`, y
+      # liquida los de partidos ya jugados: con eso se podrá medir si el
+      # modelo de remates gana contra la cuota.
+      - name: Líneas de remates por jugador
+        if: steps.frescura.outputs.saltar != 'true' && inputs.rapido != true
+        continue-on-error: true
+        timeout-minutes: 15
+        run: python lineas_jugador.py --dias 2 || echo "::warning::líneas de jugador con avisos"
+
+      # `precalculo_dia` NO escribe si el barrido sale vacío, y devuelve 1.
+      # Este paso lo convierte en un aviso en vez de un job rojo: un barrido
+      # vacío es casi siempre una fuente caída, no una regresión, y el
+      # precálculo anterior sigue siendo mejor que ninguno.
+      - name: Comprobar lo que se generó
+        if: steps.frescura.outputs.saltar != 'true'
+        run: python precalculo_dia.py --estado
+
+      # v338 — ¿LAS BAJAS AVISAN ANTES QUE LA CUOTA? El barrido de arriba ya
+      # apuntó en `senal_bajas.csv` lo que movieron las bajas y la cuota de
+      # Playdoit de ese momento (`alpha_finder` → `senal_bajas.registrar`).
+      # Aquí se mide contra el cierre y el resultado; el informe dice cuándo
+      # hay muestra para decidir. No apuesta nada.
+      - name: Medir la señal de las bajas
+        if: steps.frescura.outputs.saltar != 'true'
+        run: python senal_bajas.py --medir || echo "::warning::señal de bajas sin medir"
+
+      # v324 — PLAYDOIT, VIGILADO DONDE SÍ HAY RED. Es la casa donde se apuesta
+      # y sus pruebas en vivo (`test_catalogo_y_cuotas.py`) no pueden correr en
+      # un entorno sin salida a su web, donde ahora se dan por omitidas. Aquí
+      # sí hay red: si un día no devuelve ni un partido de fútbol, se avisa en
+      # el resumen de la ejecución en vez de descubrirlo por las tarjetas.
+      - name: Comprobar que Playdoit responde
+        if: steps.frescura.outputs.saltar != 'true'
+        run: |
+          python -c "import cuotas_multi as cm; n = len(cm._indice_pdt('futbol')); print('Playdoit, partidos de fútbol con cuota:', n); n or print('::warning::Playdoit no devolvió ningún partido de fútbol: las tarjetas se quedan sin su precio')" || echo "::warning::no se pudo comprobar Playdoit"
+
+      - name: Publicar el día cocinado
+        if: steps.frescura.outputs.saltar != 'true'
+        run: |
+          git config user.name  "precalculo-bot"
+          git config user.email "actions@github.com"
+          # El archivo de contexto viaja con el precálculo: lo escribe la misma
+          # pasada y es la materia prima para medir, más adelante, si las
+          # banderas de la v209 (lesiones, racha, entrenador) anticipan algo.
+          # Sin commitearlo se perdería con el runner.
+          # `ponches_snapshots.csv` va con ellos desde la v227: es un fichero
+          # que sólo CRECE y que no se puede reconstruir hacia atrás, porque
+          # son los precios que había abiertos a esa hora. Si no se commitea,
+          # se va con el runner y la muestra no se acumula nunca.
+          # `jugados_dia.json` va desde la v229 por el mismo motivo que el
+          # resto: son 186 peticiones a ESPN y 13 s medidos, y sin commitearlo
+          # los pagaría el navegador del usuario en cada pasada.
+          # v237 — SE ANADE LO QUE EXISTE, UNO A UNO. ESTO TENIA LA APP
+          # CONGELADA.
+          #
+          # `git add a.json b.csv` falla ENTERO si UNO de los paths no existe
+          # —«pathspec did not match any files»— y no anade ninguno de los
+          # demas. Con el `|| echo warning` detras, el workflow termina en
+          # verde sin haber commiteado nada.
+          #
+          # `ponches_snapshots.csv` solo se crea los dias que Pinnacle tiene
+          # props de ponches abiertos. El dia que no los hay, el `add` fallaba
+          # y el PRECALCULO ENTERO se quedaba sin publicar. Medido: el cron
+          # corrio a las 04:55, calculo 164 pronosticos, escribio el fichero...
+          # y la aplicacion siguio sirviendo el de las 00:24.
+          #
+          # El bucle anade lo que hay y se salta lo que no, sin tragarse un
+          # fallo real en los ficheros que SI estan.
+          for _f in historico_partidos.csv team_stats.json historico_itf_vivo.csv historico_nfl_largo.csv lineas_jugador_dia.json lineas_jugador_hist remates_fotmob_jugadores.csv remates_fotmob_equipos.csv remates_fotmob_vacios.txt fotmob_ligas.json bajas_dia.json bajas_historico.csv senal_bajas.csv senal_bajas.json historico_selecciones.csv historico_mex_femenil.csv historico_champions_femenil.csv historico_fem_inglaterra.csv historico_fem_espana.csv historico_fem_alemania.csv historico_fem_francia.csv historico_fem_italia.csv motor_goles.json pronostico_dia.json archivo_contexto.json ponches_snapshots.csv jugados_dia.json jugados_ayer.json anunciadas_dia.json capa1_historial.json tiros_dia.json tiros_seguimiento.csv tiros_seguimiento.json analisis_seguimiento.csv arriesgadas_seguimiento.csv alias_equipos.json alias_auto_nombres.json mercado_dia.json nombres_sin_mapear.json resultados_fotmob.csv.gz resultados_flashscore.csv.gz resultados_flashscore_reciente.csv.gz rutas_flashscore.json historia_flashscore.json; do
+            if [ -e "$_f" ]; then
+              git add "$_f" || echo "::warning::git add de $_f fallo"
+            fi
+          done
+          if git diff --cached --quiet; then
+            echo "El precálculo no cambió."
+          else
+            # `--rebase` porque los otros workflows commitean a la vez y este
+            # corre ocho veces al día: sin él, la carrera se pierde seguro.
+            git commit -m "chore(dia): precálculo del día ($(date -u +%Y-%m-%dT%H:%MZ))"
+            # v312 — el mismo `|| true` que tumbaba al reentrenamiento: ver
+            # `git_sin_conflictos.py`
+            python git_sin_conflictos.py publicar
+            echo "Día cocinado y publicado."
+          fi

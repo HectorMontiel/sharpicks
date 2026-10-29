@@ -1,0 +1,378 @@
+name: Cuotas de las casas mexicanas
+
+# v192 — CINCO CASAS MEXICANAS, CADA SEIS HORAS.
+#
+# De dónde sale esto: el encargo era meter Novibet. Su API está detrás del
+# desafío de Cloudflare y devuelve 403 a todo, hasta a `robots.txt`, así que
+# por ahí no se entra y no se va a entrar. Pero sus cuotas SÍ están publicadas
+# en el comparador de Flashscore, que responde 200 a una petición normal, y por
+# esa puerta entran cinco casas en vez de una:
+#
+#     Calientemx · 1xBet · Winpot · Novibet · Sportium.mx
+#
+# Todas mexicanas, que es la diferencia entre un EV teórico y uno cobrable: de
+# nada sirve detectar valor en un precio que el usuario no puede tomar.
+#
+# POR QUÉ UN WORKFLOW APARTE Y NO EL DIARIO
+# ------------------------------------------
+# Un barrido son ~30.000 peticiones y unos 16 minutos, y sobre todo: son
+# PRECIOS. Un precio de hace un día no es un precio. `cuotas_mx` descarta el
+# fichero si tiene más de 8 horas, así que con una pasada diaria estaría
+# caducado dos tercios del tiempo. Cada seis horas lo mantiene fresco siempre.
+#
+# Y por eso NO va dentro de la aplicación: meterlo en el barrido que corre al
+# abrir la pantalla desharía la v178, que bajó la carga de 213 s a 39 s
+# quitando exactamente este tipo de petición del camino caliente. En esta misma
+# tanda se metió sin querer algo así dos veces —el tablero de touchdowns y el
+# emparejado difuso— y costó 14,2 s y 22,7 s respectivamente. Medido las dos
+# veces, arreglado las dos veces.
+
+on:
+  schedule:
+    # v263 — CADA DOS HORAS, Y ESTA MEDIDO POR QUE.
+    #
+    # Un error de cuota es una casa que no ha movido su precio cuando Pinnacle
+    # si lo movio. Es transitorio por definicion. Medido sobre 43.159
+    # comparaciones casa-vs-Pinnacle de `odds_snapshots.csv`:
+    #
+    #   · solo el 0,5 % de las comparaciones tiene ventaja > 1 %
+    #   · de las ventajas detectadas en una foto, SOLO EL 36 % sigue en la
+    #     siguiente; su EV medio cae de +9,4 % a +2,1 %
+    #   · las que no la tienen, casi nunca la ganan despues (0,3 %)
+    #
+    # O sea: dos tercios de los errores mueren entre foto y foto, y no
+    # aparecen de la nada. Con seis horas veiamos cuatro fotos al dia de algo
+    # que dura menos que eso, y por eso la Capa 1 sacaba uno o dos picks.
+    #
+    # Y el dia del partido es cuando MAS errores hay y MAS grandes son (0,6 %
+    # de las comparaciones, EV medio +16 %), que es justo cuando peor los
+    # cazabamos.
+    #
+    # EL COSTE: el repositorio es publico, asi que los minutos de Actions son
+    # gratis. El ritmo por ejecucion no cambia —8 hilos, pausa de 20 ms, 29,3
+    # peticiones/s—: es la misma cortesia con las casas, solo que mas a
+    # menudo. Pasa de 32.320 a 96.960 peticiones al dia.
+    #
+    # LO QUE ESTE CAMBIO NO SABE TODAVIA, Y CONVIENE DECIRLO: la caida medida
+    # es entre fotos de DIAS distintos, porque es lo unico que hay guardado.
+    # La caida DENTRO del dia no esta medida. Este cambio es justamente lo que
+    # generara esos datos: dentro de unas semanas se podra medir si dos horas
+    # es lo correcto, o si hay que bajar mas, o si con cuatro bastaba.
+    # v285 — LOS MINUTOS REDONDOS SON LOS PEORES.
+    #
+    # Auditados los ocho workflows el 2026-09-21: NINGUNO corria a su hora.
+    #
+    #     declarado          corre de verdad
+    #     04:30      ->  10:07, 09:23, 08:53, 09:07   (+4,5 a +5,5 h)
+    #     05:30      ->  10:59, 09:59, 09:40, 09:59   (+4 a +5,5 h)
+    #     06:05      ->  12:29, 11:02, 10:39, 10:56   (+4,5 a +6 h)
+    #     10:00      ->  16:13, 13:57, 13:42, 14:07   (+3,7 a +6 h)
+    #     cada 2 h   ->  20:45 · 07:32 · 09:51 · 16:24  (huecos de 11 h)
+    #
+    # El programador de GitHub descarta ejecuciones cuando hay congestion, y la
+    # congestion se concentra en los minutos redondos: todo el mundo programa
+    # en :00, :15, :30 y :45. Los nuestros estaban en :00, :05, :10, :20 y :30,
+    # o sea en la cola de todos.
+    #
+    # Mover a un minuto impar y poco usado no garantiza nada —el programador
+    # sigue sin dar garantias— pero quita el problema de raiz mas barato que
+    # hay: cero coste, cero riesgo, y no toca la frecuencia.
+    #
+    # LO QUE ESTO NO ARREGLA, Y POR ESO LA v275 EXISTE: si aun asi se salta una
+    # pasada, la pantalla calcula la Capa 1 en vivo y avisa de la edad de los
+    # precios. El cron es el camino rapido, no el unico.
+    # v300 — SE DECLARAN 48 PASADAS AL DIA PARA CONSEGUIR UNA CADA DOS HORAS.
+    #
+    # LOS DATOS, QUE SON LO QUE MANDA. Con `37 */2` declarado —cada dos
+    # horas— esto es lo que GitHub ejecuto de verdad:
+    #
+    #     23:31 · 20:31 · 16:24 · 09:51 · 20:45 · 16:00 · 11:17 · 04:49
+    #             3h00    4h07    6h33            4h43    6h28
+    #
+    # Huecos de SEIS HORAS Y MEDIA. El usuario lo noto solo: «la ultima fue a
+    # las 16 y ya son las 19». No es que el cron este mal escrito: el
+    # programador de GitHub DESCARTA ejecuciones bajo carga, y declarar «cada
+    # dos horas» no da cada dos horas. Mover el minuto (v285) ayudo y no
+    # basto, porque el problema no es la congestion del minuto en punto.
+    #
+    # LA SOLUCION NO ES PEDIRLO MAS EDUCADAMENTE, ES PEDIRLO MAS VECES. Se
+    # declaran dos pasadas por hora y la PRIMERA COSA que hace el trabajo es
+    # mirar la edad del fichero: si tiene menos de `FRESCURA_MINUTOS`, sale
+    # en quince segundos sin gastar nada. Asi GitHub puede tirar tres de cada
+    # cuatro y el hueco real sigue por debajo de las dos horas.
+    #
+    # El coste son ~46 arranques vacios al dia de unos 15 s. En un repo
+    # publico los minutos de Actions son gratis, y aunque no lo fueran, 12
+    # minutos de CPU al dia es el precio de que los precios sean precios.
+    - cron: '7,37 * * * *'
+  workflow_dispatch:
+    inputs:
+      forzar:
+        description: 'Barrer aunque el fichero esté fresco'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  # v302 — para disparar el relevo y el precalculo al acabar. Un
+  # `workflow_dispatch` lanzado con el GITHUB_TOKEN SI crea ejecucion (es una
+  # de las dos excepciones de GitHub a «un token no dispara workflows»).
+  actions: write
+
+concurrency:
+  group: cuotas-mx
+  cancel-in-progress: false
+
+env:
+  # v510 — repo privado: los modelos del Release se bajan con el token de la corrida
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  cuotas:
+    runs-on: [self-hosted, sharpicks]   # v509 — runner propio (PC del usuario): 0 minutos de Actions
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # v300 — LA GUARDA DE FRESCURA: aqui muere el 95 % de las pasadas.
+      #
+      # LA EDAD SALE DEL PROPIO FICHERO, que lleva dentro `generado` con la
+      # hora en que se barrio. Las otras dos formas de saberlo estan mal:
+      #
+      #   · `stat` da la hora del CHECKOUT, no la del barrido. `actions/
+      #     checkout` le pone la hora actual a todo lo que escribe, asi que
+      #     diria «recien creado» siempre y la guarda no guardaria nada. Es
+      #     el mismo tipo de fallo que la v279: una comprobacion que parece
+      #     proteger y no protege.
+      #   · `git log -1 -- cuotas_mx.json` necesita historia hasta encontrar
+      #     el commit que toco ESE fichero, y con una copia superficial
+      #     devuelve vacio en cuanto los ultimos commits son de codigo. Habria
+      #     que traerse el repo entero para una fecha que ya esta en el JSON.
+      #
+      # `date -d` entiende el formato ISO con Z directamente.
+      - name: ¿Hace falta barrer?
+        id: frescura
+        run: |
+          # v302 — el relevo dispara con `forzar=false` y le toca pasar por
+          # esta misma guarda. Espera 95 min desde el ultimo barrido, asi que
+          # llega siempre por encima de los 80: barre. Si por lo que sea le
+          # dispararan dos veces seguidas, la segunda sale aqui gratis.
+          FRESCURA_MINUTOS=80
+          if [ "${{ github.event_name }}" != "schedule" ] && [ "${{ inputs.forzar }}" != "false" ]; then
+            echo "Lanzado a mano: se barre sin mirar la edad."
+            echo "saltar=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # v305 — EL TABLERO DE MAIN AHORA, NO EL DEL CHECKOUT.
+          #
+          # El 2026-09-23 fallaron dos pasadas del cron (18:59 y 22:13) por lo
+          # mismo: arrancaron justo cuando acababa un barrido del relevo, su
+          # checkout era de ANTES de que aquel subiera su commit, la guarda
+          # leyó un tablero de hace 105 min, barrió otra vez, y al subir chocó
+          # con el commit del relevo en `anclas.json` y `anclas_capturas.csv`.
+          # Se trae main otra vez justo antes de medir la edad.
+          git fetch --quiet --depth=1 origin main && git checkout --quiet FETCH_HEAD -- cuotas_mx.json 2>/dev/null || echo "::warning::no se pudo refrescar el tablero de main"
+          if [ ! -f cuotas_mx.json ]; then
+            echo "No hay tablero todavia: se barre."
+            echo "saltar=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          GEN=$(python3 -c "import json;print(json.load(open('cuotas_mx.json',encoding='utf-8')).get('generado') or '')" 2>/dev/null || echo '')
+          if [ -z "$GEN" ]; then
+            echo "El tablero no dice cuando se genero: se barre."
+            echo "saltar=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          SEG=$(date -u -d "$GEN" +%s 2>/dev/null || echo 0)
+          if [ "$SEG" = "0" ]; then
+            echo "Fecha ilegible ($GEN): se barre."
+            echo "saltar=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          EDAD=$(( ( $(date -u +%s) - SEG ) / 60 ))
+          echo "El tablero se genero hace $EDAD min (umbral $FRESCURA_MINUTOS) — $GEN"
+          if [ "$EDAD" -lt "$FRESCURA_MINUTOS" ] && [ "$EDAD" -ge 0 ]; then
+            echo "Fresco: esta pasada no hace nada."
+            echo "saltar=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Viejo: se barre."
+            echo "saltar=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-python@v5
+        if: steps.frescura.outputs.saltar != 'true'
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      # v271 — ya no basta `requests`. El paso de anotar capturas necesita
+      # `cuotas_multi` (pandas) para emparejar Pinnacle con las casas, y el
+      # radar necesita LightGBM para ordenar el barrido. Sigue sin ser el
+      # requirements entero: son cuatro paquetes con caché de pip, no los
+      # tres minutos de instalarlo todo.
+      - name: Instalar dependencias mínimas
+        if: steps.frescura.outputs.saltar != 'true'
+        run: pip install requests pandas numpy lightgbm
+
+      - name: Barrer las cinco casas
+        if: steps.frescura.outputs.saltar != 'true'
+        run: |
+          # v267 — DOS PASADAS: una corta y otra larga.
+          #
+          # La corta (2 dias) corre cada dos horas y mantiene fresco lo
+          # inmediato. La larga (7 dias) solo en las pasadas de las 00 y las
+          # 12 UTC, y anade la semana: es donde estan las ligas grandes, que
+          # juegan de jueves a domingo y que a 48 horas vista no aparecen.
+          #
+          # Medido sobre 26.647 partidos con Pinnacle y casa blanda: el sabado
+          # da 3,7 picks de Capa 1 por dia y el jueves 0,2; y las ligas
+          # grandes producen pick en el 9,7 % de sus partidos contra el 5,1 %
+          # del resto. Ademas los precios lejanos traen MAS ventaja: +27 % de
+          # EV medio a siete dias contra +16 % el mismo dia, porque la casa
+          # blanda todavia no ha ajustado.
+          #
+          # Se acumulan porque desde la v267 `cuotas_mx.py` ya no pisa el
+          # fichero: conserva lo anterior que aun no ha empezado. Asi la
+          # pasada larga no hay que repetirla cada dos horas, que seria
+          # multiplicar por tres y medio las peticiones (de 8.080 a ~28.000
+          # por pasada) y pedir que una casa nos corte.
+          # v302 — LA LARGA SE DECIDE POR EDAD, NO POR LA HORA.
+          #
+          # Con el relevo las pasadas caen cada ~110 min y la hora deriva:
+          # esperar a las 00 o las 12 UTC dejaria dias enteros sin semana.
+          # `ultimo_largo` lo escribe `cuotas_mx.py` en el propio tablero; si
+          # tiene mas de 11 h, o no esta, toca la de siete dias.
+          _LARGO=$(python3 -c "import json;print(json.load(open('cuotas_mx.json',encoding='utf-8')).get('ultimo_largo') or '')" 2>/dev/null || echo '')
+          _SEG=$(date -u -d "$_LARGO" +%s 2>/dev/null || echo 0)
+          _EDAD_H=$(( ( $(date -u +%s) - _SEG ) / 3600 ))
+          if [ -z "$_LARGO" ] || [ "$_SEG" = "0" ] || [ "$_EDAD_H" -ge 11 ]; then _DIAS=7; else _DIAS=2; fi
+          echo "barrido de $_DIAS dias (ultima larga: ${_LARGO:-nunca}, hace ${_EDAD_H} h)"
+          python cuotas_mx.py --dias "$_DIAS" --max 400 \
+            || echo "::warning::barrido de casas mexicanas con avisos"
+
+      # v271 — ANOTAR LO QUE SE ACABA DE VER, QUE ES LO QUE HACE CRECER EL RADAR.
+      #
+      # El barrido empareja Pinnacle con las cinco casas y calcula dónde
+      # alguna se ha descolgado. Ese emparejamiento vivía un instante en
+      # memoria y se tiraba; ahora queda en `radar_capturas.csv`.
+      #
+      # Tiene que correr AQUÍ y no sólo en la aplicación: el disco de
+      # Streamlit Cloud se borra en cada despliegue, así que lo anotado allí
+      # se pierde. Aquí se commitea y se queda.
+      #
+      # No cuesta ninguna petición a las casas: las cuotas ya están en
+      # `cuotas_mx.json`, que el paso anterior acaba de escribir.
+      - name: Anotar las capturas del radar
+        if: steps.frescura.outputs.saltar != 'true'
+        run: |
+          python barrido_capa1.py \
+            || echo "::warning::el barrido de la capa 1 salio con avisos"
+
+      # v273 — ACUMULAR EL PRECIO DE LAS ANCLAS CANDIDATAS.
+      #
+      # Un pick de Capa 1 necesita dos precios y el que falta casi siempre es
+      # el de referencia: de 277 partidos del tablero, sólo 97 tienen ancla de
+      # Pinnacle. Los otros 180 no se miran siquiera.
+      #
+      # Por la MISMA puerta que las cuotas responden 293 casas más, con el
+      # mismo identificador de evento. Cuatro de ellas son candidatas a servir
+      # de ancla de reserva. Esto NO decide nada todavía: acumula, y la
+      # medición se enciende sola cuando hay muestra (ver `anclas.py`).
+      #
+      # Son ~550 peticiones más sobre las 8.080 de la pasada: un 7 %.
+      - name: Acumular las anclas candidatas
+        if: steps.frescura.outputs.saltar != 'true'
+        run: |
+          python anclas.py \
+            || echo "::warning::la captura de anclas salio con avisos"
+
+      - name: Commitear las cuotas
+        if: steps.frescura.outputs.saltar != 'true'
+        run: |
+          git config user.name  "cuotas-mx-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Uno por linea, y no `git add a b`: si `radar_capturas.csv` no
+          # existe todavia —el primer dia, o una pasada en la que el barrido
+          # no anotara nada— un `git add` con las dos rutas falla ENTERO y se
+          # lleva por delante el de las cuotas, que si estaban. Lo vigila
+          # `test_catalogo_y_cuotas`, que es quien lo cazo aqui.
+          git add cuotas_mx.json || echo "::warning::git add de cuotas_mx.json fallo"
+          git add radar_capturas.csv || echo "::warning::todavia no hay capturas del radar"
+          git add anclas_capturas.csv || echo "::warning::todavia no hay capturas de anclas"
+          git add anclas.json || echo "::warning::todavia no hay medicion de anclas"
+          if git diff --cached --quiet; then
+            echo "Las cuotas no cambiaron."
+          else
+            git commit -m "chore(cuotas): casas mexicanas ($(date -u +%Y-%m-%dT%H:%MZ))
+
+            Calientemx, 1xBet, Winpot, Novibet y Sportium via el comparador
+            publico de Flashscore. Ver el encabezado de cuotas_mx.py."
+            # Rebase antes de empujar: el reentrenamiento puede haber empujado
+            # entre medias y sólo toca datos.
+            # v305 — SUBIR NO PUEDE ROMPER POR UNA CARRERA CON OTRA PASADA.
+            #
+            # Todo lo que este paso commitea son capturas de ESTA pasada:
+            # si otra subió entre medias, lo nuestro es lo más reciente y
+            # manda (`-X theirs`: en un rebase, «theirs» es el commit que se
+            # reaplica, o sea el nuestro). Tres intentos con espera por si
+            # la otra pasada sigue subiendo.
+            _OK=0
+            for _i in 1 2 3; do
+              if git pull --rebase -X theirs origin main && git push origin HEAD:main; then
+                _OK=1; break
+              fi
+              git rebase --abort 2>/dev/null || true
+              sleep $((_i * 15))
+            done
+            if [ "$_OK" != "1" ]; then
+              echo "::error::no se pudieron subir las cuotas tras tres intentos"
+              exit 1
+            fi
+          fi
+
+      # v302 — EL PRECALCULO SE CUELGA DETRAS, EN VEZ DE ESPERAR A SU CRON.
+      #
+      # El precalculo lee este tablero. Dispararlo aqui es el orden correcto
+      # por construccion —no por minutos elegidos para caer despues— y ademas
+      # no depende del programador de GitHub, que es el que falla.
+      - name: Cocinar el dia con los precios nuevos
+        if: steps.frescura.outputs.saltar != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run precalculo_dia.yml --repo "${{ github.repository }}" --ref main || echo "::warning::no se pudo disparar el precalculo"
+
+      # v302 — EL RELEVO: LA PASADA SIGUIENTE LA PIDE ESTA, NO EL CRON.
+      #
+      # LOS DATOS. Con 48 pasadas declaradas al dia (`7,37 * * * *`) GitHub
+      # creo SEIS el 2026-09-22: 04:17 · 09:27 · 14:09 · 18:15 · 21:38 ·
+      # 00:22, con huecos de 5h10, 4h42, 4h06, 3h23 y 2h44. El programador
+      # no descarta las que le sobran: descarta casi todas, y declarar mas no
+      # lo cambia. La guarda de frescura hacia baratas las sobrantes, pero no
+      # puede crear las que faltan.
+      #
+      # LO QUE SI ES FIABLE es `workflow_dispatch`: no pasa por la cola del
+      # cron. Asi que cada pasada dispara `relevo.yml`, que duerme hasta 95
+      # min despues de ESTE barrido y dispara el siguiente. La cadena no
+      # depende de ningun cron; el cron queda de red por si se rompe.
+      #
+      # `always()`: si el barrido o el push fallan, la cadena NO se puede
+      # romper aqui, que es justo cuando mas falta la pasada siguiente.
+      #
+      # Las pasadas que salen por la guarda solo relevan si no hay ya un
+      # relevo vivo. Si lo hay, su hora objetivo sale del tablero y no ha
+      # cambiado: relanzarlo solo llenaria la lista de ejecuciones canceladas.
+      - name: Pasar el relevo
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${{ steps.frescura.outputs.saltar }}" = "true" ]; then
+            _VIVOS=$(gh run list --repo "${{ github.repository }}" --workflow=relevo.yml --limit 10 --json status --jq '[.[] | select(.status != "completed")] | length' 2>/dev/null || echo 0)
+            if [ "${_VIVOS:-0}" -gt 0 ]; then
+              echo "Ya hay un relevo esperando: no se toca."
+              exit 0
+            fi
+          fi
+          gh workflow run relevo.yml --repo "${{ github.repository }}" --ref main || echo "::warning::no se pudo pasar el relevo; el cron queda de red"

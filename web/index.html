@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SharPicks · Picks medidos, no adivinados</title>
+<meta name="description" content="Pronósticos deportivos medidos con partidos reales: en vivo, con estadísticas, y verdes y rojas a la vista.">
+<meta name="theme-color" content="#0a1222">
+<meta property="og:title" content="SharPicks · Predictive Sports Intelligence">
+<meta property="og:description" content="Picks medidos con miles de partidos reales, en vivo y con estadísticas.">
+<meta property="og:image" content="https://sharpicks.pages.dev/marca/portada.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="apple-touch-icon" href="marca/apple-touch-icon.png">
+<!-- v454 — en el iPhone, que se abra a pantalla completa como app -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SharPicks">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="marca/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<header class="top">
+  <div class="marca"><span class="marca-img"><img src="marca/logo-96.png" alt="" width="38" height="38"></span><span id="nombre"><b class="m1">Shar</b><b class="m2">Picks</b></span></div>
+  <div class="derecha"><div class="reloj" id="reloj"></div><button class="ayuda-btn" data-ayuda aria-label="Ayuda">?</button><div class="cuenta" id="cuenta"><button class="entrar" data-entrar>Entrar</button></div></div>
+</header>
+
+<main>
+  <!-- PICKS · EN VIVO · MIS PICKS -->
+  <section data-vista="picks vivo mios combinadas">
+    <div data-vista="picks" id="tira"></div>
+
+    <!-- v422 — «✨ Para ti»: lo que encaja con lo que el usuario sigue, desbloquea y eligió -->
+    <section class="destacados parati" id="parati" data-vista="picks" hidden>
+      <h2>✨ Para ti</h2>
+      <div class="carrusel" id="parati-lista"></div>
+    </section>
+    <section class="destacados" id="destacados" data-vista="picks" hidden>
+      <h2>💎 Destacados</h2>
+      <div class="carrusel" id="destacados-lista"></div>
+    </section>
+
+    <!-- v398 — en Picks, sólo una línea; las combinadas tienen su pestaña -->
+    <div data-vista="picks" id="comb-tira"></div>
+    <h2 class="vista-tit" data-vista="combinadas" hidden>🔗 Combinadas</h2>
+    <p class="tenue chico" data-vista="combinadas" hidden>Las patas más probables, revisadas por la IA. Se cobra sólo si se cumplen todas.</p>
+
+    <h2 class="vista-tit" data-vista="vivo" hidden>🔴 En vivo</h2>
+    <h2 class="vista-tit" data-vista="mios" hidden>★ Mis picks</h2>
+    <!-- v428 — las combinadas que arma el usuario (v442: las que están por jugar o en juego) -->
+    <section class="caja bloque-hist" data-vista="mios" hidden><div class="tit">🔗 Mis combinadas</div><div id="mis-comb"></div></section>
+    <!-- v439/v442 — el historial: sus combinadas ya terminadas, con verdes, rojas y cada pick -->
+    <section class="caja bloque-hist" data-vista="mios" hidden><div class="tit">📒 Mi historial</div><div id="mi-hist"></div></section>
+
+    <nav class="pestanas" id="pestanas" data-vista="picks combinadas">
+      <button data-dia="hoy" class="activa">Hoy</button>
+      <button data-dia="manana">Mañana</button>
+      <button data-dia="pasado">Pasado</button>
+      <button data-dia="ayer">Ayer</button>
+    </nav>
+
+    <div class="buscador" data-vista="picks vivo mios"><select id="liga" aria-label="Liga"></select><span class="busca-caja"><input type="search" id="busca" placeholder="Buscar equipo" autocomplete="off" enterkeyhint="search"><button type="button" class="busca-x" id="busca-x" aria-label="Borrar la búsqueda" hidden>×</button></span></div>
+    <div class="chips desliza" id="niveles" data-vista="picks vivo mios"></div>
+    <div class="chips desliza" id="deportes" data-vista="picks vivo mios combinadas"></div>
+    <div class="segmentos" id="fases" data-vista="picks vivo mios"></div>
+
+    <!-- v471 — «Arma tu combinada»: el usuario elige niveles y patas; el modelo la arma y la IA la revisa -->
+    <section class="caja armador" id="armador" data-vista="combinadas" hidden></section>
+    <section class="comb-lista" id="combinadas" data-vista="combinadas" hidden><div id="combinadas-lista"></div></section>
+    <p class="aviso" id="aviso" data-vista="picks vivo mios"></p>
+    <section id="tarjetas" data-vista="picks vivo mios"><div class="esq-tarjeta" aria-hidden="true"><i class="esq w40"></i><i class="esq w80"></i><i class="esq w60"></i></div><div class="esq-tarjeta" aria-hidden="true"><i class="esq w40"></i><i class="esq w80"></i><i class="esq w60"></i></div><div class="esq-tarjeta" aria-hidden="true"><i class="esq w40"></i><i class="esq w80"></i><i class="esq w60"></i></div><div class="esq-tarjeta" aria-hidden="true"><i class="esq w40"></i><i class="esq w80"></i><i class="esq w60"></i></div></section>
+  </section>
+
+  <!-- HISTORIAL -->
+  <section data-vista="historial" hidden>
+    <h2 class="vista-tit">📊 Historial</h2>
+    <section class="marcadores" id="marcadores"></section>
+    <section class="caja bloque-hist">
+      <div class="tit">Todo lo jugado: verdes y rojas de cada día</div>
+      <div id="historial"></div>
+    </section>
+    <!-- v453 — lo que dijimos vs lo que salió -->
+    <section class="caja bloque-hist">
+      <div class="tit">🎯 Lo que dijimos vs lo que salió</div>
+      <div id="calibracion"><div class="esq-lineas" aria-hidden="true"><i class="esq w90"></i><i class="esq w70"></i><i class="esq w50"></i></div></div>
+    </section>
+    <section class="caja bloque-hist">
+      <div class="tit">🏅 Por deporte</div>
+      <div id="dep-hist"><div class="esq-lineas" aria-hidden="true"><i class="esq w90"></i><i class="esq w70"></i><i class="esq w50"></i></div></div>
+    </section>
+    <section class="caja bloque-hist">
+      <div class="tit">🔗 Combinadas, medidas</div>
+      <div id="comb-hist"><div class="esq-lineas" aria-hidden="true"><i class="esq w90"></i><i class="esq w70"></i><i class="esq w50"></i></div></div>
+    </section>
+    <section class="caja bloque-hist">
+      <div class="tit">🤖 La IA, medida</div>
+      <div id="ia-hist"><div class="esq-lineas" aria-hidden="true"><i class="esq w90"></i><i class="esq w70"></i><i class="esq w50"></i></div></div>
+    </section>
+    <section class="caja bloque-hist">
+      <div class="tit">📢 Lo que mandamos por Telegram</div>
+      <div id="tg-hist"><div class="esq-lineas" aria-hidden="true"><i class="esq w90"></i><i class="esq w70"></i><i class="esq w50"></i></div></div>
+    </section>
+  </section>
+
+  <!-- PLANES -->
+  <section data-vista="planes" hidden>
+    <section class="hero">
+      <h1>Picks <span class="grad">medidos</span>, no adivinados</h1>
+      <p>Cada apuesta sale de un modelo comparado contra la casa y medido con partidos ya jugados. En vivo, con estadísticas, y las verdes y las rojas a la vista.</p>
+    </section>
+    <section class="planes" id="planes">
+      <div class="planes-grid">
+        <!-- v483 — el usuario: «siento que hay mucho texto… debe ser impactante y mostrar sólo lo
+             importante; si pico el cuadro, ahora sí desglosar todo». Corto a la vista; al tocar, el detalle. -->
+        <div class="caja plan" data-plan-abre>
+          <div class="tit">Gratis</div>
+          <div class="precio">$0</div>
+          <div class="plan-gancho" id="gancho-gratis">Picks 🥇 Oro y en vivo</div>
+          <details class="plan-mas"><summary>Ver todo lo que incluye</summary>
+            <ul><li>Picks 🥇 Oro</li><li>Marcador y estadísticas en vivo</li><li>Historial público</li><li>Canal gratis de Telegram</li></ul>
+            <div id="numeros-gratis"></div>
+          </details>
+        </div>
+        <div class="caja plan destacado" data-plan-abre>
+          <div class="tit">No Win, No Pay</div>
+          <div class="precio">🪙 por pick</div>
+          <div class="plan-gancho">Si sale roja, <b>tus monedas regresan</b></div>
+          <p class="plan-sub">20 🪙 de regalo al registrarte</p>
+          <button class="vip-btn sec" data-mi-cuenta>Comprar monedas</button>
+          <details class="plan-mas"><summary>Ver todo lo que incluye</summary>
+            <ul><li>Desbloquea un 💎, 🔷, 🥈 o 💰 suelto, o una 🔗 combinada entera</li><li><b>Si sale roja, tus monedas regresan solas</b></li><li>20 🪙 de regalo al registrarte</li></ul>
+            <table class="tabla precios" id="tabla-precios"><tr><th>Cuota del pick</th><th>Cuesta</th></tr>
+              <tr><td>1.01 – 1.29</td><td>5 🪙</td></tr><tr><td>1.30 – 1.59</td><td>8 🪙</td></tr><tr><td>1.60 – 1.99</td><td>12 🪙</td></tr>
+              <tr><td>2.00 – 2.99</td><td>18 🪙</td></tr><tr><td>3.00 o más</td><td>25 🪙</td></tr></table>
+            <div id="numeros-monedas"></div>
+            <p class="tenue chico">Paquetes: 50 🪙 $29 · 100 🪙 $49 · 220 🪙 $99 · 500 🪙 $199</p>
+          </details>
+        </div>
+        <div class="caja plan" id="plan-vip" data-plan-abre>
+          <div class="tit">VIP</div>
+          <div class="precio">$149 <small>al mes</small></div>
+          <p class="plan-sub">⭐ Fundadores: <b>$99 para siempre</b></p>
+          <div class="plan-gancho" id="gancho-vip">Todos los picks sin monedas</div>
+          <ul class="plan-clave"><li>Todos los picks y combinadas</li><li>🤖 Análisis IA y parley de cada partido</li><li>Avisos al momento en Telegram</li></ul>
+          <button class="vip-btn" data-mi-cuenta>Hacerme VIP</button>
+          <details class="plan-mas"><summary>Ver todo lo que incluye</summary>
+            <ul><li>⭐ <b>Fundadores: $99 al mes</b> para los primeros 50, para siempre</li><li>O semestral: $749 cada 6 meses</li><li>Todos los 💎, 🔷, 🥈, 💰 Cuota alta y 🔗 combinadas sin gastar monedas</li><li>🤖 <b>Análisis IA de cada partido</b>: quién anota, líneas por estadística y noticias</li><li>🧩 <b>Arma tu parley con la IA</b> en cada partido</li><li>🔗 <b>Combinadas de 2 a 20 patas</b> con todos los niveles</li><li>Grupo VIP de Telegram con avisos al momento: 💰 errores de cuota en cuanto aparecen, ⏰ «ya es hora de apostar», ♻️ cambios y 🌙 el resumen de la noche</li></ul>
+            <div id="numeros-vip"></div>
+          </details>
+        </div>
+      </div>
+      <p class="aviso">🎉 Al crear tu cuenta gratis te llevas 20 🪙 de regalo para desbloquear tus primeros picks.</p>
+      <div id="telegram" class="tg-links"></div>
+    </section>
+    <button class="caja niveles-ayuda boton-ayuda" data-ayuda>❓ ¿Qué significa cada cosa? Toca aquí</button>
+    <!-- v401 — comentarios: llegan al correo de SharPicks (`comentarios_correo.py`) -->
+    <section class="caja comentarios" id="comentarios">
+      <div class="tit">💬 ¿Qué mejorarías de SharPicks?</div>
+      <p class="sub">Ideas, algo que no funciona o lo que quieras decirnos. Lo leemos todo.</p>
+      <form id="f-comentario">
+        <div class="chips" id="com-tipo">
+          <button type="button" class="chip activa" data-com-tipo="idea">💡 Idea</button>
+          <button type="button" class="chip" data-com-tipo="falla">🐞 Algo no funciona</button>
+          <button type="button" class="chip" data-com-tipo="otro">💬 Otro</button>
+        </div>
+        <textarea id="com-texto" rows="4" maxlength="2000" required placeholder="Escribe aquí tu comentario…"></textarea>
+        <input type="email" id="com-correo" maxlength="200" placeholder="Tu correo (opcional, para responderte)" autocomplete="email">
+        <button type="submit" class="vip-btn">Enviar comentario</button>
+        <p class="tenue chico" id="com-msg"></p>
+      </form>
+    </section>
+    <footer>
+      <p>Juego responsable · Sólo mayores de 18 años. Acertar mucho no garantiza ganar dinero: a cuota baja hace falta acertar muchísimo para no perder.</p>
+      <p class="tenue" id="actualizado"></p>
+      <p class="legal"><a href="terminos.html">Términos</a> · <a href="privacidad.html">Aviso de privacidad</a></p>
+    </footer>
+  </section>
+</main>
+
+<nav class="nav-abajo" id="nav">
+  <button data-vista-ir="picks" class="activa"><svg class="ic" aria-hidden="true"><use href="iconos.svg#i-house"/></svg>Picks</button>
+  <button data-vista-ir="vivo"><svg class="ic" aria-hidden="true"><use href="iconos.svg#i-radio"/></svg>En vivo<i id="nav-vivo-n" hidden></i></button>
+  <button data-vista-ir="combinadas"><svg class="ic" aria-hidden="true"><use href="iconos.svg#i-link-2"/></svg>Combinadas</button>
+  <button data-vista-ir="mios"><svg class="ic" aria-hidden="true"><use href="iconos.svg#i-star"/></svg>Mis picks</button>
+  <button data-vista-ir="historial"><svg class="ic" aria-hidden="true"><use href="iconos.svg#i-chart-column"/></svg>Historial</button>
+  <button data-vista-ir="planes"><svg class="ic" aria-hidden="true"><use href="iconos.svg#i-crown"/></svg>Planes</button>
+</nav>
+
+<div class="ficha" id="acceso" hidden><div class="ficha-caja acceso">
+  <button class="cerrar" data-cerrar-acceso>✕</button>
+  <h3>SharPicks</h3>
+  <div class="segmentos dos"><button class="seg activa" data-ir-modo="entrar">Entrar</button><button class="seg" data-ir-modo="crear">Crear cuenta</button></div>
+  <button class="google" data-google hidden><svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Continuar con Google</button>
+  <form id="f-entrar" data-modo="entrar">
+    <input id="e-usuario" placeholder="Usuario (o correo)" autocomplete="username" autocapitalize="off">
+    <input id="e-contra" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="ver" type="submit">Entrar</button>
+    <button class="liga-btn" type="button" data-enlace>Olvidé mi contraseña</button>
+  </form>
+  <form id="f-crear" data-modo="crear" hidden>
+    <input id="c-usuario" placeholder="Nombre de usuario (3-20, sin espacios)" autocomplete="username" autocapitalize="off">
+    <input id="c-correo" type="email" placeholder="Correo (para recuperar tu contraseña)" autocomplete="email" required>
+    <input id="c-contra" type="password" placeholder="Contraseña (8+, letras y números)" autocomplete="new-password">
+    <input id="c-contra2" type="password" placeholder="Repite la contraseña" autocomplete="new-password">
+    <button class="ver" type="submit">Crear cuenta</button>
+  </form>
+  <div id="captcha" class="captcha"></div>
+  <p class="sub" id="acceso-msg"></p>
+  <p class="tenue chico">Al entrar aceptas los <a href="terminos.html">términos</a> y el <a href="privacidad.html">aviso de privacidad</a>. Sólo mayores de 18 años.</p>
+</div></div>
+
+<!-- v422 — «¿Qué te interesa?» al crear la cuenta (y desde Mi cuenta) -->
+<!-- v428 — el boleto de «Mi combinada», encima de la barra de abajo -->
+<div class="mi-boleto" id="mi-boleto" hidden></div>
+
+<!-- v426 — al volver del correo de «restablecer contraseña» -->
+<div class="ficha" id="nueva-clave" hidden><div class="ficha-caja acceso">
+  <h3>🔑 Elige tu contraseña nueva</h3>
+  <form id="f-nueva-clave">
+    <input id="nc-1" type="password" placeholder="Contraseña nueva (8+, letras y números)" autocomplete="new-password">
+    <input id="nc-2" type="password" placeholder="Repítela" autocomplete="new-password">
+    <button class="vip-btn" type="submit">Guardar contraseña</button>
+  </form>
+  <p class="sub" id="nc-msg"></p>
+</div></div>
+
+<div class="ficha" id="intereses" hidden><div class="ficha-caja acceso">
+  <h3>🎯 ¿Qué te interesa?</h3>
+  <p class="tenue">Elige tus deportes y ligas: te los ponemos primero y armamos tu «✨ Para ti».</p>
+  <div class="ctx-tit">Deportes</div><div class="chips" id="int-deportes"></div>
+  <div class="ctx-tit">Ligas</div><div class="chips" id="int-ligas"></div>
+  <button class="vip-btn" data-guardar-intereses>Guardar</button>
+  <button class="liga-btn" type="button" data-cerrar-intereses>Ahora no</button>
+  <p class="sub" id="int-msg"></p>
+</div></div>
+
+<div class="ficha" id="elegir" hidden><div class="ficha-caja acceso">
+  <h3>Elige tu nombre de usuario</h3>
+  <p class="tenue">Con él te verán en SharPicks y podrás entrar también con contraseña.</p>
+  <form id="f-elegir"><input id="u-nuevo" placeholder="3-20 letras, números, _ o ." autocapitalize="off"><button class="ver" type="submit">Guardar</button></form>
+  <p class="sub" id="elegir-msg"></p>
+</div></div>
+
+<div class="ficha" id="micuenta" hidden><div class="ficha-caja acceso" id="micuenta-cuerpo"></div></div>
+
+<div class="ficha" id="ayuda" hidden><div class="ficha-caja acceso ayuda">
+  <button class="cerrar" data-cerrar-ayuda>✕</button>
+  <h3>¿Cómo funciona SharPicks?</h3>
+  <button type="button" class="vip-btn sec guia-ver" data-guia>▶ Ver la guía de la app</button>
+  <p>Te damos <b>apuestas deportivas analizadas</b>. Cada una trae su <b>probabilidad estimada</b> de cumplirse: la calcula nuestro modelo con miles de partidos que ya se jugaron, no es una corazonada. <b>Es una estimación, no una garantía: ninguna apuesta es segura.</b></p>
+  <!-- v444 — la ayuda en secciones que se abren con un toque (el usuario: «que no haya que explorar mucho») -->
+  <details class="ay-sec" open><summary>💎 Los niveles</summary>
+  <ul class="ay-niveles">
+    <li>💎 <b>Diamante</b> — <b>probabilidad muy alta</b>: nuestra selección principal del día, la de mayor probabilidad según el modelo.</li>
+    <li>🔷 <b>Platino</b> — probabilidad muy alta (85 % o más, según el modelo).</li>
+    <li>🥇 <b>Oro</b> — probabilidad alta (entre 80 y 85 %).</li>
+    <li>🥈 <b>Plata</b> — probabilidad buena (menos de 80 %).</li>
+    <li>💰 <b>Cuota alta</b> — una casa de apuestas <b>paga más de lo que vale</b> el resultado. Su probabilidad es menor (de 30 a 70 %, según la cuota), pero pagan mucho más. En 8 años de partidos, en conjunto dejaron ganancia; eso no garantiza que se repita. <b>Riesgo alto: apuesta poco a cada una.</b></li>
+  </ul></details>
+  <details class="ay-sec"><summary>🔗 Mis combinadas y sus monedas</summary>
+  <ul>
+    <li>Toca <b>«➕ Combinada»</b> en los picks que quieras: de <b>2 a 20</b>, cada uno de un partido distinto y que aún no empiece.</li>
+    <li>Sólo entran picks que puedes ver (gratis, desbloqueados o con VIP). Al guardarla <b>ya no cambia</b>; puedes guardar hasta 10 por día.</li>
+    <li>Es <b>verde</b> si todos sus picks salen verdes (uno anulado no cuenta) y <b>roja</b> si falla uno.</li>
+    <li>Si sale verde, te damos monedas según su <b>cuota total</b> (los picks multiplicados):</li>
+  </ul>
+  <table class="ay-tabla">
+    <thead><tr><th>Cuota total</th><th>Si acierta</th></tr></thead>
+    <tbody>
+      <tr><td>Menos de 2.00</td><td class="sin">Sin premio</td></tr>
+      <tr><td>2.00 a 2.99</td><td>+2 🪙</td></tr>
+      <tr><td>3.00 a 4.99</td><td>+3 🪙</td></tr>
+      <tr><td>5.00 o más</td><td>+5 🪙</td></tr>
+    </tbody>
+  </table>
+  <ul>
+    <li>Se premia <b>una combinada por día</b> (el día de su primer partido).</li>
+    <li>Cada <b>5 combinadas premiadas</b>, +5 🪙 de regalo.</li>
+    <li>Las monedas llegan solas cuando termina su último partido: las da nuestro servidor con el resultado oficial, nadie las pone a mano.</li>
+  </ul></details>
+  <details class="ay-sec"><summary>🪙 Monedas</summary>
+  <ul>
+    <li>Al crear tu cuenta recibes <b>20 🪙</b> de regalo.</li>
+    <li>Sirven para abrir un pick premium suelto o una combinada nuestra completa; el precio depende de su cuota.</li>
+    <li><b>Si sale roja, te regresamos tus monedas solas.</b></li>
+    <li>Ganas más acertando <b>tus combinadas</b> (arriba) o comprándolas en «Planes».</li>
+    <li>⚠️ <b>Reporta un error</b> (un resultado mal, un equipo confundido, un dato raro) desde el partido: si lo confirmamos, <b>+5 🪙</b> (hasta 3 por día).</li>
+  </ul></details>
+  <details class="ay-sec"><summary>⭐ Lo que puedes hacer</summary>
+  <ul>
+    <li>🔴 <b>En vivo</b>: marcador, minuto, estadísticas y la cancha del partido mientras se juega, y si tu apuesta ya se cumplió.</li>
+    <li>★ <b>Seguir</b>: guarda un pick en «Mis picks» para verlo rápido. Para quitarlo, desliza su fila a la izquierda.</li>
+    <li>📒 <b>Mi historial</b>: tus combinadas terminadas, con sus verdes y rojas y cómo salió cada pick.</li>
+    <li>🤖 <b>Análisis IA</b>: busca en la web las bajas y noticias del partido. Dinos con 👍/👎 si te sirvió: así medimos qué tan útil es.</li>
+    <li>📋 <b>Antes del partido</b>: la forma de cada equipo y sus últimos enfrentamientos.</li>
+    <li>💎 <b>VIP</b>: ves todos los picks premium y las combinadas sin gastar monedas, y entras al grupo VIP de Telegram con avisos al momento.</li>
+  </ul></details>
+  <details class="ay-sec"><summary>📖 Palabras que verás</summary>
+  <ul>
+    <li><b>Cuota</b>: lo que te pagan. Cuota 1.50 = apuestas $100 y, si se cumple, recibes $150.</li>
+    <li><b>Probabilidad 86 %</b>: lo que estima nuestro modelo para esa apuesta, medido con partidos parecidos que ya se jugaron. Una probabilidad alta también puede fallar.</li>
+    <li><b>Combinada</b>: varias apuestas juntas; se cobra sólo si se cumplen <b>todas</b>. Su probabilidad es la de las patas multiplicadas, siempre más baja que la de cada una. Con VIP las ves completas; con monedas las desbloqueas enteras por el precio de su cuota total y, <b>si sale roja, se te devuelven</b>.</li>
+    <li><b>Paga de más</b> (en Cuota alta): cuánto más paga esa casa que el precio justo del mercado.</li>
+    <li><b>Menos de 2.5 goles</b>: que en el partido haya 2 goles o menos. <b>Más de 1.5</b>: 2 o más.</li>
+    <li><b>Handicap +1.5</b>: el equipo puede perder por 1 y la apuesta igual se cumple.</li>
+    <li><b>«Gana X o empate»</b>: se cumple si ese equipo gana o empata.</li>
+    <li><b>PA1</b> (pago anticipado): se paga en cuanto el equipo va ganando por un gol, aunque después le empaten. En el análisis de la IA verás el % de cada equipo y el de quién anota primero.</li>
+  </ul></details>
+  <button class="vip-btn sec" data-ir-comentarios>💬 Déjanos tu comentario: ¿qué mejorarías?</button>
+  <p class="tenue chico">Juego responsable: apuesta sólo lo que puedas perder. Acertar mucho no garantiza ganar dinero. Sólo mayores de 18 años.</p>
+</div></div>
+
+<div class="ficha" id="ficha" hidden><div class="ficha-caja" id="ficha-cuerpo"></div></div>
+
+<script src="config.js"></script>
+<script src="vendor/supabase-2.45.4.js" integrity="sha384-0w2KAL2YHP6wKOkUDzkCDGgVvfmHnj02DHeQ6XcHOgTfFsGyonKOpShMH1x6nk9o"></script>
+<script src="fechas.js"></script>
+<script src="app.js"></script>
+<script src="cuenta.js"></script>
+<script src="guia.js"></script>
+<script src="registro-sw.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+</body>
+</html>

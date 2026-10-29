@@ -1,0 +1,134 @@
+{
+ "generado": "2026-10-29T07:48:36Z",
+ "fixtures_revisados": 0,
+ "ya_casaban": 0,
+ "min_parecido": 0.82,
+ "alias": {
+  "sint truiden": {
+   "canonico": "sint truidense",
+   "parecido": 0.9231,
+   "visto_en": "Sint-Truidense vs KVC Westerlo",
+   "liga": "bel_pro_league",
+   "lado_ancla": "kvc westerlo",
+   "ultima_vez": "2026-09-20T06:23:45Z",
+   "primera_vez": "2026-09-20T06:23:45Z"
+  },
+  "cambridge utd": {
+   "canonico": "cambridge united",
+   "parecido": 0.8966,
+   "visto_en": "Cambridge United vs AFC Wimbledon",
+   "liga": "eng_league_one",
+   "lado_ancla": "afc wimbledon",
+   "ultima_vez": "2026-09-24T00:22:10Z",
+   "primera_vez": "2026-09-24T00:22:10Z"
+  },
+  "altricham": {
+   "canonico": "altrincham",
+   "parecido": 0.9474,
+   "visto_en": "Gateshead vs Altrincham",
+   "liga": "eng_national",
+   "lado_ancla": "gateshead",
+   "ultima_vez": "2026-09-27T01:31:13Z",
+   "primera_vez": "2026-09-27T01:31:13Z"
+  },
+  "al qadisiyah": {
+   "canonico": "al qadsiah",
+   "parecido": 0.9091,
+   "visto_en": "Al Kholood vs Al Qadsiah",
+   "liga": "ksa_pro",
+   "lado_ancla": "al kholood",
+   "ultima_vez": "2026-10-07T00:13:41Z",
+   "primera_vez": "2026-10-07T00:13:41Z"
+  },
+  "dc united": {
+   "canonico": "d c united",
+   "parecido": 0.9474,
+   "visto_en": "Inter Miami CF vs D.C. United",
+   "liga": "mls",
+   "lado_ancla": "inter miami cf",
+   "ultima_vez": "2026-10-08T00:35:50Z",
+   "primera_vez": "2026-10-08T00:35:50Z"
+  },
+  "fk austria viena": {
+   "canonico": "austria vienna",
+   "parecido": 0.8667,
+   "visto_en": "Austria Vienna vs SK Sturm Graz",
+   "liga": "aut_bundesliga",
+   "lado_ancla": "sk sturm graz",
+   "ultima_vez": "2026-10-08T00:35:50Z",
+   "primera_vez": "2026-10-08T00:35:50Z"
+  },
+  "oxford utd": {
+   "canonico": "oxford united",
+   "parecido": 0.8696,
+   "visto_en": "Notts County vs Oxford United",
+   "liga": "eng_league_one",
+   "lado_ancla": "notts county",
+   "ultima_vez": "2026-10-08T00:35:50Z",
+   "primera_vez": "2026-10-08T00:35:50Z"
+  },
+  "sheffield utd": {
+   "canonico": "sheffield united",
+   "parecido": 0.8966,
+   "visto_en": "Portsmouth vs Sheffield United",
+   "liga": "eng_championship",
+   "lado_ancla": "portsmouth",
+   "ultima_vez": "2026-10-12T01:33:56Z",
+   "primera_vez": "2026-10-12T01:33:56Z"
+  },
+  "cong an ha noi fc": {
+   "canonico": "cong an hanoi",
+   "parecido": 0.8667,
+   "visto_en": "Cong An Hanoi vs Kashima Antlers",
+   "liga": "afc_champions",
+   "lado_ancla": "kashima antlers",
+   "ultima_vez": "2026-10-12T09:17:18Z",
+   "primera_vez": "2026-10-12T09:17:18Z"
+  },
+  "boston utd": {
+   "canonico": "boston united",
+   "parecido": 0.8696,
+   "visto_en": "Eastleigh vs Boston United",
+   "liga": "eng_national",
+   "lado_ancla": "eastleigh",
+   "ultima_vez": "2026-10-22T00:11:47Z",
+   "primera_vez": "2026-10-22T00:11:47Z"
+  },
+  "johor darul takzim": {
+   "canonico": "johor darul ta zim",
+   "parecido": 0.9444,
+   "visto_en": "Johor Darul Ta'zim vs Port FC",
+   "liga": "afc_champions",
+   "lado_ancla": "port fc",
+   "ultima_vez": "2026-10-26T09:22:22Z",
+   "primera_vez": "2026-10-26T09:22:22Z"
+  },
+  "cong an hanoi": {
+   "canonico": "cong an ha noi",
+   "parecido": 0.963,
+   "visto_en": "Shanghai Port FC vs Cong An Ha Noi",
+   "liga": "afc_champions",
+   "lado_ancla": "shanghai port fc",
+   "ultima_vez": "2026-10-27T09:23:37Z",
+   "primera_vez": "2026-10-26T09:22:22Z"
+  },
+  "aalesunds": {
+   "canonico": "aalesund",
+   "parecido": 0.9412,
+   "visto_en": "Aalesund vs Sandefjord",
+   "liga": "noruega",
+   "lado_ancla": "sandefjord",
+   "ultima_vez": "2026-10-29T01:30:38Z",
+   "primera_vez": "2026-10-29T01:30:38Z"
+  },
+  "standard lieja": {
+   "canonico": "standard liege",
+   "parecido": 0.8571,
+   "visto_en": "Standard Liege vs KV Kortrijk",
+   "liga": "bel_pro_league",
+   "lado_ancla": "kv kortrijk",
+   "ultima_vez": "2026-10-29T01:30:38Z",
+   "primera_vez": "2026-10-29T01:30:38Z"
+  }
+ }
+}

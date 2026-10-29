@@ -1,0 +1,247 @@
+# Entorno local
+.venv/
+__pycache__/
+*.pyc
+*.log
+
+# Artefactos legados de la v1 (no los usa la app desplegada)
+dataset_equipos_mundial.csv
+dataset_equipos_raw.csv
+dataset_jugadores_micro.csv
+dataset_jugadores_raw.csv
+historico_jugadores_partidos.csv
+
+# Cachés y temporales
+api_football_ids.json
+proxies.txt
+predicciones_log.json
+gh_login_out.txt
+
+# v21: API-Football — la CLAVE y el estado/caché jamás se commitean
+.streamlit/secrets.toml
+api_football_state.json
+api_football_cache/
+
+_backup_v12/
+risk_flags.json
+odds_actuales.json
+market_data.json
+
+# v25: almacén CLV local (SQLite) y contador de The Odds API
+odds_historico.db
+odds_api_state.json
+
+# Cachés de scrapers v14 (se regeneran)
+understat_cache/
+transfermarkt_cache/
+
+# v32: base de rendimiento real (se genera en cada entorno)
+rendimiento_real.db
+rendimiento_real.db-wal
+rendimiento_real.db-shm
+
+# v66: artefactos de los A/B del universo de selecciones (se regeneran con
+# `train_tda_model.py --salida ...`) y ficheros de medición temporales.
+modelos_ab_*/
+_v66_*
+universo_selecciones.json
+
+# v67: cachés de las fuentes de tenis y de remates por jugador (se regeneran)
+tenis_cache/
+remates_cache/
+_v67_*
+resultados_tenis_v67.json
+
+# v68: medidas y logs temporales de la ampliacion de ligas
+_v68_*
+resultados_bivariante_v68.json
+
+# v68: modelos de las ligas ENTRENADAS pero NO adoptadas (no baten al ELO).
+# La app nunca las carga —el selector solo muestra las `disponible`— así que
+# son 170 MB de peso muerto en el clon que hace Streamlit Cloud en cada
+# despliegue. Se regeneran con `entrenar_ligas_v68.py` cuando toque
+# re-evaluarlas con otra temporada.
+#
+# v106 — ESTA LISTA SE HABÍA QUEDADO MINTIENDO, Y COSTABA 12 COMPETICIONES.
+#
+# El argumento de arriba —«la app nunca las carga porque el selector sólo
+# muestra las `disponible`»— dejó de ser cierto en algún punto entre la v68 y
+# hoy: **12 de estas 15 estaban marcadas `disponible: True`**. O sea que el
+# runner las entrenaba cada día, el `git add modelos/` las descartaba por esta
+# lista, y Streamlit Cloud clonaba sin ellas. `ClubEngine` moría con
+# FileNotFoundError y `_barrido_fixtures` las saltaba **en silencio**: sus
+# partidos no aparecían en las apuestas del día, ni en los pronósticos, ni en
+# la tabla de confianza. Nadie podía notarlo porque no había ni un aviso.
+#
+# Se reentrenaron las 12 y se midió cada una contra su línea base de ELO, que
+# es la regla del proyecto (`_v106_ligas_faltantes.json`):
+#
+#     BATEN al ELO -> se publican (25 MB en total)
+#       bra_serie_b       0.4400 vs 0.4213   (+1,9 pp)
+#       eng_league_two    0.5056 vs 0.4738   (+3,2 pp)
+#       esp_hypermotion   0.4621 vs 0.4464   (+1,6 pp)
+#       gre_super_league  0.5365 vs 0.5064   (+3,0 pp)
+#       sudamericana      0.4536 vs 0.4124   (+4,1 pp)
+#
+#     NO baten -> `disponible: False` en config.py, con su cifra anotada
+#       bel_pro_league, crc_fpd, eng_championship, eng_fa_cup, ned_eerste,
+#       par_division, slv_primera
+#
+# Las tres que nunca estuvieron activas (aus_aleague, ind_isl, ven_primera)
+# siguen igual.
+#
+# v161 — LAS DIEZ SALEN DE ESTA LISTA, PORQUE LA REGLA QUE LAS PUSO YA NO RIGE.
+#
+# El motivo para excluirlas era «no baten a su línea base de ELO». Medido
+# después (v90 y siguientes), el acierto del 1X2 de una liga no es de donde
+# sale el valor de esta aplicación: el modelo bate al mercado en 1 de 34 ligas,
+# apostar su probabilidad pierde entre −4,66 % y −6,52 % sobre 37.158 apuestas,
+# y lo que gana es comprar al mejor precio (+11,49 %, p5 +1,73 %). El semáforo
+# de la Sección 1 va por ventaja de precio, que no depende de eso.
+#
+# Y la exclusión tenía el coste que la propia v106 describe arriba: una liga
+# `disponible` con su modelo fuera del repo desaparece en silencio. Si se
+# encienden las ligas (v161) y se dejan sus modelos aquí, se repite el mismo
+# fallo exacto que costó 12 competiciones.
+#
+# Coste medido de volver a publicarlas: ~52 s de entrenamiento por liga y unos
+# 2,5 MB de modelo. Las que sigan sin encender —esp_copa_rey, eng_carabao,
+# ksa_pro— no aparecen aquí porque nunca se entrenaron.
+
+# v69: caché por jugador de TennisAbstract (700+ JSON por circuito). Los datos
+# consolidados y validados van en saque_*.csv.gz, que sí se versiona para no
+# tener que volver a raspar un sitio pequeño.
+tenis_saque_cache/
+_v69_*
+resultados_tenis_v69.json
+
+# v70: caché de datasets supervisados de los experimentos (regenerable)
+_v70_cache_ds/
+
+# v71: cache de cuotas (regenerable, TTL 30 min)
+cuotas_cache/
+
+# v76: caché HTML del backfill de BetExplorer. Es reproducible (el script lo
+# vuelve a descargar) y son cientos de MB; lo que sí se conserva es el
+# resultado ya en odds_historico.db / odds_snapshots.csv.
+betexplorer_cache/
+
+# v78: caché de los .xlsx de sportsbookreviewsonline (regenerable)
+mlb_odds_cache/
+
+# v127 — contador de créditos de The Odds API. Es estado local que cambia en
+# cada llamada y el número que manda es el del proveedor (`x-requests-used`),
+# así que commitearlo sería ruido puro en cada diff.
+consenso_api_uso.json
+
+# v148 — barrido cacheado en disco (regenerable, por sesion de contenedor)
+.cache_barrido.pkl
+.cache_barrido.pkl.tmp
+
+# v148 — los pesos POR COMPETICIÓN viajan como assets del Release
+# «modelos-latest», no en la historia de git. Ver modelos_remotos.py.
+#
+# El patrón es `modelos/*/` y NO `modelos/`, y la diferencia costó una caída.
+# En la raíz de `modelos/` viven artefactos que NO son de ninguna liga y que el
+# bot diario NO regenera: el modelo del Mundial (`modelo_tda.joblib`,
+# `escalador.joblib`, `reg_goles_*.joblib`, `metadata.json`, `validacion.npz`),
+# el MAT (`mat_*`), la NFL (`nfl_v131.json`) y la supervivencia de BTTS.
+#
+# La primera versión de esta regla decía `modelos/` a secas, así que la
+# transición se los llevó con `git rm -r --cached modelos/` y `prediction_api`
+# se quedó sin motor:
+#
+#     FileNotFoundError: './modelos/modelo_tda.joblib'
+#
+# Esos ficheros se quedan versionados y es correcto: son 64 MB que sólo cambian
+# cuando alguien reentrena el Mundial a mano, no 712 MB reescritos cada
+# madrugada, que era el problema que la v148 vino a resolver.
+#
+# git no permite re-incluir un fichero si su directorio padre está excluido, así
+# que aquí no vale «`modelos/` y luego `!modelos/*.joblib`»: hay que excluir
+# sólo los subdirectorios desde el principio.
+modelos/*/
+
+# v152 — la prueba de «¿esta columna la escribió el generador sintético?»
+# (`rendimiento_equipos._columnas_sinteticas`). Es caché puro: se deriva del
+# histórico y caduca sola cuando el bot lo actualiza, así que versionarlo sólo
+# produciría un diff diario que nadie lee.
+cache_columnas_sinteticas.json
+
+# v163 — cachés regenerables que hasta ahora no estaban listadas.
+#
+# `fotmob_cache/` lo escribe `fotmob_scraper.py` desde hace tiempo y nunca se
+# ignoró: la primera sesión que tocó FotMob a fondo dejó 1.524 ficheros y 6,7
+# MB listos para entrar en un commit. Es un extracto por partido con TTL, o
+# sea regenerable, igual que `remates_cache/` y `cuotas_cache/`, que sí
+# estaban.
+fotmob_cache/
+# El corpus por jugador que bajan los scripts de medición de la v163 (7,4 MB
+# de tres competiciones). Se vuelve a bajar solo con
+# `python _v163_remates_jugador.py <code_espn>`.
+_v163_cache_jugadores/
+
+# v176 — LAS PREFERENCIAS DE LA PANTALLA SON DE QUIEN LA MIRA.
+#
+# `preferencias_usuario.json` guarda qué deporte y qué orden dejó elegidos el
+# usuario. Es comodidad local: no es dato, no es pick y no lo consume nadie más.
+# Committearlo haría que el despliegue impusiera a todo el mundo el último
+# filtro que alguien tocó en su portátil.
+#
+# `pronosticos_emitidos.json` NO va aquí a propósito: ése SÍ se committea (lo
+# genera el workflow nocturno) porque es la única forma de que el registro
+# sobreviva al reinicio del contenedor de Streamlit Cloud.
+preferencias_usuario.json
+
+# v202 — el registro de boletos que el usuario da por vivos (`parlays_activos
+# .json`). Es estado de UNA persona: sirve para que un partido no entre en dos
+# combinadas a la vez, y committearlo impondria a todo el mundo los boletos del
+# ultimo que tocara la pantalla. Mismo criterio que preferencias_usuario.json.
+#
+# CONSECUENCIA QUE HAY QUE SABER: en Streamlit Cloud el fichero vive en el
+# contenedor, asi que el registro se pierde cuando la app se reinicia. Es el
+# precio de no versionar estado personal, y es el correcto: un registro que
+# sobrevive al reinicio pero es de otro usuario seria peor que no tenerlo.
+parlays_activos.json
+
+# v203 — el registro de que fuentes se han consultado. Es un diario local del
+# proceso que lo ejecute: se reescribe en cada llamada, asi que versionarlo
+# produciria un diff por pasada que nadie lee. El SONDEO —lo que de verdad hay
+# que recordar, que funciono y que no— viaja dentro de buscador_fuentes.py.
+#
+# `historial_entrenadores.json` NO va aqui: ese SI hay que committearlo cuando
+# un workflow lo genere, porque su valor entero esta en acumular fotos de dias
+# anteriores y un fichero que muere con el contenedor no detecta ningun cambio.
+fuentes_consultadas.json
+
+# v204 — la cache diaria de los cambios de entrenador de Wikidata. Se rehace
+# sola cada dia y committearla seria un diff diario que nadie lee; el dato vive
+# en Wikidata, no aqui.
+cambios_entrenador.json
+
+# v230 — el informe de auditoría de ligas se REGENERA (`auditoria_ligas.py`)
+# pero `auditoria_ligas.json` SÍ se versiona: lo lee la pantalla para contar el
+# carácter de cada liga, y sin él las tarjetas se quedan mudas en un clon nuevo.
+
+# v308 — datos de medición reproducibles (se regeneran con _v308_canal_goles.py
+# y _v308_fondo_fotmob.py); 25 + 22 MB que no deben entrar en un repo de 16 GB
+_v308_fd/
+_v308_fondo/
+# v310 — tablas intermedias de medición (se regeneran con _v310_conteos.py y
+# _v310_replay_semana.py); los resultados que importan van en sus .json
+_v310_conteos.csv
+_v310_replay_semana.csv
+# v312 — reproducciones de las apuestas candidatas (se regeneran con _v312_patrones.py)
+_v312_candidatas*.csv
+# v313 — réplica de los partidos sin modelo (se regenera con _v313_sin_modelo.py)
+_v313_sin_modelo.csv
+# v314 — cachés de medición (se regeneran con _v314_ligas_chicas.py)
+_v314_fotmob.csv
+_v314_precios.json
+_v314_partidos.csv
+_v315_simulacion.csv
+_v315_rojos.csv
+
+# v377: el sitio web genera sus datos en el workflow (sitio_web.yml)
+web/datos/
+datos_privados/

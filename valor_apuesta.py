@@ -1,0 +1,1373 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+v171 — LA MEJOR RELACIÓN PROBABILIDAD/CUOTA, LÍNEA A LÍNEA.
+
+El cambio, con las palabras del usuario
+---------------------------------------
+«No quiero la apuesta más segura, quiero la de mejor relación entre
+probabilidad y cuota.» La v170 elegía por probabilidad absoluta y acabó
+recomendando doble oportunidad al 79 % con cuota 1,10 en el 93 % de los
+partidos. Desde la v171 se elige por
+
+    Score = probabilidad ajustada × cuota de Playdoit
+
+que es el valor esperado más uno. Un Score de 1,20 significa que, si la
+probabilidad es correcta, cada peso apostado devuelve 1,20.
+
+Y SE EXPLORAN TODAS LAS LÍNEAS, QUE ES LA MITAD DEL ASUNTO
+-----------------------------------------------------------
+El ejemplo que se dio es exacto: «Más de 2,5» al 80 % con cuota 1,40 da Score
+1,12; «Más de 3,5» al 67 % con cuota 1,80 da 1,21. La segunda es mejor apuesta
+y hasta ahora la aplicación ni la miraba, porque sólo calculaba la línea más
+cercana a la media. Playdoit publica de diez a veinte líneas por mercado y el
+modelo sabe dar probabilidad a todas: la binomial negativa de córners,
+tarjetas y remates acepta cualquier línea, y la matriz de marcador también.
+
+LO QUE ESTE MÓDULO NO PROMETE
+-----------------------------
+Que gane dinero. Elegir por EV sobre la probabilidad del modelo es un canal
+que este proyecto tiene MEDIDO como anti-indicador cuando la probabilidad va
+cruda (−4,66 % a −6,52 % sobre 37.158 apuestas). Aquí no va cruda: va encogida
+hacia el precio de la casa (v166) y recortada (v166), y con ESA probabilidad la
+política de precio fue la que mejor ROI dio de las tres medidas en la v169
+(−5,00 % contra −6,17 % de la v170 y −8,42 % de la v164). Sigue siendo
+negativo. Lo que este módulo hace es elegir mejor dentro de lo que hay, no
+convertir en positivo lo que no lo es.
+"""
+import logging
+import re
+from typing import Dict, List, Optional
+
+logger = logging.getLogger('valor_apuesta')
+
+# Los tres números de la regla, tal y como se pidieron.
+PROB_MINIMA = 0.60          # por debajo de esto no se recomienda...
+SCORE_EXCEPCION = 1.15      # ...salvo que el valor sea muy alto
+# ...pero NUNCA por debajo de aqui, pase lo que pase con el Score.
+#
+# La excepcion del 1,15 se escribio como valvula para una apuesta muy bien
+# pagada, no como puerta para un volado. Sin este suelo, la primera prueba
+# contra un tablero real eligio «Real Sociedad o empate» al 38 % con cuota
+# 3,10 (Score 1,178): exactamente la apuesta que el encargo dice no querer.
+#
+# Y la excepcion exige ademas CONTRASTE con la casa. Un EV alto calculado
+# sobre una probabilidad del modelo que nadie ha contradicho es el canal que
+# este proyecto tiene medido como anti-indicador (-4,66 % a -6,52 % sobre
+# 37.158 apuestas). Con contraste, es otra cosa: es discrepancia de precio.
+PROB_SUELO_DURO = 0.50
+# v175 — EL VERDE EXIGE LAS DOS COSAS: PROBABILIDAD **Y** PRECIO.
+#
+# El encargo lo fija literal: «Verde para la principal (Score > 0,97 y
+# Prob > 60 %), Ambar para secundarias buenas». Es la QUINTA acepcion del
+# verde en siete versiones —v168 ventaja de precio, v170 estable y
+# >=60 %, v171 Score > 1,10, v173/v174 probabilidad >= 60 %— y conviene
+# que sea la ultima. Pero es la unica que no promete una sola cosa: un
+# 70 % a cuota 1,05 (Score 0,735) ya no puede ir en verde, y era justo el
+# tipo de apuesta que llenaba la pantalla.
+#
+# POR QUE 0,97 Y NO 1,00. Un Score de 1,00 es el equilibrio TEORICO, y
+# Playdoit cobra margen: en un mercado de dos vias con 5 % de vig, la
+# apuesta perfectamente valorada da Score 0,95. Exigir 1,00 seria exigir
+# que la casa se equivoque — un canal que este proyecto tiene medido
+# (+11,49 % comprando al mejor precio) pero que aparece en un partido de
+# cada muchos. 0,97 marca «bien pagada dentro de lo que hay», que es lo
+# que el verde tiene que decir.
+SCORE_VERDE = 0.97          # 🟢 valor
+SCORE_AMBAR = 0.90          # 🟡 aceptable
+CUOTA_MINIMA_DOBLE = 1.30   # la doble oportunidad no entra por debajo de esto
+# v173 — «LA DE MAYOR PROBABILIDAD QUE TENGA UNA CUOTA DECENTE».
+#
+# Elegir por probabilidad a secas, con la escalera entera de goles delante,
+# saca «Menos de 6,5 al 100 %» con cuota 1,01. Es lo mas probable del partido y
+# no es una apuesta: nadie juega un 1,01. El propio encargo pone el limite —
+# «la de mayor probabilidad QUE TENGA UNA CUOTA DECENTE»— y estos son los dos
+# cortes que lo hacen operativo. Medido sobre los 113 partidos del dia, sin
+# ellos 53 recomendaciones eran lineas de goles absurdas.
+CUOTA_DECENTE = 1.20        # por debajo de esto no es una apuesta, es un tramite
+PROB_MAXIMA_RECO = 0.90     # y por encima de esto tampoco, aunque no haya cuota
+# v172/v173 — LA REGLA ANTI-TRAMPA SE RETIRA, Y SE DEJA EL RASTRO.
+#
+# La v172 prohibia recomendar una probabilidad < 20 % con cuota > 2,50
+# («la trampa de la cuota inflada»). La v173 la quita a peticion del
+# usuario: quiere poder ver esas apuestas de loteria si el H2H o la
+# racha las respaldan.
+#
+# Hoy no hace falta para lo mismo que antes: desde la v173 la
+# recomendacion se elige por PROBABILIDAD, y una apuesta del 15 % no
+# puede ganar esa comparacion. La regla protegia contra la seleccion
+# por Score, que ya no es la que manda.
+PROB_TRAMPA = 0.20
+CUOTA_TRAMPA = 2.50
+
+_RE_MAS = re.compile(r'^m[aá]s de ', re.I)
+
+
+def semaforo(score=None, prob=None) -> str:
+    """
+    v175 — EL COLOR PIDE PROBABILIDAD **Y** PRECIO, Y YA NO BLOQUEA NADA.
+
+    Verde: >= 60 % de probabilidad Y Score >= 0,97 — o sea, probable y
+    bien pagada. Ambar: >= 50 %, o buen Score sin llegar al 60 %. Gris:
+    lo demas.
+
+    LO QUE CAMBIA DE VERDAD NO ES EL UMBRAL, ES LO QUE SIGNIFICA EL GRIS.
+    Hasta la v174 un mercado mal calibrado en esa liga salia con «🔒 No
+    recomendado» y sin propuesta. Desde la v175 el gris quiere decir alta
+    incertidumbre, no prohibido: el mercado enseña igual su mejor lado, y
+    el color solo dice si es candidato a apuesta principal o a secundaria.
+
+    Sin `score` —una fila sin cuota— manda la probabilidad sola, que es lo
+    que hacia la v173. No es un caso de la tarjeta: desde la v174 toda
+    candidata tiene precio.
+    """
+    if prob is None:
+        return '\u26aa'
+    if score is None:
+        return ('\U0001f7e2' if prob >= PROB_MINIMA
+                else '\U0001f7e1' if prob >= PROB_SUELO_DURO
+                else '\u26aa')
+    if prob >= PROB_MINIMA and score >= SCORE_VERDE:
+        return '\U0001f7e2'
+    # el ambar NO lo levanta el Score solo: un 30 % a cuota 4,00 da
+    # Score 1,20 y sigue siendo un volado. Es la leccion de la v172
+    # y el unico sitio del semaforo donde el precio no vota.
+    if prob >= PROB_SUELO_DURO:
+        return '\U0001f7e1'
+    return '\u26aa'
+
+
+def _fila(mercado: str, etiqueta: str, apuesta: str, prob: float,
+          cuota: Optional[float], implicita: Optional[float],
+          bloque: str, linea=None, extra: Optional[Dict] = None) -> Dict:
+    """Una línea jugable, con su Score ya calculado."""
+    score = None
+    if cuota and cuota > 1:
+        score = float(cuota) * float(prob)
+    fila = {'mercado': mercado, 'etiqueta': etiqueta, 'apuesta': apuesta,
+            'prob': round(float(prob), 4),
+            'cuota': round(float(cuota), 3) if cuota else None,
+            'score': None if score is None else round(score, 4),
+            'implicita': implicita, 'bloque': bloque, 'linea': linea,
+            'semaforo': semaforo(score, prob)}
+    if extra:
+        fila.update(extra)
+    return fila
+
+
+def contexto_de(pick: Dict) -> Dict:
+    """El contexto del partido, cacheado en el propio pick."""
+    if '_contexto' in pick:
+        return pick['_contexto'] or {}
+    ctx = {}
+    try:
+        import contexto_partido as cx
+        import modo_modelo as mm
+        h, a = mm._equipos(pick)
+        if h and a and pick.get('clave_liga'):
+            ctx = cx.de_partido(pick['clave_liga'], h, a)
+    except Exception as e:
+        logger.debug('[valor] contexto: %s', e)
+    pick['_contexto'] = ctx
+    return ctx
+
+
+def _factor_sin_precio(pick: Dict, apuesta: str,
+                       implicita: Optional[float]) -> float:
+    """
+    El multiplicador del H2H, y SOLO donde no hay precio con el que contrastar.
+
+    Donde la casa pone precio, ella ya sabe el H2H —a AmaZulu le da un 6,43 %
+    precisamente porque pierde siempre— y multiplicar encima seria contar la
+    misma informacion dos veces y romper la calibracion que esta aplicacion
+    lleva seis versiones arreglando.
+
+    Donde NO hay precio, el modelo va solo y el historial si aporta.
+    """
+    if implicita is not None:
+        return 1.0
+    ctx = contexto_de(pick)
+    if not ctx:
+        return 1.0
+    try:
+        import modo_modelo as mm
+        h, a = mm._equipos(pick)
+    except Exception:
+        return 1.0
+    etq = str(apuesta or '')
+    if h and h in etq and (not a or a not in etq):
+        return float(ctx.get('factor_home') or 1.0)
+    if a and a in etq and (not h or h not in etq):
+        return float(ctx.get('factor_away') or 1.0)
+    return 1.0
+
+
+def _ajusta(pick: Dict, apuesta: str, prob: float, mercado: str,
+            implicita: Optional[float], ya_encogido: bool = False) -> Dict:
+    """La probabilidad que se puede enseñar de esa línea (v166 + v172)."""
+    f = _factor_sin_precio(pick, apuesta, implicita)
+    if f != 1.0:
+        prob = max(0.0, min(1.0, float(prob) * f))
+    try:
+        import cordura_probabilidad as cp
+        info = cp.revisar(prob, apuesta, pick.get('clave_liga'),
+                          implicita=implicita, mercado=mercado,
+                          ya_encogido=ya_encogido)
+        info['factor_contexto'] = f
+        return info
+    except Exception as e:
+        logger.debug('[valor] cordura de %s: %s', apuesta, e)
+        return {'prob': prob, 'original': prob, 'fiable': True,
+                'contrastada': implicita is not None, 'puede_verde': False}
+
+
+# ---------------------------------------------------------------------------
+# los mercados de CONTEO: córners, tarjetas, remates
+# ---------------------------------------------------------------------------
+_BLOQUES_CONTEO = (
+    ('Córners', 'corners', 'corners'),
+    ('Tarjetas', 'tarjetas', 'tarjetas'),
+    ('Remates', 'remates', 'remates'),
+    ('Remates a puerta', 'remates_on', 'remates_on'),
+)
+
+
+def _factor_lambda_de(pick: Dict, etiqueta: str, mercado: str) -> float:
+    """El factor de forma reciente del bando que toca, o 1,0."""
+    if etiqueta == 'Total':
+        # el total es de los dos: se promedian sus factores
+        fs = [_factor_lambda_de(pick, e, mercado)
+              for e in ('Local', 'Visita')]
+        return round(sum(fs) / 2.0, 3)
+    try:
+        import contexto_partido as cx
+        import modo_modelo as mm
+        h, a = mm._equipos(pick)
+        equipo = h if etiqueta == 'Local' else a
+        rival = a if etiqueta == 'Local' else h
+        if not (equipo and pick.get('clave_liga')):
+            return 1.0
+        # el rival viaja para que el H2H pueda pesar en la lambda (v174)
+        return cx.factor_lambda(pick['clave_liga'], equipo, mercado,
+                                rival=rival or '')
+    except Exception as e:
+        logger.debug('[valor] factor lambda: %s', e)
+        return 1.0
+
+
+def _de_conteo(pick: Dict, bloques: Dict) -> List[Dict]:
+    """
+    Todas las líneas que la casa publica de cada conteo, contra el modelo.
+
+    El modelo da probabilidad a CUALQUIER línea —es una binomial negativa con
+    su media y su dispersión—, así que aquí no hay que elegir una: se recorre
+    la escalera entera de la casa y cada peldaño sale con su cuota y su Score.
+    """
+    try:
+        import rendimiento_equipos as rq
+    except Exception as e:
+        logger.debug('[valor] sin rendimiento_equipos: %s', e)
+        return []
+    imp = pick.get('implicitas') or {}
+    salida: List[Dict] = []
+    for titulo, clave_bloque, fam in _BLOQUES_CONTEO:
+        bloque = bloques.get(titulo)
+        if not bloque:
+            continue
+        # v175 — UN MERCADO SIN INSIGNIA YA NO SE CALLA: SE MARCA.
+        #
+        # Hasta la v174 un bloque estimado o mal calibrado no entraba en
+        # la lista y su mercado se quedaba sin ninguna propuesta. El
+        # encargo lo rechaza: «que TODOS los mercados que Playdoit ofrece
+        # tengan siempre una recomendacion». Asi que entra, con
+        # `incierto=True` colgado de cada fila, y la tarjeta lo pinta en
+        # gris con el aviso de alta incertidumbre en vez de un candado.
+        #
+        # Lo que NO se ha quitado: la correccion. Estas filas siguen
+        # pasando por `cordura_probabilidad` —encogidas hacia el precio
+        # de Playdoit y recortadas— exactamente igual que las demas. Lo
+        # que se levanta es el BLOQUEO, no el control.
+        incierto = not (bloque.get('confianza') or {}).get('insignia')
+        disp_tot = bloque.get('dispersion_total')
+        disp_eq = bloque.get('dispersion')
+        if bloque.get('modelo_tiros'):
+            # v345 — el modelo de tiros por equipo va por su propio camino
+            salida.extend(_de_tiros_v345(pick, titulo, clave_bloque, fam,
+                                         bloque, imp))
+            continue
+        for etq, media, disp, sufijo in (
+                ('Total', bloque.get('lambda_total'), disp_tot, ''),
+                ('Local', bloque.get('lambda_home'), disp_eq, '_home'),
+                ('Visita', bloque.get('lambda_away'), disp_eq, '_away')):
+            if not media:
+                continue
+            # v173 — LA LAMBDA SE AJUSTA A LOS ULTIMOS CINCO PARTIDOS.
+            #
+            # Se pidio que un equipo que no anota vea bajar su «Mas de
+            # 2,5» y que uno en racha lo vea subir. El factor compara su
+            # media reciente con la suya larga —no con la de la liga— y
+            # va recortado a [0,80 · 1,20]: cinco partidos son pocos.
+            media = float(media) * _factor_lambda_de(pick, etq,
+                                                     clave_bloque)
+            lineas = imp.get(fam + sufijo) or {}
+            for clave, dato in lineas.items():
+                try:
+                    linea = float(clave)
+                except (TypeError, ValueError):
+                    continue
+                try:
+                    p_mas = rq.prob_mas_de(float(media), linea, disp)
+                except Exception:
+                    p_mas = None
+                if p_mas is None:
+                    continue
+                # v245 — LA PATA HISTÓRICA, ANTES DE ENCOGER HACIA LA CASA.
+                #
+                # Aquí `p_mas` es todavía la del modelo puro. Se mezcla con
+                # qué fracción de los últimos partidos de esos dos equipos
+                # pasó esta línea, que es una estimación independiente y —
+                # medido sobre 1.260.350 pares (partido, línea) de 67 ligas—
+                # baja el log-loss de 0,61062 a 0,59187, p5 +0,0186, 100 % de
+                # los remuestreos a favor.
+                #
+                # Es lo que arregla el caso que reportó el usuario:
+                # Leeds-Palace daba «Menos de 11.5» (modelo 66 %, histórico
+                # 60 %) y dejaba fuera «Más de 7.5» (79 % y 80 %).
+                #
+                # Solo en las líneas de TOTAL: las de Local y Visita no están
+                # medidas y salen intactas. Ver `pata_historica`.
+                _hist = {'hay': False}
+                try:
+                    import pata_historica as _ph
+                    _hist = _ph.aplicar(pick, clave_bloque, linea,
+                                        float(p_mas), etq)
+                    p_mas = float(_hist.get('p_mas', p_mas))
+                except Exception as e:
+                    logger.debug('[valor] pata historica: %s', e)
+                salida.extend(_dos_lados(
+                    pick, titulo, etq, linea, float(p_mas), dato,
+                    clave_bloque, media, incierto=incierto, hist=_hist))
+    return salida
+
+
+def _de_tiros_v345(pick: Dict, titulo: str, clave_bloque: str, fam: str,
+                   bloque: Dict, imp: Dict) -> List[Dict]:
+    """v345 — las líneas de tiros con el modelo de `tiros_equipo`.
+
+    POR EQUIPO: la binomial negativa del modelo, mezclada con la casa con el
+    peso MEDIDO (`tiros_equipo.PESO_MODELO`: el modelo solo en tiros, 65 %
+    en a puerta), y SIN la forma reciente ni la cordura de los otros conteos:
+    esas correcciones se midieron para el modelo viejo, y este ya trae la
+    forma dentro y está medido contra la casa. Cada fila dice si cumple la
+    regla de apuesta (`tiros_seguimiento.apuesta_de`).
+
+    EL TOTAL: la suma de los dos equipos por el camino de siempre (no está
+    medido aparte)."""
+    import mercado_implicito as mi
+    import rendimiento_equipos as rq
+    try:
+        import tiros_equipo as te
+        import tiros_seguimiento as ts
+    except Exception as e:
+        logger.debug('[valor] tiros del modelo nuevo: %s', e)
+        return []
+    mercado_t = 'tiros' if clave_bloque == 'remates' else 'a_puerta'
+    w = float(bloque.get('peso_modelo') or 1.0)
+    k = float(bloque.get('k') or 50.0)
+    salida: List[Dict] = []
+    for etq, media, sufijo in (('Total', bloque.get('lambda_total'), ''),
+                               ('Local', bloque.get('lambda_home'), '_home'),
+                               ('Visita', bloque.get('lambda_away'), '_away')):
+        if not media:
+            continue
+        for clave, dato in (imp.get(fam + sufijo) or {}).items():
+            try:
+                linea = float(clave)
+            except (TypeError, ValueError):
+                continue
+            if etq == 'Total':
+                p_mas = rq.prob_mas_de(float(media), linea,
+                                       bloque.get('dispersion_total'))
+                if p_mas is None:
+                    continue
+                salida.extend(_dos_lados(pick, titulo, etq, linea, float(p_mas),
+                                         dato, clave_bloque, media))
+                continue
+            p_mod = te.prob_mas(float(media), linea, k)
+            p_casa = mi.prob_de(dato)
+            p_mas = p_mod if p_casa is None else w * p_mod + (1 - w) * p_casa
+            regla = ''
+            if p_casa is not None:
+                regla = ts.apuesta_de(p_mod, p_casa, mercado_t,
+                                      mi.cuota_de(dato, 'mas') or 0,
+                                      mi.cuota_de(dato, 'menos') or 0)
+            alta = ts.alta_de(p_mod, mercado_t,
+                              mi.cuota_de(dato, 'mas') or 0,
+                              mi.cuota_de(dato, 'menos') or 0)
+            salida.extend(_dos_lados(
+                pick, titulo, etq, linea, float(p_mas), dato, clave_bloque,
+                media, sin_ajuste=True,
+                extra={'p_mod_tiros': round(p_mod, 4),
+                       'p_casa_tiros': None if p_casa is None else round(p_casa, 4),
+                       'regla_lado': regla, 'alta_lado': alta}))
+    return salida
+
+
+REMATES_SOLO_MAS = ('remates', 'remates_on')
+
+
+def _dos_lados(pick, titulo, etq, linea, p_mas, dato, bloque, media,
+               incierto: bool = False, hist=None, sin_ajuste: bool = False,
+               extra: Optional[Dict] = None):
+    """Las dos apuestas de una línea —Más y Menos—, cada una con su cuota."""
+    import mercado_implicito as mi
+    imp_mas = mi.prob_de(dato)
+    filas = []
+    for es_mas, p, cuota, imp in (
+            (True, p_mas, mi.cuota_de(dato, 'mas'), imp_mas),
+            (False, 1.0 - p_mas, mi.cuota_de(dato, 'menos'),
+             None if imp_mas is None else 1.0 - imp_mas)):
+        if not cuota:
+            continue
+        # v348 — EN REMATES SÓLO «MÁS DE». El usuario: «en remates no puedes
+        # usar menos de X, sólo más de X, tanto en remates como a puerta» (no
+        # es una apuesta que pueda hacer). Ver `REMATES_SOLO_MAS`.
+        if not es_mas and bloque in REMATES_SOLO_MAS:
+            continue
+        texto = '%s de %s' % ('Más' if es_mas else 'Menos',
+                              ('%.1f' % linea).rstrip('0').rstrip('.'))
+        if sin_ajuste:
+            # v345 — la probabilidad ya viene medida contra la casa
+            info = {'prob': p, 'fiable': True, 'contrastada': imp is not None}
+        else:
+            info = _ajusta(pick, texto, p, titulo, imp)
+        if not info.get('fiable'):
+            continue
+        _ex = {}
+        if extra:
+            # la regla apuesta a UN lado: sólo esa fila lleva la marca
+            _ex = {k_: v_ for k_, v_ in extra.items()
+                   if k_ not in ('regla_lado', 'alta_lado')}
+            if extra.get('regla_lado') == ('más' if es_mas else 'menos'):
+                _ex['tiros_regla'] = extra['regla_lado']
+            # v346 — la regla de alta probabilidad, también sólo en su lado
+            if extra.get('alta_lado') == ('más' if es_mas else 'menos'):
+                _ex['tiros_alta'] = extra['alta_lado']
+        filas.append(_fila(
+            titulo, etq, '%s%s: %s' % (titulo,
+                                       '' if etq == 'Total' else ' ' + etq,
+                                       texto),
+            info.get('prob', p), cuota, imp, bloque, linea,
+            {'media': round(float(media), 2),
+             'incierto': bool(incierto),
+             # v245 — de donde sale el numero, para que la tarjeta lo diga
+             'historico': dict(hist) if (hist or {}).get('hay') else None,
+             'contrastada': bool(info.get('contrastada')), **_ex}))
+    return filas
+
+
+# ---------------------------------------------------------------------------
+# goles, 1X2, BTTS y doble oportunidad
+# ---------------------------------------------------------------------------
+def _de_goles(pick: Dict) -> List[Dict]:
+    """Cada línea de goles que la casa publica Y el modelo sabe calcular."""
+    import mercado_implicito as mi
+    lineas_modelo = pick.get('goles_lineas') or {}
+    imp = (pick.get('implicitas') or {}).get('goles') or {}
+    salida = []
+    # v174 — SOLO LAS LINEAS QUE LA CASA PUBLICA. EL TABLERO ES EL FILTRO.
+    #
+    # La v173 recorria las lineas DEL MODELO para que los partidos sin precio
+    # tuvieran algo que proponer, y con eso invento lineas que no existen:
+    # medido, **218 de 773 candidatas de goles (el 28 %)** eran fantasma. El
+    # caso claro fue Rapid Vienna - Hearts, donde la casa solo cotiza 2,5 y la
+    # aplicacion ofrecia 0,5, 1,5, 3,5, 4,5, 5,5 y 6,5.
+    #
+    # El historico es el MOTOR —dice cuantos goles esperar— y el tablero de
+    # Playdoit es el FILTRO —dice que se puede jugar—. Una probabilidad sobre
+    # una linea que no existe no es una apuesta: es un numero.
+    for clave, dato in imp.items():
+        p_mas = lineas_modelo.get(clave)
+        if p_mas is None:
+            # la casa cotiza esa linea y el modelo no la calcula: tampoco se
+            # inventa. `alpha_finder.lineas_de_goles` decide cuales hay.
+            continue
+        try:
+            p_mas = float(p_mas)
+        except (TypeError, ValueError):
+            continue
+        # v258 — AQUI NO VA NINGUNA CORRECCION POR LINEA, Y CONVIENE
+        # QUE QUEDE ESCRITO.
+        #
+        # Se llego a poner una, midiendo sobre `pick_ledger_totales.csv` que
+        # el modelo se queda corto en «Mas de 1.5» y va sobrado en «Menos de
+        # 2.5». El sesgo es real, pero ese ledger guarda la probabilidad que
+        # sale de lambda SIN CALIBRAR, y `calibrador_goles` (v225) ya la
+        # arregla mucho antes, dentro de `alpha_finder`, al construir
+        # `goles_lineas`. O sea que aqui la escalera YA LLEGA CORREGIDA y
+        # corregirla otra vez la empuja dos veces en el mismo sentido.
+        #
+        # Es exactamente lo que `veredicto_pick` explica al saltarse la
+        # correccion por banda en los mercados de goles: «la escalera de goles
+        # ya viene calibrada en origen».
+        # v246 — LA PATA HISTÓRICA TAMBIÉN EN GOLES, Y ANTES DEL ENCOGIDO.
+        #
+        # Aquí `p_mas` es todavía la del modelo. Se mezcla con qué fracción de
+        # los últimos partidos de esos dos equipos pasó esta línea. Medido
+        # sobre 929.043 pares (partido, línea) de 180.103 partidos: log-loss
+        # 0,50546 -> 0,48685, p5 +0,01832, 100 % de los remuestreos a favor.
+        #
+        # Y es donde más falta hacía: en las líneas de 3.5 para arriba el
+        # modelo se pasa de optimista 3,11 pp y la mezcla lo deja en 1,65. Es
+        # lo que sostiene subir de línea en un partido de equipos goleadores
+        # en vez de hacerlo «porque sí». Ver `pata_historica`.
+        _hg = {'hay': False}
+        try:
+            import pata_historica as _ph
+            _hg = _ph.aplicar(pick, 'goles', float(clave), p_mas)
+            p_mas = float(_hg.get('p_mas', p_mas))
+        except Exception as e:
+            logger.debug('[valor] pata historica de goles: %s', e)
+        imp_mas = mi.prob_de(dato)
+        for es_mas, p, cuota, i in (
+                (True, p_mas, mi.cuota_de(dato, 'mas'), imp_mas),
+                (False, 1.0 - p_mas, mi.cuota_de(dato, 'menos'),
+                 None if imp_mas is None else 1.0 - imp_mas)):
+            texto = '%s de %s' % ('Más' if es_mas else 'Menos', clave)
+            info = _ajusta(pick, texto, p, 'Goles', i)
+            if not info.get('fiable'):
+                continue
+            salida.append(_fila('Goles', 'Total', 'Goles: %s' % texto,
+                                info.get('prob', p), cuota, i, 'goles',
+                                float(clave),
+                                {'contrastada': bool(info.get('contrastada')),
+                                 'historico': (dict(_hg) if _hg.get('hay')
+                                               else None)}))
+    return salida
+
+
+def _de_handicap(pick: Dict) -> List[Dict]:
+    """v254 - El handicap, por fin como apuesta y no como codigo dormido.
+
+    `handicap.py` lleva desde la v106 evaluando el mercado, pero solo en
+    `_mercados_del_partido` — el camino de los partidos con cuota en vivo. La
+    lista de pronosticos del dia, que es la que leen las tarjetas, la
+    construye `_mercados_modelo`, que emite 1X2, O/U 2.5 y BTTS y nada mas.
+
+    Medido sobre el fichero publicado antes de esto: **0 de 340 picks** con un
+    mercado de handicap y **0 de 312** recomendaciones de ese mercado. No era
+    deuda de medicion: era un mercado que no se producia.
+
+    Aqui se juntan las dos mitades que ya existian por separado:
+      · la escalera del modelo (`pick['handicap_lineas']`, v254), que sale de
+        la matriz de marcador reponderada al 1X2 encogido;
+      · el precio de la casa (`implicitas['handicap_cuotas']`), que el
+        scoreboard ya traia y no se guardaba.
+
+    EL PUSH SE DICE. En las lineas de cuarto y en las enteras una parte del
+    importe vuelve, y eso cambia como se combina en una parlay. La
+    probabilidad que se publica ya es CONDICIONADA a que la apuesta se
+    resuelva —`handicap.probabilidad` descuenta el push— que es la cifra
+    correcta contra la cuota, porque la casa tambien devuelve en el push.
+    """
+    esc = pick.get('handicap_lineas') or {}
+    imp = (pick.get('implicitas') or {}).get('handicap_cuotas') or {}
+    if not esc or not imp:
+        return []
+    try:
+        import modo_modelo as _mm
+        home, away = _mm._equipos(pick)
+    except Exception as e:
+        logger.debug('[valor] equipos para handicap: %s', e)
+        return []
+    if not (home and away):
+        return []
+    salida: List[Dict] = []
+    for clave, precios in imp.items():
+        try:
+            linea = float(clave)
+        except (TypeError, ValueError):
+            continue
+        fila_mod = esc.get(clave) or esc.get('%g' % linea)
+        if not fila_mod:
+            continue
+        push = float(fila_mod.get('push') or 0.0)
+        for lado, equipo, signo in (('home', home, 1.0), ('away', away, -1.0)):
+            p = fila_mod.get(lado)
+            cuota = (precios or {}).get(lado)
+            if p is None or not cuota:
+                continue
+            etq = '%s %+g' % (equipo, linea * signo)
+            info = _ajusta(pick, etq, float(p), 'Handicap', None)
+            if not info.get('fiable'):
+                continue
+            extra = {'ah_linea': round(linea * signo, 2),
+                     'ah_push': round(push, 4)}
+            if push > 1e-6:
+                extra['nota'] = ('%.0f %% del importe se devuelve si el '
+                                 'partido acaba justo en la linea.'
+                                 % (push * 100))
+            salida.append(_fila('Handicap', 'Total', 'Handicap: %s' % etq,
+                                info.get('prob', p), cuota, None, 'handicap',
+                                linea * signo, extra))
+    return salida
+
+
+def _de_totales(pick: Dict) -> List[Dict]:
+    """Las lineas de total de los deportes que no son futbol.
+
+    v237 — CARRERAS, PUNTOS Y JUEGOS, COMO APUESTA Y NO SOLO COMO DATO.
+
+    La v229 llevo los totales al pick (`pick['totales']`), pero solo se pintaban
+    dentro del desplegable «Analisis»: informacion, no apuesta. El usuario los
+    pidio como tarjeta —«asi como muestras los de futbol, asi tiene que
+    mostrarse lo de beisbol»— y para armar parlays, que es donde de verdad los
+    usa.
+
+    LA CUOTA, QUE ES LO QUE FALTA. El modelo da la probabilidad de cada linea;
+    el precio lo tiene la casa. Cuando `implicitas` trae las cuotas de totales
+    se usan, y esa candidata compite por Score como cualquier otra. Cuando NO
+    las hay, la fila sale SIN cuota: se puede ensenar y ordenar por
+    probabilidad, pero no puede fingir un EV que nadie ha pagado. Es la misma
+    regla que ya sigue `_mercados_modelo` con la cuota justa.
+    """
+    tot = pick.get('totales') or {}
+    lineas = tot.get('lineas') or {}
+    if not lineas:
+        return []
+    unidad = str(tot.get('unidad') or 'puntos')
+    etiqueta = unidad.capitalize()
+    cuotas = ((pick.get('implicitas') or {}).get('totales_cuotas') or {})
+    salida = []
+    for clave, p_mas in sorted(lineas.items(), key=lambda kv: float(kv[0])):
+        try:
+            p_mas = float(p_mas)
+        except (TypeError, ValueError):
+            continue
+        if not (0.0 < p_mas < 1.0):
+            continue
+        par = cuotas.get(clave) or {}
+        for lado, p, rotulo in (
+                ('mas', p_mas, '%s: Más de %s' % (etiqueta, clave)),
+                ('menos', 1.0 - p_mas, '%s: Menos de %s' % (etiqueta, clave))):
+            info = _ajusta(pick, rotulo, p, etiqueta, None)
+            if not info.get('fiable'):
+                continue
+            salida.append(_fila(etiqueta, etiqueta, rotulo,
+                                info.get('prob', p), par.get(lado), None,
+                                'totales', linea=clave))
+    return salida
+
+
+def _de_nba_lineas(pick: Dict) -> List[Dict]:
+    """v354 — el hándicap y los puntos de la NBA con las escaleras de Playdoit
+    y la probabilidad medida por distancia a la principal (`nba_lineas`). Por
+    lado, la de mejor cuota que llega al 75 %; si ninguna llega, la más
+    probable, marcada como informativa."""
+    if str(pick.get('deporte') or '') != 'NBA':
+        return []
+    import nba_lineas as _nl
+    salida = []
+    for c in _nl.elegidas(pick):
+        salida.append(_fila(c['mercado'], c['etiqueta'], c['apuesta'], c['prob'],
+                            c['cuota'], None, c['bloque'], c['linea'],
+                            {'nba_linea': True, 'nba_k': c['k'], 'nba_tipo': c['tipo'],
+                             'informativa': bool(c.get('informativa'))}))
+    return salida
+
+
+def _de_nfl_lineas(pick: Dict) -> List[Dict]:
+    """v358 — el hándicap y los puntos de la NFL con las escaleras de
+    Playdoit y la probabilidad medida por distancia a la principal
+    (`nfl_lineas`, 27 temporadas)."""
+    if str(pick.get('deporte') or '') != 'NFL':
+        return []
+    import nfl_lineas as _nfl
+    salida = []
+    for c in _nfl.elegidas(pick):
+        salida.append(_fila(c['mercado'], c['etiqueta'], c['apuesta'], c['prob'],
+                            c['cuota'], None, c['bloque'], c['linea'],
+                            {'nfl_linea': True, 'nba_k': c['k'], 'nba_tipo': c['tipo'],
+                             'informativa': bool(c.get('informativa'))}))
+    return salida
+
+
+def _de_nhl_lineas(pick: Dict) -> List[Dict]:
+    """v359 — el hándicap y los goles de la NHL con las escaleras de Playdoit
+    y la probabilidad medida (`nhl_lineas`, 2014-2025 con el cierre)."""
+    if str(pick.get('deporte') or '') != 'NHL':
+        return []
+    import nhl_lineas as _nh
+    salida = []
+    for c in _nh.elegidas(pick):
+        salida.append(_fila(c['mercado'], c['etiqueta'], c['apuesta'], c['prob'],
+                            c['cuota'], None, c['bloque'], c['linea'],
+                            {'nhl_linea': True, 'nba_k': c['k'], 'nba_tipo': c['tipo'],
+                             'informativa': bool(c.get('informativa'))}))
+    return salida
+
+
+def _de_mlb_lineas(pick: Dict) -> List[Dict]:
+    """v355 — el hándicap y las carreras de la MLB con las escaleras de
+    Playdoit y la probabilidad medida (`mlb_lineas`)."""
+    import mlb_lineas as _ml
+    if not _ml.aplica(pick):
+        return []
+    salida = []
+    for c in _ml.elegidas(pick):
+        salida.append(_fila(c['mercado'], c['etiqueta'], c['apuesta'], c['prob'],
+                            c['cuota'], None, c['bloque'], c['linea'],
+                            {'mlb_linea': True, 'nba_k': c['k'], 'nba_tipo': c['tipo'],
+                             'informativa': bool(c.get('informativa'))}))
+    return salida
+
+
+def _de_dos_vias(pick: Dict) -> List[Dict]:
+    """
+    El ganador en los deportes SIN EMPATE: NFL, tenis, MLB, NBA.
+
+    POR QUE HACIA FALTA. `probabilidades_1x2` exige las tres selecciones y
+    devuelve `None` cuando no hay empate, asi que `_de_resultado` no producia
+    ni una fila para esos deportes. Resultado en pantalla, reportado por el
+    usuario el 2026-09-10:
+
+        Los Angeles Rams vs San Francisco 49ers
+        🚫 Sin apuestas jugables — ninguna apuesta llega al valor minimo
+
+    ...en un partido donde el modelo daba 68,6 % al local y la casa pagaba
+    1,5155. No es que no llegara al minimo: es que nunca se evaluo. Lo mismo en
+    tenis, con un 84,5 % y cuota publicada.
+
+    Esto NO relaja ningun umbral ni inventa valor. Construye la fila para que
+    el mismo filtro de siempre pueda juzgarla, que es lo que ya pasaba con el
+    futbol.
+    """
+    import modo_modelo as mm
+
+    imp = pick.get('implicitas') or {}
+    cu = dict(imp.get('1x2_cuotas') or {})
+    h, a = mm._equipos(pick)
+    board = mm._board(pick) or {}
+    # v237 — Y SI NO HAY `1x2_cuotas`, LA DEL PROPIO PICK.
+    #
+    # La MLB no publicaba NI UNA tarjeta: «Sin apuestas jugables» en los siete
+    # partidos del dia. No era que no llegaran al minimo — es que no habia ni
+    # una candidata que juzgar. Sus picks salen de la comparacion de precios
+    # contra Pinnacle, que deja la cuota en el pick (`apuesta` + `cuota`) y no
+    # rellena `implicitas`, asi que esta funcion se iba en la primera linea.
+    #
+    # El precio existe y se conoce: es el del lado que el barrido eligio. Del
+    # otro no se sabe nada, y no se inventa — sale una sola candidata, que es
+    # honesto y es infinitamente mejor que ninguna.
+    if not cu and pick.get('cuota') and pick.get('apuesta'):
+        _etq = str(pick.get('apuesta') or '')
+        if h and _etq == 'Gana %s' % h:
+            cu = {'home': pick['cuota']}
+        elif a and _etq == 'Gana %s' % a:
+            cu = {'away': pick['cuota']}
+    if not (h and a) or not cu:
+        return []
+    # si hay empate, este no es su camino: lo cubre `_de_resultado`
+    if board.get('Empate') is not None:
+        return []
+
+    pl = board.get('Gana %s' % h)
+    pv = board.get('Gana %s' % a)
+    if pl is None or pv is None:
+        return []
+
+    # la implicita de la casa, devigada a dos vias
+    x2 = {}
+    try:
+        ch, ca = float(cu.get('home')), float(cu.get('away'))
+        if ch > 1 and ca > 1:
+            s = 1.0 / ch + 1.0 / ca
+            if s > 0:
+                x2 = {'home': (1.0 / ch) / s, 'away': (1.0 / ca) / s}
+    except (TypeError, ValueError):
+        x2 = {}
+
+    salida = []
+    for lado, p, etq in (('home', pl, 'Gana %s' % h),
+                         ('away', pv, 'Gana %s' % a)):
+        cuota = cu.get(lado)
+        if not cuota:
+            continue
+        info = _ajusta(pick, etq, p, '1X2', x2.get(lado))
+        if not info.get('fiable'):
+            continue
+        salida.append(_fila('1X2', 'Resultado', etq,
+                            info.get('prob', p), cuota, x2.get(lado),
+                            'resultado'))
+    return salida
+
+
+def _de_resultado(pick: Dict) -> List[Dict]:
+    """1X2, ambos marcan y doble oportunidad, con las cuotas de la casa."""
+    import modo_modelo as mm
+    imp = pick.get('implicitas') or {}
+    salida = []
+    h, a = mm._equipos(pick)
+    # v172 — ¿VIENE EL 1X2 YA ENCOGIDO, O SOLO LO SUPONEMOS?
+    #
+    # `alpha_finder` encoge el 1X2 hacia el mercado desde la v71, pero SOLO
+    # cuando hubo ancla (Pinnacle o el cierre de ESPN). Darlo por hecho
+    # siempre dejaba pasar la probabilidad cruda del modelo justo en los
+    # partidos sin ancla — el mismo fallo que acababa de costarnos la doble
+    # oportunidad. Se lee la marca que el propio barrido deja en el pick.
+    ya = any(bool((m.get('calibracion') or {}).get('aplicado'))
+             for m in (pick.get('mercados') or [])
+             if isinstance(m, dict) and str(m.get('mercado')) == '1X2')
+    tri = mm.probabilidades_1x2(pick)
+    # v258 — EL HISTORIAL ENTRE LOS DOS, Y AQUI ARRIBA A PROPOSITO.
+    #
+    # «Te preferiste ir por el visitante o empate y al final termino
+    # perdiendo; en la barrita se ve como el Leverkusen tiene mejor pronostico
+    # en el H2H. Eso es lo que tienes que analizar tambien del historico.»
+    #
+    # Va ANTES del bucle para que el 1X2 y la DOBLE OPORTUNIDAD salgan del
+    # mismo trio. Aplicarlo solo dentro del bucle del 1X2 dejaria la doble
+    # calculada con las probabilidades viejas, que es justo el mercado en el
+    # que el usuario vio el problema: «RB Leipzig o empate».
+    #
+    # Lo medido, sobre 15.473 partidos con tres o mas cruces previos y el H2H
+    # construido solo con lo anterior a cada partido: cuando el historial
+    # favorece claramente al local, el modelo lo subestima DOS puntos
+    # (0,526 anunciado contra 0,546 real, n=4.348). Con w=0,10 la mejora es
+    # +0,00253 de log-loss, p5 +0,00077 y el 100 % de los remuestreos a favor.
+    # Es poco y hay que decirlo: el caso concreto del Leverkusen son 2.019
+    # partidos en los que el modelo decia 41,2 % y salio 42,3 %. Aquel boleto
+    # se perdio por varianza. Ver `pata_h2h`.
+    _h2h = {'hay': False}
+    try:
+        import pata_h2h as _ph2
+        _h2h = _ph2.aplicar(pick, tri, ya_encogido=ya)
+        if _h2h.get('hay'):
+            tri = _h2h['tri']
+    except Exception as e:
+        logger.debug('[valor] pata h2h: %s', e)
+    cu = imp.get('1x2_cuotas') or {}
+    x2 = imp.get('1x2') or {}
+    if tri and h and a:
+        pl, px, pv = tri
+        for lado, p, etq in (('home', pl, 'Gana %s' % h),
+                             ('draw', px, 'Empate'),
+                             ('away', pv, 'Gana %s' % a)):
+            # v174 — SIN CUOTA NO HAY APUESTA QUE PROPONER.
+            #
+            # La v173 emitia estas filas sin precio para que ningun partido se
+            # quedara vacio. Pero una seleccion que la casa no cotiza no se
+            # puede jugar, y ofrecerla es el mismo defecto que las lineas
+            # fantasma. Los partidos sin tablero los cubre el camino heredado
+            # de `modo_modelo`, que usa los mercados que el barrido ya publica.
+            cuota = cu.get(lado)
+            if not cuota:
+                continue
+            info = _ajusta(pick, etq, p, '1X2', x2.get(lado),
+                           ya_encogido=ya)
+            if not info.get('fiable'):
+                continue
+            salida.append(_fila('1X2', 'Resultado', etq,
+                                info.get('prob', p), cuota, x2.get(lado),
+                                'resultado',
+                                extra={'h2h': (dict(_h2h) if _h2h.get('hay')
+                                               else None)}))
+        # LA DOBLE OPORTUNIDAD ENTRA, PERO NO POR LA PUERTA GRANDE.
+        #
+        # Se pidió explícitamente: es un mercado más y sólo se recomienda si
+        # tiene valor. Por debajo de 1,30 de cuota ni se evalúa — a ese precio
+        # el Score no puede competir aunque la probabilidad sea del 80 %, y era
+        # justo lo que llenaba la pantalla en la v170.
+        dob = imp.get('doble_cuotas') or {}
+        for clave, p, etq, lados in (
+                ('1X', pl + px, '%s o empate' % h, ('home', 'draw')),
+                ('12', pl + pv, '%s o %s' % (h, a), ('home', 'away')),
+                ('X2', px + pv, '%s o empate' % a, ('draw', 'away'))):
+            cuota = dob.get(clave)
+            # v174 — sin precio no hay doble que jugar; y con precio, el suelo
+            # de 1,30 sigue valiendo: por debajo de eso la doble es la trampa
+            # que llenaba la pantalla en la v170.
+            if not cuota or cuota < CUOTA_MINIMA_DOBLE:
+                continue
+            # v172 — LA IMPLICITA SALE DE SUMAR DOS LADOS DEL 1X2 DEVIGADO.
+            #
+            # Era el UNICO mercado que entraba sin contraste (`implicita=None`)
+            # y por eso la aplicacion recomendo «AmaZulu o empate» con Score
+            # 1,35 en un partido donde la casa le daba 21,15 %: sin implicita
+            # no hay encogimiento ni control de cordura, y el Score se
+            # calculaba sobre la probabilidad cruda del modelo.
+            #
+            # Y se suma el 1X2, no se deviga la familia de dobles: sus tres
+            # selecciones suman 2 y no 1, asi que devigarlas a tres vias da un
+            # numero que no es una probabilidad (se probo: 0,468/0,434/0,098).
+            imp_do = None
+            if x2 and all(k in x2 for k in lados):
+                imp_do = float(x2[lados[0]]) + float(x2[lados[1]])
+            info = _ajusta(pick, etq, p, 'Doble oportunidad', imp_do,
+                           ya_encogido=ya)
+            if not info.get('fiable'):
+                continue
+            salida.append(_fila('Doble oportunidad', 'Doble', etq,
+                                info.get('prob', p), cuota, imp_do,
+                                'resultado',
+                                extra={'h2h': (dict(_h2h) if _h2h.get('hay')
+                                               else None)}))
+    b = mm._board(pick)
+    cb = imp.get('btts_cuotas') or {}
+    p_si = b.get(mm._ETQ_BTTS_SI)
+    if p_si is not None:
+        imp_si = imp.get('btts')
+        for clave, p, etq, i in (
+                ('si', p_si, 'Ambos marcan: Sí', imp_si),
+                ('no', 1.0 - float(p_si), 'Ambos marcan: No',
+                 None if imp_si is None else 1.0 - float(imp_si))):
+            cuota = cb.get(clave)
+            if not cuota:
+                continue
+            info = _ajusta(pick, etq, float(p), 'BTTS', i)
+            if not info.get('fiable'):
+                continue
+            salida.append(_fila('BTTS', 'Ambos marcan', etq,
+                                info.get('prob', p), cuota, i, 'btts'))
+    return salida
+
+
+
+# ---------------------------------------------------------------------------
+# v303 — GOLES DE CADA EQUIPO, Y DOBLE OPORTUNIDAD CON GOLES
+# ---------------------------------------------------------------------------
+# El usuario: «si el equipo A tiene media de goles de 0,5 y el B de 0,8 ...
+# podemos irnos al under de goles individual por equipo», y «habrá juegos
+# donde es mejor la doble oportunidad y meter over u under por lo parejos que
+# serán». Playdoit publica las dos cosas con precio propio (ver
+# `mercado_implicito._dc_con_goles`); hasta aquí no existían como candidatas.
+#
+# LO QUE NO ESTÁ MEDIDO, Y SE MARCA: ninguno de los dos mercados tiene
+# histórico propio de acierto todavía. Viajan con `sin_medir` para que la
+# tarjeta lo diga, igual que los mercados en cuarentena.
+
+def _de_goles_equipo(pick: Dict) -> List[Dict]:
+    """«<Equipo> total de goles»: cada línea que la casa publica."""
+    import mercado_implicito as mi
+    import modo_modelo as mm
+    imp = pick.get('implicitas') or {}
+    ge = pick.get('goles_equipo') or {}
+    h, a = mm._equipos(pick)
+    salida = []
+    for lado, nombre, clave in (('local', h, 'goles_home'),
+                                ('visitante', a, 'goles_away')):
+        lineas = ge.get(lado) or {}
+        for linea, dato in (imp.get(clave) or {}).items():
+            p_mas = lineas.get(linea)
+            if p_mas is None or not nombre:
+                continue
+            try:
+                p_mas = float(p_mas)
+            except (TypeError, ValueError):
+                continue
+            imp_mas = mi.prob_de(dato)
+            for es_mas, p, cuota, i in (
+                    (True, p_mas, mi.cuota_de(dato, 'mas'), imp_mas),
+                    (False, 1.0 - p_mas, mi.cuota_de(dato, 'menos'),
+                     None if imp_mas is None else 1.0 - imp_mas)):
+                texto = '%s: %s de %s' % (nombre, 'Más' if es_mas
+                                          else 'Menos', linea)
+                salida.append(_fila('Goles equipo', lado.capitalize(),
+                                    'Goles %s' % texto, p, cuota, i,
+                                    'goles_equipo', float(linea),
+                                    {'sin_medir': True}))
+    return salida
+
+
+def _num_ok(v) -> bool:
+    try:
+        float(v)
+        return True
+    except (TypeError, ValueError):
+        return False
+
+
+def _conjunta_dc_goles(pick: Dict):
+    """Matriz de marcadores coherente con el 1X2 Y con la escalera de goles
+    que enseña la tarjeta (ajuste proporcional iterativo). None si falta
+    algo. Así «Japón o empate y menos de 2.5» no puede contradecir ni al 1X2
+    ni al «menos de 2.5» que la misma tarjeta enseña."""
+    import math
+    import modo_modelo as mm
+    tri = mm.probabilidades_1x2(pick)
+    gl = pick.get('goles_lineas') or {}
+    ge = pick.get('goles_equipo') or {}
+    gx = pick.get('goles_xg') or {}
+    if not tri or not gl:
+        return None
+    try:
+        lh = float(gx.get('local') or -math.log(
+            1 - float(ge['local']['0.5'])))
+        la = float(gx.get('visitante') or -math.log(
+            1 - float(ge['visitante']['0.5'])))
+    except (KeyError, TypeError, ValueError):
+        return None
+    n = 9
+
+    def pois(k, lam):
+        return math.exp(-lam) * lam ** k / math.factorial(k)
+    M = [[pois(i, lh) * pois(j, la) for j in range(n)] for i in range(n)]
+    p_mas = {float(k): float(v) for k, v in gl.items() if _num_ok(v)}
+    obj_t = {}
+    t = 0
+    while True:
+        arriba = 1.0 if t == 0 else p_mas.get(t - 0.5)
+        abajo = p_mas.get(t + 0.5)
+        if arriba is None:
+            break
+        if abajo is None:
+            obj_t[t] = max(arriba, 0.0)       # «t o más»: la cola
+            break
+        obj_t[t] = max(arriba - abajo, 0.0)
+        t += 1
+    tope = max(obj_t) if obj_t else None
+    obj_r = {'home': tri[0], 'draw': tri[1], 'away': tri[2]}
+
+    def region(i, j):
+        return 'home' if i > j else ('draw' if i == j else 'away')
+    for _ in range(40):
+        tot = {}
+        for i in range(n):
+            for j in range(n):
+                tot[region(i, j)] = tot.get(region(i, j), 0.0) + M[i][j]
+        for i in range(n):
+            for j in range(n):
+                r = region(i, j)
+                if tot.get(r):
+                    M[i][j] *= obj_r[r] / tot[r]
+        if tope is not None:
+            st = {}
+            for i in range(n):
+                for j in range(n):
+                    k = min(i + j, tope)
+                    st[k] = st.get(k, 0.0) + M[i][j]
+            for i in range(n):
+                for j in range(n):
+                    k = min(i + j, tope)
+                    if st.get(k):
+                        M[i][j] *= obj_t[k] / st[k]
+    s = sum(map(sum, M)) or 1.0
+    return [[x / s for x in fila] for fila in M]
+
+
+def _de_dc_goles(pick: Dict) -> List[Dict]:
+    """«Doble oportunidad y total N de goles», con el precio de la casa."""
+    import modo_modelo as mm
+    dcg = (pick.get('implicitas') or {}).get('dc_goles') or {}
+    if not dcg:
+        return []
+    M = _conjunta_dc_goles(pick)
+    if not M:
+        return []
+    h, a = mm._equipos(pick)
+    if not (h and a):
+        return []
+    n = len(M)
+    nombres = {'1X': '%s o empate' % h, 'X2': '%s o empate' % a,
+               '12': '%s o %s' % (h, a)}
+    cumple = {'1X': lambda i, j: i >= j, 'X2': lambda i, j: j >= i,
+              '12': lambda i, j: i != j}
+    salida = []
+    for linea, cuotas in dcg.items():
+        try:
+            L = float(linea)
+        except (TypeError, ValueError):
+            continue
+        for clave, cuota in (cuotas or {}).items():
+            try:
+                lado, sentido = clave.split('_')
+            except ValueError:
+                continue
+            if lado not in cumple:
+                continue
+            p = sum(M[i][j] for i in range(n) for j in range(n)
+                    if cumple[lado](i, j)
+                    and ((i + j > L) if sentido == 'mas' else (i + j < L)))
+            texto = '%s y %s de %s' % (nombres[lado],
+                                       'más' if sentido == 'mas' else 'menos',
+                                       linea)
+            salida.append(_fila('Doble y goles', lado, texto, p, cuota, None,
+                                'dc_goles', L, {'sin_medir': True}))
+    return salida
+
+# ---------------------------------------------------------------------------
+# la puerta de entrada
+# ---------------------------------------------------------------------------
+def candidatos(pick: Dict, bloques: Optional[Dict] = None) -> List[Dict]:
+    """Todas las apuestas jugables del partido, con su cuota y su Score."""
+    if pick.get('jugado') or pick.get('sin_modelo'):
+        return []
+    filas = []
+    try:
+        filas += _de_resultado(pick)
+    except Exception as e:
+        logger.debug('[valor] resultado: %s', e)
+    try:
+        # v193 — y el ganador de los deportes sin empate, que hasta ahora no
+        # producia NI UNA candidata: ver `_de_dos_vias`.
+        filas += _de_dos_vias(pick)
+    except Exception as e:
+        logger.debug('[valor] dos vias: %s', e)
+    try:
+        filas += _de_goles(pick)
+    except Exception as e:
+        logger.debug('[valor] goles: %s', e)
+    try:
+        # v254 - el handicap, que hasta aqui no producia NI UNA candidata
+        # porque nadie juntaba la escalera del modelo con el precio de la
+        # casa. Ver `_de_handicap`.
+        filas += _de_handicap(pick)
+    except Exception as e:
+        logger.debug('[valor] handicap: %s', e)
+    try:
+        # v354 — NBA: las escaleras de Playdoit (hándicap y puntos) con su
+        # probabilidad medida. Si están, mandan sobre los totales de Pinnacle,
+        # que no es una casa del usuario.
+        _nba = (_de_nba_lineas(pick) + _de_mlb_lineas(pick) + _de_nfl_lineas(pick)
+                + _de_nhl_lineas(pick))
+        filas += _nba
+    except Exception as e:
+        _nba = []
+        logger.debug('[valor] nba lineas: %s', e)
+    try:
+        # v237 — carreras, puntos y juegos. En futbol no hace nada: ese deporte
+        # publica `goles_lineas`, no `totales`, y lo cubre `_de_goles`.
+        if not any(f.get('mercado') in ('Puntos', 'Carreras') for f in _nba):
+            filas += _de_totales(pick)
+    except Exception as e:
+        logger.debug('[valor] totales: %s', e)
+    try:
+        filas += _de_conteo(pick, bloques or {})
+    except Exception as e:
+        logger.debug('[valor] conteo: %s', e)
+    # v303 — goles de cada equipo y doble oportunidad con goles
+    try:
+        filas += _de_goles_equipo(pick)
+    except Exception as e:
+        logger.debug('[valor] goles por equipo: %s', e)
+    try:
+        filas += _de_dc_goles(pick)
+    except Exception as e:
+        logger.debug('[valor] doble con goles: %s', e)
+    # v175 — LA CUARENTENA DEJA DE APARTAR NADA: SOLO MARCA.
+    #
+    # La v168 la puso como muro (un bloque mal calibrado en esa liga no
+    # se propone) y la v173 la rebajo a preferencia (aparta si queda
+    # algo). El encargo la rebaja del todo: «Eliminar el estado 🔒 No
+    # recomendado... solo deben faltar si el mercado no existe en
+    # Playdoit». Un mercado en cuarentena sigue siendo un mercado que la
+    # casa cotiza y el usuario puede jugar.
+    #
+    # LO QUE ESTO CUESTA, Y NO ES CERO. La cuarentena existe porque hay
+    # mercados que en algunas ligas calibran mal de verdad: los goles del
+    # Brasileirao B dan ECE 0,118 en crudo, mas del doble del 0,05 que
+    # este proyecto llama aceptable. Ese 0,118 es de la probabilidad
+    # CRUDA; lo que se publica va encogido hacia el precio de Playdoit y
+    # medido asi da 0,0111 (v175). Aun asi, una recomendacion de un
+    # bloque en cuarentena es peor que una de un bloque estable, y por
+    # eso la fila viaja marcada y la tarjeta lo dice.
+    try:
+        import mercado_estabilidad as me
+        for f in filas:
+            if me.en_cuarentena(pick.get('clave_liga'), f['bloque']):
+                f['incierto'] = True
+                f['sin_medir'] = True
+    except Exception as e:
+        logger.debug('[valor] estabilidad: %s', e)
+    # v174 — TODA CANDIDATA TIENE PRECIO, PORQUE TODA CANDIDATA SE PUEDE
+    # JUGAR. Sin cuota no hay Score y, mas importante, no hay apuesta: es una
+    # probabilidad sobre algo que la casa no ofrece.
+    return [f for f in filas if f.get('cuota')]
+
+
+def mejor(pick: Dict, bloques: Optional[Dict] = None) -> Optional[Dict]:
+    """
+    v175 — LA APUESTA RECOMENDADA ES LA DE MAYOR SCORE. SIEMPRE HAY UNA.
+
+    EL ENCARGO, con sus numeros: «La 🏆 Apuesta Recomendada sera la de
+    mayor Score, siempre que Probabilidad >= 50 % y Cuota >= 1,20. Si la
+    de mayor Score no cumple, se pasa a la siguiente que si cumpla. Si
+    ninguna cumple, se muestra la de mayor Score con aviso de baja
+    probabilidad.» Eso es exactamente lo que hace esta funcion.
+
+    EL CASO QUE LO PROVOCA, del propio usuario: en Toluca - Austin la
+    aplicacion recomendaba «Goles Mas de 1,5» al 79 % con Score 0,95
+    mientras en «Mejor Valor», dos lineas mas abajo, habia un Score 0,98.
+    Recomendar lo que uno mismo esta diciendo que vale menos no se puede
+    defender, y la separacion entre las dos secciones era el sintoma.
+
+    LO QUE CUESTA, MEDIDO SOBRE 47.794 PARTIDOS (v171.1)
+    -----------------------------------------------------
+        elegir por Score        2.947 apuestas · acierto 66,0 % ·
+                                ROI −0,67 % · p5 −2,81 %
+        elegir por probabilidad 44.557 apuestas · acierto 76,0 % ·
+                                ROI −6,17 %
+
+    Se acierta DIEZ PUNTOS MENOS y se pierde cinco y medio menos. De las
+    cuatro politicas que este proyecto ha liquidado contra el marcador,
+    la del Score es la unica que se acerca al equilibrio — y ninguna gana
+    dinero. La tarjeta no puede prometer que se bate al mercado y no lo
+    promete.
+
+    LO QUE **NO** SE QUITA
+    ----------------------
+    Ni el ajuste de la probabilidad —una linea que se separa del precio
+    de la casa sigue viniendo encogida y recortada por
+    `cordura_probabilidad`— ni el techo del 90 %: una cifra por encima de
+    ahi con cuota jugable es casi siempre un defecto del modelo, no una
+    ganga. Lo que se levanta es el bloqueo por mercado, no el control de
+    la cifra.
+    """
+    # v176 — UNA SOLA DEFINICION DEL ORDEN. `mejores` filtra por los
+    # minimos del encargo (prob >= 50 %, cuota >= 1,20, <= 90 %) y
+    # ordena por Score; la principal es su primera fila. Tener aqui
+    # una copia del mismo filtro era garantizar que algun dia una de
+    # las dos cambiara sin la otra.
+    lista = mejores(pick, bloques, n=1)
+    return lista[0] if lista else None
+
+
+def mejores(pick: Dict, bloques: Optional[Dict] = None,
+            n: int = 3) -> List[Dict]:
+    """
+    v176 — LAS `n` MEJORES DEL PARTIDO, EN ORDEN DE SCORE.
+
+    EL ENCARGO: «para cada partido, la app debe mostrar hasta 3
+    recomendaciones ordenadas por Score descendente... todas deben cumplir
+    probabilidad >= 50 % y cuota >= 1,20».
+
+    LA PRIMERA DE ESTA LISTA ES EXACTAMENTE LO QUE DEVUELVE `mejor`, y no
+    por casualidad: las dos recorren la misma lista con el mismo filtro y
+    el mismo orden. Es la leccion de la v175 —dos secciones ordenadas por
+    criterios distintos acaban contradiciendose— aplicada antes de que
+    vuelva a pasar, esta vez entre la principal y sus alternativas.
+
+    NO SE RELLENA HASTA `n` A LA FUERZA. Un partido donde solo dos lineas
+    llegan a los minimos devuelve dos. Completar con lo que no cumple
+    seria enseñar como «2ª recomendada» algo que la regla principal
+    rechazo, y el usuario lo leeria como una apuesta.
+
+    UNA POR MERCADO. Sin esto, la escalera de goles se lleva las tres
+    plazas —«Mas de 1,5», «Mas de 2,5» y «Menos de 3,5» del mismo partido
+    tienen Scores casi iguales— y las «alternativas» son la misma apuesta
+    tres veces. Correlacionadas al 90 %, ademas: si falla una, fallan las
+    tres.
+    """
+    filas = candidatos(pick, bloques)
+    if not filas:
+        return []
+    dignas = [f for f in filas
+              if f.get('score') is not None
+              and f['prob'] >= PROB_SUELO_DURO
+              and f['prob'] <= PROB_MAXIMA_RECO
+              and (f.get('cuota') or 0.0) >= CUOTA_DECENTE]
+    baja = not dignas
+    if baja:
+        dignas = filas
+    # v237 — CUANDO NADA PASA EL LISTON, MANDA LA PROBABILIDAD, NO EL SCORE.
+    #
+    # El score es `cuota x prob`, o sea EV. Ordenar por el esta bien entre
+    # candidatas que YA pasaron el filtro; en el respaldo es una trampa,
+    # porque el EV premia al que paga mucho, y el que paga mucho es el que casi
+    # nunca gana.
+    #
+    # Lo reporto el usuario con un WTA: la tarjeta recomendaba «Gana Lorena
+    # Schaedel - 16 %» a cuota 5,80 (score 0,93) y dejaba fuera a la rival al
+    # 84 % con cuota 1,10 (score 0,92). Un 16 % anunciado como apuesta
+    # recomendada, con la bolita en rojo. Las dos fallaban el filtro —una por
+    # probabilidad, la otra por cuota corta— y el desempate se lo llevo la de
+    # valor, que es justo la que no hay que ensenar cuando no hay nada bueno.
+    #
+    # En el respaldo la pregunta ya no es «cual paga mejor» sino «cual es mas
+    # probable que ocurra», que es lo que el usuario pidio: «deberias mandar
+    # las probables, como lo hemos estado haciendo en el futbol».
+    # v245 — LA PROBABILIDAD MANDA, Y EL SCORE DESEMPATA.
+    #
+    # Aquí se decidía por `Score = probabilidad × cuota`, y ese orden no sólo
+    # ordena la lista: también elige QUÉ LÍNEA representa a cada mercado,
+    # porque justo debajo hay una regla de una-por-mercado. Esa era la mitad
+    # del problema que el usuario reportó dos veces.
+    #
+    # Leeds-Crystal Palace, con el techo de goles ya arreglado:
+    #
+    #     Córners: Más de 7.5          70 %  cuota 1.25   score 0.871
+    #     Córners Local: Más de 5.5    51 %  cuota 1.85   score 0.950  <- ganaba
+    #
+    # Un volado al 51 % se llevaba la plaza de córners y dejaba fuera un 70 %.
+    # Como `Score ≈ p × cuota ≈ 1` en cualquier apuesta bien tarifada, el
+    # criterio apenas discrimina y premia a los mercados de moneda al aire,
+    # que son los de cuota más larga. Es la misma lección que la v241 aplicó
+    # a la lista final; faltaba aplicarla aquí, que es donde se poda.
+    #
+    # El coste se asume y se dice: ordenar por probabilidad favorece al
+    # favorito barato frente al valor. Lo acotan los dos filtros de arriba —
+    # `CUOTA_DECENTE` (1,20) y `PROB_MAXIMA_RECO` (0,90)—, así que no puede
+    # colarse un 1,05 ni un 97 %. Y el Score sigue a la vista en la tarjeta.
+    orden = sorted(dignas, key=lambda f: (-round(f['prob'], 4),
+                                          -(f.get('score') or 0.0)))
+    salida, vistos = [], set()
+    for f in orden:
+        mercado = str(f.get('mercado') or '')
+        if mercado in vistos:
+            continue
+        vistos.add(mercado)
+        salida.append(dict(f, mejor_del_partido=not salida,
+                           baja_probabilidad=baja,
+                           puesto_valor=len(salida) + 1))
+        if len(salida) >= max(1, int(n)):
+            break
+    return salida
+
+
+def por_mercado(pick: Dict, bloques: Optional[Dict] = None) -> Dict:
+    """
+    v175 — LA MEJOR APUESTA DE **CADA** MERCADO QUE PLAYDOIT COTIZA.
+
+    La tarjeta ya no enseña un mercado con sus dos lados y un candado:
+    enseña, mercado por mercado, la linea concreta que la aplicacion
+    jugaria y su Score. Un mercado sin entrada aqui es un mercado que
+    Playdoit NO publica — la unica ausencia que el encargo admite.
+
+    Devuelve `{nombre_del_mercado: fila}` con la de mejor Score de cada
+    uno, sin filtro de probabilidad ni de cuota: aqui se INFORMA de lo
+    mejor que hay en ese mercado. Los minimos son cosa de `mejor`, que es
+    quien elige la apuesta principal.
+    """
+    grupos: Dict[str, List[Dict]] = {}
+    for f in candidatos(pick, bloques):
+        grupos.setdefault(str(f.get('mercado') or ''), []).append(f)
+    salida: Dict[str, Dict] = {}
+    for clave, filas in grupos.items():
+        # LOS MISMOS MINIMOS QUE LA PRINCIPAL, Y NO ES UN ADORNO.
+        #
+        # Sin ellos, la primera prueba contra el tablero real de
+        # Mamelodi - AmaZulu propuso «Gana AmaZulu» al 10 % como
+        # recomendacion del 1X2, porque a cuota 11,00 su Score es 1,08 —
+        # el mas alto del mercado. Es la trampa de la cuota inflada que
+        # la v172 vino a cerrar, entrando por la puerta de al lado.
+        #
+        # Y cuando NINGUNA linea del mercado llega a los minimos no se
+        # deja el mercado vacio —eso seria el candado otra vez— sino que
+        # se propone la MAS PROBABLE. En un mercado donde no hay nada
+        # bien pagado, lo honesto es enseñar lo mas probable, no lo mas
+        # caro.
+        dignas = [f for f in filas
+                  if f.get('score') is not None
+                  and f['prob'] >= PROB_SUELO_DURO
+                  and f['prob'] <= PROB_MAXIMA_RECO
+                  and (f.get('cuota') or 0.0) >= CUOTA_DECENTE]
+        if dignas:
+            salida[clave] = max(dignas,
+                                key=lambda f: (f.get('score') or 0.0,
+                                               round(f['prob'], 4)))
+        else:
+            salida[clave] = dict(
+                max(filas, key=lambda f: (round(f['prob'], 4),
+                                          f.get('cuota') or 0.0)),
+                incierto=True)
+    return salida

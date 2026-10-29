@@ -1,0 +1,311 @@
+{
+ "fecha": "2026-09-21",
+ "altitud_corte_m": 2200,
+ "corte_entrena": 0.7,
+ "pruebas": {
+  "1x2_altura": {
+   "medido": true,
+   "variables": [
+    "en_altura"
+   ],
+   "n_ajuste": 12114,
+   "n_prueba": 5193,
+   "corte_fecha": "2025-09-14",
+   "ajustes": {
+    "en_altura": {
+     "0.0": 0.0,
+     "1.0": 0.04856
+    }
+   },
+   "logloss_antes": 0.66524,
+   "logloss_despues": 0.66514,
+   "ece_antes": 0.01071,
+   "ece_despues": 0.01013,
+   "delta_logloss": -9e-05,
+   "delta_ece": -0.00058,
+   "mejora_relativa": 0.00014,
+   "donde_aplica": {
+    "n": 676,
+    "logloss_antes": 0.65465,
+    "logloss_despues": 0.65396,
+    "ece_antes": 0.04017,
+    "ece_despues": 0.03788,
+    "delta_logloss": -0.00069,
+    "mejora": true
+   },
+   "mejora_relativa_donde_aplica": 0.00105,
+   "mejora": false,
+   "veredicto": "no_mejora"
+  },
+  "1x2_aclimatacion": {
+   "medido": true,
+   "variables": [
+    "sube_visitante"
+   ],
+   "n_ajuste": 12114,
+   "n_prueba": 5193,
+   "corte_fecha": "2025-09-14",
+   "ajustes": {
+    "sube_visitante": {
+     "0.0": 0.0,
+     "1.0": 0.23532
+    }
+   },
+   "logloss_antes": 0.66524,
+   "logloss_despues": 0.6645,
+   "ece_antes": 0.01071,
+   "ece_despues": 0.00985,
+   "delta_logloss": -0.00073,
+   "delta_ece": -0.00086,
+   "mejora_relativa": 0.0011,
+   "donde_aplica": {
+    "n": 376,
+    "logloss_antes": 0.65712,
+    "logloss_despues": 0.64703,
+    "ece_antes": 0.08142,
+    "ece_despues": 0.05355,
+    "delta_logloss": -0.01009,
+    "mejora": true
+   },
+   "mejora_relativa_donde_aplica": 0.01535,
+   "mejora": true,
+   "veredicto": "mejora"
+  },
+  "1x2_descanso": {
+   "medido": true,
+   "variables": [
+    "dif_descanso"
+   ],
+   "n_ajuste": 12113,
+   "n_prueba": 5192,
+   "corte_fecha": "2025-09-14",
+   "ajustes": {
+    "dif_descanso": {
+     "-7.0": 0.03343,
+     "-3.0": 0.08592,
+     "-2.0": -0.00181,
+     "-1.0": 0.09493,
+     "0.0": 0.0,
+     "1.0": 0.04511,
+     "2.0": -0.04736,
+     "3.0": -0.07394,
+     "7.0": -0.19566
+    }
+   },
+   "logloss_antes": 0.6651,
+   "logloss_despues": 0.66568,
+   "ece_antes": 0.01073,
+   "ece_despues": 0.01221,
+   "delta_logloss": 0.00058,
+   "delta_ece": 0.00148,
+   "mejora_relativa": -0.00087,
+   "donde_aplica": {
+    "n": 3061,
+    "logloss_antes": 0.66268,
+    "logloss_despues": 0.66367,
+    "ece_antes": 0.01405,
+    "ece_despues": 0.01164,
+    "delta_logloss": 0.00099,
+    "mejora": false
+   },
+   "mejora_relativa_donde_aplica": -0.00149,
+   "mejora": false,
+   "veredicto": "no_mejora"
+  },
+  "1x2_ambas": {
+   "medido": true,
+   "variables": [
+    "en_altura",
+    "dif_descanso"
+   ],
+   "n_ajuste": 12113,
+   "n_prueba": 5192,
+   "corte_fecha": "2025-09-14",
+   "ajustes": {
+    "en_altura": {
+     "0.0": 0.0,
+     "1.0": 0.04856
+    },
+    "dif_descanso": {
+     "-7.0": 0.03343,
+     "-3.0": 0.08592,
+     "-2.0": -0.00181,
+     "-1.0": 0.09493,
+     "0.0": 0.0,
+     "1.0": 0.04511,
+     "2.0": -0.04736,
+     "3.0": -0.07394,
+     "7.0": -0.19566
+    }
+   },
+   "logloss_antes": 0.6651,
+   "logloss_despues": 0.66562,
+   "ece_antes": 0.01073,
+   "ece_despues": 0.01119,
+   "delta_logloss": 0.00052,
+   "delta_ece": 0.00046,
+   "mejora_relativa": -0.00078,
+   "donde_aplica": {
+    "n": 3270,
+    "logloss_antes": 0.66231,
+    "logloss_despues": 0.66314,
+    "ece_antes": 0.01283,
+    "ece_despues": 0.01173,
+    "delta_logloss": 0.00083,
+    "mejora": false
+   },
+   "mejora_relativa_donde_aplica": -0.00125,
+   "mejora": false,
+   "veredicto": "no_mejora"
+  },
+  "goles_altura": {
+   "medido": true,
+   "variables": [
+    "en_altura"
+   ],
+   "n_ajuste": 16216,
+   "n_prueba": 6951,
+   "corte_fecha": "2025-10-24",
+   "ajustes": {
+    "en_altura": {
+     "0.0": 0.0,
+     "1.0": 0.06062
+    }
+   },
+   "logloss_antes": 0.67957,
+   "logloss_despues": 0.67956,
+   "ece_antes": 0.02061,
+   "ece_despues": 0.01947,
+   "delta_logloss": -2e-05,
+   "delta_ece": -0.00114,
+   "mejora_relativa": 2e-05,
+   "donde_aplica": {
+    "n": 839,
+    "logloss_antes": 0.68682,
+    "logloss_despues": 0.68669,
+    "ece_antes": 0.01988,
+    "ece_despues": 0.03208,
+    "delta_logloss": -0.00013,
+    "mejora": false
+   },
+   "mejora_relativa_donde_aplica": 0.00019,
+   "mejora": false,
+   "veredicto": "no_mejora"
+  },
+  "btts_altura": {
+   "medido": true,
+   "variables": [
+    "en_altura"
+   ],
+   "n_ajuste": 16216,
+   "n_prueba": 6951,
+   "corte_fecha": "2025-10-24",
+   "ajustes": {
+    "en_altura": {
+     "0.0": 0.0,
+     "1.0": 0.18011
+    }
+   },
+   "logloss_antes": 0.71916,
+   "logloss_despues": 0.71831,
+   "ece_antes": 0.08638,
+   "ece_despues": 0.08488,
+   "delta_logloss": -0.00085,
+   "delta_ece": -0.0015,
+   "mejora_relativa": 0.00119,
+   "donde_aplica": {
+    "n": 839,
+    "logloss_antes": 0.74446,
+    "logloss_despues": 0.73739,
+    "ece_antes": 0.12363,
+    "ece_despues": 0.11122,
+    "delta_logloss": -0.00707,
+    "mejora": true
+   },
+   "mejora_relativa_donde_aplica": 0.0095,
+   "mejora": true,
+   "veredicto": "mejora"
+  },
+  "btts_aclimatacion": {
+   "medido": true,
+   "variables": [
+    "sube_visitante"
+   ],
+   "n_ajuste": 16216,
+   "n_prueba": 6951,
+   "corte_fecha": "2025-10-24",
+   "ajustes": {
+    "sube_visitante": {
+     "0.0": 0.0,
+     "1.0": 0.08159
+    }
+   },
+   "logloss_antes": 0.71916,
+   "logloss_despues": 0.71893,
+   "ece_antes": 0.08638,
+   "ece_despues": 0.0857,
+   "delta_logloss": -0.00024,
+   "delta_ece": -0.00068,
+   "mejora_relativa": 0.00033,
+   "donde_aplica": {
+    "n": 500,
+    "logloss_antes": 0.73612,
+    "logloss_despues": 0.73284,
+    "ece_antes": 0.11169,
+    "ece_despues": 0.11613,
+    "delta_logloss": -0.00328,
+    "mejora": false
+   },
+   "mejora_relativa_donde_aplica": 0.00446,
+   "mejora": false,
+   "veredicto": "no_mejora"
+  },
+  "goles_aclimatacion": {
+   "medido": true,
+   "variables": [
+    "sube_visitante"
+   ],
+   "n_ajuste": 16216,
+   "n_prueba": 6951,
+   "corte_fecha": "2025-10-24",
+   "ajustes": {
+    "sube_visitante": {
+     "0.0": 0.0,
+     "1.0": 0.05719
+    }
+   },
+   "logloss_antes": 0.67957,
+   "logloss_despues": 0.67953,
+   "ece_antes": 0.02061,
+   "ece_despues": 0.0201,
+   "delta_logloss": -4e-05,
+   "delta_ece": -0.00051,
+   "mejora_relativa": 6e-05,
+   "donde_aplica": {
+    "n": 500,
+    "logloss_antes": 0.68181,
+    "logloss_despues": 0.68121,
+    "ece_antes": 0.01814,
+    "ece_despues": 0.02973,
+    "delta_logloss": -0.0006,
+    "mejora": false
+   },
+   "mejora_relativa_donde_aplica": 0.00088,
+   "mejora": false,
+   "veredicto": "no_mejora"
+  }
+ },
+ "cobertura": {
+  "partidos_con_contexto": 45160,
+  "con_altitud_medida": 6362,
+  "en_altura": 4364,
+  "sube_visitante": 2642,
+  "con_descanso": 44671
+ },
+ "medido": true,
+ "mejoran": [
+  "1x2_aclimatacion",
+  "btts_altura"
+ ],
+ "veredicto": "hay_senal"
+}
