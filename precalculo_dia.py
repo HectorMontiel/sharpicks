@@ -238,8 +238,8 @@ def _adjuntar_decisiones(doc: Dict) -> None:
 # De dónde se baja el día cocinado cuando el usuario pulsa «Actualizar ahora».
 # Se deriva del mismo repo que `modelos_remotos`, con su variable de entorno,
 # para que un fork no acabe sirviendo el pronóstico del repo de otro.
-REPO_PRECALCULO = os.environ.get('REPO_MODELOS',
-                                 'HectorMontiel/mundial-2026-predictor')
+REPO_PRECALCULO = (os.environ.get('REPO_MODELOS') or os.environ.get('GITHUB_REPOSITORY')
+                   or 'HectorMontiel/sharpicks')
 RAMA_PRECALCULO = os.environ.get('RAMA_PRECALCULO', 'main')
 URL_PRECALCULO = os.environ.get(
     'URL_PRECALCULO',

@@ -76,7 +76,9 @@ import threading
 logger = logging.getLogger(__name__)
 
 # El repositorio real del proyecto. `HMREY/...` es un fork viejo.
-REPO = os.environ.get('REPO_MODELOS', 'HectorMontiel/mundial-2026-predictor')
+# v511 — el repo de cada corrida (GitHub lo pone en GITHUB_REPOSITORY); en local, el privado nuevo
+REPO = (os.environ.get('REPO_MODELOS') or os.environ.get('GITHUB_REPOSITORY')
+        or 'HectorMontiel/sharpicks')
 ETIQUETA = os.environ.get('RELEASE_MODELOS', 'modelos-latest')
 RAIZ = 'modelos'
 TIMEOUT_S = float(os.environ.get('TIMEOUT_MODELOS', '120'))
