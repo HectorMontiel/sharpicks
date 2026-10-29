@@ -167,7 +167,10 @@
     try {
       if (C.SUPABASE_URL && C.SUPABASE_ANON_KEY) {
         const desde = diaPestana(-2);
-        const datos = await todasLasFilas(C.SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/picks?select=*&fecha=gte.' + desde + '&order=inicio.asc,id.asc');
+        const pedirPicks = () => todasLasFilas(C.SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/picks?select=*&fecha=gte.' + desde + '&order=inicio.asc,id.asc');
+        // v515 — un tropiezo de la base (un 500 suelto) no manda a nadie al respaldo: se reintenta una vez
+        let datos;
+        try { datos = await pedirPicks(); } catch (e1) { await new Promise((r) => setTimeout(r, 1500)); datos = await pedirPicks(); }
         estado.picks = datos;
         estado.errorPicks = false;
         estado.respaldoPicks = false;
@@ -185,6 +188,8 @@
         estado.respaldoPicks = true;
         const generada = aFecha(d.generado);
         $('actualizado').textContent = generada ? 'Respaldo local · ' + horaCdmx(generada) : 'Respaldo local · fecha de generación no verificable';
+        // v515 — en cuanto la base vuelva a responder, se regresa a los datos vivos (sin esperar a que el usuario recargue)
+        setTimeout(() => { if (estado.respaldoPicks) cargar().then(() => pintar()).catch(() => {}); }, 20000);
       } catch (e2) {
         console.error('[sharpicks] falló también el respaldo local de picks', e2);
         estado.picks = [];
