@@ -19,7 +19,7 @@
           auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, lock: async (_n, _t, fn) => await fn() },
         }) : null;
   } catch (e) { sb = null; }          // un navegador que no deja guardar la sesión no rompe la página
-  const yo = { user: null, perfil: null, seguidos: new Set(), desbloqueados: {}, conteo: {}, precios: {} };
+  const yo = { user: null, perfil: null, seguidos: new Set(), desbloqueados: {}, conteo: {}, precios: {}, pulso: {} };
   // v412 — «cuando compré se me cerró sesión»: NO se cerraba. Al volver de
   // Stripe, «Mi cuenta» se abría a los 1,5 s y, si el celular aún no había
   // leído la sesión guardada, enseñaba «Entrar» (y lo mismo la cabecera al
@@ -217,10 +217,13 @@
       tareas.push(sb.from('suscripciones').select('*').eq('usuario', yo.user.id).order('actualizado', { ascending: false }).limit(10)
         .then(({ data }) => { yo.subs = data || []; }));
       tareas.push(textosPremium().then((t) => { if (t) yo.desbloqueados = t; }));
+      // v513 — los partidos con el Pulso abierto con monedas (si la tabla aún no existe, no pasa nada)
+      tareas.push(sb.from('pulso_desbloqueos').select('partido').then(({ data, error }) => {
+        if (!error) { yo.pulso = {}; (data || []).forEach((x) => { yo.pulso[x.partido] = true; }); } }));
       // v446 — sus 👍/👎 a la IA (si la tabla aún no existe, no pasa nada)
       tareas.push(sb.from('ia_calificaciones').select('analisis,voto,motivo').then(({ data, error }) => {
         if (!error) { yo.votosIA = {}; (data || []).forEach((x) => { yo.votosIA[x.analisis] = x; }); } }));
-    } else { yo.perfil = null; yo.seguidos = new Set(); yo.desbloqueados = {}; yo.subs = []; yo.vip = {}; }
+    } else { yo.perfil = null; yo.seguidos = new Set(); yo.desbloqueados = {}; yo.subs = []; yo.vip = {}; yo.pulso = {}; }
     await Promise.all(tareas.map((t) => aTiempo(t, 6000, null)));
     if (yo.user) await aTiempo(cargarGustos(), 6000, null);
     try { avisoRenovacion(); } catch (e) { /* el aviso nunca tumba la página */ }
@@ -533,7 +536,7 @@
   });
 
   document.addEventListener('click', async (e) => {
-    const t = e.target.closest('[data-entrar],[data-salir],[data-seguir],[data-desbloquear],[data-cerrar-acceso],[data-google],[data-ir-modo],[data-mi-cuenta],[data-cerrar-cuenta],[data-canjear],[data-contra],[data-vip],[data-enlace],[data-ayuda],[data-cerrar-ayuda],[data-mi-usuario],[data-comprar],[data-metodo],[data-sus],[data-portal],[data-cerrar-aviso],[data-desb-comb]');
+    const t = e.target.closest('[data-entrar],[data-salir],[data-seguir],[data-desbloquear],[data-cerrar-acceso],[data-google],[data-ir-modo],[data-mi-cuenta],[data-cerrar-cuenta],[data-canjear],[data-contra],[data-vip],[data-enlace],[data-ayuda],[data-cerrar-ayuda],[data-mi-usuario],[data-comprar],[data-metodo],[data-sus],[data-portal],[data-cerrar-aviso],[data-desb-comb],[data-pulso-abrir]');
     if (!t) return;
     if (t.hasAttribute('data-ayuda')) { $('ayuda').hidden = false; return; }
     if (t.hasAttribute('data-cerrar-ayuda')) { $('ayuda').hidden = true; return; }
@@ -692,6 +695,15 @@
       t.disabled = true;
       const { data, error } = await sb.rpc('desbloquear_combinada', { comb_id: t.dataset.desbComb });
       if (error || data !== 'ok') { avisoApp(data === 'sin monedas' ? 'Consigue más en «Planes» o acertando tus combinadas.' : data === 'ya empezó' ? 'Uno de sus partidos ya empezó.' : 'Intenta de nuevo en un momento.', 'aviso', data === 'sin monedas' ? 'No te alcanzan las monedas' : 'No se pudo desbloquear'); t.disabled = false; return; }
+      await refrescar();
+      return;
+    }
+    if (t.dataset.pulsoAbrir) {                                          // v513 — el Pulso de un partido con monedas
+      if (!yo.user) { abrirAcceso('Entra para abrir el Pulso de este partido.'); return; }
+      t.disabled = true;
+      const { data, error } = await sb.rpc('desbloquear_pulso', { p_partido: t.dataset.pulsoAbrir });
+      if (error || data !== 'ok') { avisoApp(data === 'sin monedas' ? 'Consigue más en «Planes» o acertando tus combinadas.' : 'Intenta de nuevo en un momento.'); t.disabled = false; return; }
+      yo.pulso = yo.pulso || {}; yo.pulso[t.dataset.pulsoAbrir] = true;
       await refrescar();
       return;
     }
@@ -1182,7 +1194,27 @@
       '<span class="calib-n">dijimos <b>' + x.dijimos + ' %</b> · salió <b>' + x.salio + ' %</b><small>' + x.n + ' picks</small></span></div>').join('') + '</div>' +
       '<p class="tenue chico">' + n + ' picks terminados desde el ' + esc(String(desde || '').slice(0, 10)) + ', rojas incluidas. La rayita es lo que dijimos; la barra, lo que salió.</p>';
   }
+  // v513 — el Pulso en vivo, medido en público: por mercado y por tramo de probabilidad, qué dijo en el 60' y el
+  // 70' y qué salió (lo apunta `pulso_historial.py` con la misma cuenta que la página; nada se retoca).
+  async function pulsoHist() {
+    const caja = $('pulso-hist'); if (!caja || !sb) return;
+    const desde = new Date(Date.now() - 60 * 864e5).toISOString().slice(0, 10);
+    const { data, error } = await aTiempo(todasSb((a, b) => sb.from('pulso_historial').select('mercado,prob,acierto,fecha').gte('fecha', desde).order('fecha').range(a, b)), 8000, { data: null, error: true });
+    if (error || !data || !data.length) { caja.innerHTML = '<p class="tenue">El Pulso empieza a apuntar sus lecturas hoy: aquí verás lo que dijo y lo que salió.</p>'; return; }
+    const NOM = { gol: 'Cae otro gol', gol2: '2 goles más', gol_l: 'Marca el local', gol_v: 'Marca el visitante', cor1: '1 córner más', cor2: '2 córners más', cor3: '3 córners más' };
+    const filas = Object.keys(NOM).map((k) => {
+      const xs = data.filter((x) => x.mercado === k && x.acierto != null); if (!xs.length) return '';
+      const dijo = Math.round(100 * xs.reduce((s, x) => s + Number(x.prob), 0) / xs.length), salio = Math.round(100 * xs.filter((x) => x.acierto).length / xs.length);
+      return '<div class="calib-fila"><span class="calib-b">' + esc(NOM[k]) + '</span><div class="calib-barra"><i class="dijo" style="left:' + dijo + '%"></i><b style="width:' + salio + '%"></b></div>' +
+        '<span class="calib-n">dijo <b>' + dijo + ' %</b> · salió <b>' + salio + ' %</b><small>' + xs.length + ' lecturas</small></span></div>';
+    }).join('');
+    const altos = data.filter((x) => Number(x.prob) >= 0.7 && x.acierto != null), ok = altos.filter((x) => x.acierto).length;
+    caja.innerHTML = '<div class="calib">' + filas + '</div>' +
+      (altos.length ? '<p class="chico">Cuando el Pulso dijo <b>70 % o más</b>: <b>' + ok + ' ✅ ' + (altos.length - ok) + ' ❌</b> · ' + Math.round(100 * ok / altos.length) + ' %</p>' : '') +
+      '<p class="tenue chico">Lecturas del 60\' y el 70\' de cada partido desde el ' + esc(data[0].fecha) + ', fallos incluidos. La rayita es lo que dijo el Pulso; la barra, lo que salió.</p>';
+  }
   async function historial() {
+    pulsoHist();
     calibracionPicks();
     const caja = $('historial'); if (!caja || !sb) return;
     const { data, error } = await sb.from('historial').select('*').limit(30);

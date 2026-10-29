@@ -81,6 +81,13 @@ jobs:
           PREMIUM_NIVELES: ${{ vars.PREMIUM_NIVELES }}
         run: python exportar_web.py
       # v379 — los dos canales de Telegram (gratis y VIP); sin canales, no hace nada
+      # v513 — el historial público del Pulso (qué dijo en el 60' y el 70', y qué salió); nunca tumba la corrida
+      - name: Historial del Pulso
+        continue-on-error: true
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: python pulso_historial.py
       - name: Canales de Telegram
         id: telegram
         continue-on-error: true

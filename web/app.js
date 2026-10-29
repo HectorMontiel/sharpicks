@@ -1356,10 +1356,19 @@
       '<div class="liga">' + esc(p.liga || '') + ' · ' + esc(horaCdmx(aFecha(p.inicio))) + '</div>' +
       contextoHtml((ps.find((x) => x.ctx) || {}).ctx, L, V, p.liga) +
       iaBloque(p, L, V, conVip(ps).ctx, conVip(ps).jug, ps.some((x) => x.vip_hay)) +
-      penalesHtml(v, L, V) + compensacion(p, v) + miniStats(v, p) + (v && (v.fase === 'in' || v.fase === 'post') ? cancha(v, p) : '') +   // v460: también al terminar
+      penalesHtml(v, L, V) + compensacion(p, v) + miniStats(v, p) + pulsoChip(p, v) + (v && (v.fase === 'in' || v.fase === 'post') ? cancha(v, p) : '') +   // v460: también al terminar
       ps.map((x) => filaPick(x, v, ps.length > 1)).join('') +
       (ps.some((x) => x.espn) ? '<button class="ver" data-ficha="' + esc((ps.find((x) => x.espn) || p).id) + '">Ver partido →</button>' : '') +
       '</article>';
+  }
+  // v513 — en la tarjeta en vivo, el Pulso gratis: «otro gol» en su tramo medido (lo demás, en «Ver partido»)
+  function pulsoChip(p, v) {
+    if (!window.PULSO || !v || v.fase !== 'in' || (p.deporte && p.deporte !== 'Fútbol')) return '';
+    const m = PULSO.mercados(p, v, conRespaldo(v, p)).find((x) => x.k === 'gol');
+    if (!m || !m.tramo) return '';
+    const t = m.tramo;
+    return '<div class="pulso-chip ' + (m.p >= 0.7 ? 'alta' : m.p >= 0.6 ? 'media' : 'baja') + '" title="Pulso SharPicks: lo medido en el historial">' +
+      '📈 Pulso · otro gol <b>' + Math.round(100 * t.desde) + '-' + Math.round(100 * t.hasta) + ' %</b> <small>salió ' + Math.round(100 * t.fue) + ' %</small></div>';
   }
   const dict = (a, b) => Object.assign({}, a, b);
   // v384 — «un H2H en las tarjetas por si la gente quiere analizar el partido»
@@ -1642,6 +1651,33 @@
       if (r.ok) estado.vivo[p.espn] = leerResumen(await r.json(), p);
     } catch (e) { /* sin red: la ficha queda sin estadísticas */ }
   }
+  // v513 — PULSO SHARPICKS en «Ver partido». Gratis: «otro gol» y «2 córners más» en su tramo medido; VIP
+  // (o el partido abierto con monedas): todos los mercados, % exacto, cuota justa y tus picks en vivo.
+  function pulsoAbierto(p) {
+    return !!(window.SPX && (SPX.esVip() || (SPX.yo.pulso || {})[clavePartido(p)]));
+  }
+  function pulsoHtml(p, v, vs, L, V, abierto) {
+    if (!window.PULSO || !v || v.fase !== 'in' || p.deporte && p.deporte !== 'Fútbol') return '';
+    const ms = PULSO.mercados(p, v, vs);
+    if (!ms.length) return PULSO.listo() ? '' : '<p class="tenue">Cargando el Pulso…</p>';
+    const fila = (m) => {
+      const t = m.tramo, nom = esc(PULSO.nombre(m.k, L, V));
+      if (!abierto && !m.gratis) return '<div class="pulso-f bloq"><span>' + nom + '</span><span class="pulso-vip">VIP</span></div>';
+      const banda = t ? Math.round(100 * t.desde) + '-' + Math.round(100 * t.hasta) + ' %' : '';
+      const pr = abierto ? Math.round(100 * m.p) + ' %' : banda;
+      const nivelTxt = m.p >= 0.8 ? 'Muy alta' : m.p >= 0.7 ? 'Alta' : m.p >= 0.6 ? 'Media' : 'Baja';
+      return '<div class="pulso-f ' + (m.p >= 0.7 ? 'alta' : m.p >= 0.6 ? 'media' : 'baja') + '"><span>' + nom + '</span>' +
+        '<span class="pulso-p">' + pr + ' <small>' + nivelTxt + '</small></span>' +
+        (abierto ? '<span class="pulso-j" title="Cuota justa: si tu casa paga más, tiene valor">cuota justa ' + m.justa.toFixed(2) + '</span>' : '') +
+        (t ? '<span class="pulso-m" title="Lo que salió en el historial cuando el Pulso dijo este tramo">salió ' + Math.round(100 * t.fue) + ' % (' + t.n.toLocaleString('es-MX') + ')</span>' : '') + '</div>';
+    };
+    const precio = Number((window.SPX && SPX.yo.precios.precio_pulso) || 2);
+    return '<div class="pulso"><h3>Pulso SharPicks <small>en vivo · se recalcula cada minuto</small></h3>' + ms.map(fila).join('') +
+      (abierto ? '' : '<div class="pulso-cta"><button class="btn" data-pulso-abrir="' + esc(clavePartido(p)) + '">Ver todo el Pulso de este partido · ' + precio + ' monedas</button>' +
+        '<small>Con VIP: todos los partidos, % exacto, cuota justa, tus picks en vivo y avisos.</small></div>') +
+      '<p class="tenue pulso-nota">Medido en 3.424 partidos (goles) y 2.272 (córners): cada tramo dice lo que de verdad salió. No es una garantía.</p></div>';
+  }
+
   function ficha(id) {
     // v461 — el usuario: «a veces le pongo Ver partido y no me lleva a ningún lado»: sólo buscaba en
     // los picks; las tarjetas de «sólo análisis» viven aparte. Ahora busca en las dos.
@@ -1659,12 +1695,18 @@
     h += penalesHtml(v, L, V);           // v503
     h += cancha(v, p);                   // v427/v429 — la cancha en vivo
     setTimeout(vivo365, 50);
+    const vs = conRespaldo(v, p);                                      // v462 — con respaldo si ESPN no las trae
+    const abierto = pulsoAbierto(p);
     h += (otras.length ? '<h3>Nuestras apuestas en este partido</h3>' : '') + otras.map((x) => {
       const pr = progreso(x, v);
+      // v513 — la probabilidad EN VIVO de que el pick quede verde (Pulso; VIP o con el partido abierto)
+      const real = (window.SPX && SPX.yo.desbloqueados[x.id]) || (x.premium ? '' : x.apuesta);
+      const ahora = abierto && window.PULSO && v && v.fase === 'in' && !(pr && /verde|roja/.test(pr.e)) ? PULSO.delPick(real, p, v, vs) : null;
       return '<div class="linea-ap"><span>' + nivel(x).i + ' ' + (window.SPX ? SPX.apuesta(x) : esc(x.apuesta)) + ' · ' + (x.cuota ? Number(x.cuota).toFixed(2) : '') + '</span>' +
-        (pr ? '<span class="progreso ' + pr.e + '">' + esc(pr.t) + '</span>' : '<span class="tenue">' + pct(x.prob) + '</span>') + '</div>';
+        (pr ? '<span class="progreso ' + pr.e + '">' + esc(pr.t) + '</span>' : '<span class="tenue">' + pct(x.prob) + '</span>') +
+        (ahora != null ? '<span class="pulso-pick" title="Probabilidad en vivo (Pulso)">ahora ' + Math.round(100 * ahora) + ' %</span>' : '') + '</div>';
     }).join('');
-    const vs = conRespaldo(v, p);                                      // v462 — con respaldo si ESPN no las trae
+    h += pulsoHtml(p, v, vs, L, V, abierto);
     if (vs && Object.keys(vs.stats || {}).length) {
       h += compensacion(p, v) + '<h3>Estadísticas</h3><div class="leyenda"><span class="l">' + esc(L) + '</span><span class="r">' + esc(V) + '</span></div>' + estadisticas(p, vs);
     } else {
