@@ -74,13 +74,12 @@ jobs:
     timeout-minutes: 330
 
     steps:
-      # Sólo el tablero: la edad está dentro, y traerse el repo entero —con
-      # sus CSV de histórico— para leer una fecha sería tirar un minuto.
+      # v519 — EL REPO ENTERO, NUNCA PARCIAL. Antes se bajaba sólo cuotas_mx.json
+      # (sparse-checkout). En los runners del PC la carpeta se reusa y esa
+      # configuración se quedaba guardada (config.worktree): el siguiente workflow
+      # en ese runner —Sitio web, Precálculo— veía el repo con UN archivo y fallaba
+      # («no requirements.txt»). El repo nuevo pesa poco; test_v519 lo vigila.
       - uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            cuotas_mx.json
-          sparse-checkout-cone-mode: false
 
       - name: Esperar a que toque
         run: |
