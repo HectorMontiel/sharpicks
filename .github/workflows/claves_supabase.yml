@@ -1,0 +1,37 @@
+name: Claves a Supabase
+
+# v521 — copia las claves que la función en la nube `pulso-vivo` necesita (Telegram VIP y Gemini) de los secretos
+# de GitHub a Vault de Supabase (cifradas), sin que nadie las vea: `guardar_secreto` sólo acepta esos tres nombres
+# y sólo con la llave de servicio. Se corre a mano una vez, y otra si alguna clave cambia.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  copiar:
+    runs-on: [self-hosted, sharpicks]
+    timeout-minutes: 5
+    steps:
+      - name: Guardar en Vault
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_VIP: ${{ secrets.TELEGRAM_CHAT_VIP }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          url = os.environ['SUPABASE_URL'].rstrip('/') + '/rest/v1/rpc/guardar_secreto'
+          k = os.environ['SUPABASE_SERVICE_KEY']
+          for n in ('TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_VIP', 'GEMINI_API_KEY'):
+              v = os.environ.get(n) or ''
+              if not v:
+                  print('::warning::falta el secreto', n); continue
+              req = urllib.request.Request(url, method='POST', data=json.dumps({'p_nombre': n, 'p_valor': v}).encode(),
+                  headers={'apikey': k, 'Authorization': 'Bearer ' + k, 'Content-Type': 'application/json'})
+              urllib.request.urlopen(req, timeout=30)
+              print('guardado en Vault:', n)
+          PY
