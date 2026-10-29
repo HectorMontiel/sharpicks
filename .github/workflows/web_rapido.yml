@@ -39,6 +39,10 @@ jobs:
             python3 -c "import json,sys; json.load(open(sys.argv[1], encoding='utf-8'))" "web/datos/$f.json"
           done
           ls -la web/datos
+      # v514 — cada publicación lleva su versión en los .js y .css de index.html: el dominio propio los deja
+      # 4 h en el navegador (Browser Cache TTL de Cloudflare) y un arreglo no llegaba hasta entonces
+      - name: Versionar los archivos de la página
+        run: sed -i -E "s#(src|href)=\"([a-z0-9_.-]+\.(js|css))\"#\1=\"\2?v=${GITHUB_SHA::7}\"#g" web/index.html && grep -c "?v=${GITHUB_SHA::7}" web/index.html
       - name: Quitar los .sql del sitio publicado
         run: rm -f web/*.sql
       - name: Publicar en Cloudflare Pages (sharpicksapp.com)
