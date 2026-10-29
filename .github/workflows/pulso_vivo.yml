@@ -1,0 +1,40 @@
+name: Pulso en vivo (avisos e IA)
+
+# v520 — el Pulso del lado del servidor: cada 2 minutos, los partidos en el 2.º tiempo; aviso al canal VIP de lo
+# de 75 %+ (una vez por partido y mercado), la recomendación «IA + modelo» (Gemini elige sólo entre lo medido) y
+# su liquidación al pitido. Una corrida dura hasta 55 min; sin partidos en juego termina sola en segundos. Lo
+# lanza el despertador del PC cada hora (el cron de GitHub no dispara en el repo privado).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pulso-vivo
+  cancel-in-progress: false
+
+env:
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  vigilar:
+    runs-on: [self-hosted, sharpicks]   # runner propio (PC del usuario): 0 minutos de Actions
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar requests
+        run: |
+          pip install requests
+          python -c "import requests; requests.get" || pip install --force-reinstall --no-cache-dir requests   # v516
+      - name: Vigilar los partidos
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_VIP: ${{ secrets.TELEGRAM_CHAT_VIP }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python pulso_vivo.py --minutos 55

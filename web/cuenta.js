@@ -19,7 +19,7 @@
           auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, lock: async (_n, _t, fn) => await fn() },
         }) : null;
   } catch (e) { sb = null; }          // un navegador que no deja guardar la sesión no rompe la página
-  const yo = { user: null, perfil: null, seguidos: new Set(), desbloqueados: {}, conteo: {}, precios: {}, pulso: {} };
+  const yo = { user: null, perfil: null, seguidos: new Set(), desbloqueados: {}, conteo: {}, precios: {}, pulso: {}, pulsoIA: {}, pulsoHay: {} };
   // v412 — «cuando compré se me cerró sesión»: NO se cerraba. Al volver de
   // Stripe, «Mi cuenta» se abría a los 1,5 s y, si el celular aún no había
   // leído la sesión guardada, enseñaba «Entrar» (y lo mismo la cabecera al
@@ -223,7 +223,7 @@
       // v446 — sus 👍/👎 a la IA (si la tabla aún no existe, no pasa nada)
       tareas.push(sb.from('ia_calificaciones').select('analisis,voto,motivo').then(({ data, error }) => {
         if (!error) { yo.votosIA = {}; (data || []).forEach((x) => { yo.votosIA[x.analisis] = x; }); } }));
-    } else { yo.perfil = null; yo.seguidos = new Set(); yo.desbloqueados = {}; yo.subs = []; yo.vip = {}; yo.pulso = {}; }
+    } else { yo.perfil = null; yo.seguidos = new Set(); yo.desbloqueados = {}; yo.subs = []; yo.vip = {}; yo.pulso = {}; yo.pulsoIA = {}; }
     await Promise.all(tareas.map((t) => aTiempo(t, 6000, null)));
     if (yo.user) await aTiempo(cargarGustos(), 6000, null);
     try { avisoRenovacion(); } catch (e) { /* el aviso nunca tumba la página */ }
@@ -1194,6 +1194,22 @@
       '<span class="calib-n">dijimos <b>' + x.dijimos + ' %</b> · salió <b>' + x.salio + ' %</b><small>' + x.n + ' picks</small></span></div>').join('') + '</div>' +
       '<p class="tenue chico">' + n + ' picks terminados desde el ' + esc(String(desde || '').slice(0, 10)) + ', rojas incluidas. La rayita es lo que dijimos; la barra, lo que salió.</p>';
   }
+  // v520 — PULSO · IA + MODELO: qué partidos tienen recomendación (todos lo ven, sin decir cuál) y la recomendación
+  // misma (la base sólo la da con VIP o con el Pulso del partido abierto). La escribe pulso_vivo.py cada 2 min.
+  async function pulsoIA() {
+    if (!sb || document.hidden) return;
+    const desde = new Date(Date.now() - 864e5).toISOString().slice(0, 10), antes = JSON.stringify([yo.pulsoIA, yo.pulsoHay]);
+    const h = await aTiempo(sb.rpc('pulso_ia_hay', { p_desde: desde }), 6000, { data: null });
+    if (h && h.data) { yo.pulsoHay = {}; h.data.forEach((x) => { if (!yo.pulsoHay[x.clave]) yo.pulsoHay[x.clave] = x; }); }
+    if (yo.user) {
+      const r = await aTiempo(sb.from('pulso_ia').select('clave,marcador,minuto,mercado,prob,motivo,acierto,creado').gte('fecha', desde).order('creado', { ascending: false }).limit(300), 6000, { data: null });
+      if (r && r.data) { yo.pulsoIA = {}; r.data.forEach((x) => { if (!yo.pulsoIA[x.clave]) yo.pulsoIA[x.clave] = x; }); }
+    }
+    if (JSON.stringify([yo.pulsoIA, yo.pulsoHay]) !== antes && window.SP && window.SP.pulsoIA) window.SP.pulsoIA();
+  }
+  setInterval(pulsoIA, 60 * 1000);
+  setTimeout(pulsoIA, 3000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) pulsoIA(); });
   // v513 — el Pulso en vivo, medido en público: por mercado y por tramo de probabilidad, qué dijo en el 60' y el
   // 70' y qué salió (lo apunta `pulso_historial.py` con la misma cuenta que la página; nada se retoca).
   async function pulsoHist() {
@@ -1201,6 +1217,7 @@
     const desde = new Date(Date.now() - 60 * 864e5).toISOString().slice(0, 10);
     const { data, error } = await aTiempo(todasSb((a, b) => sb.from('pulso_historial').select('mercado,prob,acierto,fecha').gte('fecha', desde).order('fecha').range(a, b)), 8000, { data: null, error: true });
     if (error || !data || !data.length) { caja.innerHTML = '<p class="tenue">El Pulso empieza a apuntar sus lecturas hoy: aquí verás lo que dijo y lo que salió.</p>'; return; }
+    const t = await aTiempo(sb.rpc('pulso_ia_tasa'), 6000, { data: null }), iaT = t && t.data && t.data[0] ? { n: Number(t.data[0].n), aciertos: Number(t.data[0].aciertos) } : null;
     const NOM = { gol: 'Cae otro gol', gol2: '2 goles más', gol_l: 'Marca el local', gol_v: 'Marca el visitante', cor1: '1 córner más', cor2: '2 córners más', cor3: '3 córners más' };
     const filas = Object.keys(NOM).map((k) => {
       const xs = data.filter((x) => x.mercado === k && x.acierto != null); if (!xs.length) return '';
@@ -1211,6 +1228,7 @@
     const altos = data.filter((x) => Number(x.prob) >= 0.7 && x.acierto != null), ok = altos.filter((x) => x.acierto).length;
     caja.innerHTML = '<div class="calib">' + filas + '</div>' +
       (altos.length ? '<p class="chico">Cuando el Pulso dijo <b>70 % o más</b>: <b>' + ok + ' ✅ ' + (altos.length - ok) + ' ❌</b> · ' + Math.round(100 * ok / altos.length) + ' %</p>' : '') +
+      (iaT && iaT.n > 0 ? '<p class="chico">IA + modelo (en prueba): <b>' + iaT.aciertos + ' ✅ ' + (iaT.n - iaT.aciertos) + ' ❌</b> · ' + Math.round(100 * iaT.aciertos / iaT.n) + ' %</p>' : '') +
       '<p class="tenue chico">Lecturas del 60\' y el 70\' de cada partido desde el ' + esc(data[0].fecha) + ', fallos incluidos. La rayita es lo que dijo el Pulso; la barra, lo que salió.</p>';
   }
   async function historial() {

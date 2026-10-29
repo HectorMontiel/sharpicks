@@ -1413,7 +1413,8 @@
     return '<div class="pulso-cand"><div class="pc-tit">' + ico('target') + ' Candidatos Pulso<small>lo más probable ahora</small></div>' + c.slice(0, 4).map(({ p, v, m }) => {
       const [L, V] = lados(p), abierto = pulsoAbierto(p), t = m.tramo;
       return '<button class="pc-fila" data-ficha="' + esc(p.id) + '"><span class="pc-min">' + esc(String(v.reloj || '')) + '</span>' +
-        '<span class="pc-par">' + esc(L) + ' ' + v.g[0] + '-' + v.g[1] + ' ' + esc(V) + '<small>' + esc(PULSO.nombre(m.k, L, V)) + ' · salió ' + Math.round(100 * t.fue) + '%</small></span>' +
+        '<span class="pc-par">' + esc(L) + ' ' + v.g[0] + '-' + v.g[1] + ' ' + esc(V) + '<small>' + esc(PULSO.nombre(m.k, L, V)) + ' · salió ' + Math.round(100 * t.fue) + '%' +
+        (iaPulso(p, v).hay || iaPulso(p, v).rec ? ' · <span class="pc-ia">' + ico('sparkles', 'acento') + ' IA</span>' : '') + '</small></span>' +
         '<span class="pc-p">' + (abierto ? Math.round(100 * m.p) + '%' : Math.round(100 * t.desde) + '-' + Math.round(100 * t.hasta) + '%') + '</span></button>';
     }).join('') + '</div>';
   }
@@ -1704,6 +1705,12 @@
   }
   // v513 — PULSO SHARPICKS en «Ver partido». Gratis: «otro gol» y «2 córners más» en su tramo medido; VIP
   // (o el partido abierto con monedas): todos los mercados, % exacto, cuota justa y tus picks en vivo.
+  // v520 — la recomendación «IA + modelo» de este partido, sólo si es del marcador de ahora (tras un gol, se espera la nueva)
+  function iaPulso(p, v) {
+    const yo = (window.SPX && SPX.yo) || {}, c = clavePartido(p), marc = v && v.g ? v.g[0] + '-' + v.g[1] : '';
+    const r = (yo.pulsoIA || {})[c], h = (yo.pulsoHay || {})[c];
+    return { rec: r && r.marcador === marc && r.acierto == null ? r : null, hay: !!(h && h.marcador === marc) };
+  }
   function pulsoAbierto(p) {
     return !!(window.SPX && (SPX.esVip() || (SPX.yo.pulso || {})[clavePartido(p)]));
   }
@@ -1717,7 +1724,7 @@
     // v517 — compacto: burbujas en rejilla; la mejor (la más probable que aún paga algo) arriba y destacada
     const burbuja = (m) => {
       const t = m.tramo, nom = esc(PULSO.nombre(m.k, L, V));
-      if (!abierto && !m.gratis) return '<div class="pt bloq"><span class="pt-n">' + nom + '</span><span class="pt-s">🔒 VIP</span></div>';
+      if (!abierto && !m.gratis) return '<div class="pt bloq"><span class="pt-n">' + nom + '</span><span class="pt-s">' + ico('lock', 'candado') + ' VIP</span></div>';
       const pr = abierto ? Math.round(100 * m.p) + '%' : (t ? Math.round(100 * t.desde) + '-' + Math.round(100 * t.hasta) + '%' : '');
       return '<div class="pt ' + (m.p >= 0.7 ? 'alta' : m.p >= 0.6 ? 'media' : 'baja') + '" title="' + (t ? 'Salió ' + Math.round(100 * t.fue) + ' % en ' + t.n.toLocaleString('es-MX') + ' casos' : '') + '">' +
         '<span class="pt-n">' + nom + '</span><span class="pt-p">' + pr + '</span>' +
@@ -1727,7 +1734,12 @@
       '<span class="pulso-top-p">' + (abierto ? Math.round(100 * top.p) + '%' : Math.round(100 * top.tramo.desde) + '-' + Math.round(100 * top.tramo.hasta) + '%') + '</span>' +
       '<small>' + (abierto ? 'si tu casa paga más de ' + top.justa.toFixed(2) + ', tiene valor' : 'salió ' + Math.round(100 * top.tramo.fue) + '% en el historial') + '</small></div>' : '';
     const precio = Number((window.SPX && SPX.yo.precios.precio_pulso) || 2);
-    return '<div class="pulso"><div class="pulso-cab"><span>' + ico('activity', 'acento') + ' Pulso SharPicks</span><small>en vivo</small></div>' + dest +
+    // v520 — «IA + MODELO»: Gemini elige la mejor jugada SÓLO entre estos mercados (pulso_vivo.py, en prueba y medida)
+    const ia = iaPulso(p, v);
+    const iaH = ia.rec ? '<div class="pulso-ia"><span class="pulso-ia-et">' + ico('sparkles', 'acento') + ' IA + modelo · en prueba</span><b>' + esc(PULSO.nombre(ia.rec.mercado, L, V)) + '</b>' +
+        '<span class="pulso-top-p">' + Math.round(100 * Number(ia.rec.prob)) + '%</span>' + (ia.rec.motivo ? '<small>' + esc(ia.rec.motivo) + '</small>' : '') + '</div>'
+      : ia.hay && !abierto ? '<div class="pulso-ia bloq"><span class="pulso-ia-et">' + ico('sparkles', 'acento') + ' IA + modelo · en prueba</span><b>Ya tiene su recomendación</b><small>' + ico('lock', 'candado') + ' VIP o abre el Pulso de este partido</small></div>' : '';
+    return '<div class="pulso"><div class="pulso-cab"><span>' + ico('activity', 'acento') + ' Pulso SharPicks</span><small>en vivo</small></div>' + iaH + dest +
       '<div class="pulso-grid">' + ms.filter((m) => m !== top).map(burbuja).join('') + '</div>' +
       (abierto ? '' : '<button class="btn pulso-abrir" data-pulso-abrir="' + esc(clavePartido(p)) + '">' + ico('lock-open', 'candado') + ' Todo el Pulso · ' + precio + ' monedas</button>') + '</div>';
   }
@@ -2235,7 +2247,7 @@
       (n === 1 ? ' partido hoy' : ' partidos hoy') + ', pero ninguno llegó a nuestro mínimo de probabilidad. Preferimos no darte un pick flojo.</div>').join(''));
   }
 
-  window.SP = { nivel, pintar, estado, estadoVisto: (p) => estadoVisto(p), realDe: (p) => realDe(p), ico, icoDep, pedirResumen: (p) => pedirResumen(p) };   // v452: «Mis combinadas» usa lo mismo
+  window.SP = { pulsoIA: () => { if (estado.vista === 'vivo') pintar(); refrescarFicha(); }, nivel, pintar, estado, estadoVisto: (p) => estadoVisto(p), realDe: (p) => realDe(p), ico, icoDep, pedirResumen: (p) => pedirResumen(p) };   // v452: «Mis combinadas» usa lo mismo
 
   // v440 — DESLIZAR PARA QUITAR (sólo en «Mis picks», con el dedo): la fila se
   // corre a la izquierda y deja ver «Quitar»; si el gesto es vertical, es scroll.
