@@ -305,7 +305,10 @@
     const eventos = ((d.keyEvents && d.keyEvents.length ? d.keyEvents : d.scoringPlays) || []).map((e) => {
       const tipo = ((e.type || {}).text) || '';
       const ico = /goal|penalty - scored/i.test(tipo) || e.scoringPlay ? '⚽' : /yellow/i.test(tipo) ? '🟨' : /red card/i.test(tipo) ? '🟥' : /substitution/i.test(tipo) ? '' : '•';
-      const texto = String(e.text || e.shortText || '').replace(/\s+(Goal|Own Goal|Penalty - Scored|Yellow Card|Red Card|Substitution)[^]*$/i, '').replace(/^(Goal|Yellow Card|Red Card)!?\s*/i, '');
+      let texto = String(e.text || e.shortText || '').replace(/\s+(Goal|Own Goal|Penalty - Scored|Yellow Card|Red Card|Substitution)[^]*$/i, '').replace(/^(Goal|Yellow Card|Red Card)!?\s*/i, '');
+      // v518 — «Xerez 1, Cadiz 3. Borja Vázquez (Cadiz) left footed shot…»: sólo «Borja Vázquez (Cadiz)»
+      const quien = ico === '⚽' && texto.match(/\d+\.\s*([^.]+?\([^)]+\))/);
+      if (quien) texto = quien[1];
       return { min: ((e.clock || {}).displayValue) || '', ico, texto,
         lado: String((e.team || {}).id) === String((nos1.team || {}).id) ? 0 : 1, gol: ico === '⚽' };
     }).filter((e) => e.texto && e.ico);
@@ -351,7 +354,8 @@
       if ((ahora >= desde && ahora <= hasta && !yaFin) || atrasado) ids[p.espn] = p;
     }
     const entradas = Object.entries(ids);
-    if (estado.vivoCorriendo || !entradas.length) return;
+    // v518 — un candado de una vuelta que el iPhone congeló al salir de la app no frena la de al volver
+    if ((estado.vivoCorriendo && Date.now() - (estado.vivoDesde || 0) < 10000) || !entradas.length) return;
     // v465 — el usuario: «se traba y se calienta el teléfono». Se pedían hasta 40 resúmenes de ESPN
     // (cientos de KB cada uno) cada 20 s, aunque la app estuviera en segundo plano. Ahora: nada en
     // segundo plano; los partidos ABIERTOS siempre; de los demás, 8 por vuelta (se turnan).
@@ -365,7 +369,7 @@
     const cursor = resto.length ? estado.vivoCursor % resto.length : 0;
     const lista = abiertos.concat(Array.from({ length: n }, (_, i) => resto[(cursor + i) % resto.length]));
     estado.vivoCursor = resto.length ? (cursor + n) % resto.length : 0;
-    estado.vivoCorriendo = true;
+    estado.vivoCorriendo = true; estado.vivoDesde = Date.now();
     let cambio = false;
     try {
       for (let i = 0; i < lista.length; i += 8) {
@@ -579,6 +583,17 @@
   function statsVacias(v) {
     const vals = Object.values(v.stats || {}).flatMap((s) => (s.v || []).map((x) => num(x)));
     return !vals.length || vals.every((x) => x === 0);
+  }
+  // v518 — el usuario: «así no tengan pick tienen que tener bien sus estadísticas». ESPN a veces manda
+  // sólo faltas y tarjetas (Copa del Rey: tiros y córners en 0 con 1-3 en el marcador al 90'). Eso es
+  // no tenerlas: se toma el respaldo entero (365Scores / FotMob) o se avisa, nunca barras en cero.
+  function statsHueco(v, p) {
+    if (statsVacias(v)) return true;
+    if (!p || p.deporte !== 'Fútbol') return false;
+    const s = v.stats || {};
+    const ceros = ['totalShots', 'shotsOnTarget', 'wonCorners'].every((k) => !s[k] || (s[k].v || []).every((x) => !num(x)));
+    const g = v.g || [0, 0], min = parseInt(String(v.reloj || ''), 10) || 0;
+    return ceros && (g[0] + g[1] > 0 || min >= 30 || v.fase === 'post');
   }
   // v429 — LA CANCHA, «LO MEJOR DE CADA FUENTE». El usuario: «junta lo mejor
   // de cada una… que se vea como el partido; simple pero moderno e innovador».
@@ -1141,7 +1156,7 @@
     return null;
   }
   const conRespaldo = (v, p) => {
-    if (!v || (v.stats && Object.keys(v.stats).length && !statsVacias(v))) return v;
+    if (!v || (v.stats && Object.keys(v.stats).length && !statsHueco(v, p))) return v;
     const r = statsRespaldo(p);
     return r ? Object.assign({}, v, { stats: r }) : v;
   };
@@ -1196,7 +1211,7 @@
   function miniStats(v, p) {
     v = conRespaldo(v, p);
     if (!v || !v.stats) return '';
-    if (v.fase === 'in' && statsVacias(v)) return AVISO_SIN_STATS;
+    if ((v.fase === 'in' || v.fase === 'post') && statsHueco(v, p)) return AVISO_SIN_STATS;
     const q = [['totalShots', 'Tiros'], ['shotsOnTarget', 'A puerta'], ['wonCorners', 'Córners']].filter(([k]) => v.stats[k]);
     if (!q.length && !v.stats.possessionPct) return '';
     return '<div class="mini" style="' + varsColor(v) + '">' + posesion(v) + q.map(([k, n]) => filaStat(n, v.stats[k].v[0], v.stats[k].v[1], true)).join('') + '</div>';
@@ -1207,7 +1222,7 @@
     ['Disciplina', [['foulsCommitted', 'Faltas'], ['yellowCards', 'Amarillas'], ['redCards', 'Rojas']]],
   ];
   function estadisticas(p, v) {
-    if (v.fase === 'in' && statsVacias(v)) return AVISO_SIN_STATS;
+    if ((v.fase === 'in' || v.fase === 'post') && statsHueco(v, p)) return AVISO_SIN_STATS;
     let h = posesion(v);
     if (p.deporte === 'Fútbol') {
       for (const [tit, filas] of SECCIONES_FUT) {
@@ -2341,6 +2356,18 @@
   cargar();
   setInterval(cargar, 3 * 60 * 1000);   // picks nuevos y verdes/rojas oficiales
   setInterval(vivo, 20 * 1000);         // marcador y estadísticas (v436: cada 20 s)
+  // v518 — el usuario: «cuando te sales un rato y vuelves, tarda en actualizarse el resultado y el
+  // minuto». En segundo plano no se pide nada (v465) y el iPhone congela los relojes: al volver se
+  // esperaba al siguiente turno (hasta 20 s, o más). Ahora se pide en cuanto la app vuelve a verse.
+  let _ocultaDesde = 0;
+  const alVolver = () => {
+    const fuera = _ocultaDesde ? Date.now() - _ocultaDesde : 0;
+    _ocultaDesde = 0;
+    vivo(); vivo365(); vivoFs();
+    if (fuera > 3 * 60 * 1000) cargar();                 // y los picks, si fue más de un rato
+  };
+  document.addEventListener('visibilitychange', () => { if (document.hidden) _ocultaDesde = Date.now(); else alVolver(); });
+  window.addEventListener('pageshow', (e) => { if (e.persisted) alVolver(); });
   setInterval(vivoFs, 45 * 1000);       // v424 — y lo que ESPN no cubre
   setInterval(vivo365, 20 * 1000);      // v429 — la alineación y los tiros de las canchas a la vista
   setInterval(minutos365, 60 * 1000);   // v493 — el minuto de lo que sólo da Flashscore («1.ª parte»)

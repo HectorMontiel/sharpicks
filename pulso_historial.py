@@ -20,6 +20,7 @@ logger = logging.getLogger('pulso_historial')
 AQUI = os.path.dirname(os.path.abspath(__file__))
 MODELO = os.path.join(AQUI, 'web', 'pulso_modelo.json')
 TOPE = {'gol': 0.85, 'gol2': 0.5, 'gol_l': 0.75, 'gol_v': 0.65}
+TOPE_SF = {'gol': 0.8, 'gol2': 0.45, 'gol_l': 0.7}      # v518 — sin fuerza previa (partidos sin pick), lo medido
 MINUTOS = (60, 70)
 HASTA = {'gol': 80, 'gol2': 80, 'gol_l': 80, 'gol_v': 80, 'cor1': 85, 'cor2': 85, 'cor3': 85}   # lo medido
 DESDE = {'gol': 55, 'gol2': 55, 'gol_l': 55, 'gol_v': 55, 'cor1': 46, 'cor2': 46, 'cor3': 46}
@@ -38,7 +39,8 @@ def _interp(x: float, xs: List[float], ys: List[float]) -> float:
 
 
 def prob(M: Dict, k: str, f: Dict) -> Optional[float]:
-    m = M['modelos'].get(k)
+    kk = k + '_sf' if f.get('lh') is None and k in TOPE_SF and (k + '_sf') in M['modelos'] else k
+    m = M['modelos'].get(kk)
     if not m or f.get('t', 0) > HASTA.get(k, 90) or f.get('t', 0) < DESDE.get(k, 46):
         return None
     z = m['inter']
@@ -46,7 +48,7 @@ def prob(M: Dict, k: str, f: Dict) -> Optional[float]:
         if f.get(c) is None:
             return None
         z += b * f[c]
-    return min(_interp(1 / (1 + math.exp(-z)), m['iso_x'], m['iso_y']), TOPE.get(k, 0.97))
+    return min(_interp(1 / (1 + math.exp(-z)), m['iso_x'], m['iso_y']), (TOPE_SF if kk != k else TOPE).get(k, 0.97))
 
 
 def rasgos(M: Dict, ctx: Dict, t: float, gh: int, ga: int, c: Optional[int]) -> Dict:
@@ -54,7 +56,8 @@ def rasgos(M: Dict, ctx: Dict, t: float, gh: int, ga: int, c: Optional[int]) -> 
     G, K = M['G'], M['K']
     enc = lambda m, n: ((float(m or G)) * float(n or 0) + G * K) / (float(n or 0) + K)
     rem = 94 - t
-    f = {'t': t, 'tot': gh + ga, 'dif': abs(gh - ga), 'emp': int(gh == ga), 'sig': gh - ga}
+    f = {'t': t, 'tot': gh + ga, 'dif': abs(gh - ga), 'emp': int(gh == ga), 'sig': gh - ga,
+         'lrem': math.log(max(rem / 94, 0.01))}
     sl, sv = (ctx or {}).get('sl'), (ctx or {}).get('sv')
     if sl and sv:
         lh = (enc(sl.get('gf'), sl.get('n')) + enc(sv.get('gc'), sv.get('n'))) / 2 * rem / 94

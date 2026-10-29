@@ -12401,6 +12401,12 @@ def test_el_pronostico_previo_se_recupera_siempre():
     # se prueban varios partidos reales del precalculo: los que Playdoit
     # cotiza (vias 1-2) y los que no (via 3)
     con_algo, probados = 0, 0
+    # v517 — se prueba la LÓGICA de recuperar, no la edad de la copia local: con
+    # el fichero de ayer (el reentreno que lo renueva corre una vez al día) esto
+    # daba «0 de 25» aunque el código estuviera bien. La frescura en producción
+    # la vigila frescura_datos.py; aquí el fichero se da por vigente.
+    _horas_antes = pdia.HORAS_VALIDO
+    pdia.HORAS_VALIDO = 10 ** 6
     for k, reg in list(registros.items())[:60]:
         trozos = str(k).split('|')
         if len(trozos) < 3:
@@ -12416,6 +12422,7 @@ def test_el_pronostico_previo_se_recupera_siempre():
             con_algo += 1
         if probados >= 25:
             break
+    pdia.HORAS_VALIDO = _horas_antes
     check(probados >= 10, f"se probaron partidos de verdad ({probados})")
     check(con_algo == probados,
           f"TODOS los partidos evaluados tienen pronostico recuperable "

@@ -7,8 +7,13 @@
 (function () {
   'use strict';
   let M = null;
-  fetch('pulso_modelo.json?v=1').then((r) => (r.ok ? r.json() : null)).then((j) => { M = j; }).catch(() => {});
+  fetch('pulso_modelo.json?v=518').then((r) => (r.ok ? r.json() : null)).then((j) => { M = j; }).catch(() => {});
   const TOPE = { gol: 0.85, gol2: 0.5, gol_l: 0.75, gol_v: 0.65 };   // arriba de esto lo medido no sostiene la cifra
+  // v518 — partidos SIN fuerza previa (sin pick: copas, ligas chicas): su propio modelo, sólo minuto y marcador,
+  // medido aparte (D:/Claude/mediciones/pulso_sin_fuerza.py: gana a la tasa con p5 > 0 y cumple hasta su tope).
+  // El visitante sin fuerza no: arriba prometía de más (dice 56 %, salió 44 %). Córners: nunca usaron la fuerza.
+  const TOPE_SF = { gol: 0.8, gol2: 0.45, gol_l: 0.7 };
+  const clave = (k, f) => (f.lh == null && TOPE_SF[k] && M && M.modelos[k + '_sf'] ? k + '_sf' : k);
   const NOMBRE = {
     gol: 'Cae otro gol', gol2: 'Caen 2 goles más', gol_l: 'Marca %L', gol_v: 'Marca %V',
     cor1: '1 córner más', cor2: '2 córners más', cor3: '3 córners más',
@@ -28,11 +33,11 @@
     return ys[i - 1] + t * (ys[i] - ys[i - 1]);
   }
   function prob(k, f) {
-    const m = M && M.modelos[k]; if (!m || f.t > (HASTA[k] || 90) || f.t < (DESDE[k] || 46)) return null;
+    const kk = clave(k, f), m = M && M.modelos[kk]; if (!m || f.t > (HASTA[k] || 90) || f.t < (DESDE[k] || 46)) return null;
     let z = m.inter;
     for (let i = 0; i < m.cols.length; i++) { const v = f[m.cols[i]]; if (v == null || isNaN(v)) return null; z += m.coef[i] * v; }
     const p = interp(1 / (1 + Math.exp(-z)), m.iso_x, m.iso_y);
-    return Math.min(p, TOPE[k] || 0.97);
+    return Math.min(p, (kk !== k ? TOPE_SF[k] : TOPE[k]) || 0.97);
   }
   function tramo(k, p) {
     const m = M && M.modelos[k]; if (!m || p == null) return null;
@@ -58,7 +63,7 @@
     const ctx = p.ctx || {}, sl = ctx.sl, sv = ctx.sv;
     const enc = (m, n) => ((Number(m) || M.G) * (Number(n) || 0) + M.G * M.K) / ((Number(n) || 0) + M.K);
     const rem = 94 - t, gh = v.g[0], ga = v.g[1];
-    const f = { t, tot: gh + ga, dif: Math.abs(gh - ga), emp: gh === ga ? 1 : 0, sig: gh - ga };
+    const f = { t, tot: gh + ga, dif: Math.abs(gh - ga), emp: gh === ga ? 1 : 0, sig: gh - ga, lrem: Math.log(Math.max(rem / 94, 0.01)) };
     if (sl && sv) {
       const lh = (enc(sl.gf, sl.n) + enc(sv.gc, sv.n)) / 2 * rem / 94, la = (enc(sv.gf, sv.n) + enc(sl.gc, sl.n)) / 2 * rem / 94;
       f.lh = Math.log(Math.max(lh, 0.03)); f.la = Math.log(Math.max(la, 0.03)); f.ltot = Math.log(Math.max(lh + la, 0.05));
@@ -77,7 +82,7 @@
       if (f.t > HASTA[k]) continue;
       const pr = prob(k, f); if (pr == null) continue;
       if (k === 'gol2' && pr < 0.15) continue;
-      out.push({ k, p: pr, tramo: tramo(k, pr), justa: 1 / pr, gratis: !!GRATIS[k] });
+      out.push({ k, p: pr, tramo: tramo(clave(k, f), pr), sinFuerza: clave(k, f) !== k, justa: 1 / pr, gratis: !!GRATIS[k] });
     }
     return out;
   }

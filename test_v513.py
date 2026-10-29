@@ -25,7 +25,8 @@ def leer(*r):
 
 def probar():
     M = json.loads(leer('web', 'pulso_modelo.json'))
-    check(set(M['modelos']) == {'gol', 'gol2', 'gol_l', 'gol_v', 'cor1', 'cor2', 'cor3'}, 'v513: los 7 mercados medidos')
+    check(set(M['modelos']) == {'gol', 'gol2', 'gol_l', 'gol_v', 'cor1', 'cor2', 'cor3', 'gol_sf', 'gol2_sf', 'gol_l_sf'},
+          'v513: los 7 mercados medidos (v518: y los 3 de goles sin fuerza previa)')
     for k, m in M['modelos'].items():
         check(len(m['coef']) == len(m['cols']) and m['tabla'] and m['n'] > 15000, 'v513: %s con coeficientes y su tabla (%d estados)' % (k, m['n']))
     ctx = {'sl': {'n': 10, 'gf': 1.6, 'gc': 1.1}, 'sv': {'n': 10, 'gf': 1.2, 'gc': 1.4}}
@@ -35,6 +36,11 @@ def probar():
     c = ph.prob(M, 'cor2', ph.rasgos(M, ctx, 60.0, 0, 0, 5))
     check(0.7 <= c <= 0.95, 'v513: 2 córners más desde el 60 con 5 hasta ahora (%.2f)' % c)
     check(ph.prob(M, 'gol', ph.rasgos(M, ctx, 55.0, 0, 0, 3)) <= ph.TOPE['gol'], 'v513: el tope de lo que lo medido no sostiene')
+    sf = ph.rasgos(M, {}, 60.0, 0, 0, 5)
+    check(0.5 <= ph.prob(M, 'gol', sf) <= ph.TOPE_SF['gol'] and ph.prob(M, 'gol_v', sf) is None and ph.prob(M, 'cor2', sf) is not None,
+          'v518: sin pick (sin fuerza previa) hay Pulso de goles con su tope y córners; el visitante no (no pasó)')
+    check("const TOPE_SF = { gol: 0.8, gol2: 0.45, gol_l: 0.7 };" in leer('web', 'pulso.js') and ph.TOPE_SF == {'gol': 0.8, 'gol2': 0.45, 'gol_l': 0.7},
+          'v518: los mismos topes sin fuerza en la página y en el historial')
     check(ph.prob(M, 'gol', ph.rasgos(M, ctx, 50.0, 0, 0, 3)) is None and ph.prob(M, 'cor2', ph.rasgos(M, ctx, 50.0, 0, 0, 3)) is not None,
           "v517: goles desde el 55' y córners desde el 46' (lo medido)")
     js = leer('web', 'pulso.js')
@@ -62,6 +68,10 @@ def probar():
     check("candidatosPulso(grupos)" in app and "ico('target') + ' Candidatos Pulso" in app, 'v517: Candidatos Pulso arriba de En vivo')
     check('📈' not in app.split('const EMOJI_ICO')[1].split('};')[1] and 'id="i-activity"' in leer('web', 'iconos.svg'),
           'v517: el Pulso con su ícono del sprite, sin emojis')
+    check("document.addEventListener('visibilitychange'" in app and 'vivo(); vivo365(); vivoFs();' in app and 'estado.vivoDesde' in app,
+          'v518: al volver a la app el marcador y el minuto se piden al instante')
+    check('function statsHueco(v, p)' in app and "!statsHueco(v, p)" in app and 'const quien = ' in app,
+          'v518: ESPN con sólo faltas y tarjetas cuenta como sin estadísticas (respaldo); el gol dice sólo quién')
     cu = leer('web', 'cuenta.js')
     check("sb.rpc('desbloquear_pulso'" in cu and "from('pulso_desbloqueos')" in cu and "from('pulso_historial')" in cu,
           'v513: abrir con monedas y el historial público')

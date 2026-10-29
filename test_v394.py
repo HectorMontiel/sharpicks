@@ -65,8 +65,8 @@ def probar_pagina():
     app = open(os.path.join('web', 'app.js'), encoding='utf-8').read()
     check("estado.fase === 'todos' ? faseDe(g) !== 'terminado' : faseDe(g) === estado.fase" in app,
           'los destacados siguen el filtro Próximos / Vivo / Final')
-    check('AVISO_SIN_STATS' in app and "v.fase === 'in' && statsVacias(v)" in app,
-          'sin estadísticas de ESPN se avisa en vez de pintar ceros')
+    check('AVISO_SIN_STATS' in app and "(v.fase === 'in' || v.fase === 'post') && statsHueco(v, p)" in app,
+          'sin estadísticas de ESPN se avisa en vez de pintar ceros (v518: también si sólo trae faltas y tarjetas)')
     check('Lo que metería la IA' in app and ("filaStat('Goles esperados'" in app or "' esperados', a.goles_local_esperados" in app) and 'Lo que usó' not in app,
           'el análisis IA trae qué metería y goles por equipo (v468: sin repetir los promedios de «Antes del partido»)')
     check(os.path.exists(os.path.join('supabase', 'v394_ia_que_meter.sql')), 'el SQL de las columnas nuevas está guardado')
