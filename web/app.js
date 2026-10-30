@@ -2011,8 +2011,9 @@
     const marc = v && v.fase !== 'pre' ? v.g[0] + ' - ' + v.g[1] : gm ? gm[1] + ' - ' + gm[2] : '';
     const ev = estadoVisto(p, v);
     const res = ev === 'verde' ? '<span class="ok res">' + OK() + ' Verde</span>' : ev === 'roja' ? '<span class="ko res">' + MAL() + ' Roja</span>' : ev === 'nula' ? '<span class="res">Nula</span>' : '';
-    return '<button class="dest' + (res ? ' dest-fin' : '') + '" data-abrir="' + esc(clavePartido(p)) + '" data-ir="1">' +
-      '<div class="fila">' + (etiqueta || '<span class="et nivel diamante">💎 Diamante</span>') + relojDia(ps) + '</div>' +
+    const ia = iaSegura(p);                                                       // v531 — el morado (VIP)
+    return '<button class="dest' + (res ? ' dest-fin' : '') + (ia ? ' ia-' + ia : '') + '" data-abrir="' + esc(clavePartido(p)) + '" data-ir="1">' +
+      '<div class="fila">' + (etiqueta || '<span class="et nivel diamante">💎 Diamante</span>') + relojDia(ps) + '</div>' + selloIA(ia) +
       '<div class="dest-eqs">' + escudo(p.logo_h, L, p.deporte) + '<span>' + esc(marc || 'vs') + '</span>' + escudo(p.logo_a, V, p.deporte) + '</div>' +
       '<div class="dest-nom">' + esc(L) + ' – ' + esc(V) + '</div>' +
       '<div class="dest-ap">' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</div>' +
@@ -2069,6 +2070,22 @@
   // La probabilidad de la combinada es el producto (partidos distintos): baja con cada pata y se dice.
   estado.arm = { niv: new Set(['Diamante', 'Platino']), n: 3, res: null };
   const normTxt = (t) => String(t || '').toLowerCase().replace(/[^a-z0-9áéíóúñü.]+/g, ' ').trim();
+  // v531 — EL MORADO DE LA IA (sólo VIP). El usuario: «que se iluminen de morado los que la IA vea con más probabilidad
+  // de cumplirse… que con la IA le demos mayor probabilidad a la predicción del modelo». Medido (1.979 picks, 17-30 oct;
+  // D:/Claude/mediciones/ia_confianza_morado.py): la «confianza» de la IA (1-5 por partido) SÍ separa en 💎/🔷/🥇:
+  //   confianza 5 → 91,1 % vs 81,9 % (mitades +12,6 / +7,1, p5 +5,1); confianza ≥ 4 → 85,6 % vs 78,6 % (p5 +2,5).
+  // En 🥈 Plata no separa (80 % con o sin): ahí no se marca. Su «a favor» tampoco separa (lo dice casi siempre).
+  // 2 = la IA le da mayor probabilidad (morado fuerte), 1 = a favor (morado claro), 0 = nada.
+  function iaSegura(p) {
+    if (!window.SPX || !SPX.esVip || !SPX.esVip() || !p || p.tipo === 'error') return 0;
+    if (!['diamante', 'platino', 'oro'].includes(nivel(p).c)) return 0;
+    const a = (SPX.yo.ia || {})[p.partido], c = a ? Number(a.confianza) : 0;
+    return c >= 5 ? 2 : c >= 4 ? 1 : 0;
+  }
+  // lo que de verdad salió en cada tono (💎/🔷/🥇, 17-30 oct): con eso «la IA le da más probabilidad» al modelo, medido
+  const IA_SALIO = { 2: 0.91, 1: 0.86 };
+  const selloIA = (n) => (n ? '<span class="ia-sello s' + n + '">' + ico('sparkles') + (n === 2 ? ' IA: mayor probabilidad' : ' IA: a favor') +
+    ' · salió ' + Math.round(100 * IA_SALIO[n]) + ' %</span>' : '');
   function veredictoIA(p) {
     const a = window.SPX && SPX.yo.ia ? SPX.yo.ia[p.partido] : null;
     if (!a || !(a.veredictos || []).length) return null;
@@ -2094,6 +2111,7 @@
       if (patas.length >= estado.arm.n) break;
       const v = veredictoIA(p);
       if (v === 'contra') { fuera.push(p); continue; }
+      if (estado.arm.soloIA && !iaSegura(p)) continue;                      // v531 — «sólo las que la IA ve seguras»
       patas.push({ p, v });
     }
     return { patas, fuera, disponibles: cands.length };
@@ -2117,13 +2135,18 @@
         const vip = window.SPX && SPX.esVip && SPX.esVip();
         h += '<div class="arm-res">' + r.patas.map(({ p, v }) => {
           const [L, V] = lados(p), nv = nivel(p);
-          return '<div class="arm-pata"><span class="arm-niv">' + nv.i + '</span><span class="arm-txt"><b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b><small>' +
+          const ia = iaSegura(p);              // v531 — sin morado no se pone nada («“más difícil” les quita credibilidad»)
+          return '<div class="arm-pata' + (ia ? ' ia-' + ia : '') + '"><span class="arm-niv">' + nv.i + '</span><span class="arm-txt"><b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b><small>' +
             esc(L) + ' vs ' + esc(V) + ' · ' + esc(horaCdmx(aFecha(p.inicio))) + '</small></span><span class="arm-num"><b>' + Number(p.cuota).toFixed(2) + '</b><small>' + pct(p.prob) + '</small></span>' +
-            '<span class="arm-ia ' + (v || 'nada') + '">' + (v === 'favor' ? OK() + ' IA a favor' : vip ? 'IA sin opinión' : 'IA: VIP') + '</span></div>';
+            (ia ? '<span class="arm-ia ia-' + ia + '">' + ico('sparkles') + (ia === 2 ? ' Mayor probabilidad' : ' A favor') + '</span>' : '') + '</div>';
         }).join('') +
           (r.fuera.length ? '<div class="arm-fuera">' + MAL() + ' La IA descartó: ' + r.fuera.map((p) => '<b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b> (' + esc(lados(p).join(' vs ')) + ')').join(', ') + ' · entró la siguiente más probable</div>' : '') +
           (r.patas.length < A.n ? '<p class="aviso">Sólo hay ' + r.patas.length + ' patas que cumplan (de partidos distintos y que aún no empiezan).</p>' : '') +
-          '<div class="arm-pie"><span>Cuota <b>' + cuota.toFixed(2) + '</b> · se cumplen todas ~<b>' + Math.round(100 * prob) + ' %</b></span>' +
+          // v531 — cuántas ve seguras la IA, y armarla sólo con ésas (VIP)
+          (vip ? '<div class="arm-ia-res">' + ico('sparkles') + ' La IA ve <b>' + r.patas.filter((x) => iaSegura(x.p)).length + ' de ' + r.patas.length +
+            '</b> patas seguras <button class="chip' + (A.soloIA ? ' activa' : '') + '" data-arm-soloia="1">' + (A.soloIA ? 'Todas las patas' : 'Sólo las seguras') + '</button></div>' : '') +
+          '<div class="arm-pie"><span>Cuota <b>' + cuota.toFixed(2) + '</b> · se cumplen todas ~<b>' + Math.round(100 * prob) + ' %</b>' +
+          (vip && r.patas.some((x) => iaSegura(x.p)) ? ' · con la IA ~<b>' + Math.round(100 * r.patas.reduce((a, x) => a * (IA_SALIO[iaSegura(x.p)] || Number(x.p.prob || 0)), 1)) + ' %</b>' : '') + '</span>' +
           (r.patas.length >= 2 ? '<button class="vip-btn" data-arm-boleto="' + esc(r.patas.map((x) => x.p.id).join(',')) + '">Pasar a mi combinada</button>' : '') + '</div>' +
           '<p class="tenue chico">Cada pata de más baja la probabilidad de la combinada: con 3 patas de 85 % queda en ~61 %.</p></div>';
       }
@@ -2232,12 +2255,14 @@
     const dest = estado.vista === 'picks' && !buscando ? agrupar(listaBase().filter(pasaDep)).filter((g) => g[0].elige && (estado.fase === 'todos' ? faseDe(g) !== 'terminado' : faseDe(g) === estado.fase))
       .sort((a, b) => String(a[0].inicio).localeCompare(String(b[0].inicio))).slice(0, 12) : [];
     $('destacados').hidden = !dest.length;
-    $('destacados-lista').innerHTML = dest.map(seguro(destacado)).join('');
+    // v531 — al VIP, primero los que la IA ve más seguros (morado)
+    const porIA = (xs, f) => xs.map((x, i) => [x, i]).sort((a, b) => (iaSegura(f(b[0])) - iaSegura(f(a[0]))) || (a[1] - b[1])).map((x) => x[0]);
+    $('destacados-lista').innerHTML = porIA(dest, (g) => g[0]).map(seguro(destacado)).join('');
     // v422 — ✨ Para ti
     const pt = estado.vista === 'picks' && !buscando ? paraTi() : [];
     if ($('parati')) {
       $('parati').hidden = !pt.length;
-      $('parati-lista').innerHTML = pt.map(seguro((g) => { const n = nivel(g[0]); return destacado(g, '<span class="et nivel ' + n.c + '">' + n.i + ' ' + n.n + '</span>'); })).join('');
+      $('parati-lista').innerHTML = porIA(pt, (g) => g[0]).map(seguro((g) => { const n = nivel(g[0]); return destacado(g, '<span class="et nivel ' + n.c + '">' + n.i + ' ' + n.n + '</span>'); })).join('');
     }
     // 🔗 Combinadas del día elegido, del deporte elegido (las mixtas siempre)
     const diaC = diaPestana(OFFS[estado.dia] || 0);
@@ -2358,7 +2383,7 @@
   });
 
   document.addEventListener('click', (e) => {
-    const t = e.target.closest('[data-vista-ir],[data-dia],[data-dep],[data-niv],[data-fase],[data-abrir],[data-liga],[data-ficha],[data-ver-fin],[data-ver-sinpick],[data-ord],[data-fav],[data-arm-niv],[data-arm-n],[data-arm-ir],[data-arm-boleto],[data-par-k]');
+    const t = e.target.closest('[data-vista-ir],[data-dia],[data-dep],[data-niv],[data-fase],[data-abrir],[data-liga],[data-ficha],[data-ver-fin],[data-ver-sinpick],[data-ord],[data-fav],[data-arm-niv],[data-arm-n],[data-arm-ir],[data-arm-boleto],[data-arm-soloia],[data-par-k]');
     if (!t) return;
     if (t.hasAttribute('data-ver-fin')) { estado.verFinales = !estado.verFinales; pintar(); return; }
     if (t.hasAttribute('data-ver-sinpick')) { estado.verSinPick = !estado.verSinPick; pintar(); return; }
@@ -2378,6 +2403,11 @@
     if (t.dataset.parK) { estado.parley[t.dataset.parK] = Number(t.dataset.parN) || 3; pintar(); return; }
     if (t.dataset.armNiv) { const n = t.dataset.armNiv; if (!armVip() && n !== 'Oro') return; estado.arm.niv.has(n) ? estado.arm.niv.delete(n) : estado.arm.niv.add(n); estado.arm.res = null; pintar(); return; }
     if (t.dataset.armN) { estado.arm.n = Math.max(2, Math.min(20, estado.arm.n + Number(t.dataset.armN))); estado.arm.res = null; pintar(); return; }
+    if (t.dataset.armSoloia) {                                       // v531 — sólo las patas que la IA ve seguras (VIP)
+      estado.arm.soloIA = !estado.arm.soloIA;
+      const pasaDep = (p) => estado.deportes.size === 0 || estado.deportes.has(p.deporte);
+      estado.arm.res = armarCombinada(pasaDep); pintar(); return;
+    }
     if (t.dataset.armIr) {
       const pasaDep = (p) => estado.deportes.size === 0 || estado.deportes.has(p.deporte);
       estado.arm.res = armarCombinada(pasaDep); pintar(); return;

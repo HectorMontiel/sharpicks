@@ -1112,9 +1112,20 @@ body::before, body::after { animation: none !important; }
 .pick-fila.compacta .pk-meta .acciones { margin: 0 0 0 auto; display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; }
 .pick-fila.compacta .pk-meta .acciones button { padding: 4px 10px; font-size: 12px; min-height: 0; }
 .pick-fila.compacta .pk-prog { display: block; margin-top: 6px; padding: 4px 10px; font-size: 12.5px; border-radius: 10px; }
+/* v531 — el morado de la IA (sólo VIP): fuerte = la IA la ve muy segura (91 % medido), claro = a favor (86 %) */
+.dest.ia-2, .arm-pata.ia-2 { border-color: rgba(167,139,250,.85) !important; box-shadow: 0 0 0 1px rgba(167,139,250,.5), 0 0 22px rgba(139,92,246,.35); background-image: linear-gradient(135deg, rgba(139,92,246,.22), rgba(139,92,246,.04)); }
+.dest.ia-1, .arm-pata.ia-1 { border-color: rgba(167,139,250,.45) !important; background-image: linear-gradient(135deg, rgba(139,92,246,.12), rgba(139,92,246,.02)); }
+.ia-sello { display: inline-flex; align-items: center; gap: 4px; margin: 4px 0 2px; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 800;
+  color: #ddd6fe; background: rgba(139,92,246,.28); border: 1px solid rgba(167,139,250,.55); }
+.ia-sello.s1 { color: #c4b5fd; background: rgba(139,92,246,.14); border-color: rgba(167,139,250,.3); }
+.ia-sello .ic, .arm-ia .ic, .arm-ia-res .ic { width: 12px; height: 12px; }
+.arm-ia.ia-2 { color: #ddd6fe; font-weight: 800; } .arm-ia.ia-1 { color: #c4b5fd; font-weight: 700; }
+.arm-ia-res { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 8px 0; font-size: 13px; color: #ddd6fe; }
+.arm-ia-res .chip { margin-left: auto; }
 details.mas { margin: 8px 0 2px; }
 details.mas > summary { cursor: pointer; list-style: none; font-size: 13px; font-weight: 700; color: var(--marca, var(--verde)); padding: 6px 0; }
 details.mas > summary::-webkit-details-marker { display: none; }
 details.mas > summary::after { content: ' ▾'; }
 details.mas[open] > summary::after { content: ' ▴'; }
 .sn-hist { margin: 6px 0 4px; } .sn-hist .sn-m { max-width: 46vw; overflow: hidden; text-overflow: ellipsis; }
+.ia-morado-h { color: #ddd6fe; } .ia-morado-h small { color: var(--tenue); font-size: 11px; }

@@ -1371,6 +1371,9 @@
     // salían «0-0» y parecía que no hubo nada; los 💰 siguen sumados arriba)
     const conPicks = filas.filter((d) => (Number(d.verdes) || 0) + (Number(d.rojas) || 0) > 0);
     hist.filas = filas; hist.conPicks = conPicks; hist.p100 = p100;
+    // v531 — el morado de la IA, medido: los 💎/🔷/🥇 que marca contra los mismos niveles sin marca
+    const mo = await aTiempo(sb.rpc('ia_morado_tasa'), 6000, { data: null });
+    hist.morado = (mo && mo.data) || [];
     pintarPeriodo();
   }
 
@@ -1386,6 +1389,13 @@
     const corte = new Date(Date.now() - 6 * 3600e3 - n * 864e5).toISOString().slice(0, 10);   // días de CDMX
     return ds.filter((d) => String(d.fecha) > corte);
   }
+  function moradoHist() {
+    const m = hist.morado || [], suma = (f) => m.filter(f).reduce((a, x) => [a[0] + Number(x.aciertos), a[1] + Number(x.n)], [0, 0]);
+    const [v2, n2] = suma((x) => x.tono === 2), [v1, n1] = suma((x) => x.tono >= 1), [v0, n0] = suma((x) => x.tono === 0);
+    if (!n2) return '';
+    return '<div class="sub ia-morado-h">✨ IA mayor probabilidad: ✅ ' + v2 + ' ❌ ' + (n2 - v2) + ' · <b>' + Math.round(100 * v2 / n2) + ' %</b>' +
+      ' · con la IA a favor ' + Math.round(100 * v1 / n1) + ' %' + (n0 ? ' · sin marca ' + Math.round(100 * v0 / n0) + ' %' : '') + ' <small>(💎 🔷 🥇, todo el histórico)</small></div>';
+  }
   function pintarPeriodo() {
     const caja = $('historial'); if (!caja || !hist.filas.length) return;
     const p100 = hist.p100, fs = enPeriodo(hist.filas, hist.per), conPicks = enPeriodo(hist.conPicks, hist.per);
@@ -1395,7 +1405,7 @@
     let h = '<div class="segmentos cinco">' + PERIODOS.map(([k, t]) => tab(k, t)).join('') + '</div>' +
       '<div class="num">✅ ' + tv + ' ❌ ' + tr + ' <span class="pct">' + p100(tv, tr) + '</span></div>' +
       '<div class="sub">💎 Diamante: ✅ ' + ev + ' ❌ ' + er + (ev + er ? ' · ' + Math.round(100 * ev / (ev + er)) + ' %' : '') + '</div>' +
-      (xv + xr ? '<div class="sub">💰 Cuota alta: ✅ ' + xv + ' ❌ ' + xr + ' · ' + p100(xv, xr) + '</div>' : '');
+      (xv + xr ? '<div class="sub">💰 Cuota alta: ✅ ' + xv + ' ❌ ' + xr + ' · ' + p100(xv, xr) + '</div>' : '') + moradoHist();
     // los últimos 7 días del periodo a la vista y los demás plegados en «Ver N días más»
     const tablaDias = (ds) => '<table class="tabla"><tr><th>Día</th><th>✅</th><th>❌</th><th>%</th><th>💎</th><th>💰</th></tr>' +
       ds.map((d) => '<tr><td>' + esc(String(d.fecha).slice(5)) + '</td><td>' + d.verdes + '</td><td>' + d.rojas + '</td><td>' +
