@@ -19,7 +19,6 @@ on:
   push:
     branches:
       - 'audit/**'
-      - 'hardening/**'
     paths:
       - 'web/**'
       - 'supabase/**'
