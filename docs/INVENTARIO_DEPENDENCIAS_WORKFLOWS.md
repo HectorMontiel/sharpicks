@@ -16,7 +16,7 @@ SharPicks no debe dividirse como «mover todos los .py a otro repositorio». La 
 
 | Workflow | Cadencia / disparador observado | Scripts / acciones principales | Credenciales observadas | Clasificación propuesta |
 |---|---|---|---|---|
-| `cuotas_mx.yml` | `7,37 * * * *` + manual | `cuotas_mx.py`, `barrido_capa1.py`, `anclas.py`; dispara precálculo y relevo; commitea snapshots | token GitHub implícito | **Mixto**: fetch privado + orquestación pública + publicación de snapshots permitidos |
+| `cuotas_mx.yml` | `7,37 * * * *` + manual | job `cuotas` calcula y commitea snapshots; job `disparar` despacha precálculo y relevo | `contents: write` sólo en cálculo; `actions: write` sólo en job dispatch | **Mixto**: fetch privado + orquestación pública + publicación de snapshots permitidos |
 | `precalculo_dia.yml` | `23,53 * * * *` + manual | históricos, FotMob/ESPN, bajas, ITF, remates, líneas, `precalculo_dia.py`, `senal_bajas.py` | `ODDS_API_KEY` | **Core alto**; salida pública minimizada |
 | `recalibrar.yml` | lunes 05:29 UTC + manual | ingesta, estadísticas, calibración, estabilidad, riesgo, patrones, motor de goles, backtest | no se detectaron secretos en YAML | **Core privado** |
 | `retrain_leagues.yml` | diario 05:47 UTC + manual / workflow_run según YAML | motores por liga/deporte, snapshots, predicciones, árbitros, líneas, publicación de modelos | `GITHUB_TOKEN` declarado | **Core privado crítico**; publicación de modelos sólo mediante allowlist |

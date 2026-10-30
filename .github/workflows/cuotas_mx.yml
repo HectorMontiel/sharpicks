@@ -113,24 +113,23 @@ on:
         default: true
 
 permissions:
-  contents: write
-  # v302 — para disparar el relevo y el precalculo al acabar. Un
-  # `workflow_dispatch` lanzado con el GITHUB_TOKEN SI crea ejecucion (es una
-  # de las dos excepciones de GitHub a «un token no dispara workflows»).
-  actions: write
+  contents: read
 
 concurrency:
   group: cuotas-mx
   cancel-in-progress: false
 
-env:
-  # v510 — repo privado: los modelos del Release se bajan con el token de la corrida
-  GH_TOKEN: ${{ github.token }}
-
 jobs:
   cuotas:
     runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
     timeout-minutes: 45
+    permissions:
+      contents: write
+    outputs:
+      saltar: ${{ steps.frescura.outputs.saltar }}
+    env:
+      # El cálculo baja metadata/modelos públicos y el commit requiere contents:write.
+      GH_TOKEN: ${{ github.token }}
 
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -337,13 +336,6 @@ jobs:
       # El precalculo lee este tablero. Dispararlo aqui es el orden correcto
       # por construccion —no por minutos elegidos para caer despues— y ademas
       # no depende del programador de GitHub, que es el que falla.
-      - name: Cocinar el dia con los precios nuevos
-        if: steps.frescura.outputs.saltar != 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh workflow run precalculo_dia.yml --repo "${{ github.repository }}" --ref main || echo "::warning::no se pudo disparar el precalculo"
-
       # v302 — EL RELEVO: LA PASADA SIGUIENTE LA PIDE ESTA, NO EL CRON.
       #
       # LOS DATOS. Con 48 pasadas declaradas al dia (`7,37 * * * *`) GitHub
@@ -364,12 +356,29 @@ jobs:
       # Las pasadas que salen por la guarda solo relevan si no hay ya un
       # relevo vivo. Si lo hay, su hora objetivo sale del tablero y no ha
       # cambiado: relanzarlo solo llenaria la lista de ejecuciones canceladas.
+  disparar:
+    needs: cuotas
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
+      - name: Cocinar el dia con los precios nuevos
+        if: needs.cuotas.result == 'success' && needs.cuotas.outputs.saltar != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run precalculo_dia.yml --repo "${{ github.repository }}" --ref main || echo "::warning::no se pudo disparar el precalculo"
+
+      # `always()` conserva el relevo incluso cuando falla el barrido o su commit.
       - name: Pasar el relevo
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
+          SALTAR: ${{ needs.cuotas.outputs.saltar }}
         run: |
-          if [ "${{ steps.frescura.outputs.saltar }}" = "true" ]; then
+          if [ "$SALTAR" = "true" ]; then
             _VIVOS=$(gh run list --repo "${{ github.repository }}" --workflow=relevo.yml --limit 10 --json status --jq '[.[] | select(.status != "completed")] | length' 2>/dev/null || echo 0)
             if [ "${_VIVOS:-0}" -gt 0 ]; then
               echo "Ya hay un relevo esperando: no se toca."

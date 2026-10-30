@@ -45,6 +45,21 @@ def probar():
           'v510: los modelos se bajan por API, verifican SHA-256 y rechazan tar inseguro')
     for f in ('cuotas_mx', 'precalculo_dia', 'sitio_web', 'retrain_leagues', 'respaldo_base'):
         check('GH_TOKEN: ${{ github.token }}' in leer('.github/workflows/%s.yml' % f), 'v510: %s con GH_TOKEN' % f)
+    cuotas = leer('.github/workflows/cuotas_mx.yml')
+    check("    - cron: '7,37 * * * *'" in cuotas and '  workflow_dispatch:' in cuotas and
+          'permissions:\n  contents: read\n' in cuotas and
+          '  cuotas:\n' in cuotas and '    permissions:\n      contents: write\n' in cuotas and
+          '  disparar:\n    needs: cuotas\n    if: always()\n' in cuotas and
+          '    permissions:\n      actions: write\n' in cuotas and
+          '      saltar: ${{ steps.frescura.outputs.saltar }}' in cuotas and
+          'if: needs.cuotas.result == \'success\' && needs.cuotas.outputs.saltar != \'true\'' in cuotas and
+          '          SALTAR: ${{ needs.cuotas.outputs.saltar }}' in cuotas and
+          '          GH_TOKEN: ${{ github.token }}' in cuotas and
+          '          gh workflow run precalculo_dia.yml' in cuotas and
+          '          gh workflow run relevo.yml' in cuotas and
+          '\nenv:\n  GH_TOKEN:' not in cuotas and
+          'actions: write' not in cuotas.split('jobs:', 1)[0],
+          'v542: cuotas conserva cron/dispatch y separa contents:write de actions:write')
     relevo = leer('.github/workflows/relevo.yml')
     check('  esperar:\n' in relevo and '      contents: read\n' in relevo and
           '  disparar:\n    needs: esperar\n' in relevo and
