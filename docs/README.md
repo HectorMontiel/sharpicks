@@ -33,7 +33,9 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 - Migración de código/datos: no iniciada.
 - Producción/Supabase: sin cambios ejecutados por esta documentación.
 - Acciones de GitHub: fijadas por SHA en `bae8759973b2ef8f3d5c5c4ea38e2025a0caca46`; los checks `instalar`, `tests` y `validar` aprobaron sobre ese SHA.
-- Contrato público v1: implementado y 12 tests unitarios locales aprobados; `instalar`, `tests` y `validar` aprobaron en CI para el SHA `c162c7587cb960149459d41ede09097990250046`.
+- Contrato de ejecución v1: implementado con 12 pruebas unitarias locales; el CI histórico del SHA `c162c75` pasó. DTO de exportación web v1 añadido en `sharpicks_contracts/web_v1.py`, aplicado a `hoy.json`/`analisis.json` con allowlists y tres pruebas específicas.
+- Validación de rama: 52 pruebas unitarias y regresores seleccionados pasan localmente; los tres workflows `instalar`, `tests` y `validar` aprobaron para el head documental `2d73980` que contiene el código de `71e0141`.
+- Redacción de logs: errores HTTP de exportador y backup no incorporan cuerpos de respuesta; 9 casos canario/unitarios asociados pasan.
 - Grafo recursivo: generado para 773 archivos Python desde `4c1223a635ed628798e547645209cba67582f65b`; batería local del analizador/contratos pasa.
 - Inventario por ruta: 1,880 blobs rastreados (660,235,222 bytes) desde el tree `cb6c3e434390101ee204addc11b68e2251f99e13`; las etiquetas son heurísticas y requieren revisión humana, sin lectura de contenido.
 - Release pública: snapshot de `modelos-latest` confirma 72 archivos de modelos `.tar.gz` y un manifiesto JSON (735,067,828 bytes); se registra exposición P1 y se preservan los assets mientras no exista una migración validada.
