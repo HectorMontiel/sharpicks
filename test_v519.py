@@ -31,6 +31,14 @@ def probar():
         if 'self-hosted' in s and 'pip install -r requirements.txt' in s:
             check('pip install --force-reinstall' in s, 'v516: %s repara solo una instalación de pip cortada' % n)
 
+    # v537 — el repo es PÚBLICO: ningún enlace privado de Telegram (t.me/+…) en el código; el del VIP lo da la app
+    import re
+    import subprocess
+    archivos = subprocess.run(['git', 'ls-files', '*.py', '*.js', '*.html', '*.yml', '*.md', '*.sql', '*.json'], cwd=AQUI,
+                              capture_output=True, text=True).stdout.split()
+    malos = [f for f in archivos if not f.startswith('.validacion') and os.path.exists(os.path.join(AQUI, f))
+             and re.search(r't\.me/\+[A-Za-z0-9_-]{8,}', io.open(os.path.join(AQUI, f), encoding='utf-8', errors='ignore').read())]
+    check(not malos, 'v537: ningún enlace privado de Telegram en el repo público (%s)' % ', '.join(malos[:5]))
 
 if __name__ == '__main__':
     probar()

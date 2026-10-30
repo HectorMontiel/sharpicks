@@ -52,7 +52,7 @@ logger = logging.getLogger('telegram_canales')
 DATOS = os.environ.get('WEB_DATOS', os.path.join('web', 'datos', 'hoy.json'))
 PRIVADO = os.environ.get('WEB_PRIVADO', os.path.join('datos_privados', 'premium.json'))
 SITIO = os.environ.get('SITIO_URL', 'https://sharpicksapp.com')
-VIP_URL = os.environ.get('TELEGRAM_VIP_URL', 'https://t.me/+qqtEBbAClQwxYzYx')
+# v537 — el enlace del grupo VIP NO va en el código (el repo es público): lo da la app (privados.telegram_vip, con aprobación)
 HORAS_ANTES = 18
 ICONO = {'Diamante': '💎', 'Platino': '🔷', 'Oro': '🥇', 'Plata': '🥈', 'Cuota alta': '💰'}
 MAX_LEN = 3800
