@@ -640,6 +640,21 @@ body::after { background: radial-gradient(circle at 60% 60%, #1d4ed8 0%, rgba(29
 #mi-hist .verde-t { color: #22c55e; } #mi-hist .roja-t { color: #f87171; }
 #mi-hist .hist-dep { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--tenue); margin: 4px 0 6px; }
 #mi-hist .hist-dia { margin: 10px 0 2px; font-size: 12px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; color: var(--tenue); }
+/* v546 — Mis picks plegable: cabeceras que se despliegan, días del historial, y los partidos que sigues */
+.bloque-hist .tit.plegar { width: 100%; display: flex; align-items: center; gap: 6px; background: none; border: 0; color: var(--texto); font: inherit; font-weight: 800; cursor: pointer; padding: 0; text-align: left; }
+.bloque-hist .tit.plegar small { color: var(--tenue); font-weight: 600; }
+.bloque-hist .tit.plegar .fl { margin-left: auto; color: var(--tenue); }
+#mi-hist .hist-dia { width: 100%; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,.04); border: 1px solid var(--borde); border-radius: 10px; padding: 9px 12px; cursor: pointer; font: inherit; font-size: 12px; font-weight: 700; color: var(--tenue); }
+#mi-hist .hist-dia small { text-transform: none; letter-spacing: 0; font-weight: 700; color: var(--texto); }
+.partido-fila.sigo { outline: 1px solid rgba(245,179,1,.55); outline-offset: -1px; }
+/* v546 — el morado de la IA en la fila de la lista (VIP) y el 🔷 Platino en rosa, para no confundirlo con la IA */
+.partido-fila.ia-2 .pf { background-image: linear-gradient(135deg, rgba(139,92,246,.24), rgba(139,92,246,.04)); }
+.partido-fila.ia-1 .pf { background-image: linear-gradient(135deg, rgba(139,92,246,.13), rgba(139,92,246,.02)); }
+.partido-fila.ia-2 { outline: 1px solid rgba(167,139,250,.7); outline-offset: -1px; }
+.pf-ia { flex-basis: 100%; display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 800; color: #ddd6fe; margin-top: 2px; }
+.pf-ia.s1 { color: #c4b5fd; font-weight: 700; }
+.pf-ia .ic { width: 12px; height: 12px; }
+.pf-sigo { display: inline-block; font-size: 10px; font-weight: 800; color: #f5b301; letter-spacing: .3px; margin-bottom: 1px; }
 #mi-hist .hist-fila { display: grid; grid-template-columns: 20px 1fr auto; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--borde); font-size: 14px; }
 #mi-hist .hist-fila .ht small { display: block; font-size: 12px; color: var(--tenue); margin-top: 1px; }
 #mi-hist .hist-fila b { font-size: 14px; }
@@ -1180,3 +1195,8 @@ details.mas[open] > summary::after { content: ' ▴'; }
 /* v541 — iPad horizontal / pantallas de 900 px o más: la barra de abajo se salía por la izquierda (el vidrio le
    ponía left/right de 12 px y se quedaba el translateX(-50%) de la regla de escritorio). Centrada, de 640 px. */
 @media (min-width: 900px) { .nav-abajo { left: 50%; right: auto; width: 640px; max-width: calc(100vw - 24px); transform: translateX(-50%); } }
+/* v546 — 🔷 Platino en rosa (antes violeta: se confundía con el morado de la IA). Al final para ganar a las reglas viejas. */
+:root { --platino: #f472b6; }
+.ic.nv-platino { color: #f9a8d4; }
+.et.nivel.platino { background: rgba(244,114,182,.16); }
+.partido-fila.ia-1 .pf-pick, .partido-fila.ia-2 .pf-pick { flex-wrap: wrap; }

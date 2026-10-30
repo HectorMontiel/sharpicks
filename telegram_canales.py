@@ -60,8 +60,10 @@ CDMX = dt.timezone(dt.timedelta(hours=-6))
 # el canal gratis: horarios (hora de CDMX) y qué toca en cada uno
 HORARIOS_GRATIS = ((9, 'combinada'), (14, 'pick'), (19, 'combinada'))
 VENTANA_GRATIS_H = 8              # sólo partidos que empiezan en las próximas 8 h
-COMB_MIN, COMB_MAX = 1.30, 1.50   # cuota total de la combinada (pedido del usuario)
-PROB_MIN_GRATIS = 0.78            # cada pata (y la sencilla) con al menos esto medido
+# v545 — el gratis es el 🥇 Oro nuevo (70-79 % con cuota ≥ 1,25): dos patas ya no caben en 1,30-1,50 (antes eran Oro de
+# 80-84 % a ~1,15), así que la combinada del canal gratis va de 1,50 a 1,80 y cada pata con 70 %+
+COMB_MIN, COMB_MAX = 1.50, 1.80   # cuota total de la combinada
+PROB_MIN_GRATIS = 0.70            # cada pata (y la sencilla) con al menos esto medido
 # v526 — el usuario: «más amigables y vendedores, más emojis, más visuales, breves pero impactantes, y no enviar
 # mucha basura». Cada envío corto, con su emoji de deporte y, en los picks, un ticket en imagen (tarjeta_tg.py).
 PIE = '\n\n🔞 <i>Juega con responsabilidad</i>'
@@ -82,8 +84,9 @@ def nivel(p: Dict) -> str:
         return 'Cuota alta'
     if p.get('elige'):
         return 'Diamante'
-    pr = float(p.get('prob') or 0)
-    return 'Platino' if pr >= 0.85 else ('Oro' if pr >= 0.80 else 'Plata')
+    # v545 — 🥇 Oro = más cuota, menos probabilidad (70-79 % y cuota ≥ 1,25; medido 75 % a 1,27); 🔷 Platino ≥ 80 %
+    pr, cu = float(p.get('prob') or 0), float(p.get('cuota') or 0)
+    return 'Platino' if pr >= 0.80 else ('Oro' if pr >= 0.70 and cu >= 1.25 else 'Plata')
 
 
 def niveles_vip() -> Set[str]:
@@ -336,7 +339,7 @@ def candidatas_gratis(picks: List[Dict], ahora: dt.datetime) -> List[Dict]:
 
 
 def mejor_combinada(cands: List[Dict]) -> Optional[List[Dict]]:
-    """2 picks de partidos distintos, cuota total 1,30-1,50, máxima probabilidad
+    """2 picks de partidos distintos, cuota total 1,50-1,80 (v545), máxima probabilidad
     conjunta (producto de lo medido: las patas de partidos distintos son
     independientes)."""
     mejor, pm = None, 0.0

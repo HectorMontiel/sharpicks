@@ -1033,6 +1033,36 @@
   // combinadas» son las que están por jugar o en juego): cuántas acertó, de qué
   // cuota fue cada una y cómo le fue a cada pick.
   let rangoHist = 30;
+  // v546 — el usuario: «en Mis picks hay mucho por escrolear… que se pueda desplegar como las ligas, y el historial
+  // de las terminadas por día, mes o año». Mis combinadas y Mi historial se pliegan (se recuerda), el historial se
+  // filtra por Día · Semana · Mes · Año · Todo y cada día se despliega aparte (abierto sólo el más reciente).
+  const PLEGADO = { 'mis-comb': false, 'mi-hist': true };
+  try { Object.assign(PLEGADO, JSON.parse(localStorage.getItem('sp_plegado') || '{}')); } catch (e) { /* sin almacenamiento: por omisión */ }
+  const diasAbiertos = new Set();
+  let diaAbiertoAuto = true;
+  function aplicarPlegado() {
+    Object.entries(PLEGADO).forEach(([id, p]) => {
+      const c = $(id), b = document.querySelector('[data-plegar="' + id + '"]');
+      if (c) c.hidden = !!p;
+      if (b) { b.setAttribute('aria-expanded', String(!p)); const f = b.querySelector('.fl'); if (f) f.textContent = p ? '▸' : '▾'; }
+    });
+  }
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-plegar]');
+    if (b) {
+      PLEGADO[b.dataset.plegar] = !PLEGADO[b.dataset.plegar];
+      try { localStorage.setItem('sp_plegado', JSON.stringify(PLEGADO)); } catch (er) { /* no pasa nada */ }
+      aplicarPlegado();
+      return;
+    }
+    const d = e.target.closest('[data-hist-dia]');
+    if (d) {
+      diaAbiertoAuto = false;
+      const k = d.dataset.histDia; diasAbiertos.has(k) ? diasAbiertos.delete(k) : diasAbiertos.add(k);
+      pintarHistorial($('mi-hist'));
+    }
+  });
+  setTimeout(aplicarPlegado, 0);
   const ICO_HIST = new Proxy({}, { get: (_, d) => (window.SP && window.SP.icoDep ? window.SP.icoDep(d) : '') });
   const DIA_MX = (f) => new Intl.DateTimeFormat('es-MX', { timeZone: 'America/Mexico_City', weekday: 'short', day: 'numeric', month: 'short' }).format(f);
   const aFechaP = (s) => new Date(String(s || '').replace(' ', 'T') + (/[zZ]|[+-]\d\d:?\d\d$/.test(String(s)) ? '' : 'Z'));
@@ -1053,12 +1083,14 @@
     if (!caja) return;
     if (!yo.user) { caja.innerHTML = '<p class="tenue">Entra para llevar el registro de tus combinadas.</p>'; return; }
     const h = yo.hist; if (!h) return;
-    const desde = rangoHist ? Date.now() - rangoHist * 864e5 : 0;
+    // v546 — «Día» es desde la medianoche de hoy; Semana/Mes/Año, los últimos 7/30/365 días
+    const desde = rangoHist === 1 ? new Date(new Date().setHours(0, 0, 0, 0)).getTime() : rangoHist ? Date.now() - rangoHist * 864e5 : 0;
     const combs = h.combs.filter((c) => estadoCombVisto(c, h.extra) !== 'pendiente' && aFechaP(c.inicio).getTime() >= desde)
       .sort((a, b) => aFechaP(b.inicio) - aFechaP(a.inicio));
-    const rangos = [[7, '7 días'], [30, '30 días'], [0, 'Todo']].map(([n, t]) => '<button class="chip' + (rangoHist === n ? ' activa' : '') + '" data-hist-rango="' + n + '">' + t + '</button>').join('');
+    const rangos = [[1, 'Día'], [7, 'Semana'], [30, 'Mes'], [365, 'Año'], [0, 'Todo']].map(([n, t]) => '<button class="chip' + (rangoHist === n ? ' activa' : '') + '" data-hist-rango="' + n + '">' + t + '</button>').join('');
     let html = '<div class="chips">' + rangos + '</div>';
-    if (!combs.length) { caja.innerHTML = html + '<p class="tenue">Aquí quedan tus combinadas cuando terminan.</p>'; return; }
+    const res = $('mi-hist-res');
+    if (!combs.length) { if (res) res.textContent = ''; caja.innerHTML = html + '<p class="tenue">Aquí quedan tus combinadas cuando terminan.</p>'; return; }
     const cv = combs.filter((c) => estadoCombVisto(c, h.extra) === 'verde').length, cr = combs.filter((c) => estadoCombVisto(c, h.extra) === 'roja').length;
     const pct = cv + cr ? Math.round(100 * cv / (cv + cr)) : null, mon = combs.reduce((a, c) => a + (c.premio || 0), 0);
     // cada pick de esas combinadas, con su resultado (y por deporte)
@@ -1069,10 +1101,16 @@
     html += '<div class="num">✅ ' + cv + ' ❌ ' + cr + (pct != null ? ' <span class="pct">' + pct + ' %</span>' : '') + '</div>' +
       '<p class="tenue chico">Picks: ✅ ' + pv + ' ❌ ' + pr + (mon ? ' · +' + mon + ' 🪙 ganadas' : '') + '</p>' +
       (Object.keys(dep).length ? '<div class="hist-dep">' + Object.entries(dep).map(([k, [a, b]]) => '<span>' + (ICO_HIST[k] ? ICO_HIST[k] + ' ' : '') + esc(k) + ' <b>' + a + '-' + b + '</b> ' + Math.round(100 * a / (a + b)) + ' %</span>').join('') + '</div>' : '');
-    let dia = '';
-    combs.slice(0, 60).forEach((c) => {
-      const dd = DIA_MX(aFechaP(c.inicio)); if (dd !== dia) { dia = dd; html += '<div class="hist-dia">' + esc(dd) + '</div>'; }
-      html += filaComb(c, h.extra);
+    if (res) res.textContent = '· ✅ ' + cv + ' ❌ ' + cr;
+    // v546 — un bloque por día que se despliega (como las ligas); abierto sólo el más reciente
+    const porDia = new Map();
+    combs.slice(0, 400).forEach((c) => { const dd = DIA_MX(aFechaP(c.inicio)); if (!porDia.has(dd)) porDia.set(dd, []); porDia.get(dd).push(c); });
+    if (diaAbiertoAuto && porDia.size) { diasAbiertos.clear(); diasAbiertos.add([...porDia.keys()][0]); }
+    porDia.forEach((cs, dd) => {
+      const v = cs.filter((c) => estadoCombVisto(c, h.extra) === 'verde').length, r = cs.filter((c) => estadoCombVisto(c, h.extra) === 'roja').length;
+      const ab = diasAbiertos.has(dd);
+      html += '<button class="hist-dia" data-hist-dia="' + esc(dd) + '" aria-expanded="' + ab + '"><span>' + esc(dd) + '</span><small>✅ ' + v + ' ❌ ' + r + ' ' + (ab ? '▾' : '▸') + '</small></button>' +
+        (ab ? cs.map((c) => filaComb(c, h.extra)).join('') : '');
     });
     caja.innerHTML = html;
   }
@@ -1105,6 +1143,7 @@
     const h = yo.hist || { combs: [], extra: {} };
     caja.dataset.pintada = '1';
     const vivas = h.combs.filter((c) => estadoCombVisto(c, h.extra) === 'pendiente');
+    const res = $('mis-comb-res'); if (res) res.textContent = vivas.length ? '· ' + vivas.length + ' en juego' : '';
     caja.innerHTML = vivas.length ? vivas.map((c) => filaComb(c, h.extra)).join('')
       : '<p class="tenue">' + (h.combs.length ? 'Ninguna en juego. ' : '') + 'Toca «➕ Combinada» en los picks que te gusten (de 2 a 20).</p>';
   }

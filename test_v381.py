@@ -29,7 +29,7 @@ def probar():
     base = {'estado': 'pendiente', 'cuota': 1.2, 'inicio': '2026-10-17 18:00:00'}
     ps = [dict(base, id='d', partido='A vs B', elige=True, prob=0.9),
           dict(base, id='p', partido='C vs D', prob=0.86),
-          dict(base, id='o', partido='E vs F', prob=0.82),
+          dict(base, id='o', partido='E vs F', prob=0.74, cuota=1.30),   # v545: el Oro = 70-79 % y cuota ≥ 1,25
           dict(base, id='x', partido='G vs H', prob=0.81, premium=True)]
     ids = {p['id'] for p in tc.candidatas_gratis(ps, ahora)}
     check(ids == {'o'}, 'el canal gratis no da 💎, 🔷 ni nada premium (%s)' % ids)

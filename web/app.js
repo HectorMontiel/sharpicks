@@ -120,8 +120,10 @@
     if (p.solo_analisis) return { n: 'Sólo análisis', c: 'analisis', i: ico('chart-column', 'nv-analisis') };   // v418
     if (p.tipo === 'error') return { n: 'Cuota alta', c: 'error', i: ico('coins', 'nv-error') };
     if (p.elige) return { n: 'Diamante', c: 'diamante', i: ico('gem', 'nv-diamante') };
-    if ((p.prob || 0) >= 0.85) return { n: 'Platino', c: 'platino', i: ico('award', 'nv-platino') };
-    if ((p.prob || 0) >= 0.80) return { n: 'Oro', c: 'oro', i: ico('medal', 'nv-oro') };
+    // v545 — 🥇 Oro = más cuota y menos probabilidad (70-79 % y cuota ≥ 1,25: medido 75 % a 1,27); 🔷 Platino ≥ 80 %.
+    // Igual que `nivel_pick` en la base (precio, historial) y que exportar_web / telegram_canales / combinadas_web.
+    if ((p.prob || 0) >= 0.80) return { n: 'Platino', c: 'platino', i: ico('award', 'nv-platino') };
+    if ((p.prob || 0) >= 0.70 && Number(p.cuota || 0) >= 1.25) return { n: 'Oro', c: 'oro', i: ico('medal', 'nv-oro') };
     return { n: 'Plata', c: 'plata', i: ico('medal', 'nv-plata') };
   }
 
@@ -1990,16 +1992,23 @@
     const ap = p.solo_analisis ? '<span class="sin-pick-txt">Sin pick</span>' : window.SPX ? SPX.apuesta(p) : esc(p.apuesta);
     // v440 — en «Mis picks» se desliza a la izquierda para quitar el pick seguido
     const mio = estado.vista === 'mios' && window.SPX && SPX.yo.user, abiertoRoce = mio && estado.deslizado === k;
-    return '<div class="partido-fila ' + nv.c + (abierto ? ' abierto' : '') + (mio ? ' deslizable' : '') + (abiertoRoce ? ' desliza' : '') + '" data-k="' + esc(k) + '">' +
+    // v546 — los partidos que sigues (☆ Seguir o la campana 🔔) se reconocen en cualquier lista: estrella dorada y borde
+    const sigo = !!(window.SPX && SPX.yo.user && (ps.some((x) => SPX.yo.seguidos.has(x.id)) ||
+      (SPX.yo.alertas || []).some((x) => x.tipo === 'partido' && x.valor === claveNombre(p))));
+    // v546 — el usuario: «en el menú principal, por liga o por hora, los Diamante + IA no se notan»: el morado de la IA
+    // (sólo VIP, `iaSegura`) también en la fila, con su sello
+    const ia = Math.max(0, ...ps.map((x) => iaSegura(x)));
+    return '<div class="partido-fila ' + nv.c + (abierto ? ' abierto' : '') + (mio ? ' deslizable' : '') + (abiertoRoce ? ' desliza' : '') + (sigo ? ' sigo' : '') + (ia ? ' ia-' + ia : '') + '" data-k="' + esc(k) + '">' +
       (mio ? '<button class="quitar-fila" data-dejar="' + esc(ps.map((x) => x.id).join(',')) + '" aria-label="Quitar de Mis picks">🗑️ Quitar</button>' : '') +
       '<button class="pf" data-abrir="' + esc(k) + '" aria-expanded="' + abierto + '"' + (abiertoRoce ? ' style="transform:translateX(-92px)"' : '') + '>' +
       relojFila(ps) +
-      '<span class="pf-eqs">' + (estado.porHora ? '<span class="pf-lig">' + esc(ligaDe(p)) + '</span>' : '') +
+      '<span class="pf-eqs">' + (sigo ? '<span class="pf-sigo">★ Lo sigues</span>' : '') + (estado.porHora ? '<span class="pf-lig">' + esc(ligaDe(p)) + '</span>' : '') +
       '<span class="pf-eq">' + escudo(p.logo_h, L, p.deporte) + '<b>' + esc(L) + '</b>' + (marc ? '<em>' + esc(marc[0]) + '</em>' : '') + '</span>' +
       '<span class="pf-eq">' + escudo(p.logo_a, V, p.deporte) + '<b>' + esc(V) + '</b>' + (marc ? '<em>' + esc(marc[1]) + '</em>' : '') + '</span></span>' +
       '<span class="pf-pick"><span class="pf-niv">' + nv.i + '</span><span class="pf-ap">' + ap + '</span>' +
       '<span class="pf-cu">' + (p.cuota ? Number(p.cuota).toFixed(2) : '') + '</span>' +
-      (ps.length > 1 ? '<span class="pf-mas">+' + (ps.length - 1) + '</span>' : '') + resumenPicks(ps) + '</span>' +
+      (ps.length > 1 ? '<span class="pf-mas">+' + (ps.length - 1) + '</span>' : '') + resumenPicks(ps) +
+      (ia ? '<span class="pf-ia s' + ia + '">' + ico('sparkles') + (ia === 2 ? ' IA: mayor probabilidad' : ' IA: a favor') + '</span>' : '') + '</span>' +
       '</button>' + (abierto ? '<div class="pf-detalle">' + tarjeta(ps) +
         // v468 — «hace falta algo para cerrar la tarjeta sin subir hasta arriba»: va pegado abajo mientras se lee
         '<div class="pf-cerrar"><button data-abrir="' + esc(k) + '" data-cerrar-pf="1">' + ico('chevron-down', 'arriba') + ' Cerrar</button></div></div>' : '') + '</div>';
@@ -2246,7 +2255,13 @@
   document.addEventListener('input', (e) => { if (e.target.matches && e.target.matches('[data-arm-busca]')) { estado.arm.busca = e.target.value; filtrarPartidos(); } });
   document.addEventListener('toggle', (e) => { if (e.target.classList && e.target.classList.contains('arm-partidos')) estado.arm.verPar = e.target.open; }, true);
   function listaBase() {
-    if (estado.vista === 'mios') return window.SPX ? SPX.filtrarMios(estado.picks) : [];
+    if (estado.vista === 'mios') {
+      if (!window.SPX) return [];
+      // v546 — «si le doy seguir a un partido…»: también los partidos con la campana 🔔 (avisos por Telegram)
+      const al = new Set((SPX.yo.alertas || []).filter((x) => x.tipo === 'partido').map((x) => x.valor));
+      return SPX.filtrarMios(estado.picks).concat(al.size ? estado.picks.concat(estado.analisis || [])
+        .filter((p) => !SPX.yo.seguidos.has(p.id) && al.has(claveNombre(p)) && diaDe(p) >= diaPestana(-1)) : []);
+    }
     if (estado.vista === 'vivo') return estado.picks.filter((p) => faseDe([p]) === 'vivo');
     const dia = diaPestana(OFFS[estado.dia] || 0);
     return estado.picks.filter((p) => diaDe(p) === dia);

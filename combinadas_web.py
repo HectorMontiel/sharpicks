@@ -85,8 +85,9 @@ def nivel(p: Dict) -> str:
     """El mismo nivel que la página (`web/app.js`)."""
     if p.get('elige'):
         return 'Diamante'
-    pr = float(p.get('prob') or 0)
-    return 'Platino' if pr >= 0.85 else ('Oro' if pr >= 0.80 else 'Plata')
+    # v545 — 🥇 Oro = más cuota, menos probabilidad (70-79 % y cuota ≥ 1,25; medido 75 % a 1,27); 🔷 Platino ≥ 80 %
+    pr, cu = float(p.get('prob') or 0), float(p.get('cuota') or 0)
+    return 'Platino' if pr >= 0.80 else ('Oro' if pr >= 0.70 and cu >= 1.25 else 'Plata')
 
 
 def calibracion(liquidados: List[Dict]) -> Dict:

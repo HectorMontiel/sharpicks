@@ -484,8 +484,9 @@ def nivel(p: Dict) -> str:
         return 'Cuota alta'
     if p.get('elige'):
         return 'Diamante'
-    pr = float(p.get('prob') or 0)
-    return 'Platino' if pr >= 0.85 else ('Oro' if pr >= 0.80 else 'Plata')
+    # v545 — 🥇 Oro = más cuota, menos probabilidad (70-79 % y cuota ≥ 1,25; medido 75 % a 1,27); 🔷 Platino ≥ 80 %
+    pr, cu = float(p.get('prob') or 0), float(p.get('cuota') or 0)
+    return 'Platino' if pr >= 0.80 else ('Oro' if pr >= 0.70 and cu >= 1.25 else 'Plata')
 
 
 # v544 — EL GRATIS NUNCA SE QUEDA SIN NADA. El usuario (30-oct): «¿cómo no va a haber dos picks de Oro entre mañana y
@@ -494,7 +495,7 @@ def nivel(p: Dict) -> str:
 # (Oro): el Oro sólo sale de los otros deportes y hay días sin ninguno. Ahora cada día lleva al menos GRATIS_DIA picks
 # gratis: los Oro, y si no alcanzan, los mejores de Plata/Platino (más probables y, a igual probabilidad, la cuota más
 # baja). El 💎 Diamante nunca se regala. Lo que ya salió gratis se queda gratis (nadie ve que un pick se le cierra).
-GRATIS_DIA = 3
+GRATIS_DIA = 2          # v545 — el usuario: «prefiero que sean dos picks de regalo, más las 20 monedas al crear la cuenta»
 
 
 def _gratis_antes() -> set:
@@ -529,8 +530,12 @@ def gratis_del_dia(picks: List[Dict], antes: set = frozenset()) -> int:
                 p['gratis'] = True
                 libres.append(p)
                 regalados += 1
-        cand = sorted((p for p in del_dia if p not in libres and nivel(p) != 'Diamante'),
-                      key=lambda p: (-float(p.get('prob') or 0), float(p.get('cuota') or 99), str(p.get('inicio') or '')))
+        # v545 — el regalo va como el 🥇 Oro: más cuota y menos probabilidad (Plata de 65 %+ con la cuota más alta);
+        # sólo si no hay, un 🔷 Platino (el de menor probabilidad). El 💎 nunca.
+        cand = sorted((p for p in del_dia if p not in libres and nivel(p) not in ('Diamante',)
+                       and (nivel(p) == 'Platino' or float(p.get('prob') or 0) >= 0.65)),
+                      key=lambda p: (nivel(p) == 'Platino', -float(p.get('cuota') or 0) if nivel(p) != 'Platino' else float(p.get('prob') or 0),
+                                     str(p.get('inicio') or '')))
         for p in cand[:max(0, GRATIS_DIA - len(libres))]:
             p['gratis'] = True
             regalados += 1

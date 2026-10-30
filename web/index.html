@@ -51,9 +51,9 @@
     <h2 class="vista-tit" data-vista="vivo" hidden>🔴 En vivo</h2>
     <h2 class="vista-tit" data-vista="mios" hidden>★ Mis picks</h2>
     <!-- v428 — las combinadas que arma el usuario (v442: las que están por jugar o en juego) -->
-    <section class="caja bloque-hist" data-vista="mios" hidden><div class="tit">🔗 Mis combinadas</div><div id="mis-comb"></div></section>
+    <section class="caja bloque-hist" data-vista="mios" hidden><button class="tit plegar" data-plegar="mis-comb">🔗 Mis combinadas <small id="mis-comb-res"></small><span class="fl">▾</span></button><div id="mis-comb"></div></section>
     <!-- v439/v442 — el historial: sus combinadas ya terminadas, con verdes, rojas y cada pick -->
-    <section class="caja bloque-hist" data-vista="mios" hidden><div class="tit">📒 Mi historial</div><div id="mi-hist"></div></section>
+    <section class="caja bloque-hist" data-vista="mios" hidden><button class="tit plegar" data-plegar="mi-hist">📒 Mi historial <small id="mi-hist-res"></small><span class="fl">▾</span></button><div id="mi-hist"></div></section>
 
     <nav class="pestanas" id="pestanas" data-vista="picks combinadas">
       <button data-dia="hoy" class="activa">Hoy</button>
@@ -260,9 +260,9 @@
   <details class="ay-sec" open><summary>💎 Los niveles</summary>
   <ul class="ay-niveles">
     <li>💎 <b>Diamante</b> — <b>probabilidad muy alta</b>: nuestra selección principal del día, la de mayor probabilidad según el modelo.</li>
-    <li>🔷 <b>Platino</b> — probabilidad muy alta (85 % o más, según el modelo).</li>
-    <li>🥇 <b>Oro</b> — probabilidad alta (entre 80 y 85 %).</li>
-    <li>🥈 <b>Plata</b> — probabilidad buena (menos de 80 %).</li>
+    <li>🔷 <b>Platino</b> — probabilidad muy alta (80 % o más, según el modelo).</li>
+    <li>🥇 <b>Oro</b> — <b>más cuota</b>, probabilidad buena (70 a 79 %, cuota de 1,25 o más). Es lo gratis.</li>
+    <li>🥈 <b>Plata</b> — probabilidad buena con cuota baja (o menos de 70 %).</li>
     <li>💰 <b>Cuota alta</b> — una casa de apuestas <b>paga más de lo que vale</b> el resultado. Su probabilidad es menor (de 30 a 70 %, según la cuota), pero pagan mucho más. En 8 años de partidos, en conjunto dejaron ganancia; eso no garantiza que se repita. <b>Riesgo alto: apuesta poco a cada una.</b></li>
   </ul></details>
   <details class="ay-sec"><summary>🔗 Mis combinadas y sus monedas</summary>

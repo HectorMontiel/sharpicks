@@ -49,7 +49,8 @@ def probar():
     finally:
         os.environ.pop('PREMIUM_NIVELES', None)
     check(ew.nivel({'elige': True}) == 'Diamante' and ew.nivel({'prob': 0.85}) == 'Platino'
-          and ew.nivel({'prob': 0.8}) == 'Oro' and ew.nivel({'prob': 0.7}) == 'Plata',
+          and ew.nivel({'prob': 0.8}) == 'Platino' and ew.nivel({'prob': 0.72, 'cuota': 1.3}) == 'Oro'
+          and ew.nivel({'prob': 0.7}) == 'Plata',   # v545: el Oro = 70-79 % con cuota ≥ 1,25
           'los niveles son los de la página')
 
     sql = open(os.path.join('web', 'negocio.sql'), encoding='utf-8').read()
@@ -65,7 +66,7 @@ def probar():
 
     import telegram_canales as tc
     ahora = dt.datetime(2026, 10, 17, 12, 0, tzinfo=dt.timezone.utc)
-    ps = [_p(1, elige=True), _p(2, prob=0.81), _p(3, prob=0.70, inicio='2026-10-19 20:00:00'),
+    ps = [_p(1, elige=True), _p(2, prob=0.75, cuota=1.30), _p(3, prob=0.70, inicio='2026-10-19 20:00:00'),   # v545: A2 es 🥇 Oro (no VIP)
           _p(4, elige=True, estado='verde', marcador='1-0', inicio='2026-10-17 09:00:00'),
           _p(5, prob=0.81, estado='roja', marcador='0-2', inicio='2026-10-17 08:00:00'),
           _p(6, prob=0.81, estado='verde', inicio='2026-10-15 08:00:00')]
@@ -80,16 +81,17 @@ def probar():
     check(not [t for t, *_ in m['gratis'] if t], 'el gratis no publica fuera de sus horarios')
     # el usuario: «en el gratis, combinadas de máximo 1,5 o una individual cada cierto tiempo»
     a9 = dt.datetime(2026, 10, 17, 15, 5, tzinfo=dt.timezone.utc)      # 9:05 CDMX
-    ps9 = [_p(10, prob=0.84, cuota=1.15, inicio='2026-10-17 18:00:00'),
-           _p(11, prob=0.82, cuota=1.20, inicio='2026-10-17 19:00:00'),
-           _p(12, prob=0.845, cuota=1.05, inicio='2026-10-17 19:00:00'),
-           _p(13, prob=0.80, cuota=1.18, inicio='2026-10-17 19:00:00', partido='A10 vs B10'),
+    # v545 — el gratis es el 🥇 Oro nuevo (70-79 %, cuota ≥ 1,25) y su combinada va de 1,50 a 1,80
+    ps9 = [_p(10, prob=0.78, cuota=1.26, inicio='2026-10-17 18:00:00'),
+           _p(11, prob=0.77, cuota=1.30, inicio='2026-10-17 19:00:00'),
+           _p(12, prob=0.79, cuota=1.50, inicio='2026-10-17 19:00:00'),
+           _p(13, prob=0.76, cuota=1.25, inicio='2026-10-17 19:00:00', partido='A10 vs B10'),
            _p(14, elige=True, estado='verde', inicio='2026-10-16 20:00:00')]
     g = tc.armar(ps9, set(), a9)['gratis']
     textos = [t for t, *_ in g if t]
     comb = [t for t in textos if 'Combinada del día' in t]
-    check(len(comb) == 1 and 'Gana A10' in comb[0] and 'Gana A11' in comb[0] and 'cuota total <b>1.38</b>' in comb[0],
-          'a las 9: UNA combinada de partidos distintos con cuota total 1,30-1,50, la más probable')
+    check(len(comb) == 1 and 'Gana A10' in comb[0] and 'Gana A11' in comb[0] and 'cuota total <b>1.64</b>' in comb[0],
+          'a las 9: UNA combinada de partidos distintos con cuota total 1,50-1,80, la más probable')
     check(not [t for t in textos if '🆕' in t] and sum('Gana A' in t for t in textos) <= 2,
           'el gratis ya no manda listas: una publicación por horario')
     check([t for t in textos if 'Ayer en el VIP' in t and '✅ 1 ❌ 0' in t], 'una vez al día: cómo le fue al VIP ayer')
@@ -99,8 +101,8 @@ def probar():
     r = [t for t, *_ in tc.armar(fin, cubre, a9)['gratis'] if t]
     check(len(r) == 1 and 'Combinada cumplida' in r[0], 'y su resultado al terminar')
     a14 = dt.datetime(2026, 10, 17, 20, 5, tzinfo=dt.timezone.utc)     # 14:05 CDMX
-    ps14 = [_p(20, prob=0.84, cuota=1.22, inicio='2026-10-17 23:00:00'),
-            _p(21, prob=0.88, cuota=1.10, inicio='2026-10-17 23:00:00')]
+    ps14 = [_p(20, prob=0.78, cuota=1.28, inicio='2026-10-17 23:00:00'),
+            _p(21, prob=0.74, cuota=1.30, inicio='2026-10-17 23:00:00')]
     s = [t for t, *_ in tc.armar(ps14, set(), a14)['gratis'] if 'Pick del día' in t]
     check(len(s) == 1 and 'Gana A20' in s[0], 'a las 14: el pick del día (la más segura que pague 1,20+)')
     for k in ('SUPABASE_URL', 'SUPABASE_SERVICE_KEY'):

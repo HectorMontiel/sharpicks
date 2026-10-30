@@ -27,10 +27,10 @@ def probar():
     ahora = dt.datetime(2026, 10, 30, 18, 0, tzinfo=dt.timezone.utc)
     ini = lambda h: (ahora + dt.timedelta(hours=h)).strftime('%Y-%m-%d %H:%M:%S')
     picks = [
-        {'id': 'p1', 'partido': 'Lakers vs Celtics', 'deporte': 'NBA', 'apuesta': 'Gana Lakers', 'cuota': 1.3, 'prob': 0.8, 'estado': 'pendiente', 'inicio': ini(2)},
+        {'id': 'p1', 'partido': 'Lakers vs Celtics', 'deporte': 'NBA', 'apuesta': 'Gana Lakers', 'cuota': 1.3, 'prob': 0.75, 'estado': 'pendiente', 'inicio': ini(2)},
         {'id': 'p2', 'partido': 'Yankees vs Red Sox', 'deporte': 'MLB', 'apuesta': 'Gana Yankees', 'cuota': 1.25, 'prob': 0.81, 'estado': 'pendiente', 'inicio': ini(3), 'elige': True, 'premium': True},
         {'id': 'p3', 'partido': 'América vs Tijuana', 'deporte': 'Fútbol', 'apuesta': 'Gana América', 'cuota': 1.2, 'prob': 0.86, 'estado': 'pendiente', 'inicio': ini(1)},
-        {'id': 'p4', 'partido': 'Lakers vs Celtics', 'deporte': 'NBA', 'apuesta': 'Más de 200', 'cuota': 1.3, 'prob': 0.8, 'estado': 'pendiente', 'inicio': ini(9)},
+        {'id': 'p4', 'partido': 'Lakers vs Celtics', 'deporte': 'NBA', 'apuesta': 'Más de 200', 'cuota': 1.3, 'prob': 0.75, 'estado': 'pendiente', 'inicio': ini(9)},
     ]
     destinos = [
         {'usuario': 'vip1', 'chat': 111, 'vip': True, 'tipo': 'deporte', 'valor': 'Béisbol'},
