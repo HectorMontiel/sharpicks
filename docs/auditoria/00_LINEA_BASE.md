@@ -10,6 +10,16 @@
 - **Checks de PR consultados:** `instalar`, `tests` y `validar` aprobados en el SHA consultado.
 - **Repositorio privado `sharpicks-core`:** no resoluble por la cuenta conectada; la API no permite distinguir entre inexistente y falta de acceso.
 
+## Actualización de estado: 2026-10-30
+
+- **Head remoto/local revisado:** `ac510af65aac76be66e29d8e5a104162d1744f01`; rama `hardening/free-audit-2026-10`; árbol de trabajo limpio al verificarlo.
+- **PR #1:** sigue abierto y draft; `headRefOid` concuerda con `ac510af`.
+- **CI remoto:** los workflows `Verificar instalación limpia de SharPicks`, `Validar SharPicks sin desplegar` y `Tests seguros SharPicks v402` reportan `queued` para `ac510af`. También permanecen en cola ejecuciones de SHAs anteriores. Ninguna se reporta como aprobada para este head.
+- **Validación local posterior:** 43 tests de unittest, `test_v510.py`, `py_compile` y `git diff --check` pasaron en Python 3.12 para el árbol con código hasta `f638b2d`; los commits posteriores `c5b18ab` y `ac510af` sólo cambiaron documentación. No equivale a CI ni staging.
+- **Cambios posteriores medibles:** downloader comprueba SHA-256 de metadata antes de extraer y rechaza entradas tar inseguras; para `sharpicks-core` exige `CORE_MODELS_READ_TOKEN`. Se preparó `supabase/auditoria_catalogo_readonly.sql`, pero no se ejecutó contra una base. `ADR-0001` sigue propuesta.
+- **Exposición de la release:** el snapshot revisado registra 73 assets, 72 archivos `.tar.gz`, 735,067,828 bytes y digests SHA-256 para todos; ningún asset fue descargado, retirado ni reemplazado.
+- **Estado de repositorio/producción:** no se pudo resolver `sharpicks-core`; no se conectó Supabase staging ni se ejecutó migración o cambio productivo.
+
 ## Metodología
 
 1. Se verificaron rama, commit y árbol con Git; el checkout usa clonación superficial y parcial (`blob:none`) porque el árbol tiene más de 650 MB. Se materializaron los fuentes Python, documentación, workflows, pruebas y SQL necesarios para inspección local. El inventario de conteos y tamaños proviene de la API GitHub del árbol recursivo del SHA, no de una descarga de todos los blobs.
@@ -75,4 +85,4 @@ Comandos y consultas usados: `git status --short --branch`, `git log -1 --format
 
 ## Próxima revisión
 
-Actualizar esta línea base después de cada cambio relevante, registrar SHA nuevo y separar evidencia local, CI, staging y producción. No reutilizar este corte como descripción de un commit posterior.
+La sección inicial conserva la línea base inmutable del SHA `228c86a`; la actualización superior registra el estado actual observado en `ac510af`. Actualizar el estado después de cada cambio relevante y separar evidencia local, CI, staging y producción.

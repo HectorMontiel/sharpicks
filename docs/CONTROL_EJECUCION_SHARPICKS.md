@@ -1,6 +1,6 @@
 # Control de ejecución de SharPicks
 
-- **Corte:** 2026-10-30, base auditada `228c86a7fb03ed555465e56971170565f3029d9b`; snapshot de inventario Git desde `cb6c3e434390101ee204addc11b68e2251f99e13`; release revisado a 2026-10-30; head publicado al inicio de este bloque `cacf22f`.
+- **Corte:** 2026-10-30, base inicial `228c86a7fb03ed555465e56971170565f3029d9b`; estado remoto actualizado en `ac510af65aac76be66e29d8e5a104162d1744f01`; snapshot de inventario Git desde `cb6c3e434390101ee204addc11b68e2251f99e13`; release revisado a 2026-10-30.
 - **Rama:** `hardening/free-audit-2026-10`.
 - **PR:** #1, abierto y draft.
 - **Regla de progreso:** no se calcula porcentaje hasta definir y cerrar un conjunto finito de criterios verificables; el inventario inicial contiene trabajo aún no dimensionado.
@@ -9,7 +9,7 @@ Estados permitidos: PENDIENTE, EN EJECUCIÓN, IMPLEMENTADO, EN VALIDACIÓN, VALI
 
 | ID | Fase | Tarea verificable | Dependencias | Estado | Archivos/área | Pruebas/evidencia | Bloqueo |
 |---|---|---|---|---|---|---|---|
-| F0-01 | 0 | Confirmar repo, rama, commit, árbol limpio, PR y checks | Ninguna | VALIDADO | Git, PR #1 | SHA y checks actuales registrados en `docs/auditoria/00_LINEA_BASE.md` | Ninguno |
+| F0-01 | 0 | Confirmar repo, rama, commit, árbol limpio, PR y checks | Ninguna | VALIDADO | Git, PR #1 | Head `ac510af`, árbol limpio, PR draft; tres workflows en cola según actualización de `docs/auditoria/00_LINEA_BASE.md` | Ninguno |
 | F0-02 | 0 | Repetir conteos de archivos, workflows, SQL, JSON, CSV, modelos y releases | F0-01 | VALIDADO | Árbol remoto y releases | GitHub REST: 1,860 archivos, 768 Python, 18 workflows, 52 SQL, 554 JSON, 266 CSV, 5 JOBLIB; release de 73 assets | Metadatos; no incluye contenido de todos los blobs |
 | F0-03 | 0 | Crear inventario reproducible de entorno, limitaciones y riesgos iniciales | F0-01 | IMPLEMENTADO | `docs/auditoria/00_LINEA_BASE.md` | Evidencia documentada; revisión pendiente en este commit | Ninguno |
 | F1-01 | 1 | Construir grafo AST recursivo de imports, ciclos candidatos, entrypoints y referencias | F0-02 | IMPLEMENTADO | `tools/python_dependency_graph.py`, `docs/auditoria/01_GRAFO_ARQUITECTURA.md`, `docs/auditoria/python_dependency_graph.json` | 773 archivos parseados; 1,925 aristas locales, 11 componentes cíclicos candidatos, 44 scripts literales desde workflows, 0 errores AST; 7 pruebas del analizador | No resuelve ejecución condicional, plugins, comandos construidos ni efectos runtime |
@@ -37,7 +37,7 @@ Estados permitidos: PENDIENTE, EN EJECUCIÓN, IMPLEMENTADO, EN VALIDACIÓN, VALI
 | F11-01 | 11 | Medir y optimizar carga/costo tras baseline real | F0-02, workflows | PENDIENTE | Workflows críticos | Duraciones de checks de PR observadas; no equivalen a costos | Datos de facturación no visibles |
 | F12-01 | 12 | Implementar logs/alertas/runbooks y validar privacidad | Arquitectura y servicios | PENDIENTE | Operación y entrypoints | Pendiente |
 | F13-01 | 13 | Mantener manual, ADRs, runbooks y criterios alineados a lo implementado | Todas | EN EJECUCIÓN | `docs/` | Índice/documentación previos existen | Continua |
-| GIT-01 | 23 | Mantener rama autorizada, PR draft, cambios pequeños y evidencia | Trabajo local | EN EJECUCIÓN | Rama y PR #1 | Rama correcta; `f638b2d` publicado; sigue draft; los tres workflows asociados a `f638b2d` figuran `queued` en GitHub al corte | Ninguno para este bloque |
+| GIT-01 | 23 | Mantener rama autorizada, PR draft, cambios pequeños y evidencia | Trabajo local | EN EJECUCIÓN | Rama y PR #1 | En la última consulta remota, `ac510af` estaba en el PR draft y sus tres workflows figuran `queued`; los commits documentales posteriores quedan pendientes de consulta CI | Ninguno para este bloque |
 
 ## Distinción de validación
 
