@@ -2164,7 +2164,9 @@
     base.forEach((p) => {
       const k = clavePartido(p);
       if (A.partidos.has(k)) { const o = elegidos.get(k); if (!o || Number(p.prob) > Number(o.prob)) elegidos.set(k, p); }   // elegido: su pick más probable
-      if (!sel.has(nivel(p).n)) return;
+      // v544 — al gratis, lo que ya es gratis (Oro y los 🎁 de regalo del día) entra siempre, sin costo
+      const libre = !armVip() && !p.premium && nivel(p).n !== 'Diamante';
+      if (!sel.has(nivel(p).n) && !libre) return;
       const o = mejor.get(k);
       if (!o || Number(p.prob) > Number(o.prob)) mejor.set(k, p);
     });
@@ -2196,7 +2198,7 @@
         hayDep.concat([...deps].filter((d) => !hayDep.includes(d))).map((d) => '<button class="chip' + (deps.has(d) ? ' activa' : '') + '" data-arm-dep="' + esc(d) + '">' + esc(d) + '</button>').join('') + '</div></div>' +
       '<div class="arm-fila"><span class="arm-et">Niveles</span><div class="chips">' + NIV.map(([n, i]) =>
         '<button class="chip' + (sel.has(n) ? ' activa' : '') + '" data-arm-niv="' + n + '">' + i + ' ' + n + (vipA || n === 'Oro' ? '' : ' ' + ico('coins')) + '</button>').join('') + '</div></div>' +
-      (vipA ? '' : '<p class="tenue chico">Plan gratis: 🥇 Oro sin costo. Puedes meter otros niveles; esas patas cuestan 🪙 según su cuota.</p>') +
+      (vipA ? '' : '<p class="tenue chico">Plan gratis: 🥇 Oro y los 🎁 gratis del día sin costo. Puedes meter otros niveles; esas patas cuestan 🪙 según su cuota.</p>') +
       '<details class="arm-partidos"' + (A.verPar ? ' open' : '') + '><summary>Elegir partidos' + (A.partidos.size ? ' · <b>' + A.partidos.size + '</b>' : ' (opcional)') + '</summary>' +
         '<input class="arm-busca" type="search" placeholder="Busca un equipo" value="' + esc(A.busca) + '" data-arm-busca="1">' +
         '<div class="arm-par-lista">' + (listaPar.length ? listaPar.map(([k, p]) => '<button class="chip' + (A.partidos.has(k) ? ' activa' : '') + '" data-arm-par="' + esc(k) + '" data-txt="' + esc(normTxt(p.partido)) + '">' +
