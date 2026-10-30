@@ -54371,22 +54371,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 6028442,2026-09-03,leagues_cup,Monterrey,Hugo Cuypers,737974,F,1,90,2,0,0,0.0,115.0,3.0,3867341.0
 6028442,2026-09-03,leagues_cup,Monterrey,Luca Orellano,988833,F,0,9,1,0,0,0.0,,3.0,3017841.0
 6028442,2026-09-03,leagues_cup,Monterrey,Fidel Ambríz,1110661,M,0,2,0,0,0,0.0,,2.0,2968988.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Weimar Asprilla,1350735,G,1,90,0,0,0,0.0,11.0,0.0,398090.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Helibelton Palacios,282162,D,1,90,0,0,0,0.0,32.0,1.0,382978.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Emanuel Olivera,197456,D,1,90,0,0,0,0.0,34.0,1.0,159726.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Iván Scarpeta,1236305,D,1,90,1,0,0,0.03,36.0,1.0,248857.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Christian Mafla,282301,D,1,90,0,0,0,0.0,38.0,1.0,274786.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Jáder Obrian,800063,M,1,75,0,0,0,0.0,64.0,2.0,809607.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Jhojan Torres,1422890,M,1,89,1,1,1,0.19,66.0,2.0,709432.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Daniel Torres,207474,F,1,90,0,0,0,0.0,83.0,3.0,269202.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Franco Fagúndez,1345056,M,1,75,2,1,1,0.24,85.0,2.0,887866.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Maximiliano Lovera,747221,F,1,64,1,0,0,0.03,87.0,3.0,425699.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Hugo Rodallega,71550,F,1,89,1,1,0,0.03,115.0,3.0,500025.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Emerson Rodríguez,1200713,M,0,26,2,1,1,0.03,,2.0,1194060.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Luis Palacios,1454807,F,0,15,3,1,0,0.44,,3.0,620937.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Nahuel Lautaro Bustos,835409,F,0,15,1,1,0,0.03,,3.0,808873.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Mateo Puerta,845721,D,0,1,0,0,0,0.0,,1.0,248857.0
-1000014202,2026-09-03,col_primera_a,Santa Fe,Kilian Toscano,1572864,F,0,1,0,0,0,0.0,,3.0,
 1000014202,2026-09-03,col_primera_a,Millonarios,Javier Burrai,262597,G,1,90,0,0,0,0.0,11.0,0.0,261698.0
 1000014202,2026-09-03,col_primera_a,Millonarios,Andrés Llinás,1130853,D,1,90,2,0,0,0.07,33.0,1.0,
 1000014202,2026-09-03,col_primera_a,Millonarios,Sergio Mosquera,496937,D,1,57,1,0,0,0.09,35.0,1.0,
@@ -78748,22 +78732,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5190713,2026-09-13,bra_serie_b,Ceará,Sávio,1043436,D,0,14,0,0,0,0.0,,1.0,193057.0
 5190713,2026-09-13,bra_serie_b,Ceará,Matheus Araújo,1233129,M,0,14,0,0,0,0.0,,2.0,1319172.0
 5190713,2026-09-13,bra_serie_b,Ceará,Lucca,1441321,F,0,14,1,1,0,0.06,,3.0,633205.0
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Franco Armani,206758,G,1,90,0,0,0,0.0,11.0,0.0,396108.0
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Andrés Román,925847,D,1,90,1,0,0,0.02,32.0,1.0,774799.0
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Neider Parra,1910334,D,1,90,0,0,0,0.0,34.0,1.0,522830.0
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,William Tesillo,207383,D,1,90,0,0,0,0.0,36.0,1.0,242825.0
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Milton Casco,174813,D,1,90,0,0,0,0.0,38.0,1.0,295301.0
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Juan Zapata,1199834,M,1,78,1,0,0,0.03,64.0,2.0,933421.0
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Simon Rojas,2223017,M,1,58,0,0,0,0.0,66.0,2.0,
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Andrés Sarmiento,942987,F,1,90,3,0,0,0.05,83.0,3.0,737589.0
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Juan Rengifo,1798773,M,1,57,1,1,0,0.02,85.0,2.0,
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Marlos Moreno,677249,F,1,58,0,0,0,0.0,87.0,3.0,315224.0
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Alfredo Morelos,579660,F,1,80,3,1,0,0.22,115.0,3.0,1676422.0
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Edwin Cardona,177507,M,0,33,2,1,1,0.8,,2.0,249876.0
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Elías Cabrera,1400295,M,0,32,1,0,0,0.04,,2.0,1392483.0
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Ian Poveda,962075,F,0,32,2,2,1,0.3,,3.0,824112.0
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Xavi Rios,1899835,M,0,12,0,0,0,0.0,,2.0,
-1000014137,2026-09-13,col_primera_a,Atlético Nacional,Cristian Arango,452368,F,0,10,1,0,0,0.09,,3.0,1787565.0
 1000014137,2026-09-13,col_primera_a,Águilas Doradas,Jorge Soto,1393528,G,1,90,0,0,0,0.0,11.0,0.0,247613.0
 1000014137,2026-09-13,col_primera_a,Águilas Doradas,Jhon Meléndez,1333447,D,1,86,0,0,0,0.0,32.0,1.0,434597.0
 1000014137,2026-09-13,col_primera_a,Águilas Doradas,Andrés Mosquera,205863,D,1,90,0,0,0,0.0,34.0,1.0,240713.0
@@ -169427,3 +169395,35 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5071469,2026-10-29,mls,San Diego FC,Marcus Ingvartsen,443733,F,0,28,4,2,0,1.17,,3.0,2207638.0
 5071469,2026-10-29,mls,San Diego FC,David Vazquez,1464483,M,0,16,1,0,0,0.33,,2.0,1540699.0
 5071469,2026-10-29,mls,San Diego FC,Onni Valakari,835948,M,0,16,1,1,1,0.04,,2.0,4323060.0
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,Franco Armani,206758,G,1,90,0,0,0,0.0,11.0,0.0,393145.0
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,Andrés Román,925847,D,1,90,0,0,0,0.0,32.0,1.0,811981.0
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,Andrés Reyes,1053717,D,1,90,0,0,0,0.0,34.0,1.0,451816.0
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,William Tesillo,207383,D,1,90,0,0,0,0.0,36.0,1.0,309535.0
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,Samuel Velásquez,1433031,D,1,74,1,0,0,0.01,38.0,1.0,677247.0
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,Elías Cabrera,1400295,M,1,74,1,1,1,0.17,72.0,2.0,1384875.0
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,Jorman Campuzano,922875,M,1,90,0,0,0,0.0,74.0,2.0,1210873.0
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,Andrés Marín,1813504,M,1,90,0,0,0,0.0,76.0,2.0,
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,Andrés Sarmiento,942987,M,1,63,3,0,0,0.1,78.0,2.0,806747.0
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,James Rodríguez,164684,F,1,63,0,0,0,0.0,104.0,3.0,849147.0
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,Juan Rengifo,1798773,F,1,80,1,1,0,0.25,106.0,3.0,
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,Nicolás Rodríguez,1460577,F,0,27,0,0,0,0.0,,3.0,1227158.0
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,Emanuel Benitez,2325552,F,0,27,0,0,0,0.0,,3.0,
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,Milton Casco,174813,D,0,16,0,0,0,0.0,,1.0,340632.0
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,Juan Zapata,1199834,M,0,16,0,0,0,0.0,,2.0,877972.0
+1000014087,2026-10-30,col_primera_a,Atlético Nacional,José Escorcia,2031373,F,0,10,0,0,0,0.0,,3.0,
+1000014087,2026-10-30,col_primera_a,Santa Fe,Weimar Asprilla,1350735,G,1,90,0,0,0,0.0,11.0,0.0,395302.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Helibelton Palacios,282162,D,1,90,0,0,0,0.0,32.0,1.0,432604.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Emanuel Olivera,197456,D,1,90,1,1,0,0.02,34.0,1.0,321087.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Víctor Moreno,1097612,D,1,90,0,0,0,0.0,36.0,1.0,393000.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Mateo Puerta,845721,D,1,58,0,0,0,0.0,38.0,1.0,248857.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Luis Palacios,1454807,M,1,90,1,0,0,0.09,72.0,2.0,745178.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Kilian Toscano,1572864,M,1,58,1,0,0,0.03,74.0,2.0,
+1000014087,2026-10-30,col_primera_a,Santa Fe,Jhojan Torres,1422890,M,1,82,0,0,0,0.0,76.0,2.0,963498.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Alexis Zapata,491242,M,1,58,1,0,0,0.01,78.0,2.0,249676.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Hugo Rodallega,71550,F,1,90,2,0,0,0.11,104.0,3.0,511751.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Maximiliano Lovera,747221,F,1,68,0,0,0,0.0,106.0,3.0,412639.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Daniel Torres,207474,M,0,32,0,0,0,0.0,,2.0,324150.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Franco Fagúndez,1345056,F,0,32,0,0,0,0.0,,3.0,871176.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Jáder Obrian,800063,F,0,32,0,0,0,0.0,,3.0,820689.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Omar Fernández,579659,F,0,22,0,0,0,0.0,,3.0,574691.0
+1000014087,2026-10-30,col_primera_a,Santa Fe,Ewil Murillo,1202617,M,0,8,0,0,0,0.0,,2.0,608357.0

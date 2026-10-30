@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-30T03:14:12Z",
+"actualizado": "2026-10-30T04:50:16Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -18234,12 +18234,52 @@
 },
 {
 "dia": "2026-10-29",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Anaheim Ducks vs Buffalo Sabres",
+"apuesta": "Handicap: Buffalo Sabres +2.5",
+"cuota": 1.125,
+"resultado": "verde",
+"marcador": "6-7"
+},
+{
+"dia": "2026-10-29",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Antequera vs Aguilas FC",
 "apuesta": "Gana Aguilas FC",
 "cuota": 3.3334,
 "resultado": "rojo",
+"marcador": "2-0"
+},
+{
+"dia": "2026-10-29",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Atl. Nacional vs Santa Fe",
+"apuesta": "Gana Atl. Nacional",
+"cuota": 1.58,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-10-29",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Atlético Nacional vs Independiente Santa Fe",
+"apuesta": "Atlético Nacional o empate",
+"cuota": 1.143,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-10-29",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Atlético Nacional vs Independiente Santa Fe",
+"apuesta": "Gana Atlético Nacional",
+"cuota": 1.58,
+"resultado": "verde",
 "marcador": "2-0"
 },
 {
@@ -18411,6 +18451,26 @@
 "cuota": 1.16,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-10-29",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "San Jose Sharks vs Vancouver Canucks",
+"apuesta": "Handicap: Vancouver Canucks +3.5",
+"cuota": 1.111,
+"resultado": "verde",
+"marcador": "3-2"
+},
+{
+"dia": "2026-10-29",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "San Jose Sharks vs Vancouver Canucks",
+"apuesta": "Handicap: San Jose Sharks +2.5",
+"cuota": 1.1,
+"resultado": "verde",
+"marcador": "3-2"
 },
 {
 "dia": "2026-10-29",
