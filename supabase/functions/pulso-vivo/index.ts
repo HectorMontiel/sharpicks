@@ -134,19 +134,31 @@ async function secretos() {
   return SECRETOS;
 }
 const esc = (s: any) => String(s == null ? '' : s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' } as Dic)[c]);
+// v526 — el usuario: «breves pero impactantes, más emojis, más vendedores». VIP: la jugada tal cual. Gratis: que el
+// Pulso detectó algo, sin decir qué, para desbloquearlo con monedas o hacerse VIP.
+const DEP_EMO: Dic = { 'Fútbol': '⚽' };
 function textoAviso(p: Dic, e: Dic, m: Dic, rec: Dic | null) {
-  const [L, V] = lados(p), t = m.tramo;
-  const h = ['<b>Pulso SharPicks · en vivo</b>', `${esc(L)} ${e.g[0]}-${e.g[1]} ${esc(V)} · ${e.t}'`,
-    `<b>${esc(nombre(m.k, p))}</b> · ${Math.round(100 * m.p)} % <i>(en el historial salió ${Math.round(100 * t.fue)} %)</i>`];
-  if (rec && rec.mercado) h.push(`IA + modelo: <b>${esc(nombre(rec.mercado, p))}</b>. ${esc(rec.motivo || '')}`);
-  h.push('Lo más probable ahora según lo medido; la casa puede pagar poco. Ábrelo en sharpicksapp.com');
-  return h.join('\n');
+  const [L, V] = lados(p), t = m.tramo, ia = rec && rec.mercado && rec.mercado !== m.k ? rec : null;
+  return [`⚡ <b>PULSO EN VIVO</b> · ${e.t}' 🔥`,
+    `${DEP_EMO[p.deporte] || '⚽'} ${esc(L)} <b>${e.g[0]}-${e.g[1]}</b> ${esc(V)}`,
+    `🎯 <b>${esc(nombre(m.k, p))}</b> · ${Math.round(100 * m.p)} %`,
+    `📊 Salió ${Math.round(100 * t.fue)} % en el historial`]
+    .concat(ia ? [`🤖 IA + modelo: <b>${esc(nombre(ia.mercado, p))}</b>`] : rec && rec.motivo ? [`🤖 <i>${esc(rec.motivo)}</i>`] : [])
+    .concat(['👉 sharpicksapp.com']).join('\n');
 }
-async function enviar(texto: string) {
-  const s = await secretos();
-  if (!s.TELEGRAM_BOT_TOKEN || !s.TELEGRAM_CHAT_VIP) return false;
+function textoGancho(p: Dic, e: Dic, m: Dic) {
+  const [L, V] = lados(p), piso = Math.floor(m.p * 10) * 10;
+  return [`⚡ <b>EL PULSO DETECTÓ ALGO</b> 🔥`,
+    `${DEP_EMO[p.deporte] || '⚽'} ${esc(L)} <b>${e.g[0]}-${e.g[1]}</b> ${esc(V)} · ${e.t}'`,
+    `🎯 Una jugada con <b>${piso} %+</b> de probabilidad AHORA`,
+    `🔓 Desbloquéala con 🪙 monedas 👉 sharpicksapp.com`,
+    `💎 En el VIP te llega directo`].join('\n');
+}
+async function enviar(texto: string, canal: 'vip' | 'gratis' = 'vip') {
+  const s = await secretos(), chat = canal === 'vip' ? s.TELEGRAM_CHAT_VIP : s.TELEGRAM_CHAT_GRATIS;
+  if (!s.TELEGRAM_BOT_TOKEN || !chat) return false;
   const r = await fetch(`https://api.telegram.org/bot${s.TELEGRAM_BOT_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: s.TELEGRAM_CHAT_VIP, text: texto, parse_mode: 'HTML', disable_web_page_preview: true }) });
+    body: JSON.stringify({ chat_id: chat, text: texto, parse_mode: 'HTML', disable_web_page_preview: true }) });
   return r.ok;
 }
 async function preguntarIA(p: Dic, e: Dic, ms: Dic[]) {
@@ -193,8 +205,9 @@ async function vuelta(seco: boolean) {
   const lista = (await partidos()).filter((p) => enJuego(p, ahora));
   const res: Dic = { en_juego: lista.length, segundo_tiempo: 0, avisos: 0, ia: 0, liquidadas: 0, lecturas: [] as Dic[], sin_espn: [] as unknown[], sin_ia: 0 };
   if (!lista.length) return res;
-  const env = await sbGet('telegram_enviados', 'select=pick&tipo=eq.pulso&enviado=gte.' + new Date(ahora - 2 * 864e5).toISOString() + '&limit=5000');
+  const env = await sbGet('telegram_enviados', 'select=pick,canal,enviado&tipo=eq.pulso&enviado=gte.' + new Date(ahora - 2 * 864e5).toISOString() + '&limit=5000');
   const avisados = new Set<string>((env || []).map((x: Dic) => x.pick));
+  let ultimoGancho = Math.max(0, ...(env || []).filter((x: Dic) => x.canal === 'gratis').map((x: Dic) => new Date(x.enviado).getTime()));
   const recs = new Map<string, Dic>();
   for (const x of (await sbGet('pulso_ia', 'select=*&fecha=gte.' + desde + '&limit=2000')) || []) recs.set(x.clave + '#' + x.marcador, x);
   const senales = new Map<string, Dic>();
@@ -266,6 +279,15 @@ async function vuelta(seco: boolean) {
         const sx = senales.get([clave, r.mercado, marc].join('#')); if (sx) sx.ia = true;
         recs.set(clave + '#' + marc, rec); res.ia++;
       } else res.sin_ia++;
+    }
+    // v526 — el gratis: el gancho (sin decir la jugada), uno por partido y a lo mucho uno cada 20 minutos
+    const gancho = `pulso-gratis|${clave}`;
+    if (m.p >= AVISO_MIN && !avisados.has(gancho) && ahora - ultimoGancho > 20 * 60e3) {
+      if (seco) res.ganchos = (res.ganchos || 0) + 1;
+      else if (await enviar(textoGancho(p, e, m), 'gratis')) {
+        await sbPost('telegram_enviados', [{ pick: gancho, canal: 'gratis', tipo: 'pulso', texto: 'gancho del Pulso', partido: p.partido, inicio: String(p.inicio) }]);
+        avisados.add(gancho); ultimoGancho = ahora; res.ganchos = (res.ganchos || 0) + 1;
+      }
     }
     const pick = `pulso|${clave}|${m.k}`;
     if (m.p >= AVISO_MIN && !avisados.has(pick)) {                 // el aviso, una vez por partido y mercado

@@ -71,13 +71,13 @@ def probar():
           _p(6, prob=0.81, estado='verde', inicio='2026-10-15 08:00:00')]
     os.environ.pop('TELEGRAM_VIP_NIVELES', None)
     m = tc.armar(ps, set(), ahora)          # 12:00 UTC = 6:00 CDMX: aún no toca el gratis
-    vip = '\n'.join(t for t, _ in m['vip'])
+    vip = '\n'.join(t for t, *_ in m['vip'])
     # v400 — los 💎 se mandan al abrir su ventana para apostar (4 h antes), no al aparecer
     check('Gana A1' not in vip and 'Gana A4' in vip, 'a 8 h del partido el VIP aún no lo manda; sí los resultados')
-    vip4 = '\n'.join(t for t, _ in tc.armar(ps, set(), dt.datetime(2026, 10, 17, 16, 30, tzinfo=dt.timezone.utc))['vip'])
+    vip4 = '\n'.join(t for t, *_ in tc.armar(ps, set(), dt.datetime(2026, 10, 17, 16, 30, tzinfo=dt.timezone.utc))['vip'])
     check('Gana A1' in vip4 and 'Ya es hora de apostar' in vip4 and 'Gana A2' not in vip4 and 'Gana A3' not in vip4,
           'el VIP: sus 💎 al abrir la ventana para apostar, y sus resultados')
-    check(not [t for t, _ in m['gratis'] if t], 'el gratis no publica fuera de sus horarios')
+    check(not [t for t, *_ in m['gratis'] if t], 'el gratis no publica fuera de sus horarios')
     # el usuario: «en el gratis, combinadas de máximo 1,5 o una individual cada cierto tiempo»
     a9 = dt.datetime(2026, 10, 17, 15, 5, tzinfo=dt.timezone.utc)      # 9:05 CDMX
     ps9 = [_p(10, prob=0.84, cuota=1.15, inicio='2026-10-17 18:00:00'),
@@ -86,22 +86,22 @@ def probar():
            _p(13, prob=0.80, cuota=1.18, inicio='2026-10-17 19:00:00', partido='A10 vs B10'),
            _p(14, elige=True, estado='verde', inicio='2026-10-16 20:00:00')]
     g = tc.armar(ps9, set(), a9)['gratis']
-    textos = [t for t, _ in g if t]
+    textos = [t for t, *_ in g if t]
     comb = [t for t in textos if 'Combinada del día' in t]
     check(len(comb) == 1 and 'Gana A10' in comb[0] and 'Gana A11' in comb[0] and 'cuota total <b>1.38</b>' in comb[0],
           'a las 9: UNA combinada de partidos distintos con cuota total 1,30-1,50, la más probable')
     check(not [t for t in textos if '🆕' in t] and sum('Gana A' in t for t in textos) <= 2,
           'el gratis ya no manda listas: una publicación por horario')
     check([t for t in textos if 'Ayer en el VIP' in t and '✅ 1 ❌ 0' in t], 'una vez al día: cómo le fue al VIP ayer')
-    cubre = {c for _, cc in g for c in cc}
-    check(not [t for t, _ in tc.armar(ps9, cubre, a9)['gratis'] if t], 'lo ya publicado no se repite')
+    cubre = {c for _, cc, *_ in g for c in cc}
+    check(not [t for t, *_ in tc.armar(ps9, cubre, a9)['gratis'] if t], 'lo ya publicado no se repite')
     fin = [dict(p, estado='verde') if p['id'] in ('id10', 'id11') else p for p in ps9]
-    r = [t for t, _ in tc.armar(fin, cubre, a9)['gratis'] if t]
+    r = [t for t, *_ in tc.armar(fin, cubre, a9)['gratis'] if t]
     check(len(r) == 1 and 'Combinada cumplida' in r[0], 'y su resultado al terminar')
     a14 = dt.datetime(2026, 10, 17, 20, 5, tzinfo=dt.timezone.utc)     # 14:05 CDMX
     ps14 = [_p(20, prob=0.84, cuota=1.22, inicio='2026-10-17 23:00:00'),
             _p(21, prob=0.88, cuota=1.10, inicio='2026-10-17 23:00:00')]
-    s = [t for t, _ in tc.armar(ps14, set(), a14)['gratis'] if 'Pick del día' in t]
+    s = [t for t, *_ in tc.armar(ps14, set(), a14)['gratis'] if 'Pick del día' in t]
     check(len(s) == 1 and 'Gana A20' in s[0], 'a las 14: el pick del día (la más segura que pague 1,20+)')
     for k in ('SUPABASE_URL', 'SUPABASE_SERVICE_KEY'):
         os.environ.pop(k, None)

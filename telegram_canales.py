@@ -62,7 +62,11 @@ HORARIOS_GRATIS = ((9, 'combinada'), (14, 'pick'), (19, 'combinada'))
 VENTANA_GRATIS_H = 8              # sólo partidos que empiezan en las próximas 8 h
 COMB_MIN, COMB_MAX = 1.30, 1.50   # cuota total de la combinada (pedido del usuario)
 PROB_MIN_GRATIS = 0.78            # cada pata (y la sencilla) con al menos esto medido
-PIE = '\n\n<i>Juego responsable · +18 · %s</i>' % SITIO
+# v526 — el usuario: «más amigables y vendedores, más emojis, más visuales, breves pero impactantes, y no enviar
+# mucha basura». Cada envío corto, con su emoji de deporte y, en los picks, un ticket en imagen (tarjeta_tg.py).
+PIE = '\n\n🔞 <i>Juega con responsabilidad</i>'
+DEP_EMO = {'Fútbol': '⚽', 'Tenis': '🎾', 'NBA': '🏀', 'NFL': '🏈', 'NHL': '🏒', 'MLB': '⚾', 'KBO': '⚾', 'Béisbol': '⚾'}
+MAX_VIP_MSG = 6                   # VIP: lo mejor, no la lista entera (el resto, en la app)
 VENTANA_APUESTA_H = 4             # v351: la hora para apostar
 HORA_NOCHE = 22                   # 🌙 resumen del día (hora de CDMX)
 META_MIEMBROS = int(os.environ.get('TG_META_MIEMBROS', '100'))
@@ -158,16 +162,26 @@ def _e(x) -> str:
 
 def _apuesta(p: Dict) -> str:
     if p.get('tipo') == 'error':
-        return '➜ %s · cuota <b>%.2f</b> · se cumple ~%d %% · paga %d %% de más%s' % (
+        return '🚨 <b>%s</b> · 💸 %.2f · 🎯 %d %% · +%d %% de valor%s' % (
             _e(p.get('apuesta')), float(p.get('cuota') or 0), round(100 * float(p.get('prob') or 0)),
             round(100 * float(p.get('ventaja') or 0)), (' en ' + _e(p.get('casa'))) if p.get('casa') else '')
-    return '➜ %s · cuota <b>%.2f</b> · probabilidad %d %%' % (
+    return '✅ <b>%s</b> · 💸 %.2f · 🎯 %d %%' % (
         _e(p.get('apuesta')), float(p.get('cuota') or 0), round(100 * float(p.get('prob') or 0)))
 
 
+def _ticket(titulo: str, ps: List[Dict], ahora: dt.datetime, etiqueta: str) -> Optional[bytes]:
+    """v526 — el ticket en imagen (si algo falla, el mensaje sale sólo con texto)."""
+    try:
+        import tarjeta_tg
+        return tarjeta_tg.ticket(titulo, [{'partido': p.get('partido'), 'apuesta': p.get('apuesta'), 'cuota': p.get('cuota'),
+                                            'prob': p.get('prob'), 'cuando': _cuando(p, ahora).upper()} for p in ps], etiqueta)
+    except Exception as e:
+        logger.warning('[telegram] sin ticket: %s', e)
+        return None
+
+
 def _cab_partido(p: Dict, ahora: dt.datetime, icono: str = '') -> str:
-    liga = (' · ' + _e(p.get('liga'))) if p.get('liga') else ''
-    return '%s<b>%s</b>%s · %s' % (icono + ' ' if icono else '', _e(p.get('partido')), liga, _cuando(p, ahora))
+    return '%s %s<b>%s</b> · 🕒 %s' % (DEP_EMO.get(p.get('deporte'), '🎯'), icono + ' ' if icono else '', _e(p.get('partido')), _cuando(p, ahora))
 
 
 def _por_partido(ps: List[Dict], ahora: dt.datetime) -> List[str]:
@@ -179,7 +193,7 @@ def _por_partido(ps: List[Dict], ahora: dt.datetime) -> List[str]:
     for grupo in g.values():
         mejor = max(grupo, key=lambda x: (bool(x.get('elige')), float(x.get('prob') or 0)))
         out.append(_cab_partido(grupo[0], ahora, ICONO[nivel(mejor)]) + '\n' +
-                   '\n'.join('   ' + _apuesta(p) for p in grupo))
+                   '\n'.join(_apuesta(p) for p in grupo))
     return out
 
 
@@ -255,26 +269,31 @@ def armar_vip(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[Tupl
     errs = [p for p in pend if p.get('tipo') == 'error'
             and _utc(p.get('inicio')) <= ahora + dt.timedelta(hours=HORAS_ANTES)]
     if errs:
-        trozos = _trozos('💰 <b>Error de cuota · al momento</b>\nUna casa paga más de lo que vale; estas cuotas se '
-                         'corrigen pronto. Riesgo alto: apuesta poco.', _por_partido(errs, ahora))
+        trozos = _trozos('🚨💰 <b>Error de cuota · al momento</b>\n¡Corre! Las casas lo corrigen rápido. Apuesta poquito 👇',
+                         _por_partido(errs, ahora))
         out += [(t, []) for t in trozos[:-1]] + [(trozos[-1], [_cubre_pick(p, 'vip') for p in errs])]
     # ⏰ los demás, al abrir su ventana para apostar (4 h antes)
     ya = [p for p in pend if p.get('tipo') != 'error'
           and _utc(p.get('inicio')) <= ahora + dt.timedelta(hours=VENTANA_APUESTA_H)]
     if ya:
-        trozos = _trozos('⏰ <b>Ya es hora de apostar</b> · empiezan en las próximas %d h' % VENTANA_APUESTA_H,
-                         _por_partido(ya, ahora))
-        out += [(t, []) for t in trozos[:-1]] + [(trozos[-1], [_cubre_pick(p, 'vip') for p in ya])]
+        # lo mejor primero (💎 y la probabilidad más alta); el resto, en la app
+        top = sorted(ya, key=lambda p: (not p.get('elige'), -float(p.get('prob') or 0)))[:MAX_VIP_MSG]
+        mas = len(ya) - len(top)
+        t = ('💎🔥 <b>VIP · Ya es hora de apostar</b> ⏰\n\n' + '\n\n'.join(_por_partido(top, ahora)) +
+             ('\n\n➕ <b>%d más</b> en la app 👉 %s' % (mas, SITIO) if mas > 0 else '') + PIE)
+        out.append((t, [_cubre_pick(p, 'vip') for p in ya], _ticket('Picks VIP · hora de apostar', top, ahora, 'VIP')))
     out += _avisos_retiro(picks, enviados, 'vip', ahora)
     res = [p for p in picks if nivel(p) in vip and p.get('estado') in ('verde', 'roja')
            and _utc(p.get('inicio')) is not None and _utc(p.get('inicio')) >= ahora - dt.timedelta(hours=8)
            and (p['id'], 'vip', 'resultado') not in enviados]
     if res:
         v = sum(1 for p in res if p.get('estado') == 'verde')
-        lineas = ['%s %s · %s %s' % ('✅' if p.get('estado') == 'verde' else '❌', _e(p.get('apuesta')),
-                                     _e(p.get('partido')), _e(p.get('marcador') or '')) for p in res]
-        trozos = _trozos('📊 <b>Resultados VIP</b> · ✅ %d ❌ %d\n' % (v, len(res) - v), lineas, sep='\n')
-        out += [(t, []) for t in trozos[:-1]] + [(trozos[-1], [(p['id'], 'vip', 'resultado') for p in res])]
+        # breve: el marcador del lote y sólo las verdes (las rojas cuentan arriba y están en el historial)
+        verdes = [p for p in res if p.get('estado') == 'verde'][:5]
+        t = ('📊 <b>Resultados VIP</b> · ✅ %d ❌ %d%s\n' % (v, len(res) - v, ' 🔥' if v >= 0.8 * len(res) else '') +
+             '\n'.join('✅ %s · %s %s' % (_e(p.get('apuesta')), _e(p.get('partido')), _e(p.get('marcador') or '')) for p in verdes) +
+             ('\n…y %d verdes más' % (v - len(verdes)) if v > len(verdes) else '') + '\n\n📈 Todo, verde y rojo, en el historial 👉 ' + SITIO)
+        out.append((t, [(p['id'], 'vip', 'resultado') for p in res]))
     # 🌙 el resumen de la noche
     hoy = loc.strftime('%Y-%m-%d')
     if loc.hour >= HORA_NOCHE and ('noche:' + hoy, 'vip', 'resumen') not in enviados:
@@ -355,15 +374,18 @@ def armar_gratis(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[T
             if comb:
                 c = float(comb[0]['cuota']) * float(comb[1]['cuota'])
                 pj = float(comb[0]['prob']) * float(comb[1]['prob'])
-                t = ('🔗 <b>Combinada del día</b> · cuota total <b>%.2f</b> · probabilidad ~%d %%\n\n' % (c, round(100 * pj)) +
-                     '\n\n'.join(_cab_partido(p, ahora) + '\n   ' + _apuesta(p) for p in comb) + PIE)
+                t = ('🔗🔥 <b>Combinada del día</b> · cuota total <b>%.2f</b> · 🎯 ~%d %%\n\n' % (c, round(100 * pj)) +
+                     '\n\n'.join(_cab_partido(p, ahora) + '\n' + _apuesta(p) for p in comb) +
+                     '\n\n💎 ¿Quieres más? En el VIP hay picks todo el día 👉 ' + SITIO + PIE)
                 out.append((t, [(clave, 'gratis', 'horario'),
                                 ('comb:' + '+'.join(p['id'] for p in comb), 'gratis', 'pick',
                                  ' + '.join(str(p.get('apuesta')) for p in comb),
-                                 ' / '.join(str(p.get('partido')) for p in comb), comb[0].get('inicio'))]))
+                                 ' / '.join(str(p.get('partido')) for p in comb), comb[0].get('inicio'))],
+                            _ticket('Combinada del día', comb, ahora, 'GRATIS')))
             elif sen:
-                t = ('🎯 <b>Pick del día</b>\n\n' + _cab_partido(sen, ahora) + '\n   ' + _apuesta(sen) + PIE)
-                out.append((t, [(clave, 'gratis', 'horario'), _cubre_pick(sen, 'gratis')]))
+                t = ('🎯🆓 <b>Pick del día</b>\n\n' + _cab_partido(sen, ahora) + '\n' + _apuesta(sen) +
+                     '\n\n💎 En el VIP hay más todos los días 👉 ' + SITIO + PIE)
+                out.append((t, [(clave, 'gratis', 'horario'), _cubre_pick(sen, 'gratis')], _ticket('Pick del día', [sen], ahora, 'GRATIS')))
             else:
                 out.append(('', [(clave, 'gratis', 'horario')]))     # nada que valga: no se publica
     # el resultado de lo que se publicó
@@ -378,7 +400,8 @@ def armar_gratis(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[T
         if r is None:
             continue
         que = 'Combinada' if len(ps) > 1 else 'Pick'
-        t = ('%s <b>%s %s</b>\n' % ('✅' if r == 'verde' else '❌', que, 'cumplida' if r == 'verde' else 'fallada') +
+        t = ('%s <b>%s %s</b>%s\n' % ('✅' if r == 'verde' else '❌', que, 'cumplida' if r == 'verde' else 'fallada',
+                                      ' 🎉💰' if r == 'verde' else '') +
              '\n'.join('%s %s · %s %s' % ('✅' if p.get('estado') == 'verde' else ('❌' if p.get('estado') == 'roja' else '➖'),
                                           _e(p.get('apuesta')), _e(p.get('partido')), _e(p.get('marcador') or ''))
                        for p in ps) + PIE)
@@ -389,9 +412,9 @@ def armar_gratis(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[T
         mues = [p for p in picks if p.get('tipo') == 'error' and p.get('gratis') and p.get('estado') == 'pendiente'
                 and (p['id'], 'gratis', 'pick') not in enviados]
         if mues and (clave, 'gratis', 'horario') not in enviados:
-            t = ('💰 <b>Error de cuota del día</b>\nUna casa paga más de lo que vale. Riesgo alto: apuesta poco.\n\n' +
-                 '\n\n'.join(_cab_partido(p, ahora) + '\n   ' + _apuesta(p) for p in mues) +
-                 '\n\n🔒 En el VIP hay más todos los días.' + PIE)
+            t = ('🚨💰 <b>Error de cuota del día</b>\nUna casa paga de más. Apuesta poquito 👇\n\n' +
+                 '\n\n'.join(_cab_partido(p, ahora) + '\n' + _apuesta(p) for p in mues) +
+                 '\n\n🔒 En el VIP llegan al momento, todos los días 👉 ' + SITIO + PIE)
             out.append((t, [(clave, 'gratis', 'horario')] + [(p['id'], 'gratis', 'pick') for p in mues]))
     # una vez al día: cómo le fue ayer al VIP (la prueba de que vale la pena)
     ayer = (loc - dt.timedelta(days=1)).strftime('%Y-%m-%d')
@@ -404,8 +427,8 @@ def armar_gratis(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[T
         if ps:
             v = sum(1 for p in ps if p.get('estado') == 'verde')
             # v383 — el enlace del VIP ya no se publica: se da en la app a quien le toca
-            t = ('💎 <b>Ayer en el VIP</b>: ✅ %d ❌ %d · %d %% de acierto\n'
-                 'Hazte VIP (o entra gratis con tu cuenta en el lanzamiento): %s' % (v, len(ps) - v, round(100 * v / len(ps)), SITIO))
+            t = ('💎 <b>Ayer en el VIP</b>: ✅ %d ❌ %d · <b>%d %%</b> 🔥\n'
+                 '👉 Hazte VIP y recíbelos al momento: %s' % (v, len(ps) - v, round(100 * v / len(ps)), SITIO))
             out.append((t, [(clave, 'gratis', 'resumen')]))
     out += _avisos_retiro(picks, enviados, 'gratis', ahora)
     # 🌙 la noche: lo que se publicó aquí y el total del día en la app
@@ -458,8 +481,14 @@ def armar(picks: List[Dict], enviados: Set, ahora: Optional[dt.datetime] = None)
     return {'vip': armar_vip(picks, enviados, ahora), 'gratis': armar_gratis(picks, enviados, ahora)}
 
 
-def enviar_a(chat: str, texto: str) -> bool:
+def enviar_a(chat: str, texto: str, foto: Optional[bytes] = None) -> bool:
     import bot_telegram as bt
+    if foto and len(texto) <= 1024:               # v526 — el ticket con el texto de pie de foto
+        r, motivo = bt._post('sendPhoto', timeout=60, data={'chat_id': chat, 'caption': texto, 'parse_mode': 'HTML'},
+                             files={'photo': ('sharpicks.png', foto, 'image/png')})
+        if r is not None and r.ok:
+            return True
+        logger.warning('[telegram] sin foto (%s): va sólo el texto', motivo)
     r, motivo = bt._post('sendMessage', timeout=30, json={
         'chat_id': chat, 'text': texto, 'parse_mode': 'HTML', 'disable_web_page_preview': True})
     if r is not None and r.ok:
@@ -505,7 +534,8 @@ def main() -> int:
         except Exception as e:
             logger.warning('[telegram] meta de miembros: %s', e)
     for canal, msgs in lotes.items():
-        for texto, cubre in msgs:
+        for item in msgs:
+            texto, cubre, foto = item[0], item[1], (item[2] if len(item) > 2 else None)
             if not texto:                      # horario sin nada que valga: sólo se apunta
                 if not seco:
                     apuntar(cubre)
@@ -513,7 +543,7 @@ def main() -> int:
             if seco or not chats.get(canal):
                 print('--- %s ---\n%s' % (canal, texto))
                 continue
-            if enviar_a(chats[canal], texto):
+            if enviar_a(chats[canal], texto, foto):
                 apuntar(cubre)
     print('telegram: %s' % {k: len([m for m in v if m[0]]) for k, v in lotes.items()})
     return 0

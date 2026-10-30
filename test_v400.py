@@ -52,7 +52,7 @@ def probar_telegram():
     ps = [_p(1, inicio='2026-10-17 22:00:00'),                                  # en 3 h: ventana abierta
           _p(2, inicio='2026-10-18 03:00:00'),                                  # en 8 h: aún no
           _p(3, tipo='error', apuesta='Gana B3', cuota=2.4, prob=0.45, ventaja=0.12, inicio='2026-10-18 03:00:00')] + relleno
-    vip = '\n'.join(t for t, _ in tc.armar_vip(ps, set(), ahora))
+    vip = '\n'.join(t for t, *_ in tc.armar_vip(ps, set(), ahora))
     check('Ya es hora de apostar' in vip and 'Gana A1' in vip and 'Gana A2' not in vip,
           '⏰ el 💎 se manda al abrir su ventana de 4 h, no antes')
     check('Error de cuota · al momento' in vip and 'Gana B3' in vip, '💰 el error de cuota sale al momento, aunque falten 8 h')
@@ -61,17 +61,17 @@ def probar_telegram():
     tc._DETALLES[('idX', 'vip')] = {'pick': 'idX', 'canal': 'vip', 'texto': 'Goles: Menos de 2.5', 'partido': 'X vs Y',
                                     'inicio': '2026-10-17 23:00:00'}
     msgs = tc.armar_vip(ps, {('id1', 'vip', 'pick'), ('id3', 'vip', 'pick')}, ahora)
-    r = [t for t, c in msgs if 'Cambio' in t]
+    r = [t for t, c, *_ in msgs if 'Cambio' in t]
     check(r and 'Goles: Menos de 2.5' in r[0], '♻️ se avisa lo que ya mandamos y el modelo retiró')
-    check(not [t for t, _ in tc.armar_vip(ps[:3], {('id1', 'vip', 'pick'), ('id3', 'vip', 'pick')}, ahora) if 'Cambio' in t],
+    check(not [t for t, *_ in tc.armar_vip(ps[:3], {('id1', 'vip', 'pick'), ('id3', 'vip', 'pick')}, ahora) if 'Cambio' in t],
           'con una pasada casi vacía (un fallo) no se avisa nada')
     tc._DETALLES.clear()
     # 🌙 la noche
     noche = dt.datetime(2026, 10, 18, 4, 30, tzinfo=dt.timezone.utc)           # 22:30 CDMX del 17
     hechos = [_p(5, estado='verde', inicio='2026-10-17 20:00:00'), _p(6, estado='roja', inicio='2026-10-17 21:00:00')]
-    n = [t for t, _ in tc.armar_vip(hechos, set(), noche) if '🌙' in t]
+    n = [t for t, *_ in tc.armar_vip(hechos, set(), noche) if '🌙' in t]
     check(n and '✅ 1 ❌ 1' in n[0], '🌙 el VIP recibe el resumen de la noche')
-    g = [t for t, _ in tc.armar_gratis(hechos, set(), noche) if '🌙' in t]
+    g = [t for t, *_ in tc.armar_gratis(hechos, set(), noche) if '🌙' in t]
     check(g and 'Hoy en SharPicks' in g[0], '🌙 y el gratis también')
     src = open('telegram_canales.py', encoding='utf-8').read()
     check("getChatMemberCount" in src and 'META_MIEMBROS = int(os.environ.get(\'TG_META_MIEMBROS\', \'100\'))' in src

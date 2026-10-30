@@ -20,13 +20,14 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_VIP: ${{ secrets.TELEGRAM_CHAT_VIP }}
+          TELEGRAM_CHAT_GRATIS: ${{ secrets.TELEGRAM_CHAT_GRATIS }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python3 - <<'PY'
           import json, os, urllib.request
           url = os.environ['SUPABASE_URL'].rstrip('/') + '/rest/v1/rpc/guardar_secreto'
           k = os.environ['SUPABASE_SERVICE_KEY']
-          for n in ('TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_VIP', 'GEMINI_API_KEY'):
+          for n in ('TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_VIP', 'TELEGRAM_CHAT_GRATIS', 'GEMINI_API_KEY'):
               v = os.environ.get(n) or ''
               if not v:
                   print('::warning::falta el secreto', n); continue
