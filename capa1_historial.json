@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-30T11:19:51Z",
+"actualizado": "2026-10-30T14:27:38Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -18524,6 +18524,16 @@
 },
 {
 "dia": "2026-10-30",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Al Sahel vs Al Ahed",
+"apuesta": "Gana Al Ahed",
+"cuota": 1.7143,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-10-30",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Brisbane Roar FC vs Auckland FC",
@@ -18591,6 +18601,26 @@
 "cuota": 1.61,
 "resultado": "verde",
 "marcador": "1-3"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Sardarapat vs Van",
+"apuesta": "Gana Van",
+"cuota": 3.75,
+"resultado": "rojo",
+"marcador": "2-2"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Semen Padang vs Sumsel United",
+"apuesta": "Gana Semen Padang",
+"cuota": 1.75,
+"resultado": "verde",
+"marcador": "1-0"
 },
 {
 "dia": "2026-10-30",
