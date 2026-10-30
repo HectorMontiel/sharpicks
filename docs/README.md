@@ -21,6 +21,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 15. [Grafo AST completo y datos por módulo](auditoria/python_dependency_graph.json), generado por [`tools/python_dependency_graph.py`](../tools/python_dependency_graph.py); registra imports locales, ciclos candidatos, entrypoints, llamadas dinámicas, referencias de archivos y variables de entorno.
 16. [Inventario por ruta de los blobs rastreados](auditoria/asset_inventory.json), generado por [`tools/asset_inventory.py`](../tools/asset_inventory.py) desde metadatos Git; todas las clasificaciones son candidatas y requieren revisión.
 17. [Snapshot de metadata del release público de modelos](auditoria/release_modelos_latest.json), sin descargas; verifica nombres, tamaños y digests de los 73 assets.
+18. [Distribución del core](arquitectura/03_ESTRATEGIA_DISTRIBUCION_CORE.md): alternativa de paquete privado y gates implementados para rechazar publicación pública/no verificada.
 
 ## Estado actual
 
@@ -32,9 +33,10 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 - Producción/Supabase: sin cambios ejecutados por esta documentación.
 - Acciones de GitHub: fijadas por SHA en `bae8759973b2ef8f3d5c5c4ea38e2025a0caca46`; los checks `instalar`, `tests` y `validar` aprobaron sobre ese SHA.
 - Contrato público v1: implementado y 12 tests unitarios locales aprobados; `instalar`, `tests` y `validar` aprobaron en CI para el SHA `c162c7587cb960149459d41ede09097990250046`.
-- Grafo recursivo: generado para 773 archivos Python desde `4c1223a635ed628798e547645209cba67582f65b`; batería local del analizador/contratos pasa y CI del código posterior sigue en cola.
+- Grafo recursivo: generado para 773 archivos Python desde `4c1223a635ed628798e547645209cba67582f65b`; batería local del analizador/contratos pasa.
 - Inventario por ruta: 1,880 blobs rastreados (660,235,222 bytes) desde el tree `cb6c3e434390101ee204addc11b68e2251f99e13`; las etiquetas son heurísticas y requieren revisión humana, sin lectura de contenido.
 - Release pública: snapshot de `modelos-latest` confirma 72 archivos de modelos `.tar.gz` y un manifiesto JSON (735,067,828 bytes); se registra exposición P1 y se preservan los assets mientras no exista una migración validada.
+- Publicador: en esta rama requiere un destino privado explícito/verificado y no versiona ni retira modelos si falla o no se marca readiness de consumidores. CI del código `bebbe57` está en cola; integración con repo/secret real no probada.
 
 ## Regla
 

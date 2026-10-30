@@ -1,6 +1,6 @@
 # Estrategia de distribución de `sharpicks-core`
 
-- **Estado:** RECOMENDADO; no integrado por falta de repositorio privado resoluble.
+- **Estado:** IMPLEMENTADO PARCIALMENTE; el publicador ahora exige y verifica destino privado, pero el core no se pudo resolver y no hay integración privada validada.
 - **Fecha:** 2026-10-30.
 
 ## Alternativas
@@ -23,6 +23,14 @@
 ## Por qué no se activa ahora
 
 La API de GitHub devolvió `Could not resolve to a Repository` para `HectorMontiel/sharpicks-core`. No puede confirmarse si no existe o si falta acceso. No se configura un token improvisado ni se pide por chat. El contrato público queda probado localmente; la conexión de core y el primer workflow de sombra siguen BLOQUEADOS hasta que el repo esté disponible.
+
+## Protección incorporada al flujo de publicación
+
+- `publicar_modelos.py` ya no infiere el destino desde `GITHUB_REPOSITORY` ni cae al repositorio público. Requiere `REPO_MODELOS=owner/repo` y consulta la API GitHub para confirmar `private=true` antes de crear o subir Release assets.
+- El paso de publicación usa el secret `CORE_RELEASE_TOKEN` y la variable `REPO_MODELOS`; si falta cualquiera o el destino no es privado/accesible, falla antes de cualquier operación de escritura.
+- El workflow no hace `git add modelos/` ni actualiza `.gitignore` después de una publicación fallida. Además requiere la variable `MODELOS_CORE_CONSUMERS_READY=true` para retirar modelos del árbol público, incluso si el upload privado se verificó.
+- Para una configuración futura, `CORE_RELEASE_TOKEN` debe ser un GitHub App/fine-grained token limitado al repo privado con permisos de contenido necesarios para Release (lectura de metadata y escritura de assets). Nunca se configura por chat. La variable de readiness no se debe activar hasta validar los consumidores de descarga en los workflows de producción.
+- Estos gates sólo se prueban localmente con respuestas simuladas. No demuestran que `sharpicks-core`, la variable ni el secret existan; producción no fue ejecutada.
 
 ## Gates
 
