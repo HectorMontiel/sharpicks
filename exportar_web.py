@@ -489,57 +489,9 @@ def nivel(p: Dict) -> str:
     return 'Platino' if pr >= 0.80 else ('Oro' if pr >= 0.70 and cu >= 1.25 else 'Plata')
 
 
-# v544 — EL GRATIS NUNCA SE QUEDA SIN NADA. El usuario (30-oct): «¿cómo no va a haber dos picks de Oro entre mañana y
-# pasado?… a los usuarios gratis tenemos que darles cosas». En fútbol la probabilidad publicada es la MEDIDA de su clase
-# (79 % «se mete», 86 % ⭐, 85 % Capa 1: `modo_modelo.acierta_de_verdad`), así que ningún pick de fútbol cae en 80-84 %
-# (Oro): el Oro sólo sale de los otros deportes y hay días sin ninguno. Ahora cada día lleva al menos GRATIS_DIA picks
-# gratis: los Oro, y si no alcanzan, los mejores de Plata/Platino (más probables y, a igual probabilidad, la cuota más
-# baja). El 💎 Diamante nunca se regala. Lo que ya salió gratis se queda gratis (nadie ve que un pick se le cierra).
-GRATIS_DIA = 2          # v545 — el usuario: «prefiero que sean dos picks de regalo, más las 20 monedas al crear la cuenta»
-
-
-def _gratis_antes() -> set:
-    """Los ids que la pasada anterior publicó como gratis de regalo (para que no se vuelvan de pago)."""
-    url, key = os.environ.get('SUPABASE_URL'), os.environ.get('SUPABASE_SERVICE_KEY')
-    if not url or not key:
-        return set()
-    try:
-        import requests
-        hoy = dt.datetime.now(dt.timezone(dt.timedelta(hours=-6))).date().isoformat()
-        r = requests.get(url.rstrip('/') + '/rest/v1/picks', timeout=30, headers={'apikey': key, 'Authorization': 'Bearer ' + key},
-                         params={'select': 'id', 'gratis': 'is.true', 'fecha': 'gte.' + hoy, 'tipo': 'neq.error', 'limit': 2000})
-        return {x['id'] for x in r.json()} if r.ok else set()
-    except Exception as e:
-        logger.warning('[web] sin los gratis de antes: %s', e)
-        return set()
-
-
-def gratis_del_dia(picks: List[Dict], antes: set = frozenset()) -> int:
-    """Marca `gratis` para que cada día tenga al menos GRATIS_DIA picks sin costo. Devuelve cuántos regaló."""
-    nv = {x.strip().capitalize() for x in os.environ.get('PREMIUM_NIVELES', '').split(',') if x.strip()}
-    if not nv:
-        return 0                                        # sin modo de pago todo es gratis
-    pend = [p for p in picks if p.get('estado') == 'pendiente' and p.get('tipo') != 'error' and not p.get('solo_analisis')
-            and p.get('fecha')]
-    regalados = 0
-    for dia in sorted({p['fecha'] for p in pend}):
-        del_dia = [p for p in pend if p['fecha'] == dia]
-        libres = [p for p in del_dia if nivel(p) not in nv or p.get('gratis')]
-        for p in del_dia:                               # lo que ya se regaló, se queda
-            if p.get('id') in antes and nivel(p) != 'Diamante' and not p.get('gratis'):
-                p['gratis'] = True
-                libres.append(p)
-                regalados += 1
-        # v545 — el regalo va como el 🥇 Oro: más cuota y menos probabilidad (Plata de 65 %+ con la cuota más alta);
-        # sólo si no hay, un 🔷 Platino (el de menor probabilidad). El 💎 nunca.
-        cand = sorted((p for p in del_dia if p not in libres and nivel(p) not in ('Diamante',)
-                       and (nivel(p) == 'Platino' or float(p.get('prob') or 0) >= 0.65)),
-                      key=lambda p: (nivel(p) == 'Platino', -float(p.get('cuota') or 0) if nivel(p) != 'Platino' else float(p.get('prob') or 0),
-                                     str(p.get('inicio') or '')))
-        for p in cand[:max(0, GRATIS_DIA - len(libres))]:
-            p['gratis'] = True
-            regalados += 1
-    return regalados
+# v547 — SIN PICKS DE REGALO. El usuario (30-oct): «mejor quita los picks de regalo». Lo gratis es el 🥇 Oro
+# (70-79 % y cuota ≥ 1,25, v545) y las 20 monedas al crear la cuenta. Los regalos de v544-v545 vuelven a ser
+# de pago en la siguiente pasada (su `gratis` ya no se pone).
 
 
 def premium(picks: List[Dict]) -> List[Dict]:
@@ -770,7 +722,6 @@ def main() -> int:
     except Exception as e:
         logger.warning('[web] no se cerraron los pendientes: %s', e)
     print('web: %d liquidados que esta pasada iba a devolver a «por jugar»' % no_retroceder(r['picks']))
-    print('web: %d picks de regalo para que el gratis tenga al menos %d por día' % (gratis_del_dia(r['picks'], _gratis_antes()), GRATIS_DIA))
     secretos = premium(r['picks'])
     analisis = r.pop('analisis', [])
     # v482 — los jugadores y las líneas (VIP) salen de lo público ANTES de escribir y subir;

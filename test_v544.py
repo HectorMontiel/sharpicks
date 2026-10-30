@@ -1,6 +1,4 @@
-"""v544-v545 — cada día el gratis tiene al menos 2 picks sin costo: el 🥇 Oro (70-79 % y cuota ≥ 1,25) y, si no alcanza,
-regalos con más cuota y menos probabilidad (Plata 65 %+ con la cuota más alta; si no hay, el Platino menos probable).
-El 💎 Diamante nunca se regala; lo ya regalado se queda gratis."""
+"""v545-v547 — los niveles nuevos (🥇 Oro = 70-79 % y cuota ≥ 1,25) y ya sin picks de regalo (v547)."""
 import os
 import sys
 
@@ -22,25 +20,12 @@ def test_niveles_v545():
         assert f(_p(1, 'd', 0.66, cuota=1.60)) == 'Plata'
 
 
-def test_gratis_del_dia():
-    os.environ['PREMIUM_NIVELES'] = 'Diamante,Platino,Plata,Cuota alta'
+def test_sin_regalos():
     import exportar_web as ew
-    ps = [_p(1, 'd1', 0.86, elige=True), _p(2, 'd1', 0.79, cuota=1.20), _p(3, 'd1', 0.68, cuota=1.45), _p(4, 'd1', 0.85),
-          _p(5, 'd1', 0.50, cuota=2.5)]
-    n = ew.gratis_del_dia(ps)
-    g = {p['id'] for p in ps if p.get('gratis')}
-    assert g == {'p3', 'p2'} and n == 2                    # Plata de 65 %+, la de más cuota primero; ni Platino ni Diamante
-    ps = [_p(1, 'd1', 0.72, cuota=1.30), _p(2, 'd1', 0.79, cuota=1.20), _p(3, 'd1', 0.90)]
-    ew.gratis_del_dia(ps)
-    assert [p['id'] for p in ps if p.get('gratis')] == ['p2']   # ya hay 1 Oro: sólo falta un regalo
-    ps2 = [_p(1, 'd1', 0.79), _p(2, 'd1', 0.79), _p(3, 'd1', 0.79), _p(4, 'd1', 0.79)]
-    ew.gratis_del_dia(ps2, antes={'p4'})
-    assert ps2[3].get('gratis')                             # lo que ya salió gratis se queda gratis
-    os.environ.pop('PREMIUM_NIVELES', None)
-    assert ew.gratis_del_dia([_p(1, 'd1', 0.79)]) == 0      # sin modo de pago no hace nada
+    assert not hasattr(ew, 'gratis_del_dia') and not hasattr(ew, 'GRATIS_DIA')   # v547 — el usuario: «quita los picks de regalo»
 
 
 if __name__ == '__main__':
     test_niveles_v545()
-    test_gratis_del_dia()
+    test_sin_regalos()
     print('TODO OK')

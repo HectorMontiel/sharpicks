@@ -32,7 +32,7 @@ def test_armador_dias_deportes_partidos():
 
 def test_gratis_paga_y_vip_morado_primero():
     a, c = leer('web', 'app.js'), leer('web', 'cuenta.js')
-    assert 'Plan gratis: 🥇 Oro y los 🎁 gratis del día sin costo. Puedes meter otros niveles; esas patas cuestan 🪙 según su cuota.' in a
+    assert 'Plan gratis: 🥇 Oro sin costo. Puedes meter otros niveles; esas patas cuestan 🪙 según su cuota.' in a
     assert 'const orden = (a, b) => (iaSegura(b) - iaSegura(a)) || (Number(b.prob) - Number(a.prob));' in a
     assert "sb.rpc('desbloquear_varios', { p_ids: ids.slice(0, 20) })" in c
     s = leer('supabase', 'v540_desbloquear_varios.sql')
