@@ -17082,21 +17082,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803936,2026-08-08,polonia,Pogoń Szczecin,Benjamin Mendy,280965,D,0,24,0,0,0,0.0,,1.0,223696.0
 5803936,2026-08-08,polonia,Pogoń Szczecin,Hussein Ali,1092563,D,0,10,0,0,0,0.0,,1.0,368982.0
 5803936,2026-08-08,polonia,Pogoń Szczecin,Kamil Grosicki,69541,F,0,10,0,0,0,0.0,,3.0,234255.0
-5803936,2026-08-08,polonia,Motor Lublin,Mihai Popa,1026255,G,1,90,0,0,0,0.0,11.0,0.0,484854.0
-5803936,2026-08-08,polonia,Motor Lublin,Thomas Santos,863987,D,1,65,1,0,0,0.02,32.0,1.0,450296.0
-5803936,2026-08-08,polonia,Motor Lublin,Bartosz Bereszynski,198099,D,1,90,2,1,0,0.05,34.0,1.0,203055.0
-5803936,2026-08-08,polonia,Motor Lublin,Tin Plavotic,822495,D,1,90,0,0,0,0.0,36.0,1.0,520825.0
-5803936,2026-08-08,polonia,Motor Lublin,Filip Luberecki,1447055,D,1,90,0,0,0,0.0,38.0,1.0,2430690.0
-5803936,2026-08-08,polonia,Motor Lublin,Yacine Bourhane,864153,M,1,82,0,0,0,0.0,65.0,2.0,219054.0
-5803936,2026-08-08,polonia,Motor Lublin,Mbaye Ndiaye,1643834,F,1,90,2,0,0,0.12,82.0,3.0,1017067.0
-5803936,2026-08-08,polonia,Motor Lublin,Christopher Simon,1662949,M,1,82,2,0,0,0.1,84.0,2.0,103712.0
-5803936,2026-08-08,polonia,Motor Lublin,Mateusz Legowski,1229761,M,1,90,0,0,0,0.0,86.0,2.0,1817345.0
-5803936,2026-08-08,polonia,Motor Lublin,Fábio Ronaldo,1288115,F,1,77,2,1,0,0.06,88.0,3.0,1274799.0
-5803936,2026-08-08,polonia,Motor Lublin,Karol Czubak,1074799,F,1,90,4,1,0,0.3,115.0,3.0,1225723.0
-5803936,2026-08-08,polonia,Motor Lublin,Makan Aiko,1233935,F,0,25,2,1,1,0.12,,3.0,683302.0
-5803936,2026-08-08,polonia,Motor Lublin,Kamil Lukoszek,1169071,F,0,13,1,0,0,0.11,,3.0,321408.0
-5803936,2026-08-08,polonia,Motor Lublin,Paskal Meyer,1692474,D,0,8,0,0,0,0.0,,1.0,291403.0
-5803936,2026-08-08,polonia,Motor Lublin,Dominik Gregorski,1664809,F,0,8,0,0,0,0.0,,3.0,
 5845958,2026-08-08,aut_bundesliga,Grazer AK,Cican Stankovic,338809,G,1,90,0,0,0,0.0,11.0,0.0,106675.0
 5845958,2026-08-08,aut_bundesliga,Grazer AK,Beres Owusu,1585596,D,1,90,0,0,0,0.0,33.0,1.0,877512.0
 5845958,2026-08-08,aut_bundesliga,Grazer AK,Donovan Pines,1025947,D,1,90,1,1,1,0.1,35.0,1.0,215813.0
@@ -19851,21 +19836,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803939,2026-08-09,polonia,Śląsk Wrocław,Malaly Dembélé,863994,F,0,30,0,0,0,0.0,,3.0,215314.0
 5803939,2026-08-09,polonia,Śląsk Wrocław,Eniss Shabani,1338988,M,0,19,0,0,0,0.0,,2.0,350679.0
 5803939,2026-08-09,polonia,Śląsk Wrocław,Mariusz Malec,686333,D,0,7,0,0,0,0.0,,1.0,96498.0
-5803939,2026-08-09,polonia,Cracovia,Sebastian Madejski,539585,G,1,90,0,0,0,0.0,11.0,0.0,445958.0
-5803939,2026-08-09,polonia,Cracovia,Otar Kakabadze,463993,D,1,46,0,0,0,0.0,32.0,1.0,704448.0
-5803939,2026-08-09,polonia,Cracovia,Gustav Henriksson,957086,D,1,90,1,0,0,0.01,34.0,1.0,502468.0
-5803939,2026-08-09,polonia,Cracovia,Brahim Traoré,1243568,D,1,90,0,0,0,0.0,36.0,1.0,
-5803939,2026-08-09,polonia,Cracovia,Mauro Perkovic,1298565,M,1,76,1,1,0,0.11,38.0,2.0,2254948.0
-5803939,2026-08-09,polonia,Cracovia,Mateusz Klich,159342,M,1,90,2,0,0,0.11,73.0,2.0,202753.0
-5803939,2026-08-09,polonia,Cracovia,Dijon Kameri,1276631,F,1,90,3,1,0,0.15,75.0,3.0,949055.0
-5803939,2026-08-09,polonia,Cracovia,Amir Al-Ammari,858340,M,1,90,0,0,0,0.0,77.0,2.0,551886.0
-5803939,2026-08-09,polonia,Cracovia,Ajdin Hasic,1130070,F,1,90,5,2,0,0.33,103.0,3.0,1832479.0
-5803939,2026-08-09,polonia,Cracovia,Kahveh Zahiroleslam,1557028,F,1,87,3,0,0,0.15,105.0,3.0,319636.0
-5803939,2026-08-09,polonia,Cracovia,Martin Minchev,841180,F,1,76,1,1,0,0.45,107.0,3.0,821536.0
-5803939,2026-08-09,polonia,Cracovia,Dominik Pila,1116699,M,0,44,0,0,0,0.0,,2.0,485761.0
-5803939,2026-08-09,polonia,Cracovia,Mateusz Praszelik,920851,M,0,14,0,0,0,0.0,,2.0,386692.0
-5803939,2026-08-09,polonia,Cracovia,Vincent Burlet,1640211,F,0,14,0,0,0,0.0,,3.0,1280872.0
-5803939,2026-08-09,polonia,Cracovia,Kacper Smiglewski,1436164,F,0,3,2,0,0,0.2,,3.0,328376.0
 5100945,2026-08-09,irlanda,Waterford FC,Stephen McMullan,1420165,G,1,90,0,0,0,0.0,11.0,0.0,162816.0
 5100945,2026-08-09,irlanda,Waterford FC,Hayden Cann,1194048,D,1,90,1,0,0,0.01,33.0,1.0,72028.0
 5100945,2026-08-09,irlanda,Waterford FC,John Mahon,825846,D,1,90,2,1,0,0.1,35.0,1.0,50000.0
@@ -169486,3 +169456,66 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 6362008,2026-10-30,ind_isl,Bengaluru FC,Suresh Singh Wangjam,1104376,D,0,18,0,0,0,0.0,,1.0,145409.0
 6362008,2026-10-30,ind_isl,Bengaluru FC,Vinith Venkatesh,1667335,M,0,1,2,1,1,0.33,,2.0,218717.0
 6362008,2026-10-30,ind_isl,Bengaluru FC,Monirul Molla,1553137,F,0,1,1,1,0,0.01,,3.0,207763.0
+5804022,2026-10-30,polonia,Cracovia,Sebastian Madejski,539585,G,1,90,0,0,0,0.0,11.0,0.0,478470.0
+5804022,2026-10-30,polonia,Cracovia,Otar Kakabadze,463993,D,1,90,1,0,0,0.0,32.0,1.0,547379.0
+5804022,2026-10-30,polonia,Cracovia,Gustav Henriksson,957086,D,1,90,1,0,0,0.04,34.0,1.0,321579.0
+5804022,2026-10-30,polonia,Cracovia,Brahim Traoré,1243568,D,1,90,0,0,0,0.0,36.0,1.0,
+5804022,2026-10-30,polonia,Cracovia,Vincent Burlet,1640211,F,1,90,2,0,0,0.07,38.0,3.0,1096132.0
+5804022,2026-10-30,polonia,Cracovia,Amir Al-Ammari,858340,M,1,90,0,0,0,0.0,64.0,2.0,853845.0
+5804022,2026-10-30,polonia,Cracovia,Karol Knap,1229528,M,1,77,2,0,0,0.12,66.0,2.0,368616.0
+5804022,2026-10-30,polonia,Cracovia,Ajdin Hasić,1130070,F,1,90,4,3,1,0.28,83.0,3.0,1857086.0
+5804022,2026-10-30,polonia,Cracovia,Mohamed Berte,1257872,F,1,90,3,1,0,0.15,85.0,3.0,693306.0
+5804022,2026-10-30,polonia,Cracovia,Martin Minchev,841180,F,1,80,3,1,0,0.12,87.0,3.0,568779.0
+5804022,2026-10-30,polonia,Cracovia,Lasse Nordås,1137726,F,1,66,3,1,0,0.59,115.0,3.0,2226381.0
+5804022,2026-10-30,polonia,Cracovia,Kahveh Zahiroleslam,1557028,F,0,24,0,0,0,0.0,,3.0,306588.0
+5804022,2026-10-30,polonia,Cracovia,Beno Selan,1636001,M,0,13,0,0,0,0.0,,2.0,670508.0
+5804022,2026-10-30,polonia,Cracovia,Sayfallah Ltaief,1167610,F,0,10,0,0,0,0.0,,3.0,1057315.0
+5804022,2026-10-30,polonia,Motor Lublin,Gašper Tratnik,1512753,G,1,90,0,0,0,0.0,11.0,0.0,191959.0
+5804022,2026-10-30,polonia,Motor Lublin,Thomas Santos,863987,D,1,78,0,0,0,0.0,32.0,1.0,276661.0
+5804022,2026-10-30,polonia,Motor Lublin,Bartosz Bereszyński,198099,D,1,78,1,0,0,0.02,34.0,1.0,287190.0
+5804022,2026-10-30,polonia,Motor Lublin,Tin Plavotić,822495,D,1,90,1,1,1,0.24,36.0,1.0,765198.0
+5804022,2026-10-30,polonia,Motor Lublin,Filip Luberecki,1447055,D,1,90,0,0,0,0.0,38.0,1.0,2293118.0
+5804022,2026-10-30,polonia,Motor Lublin,Yacine Bourhane,864153,M,1,70,1,0,0,0.03,65.0,2.0,305288.0
+5804022,2026-10-30,polonia,Motor Lublin,Mbaye Ndiaye,1643834,F,1,90,1,1,0,0.05,82.0,3.0,1464576.0
+5804022,2026-10-30,polonia,Motor Lublin,Rony Lopes,435669,M,1,85,3,1,1,0.31,84.0,2.0,598740.0
+5804022,2026-10-30,polonia,Motor Lublin,Christopher Simon,1662949,M,1,90,3,1,0,0.4,86.0,2.0,179212.0
+5804022,2026-10-30,polonia,Motor Lublin,Fábio Ronaldo,1288115,F,1,77,1,0,0,0.71,88.0,3.0,1240179.0
+5804022,2026-10-30,polonia,Motor Lublin,Karol Czubak,1074799,F,1,90,7,3,0,0.33,115.0,3.0,1708374.0
+5804022,2026-10-30,polonia,Motor Lublin,Alioune Oumar Tall,2068649,M,0,20,0,0,0,0.0,,2.0,
+5804022,2026-10-30,polonia,Motor Lublin,Makan Aïko,1233935,F,0,13,1,1,0,0.04,,3.0,828151.0
+5804022,2026-10-30,polonia,Motor Lublin,Kamil Lukoszek,1169071,D,0,12,0,0,0,0.0,,1.0,376013.0
+5804022,2026-10-30,polonia,Motor Lublin,Marek Bartoš,949860,D,0,12,0,0,0,0.0,,1.0,211786.0
+5804022,2026-10-30,polonia,Motor Lublin,Mateusz Łęgowski,1229761,M,0,5,0,0,0,0.0,,2.0,1853738.0
+5904790,2026-10-30,turquia,Konyaspor,Bahadir Han Güngördü,712040,G,1,40,0,0,0,0.0,11.0,0.0,359898.0
+5904790,2026-10-30,turquia,Konyaspor,Yhoan Andzouana,692810,D,1,90,0,0,0,0.0,32.0,1.0,708170.0
+5904790,2026-10-30,turquia,Konyaspor,Rayyan Baniya,1112763,D,1,90,0,0,0,0.0,34.0,1.0,900616.0
+5904790,2026-10-30,turquia,Konyaspor,Chidozie Awaziem,666954,D,1,90,0,0,0,0.0,36.0,1.0,1629540.0
+5904790,2026-10-30,turquia,Konyaspor,Arthur Masuaku,418137,D,1,90,0,0,0,0.0,38.0,1.0,1418198.0
+5904790,2026-10-30,turquia,Konyaspor,Marko Jevtović,463591,M,1,90,0,0,0,0.0,64.0,2.0,166719.0
+5904790,2026-10-30,turquia,Konyaspor,Melih İbrahimoğlu,1098065,M,1,82,0,0,0,0.0,66.0,2.0,1620051.0
+5904790,2026-10-30,turquia,Konyaspor,Deniz Türüc,352023,F,1,90,1,0,0,0.03,83.0,3.0,540771.0
+5904790,2026-10-30,turquia,Konyaspor,Rajmund Tóth,1562891,M,1,45,2,1,0,0.79,85.0,2.0,1087989.0
+5904790,2026-10-30,turquia,Konyaspor,Jean-Luc Dompé,613260,F,1,71,0,0,0,0.0,87.0,3.0,1652485.0
+5904790,2026-10-30,turquia,Konyaspor,Jackson Muleka,938682,F,1,45,2,0,0,0.19,115.0,3.0,1835853.0
+5904790,2026-10-30,turquia,Konyaspor,Deniz Ertaş,1429909,G,0,50,0,0,0,0.0,,0.0,2210960.0
+5904790,2026-10-30,turquia,Konyaspor,Enis Bardhi,592783,M,0,45,3,0,0,0.2,,2.0,1307156.0
+5904790,2026-10-30,turquia,Konyaspor,Mostafa Mohamed,817500,F,0,44,0,0,0,0.0,,3.0,1970356.0
+5904790,2026-10-30,turquia,Konyaspor,Ebrima Colley,996894,F,0,19,0,0,0,0.0,,3.0,734977.0
+5904790,2026-10-30,turquia,Konyaspor,Enis Destan,1197548,F,0,8,1,0,0,0.1,,3.0,1748310.0
+5904790,2026-10-30,turquia,Galatasaray,Uğurcan Çakir,603669,G,1,90,0,0,0,0.0,11.0,0.0,18410155.0
+5904790,2026-10-30,turquia,Galatasaray,Roland Sallai,583601,D,1,90,0,0,0,0.0,32.0,1.0,12532217.0
+5904790,2026-10-30,turquia,Galatasaray,Davinson Sánchez,643533,D,1,69,1,0,0,0.05,34.0,1.0,18504821.0
+5904790,2026-10-30,turquia,Galatasaray,Wilfried Singo,1027472,D,1,90,0,0,0,0.0,36.0,1.0,22919321.0
+5904790,2026-10-30,turquia,Galatasaray,Eren Elmalı,1041660,D,1,90,0,0,0,0.0,38.0,1.0,4399286.0
+5904790,2026-10-30,turquia,Galatasaray,Lucas Torreira,592909,M,1,61,0,0,0,0.0,64.0,2.0,7385333.0
+5904790,2026-10-30,turquia,Galatasaray,Gabriel Sara,902710,M,1,61,0,0,0,0.0,66.0,2.0,24628648.0
+5904790,2026-10-30,turquia,Galatasaray,Yunus Akgün,845991,M,1,61,1,1,1,0.02,83.0,2.0,19148055.0
+5904790,2026-10-30,turquia,Galatasaray,Aleksey Batrakov,1504343,M,1,61,2,1,1,0.43,85.0,2.0,34308494.0
+5904790,2026-10-30,turquia,Galatasaray,Rafael Leão,848844,F,1,90,4,3,1,1.59,87.0,3.0,43630780.0
+5904790,2026-10-30,turquia,Galatasaray,Victor Osimhen,687681,F,1,61,5,3,1,0.4,115.0,3.0,74320814.0
+5904790,2026-10-30,turquia,Galatasaray,Ilkay Gündogan,178818,M,0,29,0,0,0,0.0,,2.0,1328013.0
+5904790,2026-10-30,turquia,Galatasaray,Lesley Ugochukwu,1200631,M,0,29,0,0,0,0.0,,2.0,24064740.0
+5904790,2026-10-30,turquia,Galatasaray,Renato Nhaga,1741323,M,0,29,1,0,0,0.03,,2.0,6000809.0
+5904790,2026-10-30,turquia,Galatasaray,Deniz Gül,1406300,F,0,29,1,0,0,0.07,,3.0,4839543.0
+5904790,2026-10-30,turquia,Galatasaray,Leroy Sané,530859,F,0,29,1,0,0,0.06,,3.0,16311041.0
+5904790,2026-10-30,turquia,Galatasaray,El Chadaille Bitshiabu,1173788,D,0,21,0,0,0,0.0,,1.0,21788708.0
