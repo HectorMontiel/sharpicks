@@ -40,7 +40,9 @@ def probar():
         b = re.search(r'const %s = (\{[^}]+\});' % n, js).group(1)
         check(a == b, 'v521: %s igual en la nube y en la página' % n)
     check("lados(p).map((x) => x.toLowerCase().trim()).sort().join(' / ')" in ts
-          and "const clavePartido = (p) => [p.deporte || '', lados(p).map((x) => x.toLowerCase().trim()).sort().join(' / '), diaDe(p)].join('|');" in app,
+          and "const claveNombre = (p) => [p.deporte || '', lados(p).map((x) => x.toLowerCase().trim()).sort().join(' / '), diaDe(p)].join('|');" in app
+          # v540 — la página une el mismo partido con dos nombres, pero lo que va a la nube (Pulso, desbloqueos) sigue por nombre
+          and "data-pulso-abrir=\"' + esc(claveNombre(p))" in app and "(SPX.yo.pulso || {})[claveNombre(p)]" in app,
           'v521: la clave del partido es la de la página (y la de los desbloqueos)')
     check('const AVISO_MIN = 0.70, SENAL_MIN = 0.70, CANDIDATO_MIN = 0.70, JUSTA_MIN = 1.15;' in ts and 'en prueba' not in app and 'avisados.has(pick)' in ts and "tipo: 'pulso'" in ts,
           'v520: aviso a lo de 75 %+, una vez por partido y mercado')

@@ -1243,7 +1243,33 @@
   // el partido sale una vez y sus apuestas van dentro (la mejor primero); si
   // la misma apuesta llegara dos veces, se queda una.
   // los dos nombres en cualquier orden («A vs B» y «B vs A» son el mismo partido)
-  const clavePartido = (p) => [p.deporte || '', lados(p).map((x) => x.toLowerCase().trim()).sort().join(' / '), diaDe(p)].join('|');
+  const claveNombre = (p) => [p.deporte || '', lados(p).map((x) => x.toLowerCase().trim()).sort().join(' / '), diaDe(p)].join('|');
+  // v540 — EL MISMO PARTIDO CON DOS NOMBRES (el usuario: «hay que corregir eso»). Los picks y el análisis vienen de
+  // fuentes que lo escriben distinto («Argentinos Jrs» / «Argentinos Juniors», «Bicknell B.» / «Blaise Bicknell»).
+  // Un partido es uno si comparte id de ESPN, o si empieza a la misma hora en el mismo deporte y los dos equipos se
+  // parecen (una palabra de 4+ letras que empieza igual). Se calcula una vez por cada carga de datos.
+  const _sinAcento = (t) => String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9 ]/g, ' ');
+  const _palabras = (t) => _sinAcento(t).split(' ').filter((w) => w.length >= 4);
+  const _seParece = (x, y) => { const b = _palabras(y); return _palabras(x).some((w) => b.some((v) => v.slice(0, 4) === w.slice(0, 4))); };
+  const _mismo = (a, b) => { const [a1, a2] = lados(a), [b1, b2] = lados(b); return (_seParece(a1, b1) && _seParece(a2, b2)) || (_seParece(a1, b2) && _seParece(a2, b1)); };
+  let _canon = null, _canonP = null, _canonA = null;
+  function canonicas() {
+    if (_canon && _canonP === estado.picks && _canonA === estado.analisis) return _canon;
+    _canonP = estado.picks; _canonA = estado.analisis; _canon = new WeakMap();
+    const porEspn = new Map(), porHora = new Map();
+    for (const p of (estado.picks || []).concat(estado.analisis || [])) {
+      const t = aFecha(p.inicio), h = (p.deporte || '') + '|' + (t ? Math.round(t / 300e3) : diaDe(p));
+      let k = p.espn ? porEspn.get(p.deporte + '|' + p.espn) : null;
+      if (!k) { const o = (porHora.get(h) || []).find((x) => x.p.partido === p.partido || _mismo(x.p, p)); if (o) k = o.k; }
+      if (!k) k = claveNombre(p);
+      if (p.espn) porEspn.set(p.deporte + '|' + p.espn, k);
+      if (!porHora.has(h)) porHora.set(h, []);
+      porHora.get(h).push({ p, k });
+      _canon.set(p, k);
+    }
+    return _canon;
+  }
+  const clavePartido = (p) => (p && typeof p === 'object' && canonicas().get(p)) || claveNombre(p);
   function agrupar(lista) {
     const g = new Map();
     for (const p of lista) {
@@ -1721,7 +1747,7 @@
   // (o el partido abierto con monedas): todos los mercados, % exacto, cuota justa y tus picks en vivo.
   // v520 — la recomendación «IA + modelo» de este partido, sólo si es del marcador de ahora (tras un gol, se espera la nueva)
   function iaPulso(p, v) {
-    const yo = (window.SPX && SPX.yo) || {}, c = clavePartido(p), marc = v && v.g ? v.g[0] + '-' + v.g[1] : '';
+    const yo = (window.SPX && SPX.yo) || {}, c = claveNombre(p), marc = v && v.g ? v.g[0] + '-' + v.g[1] : '';
     const r = (yo.pulsoIA || {})[c], h = (yo.pulsoHay || {})[c];
     return { rec: r && r.marcador === marc && r.acierto == null ? r : null, hay: !!(h && h.marcador === marc) };
   }
@@ -1744,7 +1770,7 @@
       : k === 'gol_l' ? r(gh, gh + 1, g[0]) : k === 'gol_v' ? r(ga, ga + 1, g[1]) : null;
   }
   function senalesHtml(p, v, vs, L, V) {
-    const ss = ((window.SPX && SPX.yo.pulsoSen) || {})[clavePartido(p)] || [];
+    const ss = ((window.SPX && SPX.yo.pulsoSen) || {})[claveNombre(p)] || [];
     if (!ss.length || !window.PULSO) return '';
     const fin = v && v.fase === 'post';
     const fila = (s) => {
@@ -1770,7 +1796,7 @@
       grupo('En juego', enJuego) + grupo('Ya se cumplieron', hechas) + grupo('No se cumplieron', fallas) + '</div>';
   }
   function pulsoAbierto(p) {
-    return !!(window.SPX && (SPX.esVip() || (SPX.yo.pulso || {})[clavePartido(p)]));
+    return !!(window.SPX && (SPX.esVip() || (SPX.yo.pulso || {})[claveNombre(p)]));
   }
   function pulsoHtml(p, v, vs, L, V, abierto) {
     if (!window.PULSO || !v || v.fase !== 'in' || p.deporte && p.deporte !== 'Fútbol') return '';
@@ -1815,7 +1841,7 @@
       : ia.hay && !abierto ? '<div class="pulso-ia bloq"><span class="pulso-ia-et">' + ico('sparkles', 'acento') + ' IA + modelo</span><b>Ya tiene su recomendación</b><small>' + ico('lock', 'candado') + ' VIP o abre el Pulso de este partido</small></div>' : '';
     return '<div class="pulso"><div class="pulso-cab"><span>' + ico('activity', 'acento') + ' Pulso SharPicks</span><small>en vivo</small></div>' + iaH + dest +
       '<div class="pulso-grid">' + ms.filter((m) => m !== top).map(burbuja).join('') + '</div>' +
-      (abierto ? '' : '<button class="btn pulso-abrir" data-pulso-abrir="' + esc(clavePartido(p)) + '">' + ico('lock-open', 'candado') + ' Todo el Pulso · ' + precio + ' monedas</button>') + '</div>';
+      (abierto ? '' : '<button class="btn pulso-abrir" data-pulso-abrir="' + esc(claveNombre(p)) + '">' + ico('lock-open', 'candado') + ' Todo el Pulso · ' + precio + ' monedas</button>') + '</div>';
   }
 
   function ficha(id) {
@@ -1829,7 +1855,7 @@
     const [L, V] = lados(p);
     const otras = (agrupar(todos.filter((x) => clavePartido(x) === clavePartido(p) && !x.solo_analisis))[0]) || [];
     // v527 — la campana: avisarme por Telegram de ESTE partido (señales del Pulso y sus picks)
-    const kAl = clavePartido(p), alOn = window.SPX && (SPX.yo.alertas || []).some((x) => x.tipo === 'partido' && x.valor === kAl);
+    const kAl = claveNombre(p), alOn = window.SPX && (SPX.yo.alertas || []).some((x) => x.tipo === 'partido' && x.valor === kAl);
     // v530 — el usuario: «el botón de avisarme está muy escondido… ponlo de otro color y que cambie al picarlo»: su
     // propio renglón bajo el marcador, ámbar; prendido, verde
     const campana = window.SPX && !(v && v.fase === 'post') ? '<div class="campana-fila"><button class="campana' + (alOn ? ' on' : '') + '" data-tg-partido="' + esc(kAl) + '">' +
@@ -2071,7 +2097,17 @@
   //   2. la IA: la pata que ve «en contra» se descarta y entra la siguiente más probable; la que ve
   //      «a favor» lo dice. Sin análisis de la IA (o sin VIP) la pata queda «sin revisar».
   // La probabilidad de la combinada es el producto (partidos distintos): baja con cada pata y se dice.
-  estado.arm = { niv: new Set(['Diamante', 'Platino']), n: 3, res: null };
+  estado.arm = { niv: new Set(['Diamante', 'Platino']), n: 3, res: null, dias: null, deps: null, partidos: new Set(), busca: '', verPar: false };
+  // v540 — el usuario: «la combinada debe poder escoger partidos y deportes de hoy, mañana y pasado». Días (varios a la
+  // vez), deportes y, si quiere, partidos concretos: los que marque entran sí o sí y el modelo completa el resto.
+  const ARM_DIAS = [['hoy', 'Hoy'], ['manana', 'Mañana'], ['pasado', 'Pasado']];
+  const armDias = () => estado.arm.dias || new Set([OFFS[estado.dia] > 0 ? estado.dia : 'hoy']);
+  const armDeps = () => (estado.arm.deps || estado.deportes);
+  function armBase() {
+    const dias = new Set([...armDias()].map((d) => diaPestana(OFFS[d]))), deps = armDeps(), ahora = Date.now() + 10 * 60e3;
+    return estado.picks.filter((p) => dias.has(diaDe(p)) && (!deps.size || deps.has(p.deporte)) && p.estado === 'pendiente' && p.tipo !== 'error' &&
+      !p.solo_analisis && Number(p.cuota) > 1 && (aFecha(p.inicio) || 0) > ahora);
+  }
   const normTxt = (t) => String(t || '').toLowerCase().replace(/[^a-z0-9áéíóúñü.]+/g, ' ').trim();
   // v531 — EL MORADO DE LA IA (sólo VIP). El usuario: «que se iluminen de morado los que la IA vea con más probabilidad
   // de cumplirse… que con la IA le demos mayor probabilidad a la predicción del modelo». Medido (1.979 picks, 17-30 oct;
@@ -2099,19 +2135,24 @@
   // v473 — el usuario: «sólo el VIP arma con todos los niveles; el gratis, sólo con Oro (es lo que
   // trae su plan)». Los demás niveles salen con candado y llevan a Planes.
   const armVip = () => !!(window.SPX && SPX.esVip && SPX.esVip());
-  const armNiveles = () => (armVip() ? estado.arm.niv : new Set(['Oro']));
-  function armarCombinada(pasaDep) {
-    const ahora = Date.now() + 10 * 60e3, sel = armNiveles();
-    const mejor = new Map();
-    listaBase().filter((p) => pasaDep(p) && p.estado === 'pendiente' && p.tipo !== 'error' && !p.solo_analisis && Number(p.cuota) > 1 &&
-      (aFecha(p.inicio) || 0) > ahora && sel.has(nivel(p).n)).forEach((p) => {
-      const k = clavePartido(p), o = mejor.get(k);
+  // v540 — el gratis ya puede mezclar niveles: 🥇 Oro sin costo; las patas de los demás se desbloquean con monedas por su cuota
+  const armNiveles = () => (armVip() || estado.arm.nivGratis ? estado.arm.niv : new Set(['Oro']));
+  function armarCombinada() {
+    const sel = armNiveles(), A = estado.arm, base = armBase();
+    const mejor = new Map(), elegidos = new Map();
+    base.forEach((p) => {
+      const k = clavePartido(p);
+      if (A.partidos.has(k)) { const o = elegidos.get(k); if (!o || Number(p.prob) > Number(o.prob)) elegidos.set(k, p); }   // elegido: su pick más probable
+      if (!sel.has(nivel(p).n)) return;
+      const o = mejor.get(k);
       if (!o || Number(p.prob) > Number(o.prob)) mejor.set(k, p);
     });
-    const cands = [...mejor.values()].sort((a, b) => Number(b.prob) - Number(a.prob));
+    // v540 — el usuario: «para el VIP prioriza las moradas, que la IA da más probabilidad»: primero el morado, luego la probabilidad
+    const orden = (a, b) => (iaSegura(b) - iaSegura(a)) || (Number(b.prob) - Number(a.prob));
+    const cands = [...elegidos.values()].sort(orden).concat([...mejor.values()].filter((p) => !A.partidos.has(clavePartido(p))).sort(orden));
     const patas = [], fuera = [];
     for (const p of cands) {
-      if (patas.length >= estado.arm.n) break;
+      if (patas.length >= Math.max(estado.arm.n, elegidos.size)) break;
       const v = veredictoIA(p);
       if (v === 'contra') { fuera.push(p); continue; }
       if (estado.arm.soloIA && !iaSegura(p)) continue;                      // v531 — «sólo las que la IA ve seguras»
@@ -2119,23 +2160,35 @@
     }
     return { patas, fuera, disponibles: cands.length };
   }
-  function pintarArmador(pasaDep) {
+  function pintarArmador() {
     const caja = $('armador'); if (!caja) return;
     const A = estado.arm, r = A.res;
     const NIV = [['Diamante', ico('gem', 'nv-diamante')], ['Platino', ico('award', 'nv-platino')], ['Oro', ico('medal', 'nv-oro')], ['Plata', ico('medal', 'nv-plata')]];
-    const vipA = armVip(), sel = armNiveles();
+    const vipA = armVip(), sel = armNiveles(), dias = armDias(), deps = armDeps();
+    const base = armBase(), hayDep = [...new Set(base.map((p) => p.deporte))].sort();
+    const parts = new Map(); base.forEach((p) => { const k = clavePartido(p); if (!parts.has(k)) parts.set(k, p); });
+    const listaPar = [...parts.entries()].sort((a, b) => (aFecha(a[1].inicio) || 0) - (aFecha(b[1].inicio) || 0));
     let h = '<div class="tit">' + ico('target') + ' Arma tu combinada</div>' +
-      '<div class="arm-fila"><span class="arm-et">Niveles</span><div class="chips">' + NIV.map(([n, i]) => vipA || n === 'Oro'
-        ? '<button class="chip' + (sel.has(n) ? ' activa' : '') + '" data-arm-niv="' + n + '">' + i + ' ' + n + '</button>'
-        : '<button class="chip bloq" data-vista-ir="planes" data-foco="plan-vip">' + i + ' ' + n + ' ' + ico('lock') + '</button>').join('') + '</div></div>' +
-      (vipA ? '' : '<p class="tenue chico">Con tu plan gratis armas con 🥇 Oro. Con VIP, con todos los niveles.</p>') +
+      '<div class="arm-fila"><span class="arm-et">Días</span><div class="chips">' + ARM_DIAS.map(([d, t]) =>
+        '<button class="chip' + (dias.has(d) ? ' activa' : '') + '" data-arm-dia="' + d + '">' + t + '</button>').join('') + '</div></div>' +
+      '<div class="arm-fila"><span class="arm-et">Deportes</span><div class="chips"><button class="chip' + (deps.size ? '' : ' activa') + '" data-arm-dep="Todos">Todos</button>' +
+        hayDep.concat([...deps].filter((d) => !hayDep.includes(d))).map((d) => '<button class="chip' + (deps.has(d) ? ' activa' : '') + '" data-arm-dep="' + esc(d) + '">' + esc(d) + '</button>').join('') + '</div></div>' +
+      '<div class="arm-fila"><span class="arm-et">Niveles</span><div class="chips">' + NIV.map(([n, i]) =>
+        '<button class="chip' + (sel.has(n) ? ' activa' : '') + '" data-arm-niv="' + n + '">' + i + ' ' + n + (vipA || n === 'Oro' ? '' : ' ' + ico('coins')) + '</button>').join('') + '</div></div>' +
+      (vipA ? '' : '<p class="tenue chico">Plan gratis: 🥇 Oro sin costo. Puedes meter otros niveles; esas patas cuestan 🪙 según su cuota.</p>') +
+      '<details class="arm-partidos"' + (A.verPar ? ' open' : '') + '><summary>Elegir partidos' + (A.partidos.size ? ' · <b>' + A.partidos.size + '</b>' : ' (opcional)') + '</summary>' +
+        '<input class="arm-busca" type="search" placeholder="Busca un equipo" value="' + esc(A.busca) + '" data-arm-busca="1">' +
+        '<div class="arm-par-lista">' + (listaPar.length ? listaPar.map(([k, p]) => '<button class="chip' + (A.partidos.has(k) ? ' activa' : '') + '" data-arm-par="' + esc(k) + '" data-txt="' + esc(normTxt(p.partido)) + '">' +
+          esc(lados(p).join(' vs ')) + ' <small>' + esc(horaCdmx(aFecha(p.inicio))) + '</small></button>').join('') : '<span class="tenue chico">No hay partidos por jugar en esos días.</span>') + '</div>' +
+        '<small class="tenue">Los que marques entran sí o sí; el resto lo completa el modelo.</small></details>' +
       '<div class="arm-fila"><span class="arm-et">Patas</span><div class="arm-n"><button data-arm-n="-1" aria-label="Menos patas">−</button><b>' + A.n +
       '</b><button data-arm-n="1" aria-label="Más patas">+</button></div><button class="vip-btn arm-ir" data-arm-ir="1">Armar</button></div>';
     if (r) {
-      if (!r.patas.length) h += '<p class="aviso">No hay picks de esos niveles por jugar este día. Prueba con otros niveles u otro día.</p>';
+      if (!r.patas.length) h += '<p class="aviso">No hay picks de esos niveles en esos días. Prueba con otros niveles o agrega días.</p>';
       else {
         const prob = r.patas.reduce((x, y) => x * Number(y.p.prob || 0), 1), cuota = r.patas.reduce((x, y) => x * Number(y.p.cuota || 1), 1);
         const vip = window.SPX && SPX.esVip && SPX.esVip();
+        const cerradas = vip ? [] : r.patas.map((x) => x.p).filter((p) => p.premium && !((window.SPX && SPX.yo.desbloqueados) || {})[p.id]);
         h += '<div class="arm-res">' + r.patas.map(({ p, v }) => {
           const [L, V] = lados(p), nv = nivel(p);
           const ia = iaSegura(p);              // v531 — sin morado no se pone nada («“más difícil” les quita credibilidad»)
@@ -2150,12 +2203,25 @@
             '</b> patas seguras <button class="chip' + (A.soloIA ? ' activa' : '') + '" data-arm-soloia="1">' + (A.soloIA ? 'Todas las patas' : 'Sólo las seguras') + '</button></div>' : '') +
           '<div class="arm-pie"><span>Cuota <b>' + cuota.toFixed(2) + '</b> · se cumplen todas ~<b>' + Math.round(100 * prob) + ' %</b>' +
           (vip && r.patas.some((x) => iaSegura(x.p)) ? ' · con la IA ~<b>' + Math.round(100 * r.patas.reduce((a, x) => a * (IA_SALIO[iaSegura(x.p)] || Number(x.p.prob || 0)), 1)) + ' %</b>' : '') + '</span>' +
-          (r.patas.length >= 2 ? '<button class="vip-btn" data-arm-boleto="' + esc(r.patas.map((x) => x.p.id).join(',')) + '">Pasar a mi combinada</button>' : '') + '</div>' +
+          (r.patas.length >= 2 && !cerradas.length ? '<button class="vip-btn" data-arm-boleto="' + esc(r.patas.map((x) => x.p.id).join(',')) + '">Pasar a mi combinada</button>' : '') + '</div>' +
+          // v540 — patas de pago (gratis con otros niveles): se desbloquean todas juntas, cada una a su precio por cuota
+          (cerradas.length ? '<div class="arm-pago">' + ico('lock') + ' <span><b>' + cerradas.length + (cerradas.length === 1 ? ' pata' : ' patas') + ' de pago</b>' +
+            (window.SPX && SPX.yo.user ? '<small>Si una sale roja, te regresamos sus monedas.</small></span><button class="vip-btn" data-arm-pagar="' + esc(cerradas.map((p) => p.id).join(',')) + '">Desbloquear por ' +
+              cerradas.reduce((s, p) => s + (SPX.precio ? SPX.precio(p) : 0), 0) + ' 🪙</button>'
+              : '<small>Entra gratis para desbloquearlas.</small></span><button class="vip-btn" data-entrar>Entrar</button>') + '</div>' : '') +
           '<p class="tenue chico">Cada pata de más baja la probabilidad de la combinada: con 3 patas de 85 % queda en ~61 %.</p></div>';
       }
     }
     caja.innerHTML = h;
+    filtrarPartidos();
   }
+  // el buscador de partidos esconde sin volver a pintar (así no se pierde lo que se escribe)
+  function filtrarPartidos() {
+    const q = normTxt(estado.arm.busca);
+    document.querySelectorAll('#armador [data-arm-par]').forEach((b) => { b.hidden = !!q && !b.dataset.txt.includes(q) && !b.classList.contains('activa'); });
+  }
+  document.addEventListener('input', (e) => { if (e.target.matches && e.target.matches('[data-arm-busca]')) { estado.arm.busca = e.target.value; filtrarPartidos(); } });
+  document.addEventListener('toggle', (e) => { if (e.target.classList && e.target.classList.contains('arm-partidos')) estado.arm.verPar = e.target.open; }, true);
   function listaBase() {
     if (estado.vista === 'mios') return window.SPX ? SPX.filtrarMios(estado.picks) : [];
     if (estado.vista === 'vivo') return estado.picks.filter((p) => faseDe([p]) === 'vivo');
@@ -2277,7 +2343,7 @@
     $('comb-tira').innerHTML = combs.length ? '<button class="tira comb-tira" data-vista-ir="combinadas"><em>🔗 <b>' + combs.length + '</b> ' +
       (combs.length === 1 ? 'combinada' : 'combinadas') + (vivas ? '' : ' (ya jugadas)') + '</em><span>Ver ›</span></button>' : '';
     if (estado.vista === 'combinadas') {
-      try { pintarArmador(pasaDep); } catch (e) { console.warn('[sharpicks] armador', e); }
+      try { if (!document.activeElement || !document.activeElement.matches('[data-arm-busca]')) pintarArmador(); } catch (e) { console.warn('[sharpicks] armador', e); }
       const orden = { vivo: 0, proximo: 1, terminado: 2 };
       $('combinadas-lista').innerHTML = combs.length ? combs.sort((a, b) => orden[faseCombinada(a)] - orden[faseCombinada(b)] ||
         (a.alcance === 'Mixta') - (b.alcance === 'Mixta') || String(a.alcance).localeCompare(b.alcance) || (a.tipo === 'alta') - (b.tipo === 'alta'))
@@ -2386,7 +2452,7 @@
   });
 
   document.addEventListener('click', (e) => {
-    const t = e.target.closest('[data-vista-ir],[data-dia],[data-dep],[data-niv],[data-fase],[data-abrir],[data-liga],[data-ficha],[data-ver-fin],[data-ver-sinpick],[data-ord],[data-fav],[data-arm-niv],[data-arm-n],[data-arm-ir],[data-arm-boleto],[data-arm-soloia],[data-par-k]');
+    const t = e.target.closest('[data-vista-ir],[data-dia],[data-dep],[data-niv],[data-fase],[data-abrir],[data-liga],[data-ficha],[data-ver-fin],[data-ver-sinpick],[data-ord],[data-fav],[data-arm-niv],[data-arm-n],[data-arm-ir],[data-arm-boleto],[data-arm-soloia],[data-par-k],[data-arm-dia],[data-arm-dep],[data-arm-par],[data-arm-pagar]');
     if (!t) return;
     if (t.hasAttribute('data-ver-fin')) { estado.verFinales = !estado.verFinales; pintar(); return; }
     if (t.hasAttribute('data-ver-sinpick')) { estado.verSinPick = !estado.verSinPick; pintar(); return; }
@@ -2404,17 +2470,27 @@
     if (t.dataset.fase) { estado.fase = t.dataset.fase; pintar(); return; }
     if (t.dataset.ficha) { ficha(t.dataset.ficha); return; }
     if (t.dataset.parK) { estado.parley[t.dataset.parK] = Number(t.dataset.parN) || 3; pintar(); return; }
-    if (t.dataset.armNiv) { const n = t.dataset.armNiv; if (!armVip() && n !== 'Oro') return; estado.arm.niv.has(n) ? estado.arm.niv.delete(n) : estado.arm.niv.add(n); estado.arm.res = null; pintar(); return; }
+    if (t.dataset.armNiv) {
+      const n = t.dataset.armNiv;
+      if (!armVip() && !estado.arm.nivGratis) { estado.arm.nivGratis = true; estado.arm.niv = new Set(['Oro']); }   // v540 — el gratis parte de 🥇 Oro
+      estado.arm.niv.has(n) ? estado.arm.niv.delete(n) : estado.arm.niv.add(n); estado.arm.res = null; pintar(); return;
+    }
+    // v540 — días, deportes y partidos del armador
+    if (t.dataset.armDia) { const s = new Set(armDias()); s.has(t.dataset.armDia) ? (s.size > 1 && s.delete(t.dataset.armDia)) : s.add(t.dataset.armDia); estado.arm.dias = s; estado.arm.res = null; pintar(); return; }
+    if (t.dataset.armDep) { const s = new Set(armDeps()); alterna(s, t.dataset.armDep); estado.arm.deps = s; estado.arm.res = null; pintar(); return; }
+    if (t.dataset.armPar) { const s = estado.arm.partidos, k = t.dataset.armPar; s.has(k) ? s.delete(k) : s.size < 20 && s.add(k); estado.arm.res = null; pintar(); return; }
+    if (t.dataset.armPagar) {
+      if (!(window.SPX && SPX.desbloquearVarios)) return;
+      t.disabled = true;
+      SPX.desbloquearVarios(t.dataset.armPagar.split(',')).then(() => pintar());
+      return;
+    }
     if (t.dataset.armN) { estado.arm.n = Math.max(2, Math.min(20, estado.arm.n + Number(t.dataset.armN))); estado.arm.res = null; pintar(); return; }
     if (t.dataset.armSoloia) {                                       // v531 — sólo las patas que la IA ve seguras (VIP)
       estado.arm.soloIA = !estado.arm.soloIA;
-      const pasaDep = (p) => estado.deportes.size === 0 || estado.deportes.has(p.deporte);
-      estado.arm.res = armarCombinada(pasaDep); pintar(); return;
+      estado.arm.res = armarCombinada(); pintar(); return;
     }
-    if (t.dataset.armIr) {
-      const pasaDep = (p) => estado.deportes.size === 0 || estado.deportes.has(p.deporte);
-      estado.arm.res = armarCombinada(pasaDep); pintar(); return;
-    }
+    if (t.dataset.armIr) { estado.arm.res = armarCombinada(); pintar(); return; }
     if (t.dataset.armBoleto) {
       if (!(window.SPX && SPX.yo.user)) { if (window.SPX && SPX.avisoApp) SPX.avisoApp('Entra con tu correo para guardar tus combinadas.', 'aviso', 'Hace falta entrar'); return; }
       SPX.ponerBoleto(t.dataset.armBoleto.split(','));

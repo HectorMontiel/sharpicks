@@ -79,6 +79,18 @@
   window.SPX = { yo, sb, extra, apuesta, filtrarMios, refrescar, extraComb, esVip: () => esVip(), intereses: () => intereses(), votoIA: (id) => votoIA(id) };
   window.SPX.avisoApp = avisoApp; window.SPX.confirmarApp = confirmarApp;   // v457
   window.SPX.ponerBoleto = (ids) => { yo.verBoleto = true; guardarBoleto(ids.slice(0, 20)); };   // v471 — «Arma tu combinada»
+  // v540 — el armador del gratis con otros niveles: el precio de cada pata (por su cuota) y desbloquearlas todas juntas
+  window.SPX.precio = (p) => precio(p);
+  window.SPX.desbloquearVarios = async (ids) => {
+    const { data, error } = await sb.rpc('desbloquear_varios', { p_ids: ids.slice(0, 20) });
+    if (error || data !== 'ok') {
+      avisoApp(data === 'sin monedas' ? 'Consigue más en «Planes» o acertando tus combinadas.' : data === 'ya empezó' ? 'Uno de sus partidos ya empezó.' : 'Intenta de nuevo en un momento.',
+        'aviso', data === 'sin monedas' ? 'No te alcanzan las monedas' : 'No se pudo desbloquear');
+      return false;
+    }
+    await refrescar();
+    return true;
+  };
 
   // ---------- precios (de la base; 0 = gratis en el lanzamiento) ----------
   // v389 — el precio de un pick premium depende de su CUOTA (tabla `precios_cuota`);

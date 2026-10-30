@@ -15,7 +15,7 @@
   // v532 — el usuario: «agrégale a la guía el morado de la IA… si es gratis, todo censurado pero que se sepa qué se
   // puede tener sin el VIP… la personalización de Telegram, ver el partido en vivo con la cancha, el Pulso… mostrar
   // cómo funciona». La guía ABRE un partido (cancha, Pulso, campana) y Mi cuenta; al gratis le enseña el morado con
-  // candado. Sigue breve (14 pasos, una línea cada uno: test_v494).
+  // candado. Sigue breve (15 pasos, una línea cada uno: test_v494).
   const PASOS = [
     { v: 'picks', sel: null, t: 'Bienvenido a SharPicks', d: 'Te enseñamos la app en un minuto. Toca «Siguiente» para avanzar.' },
     { v: 'picks', sel: '#destacados:not([hidden])', t: 'Los mejores del día', d: 'Los 💎 Diamante: nuestros picks más probables. Toca uno para verlo.' },
@@ -24,7 +24,8 @@
     { v: 'vivo', sel: null, t: '⚽ Mira el partido', d: 'La cancha en vivo: tiros, goles, presión y el minuto exacto.' },
     { v: 'vivo', sel: null, t: '⚡ Pulso en vivo', d: 'En el 2.º tiempo: lo más probable que pase ahora y lo que salió en el historial.' },
     { v: 'vivo', sel: '.ficha:not([hidden]) .campana, .ficha:not([hidden]) .equipos', t: '🔔 Avísame de este partido', d: 'Toca la campana y te avisamos por Telegram de lo que pase en este partido.' },
-    { v: 'combinadas', sel: '#armador:not([hidden])', t: 'Arma tu combinada', d: 'Niveles y patas (2 a 20), «Armar», y la IA marca en morado las patas más probables.' },
+    { v: 'combinadas', sel: '#armador:not([hidden])', t: 'Arma tu combinada', d: 'Días (hoy a pasado), deportes, partidos y niveles. Las moradas de la IA van primero.' },
+    { v: 'combinadas', sel: null, t: '🪙 Tu combinada paga', d: 'Si acierta, ganas monedas: 2 desde cuota 2,00, 3 desde 3,00 y 5 desde 5,00 (una al día).' },
     { v: 'combinadas', sel: '#combinadas-lista .dest, #combinadas-lista', t: 'Combinadas del día', d: 'Cuota y probabilidad de que se cumplan TODAS las patas.' },
     { v: 'mios', sel: '#tarjetas, #aviso, #nav [data-vista-ir="mios"]', t: 'Mis picks', d: 'En cualquier partido toca «☆ Seguir» y aparece aquí, con su resultado.' },
     { v: 'historial', sel: '#historial, #marcadores', t: 'Historial', d: 'Día, semana, mes, año o todo: todas las verdes y las rojas, sin esconder ninguna.' },
@@ -36,7 +37,7 @@
   const D_GRATIS = {
     '✨ El morado de la IA': '🔒 VIP: la IA ilumina en morado los de mayor probabilidad (91 % medido).',
     '⚡ Pulso en vivo': 'Gratis: «otro gol» y «2 córners». Con VIP o 🪙 monedas, todo el Pulso al minuto.',
-    'Arma tu combinada': 'Gratis armas con 🥇 Oro. Con VIP, todos los niveles y el morado de la IA en cada pata.',
+    'Arma tu combinada': 'Elige días, deportes y partidos. 🥇 Oro gratis; otros niveles, con 🪙 según su cuota.',
     '🔔 Avisos por Telegram': 'Entra y conecta tu Telegram: te avisamos de tus partidos (lo VIP, con candado).',
   };
   const esVip = () => !!(window.SPX && SPX.esVip && SPX.esVip());
@@ -120,6 +121,7 @@
     cerrarFicha(); cerrarCuenta(); quitarDemo();
     if (cambioDia) { cambioDia = false; const h = document.querySelector('[data-dia="hoy"]'); if (h) h.click(); }
     window.removeEventListener('resize', colocar);
+    window.removeEventListener('scroll', colocar);
     irA(desde);                       // vuelve a donde estaba (la primera vez, Picks)
     window.scrollTo({ top: 0 });
   }
@@ -136,9 +138,11 @@
   function colocar() {
     if (!caja) return;
     const el = objetivo(PASOS[i]);
-    const m = 8, sup = seguro() + 8;
+    const m = 8, sup = seguro() + 8, techo = cabecera();
     if (el) {
-      const r = el.getBoundingClientRect(), alto = Math.min(r.height + 2 * m, window.innerHeight * 0.5);
+      const r0 = el.getBoundingClientRect(), arriba0 = Math.max(r0.top, techo + m);
+      const r = { top: arriba0, left: r0.left, width: r0.width, height: Math.max(40, r0.bottom - arriba0) };
+      const alto = Math.min(r.height + 2 * m, window.innerHeight * 0.5);
       Object.assign(luz.style, { display: 'block', top: (r.top - m) + 'px', left: Math.max(4, r.left - m) + 'px',
         width: Math.min(window.innerWidth - 8, r.width + 2 * m) + 'px', height: alto + 'px' });
       capa.classList.add('con-luz');
@@ -150,30 +154,51 @@
       caja.style.top = Math.max(sup + 8, (window.innerHeight - caja.offsetHeight) / 2) + 'px';
     }
   }
-  let ocupado = false;
-  async function paso(n) {
-    if (ocupado || !caja) return;
+  // v540 — el usuario: «la guía se traba un poco» y «un botón de regresar». Antes un toque mientras la guía cambiaba de
+  // pantalla (0,7-1,8 s) se tiraba y parecía congelada: ahora el último toque se guarda y se cumple al terminar, y el
+  // botón dice «…» mientras tanto. «Atrás» va al paso anterior que se pueda enseñar.
+  let ocupado = false, pendiente = null;
+  async function paso(n, dir) {
+    if (!caja) return;
+    dir = dir || 1;
+    if (ocupado) { pendiente = [n, dir]; return; }
     ocupado = true;
+    const b = caja.querySelector('.guia-sig'); if (b) { b.disabled = true; b.textContent = '…'; }
     try {
-      // cada paso en su pantalla; si su parte no está a la vista, se salta
-      for (; n < PASOS.length; n++) {
+      // cada paso en su pantalla; si su parte no está a la vista, se salta (hacia donde se iba)
+      for (; n >= 0 && n < PASOS.length; n += dir) {
         if (await irA(PASOS[n].v)) { if (!caja) return; }
         await preparar(PASOS[n]);                                   // v532 — abre lo que el paso enseña
         if (!caja) return;
         if (!PASOS[n].sel || objetivo(PASOS[n])) break;
       }
       if (n >= PASOS.length) { cerrar(true); return; }
+      if (n < 0) n = 0;
       i = n;
       const p = PASOS[i], el = objetivo(p), ultimo = i === PASOS.length - 1;
       caja.innerHTML = '<div class="guia-num">' + NOMBRE[p.v] + ' · ' + (i + 1) + ' de ' + PASOS.length + '</div><div class="guia-t">' + p.t + '</div><p class="guia-d">' + texto(p) + '</p>' +
         (IMG[p.t] ? '<img class="guia-img" src="' + IMG[p.t] + '?v=532" alt="Así se ve: ' + p.t + '" loading="eager">' : '') +
         '<label class="guia-nunca"><input type="checkbox"' + (nunca ? ' checked' : '') + '> No volver a mostrar la guía</label>' +
         '<div class="guia-bot"><button type="button" class="guia-omitir">' + (ultimo ? 'Cerrar' : 'Omitir') + '</button>' +
+        (i > 0 ? '<button type="button" class="guia-atras">Atrás</button>' : '') +
         '<button type="button" class="guia-sig">' + (ultimo ? 'Listo' : 'Siguiente') + '</button></div>';
       const img = caja.querySelector('.guia-img'); if (img) img.addEventListener('load', colocar);   // se recoloca al cargar
-      if (el) el.scrollIntoView({ block: el.getBoundingClientRect().height > window.innerHeight * 0.5 ? 'start' : 'center' });
+      if (el) llevar(el);
       requestAnimationFrame(colocar);
-    } finally { ocupado = false; }
+      setTimeout(colocar, 350);                                      // por si la página aún se acomodaba
+    } finally {
+      ocupado = false;
+      if (pendiente && caja) { const [pn, pd] = pendiente; pendiente = null; if (pn !== i) paso(pn, pd); }   // un toque repetido no salta dos pasos
+      else pendiente = null;
+    }
+  }
+  // el alto de la cabecera fija (lo iluminado y el scroll quedan debajo de ella)
+  function cabecera() { const t = document.querySelector('header.top'); return t ? t.getBoundingClientRect().bottom : 0; }
+  // lleva lo que se enseña a la vista, sin animación (la luz se mide justo después) y debajo de la cabecera
+  function llevar(el) {
+    const r = el.getBoundingClientRect(), techo = cabecera(), alto = window.innerHeight - techo;
+    const y = r.height > alto * 0.6 ? r.top - techo - 12 : r.top - techo - (alto - r.height) / 2;
+    window.scrollTo({ top: Math.max(0, window.scrollY + y), behavior: 'instant' });
   }
   function empezar() {
     if (caja) return;
@@ -184,11 +209,13 @@
     document.body.append(capa, luz, caja);
     caja.addEventListener('change', (e) => { if (e.target.closest('.guia-nunca')) nunca = !!e.target.checked; });
     caja.addEventListener('click', (e) => {
-      if (e.target.closest('.guia-sig')) paso(i + 1);
+      if (e.target.closest('.guia-sig')) paso(i + 1, 1);
+      else if (e.target.closest('.guia-atras')) paso(i - 1, -1);
       else if (e.target.closest('.guia-omitir')) cerrar(false);
     });
-    capa.addEventListener('click', () => paso(i + 1));   // tocar fuera también avanza
+    capa.addEventListener('click', () => paso(i + 1, 1));   // tocar fuera también avanza
     window.addEventListener('resize', colocar);
+    window.addEventListener('scroll', colocar, { passive: true });   // si se mueve la página, la luz la sigue
     paso(0);
   }
   window.SPGuia = { empezar, PASOS };

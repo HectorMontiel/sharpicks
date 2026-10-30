@@ -57,7 +57,7 @@ def probar():
     check("amarillas" not in app[app.index('const LIN_NOM'):app.index('const LIN_NOM') + 200], 'v470: la página no pinta amarillas en las líneas')
     check("estado.ligasFav.has(l) ? 1 : 0" in app and "data-fav=" in app and "localStorage.setItem('sp_ligas_fav'" in app and '.fav.si' in css,
           'v470: ⭐ ligas favoritas arriba; el resto de la A a la Z (ya no suben solas las de sus intereses)')
-    check('function armarCombinada(pasaDep)' in app and "if (v === 'contra') { fuera.push(p); continue; }" in app
+    check('function armarCombinada()' in app and "if (v === 'contra') { fuera.push(p); continue; }" in app
           and 'Math.min(20, estado.arm.n' in app and 'Math.max(2,' in app and "SPX.ponerBoleto(" in app,
           'v471: «Arma tu combinada»: niveles, 2-20 patas, el modelo elige y la IA descarta lo que ve en contra')
     # v472 — el parley del mismo partido con las líneas de la casa
@@ -100,8 +100,10 @@ def probar():
           'v472: la probabilidad conjunta con la corrección medida (las patas del mismo partido van juntas)')
     check("sub('Arma tu parley de este partido', parleyHtml(ctx, L, V))" in app and 'casa_del_partido(home, away, clave, p.get(' in ew,
           'v472: «Arma tu parley de este partido» dentro del análisis IA, con Playdoit')
-    check("const armNiveles = () => (armVip() ? estado.arm.niv : new Set(['Oro']));" in app and "if (!armVip() && n !== 'Oro') return;" in app,
-          'v473: el gratis arma sólo con Oro; los demás niveles con candado (VIP)')
+    # v540 — el usuario: el gratis puede meter otros niveles, pagando monedas por esas patas (Oro sigue gratis)
+    check("const armNiveles = () => (armVip() || estado.arm.nivGratis ? estado.arm.niv : new Set(['Oro']));" in app
+          and "estado.arm.niv = new Set(['Oro'])" in app and 'data-arm-pagar=' in app,
+          'v540: el gratis parte de Oro y puede sumar niveles pagando monedas')
     cu = open(os.path.join('web', 'cuenta.js'), encoding='utf-8').read()
     html = open(os.path.join('web', 'index.html'), encoding='utf-8').read()
     check('window.SPX.ponerBoleto' in cu and 'id="armador" data-vista="combinadas"' in html, 'v471: pasa a «Tu combinada» para guardarla')

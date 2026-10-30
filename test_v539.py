@@ -2,7 +2,7 @@
 import io
 import os
 
-RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RAIZ = os.path.dirname(os.path.abspath(__file__))
 
 
 def _sql():
