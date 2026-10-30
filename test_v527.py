@@ -72,11 +72,15 @@ def probar():
     o3 = {c: t for c, t, _ in tc.armar_personales(picks, dz, set(), ahora, {}, True)}
     check('Gana Yankees' in o3[444], 'v534: con «premium_con_cuenta» prendido, completo para toda cuenta (la regla de la página)')
     bot = leer('supabase', 'functions', 'telegram-bot', 'index.ts')
-    check("approveChatJoinRequest" in bot and "declineChatJoinRequest" in bot and "rpc/telegram_quien" in bot and "allowed_updates: ['message', 'chat_join_request']" in bot,
+    check("approveChatJoinRequest" in bot and "declineChatJoinRequest" in bot and 'Tu solicitud se queda esperando' in bot and "rpc/telegram_quien" in bot and "allowed_updates: ['message', 'chat_join_request']" in bot,
           'v534: el bot aprueba la entrada al grupo VIP sólo si la app dice que es VIP vigente')
     src = leer('telegram_canales.py')
+    check("'getChatMember'" in src and "rpc/telegram_ligados" in src, 'v536: el barrido revisa a todos los ligados, no sólo a los que aprobó el bot')
     check('def revisar_vip(' in src and "'banChatMember'" in src and "'only_if_banned': True" in src and 'rpc/telegram_vip_vencidos' in src,
           'v534: a quien se le acaba el VIP lo saca del grupo (puede volver si renueva) y le avisa')
+    cu2 = leer('web', 'cuenta.js')
+    check('function vipReloj()' in cu2 and 'vipReloj() +' in cu2 and "d < 3 ? ' pronto' : ''" in cu2,
+          'v535: junto a las monedas, la corona del VIP con lo que le queda (ámbar a 3 días o menos)')
     sq = leer('supabase', 'v527_alertas_telegram.sql')
     check('revoke all on public.telegram_usuarios from anon, authenticated' in sq and "interval '15 minutes'" in sq
           and 'grant execute on function public.alertas_destinos() to service_role' in sq,

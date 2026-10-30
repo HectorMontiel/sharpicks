@@ -618,8 +618,49 @@ def revisar_vip(chat_vip: Optional[str]) -> int:
     import bot_telegram as bt
     b, h = url.rstrip('/') + '/rest/v1/', {'apikey': key, 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json'}
     r = requests.post(b + 'rpc/telegram_vip_vencidos', headers=h, json={}, timeout=30)
+    fuera = list(r.json() if r.ok else [])
+    # v536 — EL BARRIDO de cada pasada: Telegram no deja a ningún bot listar a los miembros de un grupo, así que se revisa
+    # a cada quien que ligó su Telegram en la app: si está en el grupo VIP sin VIP vigente, sale; si es VIP, queda
+    # anotado (para sacarlo el día que se le acabe). Los que entraron con el enlace viejo sin ligarse no se pueden ver.
+    l = requests.post(b + 'rpc/telegram_ligados', headers=h, json={}, timeout=30)
+    pv = requests.get(b + 'privados', headers=h, params={'select': 'valor', 'clave': 'eq.telegram_vip'}, timeout=30)
+    enlace = (pv.json()[0].get('valor') if pv.ok and pv.json() else None)
+    invitar: List[Dict] = []
+    vistos = {x['chat'] for x in fuera}
+    for x in (l.json() if l.ok else [])[:500]:
+        if x['chat'] in vistos:
+            continue
+        m, _ = bt._post('getChatMember', timeout=20, json={'chat_id': chat_vip, 'user_id': x['chat']})
+        est = ((m.json().get('result') or {}).get('status') if m is not None and m.ok else None)
+        if est not in ('member', 'restricted', 'administrator', 'creator'):
+            # v536 — VIP ligado que aún no está en el grupo: se le manda el enlace UNA vez por suscripción
+            if x.get('vip') and enlace and est in ('left', 'kicked', None):
+                invitar.append(x)
+            continue
+        if est in ('administrator', 'creator'):
+            continue
+        if x.get('vip'):
+            requests.patch(b + 'telegram_usuarios', headers=dict(h, Prefer='return=minimal'), params={'usuario': 'eq.' + x['usuario']},
+                           json={'en_vip': True}, timeout=30)
+        else:
+            fuera.append(x)
+    # el enlace a quien ya es VIP y no ha entrado (una vez por suscripción: la clave lleva su fecha de vencimiento)
+    if invitar:
+        ids = ','.join(x['usuario'] for x in invitar)
+        pf = requests.get(b + 'perfiles', headers=h, params={'select': 'id,plan_hasta', 'id': 'in.(%s)' % ids}, timeout=30)
+        hasta = {p['id']: str(p.get('plan_hasta') or 'sin-fin')[:10] for p in (pf.json() if pf.ok else [])}
+        ya = requests.get(b + 'telegram_enviados', headers=h, timeout=30,
+                          params={'select': 'pick', 'canal': 'eq.dm', 'tipo': 'eq.vip-enlace', 'limit': 5000})
+        ya = {y['pick'] for y in (ya.json() if ya.ok else [])}
+        for x in invitar:
+            k = 'vip-enlace:%s:%s' % (x['usuario'], hasta.get(x['usuario'], ''))
+            if k in ya:
+                continue
+            if enviar_a(str(x['chat']), '💎 <b>¡Ya eres VIP en SharPicks!</b>\n\nEntra al grupo VIP aquí 👉 %s\n'
+                        'Toca «Solicitar unirse»: te aprobamos al momento.' % _e(enlace)):
+                apuntar([(k, 'dm', 'vip-enlace')])
     n = 0
-    for x in (r.json() if r.ok else []):
+    for x in fuera:
         ok, _ = bt._post('banChatMember', timeout=30, json={'chat_id': chat_vip, 'user_id': x['chat']})
         if ok is None or not ok.ok:
             continue

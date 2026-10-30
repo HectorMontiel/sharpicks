@@ -73,11 +73,14 @@ Deno.serve(async (req) => {
         await tg('approveChatJoinRequest', { chat_id: jr.chat.id, user_id: quien });
         await fetch(SB + `telegram_usuarios?usuario=eq.${fila.usuario}`, { method: 'PATCH', headers: { ...H, Prefer: 'return=minimal' }, body: JSON.stringify({ en_vip: true }) });
         await decir(quien, '💎 <b>¡Bienvenido al VIP de SharPicks!</b> Ya estás dentro. Aquí llegan los picks VIP, los errores de cuota y el ⚡ Pulso completo.');
-      } else {
+      } else if (fila) {
+        // ligado pero sin VIP vigente: fuera, y a comprarlo en la app
         await tg('declineChatJoinRequest', { chat_id: jr.chat.id, user_id: quien });
-        await decir(quien, fila
-          ? '🔒 Tu cuenta de SharPicks no tiene VIP activo, por eso no pudimos dejarte entrar al grupo VIP.\n\n👉 Hazte VIP en sharpicksapp.com → Planes y vuelve a pedir entrar: te aprobamos al momento.'
-          : '🔒 Para entrar al grupo VIP primero conecta tu Telegram con tu cuenta VIP: sharpicksapp.com → <b>Mi cuenta</b> → <b>Conectar Telegram</b>. Luego vuelve a pedir entrar.');
+        await decir(quien, '🔒 Tu cuenta de SharPicks no tiene VIP activo, por eso no pudimos dejarte entrar al grupo VIP.\n\n👉 Hazte VIP en sharpicksapp.com → Planes y vuelve a pedir entrar: te aprobamos al momento.');
+      } else {
+        // v536 — sin ligar: la solicitud se queda ESPERANDO; al ligar su Telegram, si es VIP, se aprueba sola
+        await decir(quien, '👋 Para entrar al grupo VIP conecta tu Telegram con tu cuenta de SharPicks: sharpicksapp.com → <b>Mi cuenta</b> → <b>Conectar Telegram</b>.\n\n' +
+          'Tu solicitud se queda esperando: en cuanto lo conectes, si tienes VIP te aprobamos solo. ¿Aún no eres VIP? Hazte VIP en Planes.');
       }
       return new Response('ok');
     }
@@ -94,6 +97,15 @@ Deno.serve(async (req) => {
       await fetch(SB + `telegram_usuarios?chat=eq.${chat}`, { method: 'PATCH', headers: { ...H, Prefer: 'return=minimal' }, body: JSON.stringify({ chat: null, ligado: null }) });
       await fetch(SB + `telegram_usuarios?usuario=eq.${f[0].usuario}`, { method: 'PATCH', headers: { ...H, Prefer: 'return=minimal' },
         body: JSON.stringify({ chat, codigo: null, codigo_hasta: null, ligado: new Date().toISOString() }) });
+      // v536 — si pidió entrar al grupo VIP antes de ligarse y es VIP, se le aprueba ya (si no había solicitud, no pasa nada)
+      const q = await (await fetch(SB + 'rpc/telegram_quien', { method: 'POST', headers: H, body: JSON.stringify({ p_chat: chat }) })).json().catch(() => []);
+      if (q[0] && q[0].vip) {
+        const ap = await tg('approveChatJoinRequest', { chat_id: s.TELEGRAM_CHAT_VIP, user_id: chat });
+        if (ap.ok) {
+          await fetch(SB + `telegram_usuarios?usuario=eq.${f[0].usuario}`, { method: 'PATCH', headers: { ...H, Prefer: 'return=minimal' }, body: JSON.stringify({ en_vip: true }) });
+          await decir(chat, '💎 <b>¡Bienvenido al VIP de SharPicks!</b> Tu solicitud quedó aprobada: ya estás dentro del grupo VIP.');
+        }
+      }
       await decir(chat, '✅ <b>¡Listo! Tu cuenta de SharPicks quedó conectada</b> 🔔\n\n' +
         'Elige en la app qué quieres que te avisemos: tus deportes, el ⚡ Pulso en vivo o un partido en específico (la 🔔 en «Ver partido»).\n\n' +
         'Para dejar de recibir avisos escribe /stop');

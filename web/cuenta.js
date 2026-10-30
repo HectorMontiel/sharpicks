@@ -238,6 +238,22 @@
     if (window.SP) window.SP.pintar();
   }
 
+  // v535 — EL RELOJ DEL VIP. El usuario: «un temporizador de días de cuánto le queda de suscripción VIP, al lado de
+  // las monedas, con un ícono de VIP». Corona + lo que falta («12 d»; el último día, «5 h»); se pone ámbar
+  // a 3 días o menos (hora de renovar). Toca y abre Mi cuenta. Se recalcula cada minuto.
+  function vipReloj() {
+    if (!esVip()) return '';
+    if (esAdmin()) return '<button class="vip-reloj" data-mi-cuenta title="Administrador">👑 ADMIN</button>';
+    const hasta = yo.perfil && yo.perfil.plan_hasta ? new Date(yo.perfil.plan_hasta) : null;
+    if (!hasta || isNaN(hasta)) return '<button class="vip-reloj" data-mi-cuenta title="Tu VIP">👑 VIP</button>';
+    const min = Math.max(0, Math.floor((hasta - Date.now()) / 60000)), d = Math.floor(min / 1440), h = Math.floor((min % 1440) / 60), m = min % 60;
+    // corto para que quepa en el teléfono junto a las monedas y el usuario: «12 d», el último día «5 h» o «40 min»
+    const txt = d >= 1 ? d + ' d' : h >= 1 ? h + ' h' : m + ' min';
+    return '<button class="vip-reloj' + (d < 3 ? ' pronto' : '') + '" data-mi-cuenta title="Tu VIP vence el ' + esc(fecha(yo.perfil.plan_hasta)) +
+      ' (quedan ' + d + ' d ' + h + ' h)" aria-label="VIP: quedan ' + txt + '">👑 ' + txt + '</button>';
+  }
+  setInterval(() => { if (esVip() && !esAdmin()) { try { pintarCabecera(); } catch (e) { /* al siguiente minuto */ } } }, 60000);
+
   // ---------- v383: CUENTA CON USUARIO, MI CUENTA, CÓDIGOS Y VIP ----------
   const FN = (C.SUPABASE_URL || '').replace(/\/$/, '') + '/functions/v1/';
   const esAdmin = () => !!(yo.perfil && yo.perfil.admin);
@@ -319,7 +335,7 @@
     if (!yo.perfil) { c.innerHTML = '<span class="saldo" title="Tus monedas">🪙 …</span><button class="entrar" data-mi-cuenta>Mi cuenta ▾</button>'; return; }
     const nom = yo.perfil.usuario || yo.perfil.nombre || String(yo.user.email || 'Mi cuenta').split('@')[0];
     c.innerHTML = '<span class="saldo" title="Tus monedas">🪙 ' + (esAdmin() ? '∞' : ((yo.perfil && yo.perfil.monedas) || 0)) + '</span>' +
-      (esVip() ? '<span class="et nivel diamante">' + (esAdmin() ? 'ADMIN' : 'VIP') + '</span>' : '') +
+      vipReloj() +
       '<button class="entrar" data-mi-cuenta>' + esc(nom) + ' ▾</button>';
     // con Google no se eligió usuario: se pide una vez
     if (yo.perfil && !yo.perfil.usuario && $('elegir').hidden) $('elegir').hidden = false;

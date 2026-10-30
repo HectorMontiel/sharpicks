@@ -1131,3 +1131,8 @@ details.mas[open] > summary::after { content: ' ▴'; }
 .ia-morado-h { color: #ddd6fe; } .ia-morado-h small { color: var(--tenue); font-size: 11px; }
 /* v532 — la guía enseña la cancha y el Pulso con una captura real (se ven igual a cualquier hora) */
 .guia-img { display: block; width: 100%; max-height: 42vh; object-fit: contain; border-radius: 12px; margin: 8px 0 4px; border: 1px solid var(--borde); background: #0b1020; }
+/* v535 — el reloj del VIP junto a las monedas: corona + lo que le queda; ámbar a 3 días o menos */
+.vip-reloj { display: inline-flex; align-items: center; gap: 4px; font: inherit; font-size: 12px; font-weight: 800; white-space: nowrap; cursor: pointer;
+  color: #fde68a; background: linear-gradient(135deg, rgba(250,204,21,.20), rgba(139,92,246,.18)); border: 1px solid rgba(250,204,21,.5); border-radius: 999px; padding: 4px 8px; }
+.vip-reloj.pronto { color: #fdba74; border-color: rgba(249,115,22,.7); background: rgba(249,115,22,.16); }
+.vip-reloj .ic { width: 14px; height: 14px; }
