@@ -485,7 +485,8 @@ def clave_partido(p: Dict) -> str:
     return '|'.join([p.get('deporte') or '', ' / '.join(sorted([L.lower().strip(), V.lower().strip()])), _dia_cdmx(p) or str(p.get('fecha') or '')])
 
 
-def armar_personales(picks: List[Dict], destinos: List[Dict], ya: Set[str], ahora: dt.datetime) -> List[Tuple]:
+def armar_personales(picks: List[Dict], destinos: List[Dict], ya: Set[str], ahora: dt.datetime,
+                     abiertos: Optional[Dict[str, Set[str]]] = None, con_cuenta: bool = False) -> List[Tuple]:
     """[(chat, texto, cubre)]: a cada quien, en UN mensaje, sus picks que ya están en hora de apostar. El VIP los ve
     completos; los demás, completos sólo los que no son VIP ni de pago (los otros, con candado para desbloquear)."""
     vip_niv = niveles_vip()
@@ -508,7 +509,9 @@ def armar_personales(picks: List[Dict], destinos: List[Dict], ya: Set[str], ahor
         top = suyos[:MAX_VIP_MSG]
         lineas = []
         for p in top:
-            if u['vip'] or not (p.get('premium') or nivel(p) in vip_niv):
+            # v534 — completo: al VIP, a lo que no es de pago, a lo que ESA persona desbloqueó con monedas, y a todos
+            # con cuenta si el ajuste «premium_con_cuenta» está prendido (la misma regla que la página)
+            if u['vip'] or con_cuenta or p['id'] in (abiertos or {}).get(uid, set()) or not (p.get('premium') or nivel(p) in vip_niv):
                 lineas.append(_cab_partido(p, ahora, ICONO.get(nivel(p), '')) + '\n' + _apuesta(p))
             else:
                 lineas.append(_cab_partido(p, ahora, ICONO.get(nivel(p), '')) + '\n🔒 <b>Pick %s</b> · desbloquéalo en la app' % _e(nivel(p)))
@@ -590,6 +593,46 @@ def destinos_alertas() -> Optional[Tuple[List[Dict], Set[str]]]:
     return r.json(), {x['pick'] for x in (e.json() if e.ok else [])}
 
 
+def desbloqueos_de(usuarios: List[str]) -> Tuple[Dict[str, Set[str]], bool]:
+    """v534 — lo que cada quien desbloqueó con monedas, y si el lanzamiento abre lo premium a toda cuenta."""
+    url, key = os.environ.get('SUPABASE_URL'), os.environ.get('SUPABASE_SERVICE_KEY')
+    if not url or not key or not usuarios:
+        return {}, False
+    import requests
+    b, h = url.rstrip('/') + '/rest/v1/', {'apikey': key, 'Authorization': 'Bearer ' + key}
+    out: Dict[str, Set[str]] = {}
+    r = requests.get(b + 'desbloqueos', headers=h, timeout=30, params={'select': 'usuario,pick', 'usuario': 'in.(%s)' % ','.join(usuarios), 'limit': 20000})
+    for x in (r.json() if r.ok else []):
+        out.setdefault(x['usuario'], set()).add(x['pick'])
+    a = requests.get(b + 'ajustes', headers=h, timeout=30, params={'select': 'valor', 'clave': 'eq.premium_con_cuenta'})
+    return out, bool(a.ok and a.json() and str(a.json()[0].get('valor')) == '1')
+
+
+def revisar_vip(chat_vip: Optional[str]) -> int:
+    """v534 — a quien se le acabó el VIP: fuera del grupo VIP (sacar = banear y desbanear, así puede volver si renueva),
+    y un aviso. Desde ese momento sus avisos personales ya le llegan como a cualquier cuenta gratis."""
+    url, key = os.environ.get('SUPABASE_URL'), os.environ.get('SUPABASE_SERVICE_KEY')
+    if not url or not key or not chat_vip:
+        return 0
+    import requests
+    import bot_telegram as bt
+    b, h = url.rstrip('/') + '/rest/v1/', {'apikey': key, 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json'}
+    r = requests.post(b + 'rpc/telegram_vip_vencidos', headers=h, json={}, timeout=30)
+    n = 0
+    for x in (r.json() if r.ok else []):
+        ok, _ = bt._post('banChatMember', timeout=30, json={'chat_id': chat_vip, 'user_id': x['chat']})
+        if ok is None or not ok.ok:
+            continue
+        bt._post('unbanChatMember', timeout=30, json={'chat_id': chat_vip, 'user_id': x['chat'], 'only_if_banned': True})
+        requests.patch(b + 'telegram_usuarios', headers=dict(h, Prefer='return=minimal'), params={'usuario': 'eq.' + x['usuario']},
+                       json={'en_vip': False}, timeout=30)
+        enviar_a(str(x['chat']), '💎 Tu VIP de SharPicks terminó, por eso saliste del grupo VIP.\n\n'
+                 '🔔 Te seguimos avisando con lo gratis. Para volver, renueva en ' + SITIO + ' → Planes y pide entrar otra vez: '
+                 'te aprobamos al momento.')
+        n += 1
+    return n
+
+
 def armar(picks: List[Dict], enviados: Set, ahora: Optional[dt.datetime] = None) -> Dict[str, List]:
     """{canal: [(texto, [(pick, canal, tipo) que cubre])]} con sólo lo nuevo."""
     ahora = ahora or dt.datetime.now(dt.timezone.utc)
@@ -665,7 +708,8 @@ def main() -> int:
     try:
         dd = destinos_alertas() if not seco else None
         if dd:
-            for chat, texto, cubre in armar_personales(picks, dd[0], dd[1], dt.datetime.now(dt.timezone.utc)):
+            ab, con_cuenta = desbloqueos_de(sorted({d['usuario'] for d in dd[0]}))
+            for chat, texto, cubre in armar_personales(picks, dd[0], dd[1], dt.datetime.now(dt.timezone.utc), ab, con_cuenta):
                 if enviar_a(str(chat), texto):
                     apuntar(cubre)
                     personales += 1
@@ -677,6 +721,12 @@ def main() -> int:
                     personales += 1
     except Exception as e:
         logger.warning('[telegram] avisos personales: %s', e)
+    try:
+        fuera = revisar_vip(chats.get('vip')) if not seco else 0
+        if fuera:
+            print('telegram: %d sin VIP vigente salieron del grupo VIP' % fuera)
+    except Exception as e:
+        logger.warning('[telegram] revisar el VIP: %s', e)
     print('telegram: %s · personales %d' % ({k: len([m for m in v if m[0]]) for k, v in lotes.items()}, personales))
     return 0
 

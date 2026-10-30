@@ -414,7 +414,9 @@
         : esVip() ? '💎 <b>VIP</b> hasta el ' + esc(fecha(p.plan_hasta)) : 'Plan <b>Gratis</b>') +
       '<span>🪙 ' + (esAdmin() ? '∞' : (p.monedas || 0)) + '</span></div>';
     if (msg) h += '<p class="aviso-ok">' + esc(msg) + '</p>';
-    if (vipUrl) h += '<a class="tg vip bloque" href="' + esc(vipUrl) + '" target="_blank" rel="noopener">💎 Entrar al grupo VIP de Telegram</a>';
+    if (vipUrl) h += '<a class="tg vip bloque" href="' + esc(vipUrl) + '" target="_blank" rel="noopener">💎 Entrar al grupo VIP de Telegram</a>' +
+      // v534 — el grupo pide permiso: el bot aprueba al momento si su Telegram está conectado a esta cuenta VIP
+      '<p class="tenue chico">Toca «Solicitar unirse»: el bot revisa tu VIP y te aprueba al momento. Antes conecta tu Telegram aquí abajo (Avisos por Telegram).</p>';
     h += cajaSuscripcion();
     if (!esVip()) {
       h += '<div class="caja vip-caja"><div class="tit">Hazte VIP</div>' +

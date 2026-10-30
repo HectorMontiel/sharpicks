@@ -63,6 +63,20 @@ def probar():
           'v530: sin Telegram, la campana ofrece conectarlo ahí mismo y el partido queda seguido al volver')
     check('class="campana-fila"' in leer('web', 'app.js') and 'pick-fila compacta' in leer('web', 'app.js'),
           'v530: la campana en su renglón (ámbar / verde) y cada pick en dos renglones')
+    # v534 — lo comprado con monedas llega completo a quien lo compró (y a nadie más); el VIP se mira en el momento
+    dz = [{'usuario': 'gra1', 'chat': 222, 'vip': False, 'tipo': 'deporte', 'valor': 'Béisbol'},
+          {'usuario': 'gra2', 'chat': 444, 'vip': False, 'tipo': 'deporte', 'valor': 'Béisbol'}]
+    o2 = {c: t for c, t, _ in tc.armar_personales(picks, dz, set(), ahora, {'gra1': {'p2'}})}
+    check('Gana Yankees' in o2[222] and 'Gana Yankees' not in o2[444] and '🔒' in o2[444],
+          'v534: el pick desbloqueado con monedas le llega completo SÓLO a quien lo compró')
+    o3 = {c: t for c, t, _ in tc.armar_personales(picks, dz, set(), ahora, {}, True)}
+    check('Gana Yankees' in o3[444], 'v534: con «premium_con_cuenta» prendido, completo para toda cuenta (la regla de la página)')
+    bot = leer('supabase', 'functions', 'telegram-bot', 'index.ts')
+    check("approveChatJoinRequest" in bot and "declineChatJoinRequest" in bot and "rpc/telegram_quien" in bot and "allowed_updates: ['message', 'chat_join_request']" in bot,
+          'v534: el bot aprueba la entrada al grupo VIP sólo si la app dice que es VIP vigente')
+    src = leer('telegram_canales.py')
+    check('def revisar_vip(' in src and "'banChatMember'" in src and "'only_if_banned': True" in src and 'rpc/telegram_vip_vencidos' in src,
+          'v534: a quien se le acaba el VIP lo saca del grupo (puede volver si renueva) y le avisa')
     sq = leer('supabase', 'v527_alertas_telegram.sql')
     check('revoke all on public.telegram_usuarios from anon, authenticated' in sq and "interval '15 minutes'" in sq
           and 'grant execute on function public.alertas_destinos() to service_role' in sq,

@@ -3,6 +3,9 @@
 //   «/stop» → deja de mandarle avisos. Telegram firma cada llamada con X-Telegram-Bot-Api-Secret-Token (Vault).
 // {"configurar": true} con la clave del cron: registra este webhook en Telegram y guarda el nombre del bot en
 // `ajustes.telegram_bot` (lo usa la página para el enlace).
+// v534 — EL GRUPO VIP CON LLAVE: su enlace pide permiso; el bot aprueba sólo si ese Telegram está ligado a una cuenta
+// VIP vigente (telegram_quien) y si no, lo rechaza y le dice qué hacer. «configurar» crea ese enlace, apaga el viejo
+// y lo guarda en `privados.telegram_vip` (el que da «Entrar al grupo VIP» en Mi cuenta).
 
 type Dic = Record<string, any>;
 const SB = (Deno.env.get('SUPABASE_URL') || '').replace(/\/$/, '') + '/rest/v1/';
@@ -32,16 +35,52 @@ Deno.serve(async (req) => {
     if (req.headers.get('x-pulso-clave')) {
       if (req.headers.get('x-pulso-clave') !== s.pulso_cron) return new Response('no', { status: 401 });
       const yo = await tg('getMe', {});
-      const w = await tg('setWebhook', { url: URL_FN, secret_token: s.telegram_webhook, allowed_updates: ['message'], drop_pending_updates: true });
+      const w = await tg('setWebhook', { url: URL_FN, secret_token: s.telegram_webhook, allowed_updates: ['message', 'chat_join_request'], drop_pending_updates: true });
       if (yo.result && yo.result.username) {
         await fetch(SB + 'ajustes', { method: 'POST', headers: { ...H, Prefer: 'resolution=merge-duplicates,return=minimal' },
           body: JSON.stringify({ clave: 'telegram_bot', valor: yo.result.username }) });
       }
-      return Response.json({ bot: yo.result && yo.result.username, webhook: w.ok, descripcion: w.description });
+      // los permisos del bot en el grupo VIP (aprobar entradas y sacar gente) y el enlace con aprobación
+      const permisos = yo.result ? await tg('getChatMember', { chat_id: s.TELEGRAM_CHAT_VIP, user_id: yo.result.id }) : {};
+      let enlace: Dic = {};
+      if ((await req.clone().json().catch(() => ({}))).enlace_vip) {
+        const viejo = await (await fetch(SB + 'privados?select=valor&clave=eq.telegram_vip', { headers: H })).json().catch(() => []);
+        enlace = await tg('createChatInviteLink', { chat_id: s.TELEGRAM_CHAT_VIP, name: 'SharPicks VIP (con aprobación)', creates_join_request: true });
+        if (enlace.ok && enlace.result && enlace.result.invite_link) {
+          await fetch(SB + 'privados?clave=eq.telegram_vip', { method: 'PATCH', headers: { ...H, Prefer: 'return=minimal' },
+            body: JSON.stringify({ valor: enlace.result.invite_link }) });
+          if (viejo[0] && viejo[0].valor && viejo[0].valor !== enlace.result.invite_link) {
+            const r = await tg('revokeChatInviteLink', { chat_id: s.TELEGRAM_CHAT_VIP, invite_link: viejo[0].valor });
+            enlace.viejo_apagado = !!r.ok; enlace.viejo_motivo = r.description;
+          }
+        }
+      }
+      const pr = permisos.result || {};
+      return Response.json({ bot: yo.result && yo.result.username, webhook: w.ok, descripcion: w.description,
+        vip: { estado: pr.status, aprobar: pr.can_invite_users, sacar: pr.can_restrict_members },
+        enlace_creado: !!(enlace.ok && enlace.result), enlace_viejo_apagado: enlace.viejo_apagado, motivo: enlace.description || enlace.viejo_motivo });
     }
     // 2. lo que le escriben al bot (firmado por Telegram)
     if (!s.telegram_webhook || req.headers.get('x-telegram-bot-api-secret-token') !== s.telegram_webhook) return new Response('no', { status: 401 });
     const u = await req.json().catch(() => ({}));
+    // v534 — alguien pide entrar al grupo VIP: se revisa en la app si su Telegram es de una cuenta VIP vigente
+    const jr = u.chat_join_request;
+    if (jr && jr.chat && String(jr.chat.id) === String(s.TELEGRAM_CHAT_VIP)) {
+      const quien = jr.from && jr.from.id;
+      const q = await (await fetch(SB + 'rpc/telegram_quien', { method: 'POST', headers: H, body: JSON.stringify({ p_chat: quien }) })).json().catch(() => []);
+      const fila = q[0];
+      if (fila && fila.vip) {
+        await tg('approveChatJoinRequest', { chat_id: jr.chat.id, user_id: quien });
+        await fetch(SB + `telegram_usuarios?usuario=eq.${fila.usuario}`, { method: 'PATCH', headers: { ...H, Prefer: 'return=minimal' }, body: JSON.stringify({ en_vip: true }) });
+        await decir(quien, '💎 <b>¡Bienvenido al VIP de SharPicks!</b> Ya estás dentro. Aquí llegan los picks VIP, los errores de cuota y el ⚡ Pulso completo.');
+      } else {
+        await tg('declineChatJoinRequest', { chat_id: jr.chat.id, user_id: quien });
+        await decir(quien, fila
+          ? '🔒 Tu cuenta de SharPicks no tiene VIP activo, por eso no pudimos dejarte entrar al grupo VIP.\n\n👉 Hazte VIP en sharpicksapp.com → Planes y vuelve a pedir entrar: te aprobamos al momento.'
+          : '🔒 Para entrar al grupo VIP primero conecta tu Telegram con tu cuenta VIP: sharpicksapp.com → <b>Mi cuenta</b> → <b>Conectar Telegram</b>. Luego vuelve a pedir entrar.');
+      }
+      return new Response('ok');
+    }
     const m = u.message || {}, chat = m.chat && m.chat.id, texto = String(m.text || '').trim();
     if (!chat || !m.chat || m.chat.type !== 'private') return new Response('ok');
     const cod = (texto.match(/^\/start\s+([A-Za-z0-9]{6,20})$/) || [])[1];
