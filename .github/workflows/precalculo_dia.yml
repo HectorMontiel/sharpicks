@@ -67,7 +67,7 @@ env:
 
 jobs:
   precalcular:
-    runs-on: [self-hosted, sharpicks]   # v509 — runner propio (PC del usuario): 0 minutos de Actions
+    runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
     timeout-minutes: 45
 
     steps:

@@ -25,6 +25,9 @@ def probar():
         n = os.path.basename(f)
         lineas = [l for l in s.splitlines() if not l.strip().startswith('#')]
         check(not any('sparse-checkout' in l for l in lineas), 'v519: %s sin checkout parcial (envenena la carpeta del runner)' % n)
+        # v523 — el repo es público: un runner propio en un repo público deja correr código ajeno en el PC del
+        # usuario, y además el usuario no quiere depender de su compu encendida
+        check('self-hosted' not in ''.join(lineas), 'v523: %s corre en los servidores de GitHub, no en el PC' % n)
         if 'self-hosted' in s and 'pip install -r requirements.txt' in s:
             check('pip install --force-reinstall' in s, 'v516: %s repara solo una instalación de pip cortada' % n)
 

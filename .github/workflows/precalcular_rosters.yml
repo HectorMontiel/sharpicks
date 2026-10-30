@@ -49,7 +49,7 @@ env:
 
 jobs:
   precalcular:
-    runs-on: [self-hosted, sharpicks]   # v509 — runner propio (PC del usuario): 0 minutos de Actions
+    runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
     # El TTL de la caché son 3 días y hay ~50 ligas a ~20 s cada una, así que
     # con 45 minutos sobra incluso si ESPN va lento. Sin tope, un cuelgue de
     # red dejaría el runner corriendo una hora larga sin producir nada.

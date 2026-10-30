@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   copiar:
-    runs-on: [self-hosted, sharpicks]
+    runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
     timeout-minutes: 5
     steps:
       - name: Guardar en Vault

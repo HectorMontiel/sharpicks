@@ -40,7 +40,7 @@ env:
 
 jobs:
   retrain:
-    runs-on: [self-hosted, sharpicks]   # v509 — runner propio (PC del usuario): 0 minutos de Actions
+    runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
     # v153 — 60 → 90. El tope de 60 no era holgado: era el que estaba matando
     # el job. Dos ejecuciones seguidas se perdieron por él (2026-08-21 failure,
     # 2026-08-22 cancelada a los 60m21s). La causa de fondo se ataca en
