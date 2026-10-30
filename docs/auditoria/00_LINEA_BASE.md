@@ -12,10 +12,10 @@
 
 ## Actualización de estado: 2026-10-30
 
-- **Head remoto/local revisado:** `0ab0fe09201a580cf7df239c2ba4a1ca8843c1e9`; rama `hardening/free-audit-2026-10`; árbol de trabajo limpio al verificarlo.
-- **PR #1:** sigue abierto y draft; `headRefOid` concuerda con `0ab0fe0`.
-- **CI remoto:** `Verificar instalación limpia de SharPicks`, `Validar SharPicks sin desplegar` y `Tests seguros SharPicks v402` reportan `queued` para `0ab0fe0`. En el SHA anterior `f8a2c41`, `Validar SharPicks sin desplegar` terminó en `success`; instalación limpia seguía `in_progress` y tests seguros seguían `pending` al último sondeo. Sólo el primero acredita ese SHA.
-- **Validación local posterior:** 46 tests de unittest, `test_v510.py`, `py_compile` y `git diff --check` pasaron en Python 3.12 para el árbol con código hasta `f638b2d` más el scanner heurístico local; los commits posteriores fueron documentales. No equivale a CI ni staging.
+- **Head remoto/local revisado:** `4711a16ce3103d195314987b2e5726592d1a2091`; rama `hardening/free-audit-2026-10`; árbol de trabajo limpio al verificarlo.
+- **PR #1:** sigue abierto y draft; `headRefOid` concuerda con `4711a16`.
+- **CI remoto:** los tres workflows (`Verificar instalación limpia de SharPicks`, `Validar SharPicks sin desplegar`, `Tests seguros SharPicks v402`) reportan `queued` para `4711a16`. En `0ab0fe0`, `validar` e instalación limpia terminaron en `success`, mientras tests seguros seguían `in_progress`; en `52b819f`, validar seguía `in_progress`. Ninguno acredita el head actual.
+- **Validación local posterior:** 46 tests de unittest, 6 pruebas de `test_exportador_web_v402.py`, `test_v510.py`, `py_compile`, ausencia de lecturas de `.text` en los dos exportadores y `git diff --check` pasaron en Python 3.12 para el árbol con código hasta `4711a16`. No equivale a CI ni staging.
 - **Cambios posteriores medibles:** downloader comprueba SHA-256 de metadata antes de extraer y rechaza entradas tar inseguras; para `sharpicks-core` exige `CORE_MODELS_READ_TOKEN`. Se preparó `supabase/auditoria_catalogo_readonly.sql`, pero no se ejecutó contra una base. `ADR-0001` sigue propuesta.
 - **Exposición de la release:** el snapshot revisado registra 73 assets, 72 archivos `.tar.gz`, 735,067,828 bytes y digests SHA-256 para todos; ningún asset fue descargado, retirado ni reemplazado.
 - **Estado de repositorio/producción:** no se pudo resolver `sharpicks-core`; no se conectó Supabase staging ni se ejecutó migración o cambio productivo.
