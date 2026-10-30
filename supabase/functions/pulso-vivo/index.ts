@@ -227,7 +227,10 @@ async function partidos() {
       const d = await (await fetch(SITIO + f + '?t=' + Date.now(), { headers: NAV })).json();
       for (const p of d[k] || []) {
         if (p.deporte !== 'Fútbol' || !String(p.espn || '').includes(':')) continue;
-        const c = clavePartido(p); if (vistos.has(c)) continue;
+        // v529 — UN partido, UNA vez: el mismo partido llega en los picks y en el análisis con nombres distintos
+        // («Atlético Nacional vs Independiente Santa Fe» / «Atl. Nacional vs Santa Fe») y se avisaba dos veces.
+        // Se une por el id de ESPN (el mismo evento); manda el de los picks (va primero).
+        const c = 'espn:' + String(p.espn).split(':')[1]; if (vistos.has(c)) continue;
         vistos.add(c); out.push(p);
       }
     } catch (_) { /* sin ese archivo, esta vuelta sigue con el otro */ }

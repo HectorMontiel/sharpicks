@@ -63,6 +63,8 @@ def probar():
     check('git checkout FETCH_HEAD -- "$f"' in sw and 'V=$(git rev-parse --short=7 FETCH_HEAD)' in sw,
           'v522: el Sitio web publica el código de la página de main de ahora (no pisa un arreglo ya publicado)')
     check("zona = /[zZ]|[+-]" in ts, 'v522: la nube lee las fechas con zona como la página (web/fechas.js)')
+    check("const c = 'espn:' + String(p.espn).split(':')[1]; if (vistos.has(c)) continue;" in ts,
+          'v529: un partido una vez (por su id de ESPN): con dos nombres se avisaba dos veces')
     cu = leer('web', 'cuenta.js')
     check("rpc('pulso_ia_hay'" in cu and "from('pulso_ia')" in cu and "rpc('pulso_senales_tasa')" in cu and "rpc('pulso_senales_ver'" in cu and 'function senalesHtml(p, v, vs, L, V)' in app and 'function iaPulso(p, v)' in app,
           'v520: la página destaca la recomendación y enseña su tasa')

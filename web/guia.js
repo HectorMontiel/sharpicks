@@ -9,7 +9,7 @@
 // v498 — sale CADA VEZ que se abre la app hasta que se marca esa casilla.
 (function () {
   'use strict';
-  const CLAVE = 'sp_guia_v1';
+  const CLAVE = 'sp_guia_v2';      // v529 — con el Pulso, los avisos por Telegram y el historial por periodo: todos la ven una vez más
   const NUNCA = CLAVE + '_nunca';
   const NOMBRE = { picks: 'Picks', vivo: 'En vivo', combinadas: 'Combinadas', mios: 'Mis picks', historial: 'Historial', planes: 'Planes' };
   const PASOS = [
@@ -19,11 +19,13 @@
     { v: 'picks', sel: '.busca-caja', t: 'Busca tu equipo', d: 'Escribe cualquier equipo y te salen sus partidos de todos los días.' },
     { v: 'picks', sel: '#tarjetas .partido-fila, #tarjetas .liga-cab', t: 'Abre un partido', d: 'Toca un partido: el pick, sus estadísticas, la tabla y el marcador en vivo.' },
     { v: 'vivo', sel: '#tarjetas .partido-fila, #nav [data-vista-ir="vivo"]', t: 'En vivo', d: 'Lo que se juega ahora, con su minuto, y si tu pick ya se cumplió.' },
+    { v: 'vivo', sel: '.pulso-cand, #tarjetas .partido-fila, #nav [data-vista-ir="vivo"]', t: '⚡ Pulso en vivo', d: 'En el 2.º tiempo, lo más probable que pase ahora (gol, córners) y lo que salió en el historial.' },
     { v: 'combinadas', sel: '#armador:not([hidden])', t: 'Arma tu combinada', d: 'Elige los niveles y cuántas patas, y toca «Armar».' },
     { v: 'combinadas', sel: '#combinadas-lista .dest, #combinadas-lista', t: 'Combinadas del día', d: 'Cuota y probabilidad de que se cumplan TODAS las patas.' },
     { v: 'mios', sel: '#tarjetas, #aviso, #nav [data-vista-ir="mios"]', t: 'Mis picks', d: 'En cualquier partido toca «☆ Seguir» y aparece aquí, con su resultado.' },
-    { v: 'historial', sel: '#historial, #marcadores', t: 'Historial', d: 'Todas las verdes y las rojas, sin esconder ninguna: el acierto real de cada nivel.' },
+    { v: 'historial', sel: '#historial, #marcadores', t: 'Historial', d: 'Día, semana, mes, año o todo: todas las verdes y las rojas, sin esconder ninguna.' },
     { v: 'planes', sel: '.planes-grid', t: 'Planes', d: 'Gratis, monedas por pick (si sale roja, te las regresamos) o VIP con todo.' },
+    { v: 'picks', sel: '#cuenta', t: '🔔 Avisos por Telegram', d: 'Mi cuenta → «Conectar Telegram»: elige tus deportes, el ⚡ Pulso o un partido (la 🔔).' },
     { v: 'picks', sel: '.ayuda-btn', t: '¿Dudas?', d: 'Aquí está la ayuda con lo que significa cada cosa. Desde ahí repites esta guía.' },
   ];
   let i = 0, capa = null, luz = null, caja = null, nunca = false, desde = 'picks';
