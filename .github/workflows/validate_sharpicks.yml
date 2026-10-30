@@ -69,12 +69,7 @@ jobs:
       - name: Pruebas de sincronización y regresión
         run: |
           set -eu
-          python -m unittest -v tests.test_sharpicks_contracts
-          python -m unittest -v tests.test_python_dependency_graph
-          python -m unittest -v tests.test_asset_inventory
-          python -m unittest -v tests.test_release_asset_inventory
-          python -m unittest -v tests.test_public_model_publisher
-          python -m unittest -v tests.test_modelos_remotos_integrity
+          python -m unittest discover -s tests -p "test_*.py" -v
           python test_v510.py
           python test_exportador_web_v402.py
           python test_v383.py

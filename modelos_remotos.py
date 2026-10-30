@@ -123,7 +123,8 @@ def _token() -> str:
     """v510 — el repo es PRIVADO: el asset sólo se baja con token. En los workflows, `GH_TOKEN` (el token de
     la corrida); en local, el de `gh auth token`. Sin token se intenta la URL pública (repo público o fork)."""
     if 't' not in _TOKEN:
-        t = os.environ.get('GH_TOKEN') or os.environ.get('GITHUB_TOKEN') or ''
+        t = (os.environ.get('CORE_MODELS_READ_TOKEN') or os.environ.get('GH_TOKEN')
+             or os.environ.get('GITHUB_TOKEN') or '')
         if not t:
             try:
                 import subprocess

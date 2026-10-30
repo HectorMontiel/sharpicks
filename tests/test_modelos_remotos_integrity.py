@@ -34,6 +34,18 @@ class _Response:
 
 
 class RemoteModelIntegrityTests(unittest.TestCase):
+    def test_read_only_core_token_takes_precedence(self):
+        models._TOKEN.clear()
+        try:
+            with patch.dict(os.environ, {
+                "CORE_MODELS_READ_TOKEN": "read-only",
+                "GH_TOKEN": "workflow-token",
+                "GITHUB_TOKEN": "default-token",
+            }):
+                self.assertEqual(models._token(), "read-only")
+        finally:
+            models._TOKEN.clear()
+
     def test_sha256_digest_is_strict_and_checked(self):
         with tempfile.NamedTemporaryFile(delete=False) as f:
             f.write(b"asset")
