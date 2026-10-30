@@ -29029,21 +29029,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5970093,2026-08-21,ksa_pro,Al-Faisaly,Saud Haddad,1910848,D,0,17,0,0,0,0.0,,1.0,
 5970093,2026-08-21,ksa_pro,Al-Faisaly,Eid Al Muwallad,1524233,M,0,17,0,0,0,0.0,,2.0,311907.0
 5970093,2026-08-21,ksa_pro,Al-Faisaly,Wael Kadan,1910840,F,0,8,0,0,0,0.0,,3.0,
-5970093,2026-08-21,ksa_pro,Neom SC,Marcin Bułka,863455,G,1,90,0,0,0,0.0,11.0,0.0,13138657.0
-5970093,2026-08-21,ksa_pro,Neom SC,Mohammed Al Burayk,618586,D,1,90,0,0,0,0.0,32.0,1.0,163100.0
-5970093,2026-08-21,ksa_pro,Neom SC,Malang Sarr,782502,D,1,90,0,0,0,0.0,34.0,1.0,10337832.0
-5970093,2026-08-21,ksa_pro,Neom SC,Nathan Zézé,1429120,D,1,90,0,0,0,0.0,36.0,1.0,14473020.0
-5970093,2026-08-21,ksa_pro,Neom SC,Islam Hawsawi,1235339,D,1,90,0,0,0,0.0,38.0,1.0,250030.0
-5970093,2026-08-21,ksa_pro,Neom SC,Giorgos Masouras,575227,M,1,79,0,0,0,0.0,72.0,2.0,785861.0
-5970093,2026-08-21,ksa_pro,Neom SC,Abdulmalik Al Oyayari,1305882,M,1,90,1,0,0,0.02,74.0,2.0,
-5970093,2026-08-21,ksa_pro,Neom SC,Amadou Koné,1572809,M,1,90,0,0,0,0.0,76.0,2.0,4921057.0
-5970093,2026-08-21,ksa_pro,Neom SC,Khalil Al Absi,1189048,M,1,89,1,0,0,0.04,78.0,2.0,326784.0
-5970093,2026-08-21,ksa_pro,Neom SC,Alexandre Lacazette,169193,F,1,79,4,2,2,0.99,104.0,3.0,2374200.0
-5970093,2026-08-21,ksa_pro,Neom SC,Saïd Benrahma,491883,F,1,6,0,0,0,0.0,106.0,3.0,5436364.0
-5970093,2026-08-21,ksa_pro,Neom SC,Haroune Camara,922677,F,0,84,1,1,0,0.1,,3.0,268166.0
-5970093,2026-08-21,ksa_pro,Neom SC,Mohannad Abu Taha,1247001,D,0,11,0,0,0,0.0,,1.0,231871.0
-5970093,2026-08-21,ksa_pro,Neom SC,Muhannad Al Saad,1552923,F,0,11,1,0,0,0.16,,3.0,271906.0
-5970093,2026-08-21,ksa_pro,Neom SC,Khalifah Al Dawsari,934552,D,0,1,0,0,0,0.0,,1.0,276203.0
 5832830,2026-08-21,ned_eerste,Vitesse,Maximilian Brüll,1420716,G,1,90,0,0,0,0.0,11.0,0.0,181485.0
 5832830,2026-08-21,ned_eerste,Vitesse,Nathangelo Markelo,891071,D,1,90,1,0,0,0.0,32.0,1.0,
 5832830,2026-08-21,ned_eerste,Vitesse,Valon Zumberi,1289120,D,1,90,0,0,0,0.0,34.0,1.0,218244.0
@@ -29564,21 +29549,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000017205,2026-08-21,per_liga1,Atlético Grau,Christian Vásquez,1432959,D,0,23,0,0,0,0.0,,1.0,204983.0
 1000017205,2026-08-21,per_liga1,Atlético Grau,Pablo Lavandeira,127268,M,0,23,2,2,1,0.0,,2.0,136747.0
 1000017205,2026-08-21,per_liga1,Atlético Grau,Eslyn Correa,1442679,M,0,1,0,0,0,0.0,,2.0,
-5970092,2026-08-21,ksa_pro,Al Diriyah,Nikola Vasilj,466867,G,1,90,0,0,0,0.0,11.0,0.0,2179220.0
-5970092,2026-08-21,ksa_pro,Al Diriyah,Abdulaziz Al Faraj,1377989,D,1,90,0,0,0,0.0,32.0,1.0,
-5970092,2026-08-21,ksa_pro,Al Diriyah,Berat Djimsiti,260964,D,1,90,0,0,0,0.0,34.0,1.0,2260990.0
-5970092,2026-08-21,ksa_pro,Al Diriyah,Chancel Mbemba,277761,D,1,90,0,0,0,0.0,36.0,1.0,1171029.0
-5970092,2026-08-21,ksa_pro,Al Diriyah,Mohamed Hameran,1911206,D,1,90,0,0,0,0.0,38.0,1.0,130502.0
-5970092,2026-08-21,ksa_pro,Al Diriyah,Clayton Diandy,1667976,M,1,90,1,0,0,0.2,72.0,2.0,1282465.0
-5970092,2026-08-21,ksa_pro,Al Diriyah,Abdulelah Al Malki,670415,M,1,79,1,1,1,0.21,74.0,2.0,144691.0
-5970092,2026-08-21,ksa_pro,Al Diriyah,Idrissa Gana Gueye,179410,M,1,90,0,0,0,0.0,76.0,2.0,1040791.0
-5970092,2026-08-21,ksa_pro,Al Diriyah,Georges-Kévin N'Koudou,473855,M,1,63,1,0,0,0.01,78.0,2.0,1410689.0
-5970092,2026-08-21,ksa_pro,Al Diriyah,Gaëtan Laborde,492158,F,1,89,4,2,0,0.6,104.0,3.0,2039171.0
-5970092,2026-08-21,ksa_pro,Al Diriyah,Óscar Rodríguez,863168,F,1,89,3,1,0,0.41,106.0,3.0,979215.0
-5970092,2026-08-21,ksa_pro,Al Diriyah,Hattan Bahbri,289745,F,0,27,0,0,0,0.0,,3.0,184532.0
-5970092,2026-08-21,ksa_pro,Al Diriyah,Sultan Farhan,889959,M,0,11,0,0,0,0.0,,2.0,149549.0
-5970092,2026-08-21,ksa_pro,Al Diriyah,Qasem Lajami,640282,D,0,1,0,0,0,0.0,,1.0,166735.0
-5970092,2026-08-21,ksa_pro,Al Diriyah,Meshari Al Nemer,1363815,F,0,1,1,1,0,0.13,,3.0,354934.0
 5803538,2026-08-21,jpn_j1,FC Tokyo,Seung-Gyu Kim,167247,G,1,90,0,0,0,0.0,11.0,0.0,273965.0
 5803538,2026-08-21,jpn_j1,FC Tokyo,Sei Muroya,727418,D,1,90,1,1,0,0.15,32.0,1.0,230706.0
 5803538,2026-08-21,jpn_j1,FC Tokyo,Alexander Scholz,203755,D,1,90,0,0,0,0.0,34.0,1.0,623062.0
@@ -169455,3 +169425,64 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5970182,2026-10-30,ksa_pro,Al Ittihad,Marwan Al Sahafi,1399713,F,0,19,0,0,0,0.0,,3.0,1222730.0
 5970182,2026-10-30,ksa_pro,Al Ittihad,George Ilenikhena,1431516,F,0,19,1,0,0,0.1,,3.0,12457055.0
 5970182,2026-10-30,ksa_pro,Al Ittihad,Muath Fagihy,1429005,D,0,1,0,0,0,0.0,,1.0,344168.0
+5970184,2026-10-30,ksa_pro,Al Diriyah,Amin Al Bukhari,670931,G,1,90,1,0,0,0.07,11.0,0.0,114083.0
+5970184,2026-10-30,ksa_pro,Al Diriyah,Taher Wadi,1911207,D,1,70,0,0,0,0.0,32.0,1.0,
+5970184,2026-10-30,ksa_pro,Al Diriyah,Berat Djimsiti,260964,D,1,90,1,0,0,0.2,34.0,1.0,2668256.0
+5970184,2026-10-30,ksa_pro,Al Diriyah,Chancel Mbemba,277761,D,1,90,3,0,0,0.27,36.0,1.0,1144556.0
+5970184,2026-10-30,ksa_pro,Al Diriyah,Hussain Al Sibyani,1305614,D,1,85,0,0,0,0.0,38.0,1.0,338149.0
+5970184,2026-10-30,ksa_pro,Al Diriyah,Idrissa Gana Gueye,179410,M,1,90,2,1,1,0.08,64.0,2.0,803971.0
+5970184,2026-10-30,ksa_pro,Al Diriyah,Enzo Millot,1050859,M,1,90,2,0,0,0.04,66.0,2.0,20203612.0
+5970184,2026-10-30,ksa_pro,Al Diriyah,Clayton Diandy,1667976,F,1,90,3,1,0,0.18,83.0,3.0,1298779.0
+5970184,2026-10-30,ksa_pro,Al Diriyah,Óscar Rodríguez,863168,M,1,85,3,1,0,0.16,85.0,2.0,993207.0
+5970184,2026-10-30,ksa_pro,Al Diriyah,Adil Boulbina,1298669,F,1,70,2,1,0,0.06,87.0,3.0,2328747.0
+5970184,2026-10-30,ksa_pro,Al Diriyah,Darwin Núñez,950561,F,1,90,3,1,0,0.18,115.0,3.0,17491973.0
+5970184,2026-10-30,ksa_pro,Al Diriyah,Abdulaziz Al Faraj,1377989,D,0,20,0,0,0,0.0,,1.0,
+5970184,2026-10-30,ksa_pro,Al Diriyah,Meshari Al Nemer,1363815,F,0,20,0,0,0,0.0,,3.0,357803.0
+5970184,2026-10-30,ksa_pro,Al Diriyah,Hussain Al Qahtani,866656,M,0,5,0,0,0,0.0,,2.0,149549.0
+5970184,2026-10-30,ksa_pro,Al Diriyah,Mohammed Dheban,0,,0,5,0,0,0,0.0,,,
+5970184,2026-10-30,ksa_pro,Neom SC,Luís Maximiano,777035,G,1,90,0,0,0,0.0,11.0,0.0,1864616.0
+5970184,2026-10-30,ksa_pro,Neom SC,Khalifah Al Dawsari,934552,D,1,82,1,0,0,0.08,32.0,1.0,278473.0
+5970184,2026-10-30,ksa_pro,Neom SC,Malang Sarr,782502,D,1,90,0,0,0,0.0,34.0,1.0,14160792.0
+5970184,2026-10-30,ksa_pro,Neom SC,Nathan Zézé,1429120,D,1,90,1,0,0,0.04,36.0,1.0,20811343.0
+5970184,2026-10-30,ksa_pro,Neom SC,Islam Hawsawi,1235339,D,1,64,0,0,0,0.0,38.0,1.0,235491.0
+5970184,2026-10-30,ksa_pro,Neom SC,Abdulmalik Al Oyayari,1305882,M,1,90,1,1,0,0.02,64.0,2.0,
+5970184,2026-10-30,ksa_pro,Neom SC,Abbas Al Hassan,1220487,M,1,46,0,0,0,0.0,66.0,2.0,
+5970184,2026-10-30,ksa_pro,Neom SC,Khalil Al Absi,1189048,F,1,90,2,1,0,0.17,83.0,3.0,326784.0
+5970184,2026-10-30,ksa_pro,Neom SC,Saïd Benrahma,491883,M,1,82,5,1,1,1.0,85.0,2.0,4030514.0
+5970184,2026-10-30,ksa_pro,Neom SC,Mohannad Abu Taha,1247001,F,1,90,1,0,0,0.26,87.0,3.0,283679.0
+5970184,2026-10-30,ksa_pro,Neom SC,Giorgos Masouras,575227,F,1,64,2,0,0,0.06,115.0,3.0,1088353.0
+5970184,2026-10-30,ksa_pro,Neom SC,Faisal Al Ghamdi,1122232,M,0,44,0,0,0,0.0,,2.0,902022.0
+5970184,2026-10-30,ksa_pro,Neom SC,Muhannad Al Saad,1552923,F,0,26,0,0,0,0.0,,3.0,360219.0
+5970184,2026-10-30,ksa_pro,Neom SC,Alexandre Lacazette,169193,F,0,26,1,1,1,0.11,,3.0,1878561.0
+5970184,2026-10-30,ksa_pro,Neom SC,Mohammed Al Burayk,618586,D,0,8,0,0,0,0.0,,1.0,144691.0
+5970184,2026-10-30,ksa_pro,Neom SC,Abdulaziz Al Othman,1668945,F,0,8,1,1,0,0.08,,3.0,
+6362008,2026-10-30,ind_isl,Northeast United FC,Gurmeet Singh,1023968,G,1,90,0,0,0,0.0,11.0,0.0,135629.0
+6362008,2026-10-30,ind_isl,Northeast United FC,Nikhil Barla,1411183,D,1,90,0,0,0,0.0,32.0,1.0,184952.0
+6362008,2026-10-30,ind_isl,Northeast United FC,Eneko Satrústegui,295198,D,1,90,0,0,0,0.0,34.0,1.0,78812.0
+6362008,2026-10-30,ind_isl,Northeast United FC,Pramveer,1601070,D,1,90,0,0,0,0.0,36.0,1.0,
+6362008,2026-10-30,ind_isl,Northeast United FC,Abdul Rabeeh,1314661,D,1,90,1,0,0,0.02,38.0,1.0,143791.0
+6362008,2026-10-30,ind_isl,Northeast United FC,Muthu Irulandi Mayakkannan,1458985,M,1,90,0,0,0,0.0,64.0,2.0,
+6362008,2026-10-30,ind_isl,Northeast United FC,Antonio Moyano,1056888,M,1,90,0,0,0,0.0,66.0,2.0,96123.0
+6362008,2026-10-30,ind_isl,Northeast United FC,Macarton Louis Nickson,1543967,F,1,83,0,0,0,0.0,83.0,3.0,186517.0
+6362008,2026-10-30,ind_isl,Northeast United FC,Jithin Madathil Subran,1235052,M,1,67,2,1,1,0.23,85.0,2.0,92998.0
+6362008,2026-10-30,ind_isl,Northeast United FC,Ethyan González,1288207,F,1,89,6,2,0,0.71,87.0,3.0,139893.0
+6362008,2026-10-30,ind_isl,Northeast United FC,Alaeddine Ajaraie,1121521,F,1,90,4,2,0,0.44,115.0,3.0,89858.0
+6362008,2026-10-30,ind_isl,Northeast United FC,Parthib Gogoi,1238984,F,0,23,0,0,0,0.0,,3.0,85792.0
+6362008,2026-10-30,ind_isl,Northeast United FC,Redeem Tlang,581115,F,0,7,0,0,0,0.0,,3.0,50000.0
+6362008,2026-10-30,ind_isl,Northeast United FC,Mark Zothanpuia,1207541,D,0,1,0,0,0,0.0,,1.0,50000.0
+6362008,2026-10-30,ind_isl,Bengaluru FC,Gurpreet Singh Sandhu,530597,G,1,90,0,0,0,0.0,11.0,0.0,50000.0
+6362008,2026-10-30,ind_isl,Bengaluru FC,Haobam Meetei,1699868,D,1,90,1,0,0,0.31,32.0,1.0,
+6362008,2026-10-30,ind_isl,Bengaluru FC,Menno Koch,352402,D,1,90,0,0,0,0.0,34.0,1.0,87132.0
+6362008,2026-10-30,ind_isl,Bengaluru FC,Chinglensana Singh,725064,D,1,90,0,0,0,0.0,36.0,1.0,74700.0
+6362008,2026-10-30,ind_isl,Bengaluru FC,Shivaldo Singh,1591445,D,1,53,0,0,0,0.0,38.0,1.0,190663.0
+6362008,2026-10-30,ind_isl,Bengaluru FC,Lalremtluanga Fanai,1460127,M,1,90,0,0,0,0.0,64.0,2.0,
+6362008,2026-10-30,ind_isl,Bengaluru FC,Manuel De Iriondo,469297,M,1,89,2,0,0,0.06,66.0,2.0,63888.0
+6362008,2026-10-30,ind_isl,Bengaluru FC,Soham Varshneya,1727885,F,1,71,3,1,0,0.17,83.0,3.0,
+6362008,2026-10-30,ind_isl,Bengaluru FC,Borja Martínez,423390,M,1,90,4,2,0,0.41,85.0,2.0,
+6362008,2026-10-30,ind_isl,Bengaluru FC,Ashique Kuruniyan,898216,F,1,72,2,0,0,0.19,87.0,3.0,50000.0
+6362008,2026-10-30,ind_isl,Bengaluru FC,Ryan Williams,279829,F,1,90,2,0,0,0.11,115.0,3.0,78474.0
+6362008,2026-10-30,ind_isl,Bengaluru FC,Sandro Embalo,703203,D,0,37,0,0,0,0.0,,1.0,50000.0
+6362008,2026-10-30,ind_isl,Bengaluru FC,Sunil Chhetri,243007,F,0,19,1,0,0,0.08,,3.0,50000.0
+6362008,2026-10-30,ind_isl,Bengaluru FC,Suresh Singh Wangjam,1104376,D,0,18,0,0,0,0.0,,1.0,145409.0
+6362008,2026-10-30,ind_isl,Bengaluru FC,Vinith Venkatesh,1667335,M,0,1,2,1,1,0.33,,2.0,218717.0
+6362008,2026-10-30,ind_isl,Bengaluru FC,Monirul Molla,1553137,F,0,1,1,1,0,0.01,,3.0,207763.0

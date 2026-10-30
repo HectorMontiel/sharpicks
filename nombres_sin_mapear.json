@@ -79,8 +79,8 @@
   },
   "Defensor Sporting": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Saku Sporting W",
-    "ratio": 0.6667,
+    "candidato": "Sporting CP",
+    "ratio": 0.5714,
     "visto": "2026-10-30"
   },
   "Deportivo Moquegua": {
@@ -319,8 +319,8 @@
   },
   "São Bernardo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sao Joao del Rei",
-    "ratio": 0.4286,
+    "candidato": "Sao Cristovao",
+    "ratio": 0.56,
     "visto": "2026-10-30"
   },
   "Nacional Asunción": {
@@ -1183,8 +1183,8 @@
   },
   "Dynamo Makhachkala": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dynamo Moscow U19",
-    "ratio": 0.5143,
+    "candidato": "Dynamo Brest",
+    "ratio": 0.4667,
     "visto": "2026-10-30"
   },
   "1. FC Union Berlin": {
@@ -1455,7 +1455,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Dinamo Helfort",
     "ratio": 0.5926,
-    "visto": "2026-10-24"
+    "visto": "2026-10-30"
   },
   "Crystal Palace": {
     "contexto": "cuotas_mx→futbol",
@@ -1885,9 +1885,9 @@
   },
   "VfB Stuttgart": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "VfB Oldenburg",
-    "ratio": 0.4615,
-    "visto": "2026-10-29"
+    "candidato": "Stuttgart U19",
+    "ratio": 0.6923,
+    "visto": "2026-10-30"
   },
   "Sarmiento (Junín)": {
     "contexto": "cuotas_mx→futbol",
@@ -2049,7 +2049,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Botafogo U20",
     "ratio": 0.7826,
-    "visto": "2026-10-22"
+    "visto": "2026-10-30"
   },
   "Newcastle Jets": {
     "contexto": "cuotas_mx→futbol",
@@ -2401,9 +2401,9 @@
   },
   "Western Sydney Wanderers FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sydney Olympic",
-    "ratio": 0.3684,
-    "visto": "2026-10-29"
+    "candidato": "WS Wanderers",
+    "ratio": 0.6667,
+    "visto": "2026-10-30"
   },
   "MELBOURNE VICTORY": {
     "contexto": "cuotas_mx→futbol",

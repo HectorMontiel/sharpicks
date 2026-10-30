@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-30T16:03:05Z",
+"actualizado": "2026-10-30T17:38:02Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -18576,6 +18576,26 @@
 "dia": "2026-10-30",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Al Shahaniya vs Al Ahli Doha",
+"apuesta": "Gana Al Ahli Doha",
+"cuota": 1.94,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Anna Blinkova vs Martyna Kubka",
+"apuesta": "Gana Martyna Kubka",
+"cuota": 2.6,
+"resultado": "rojo",
+"marcador": "2-0"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Brisbane Roar FC vs Auckland FC",
 "apuesta": "Gana Brisbane Roar FC",
 "cuota": 2.8,
@@ -18634,6 +18654,26 @@
 },
 {
 "dia": "2026-10-30",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Ekranas vs Tauras Taurage",
+"apuesta": "Gana Tauras Taurage",
+"cuota": 1.52,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Ekranas vs Tauras Taurage",
+"apuesta": "Gana Tauras Taurage",
+"cuota": 1.51,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-10-30",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "El Daklyeh vs El Entag El Harby",
@@ -18641,6 +18681,16 @@
 "cuota": 2.9,
 "resultado": "rojo",
 "marcador": "0-0"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "GC Mascara vs Hussein Dey",
+"apuesta": "Gana GC Mascara",
+"cuota": 1.76,
+"resultado": "verde",
+"marcador": "5-1"
 },
 {
 "dia": "2026-10-30",
@@ -18696,6 +18746,16 @@
 "dia": "2026-10-30",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Pyunik Yerevan vs Urartu",
+"apuesta": "Gana Pyunik Yerevan",
+"cuota": 1.7778,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Sardarapat vs Van",
 "apuesta": "Gana Van",
 "cuota": 3.75,
@@ -18721,6 +18781,26 @@
 "cuota": 3.3,
 "resultado": "verde",
 "marcador": "3-2"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Turan Tovuz vs Sabah FC",
+"apuesta": "Gana Turan Tovuz",
+"cuota": 3.6,
+"resultado": "verde",
+"marcador": "3-2"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "USM Blida vs WA Mostaganem",
+"apuesta": "Gana USM Blida",
+"cuota": 1.43,
+"resultado": "verde",
+"marcador": "1-0"
 },
 {
 "dia": "2026-10-30",
