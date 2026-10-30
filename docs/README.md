@@ -28,7 +28,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 - Migración de código/datos: no iniciada.
 - Producción/Supabase: sin cambios ejecutados por esta documentación.
 - Acciones de GitHub: fijadas por SHA en `bae8759973b2ef8f3d5c5c4ea38e2025a0caca46`; los checks `instalar`, `tests` y `validar` aprobaron sobre ese SHA.
-- Contrato público v1: implementado y 12 tests unitarios locales aprobados; el CI del SHA `f53cd2646c219516293d195a4b6ab72b4fab6c68` está en curso.
+- Contrato público v1: implementado y 12 tests unitarios locales aprobados; `instalar`, `tests` y `validar` aprobaron en CI para el SHA `c162c7587cb960149459d41ede09097990250046`.
 
 ## Regla
 
