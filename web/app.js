@@ -1709,7 +1709,39 @@
   function iaPulso(p, v) {
     const yo = (window.SPX && SPX.yo) || {}, c = clavePartido(p), marc = v && v.g ? v.g[0] + '-' + v.g[1] : '';
     const r = (yo.pulsoIA || {})[c], h = (yo.pulsoHay || {})[c];
-    return { rec: r && r.marcador === marc && r.acierto == null ? r : null, hay: !!(h && h.marcador === marc) };
+    return { rec: r && r.marcador === marc ? r : null, hay: !!(h && h.marcador === marc) };       // v522: también la ya cumplida
+  }
+  // v522 — LAS SEÑALES DEL PULSO DE ESTE PARTIDO (70 %+ y que aún pagan), medidas: la nube las apunta al cruzar el
+  // umbral y las califica (✅ en cuanto se cumplen, ❌ al pitido). Aquí, además, el estado de ahora con el marcador y
+  // los córners en vivo. El mercado de las que siguen en juego sólo con VIP o con el Pulso abierto.
+  function senalVa(s, v, vs) {
+    if (!s.mercado || !v || !v.g) return null;
+    const [gh, ga] = String(s.marcador).split('-').map(Number), g = v.g, k = s.mercado;
+    if (k.startsWith('cor')) {
+      const c = ((vs && vs.stats) || {}).wonCorners, n = c && c.v ? num(c.v[0]) + num(c.v[1]) : null;
+      if (n == null || s.corners == null) return null;
+      return { ok: n - s.corners >= Number(k[3]), falta: s.corners + Number(k[3]) - n };
+    }
+    const tot = g[0] + g[1];
+    return k === 'gol' ? { ok: tot > gh + ga, falta: 1 } : k === 'gol2' ? { ok: tot - gh - ga >= 2, falta: gh + ga + 2 - tot }
+      : k === 'gol_l' ? { ok: g[0] > gh, falta: 1 } : k === 'gol_v' ? { ok: g[1] > ga, falta: 1 } : null;
+  }
+  function senalesHtml(p, v, vs, L, V) {
+    const ss = ((window.SPX && SPX.yo.pulsoSen) || {})[clavePartido(p)] || [];
+    if (!ss.length || !window.PULSO) return '';
+    const fin = v && v.fase === 'post';
+    const filas = ss.slice().sort((a, b) => a.minuto - b.minuto).map((s) => {
+      const va = s.acierto == null ? senalVa(s, v, vs) : null;
+      const ok = s.acierto === true || (va && va.ok), mal = s.acierto === false || (fin && va && !va.ok);
+      const est = ok ? '<span class="sn-e ok">' + OK() + (s.cumplida_min ? ' ' + s.cumplida_min + "'" : ' sí') + '</span>'
+        : mal ? '<span class="sn-e mal">' + MAL() + ' no</span>'
+        : '<span class="sn-e va">' + ico('hourglass') + (va && va.falta > 0 && s.mercado && s.mercado.startsWith('cor') ? ' faltan ' + va.falta : ' en curso') + '</span>';
+      const que = s.mercado ? esc(PULSO.nombre(s.mercado, L, V)) + ' <b>' + Math.round(100 * Number(s.prob)) + '%</b>' : ico('lock', 'candado') + ' VIP';
+      return '<div class="sn-fila"><span class="sn-m">' + s.minuto + "' · " + esc(s.marcador) + '</span><span class="sn-q">' + que +
+        (s.ia ? ' <span class="pc-ia">' + ico('sparkles', 'acento') + ' IA</span>' : '') + '</span>' + est + '</div>';
+    }).join('');
+    const hechas = ss.filter((s) => s.acierto === true).length;
+    return '<div class="senales"><div class="sn-cab"><span>' + ico('target') + ' Señales del Pulso</span><small>70 %+ · ' + hechas + ' de ' + ss.length + ' cumplidas</small></div>' + filas + '</div>';
   }
   function pulsoAbierto(p) {
     return !!(window.SPX && (SPX.esVip() || (SPX.yo.pulso || {})[clavePartido(p)]));
@@ -1734,11 +1766,25 @@
       '<span class="pulso-top-p">' + (abierto ? Math.round(100 * top.p) + '%' : Math.round(100 * top.tramo.desde) + '-' + Math.round(100 * top.tramo.hasta) + '%') + '</span>' +
       '<small>' + (abierto ? 'si tu casa paga más de ' + top.justa.toFixed(2) + ', tiene valor' : 'salió ' + Math.round(100 * top.tramo.fue) + '% en el historial') + '</small></div>' : '';
     const precio = Number((window.SPX && SPX.yo.precios.precio_pulso) || 2);
-    // v520 — «IA + MODELO»: Gemini elige la mejor jugada SÓLO entre estos mercados (pulso_vivo.py, en prueba y medida)
+    // v520 — «IA + MODELO»: Gemini elige la mejor jugada SÓLO entre estos mercados de 70 %+ (en la nube, medida como señal)
     const ia = iaPulso(p, v);
-    const iaH = ia.rec ? '<div class="pulso-ia"><span class="pulso-ia-et">' + ico('sparkles', 'acento') + ' IA + modelo · en prueba</span><b>' + esc(PULSO.nombre(ia.rec.mercado, L, V)) + '</b>' +
-        '<span class="pulso-top-p">' + Math.round(100 * Number(ia.rec.prob)) + '%</span>' + (ia.rec.motivo ? '<small>' + esc(ia.rec.motivo) + '</small>' : '') + '</div>'
-      : ia.hay && !abierto ? '<div class="pulso-ia bloq"><span class="pulso-ia-et">' + ico('sparkles', 'acento') + ' IA + modelo · en prueba</span><b>Ya tiene su recomendación</b><small>' + ico('lock', 'candado') + ' VIP o abre el Pulso de este partido</small></div>' : '';
+    // v522 — el usuario: «¿por qué 2 córners más tiene 83 % y 1 córner más 67 %? no tiene sentido». El 83 % era el
+    // de cuando se recomendó (al 63'), no el de ahora. Ahora dice de qué minuto es, si ya se cumplió y, si no, cuánto
+    // falta y qué probabilidad le da el Pulso a eso AHORA.
+    const iaEstado = (r) => {
+      const va = r.acierto === true ? { ok: true } : senalVa(r, v, vs);
+      if (va && va.ok) return { cl: 'hecha', txt: OK() + ' Se cumplió' + (r.acierto === true ? '' : ' (el servidor la confirma)') };
+      if (!va) return { cl: '', txt: ico('hourglass') + ' En curso' };
+      const k = r.mercado.startsWith('cor') ? 'cor' + Math.min(3, Math.max(1, va.falta)) : r.mercado === 'gol2' && va.falta === 1 ? 'gol' : r.mercado;
+      const ahora = ms.find((m) => m.k === k);
+      const falta = r.mercado.startsWith('cor') ? 'faltan ' + va.falta + (va.falta === 1 ? ' córner' : ' córners') : r.mercado === 'gol2' && va.falta === 1 ? 'falta 1 gol' : 'falta el gol';
+      return { cl: '', txt: ico('hourglass') + ' ' + falta + (ahora ? ' · ahora ' + Math.round(100 * ahora.p) + '%' : '') };
+    };
+    const iaE = ia.rec ? iaEstado(ia.rec) : null;
+    const iaH = ia.rec ? '<div class="pulso-ia ' + iaE.cl + '"><span class="pulso-ia-et">' + ico('sparkles', 'acento') + ' IA + modelo · al ' + ia.rec.minuto + "' (" + esc(ia.rec.marcador) + ')</span><b>' + esc(PULSO.nombre(ia.rec.mercado, L, V)) + '</b>' +
+        '<span class="pulso-top-p">' + Math.round(100 * Number(ia.rec.prob)) + '%</span>' + '<small class="ia-va">' + iaE.txt + '</small>' +
+        (ia.rec.motivo ? '<small>' + esc(ia.rec.motivo) + '</small>' : '') + '</div>'
+      : ia.hay && !abierto ? '<div class="pulso-ia bloq"><span class="pulso-ia-et">' + ico('sparkles', 'acento') + ' IA + modelo</span><b>Ya tiene su recomendación</b><small>' + ico('lock', 'candado') + ' VIP o abre el Pulso de este partido</small></div>' : '';
     return '<div class="pulso"><div class="pulso-cab"><span>' + ico('activity', 'acento') + ' Pulso SharPicks</span><small>en vivo</small></div>' + iaH + dest +
       '<div class="pulso-grid">' + ms.filter((m) => m !== top).map(burbuja).join('') + '</div>' +
       (abierto ? '' : '<button class="btn pulso-abrir" data-pulso-abrir="' + esc(clavePartido(p)) + '">' + ico('lock-open', 'candado') + ' Todo el Pulso · ' + precio + ' monedas</button>') + '</div>';
@@ -1778,7 +1824,7 @@
     // quedan como el usuario los dejó al repintarse cada minuto).
     const yaAbiertas = new Set([...document.querySelectorAll('#ficha-cuerpo details[data-sec][open]')].map((d) => d.dataset.sec));
     const seccion = (k, tit, cuerpo) => '<details class="ctx ficha-sec" data-sec="' + k + '"' + (yaAbiertas.has(k) ? ' open' : '') + '><summary>' + tit + '</summary>' + cuerpo + '</details>';
-    const pulsoArriba = pulsoHtml(p, v, vs, L, V, abierto);
+    const pulsoArriba = pulsoHtml(p, v, vs, L, V, abierto) + senalesHtml(p, v, vs, L, V);
     h = h.replace('<!--PULSO-->', pulsoArriba);
     if (vs && Object.keys(vs.stats || {}).length) {
       h += seccion('stats', ico('chart-column') + ' Estadísticas', compensacion(p, v) + '<div class="leyenda"><span class="l">' + esc(L) + '</span><span class="r">' + esc(V) + '</span></div>' + estadisticas(p, vs));

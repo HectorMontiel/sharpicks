@@ -11,7 +11,8 @@
 
 const SITIO = 'https://sharpicksapp.com/';
 const ESPN = 'https://site.api.espn.com/apis/site/v2/sports/';
-const AVISO_MIN = 0.75, CANDIDATO_MIN = 0.70, JUSTA_MIN = 1.15;
+// v522 — UMBRAL: 70 % (lo pidió el usuario; medido: 70-80 % salió 72-76 %) y que aún pague (justa ≥ 1,15). Es el aviso, la señal que se mide y lo que ve la IA
+const AVISO_MIN = 0.70, SENAL_MIN = 0.70, CANDIDATO_MIN = 0.70, JUSTA_MIN = 1.15;
 const TOPE: Record<string, number> = { gol: 0.85, gol2: 0.5, gol_l: 0.75, gol_v: 0.65 };
 const TOPE_SF: Record<string, number> = { gol: 0.8, gol2: 0.45, gol_l: 0.7 };
 const HASTA: Record<string, number> = { gol: 80, gol2: 80, gol_l: 80, gol_v: 80, cor1: 85, cor2: 85, cor3: 85 };
@@ -132,7 +133,7 @@ function textoAviso(p: Dic, e: Dic, m: Dic, rec: Dic | null) {
   const [L, V] = lados(p), t = m.tramo;
   const h = ['<b>Pulso SharPicks · en vivo</b>', `${esc(L)} ${e.g[0]}-${e.g[1]} ${esc(V)} · ${e.t}'`,
     `<b>${esc(nombre(m.k, p))}</b> · ${Math.round(100 * m.p)} % <i>(en el historial salió ${Math.round(100 * t.fue)} %)</i>`];
-  if (rec && rec.mercado) h.push(`IA + modelo (en prueba): <b>${esc(nombre(rec.mercado, p))}</b>. ${esc(rec.motivo || '')}`);
+  if (rec && rec.mercado) h.push(`IA + modelo: <b>${esc(nombre(rec.mercado, p))}</b>. ${esc(rec.motivo || '')}`);
   h.push('Lo más probable ahora según lo medido; la casa puede pagar poco. Ábrelo en sharpicksapp.com');
   return h.join('\n');
 }
@@ -191,6 +192,23 @@ async function vuelta(seco: boolean) {
   const avisados = new Set<string>((env || []).map((x: Dic) => x.pick));
   const recs = new Map<string, Dic>();
   for (const x of (await sbGet('pulso_ia', 'select=*&fecha=gte.' + desde + '&limit=2000')) || []) recs.set(x.clave + '#' + x.marcador, x);
+  const senales = new Map<string, Dic>();
+  for (const x of (await sbGet('pulso_senales', 'select=*&fecha=gte.' + desde + '&limit=5000')) || []) senales.set([x.clave, x.mercado, x.marcador].join('#'), x);
+  // v522 — calificar: ✅ en cuanto se cumple (goles y córners sólo suben), ❌ sólo al pitido
+  const calificar = async (tabla: string, x: Dic, e: Dic) => {
+    if (x.acierto != null) return;
+    const ok = liquidar(x, e.g, e.c);
+    if (ok == null || (!ok && !e.fin)) return;
+    const cambio: Dic = { acierto: ok };
+    if (tabla === 'pulso_senales' && ok) cambio.cumplida_min = e.fin ? null : e.t;
+    x.acierto = ok;
+    if (seco) return;
+    const filtro = tabla === 'pulso_senales'
+      ? `clave=eq.${encodeURIComponent(x.clave)}&mercado=eq.${x.mercado}&marcador=eq.${encodeURIComponent(x.marcador)}`
+      : `clave=eq.${encodeURIComponent(x.clave)}&marcador=eq.${encodeURIComponent(x.marcador)}`;
+    await fetch(SB + tabla + '?' + filtro, { method: 'PATCH', headers: { ...H, Prefer: 'return=minimal' }, body: JSON.stringify(cambio) });
+    res.liquidadas++;
+  };
   const estados = await Promise.all(lista.map(async (p) => {
     const [ruta, ev] = String(p.espn).split(':');
     try {
@@ -202,31 +220,39 @@ async function vuelta(seco: boolean) {
   for (let i = 0; i < lista.length; i++) {
     const p = lista[i], e = estados[i]; if (!e) continue;
     const clave = clavePartido(p);
-    if (e.fin) {                                                   // al pitido: se liquida lo recomendado
-      for (const rec of recs.values()) {
-        if (rec.clave !== clave || rec.acierto != null) continue;
-        const ok = liquidar(rec, e.g, e.c);
-        if (ok == null || seco) continue;
-        await fetch(SB + 'pulso_ia?clave=eq.' + encodeURIComponent(clave) + '&marcador=eq.' + encodeURIComponent(rec.marcador),
-          { method: 'PATCH', headers: { ...H, Prefer: 'return=minimal' }, body: JSON.stringify({ acierto: ok }) });
-        res.liquidadas++;
-      }
-      continue;
+    if (e.fin || e.fase === 'in') {                                // lo apuntado de este partido: ¿ya se cumplió?
+      for (const x of senales.values()) if (x.clave === clave) await calificar('pulso_senales', x, e);
+      for (const x of recs.values()) if (x.clave === clave) await calificar('pulso_ia', x, e);
     }
-    if (e.fase !== 'in' || e.periodo !== 2 || e.t == null) continue;
+    if (e.fin || e.fase !== 'in' || e.periodo !== 2 || e.t == null) continue;
     res.segundo_tiempo++;
     const ms = mercados(rasgos(p.ctx || {}, e.t, e.g[0], e.g[1], e.c)), m = mejor(ms);
     res.lecturas.push({ partido: p.partido, minuto: e.t, marcador: `${e.g[0]}-${e.g[1]}`, mejor: m && { k: m.k, p: Math.round(1000 * m.p) / 1000 } });
-    if (!m || m.p < CANDIDATO_MIN) continue;
     const marc = `${e.g[0]}-${e.g[1]}`;
+    // v522 — LA SEÑAL: la primera vez que un mercado cruza el 75 % y aún paga, con su minuto y sus córners
+    for (const x of ms) {
+      const k = [clave, x.k, marc].join('#');
+      if (!x.tramo || x.p < SENAL_MIN || 1 / x.p < JUSTA_MIN || senales.has(k)) continue;
+      const fila = { clave, partido: p.partido, fecha: dia(p), liga: p.liga || null, mercado: x.k, marcador: marc, minuto: e.t,
+        corners: e.c, prob: Math.round(1000 * x.p) / 1000, ia: false };
+      if (!seco) await sbPost('pulso_senales', fila);
+      senales.set(k, fila); res.senales = (res.senales || 0) + 1;
+    }
+    if (!m || m.p < CANDIDATO_MIN) continue;
     let rec = recs.get(clave + '#' + marc) || null;
     if (!rec) {                                                    // la IA, una vez por partido y marcador
       // sólo lo que aún paga (como «Mejor ahora»): un «1 córner más» al 96 % paga 1,04 y no sirve de recomendación
-      const opciones = ms.filter((x) => x.tramo && x.p >= 0.6 && 1 / x.p >= JUSTA_MIN), r = await preguntarIA(p, e, opciones);
+      const opciones = ms.filter((x) => x.tramo && x.p >= SENAL_MIN && 1 / x.p >= JUSTA_MIN), r = await preguntarIA(p, e, opciones);
       if (r) {
         const el = opciones.find((x) => x.k === r.mercado)!;
         rec = { ...r, clave, partido: p.partido, fecha: dia(p), marcador: marc, minuto: e.t, prob: Math.round(1000 * el.p) / 1000, corners: e.c };
-        if (!seco) await sbPost('pulso_ia', rec);
+        if (!seco) {
+          await sbPost('pulso_ia', rec);
+          // y su señal queda marcada como la elegida por la IA (para medirla aparte)
+          await fetch(SB + `pulso_senales?clave=eq.${encodeURIComponent(clave)}&mercado=eq.${r.mercado}&marcador=eq.${encodeURIComponent(marc)}`,
+            { method: 'PATCH', headers: { ...H, Prefer: 'return=minimal' }, body: JSON.stringify({ ia: true }) });
+        }
+        const sx = senales.get([clave, r.mercado, marc].join('#')); if (sx) sx.ia = true;
         recs.set(clave + '#' + marc, rec); res.ia++;
       } else res.sin_ia++;
     }

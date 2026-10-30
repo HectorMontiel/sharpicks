@@ -19,7 +19,7 @@
           auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, lock: async (_n, _t, fn) => await fn() },
         }) : null;
   } catch (e) { sb = null; }          // un navegador que no deja guardar la sesión no rompe la página
-  const yo = { user: null, perfil: null, seguidos: new Set(), desbloqueados: {}, conteo: {}, precios: {}, pulso: {}, pulsoIA: {}, pulsoHay: {} };
+  const yo = { user: null, perfil: null, seguidos: new Set(), desbloqueados: {}, conteo: {}, precios: {}, pulso: {}, pulsoIA: {}, pulsoHay: {}, pulsoSen: {} };
   // v412 — «cuando compré se me cerró sesión»: NO se cerraba. Al volver de
   // Stripe, «Mi cuenta» se abría a los 1,5 s y, si el celular aún no había
   // leído la sesión guardada, enseñaba «Entrar» (y lo mismo la cabecera al
@@ -1150,7 +1150,7 @@
       sb.from('historial_niveles').select('*'), sb.from('ia_medicion').select('*'), sb.from('ia_aciertos').select('*').maybeSingle()]);
     const N = {}; ((nv && nv.data) || []).forEach((x) => { N[x.nivel] = x; });
     const linea = (ico, nombre, v, r) => (v + r >= 30 ? '<li class="num-real">' + ico + ' ' + nombre + ': <b>' + Math.round(100 * v / (v + r)) + ' %</b> <small>✅ ' + v + ' ❌ ' + r + '</small></li>' : '');
-    // sólo los niveles que de verdad presumen (75 %+): «los mejores números»
+    // sólo los niveles que de verdad presumen (70 %+): «los mejores números»
     const nivel = (n, ico) => (N[n] && N[n].verdes / Math.max(1, N[n].verdes + N[n].rojas) >= 0.75 ? linea(ico, n, N[n].verdes, N[n].rojas) : '');
     const pon = (id, h) => { const c = $(id); if (c) c.innerHTML = h ? '<ul class="numeros">' + h + '</ul><small class="tenue">Últimos 30 días, verdes y rojas reales.</small>' : ''; };
     // v420 — 💰 Cuota alta acierta ~55 % a cuota ~2,3: lo que presume es lo que GANA
@@ -1172,7 +1172,7 @@
     // v420 — «muestra también el % del ganador que predice la IA» (sin presumir: se dice tal cual)
     const ganador = a ? linea('🏆', 'IA, el ganador del partido', Number(a.resultado_ok || 0), Number(a.resultado_mal || 0)) : '';
     pon('numeros-vip', nivel('Diamante', '💎') + nivel('Platino', '🔷') + nivel('Plata', '🥈') + mejores + favor + ganador);
-    // v483 — el recuadro corto lleva UN número grande: el mejor acierto real (30+ y 75 %+), lo demás al tocar
+    // v483 — el recuadro corto lleva UN número grande: el mejor acierto real (30+ y 70 %+), lo demás al tocar
     const gancho = (id, nombres) => {
       const c = $(id), ok = nombres.map((n) => N[n]).filter((x) => x && x.verdes + x.rojas >= 30 && x.verdes / (x.verdes + x.rojas) >= 0.75)
         .sort((a, b) => b.verdes / (b.verdes + b.rojas) - a.verdes / (a.verdes + a.rojas))[0];
@@ -1198,26 +1198,42 @@
   // misma (la base sólo la da con VIP o con el Pulso del partido abierto). La escribe pulso_vivo.py cada 2 min.
   async function pulsoIA() {
     if (!sb || document.hidden) return;
-    const desde = new Date(Date.now() - 864e5).toISOString().slice(0, 10), antes = JSON.stringify([yo.pulsoIA, yo.pulsoHay]);
+    const desde = new Date(Date.now() - 864e5).toISOString().slice(0, 10), antes = JSON.stringify([yo.pulsoIA, yo.pulsoHay, yo.pulsoSen]);
+    // v522 — las señales de 70 %+ de cada partido (la base tapa el mercado de las que siguen en juego si no eres VIP)
+    const sn = await aTiempo(sb.rpc('pulso_senales_ver', { p_desde: desde }), 6000, { data: null });
+    if (sn && sn.data) { yo.pulsoSen = {}; sn.data.forEach((x) => { (yo.pulsoSen[x.clave] = yo.pulsoSen[x.clave] || []).push(x); }); }
     const h = await aTiempo(sb.rpc('pulso_ia_hay', { p_desde: desde }), 6000, { data: null });
     if (h && h.data) { yo.pulsoHay = {}; h.data.forEach((x) => { if (!yo.pulsoHay[x.clave]) yo.pulsoHay[x.clave] = x; }); }
     if (yo.user) {
       const r = await aTiempo(sb.from('pulso_ia').select('clave,marcador,minuto,mercado,prob,motivo,acierto,creado').gte('fecha', desde).order('creado', { ascending: false }).limit(300), 6000, { data: null });
       if (r && r.data) { yo.pulsoIA = {}; r.data.forEach((x) => { if (!yo.pulsoIA[x.clave]) yo.pulsoIA[x.clave] = x; }); }
     }
-    if (JSON.stringify([yo.pulsoIA, yo.pulsoHay]) !== antes && window.SP && window.SP.pulsoIA) window.SP.pulsoIA();
+    if (JSON.stringify([yo.pulsoIA, yo.pulsoHay, yo.pulsoSen]) !== antes && window.SP && window.SP.pulsoIA) window.SP.pulsoIA();
   }
   setInterval(pulsoIA, 60 * 1000);
   setTimeout(pulsoIA, 3000);
   document.addEventListener('visibilitychange', () => { if (!document.hidden) pulsoIA(); });
   // v513 — el Pulso en vivo, medido en público: por mercado y por tramo de probabilidad, qué dijo en el 60' y el
   // 70' y qué salió (lo apunta `pulso_historial.py` con la misma cuenta que la página; nada se retoca).
+  function senalesHist(sT, sU) {
+    if (!sT.length) return '<p class="chico">Señales del Pulso (70 %+): se califican en cuanto se cumplen; aquí verás las primeras al terminar los partidos de hoy.</p>';
+    const n = sT.reduce((a, x) => a + Number(x.n), 0), ok = sT.reduce((a, x) => a + Number(x.aciertos), 0);
+    const ia = sT.filter((x) => x.ia), ni = ia.reduce((a, x) => a + Number(x.n), 0), oi = ia.reduce((a, x) => a + Number(x.aciertos), 0);
+    const NOM = { gol: 'Cae otro gol', gol2: '2 goles más', gol_l: 'Marca el local', gol_v: 'Marca el visitante', cor1: '1 córner más', cor2: '2 córners más', cor3: '3 córners más' };
+    return '<p class="chico"><b>Señales del Pulso (70 %+)</b>: <b>' + ok + ' ✅ ' + (n - ok) + ' ❌</b> · ' + Math.round(100 * ok / n) + ' %' +
+      (ni ? ' · elegidas por IA + modelo: <b>' + oi + ' ✅ ' + (ni - oi) + ' ❌</b> · ' + Math.round(100 * oi / ni) + ' %' : '') + '</p>' +
+      (sU.length ? '<div class="sn-hist">' + sU.map((x) => '<div class="sn-fila"><span class="sn-m">' + esc(x.partido) + ' · ' + x.minuto + "'</span><span class=\"sn-q\">" +
+        esc(NOM[x.mercado] || x.mercado || '') + ' <b>' + Math.round(100 * Number(x.prob)) + '%</b></span><span class="sn-e ' + (x.acierto ? 'ok">✅' : 'mal">❌') + '</span></div>').join('') + '</div>' : '');
+  }
   async function pulsoHist() {
     const caja = $('pulso-hist'); if (!caja || !sb) return;
     const desde = new Date(Date.now() - 60 * 864e5).toISOString().slice(0, 10);
     const { data, error } = await aTiempo(todasSb((a, b) => sb.from('pulso_historial').select('mercado,prob,acierto,fecha').gte('fecha', desde).order('fecha').range(a, b)), 8000, { data: null, error: true });
     if (error || !data || !data.length) { caja.innerHTML = '<p class="tenue">El Pulso empieza a apuntar sus lecturas hoy: aquí verás lo que dijo y lo que salió.</p>'; return; }
-    const t = await aTiempo(sb.rpc('pulso_ia_tasa'), 6000, { data: null }), iaT = t && t.data && t.data[0] ? { n: Number(t.data[0].n), aciertos: Number(t.data[0].aciertos) } : null;
+    // v522 — las señales de 70 %+ (lo que se mide en vivo) y la elegida por la IA, calificadas
+    const t = await aTiempo(sb.rpc('pulso_senales_tasa'), 6000, { data: null }), sT = (t && t.data) || [];
+    const u = await aTiempo(sb.rpc('pulso_senales_ver', { p_desde: new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10) }), 6000, { data: null });
+    const sU = ((u && u.data) || []).filter((x) => x.acierto != null).slice(0, 12);
     const NOM = { gol: 'Cae otro gol', gol2: '2 goles más', gol_l: 'Marca el local', gol_v: 'Marca el visitante', cor1: '1 córner más', cor2: '2 córners más', cor3: '3 córners más' };
     const filas = Object.keys(NOM).map((k) => {
       const xs = data.filter((x) => x.mercado === k && x.acierto != null); if (!xs.length) return '';
@@ -1228,7 +1244,7 @@
     const altos = data.filter((x) => Number(x.prob) >= 0.7 && x.acierto != null), ok = altos.filter((x) => x.acierto).length;
     caja.innerHTML = '<div class="calib">' + filas + '</div>' +
       (altos.length ? '<p class="chico">Cuando el Pulso dijo <b>70 % o más</b>: <b>' + ok + ' ✅ ' + (altos.length - ok) + ' ❌</b> · ' + Math.round(100 * ok / altos.length) + ' %</p>' : '') +
-      (iaT && iaT.n > 0 ? '<p class="chico">IA + modelo (en prueba): <b>' + iaT.aciertos + ' ✅ ' + (iaT.n - iaT.aciertos) + ' ❌</b> · ' + Math.round(100 * iaT.aciertos / iaT.n) + ' %</p>' : '') +
+      senalesHist(sT, sU) +
       '<p class="tenue chico">Lecturas del 60\' y el 70\' de cada partido desde el ' + esc(data[0].fecha) + ', fallos incluidos. La rayita es lo que dijo el Pulso; la barra, lo que salió.</p>';
   }
   async function historial() {

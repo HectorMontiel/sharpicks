@@ -42,7 +42,7 @@ def probar():
     check("lados(p).map((x) => x.toLowerCase().trim()).sort().join(' / ')" in ts
           and "const clavePartido = (p) => [p.deporte || '', lados(p).map((x) => x.toLowerCase().trim()).sort().join(' / '), diaDe(p)].join('|');" in app,
           'v521: la clave del partido es la de la página (y la de los desbloqueos)')
-    check('const AVISO_MIN = 0.75, CANDIDATO_MIN = 0.70, JUSTA_MIN = 1.15;' in ts and 'avisados.has(pick)' in ts and "tipo: 'pulso'" in ts,
+    check('const AVISO_MIN = 0.70, SENAL_MIN = 0.70, CANDIDATO_MIN = 0.70, JUSTA_MIN = 1.15;' in ts and 'en prueba' not in app and 'avisados.has(pick)' in ts and "tipo: 'pulso'" in ts,
           'v520: aviso a lo de 75 %+, una vez por partido y mercado')
     check("enum: claves" in ts and 'opciones.find((x) => x.k === r.mercado)' in ts, 'v520: la IA sólo elige entre los mercados medidos')
     check("req.headers.get('x-pulso-clave') !== s.pulso_cron" in ts, 'v521: sólo pg_cron (con su clave de Vault) dispara la función')
@@ -60,7 +60,7 @@ def probar():
     check("rpc('guardar_secreto'" not in wfs and 'rpc/guardar_secreto' in leer('.github', 'workflows', 'claves_supabase.yml'),
           'v521: las claves pasan de GitHub a Vault con el workflow «Claves a Supabase»')
     cu = leer('web', 'cuenta.js')
-    check("rpc('pulso_ia_hay'" in cu and "from('pulso_ia')" in cu and "rpc('pulso_ia_tasa')" in cu and 'function iaPulso(p, v)' in app,
+    check("rpc('pulso_ia_hay'" in cu and "from('pulso_ia')" in cu and "rpc('pulso_senales_tasa')" in cu and "rpc('pulso_senales_ver'" in cu and 'function senalesHtml(p, v, vs, L, V)' in app and 'function iaPulso(p, v)' in app,
           'v520: la página destaca la recomendación y enseña su tasa')
 
 
