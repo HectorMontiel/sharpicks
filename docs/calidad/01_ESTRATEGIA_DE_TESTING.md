@@ -16,7 +16,7 @@
 
 - `python -m unittest tests.test_sharpicks_contracts -v`: 11 pruebas aprobadas localmente en Python 3.12.10.
 - `python -m py_compile sharpicks_contracts/__init__.py sharpicks_contracts/v1.py tests/test_sharpicks_contracts.py`: aprobado.
-- La suite del contrato se añadió al workflow `validate_sharpicks.yml`; los checks del SHA `6c74576df7f164632f2db7f2e69ff140c519543a` seguían pendientes al redactar.
+- La suite del contrato se añadió al workflow `validate_sharpicks.yml`; los checks del SHA actual `601e52af5439ec057b62d6f7a2f1102e026729ff` están en curso.
 - Los tres checks del PR antes de cambios nuevos estaban aprobados en el SHA base; no acreditan el código posterior.
 
 ## Criterio de aprobación

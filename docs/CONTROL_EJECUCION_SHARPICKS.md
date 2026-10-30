@@ -1,6 +1,6 @@
 # Control de ejecución de SharPicks
 
-- **Corte:** 2026-10-30, base auditada `228c86a7fb03ed555465e56971170565f3029d9b`; último commit de código remoto `6c74576df7f164632f2db7f2e69ff140c519543a`.
+- **Corte:** 2026-10-30, base auditada `228c86a7fb03ed555465e56971170565f3029d9b`; último commit remoto `601e52af5439ec057b62d6f7a2f1102e026729ff`.
 - **Rama:** `hardening/free-audit-2026-10`.
 - **PR:** #1, abierto y draft.
 - **Regla de progreso:** no se calcula porcentaje hasta definir y cerrar un conjunto finito de criterios verificables; el inventario inicial contiene trabajo aún no dimensionado.
@@ -33,7 +33,7 @@ Estados permitidos: PENDIENTE, EN EJECUCIÓN, IMPLEMENTADO, EN VALIDACIÓN, VALI
 | F11-01 | 11 | Medir y optimizar carga/costo tras baseline real | F0-02, workflows | PENDIENTE | Workflows críticos | Duraciones de checks de PR observadas; no equivalen a costos | Datos de facturación no visibles |
 | F12-01 | 12 | Implementar logs/alertas/runbooks y validar privacidad | Arquitectura y servicios | PENDIENTE | Operación y entrypoints | Pendiente |
 | F13-01 | 13 | Mantener manual, ADRs, runbooks y criterios alineados a lo implementado | Todas | EN EJECUCIÓN | `docs/` | Índice/documentación previos existen | Continua |
-| GIT-01 | 23 | Mantener rama autorizada, PR draft, cambios pequeños y evidencia | Trabajo local | EN EJECUCIÓN | Rama y PR #1 | Rama correcta; commits `bae8759` y `6c74576` están en PR; sigue draft; checks de `6c74576` en curso | Los documentos locales posteriores aún no se han empujado |
+| GIT-01 | 23 | Mantener rama autorizada, PR draft, cambios pequeños y evidencia | Trabajo local | EN EJECUCIÓN | Rama y PR #1 | Rama correcta; commits `bae8759`, `6c74576` y `601e52a` están en PR; sigue draft; checks de `601e52a` en curso | Ninguno para este bloque |
 
 ## Distinción de validación
 
