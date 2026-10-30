@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-30T14:27:38Z",
+"actualizado": "2026-10-30T16:03:05Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -18524,6 +18524,46 @@
 },
 {
 "dia": "2026-10-30",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Abha vs Al Ittihad",
+"apuesta": "Al Ittihad o empate",
+"cuota": 1.154,
+"resultado": "verde",
+"marcador": "1-1"
+},
+{
+"dia": "2026-10-30",
+"nivel": "🔷",
+"deporte": "Fútbol",
+"partido": "Abha vs Al Ittihad",
+"apuesta": "Gana Al Ittihad",
+"cuota": 1.53,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Abha vs Al Ittihad",
+"apuesta": "Gana Al Ittihad",
+"cuota": 1.58,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-10-30",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Abha vs Al Ittihad",
+"apuesta": "Gana Al Ittihad",
+"cuota": 1.53,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-10-30",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Al Sahel vs Al Ahed",
@@ -18575,11 +18615,51 @@
 {
 "dia": "2026-10-30",
 "nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Dubrava vs Sesvete",
+"apuesta": "Gana Sesvete",
+"cuota": 2.01,
+"resultado": "rojo",
+"marcador": "2-2"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
 "deporte": "Tenis",
 "partido": "Eala A. vs Shnaider D.",
 "apuesta": "Gana Eala A.",
 "cuota": 2.15,
 "resultado": "rojo",
+"marcador": "1-2"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "El Daklyeh vs El Entag El Harby",
+"apuesta": "Gana El Daklyeh",
+"cuota": 2.9,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Hapoel Afula vs Kiryat Gat",
+"apuesta": "Gana Hapoel Afula",
+"cuota": 2.2,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-10-30",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Kataka vs Police",
+"apuesta": "Gana Police",
+"cuota": 1.7143,
+"resultado": "verde",
 "marcador": "1-2"
 },
 {
@@ -18601,6 +18681,16 @@
 "cuota": 1.61,
 "resultado": "verde",
 "marcador": "1-3"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Proxy vs El Ismaily",
+"apuesta": "Gana Proxy",
+"cuota": 2.5715,
+"resultado": "rojo",
+"marcador": "0-2"
 },
 {
 "dia": "2026-10-30",
@@ -18631,6 +18721,16 @@
 "cuota": 3.3,
 "resultado": "verde",
 "marcador": "3-2"
+},
+{
+"dia": "2026-10-30",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Xorazm Urganch vs Pakhtakor",
+"apuesta": "Gana Pakhtakor",
+"cuota": 1.56,
+"resultado": "verde",
+"marcador": "0-1"
 }
 ]
 }
