@@ -22,6 +22,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 16. [Inventario por ruta de los blobs rastreados](auditoria/asset_inventory.json), generado por [`tools/asset_inventory.py`](../tools/asset_inventory.py) desde metadatos Git; todas las clasificaciones son candidatas y requieren revisión.
 17. [Snapshot de metadata del release público de modelos](auditoria/release_modelos_latest.json), sin descargas; verifica nombres, tamaños y digests de los 73 assets.
 18. [Distribución del core](arquitectura/03_ESTRATEGIA_DISTRIBUCION_CORE.md): alternativa de paquete privado y gates implementados para rechazar publicación pública/no verificada.
+19. [ADR-0001 de distribución del core](decisiones/ADR-0001-distribucion-core-privado.md): checkout privado fijado a SHA como propuesta; integración y aceptación pendientes.
 
 ## Estado actual
 
@@ -40,6 +41,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 - Descarga de modelos: verifica SHA-256 contra metadata API y valida tipos/rutas del tar antes de extraer; 9 pruebas con fixtures locales, sin descargar modelos reales. Para `sharpicks-core` exige `CORE_MODELS_READ_TOKEN` y no envía el token de Actions del repo público. CI sigue en cola.
 - Lectura del core: ningún workflow productivo fue apuntado al repo privado porque aún no se ha verificado. La readiness de corte queda deliberadamente sin habilitar.
 - Supabase: preparada consulta de catálogo read-only para staging y tres guardas estáticas; no hay CLI/`psql` ni conexión al proyecto aquí, por lo que la sintaxis/resultados no se declaran validados contra la instancia.
+- ADR de distribución: registrada como propuesta (no operativa) la descarga del paquete privado por SHA en un job protegido; falta validar paquete y consumidores.
 
 ## Regla
 

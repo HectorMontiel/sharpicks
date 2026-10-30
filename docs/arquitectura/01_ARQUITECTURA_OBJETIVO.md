@@ -42,6 +42,8 @@ El flujo es un objetivo. En la rama auditada sólo se implementó el paquete con
 3. **Fallo cerrado:** versión desconocida, checksum/tamaño inválido, campo no permitido o resultado parcial fallan antes de publicar.
 4. **Distribución propuesta:** wheel privado instalado desde checkout del repo privado fijado por commit SHA en jobs de confianza, con token GitHub App/fine-grained read-only almacenado como secret de Environment. Los detalles están en `03_ESTRATEGIA_DISTRIBUCION_CORE.md`.
 
+La distribución está formalizada como propuesta en [ADR-0001](../decisiones/ADR-0001-distribucion-core-privado.md); no se considera aceptada ni operativa hasta comprobar el paquete y sus consumidores en un entorno controlado.
+
 ## Criterios de aceptación
 
 - Imports públicos no cruzan el límite privado.
