@@ -28,7 +28,7 @@ SharPicks no debe dividirse como «mover todos los .py a otro repositorio». La 
 | `telegram_dia_completo.yml` | diario 06:41 UTC + manual | pipeline, `bot_dia_completo.py` | Telegram, Odds API, API-Football | **Mixto**: mismo contrato de picks que bot diario |
 | `claves_supabase.yml` | manual | RPC `guardar_secreto` para mover claves a Vault | Supabase y tokens Telegram/Gemini | **Privado/controlado**; nunca token del core en el orquestador |
 | `vigia_limites.yml` | 01:47 y 13:17 UTC + manual | `vigia_limites.py` descargado desde el commit exacto | Supabase access/service, Telegram, Brevo | **Privado/controlado**; conservar alertas con mínimo acceso |
-| `relevo.yml` | cada 3 horas + workflow_dispatch | espera y dispara `cuotas_mx.yml` | token de Actions | **Público**; sólo coordinación |
+| `relevo.yml` | cada 3 horas + workflow_dispatch | job read-only espera; job de 5 min despacha `cuotas_mx.yml` | `actions: write` sólo en job dispatch | **Público**; coordinación sin escritura de código |
 | `web_rapido.yml` | manual / eventos definidos en YAML | despliegue rápido de carpeta `web` a Cloudflare | Cloudflare | **Público** si `web/` contiene sólo assets aprobados |
 | `smoke_sharpicks.yml` | PR/push según YAML | smoke de Node/web | ninguna | **Público**; jamás recibe token privado |
 | `test_instalacion_limpia.yml` | PR/push según YAML | instalación limpia | ninguna | **Público**; prueba contrato y paquete público |

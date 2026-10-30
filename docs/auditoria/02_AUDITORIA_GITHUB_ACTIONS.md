@@ -34,7 +34,8 @@ El inventario más detallado por flujo, con cadencias y scripts, está en [`INVE
 
 - **OBSERVADO:** no hay uso de `pull_request_target` en estos 18 archivos.
 - **OBSERVADO:** los workflows de validación de PR declaran `contents: read` y no referencian `secrets.*` en el YAML revisado. No encontré un workflow que entregue explícitamente un token del core privado.
-- **OBSERVADO:** `cuotas_mx.yml` declara `contents: write` y `actions: write`; `relevo.yml` declara `actions: write`; los workflows de cálculo/reentrenamiento tienen `contents: write`; `sitio_web.yml` declara `pages: write` e `id-token: write`. Son permisos amplios, pero corresponden a operaciones de commits, despacho de workflows y Pages descritas en sus pasos. El alcance por job y la necesidad de cada escritura quedan pendientes de revisar para reducir privilegios sin romper la operación.
+- **OBSERVADO:** `cuotas_mx.yml` declara `contents: write` y `actions: write`; los workflows de cálculo/reentrenamiento tienen `contents: write`; `sitio_web.yml` declara `pages: write` e `id-token: write`. Requieren commits, dispatches y Pages en el mismo job y siguen pendientes de reducción por job.
+- **MITIGACIÓN PARCIAL:** `relevo.yml` ya separa el job `esperar` (`contents: read`, hasta 330 minutos, sin token explícito) del job `disparar` (`actions: write`, máximo 5 minutos y token sólo en el paso de dispatch). El comportamiento de espera, cron, concurrencia y `workflow_dispatch` no cambia. El cambio estático aún requiere CI en esta rama.
 - **OBSERVADO:** `respaldo_base.yml` y `sitio_web.yml` usan `workflow_run`. Ambos hacen checkout sin `ref` explícito; el YAML no muestra descarga de artifact del workflow fuente ni checkout de una referencia controlada por el PR. Esto reduce el riesgo de ejecutar directamente código de un PR, pero no sustituye una revisión de condiciones del evento, artefactos, settings y permisos efectivos en GitHub.
 - **OBSERVADO:** workflows de respaldo, sitio, Telegram y vigilancia referencian secretos de Supabase, Telegram, Cloudflare, correo u otros servicios. El YAML sólo prueba nombres referenciados, no existencia, valor, alcance ni rotación. No se imprimieron valores.
 - **PENDIENTE:** verificar el default de `GITHUB_TOKEN`, políticas de aprobación de environments, protección de rama, acceso de forks, configuración de Pages, scopes de secretos y quién puede ejecutar `workflow_dispatch`.
@@ -54,7 +55,7 @@ El inventario más detallado por flujo, con cadencias y scripts, está en [`INVE
 | ID | Hallazgo | Severidad | Estado |
 |---|---|---:|---|
 | CI-01 | Tags de Actions mutables en 18 workflows | P2 | IMPLEMENTADO: pins por SHA; CI del nuevo SHA pendiente |
-| CI-02 | Permisos de escritura declarados a nivel workflow en varios procesos | P2 | PENDIENTE: reducir por job tras validar pasos que escriben |
+| CI-02 | Permisos de escritura declarados a nivel workflow en varios procesos | P2 | EN EJECUCIÓN: `relevo.yml` aisló Actions write al job corto de dispatch; otros flujos mixtos aún requieren revisión |
 | CI-03 | Backup sólo tiene evidencia de generación/cifrado, no de restore | P1 | PENDIENTE: restore en entorno aislado |
 | CI-04 | Secrets de producción referenciados desde workflows del repo público | P1 | OBSERVADO; no se detectó exposición de valores. Revisar entorno, aprobaciones y mínimo alcance |
 | CI-05 | No hay pin/lock reproducible de dependencias Python y Deno | P2 | PENDIENTE |

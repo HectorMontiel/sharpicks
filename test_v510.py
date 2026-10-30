@@ -43,8 +43,15 @@ def probar():
           '_verificar_sha256' in mr_source and '_validar_miembro_tar' in mr_source and
           "headers['Accept'] = 'application/octet-stream'" in mr_source,
           'v510: los modelos se bajan por API, verifican SHA-256 y rechazan tar inseguro')
-    for f in ('cuotas_mx', 'precalculo_dia', 'sitio_web', 'retrain_leagues', 'relevo', 'respaldo_base'):
+    for f in ('cuotas_mx', 'precalculo_dia', 'sitio_web', 'retrain_leagues', 'respaldo_base'):
         check('GH_TOKEN: ${{ github.token }}' in leer('.github/workflows/%s.yml' % f), 'v510: %s con GH_TOKEN' % f)
+    relevo = leer('.github/workflows/relevo.yml')
+    check('  esperar:\n' in relevo and '      contents: read\n' in relevo and
+          '  disparar:\n    needs: esperar\n' in relevo and
+          '    permissions:\n      actions: write\n' in relevo and
+          '\nenv:\n  GH_TOKEN:' not in relevo and
+          '          GH_TOKEN: ${{ github.token }}' in relevo,
+          'v541: relevo separa la espera read-only del dispatch con actions:write')
     sw = leer('.github/workflows/sitio_web.yml')
     check(sw.count('continue-on-error: true   # v510') == 3, 'v510: GitHub Pages no tumba la corrida en privado')
 

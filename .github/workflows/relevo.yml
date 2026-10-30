@@ -56,19 +56,16 @@ on:
 
 permissions:
   contents: read
-  actions: write
 
 concurrency:
   group: relevo-cuotas
   cancel-in-progress: true
 
-env:
-  # v510 — repo privado: los modelos del Release se bajan con el token de la corrida
-  GH_TOKEN: ${{ github.token }}
-
 jobs:
-  relevo:
+  esperar:
     runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
+    permissions:
+      contents: read
     # El techo de un job son 6 h. La espera máxima es de 5 h (abajo), así que
     # siempre cabe.
     timeout-minutes: 330
@@ -101,6 +98,13 @@ jobs:
           echo "Duermo $(( ESPERA / 60 )) min (hasta $(date -u -d "@$(( AHORA + ESPERA ))" +%H:%MZ))."
           sleep "$ESPERA"
 
+  disparar:
+    needs: esperar
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
       - name: Disparar el barrido
         env:
           GH_TOKEN: ${{ github.token }}
