@@ -31,6 +31,15 @@
 - **CI de `43273e6`:** al corte, instalación limpia y validar estaban `in_progress`; tests seguros estaba `pending`. Ningún resultado remoto final se atribuye a este SHA todavía.
 - **Límites:** la prueba es local y con mocks. No acredita backup/restore real, staging, ni seguridad del catálogo remoto.
 
+
+## Actualización: DTO público web
+
+- **Head de código:** `71e01412f9ef586f6d15fc54a8cf6365cc601f33`; PR #1 sigue abierto y draft.
+- **Cambio:** `sharpicks_contracts/web_v1.py` aplica allowlist versionada v1 a `hoy.json` y `analisis.json`, preserva el sobre legado y filtra claves superiores no declaradas, datos `jug`, `ctx.lin` y claves de contexto/estadística no públicas. El exportador usa el DTO al escribir estos archivos.
+- **Validación local:** 52 pruebas unittest, 6 pruebas de exportador, las pruebas heredadas seleccionadas (v383, v389, v390, v394-v396, v400 y v510), test JavaScript `test_web_v402.cjs`, compilación Python y `git diff --check` pasaron. Algunas pruebas de bots informaron que PIL no está instalado en este entorno y continuaron sin su subcaso de generación de ticket.
+- **CI:** para `2f43a94`, los tres workflows terminaron `success`. Los tres workflows de `71e0141` estaban `in_progress` al corte; esa CI incluye el DTO.
+- **Compatibilidad y límites:** se mantiene `picks`/`analisis` y se agrega `contract_version`; no se ha comprobado el sitio publicado/Cloudflare. Las tablas de Supabase y otros productos no pasan por este DTO.
+
 ## Metodología
 
 1. Se verificaron rama, commit y árbol con Git; el checkout usa clonación superficial y parcial (`blob:none`) porque el árbol tiene más de 650 MB. Se materializaron los fuentes Python, documentación, workflows, pruebas y SQL necesarios para inspección local. El inventario de conteos y tamaños proviene de la API GitHub del árbol recursivo del SHA, no de una descarga de todos los blobs.

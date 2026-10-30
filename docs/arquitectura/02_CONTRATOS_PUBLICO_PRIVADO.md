@@ -7,6 +7,7 @@
 
 | Objeto | Versión/función | Validación |
 |---|---|---|
+| Exportación pública web | `sharpicks_contracts/web_v1.py`, `contract_version=1.0.0`; envelope legacy `picks`/`analisis` | allowlist de filas y contexto, filtrado de claves desconocidas, datos `jug`/`ctx.lin` omitidos, `h2h` con cuatro strings por fila |
 | `RunRequest` | `contract_version=1.0.0`; evento/ventana, alcance deportivo, parámetros sin campos de secreto, manifiestos y salidas solicitadas | campos desconocidos rechazados, UUID, timestamps UTC, ventana ordenada, tipos JSON y nombres de manifiesto únicos |
 | `InputArtifact` | nombre lógico, versión semántica, SHA-256, tamaño y clasificación `public/private` | digest lowercase de 64 hex, tamaño entero no negativo, versión semántica |
 | `PublicPrediction` | evento/deporte/liga/mercado/selección, probabilidad, cuota decimal, nivel de acceso y hora | allowlist fija, probabilidad finita en [0,1], cuota decimal > 1, nivel reconocido, UTC |
@@ -31,4 +32,4 @@ Cambios aditivos opcionales sólo pueden incorporarse con pruebas de compatibili
 
 ## Pendiente
 
-Definir DTOs separados para cuotas, features, resultados de partido, estado de modelos, calibración, entrenamiento, evaluación y metadatos de exportación; el v1 implementado aún no cubre esos flujos. Conectar el core privado y validar el mismo esquema desde ambos lados.
+Definir DTOs separados para cuotas, features, resultados de partido, estado de modelos, calibración, entrenamiento y evaluación; las tablas Supabase, payloads Telegram y el feed realmente publicado aún requieren validación independiente. Conectar el core privado y validar el mismo esquema desde ambos lados.
