@@ -38,11 +38,12 @@
 | TH-07 | Supply-chain comprometida vía tag mutable de Action | Media | Alto | P2 | Tags de Actions estaban en workflows | Pins de SHA implementados en `bae8759`; `instalar`, `tests`, `validar` pasaron en tree SHA `c162c75` |
 | TH-08 | Modelo/dataset mutable o incompatible | Media | Alto | P2 | `.joblib` junto con versiones de bibliotecas fijadas parcialmente en `requirements.txt` | Manifiesto/hash/runtime/schema y promoción/rollback versionados. Pendiente |
 | TH-09 | Proveedor degradado/incompleto genera pick incorrecto o duplicado | Media | Alto | P2 | Workflows ejecutan ingesta y selección; faltan contratos comunes confirmados | Frescura, idempotencia, alertas, pruebas de proveedor y comparación de regresión. Pendiente |
+| TH-10 | Exposición pública de modelos propietarios en release descargable | Alta | Alto | P1 confirmado | GitHub API de release `modelos-latest`: 72 archivos `.tar.gz` con nombres `modelos-*` y un manifiesto JSON; 73 digests SHA-256; 735,067,828 bytes. No se descargó contenido | Inventario de metadatos en `release_modelos_latest.json`. Migrar modelos a registry privado, adaptar y verificar consumidores, preparar rollback y recién entonces autorizar transición del canal de publicación. Assets actuales preservados |
 
 ## Controles residuales y criterios de aceptación
 
 - Confirmar que ningún token privado recibe código de fork/PR no confiable.
-- Inventariar release assets, artifacts, logs y caches históricos; revisar permisos efectivos.
+- Inventariar release assets, artifacts, logs y caches históricos; revisar permisos efectivos. El snapshot de `modelos-latest` ya confirma publicación pública de archivos con nombre de modelo, pero no inspecciona su contenido interno.
 - Demostrar allowlist y ausencia de canarios en web/Telegram.
 - Demostrar pruebas RLS/RPC por rol y verificación de webhooks en staging.
 - Demostrar hash, firma, restauración y compatibilidad de modelos/backups.
