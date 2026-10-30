@@ -22,6 +22,15 @@
 - **Escaneo preliminar de secretos:** `tools/secret_scan.py` inspeccionó 1,040 archivos locales de 1,889 rutas versionadas (checkout sparse). Reportó dos patrones de token de prueba en `tests/test_python_dependency_graph.py:59-60`; revisión con salida redactada confirmó que son literales sintéticos de fixture. La coincidencia de `access_token` en `supabase/functions/entrar/index.ts` quedó eliminada al corregir el detector de asignaciones para ignorar referencias de código. El scan no expuso valores, excluye binarios y no inspeccionó historia; no es un escaneo de secretos completo.
 - **Secret Scanning de GitHub:** habilitado en el repositorio público y confirmado por la API (`security_and_analysis.secret_scanning.status=enabled`). La API de alertas no devolvió alertas al consultar; no se considera prueba de backfill completo porque el endpoint de scan-history devuelve 404 al estar GitHub Advanced Security desactivado.
 
+
+## Actualización adicional: 2026-10-30
+
+- **Head de código:** `43273e6e971be0763480b0a92d20dbaa2a2df391`; rama autorizada; PR #1 continúa abierto y draft.
+- **Cambio:** `respaldo_base.py` ya no incorpora cuerpos HTTP de Supabase a excepciones de descarga de páginas, RPC de auth o restauración. Tres pruebas canario cubren esos caminos.
+- **Validación local:** 49 pruebas de `unittest discover -s tests -p "test_*.py"` y 6 pruebas del exportador pasaron en Python 3.12. También pasó `py_compile` y `git diff --check`. El escáner heurístico inspeccionó 1,041 archivos hidratados y señaló únicamente dos fixtures sintéticos ya revisados; no escanea historia ni blobs sparse.
+- **CI de `43273e6`:** al corte, instalación limpia y validar estaban `in_progress`; tests seguros estaba `pending`. Ningún resultado remoto final se atribuye a este SHA todavía.
+- **Límites:** la prueba es local y con mocks. No acredita backup/restore real, staging, ni seguridad del catálogo remoto.
+
 ## Metodología
 
 1. Se verificaron rama, commit y árbol con Git; el checkout usa clonación superficial y parcial (`blob:none`) porque el árbol tiene más de 650 MB. Se materializaron los fuentes Python, documentación, workflows, pruebas y SQL necesarios para inspección local. El inventario de conteos y tamaños proviene de la API GitHub del árbol recursivo del SHA, no de una descarga de todos los blobs.
