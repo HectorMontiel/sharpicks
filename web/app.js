@@ -161,7 +161,7 @@
 
   async function cargar() {
     // v384 — datos de apoyo (deportes con partidos pero sin pick)
-    fetch('combinadas_simuladas.json').then((r) => r.ok ? r.json() : null).then((d) => { estado.combSim = d; }).catch(() => {});   // v421
+    fetch('combinadas_simuladas.json?v=528').then((r) => r.ok ? r.json() : null).then((d) => { estado.combSim = d; }).catch(() => {});   // v421
     fetch('datos/meta.json?t=' + Date.now()).then((r) => r.ok ? r.json() : null).then((m) => { estado.meta = m || {}; }).catch(() => {});
     // v418 — los partidos SIN pick, para analizarlos (no cuentan en ningún marcador)
     fetch('datos/analisis.json?t=' + Date.now()).then((r) => r.ok ? r.json() : null)
@@ -1340,7 +1340,7 @@
     const est = c.estado === 'verde' ? '<span class="et verde">' + OK() + ' Verde</span>' : c.estado === 'roja' ? '<span class="et roja">' + MAL() + ' Roja</span>'
       : faseCombinada(c) === 'vivo' ? '<span class="et vivo"><i class="punto"></i>En juego</span>' : '<span class="et">⏳ ' + esc(horaCdmx(aFecha(c.inicio))) + '</span>';
     return '<div class="dest comb ' + (c.estado === 'verde' ? 'verde' : c.estado === 'roja' ? 'roja' : '') + '">' +
-      '<div class="fila"><span class="et nivel">' + (ICONO_DEP[c.alcance] || ico('link-2')) + ' ' + esc(c.alcance) + (c.tipo === 'alta' ? ' · cuota alta' : '') + '</span>' + est + '</div>' +
+      '<div class="fila"><span class="et nivel">' + (c.alcance === 'IA' ? ico('sparkles', 'acento') : ICONO_DEP[c.alcance] || ico('link-2')) + ' ' + esc(c.alcance === 'IA' ? 'IA + modelo' : c.alcance) + (c.tipo === 'alta' ? ' · 3 patas' : '') + '</span>' + est + '</div>' +
       patas + '<div class="dest-pie"><b>' + Number(c.cuota || 0).toFixed(2) + '</b><span>probabilidad ' + pct(c.prob) + '</span></div>' +
       (window.SPX && SPX.extraComb ? SPX.extraComb(c) : '') + '</div>';
   }
@@ -1349,17 +1349,24 @@
   // método nuevo (v420) con esos partidos reales (`combinadas_simuladas.json`);
   // desde el 22-oct, las publicadas. Las de 3 patas, todas reales.
   const DESDE_NUEVO = '2026-10-22';
+  // v528 — las de 3 patas, con la regla nueva (💎/🔷 por acierto real por banda de cuota, 1,30-2,60): del 15 al 29-oct
+  // rehechas sobre esos partidos reales (`combinadas_simuladas.json` → «tres»); desde el 30, las publicadas
+  const DESDE_TRES = '2026-10-30';
   function histCombinadas() {
     const sim = (estado.combSim && estado.combSim.combinadas) || [];
-    const t = (estado.combinadas || []).filter((c) => (c.estado === 'verde' || c.estado === 'roja') && (c.tipo === 'alta' || c.fecha >= DESDE_NUEVO))
-      .concat(sim.filter((c) => c.estado === 'verde' || c.estado === 'roja'));
+    const tres = (estado.combSim && estado.combSim.tres) || null;
+    const t = (estado.combinadas || []).filter((c) => (c.estado === 'verde' || c.estado === 'roja') &&
+        (c.tipo === 'alta' ? !tres || c.fecha >= DESDE_TRES : c.fecha >= DESDE_NUEVO))
+      .concat(sim.filter((c) => c.estado === 'verde' || c.estado === 'roja'))
+      .concat(tres ? tres.combinadas : []);
     if (!t.length) return '<p class="tenue">Aún no termina ninguna combinada. Aquí se van a ver sus verdes y rojas, sin quitar nada.</p>';
     const fila = (titulo, xs) => { const v = xs.filter((c) => c.estado === 'verde').length, r = xs.length - v;
       return '<div class="ia-fila"><span>' + titulo + '</span><b>✅ ' + v + ' ❌ ' + r + '</b><small>' + (xs.length ? pct(v / xs.length) : '—') + '</small></div>'; };
-    return fila('🔗 Combinadas (2 patas)', t.filter((c) => c.tipo !== 'alta')) + fila('🔗 Cuota alta (3 patas)', t.filter((c) => c.tipo === 'alta')) +
+    return fila('🔗 Combinadas (2 patas)', t.filter((c) => c.tipo !== 'alta' && c.alcance !== 'IA')) + fila('🔗 Combinadas (3 patas)', t.filter((c) => c.tipo === 'alta' && c.alcance !== 'IA')) +
+      fila('✨ IA + modelo (3 patas)', t.filter((c) => c.alcance === 'IA')) +
       fila('🔀 Mixtas', t.filter((c) => c.alcance === 'Mixta')) +
       (sim.length ? '<p class="tenue chico">Las de 2 patas del ' + esc(estado.combSim.desde.slice(8)) + ' al ' + esc(estado.combSim.hasta.slice(8)) +
-        ' de oct. son el método nuevo simulado con esos partidos reales; desde el 22, las publicadas.</p>' : '');
+        ' de oct. y las de 3 patas hasta el 29 son el método nuevo con esos partidos reales; después, las publicadas.</p>' : '');
   }
   function tarjeta(ps) {
     const p = ps[0];
@@ -2231,7 +2238,7 @@
     const diaC = diaPestana(OFFS[estado.dia] || 0);
     // v398 — tienen su pestaña; en Picks sólo una línea que lleva a ella
     const combs = (estado.combinadas || []).filter((c) => c.fecha === diaC &&
-      (estado.deportes.size === 0 || c.alcance === 'Mixta' || estado.deportes.has(c.alcance)));
+      (estado.deportes.size === 0 || c.alcance === 'Mixta' || c.alcance === 'IA' || estado.deportes.has(c.alcance)));
     if ($('comb-hist')) $('comb-hist').innerHTML = histCombinadas();
     const vivas = combs.filter((c) => faseCombinada(c) !== 'terminado').length;
     $('comb-tira').innerHTML = combs.length ? '<button class="tira comb-tira" data-vista-ir="combinadas"><em>🔗 <b>' + combs.length + '</b> ' +

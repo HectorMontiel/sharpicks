@@ -47,10 +47,38 @@ PROB_MIN = 0.78
 #                                     ROI +3,5 por $100, p5 frente a la actual +10,7 pts
 #     (por la prob. del modelo en vez del acierto real: 67,9 %; no se usa)
 # Las de 3 patas no mejoraron con ningún cambio (siguen igual).
+# v528 — LAS DE 3 PATAS. El usuario: «teniendo diamantes con 80 % de media, 50 y tantos por ciento para tres patas
+# es muy bajo». La causa: pedían cuota total ≥ 1,80 (con 💎 a ~1,15 obligaba a meter patas flojas) y se elegían
+# por la probabilidad del modelo. Simulado con los 2.690 picks liquidados del 15 al 29-oct (cada día con la
+# calibración sólo de los días ANTERIORES; D:/Claude/mediciones/combinadas_sim.py):
+#     actual (prob ≥ 0,78, prob del modelo, 1,80-2,60) ....... 35,5 % (mitades 46 / 28), ROI −35 por $100
+#     sólo 💎/🔷, acierto REAL por banda de cuota, 1,30-2,60 .. 63,5 % (mitades 70 / 59), ROI −7, p5 +9,6 pts
+# (por nivel en vez de banda: 59,6 %; sólo 💎: 60,8 %). Las de 2 patas por banda suben 72 → 76 % pero p5 −5,3:
+# no pasa todavía, se quedan como están.
 TIPOS = {
     'combinada': {'patas': 2, 'cuota': (1.20, 1.60), 'solo_altos': True, 'por_acierto': True},
-    'alta': {'patas': 3, 'cuota': (1.80, 2.60)},
+    'alta': {'patas': 3, 'cuota': (1.30, 2.60), 'solo_altos': True, 'por_acierto': 'banda'},
 }
+
+
+def banda(p: Dict) -> int:
+    """La banda de cuota de 0,05 en 0,05 (1,00-1,05 … 1,40+): la cuota separa el acierto mejor que el nivel."""
+    try:
+        return min(int((float(p.get('cuota') or 0) - 1.0) / 0.05), 8)
+    except (TypeError, ValueError):
+        return 8
+
+
+def calibracion_banda(liquidados: List[Dict]) -> Dict:
+    """v528 — el acierto REAL por banda de cuota, con el mismo empuje hacia el 80 % que `calibracion`."""
+    g: Dict = {}
+    for p in liquidados:
+        if p.get('tipo') in ('error', 'analisis') or p.get('estado') not in ('verde', 'roja'):
+            continue
+        a = g.setdefault(banda(p), [0, 0])
+        a[0] += p.get('estado') == 'verde'
+        a[1] += 1
+    return {k: (a + 8) / (n + 10) for k, (a, n) in g.items()}
 
 
 def nivel(p: Dict) -> str:
@@ -159,11 +187,13 @@ def _fila(fecha: str, alcance: str, tipo: str, combo: List[Dict], ia: Dict) -> D
 
 
 def armar(picks: List[Dict], ia: Dict, ahora: Optional[dt.datetime] = None,
-          cal: Optional[Dict] = None) -> List[Dict]:
+          cal: Optional[Dict] = None, cb: Optional[Dict] = None) -> List[Dict]:
     """Las combinadas nuevas de esta pasada (ver la cabecera)."""
     ahora = ahora or dt.datetime.now(dt.timezone.utc)
     cal = cal if cal is not None else calibracion(picks)
+    cb = cb if cb is not None else calibracion_banda(picks)
     acierto = lambda p: cal.get((nivel(p), p.get('deporte')), cal.get(nivel(p), 0.8))
+    por_banda = lambda p: cb.get(banda(p), 0.8)
     out = []
     por_dia: Dict[str, List[Dict]] = {}
     for p in patas(picks, ia, ahora):       # cada día con sus partidos: no se mezclan hoy y mañana
@@ -175,9 +205,75 @@ def armar(picks: List[Dict], ia: Dict, ahora: Optional[dt.datetime] = None,
             for tipo, t in TIPOS.items():
                 cc = [p for p in cands if p.get('elige') or float(p.get('prob') or 0) >= 0.85] if t.get('solo_altos') else cands
                 combo = _mejor(cc, t['patas'], t['cuota'][0], t['cuota'][1], alcance == 'Mixta',
-                               acierto if t.get('por_acierto') else None)
+                               por_banda if t.get('por_acierto') == 'banda' else acierto if t.get('por_acierto') else None)
                 if combo:
                     out.append(_fila(fecha, alcance, tipo, combo, ia))
+    return out
+
+
+# ---------- v528 — LA COMBINADA DE LA IA ----------
+# El usuario: «me gustaría una combinada que sugiera la IA, y también la medimos». Una al día (alcance «IA»): Gemini
+# elige 3 patas entre los 💎/🔷 del día (las 12 mejores por acierto real por banda de cuota), de partidos distintos y
+# con cuota total 1,30-2,60 (la misma regla que las de 3 patas, para compararlas parejo). Hecha, queda fija: no se le
+# pregunta cada hora. Si la IA no responde o propone algo fuera de la regla, ese día no hay (nunca se inventa).
+INSTRUCCION_IA = ('Eres el analista de SharPicks. Te doy los mejores picks de hoy (cada uno con su probabilidad y lo que '
+                  'acierta en el historial su rango de cuota). Elige EXACTAMENTE 3, de partidos distintos, cuya cuota total '
+                  '(el producto) quede entre 1,30 y 2,60, buscando la combinada con más probabilidad de acertar. Responde '
+                  'con sus ids y un motivo breve en español.')
+
+
+def combinada_ia(picks: List[Dict], ia: Dict, ahora: dt.datetime, cb: Dict, ya: set) -> List[Dict]:
+    import json
+    import os
+    k = os.environ.get('GEMINI_API_KEY')
+    hoy = ahora.astimezone(CDMX).date().isoformat()
+    if not k or hoy in ya:
+        return []
+    cands = [p for p in patas(picks, ia, ahora) if _utc(p['inicio']).astimezone(CDMX).date().isoformat() == hoy
+             and (p.get('elige') or float(p.get('prob') or 0) >= 0.85)]
+    cands = sorted(cands, key=lambda p: -cb.get(banda(p), 0.8))[:12]
+    if len({p['partido'] for p in cands}) < 3:
+        return []
+    datos = [{'id': p['id'], 'partido': p.get('partido'), 'deporte': p.get('deporte'), 'apuesta': p.get('_real') or p.get('apuesta'),
+              'cuota': float(p['cuota']), 'prob': round(float(p['prob']), 3), 'acierto_historial': round(cb.get(banda(p), 0.8), 3)} for p in cands]
+    cuerpo = {'systemInstruction': {'parts': [{'text': INSTRUCCION_IA}]},
+              'contents': [{'role': 'user', 'parts': [{'text': json.dumps(datos, ensure_ascii=False)}]}],
+              'generationConfig': {'temperature': 0.2, 'responseMimeType': 'application/json', 'responseSchema': {
+                  'type': 'OBJECT', 'properties': {'ids': {'type': 'ARRAY', 'items': {'type': 'STRING', 'enum': [p['id'] for p in cands]}},
+                                                   'motivo': {'type': 'STRING'}}, 'required': ['ids']}}}
+    import requests
+    for modelo in ('gemini-flash-latest', 'gemini-flash-lite-latest'):
+        try:
+            r = requests.post('https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent' % modelo,
+                              params={'key': k}, json=cuerpo, timeout=60)
+            if not r.ok:
+                continue
+            ids = json.loads(r.json()['candidates'][0]['content']['parts'][0]['text']).get('ids') or []
+        except Exception as e:
+            logger.warning('[combinadas] IA %s: %s', modelo, type(e).__name__)
+            continue
+        combo = [p for p in cands if p['id'] in set(ids)]
+        cuota = 1.0
+        for p in combo:
+            cuota *= float(p['cuota'])
+        if len(combo) == 3 and len({p['partido'] for p in combo}) == 3 and 1.30 <= cuota <= 2.60:
+            return [_fila(hoy, 'IA', 'alta', combo, ia)]
+        logger.warning('[combinadas] la IA propuso algo fuera de la regla (%d patas, cuota %.2f): hoy no hay', len(combo), cuota)
+        return []
+    return []
+
+
+def _todas(requests, url: str, hdr: Dict, params: Dict) -> List[Dict]:
+    """v528 — Supabase corta en 1.000 filas (v466): por páginas."""
+    out = []
+    for i in range(50):
+        r = requests.get(url, headers=dict(hdr, Range='%d-%d' % (i * 1000, i * 1000 + 999)), params=params, timeout=30)
+        if not r.ok:
+            break
+        xs = r.json()
+        out += xs
+        if len(xs) < 1000:
+            break
     return out
 
 
@@ -237,6 +333,9 @@ def subir(picks: List[Dict], url: str, key: str, ahora: Optional[dt.datetime] = 
         pagadas = {c['id'] for c in viejas}
     filas, fijas = [], set()
     for c in viejas:
+        if c.get('alcance') == 'IA' and not empezo(c):        # v528 — la de la IA, una al día y fija
+            fijas.add(c['id'])
+            continue
         if c['id'] in pagadas and not empezo(c):
             fijas.add(c['id'])
             continue
@@ -247,16 +346,19 @@ def subir(picks: List[Dict], url: str, key: str, ahora: Optional[dt.datetime] = 
                 filas.append({'id': c['id'], 'fecha': c['fecha'], 'alcance': c['alcance'], 'tipo': c['tipo'],
                               'estado': nuevo, 'actualizado': ahora.isoformat()})
     # v420 — el acierto real de los últimos 30 días (para elegir las patas de las de 2)
-    cal = None
+    cal, cb = None, None
     try:
-        rr = requests.get(base + 'picks', headers=hdr, timeout=30,
-                          params={'select': 'elige,prob,tipo,deporte,estado', 'estado': 'in.(verde,roja)',
-                                  'fecha': 'gte.' + (hoy - dt.timedelta(days=30)).isoformat(), 'limit': 20000})
-        if rr.ok:
-            cal = calibracion(rr.json())
+        hist = _todas(requests, base + 'picks', hdr, {'select': 'elige,prob,tipo,deporte,estado,cuota', 'estado': 'in.(verde,roja)',
+                                                      'fecha': 'gte.' + (hoy - dt.timedelta(days=30)).isoformat()})
+        if hist:
+            cal, cb = calibracion(hist), calibracion_banda(hist)       # v528: también por banda de cuota (3 patas)
     except Exception as e:
         logger.warning('[combinadas] sin calibración de la base (%s): se usa la de esta pasada', e)
-    nuevas = [c for c in armar(picks, ia, ahora, cal) if c['id'] not in fijas]
+    nuevas = [c for c in armar(picks, ia, ahora, cal, cb) if c['id'] not in fijas]
+    try:
+        nuevas += combinada_ia(picks, ia, ahora, cb or calibracion_banda(picks), {c['fecha'] for c in viejas if c.get('alcance') == 'IA'})
+    except Exception as e:
+        logger.warning('[combinadas] sin combinada de la IA: %s', e)
     for c in nuevas:
         c['actualizado'] = ahora.isoformat()
     # lo que hoy ya no tiene combinada (sin patas suficientes) y aún no empezó, se quita

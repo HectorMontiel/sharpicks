@@ -91,8 +91,8 @@ def probar_v420():
     import datetime as _dt
     import combinadas_web as cw
     check(cw.TIPOS['combinada']['cuota'] == (1.20, 1.60) and cw.TIPOS['combinada'].get('solo_altos')
-          and cw.TIPOS['combinada'].get('por_acierto') and cw.TIPOS['alta']['cuota'] == (1.80, 2.60),
-          'v420: las de 2 patas con 💎/🔷 por acierto real, cuota 1,20-1,60; las de 3 sin cambio')
+          and cw.TIPOS['combinada'].get('por_acierto') and cw.TIPOS['alta']['cuota'] == (1.30, 2.60),
+          'v420: las de 2 patas con 💎/🔷 por acierto real, cuota 1,20-1,60; las de 3, desde v528, 1,30-2,60 por banda de cuota')
     ahora = _dt.datetime(2026, 10, 21, 12, tzinfo=_dt.timezone.utc)
     ini = (ahora + _dt.timedelta(hours=3)).strftime('%Y-%m-%d %H:%M:%S')
     pk = lambda i, dep, c, pr, el=False: {'id': 'q%d' % i, 'partido': 'X%d vs Y%d' % (i, i), 'deporte': dep, 'apuesta': 'Gana X%d' % i,

@@ -81,6 +81,8 @@ jobs:
           # v379 — vacío en el lanzamiento (todo gratis); «Diamante» u otros
           # niveles para cobrar (variable del repositorio, no secreto)
           PREMIUM_NIVELES: ${{ vars.PREMIUM_NIVELES }}
+          # v528 — la combinada que sugiere la IA (combinadas_web.combinada_ia), una al día
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python exportar_web.py
       # v379 — los dos canales de Telegram (gratis y VIP); sin canales, no hace nada
       # v513 — el historial público del Pulso (qué dijo en el 60' y el 70', y qué salió); nunca tumba la corrida
