@@ -453,6 +453,7 @@ def analyze_tree(root: Path) -> dict[str, Any]:
         "unresolved_other_imports": unresolved_classes["optional_or_unclassified"],
     }
     hint_counts: Counter[str] = Counter(hint for item in facts for hint in item.responsibility_hints)
+    summary["modules_without_responsibility_hints"] = sum(not item.responsibility_hints for item in facts)
     cycle_list = _cycles(modules, edges)
     summary["cyclic_components"] = len(cycle_list)
     try:
@@ -507,6 +508,7 @@ def markdown_report(report: dict[str, Any]) -> str:
         "cyclic_components": "Componentes cíclicos",
         "entrypoints": "Entry points con __main__ o workflow",
         "workflow_script_paths": "Scripts Python llamados literalmente por workflow",
+        "modules_without_responsibility_hints": "Módulos sin pista heurística por nombre/ruta",
     }
     for key, label in labels.items():
         lines.append(f"| {label} | {summary[key]} |")
@@ -517,6 +519,10 @@ def markdown_report(report: dict[str, Any]) -> str:
     for entry in report["entrypoints"]:
         workflows = ", ".join(f"`{name}`" for name in entry["workflows"]) or "—"
         lines.append(f"| `{entry['path']}` | {entry['source']} | {workflows} | {len(entry['transitive_modules'])} |")
+    lines += [
+        "",
+        "El conteo de `__main__ guard` incluye scripts históricos, pruebas y herramientas de análisis; no significa que todos estén activos en producción. Los 44 scripts de workflows son los comandos literales que el analizador pudo asociar a los 18 YAML.",
+    ]
     lines += ["", "## Módulos con mayor cantidad de importadores", "", "| Módulo | Importadores locales |", "|---|---:|"]
     for item in report["top_incoming_modules"][:20]:
         lines.append(f"| `{item['module']}` | {item['count']} |")
@@ -541,6 +547,7 @@ def markdown_report(report: dict[str, Any]) -> str:
         "- No se ejecutó ningún módulo de SharPicks ni se contactaron servicios.",
         "",
         "El detalle reproducible por módulo, líneas, aristas y sitios pendientes está en `python_dependency_graph.json`.",
+        "Reproducir con `python tools/python_dependency_graph.py --json docs/auditoria/python_dependency_graph.json --markdown docs/auditoria/01_GRAFO_ARQUITECTURA.md`.",
         "",
     ]
     return "\n".join(lines)
