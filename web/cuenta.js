@@ -483,7 +483,16 @@
   async function alternarAlerta(tipo, valor) {
     if (!yo.user) { abrirAcceso('Entra para recibir avisos por Telegram.'); return; }
     await cargarAlertas();
-    if (!yo.tgLigado) { abrirMiCuenta(); avisoApp('Primero conecta tu Telegram (Mi cuenta → Avisos por Telegram).'); return; }
+    if (!yo.tgLigado) {
+      // v530 — el usuario: «que si le pico me redirecciones o me salga un pop up para registrar mi cuenta»: se conecta
+      // desde aquí mismo, y al volver de Telegram el partido queda seguido solo
+      const si = await ventanaApp({ tipo: 'pregunta', titulo: 'Conecta tu Telegram', si: 'Conectar Telegram', no: 'Ahora no',
+        texto: 'Te mandamos los avisos a tu Telegram. Toca «Conectar Telegram», dale «Iniciar» en el bot y regresa: el aviso queda listo.' });
+      if (!si) return;
+      try { localStorage.setItem('sp_alerta_pend', JSON.stringify({ tipo, valor })); } catch (er) { /* al volver, se elige a mano */ }
+      ligarTelegram();
+      return;
+    }
     const ya = (yo.alertas || []).some((x) => x.tipo === tipo && x.valor === valor);
     const q = ya ? sb.from('alertas_tg').delete().match({ usuario: yo.user.id, tipo, valor }) : sb.from('alertas_tg').insert({ usuario: yo.user.id, tipo, valor });
     const { error } = await aTiempo(q, 6000, { error: true });
@@ -492,17 +501,29 @@
     pintarAvisosTg();
     if (window.SP && window.SP.pulsoIA) window.SP.pulsoIA();       // la campana de Ver partido cambia sola
   }
+  async function ligarTelegram() {
+    const bot = yo.precios.telegram_bot || 'EliteVIPicksBot';
+    const w = window.open('', '_blank');                            // se abre YA (el iPhone bloquea ventanas tras esperar)
+    const { data } = await aTiempo(sb.rpc('telegram_codigo'), 6000, { data: null });
+    if (!data) { if (w) w.close(); avisoApp('No se pudo crear el enlace; intenta de nuevo.'); return; }
+    const url = 'https://t.me/' + encodeURIComponent(bot) + '?start=' + encodeURIComponent(data);
+    if (w) w.location.href = url; else location.href = url;
+  }
+  // al volver de Telegram ya ligado: lo que quería seguir queda seguido solo
+  async function alertaPendiente() {
+    let pend = null;
+    try { pend = JSON.parse(localStorage.getItem('sp_alerta_pend') || 'null'); } catch (e) { pend = null; }
+    if (!pend || !yo.user) return;
+    await cargarAlertas();
+    if (!yo.tgLigado) return;
+    try { localStorage.removeItem('sp_alerta_pend'); } catch (e) { /* nada */ }
+    if (!(yo.alertas || []).some((x) => x.tipo === pend.tipo && x.valor === pend.valor)) await alternarAlerta(pend.tipo, pend.valor);
+    avisoApp('Listo: te avisaremos por Telegram.', 'ok');
+  }
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) alertaPendiente(); });
   document.addEventListener('click', async (e) => {
     const t = e.target.closest('[data-tg-ligar],[data-tg-al],[data-tg-desligar],[data-tg-partido]'); if (!t || !sb) return;
-    if (t.hasAttribute('data-tg-ligar')) {
-      const bot = yo.precios.telegram_bot || 'EliteVIPicksBot';
-      const w = window.open('', '_blank');                          // se abre YA (el iPhone bloquea ventanas tras esperar)
-      const { data } = await aTiempo(sb.rpc('telegram_codigo'), 6000, { data: null });
-      if (!data) { if (w) w.close(); avisoApp('No se pudo crear el enlace; intenta de nuevo.'); return; }
-      const url = 'https://t.me/' + encodeURIComponent(bot) + '?start=' + encodeURIComponent(data);
-      if (w) w.location.href = url; else location.href = url;
-      return;
-    }
+    if (t.hasAttribute('data-tg-ligar')) { ligarTelegram(); return; }
     if (t.hasAttribute('data-tg-desligar')) { await aTiempo(sb.rpc('telegram_desligar'), 6000, null); await cargarAlertas(); pintarAvisosTg(); return; }
     if (t.dataset.tgPartido) { alternarAlerta('partido', t.dataset.tgPartido); return; }
     const [tipo, ...v] = t.dataset.tgAl.split('|');

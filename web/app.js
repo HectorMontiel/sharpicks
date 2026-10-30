@@ -1300,16 +1300,19 @@
     const pr = progreso(p, v);
     const nv = nivel(p);
     const ev = estadoVisto(p, v);
-    return '<div class="pick-fila ' + (ev === 'verde' ? 'verde' : ev === 'roja' ? 'roja' : '') + '">' +
-      ((varias || ev === 'verde' || ev === 'roja') ? '<div class="fila"><span class="et nivel ' + nv.c + '">' + nv.i + ' ' + nv.n + '</span>' + estadoPick(p, v) + '</div>' : '') +
-      '<div class="apuesta">' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</div>' +
-      (pr ? '<div class="progreso ' + pr.e + '">' + esc(pr.t) + '</div>' : realDe(p) ? '<div class="progreso ' + p.estado + '">' + esc(realDe(p)) + '</div>' : '') + iaDelPick(p) +
-      '<div class="datos"><div class="dato"><small>Cuota</small><b>' + (p.cuota ? Number(p.cuota).toFixed(2) : '—') + '</b></div>' +
-      '<div class="dato"><small>Probabilidad</small><b>' + pct(p.prob) + '</b></div>' +
-      '<div class="dato"><small>' + (p.tipo === 'error' ? 'Paga de más' : 'Nivel') + '</small><b>' +
-      (p.tipo === 'error' ? '+' + Math.round(100 * (p.ventaja || 0)) + ' %' : grado(p)) + '</b></div></div>' +
-      (p.tipo === 'error' && p.porque ? '<div class="porque">' + esc(p.porque) + ' · riesgo alto: apuesta poco</div>' : '') +
-      (window.SPX ? SPX.extra(p) : '') + '</div>';
+    // v530 — el usuario: «la tarjeta está muy larga… que se muestre muy bien lo que se tiene que mostrar, pero quita
+    // mucho espacio». Dos renglones por pick: nivel + apuesta + estado; y cuota · probabilidad · grado, cómo va y Seguir.
+    const prog = pr ? '<span class="progreso pk-prog ' + pr.e + '">' + esc(pr.t) + '</span>'
+      : realDe(p) ? '<span class="progreso pk-prog ' + p.estado + '">' + esc(realDe(p)) + '</span>' : '';
+    return '<div class="pick-fila compacta ' + (ev === 'verde' ? 'verde' : ev === 'roja' ? 'roja' : '') + '">' +
+      '<div class="pk-top"><span class="et nivel ' + nv.c + '">' + nv.i + ' ' + nv.n + '</span>' +
+      '<div class="apuesta">' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</div>' + estadoPick(p, v) + '</div>' +
+      '<div class="pk-meta"><span class="pk-dato"><small>cuota</small><b>' + (p.cuota ? Number(p.cuota).toFixed(2) : '—') + '</b></span>' +
+      '<span class="pk-dato"><small>prob.</small><b>' + pct(p.prob) + '</b></span>' +
+      '<span class="pk-dato"><small>' + (p.tipo === 'error' ? 'paga de más' : 'nivel') + '</small><b>' +
+      (p.tipo === 'error' ? '+' + Math.round(100 * (p.ventaja || 0)) + ' %' : grado(p)) + '</b></span>' +
+      (window.SPX ? SPX.extra(p) : '') + '</div>' + prog + iaDelPick(p) +
+      (p.tipo === 'error' && p.porque ? '<div class="porque">' + esc(p.porque) + ' · riesgo alto: apuesta poco</div>' : '') + '</div>';
   }
   // ---------- v396: COMBINADAS ----------
   const ICONO_DEP = new Proxy({}, { get: (_, d) => icoDep(d) });   // v455 — íconos en vez de emojis
@@ -1824,12 +1827,14 @@
     const otras = (agrupar(todos.filter((x) => clavePartido(x) === clavePartido(p) && !x.solo_analisis))[0]) || [];
     // v527 — la campana: avisarme por Telegram de ESTE partido (señales del Pulso y sus picks)
     const kAl = clavePartido(p), alOn = window.SPX && (SPX.yo.alertas || []).some((x) => x.tipo === 'partido' && x.valor === kAl);
+    // v530 — el usuario: «el botón de avisarme está muy escondido… ponlo de otro color y que cambie al picarlo»: su
+    // propio renglón bajo el marcador, ámbar; prendido, verde
+    const campana = window.SPX && !(v && v.fase === 'post') ? '<div class="campana-fila"><button class="campana' + (alOn ? ' on' : '') + '" data-tg-partido="' + esc(kAl) + '">' +
+      ico('bell') + '<span>' + (alOn ? 'Te aviso por Telegram' : 'Avisarme por Telegram') + '</span>' + (alOn ? ico('circle-check') : '') + '</button></div>' : '';
     let h = '<button class="cerrar" data-cerrar>✕</button>' +
-      (window.SPX && SPX.yo.user && !(v && v.fase === 'post') ? '<button class="campana' + (alOn ? ' on' : '') + '" data-tg-partido="' + esc(kAl) + '" title="Avisarme por Telegram">' +
-        ico('bell') + '<span>' + (alOn ? 'Te aviso' : 'Avisarme') + '</span></button>' : '') +
       '<div class="equipos grande"><div class="eq">' + escudo(p.logo_h, L, p.deporte) + '<span>' + esc(L) + '</span></div>' +
       '<div class="marc">' + (v && v.fase !== 'pre' ? v.g[0] + ' - ' + v.g[1] : 'vs') + '<small>' + esc(v ? v.detalle : horaCdmx(aFecha(p.inicio))) + '</small></div>' +
-      '<div class="eq der"><span>' + esc(V) + '</span>' + escudo(p.logo_a, V, p.deporte) + '</div></div>';
+      '<div class="eq der"><span>' + esc(V) + '</span>' + escudo(p.logo_a, V, p.deporte) + '</div></div>' + campana;
     h += penalesHtml(v, L, V);           // v503
     h += cancha(v, p);                   // v427/v429 — la cancha en vivo
     h += '<!--PULSO-->';                 // v517 — el Pulso justo debajo de la cancha, a la vista

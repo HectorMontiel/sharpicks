@@ -519,6 +519,61 @@ def armar_personales(picks: List[Dict], destinos: List[Dict], ya: Set[str], ahor
     return out
 
 
+def armar_mis_cosas(picks: List[Dict], ligados: List[Dict], seguidos: List[Dict], combs: List[Dict], ya: Set[str]) -> List[Tuple]:
+    """v530 — el usuario: «si estoy siguiendo un partido, quiero que se mande notificación sobre eso o sobre la
+    combinada que metí». A cada quien que ligó su Telegram: el resultado de los picks que sigue (☆ Seguir) y de sus
+    combinadas, en cuanto se deciden. [(chat, texto, cubre)], un mensaje por persona."""
+    por_id = {p['id']: p for p in picks}
+    chats = {x['usuario']: x['chat'] for x in ligados}
+    out = []
+    for uid, chat in chats.items():
+        lineas, cubre = [], []
+        for s in seguidos:
+            p = por_id.get(s.get('pick'))
+            k = 'dm-seg:%s:%s' % (uid, s.get('pick'))
+            if s.get('usuario') != uid or not p or p.get('estado') not in ('verde', 'roja') or k in ya:
+                continue
+            ok = p['estado'] == 'verde'
+            lineas.append('%s <b>%s</b> · %s %s' % ('✅' if ok else '❌', _e(p.get('apuesta')), _e(p.get('partido')), _e(p.get('marcador') or '')))
+            cubre.append((k, 'dm', 'resultado'))
+        for c in combs:
+            k = 'dm-comb:%s:%s' % (uid, c.get('id'))
+            if c.get('usuario') != uid or c.get('estado') not in ('verde', 'roja') or k in ya:
+                continue
+            ok = c['estado'] == 'verde'
+            lineas.append(('🎉 <b>¡Tu combinada se cumplió!</b> · cuota %.2f%s' % (float(c.get('cuota') or 0),
+                           (' · +%s 🪙' % c['premio']) if c.get('premio') else '')) if ok else
+                          '❌ Tu combinada de cuota %.2f no salió' % float(c.get('cuota') or 0))
+            cubre.append((k, 'dm', 'resultado'))
+        if lineas:
+            n_ok = sum(1 for l in lineas if l.startswith(('✅', '🎉')))
+            t = ('🔔 <b>Lo tuyo</b>%s\n\n' % (' 🔥' if n_ok == len(lineas) else '') + '\n'.join(lineas) + '\n\n👉 ' + SITIO)
+            out.append((chat, t, cubre))
+    return out
+
+
+def mis_cosas() -> Optional[Tuple[List[Dict], List[Dict], List[Dict], Set[str]]]:
+    """(ligados, seguidos, combinadas de usuario, lo ya avisado), con la llave de servicio."""
+    url, key = os.environ.get('SUPABASE_URL'), os.environ.get('SUPABASE_SERVICE_KEY')
+    if not url or not key:
+        return None
+    import requests
+    b, h = url.rstrip('/') + '/rest/v1/', {'apikey': key, 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json'}
+    r = requests.post(b + 'rpc/telegram_ligados', headers=h, json={}, timeout=30)
+    if not r.ok or not r.json():
+        return None
+    ligados = r.json()
+    ids = ','.join(x['usuario'] for x in ligados)
+    desde = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=3)).isoformat()
+    seg = requests.get(b + 'seguidos', headers=h, timeout=30, params={'select': 'usuario,pick', 'usuario': 'in.(%s)' % ids, 'limit': 5000})
+    com = requests.get(b + 'combinadas_usuario', headers=h, timeout=30,
+                       params={'select': 'id,usuario,cuota,estado,premio', 'usuario': 'in.(%s)' % ids, 'estado': 'in.(verde,roja)',
+                               'creado': 'gte.' + desde, 'limit': 5000})
+    e = requests.get(b + 'telegram_enviados', headers=h, timeout=30,
+                     params={'select': 'pick', 'canal': 'eq.dm', 'tipo': 'eq.resultado', 'enviado': 'gte.' + desde, 'limit': 20000})
+    return ligados, (seg.json() if seg.ok else []), (com.json() if com.ok else []), {x['pick'] for x in (e.json() if e.ok else [])}
+
+
 def destinos_alertas() -> Optional[Tuple[List[Dict], Set[str]]]:
     """(quién quiere qué, lo ya mandado por mensaje directo), con la llave de servicio."""
     url, key = os.environ.get('SUPABASE_URL'), os.environ.get('SUPABASE_SERVICE_KEY')
@@ -611,6 +666,12 @@ def main() -> int:
         dd = destinos_alertas() if not seco else None
         if dd:
             for chat, texto, cubre in armar_personales(picks, dd[0], dd[1], dt.datetime.now(dt.timezone.utc)):
+                if enviar_a(str(chat), texto):
+                    apuntar(cubre)
+                    personales += 1
+        mc = mis_cosas() if not seco else None                 # v530 — sus picks seguidos y sus combinadas
+        if mc:
+            for chat, texto, cubre in armar_mis_cosas(picks, *mc):
                 if enviar_a(str(chat), texto):
                     apuntar(cubre)
                     personales += 1

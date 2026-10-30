@@ -49,6 +49,20 @@ def probar():
     check(tc.clave_partido(picks[2]) == 'Fútbol|américa / tijuana|2026-10-30', 'v527: la clave del partido es la de la página')
     ya = {c for _, _, cubre in tc.armar_personales(picks, destinos, set(), ahora) for c, _, _ in cubre}
     check(not tc.armar_personales(picks, destinos, ya, ahora), 'v527: lo ya mandado no se repite')
+    # v530 — lo tuyo: el resultado de los picks que sigues y de tus combinadas
+    ps = [dict(picks[0], estado='verde', marcador='2-1'), dict(picks[1], estado='pendiente')]
+    lig = [{'usuario': 'u1', 'chat': 9}, {'usuario': 'u2', 'chat': 8}]
+    seg = [{'usuario': 'u1', 'pick': 'p1'}, {'usuario': 'u1', 'pick': 'p2'}, {'usuario': 'u2', 'pick': 'p2'}]
+    com = [{'id': 'c1', 'usuario': 'u2', 'cuota': 1.5, 'estado': 'verde', 'premio': 30}]
+    mc = {c: t for c, t, _ in tc.armar_mis_cosas(ps, lig, seg, com, set())}
+    check(set(mc) == {9, 8} and 'Gana Lakers' in mc[9] and 'Gana Yankees' not in mc[9] and 'combinada se cumplió' in mc[8] and '+30' in mc[8],
+          'v530: a cada quien el resultado de SUS picks seguidos (sólo los ya decididos) y de SUS combinadas')
+    ya2 = {k for _, _, cb in tc.armar_mis_cosas(ps, lig, seg, com, set()) for k, _, _ in cb}
+    check(not tc.armar_mis_cosas(ps, lig, seg, com, ya2), 'v530: lo ya avisado no se repite')
+    check("ventanaApp({ tipo: 'pregunta', titulo: 'Conecta tu Telegram'" in leer('web', 'cuenta.js') and 'alertaPendiente' in leer('web', 'cuenta.js'),
+          'v530: sin Telegram, la campana ofrece conectarlo ahí mismo y el partido queda seguido al volver')
+    check('class="campana-fila"' in leer('web', 'app.js') and 'pick-fila compacta' in leer('web', 'app.js'),
+          'v530: la campana en su renglón (ámbar / verde) y cada pick en dos renglones')
     sq = leer('supabase', 'v527_alertas_telegram.sql')
     check('revoke all on public.telegram_usuarios from anon, authenticated' in sq and "interval '15 minutes'" in sq
           and 'grant execute on function public.alertas_destinos() to service_role' in sq,

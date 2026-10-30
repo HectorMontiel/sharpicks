@@ -293,7 +293,7 @@ def probar_v434():
     check("sb.from('calibracion_picks').select('*').order('orden')" in cu and 'async function calibracionPicks()' in cu and 'id="calibracion"' in leer('web', 'index.html')
           and 'create or replace view public.calibracion_picks' in leer('supabase', 'v453_calibracion.sql'),
           'v453: «Lo que dijimos vs lo que salió» en el historial (público, rojas incluidas)')
-    check('function realDe(p)' in app and "realDe(p) ? '<div class=\"progreso ' + p.estado" in app and 'Ganaste <b>+' in cu,
+    check('function realDe(p)' in app and "realDe(p) ? '<span class=\"progreso pk-prog ' + p.estado" in app and 'Ganaste <b>+' in cu,
           'v453: cada pick terminado dice su dato real (marcador y goles/puntos contra la línea)')
     sprite = leer('web', 'iconos.svg')
     check('<symbol id="i-gem"' in sprite and '<symbol id="i-award"' in sprite and '<symbol id="i-ball-football"' in sprite
