@@ -1,6 +1,6 @@
 # Clasificación de activos
 
-- **Estado:** OBSERVADO en árbol público y metadatos de release; decisión de traslado recomendada, no ejecutada.
+- **Estado:** OBSERVADO en árbol Git y metadatos de release; etiquetas por ruta implementadas como candidatas, decisión manual pendiente y ningún traslado ejecutado.
 - **Fecha/SHA:** 2026-10-30 / `228c86a7fb03ed555465e56971170565f3029d9b`.
 - **Criterio:** clasificar por confidencialidad, sensibilidad, procedencia, posibilidad de regeneración y dependencias. El nombre o la extensión no prueba propiedad intelectual ni datos personales.
 
@@ -19,6 +19,7 @@
 | Supabase SQL/Edge Functions | 52 archivos SQL y 10 funciones en el árbol | Código de integración y reglas de negocio; mixto | Contratos/adaptadores públicos o implementación privada según lógica | No prueba esquema/despliegue actual |
 | Backup en Actions | Workflow genera ciphertext/HMAC con retención declarada de 30 días | Sensible/privado; generado | Destino privado independiente, retention policy y restore probado | No se inspeccionó artifact real ni se restauró |
 | Release `modelos-latest` | 73 assets; 735,067,828 bytes combinados según GitHub API | Modelo/dataset; probable privado | Registry o release privada del core | Assets no descargados; sus nombres y contents requieren inventario |
+| Inventario por cada blob rastreado | [`asset_inventory.json`](asset_inventory.json), generado de metadatos del árbol Git; incluye path, modo, OID Git y tamaño | Candidatos heurísticos solapados; todos marcados `review_required` | Debe decidirse archivo por archivo con revisión de contenido, consumidores, lineage y propietario | No lee contenido; no incluye historial Git, untracked/ignored ni assets de releases |
 | Secrets | Workflows referencian nombres de secrets de servicios | Secreto | GitHub Environments/Core según mínimo privilegio | No se leyeron valores; exposición real no comprobada |
 | Documentación y workflows | Reglas y operación visibles en repo público | Pública, salvo valores/estrategias sensibles | Mantener documentos generales y quitar ejemplos confidenciales | Revisar contenido antes de separar |
 
@@ -29,5 +30,17 @@
 3. Migrar a destino privado y verificar conteos, hashes, carga/lectura y un restore aislado.
 4. Adaptar consumidores y comparar salida en modo sombra.
 5. Retirar del árbol público sólo después de demostrar que el flujo nuevo funciona; evaluar historia, forks, release assets, cachés y artifacts como superficies independientes.
+
+## Inventario reproducible por ruta
+
+`tools/asset_inventory.py` usa `git ls-tree` sobre un revision seleccionado, por lo que cubre blobs rastreados aun si no están presentes en un sparse checkout. No abre ni ejecuta los archivos. Las etiquetas `private_candidate`, `public_candidate`, `historical`, `generated`, `sensitive` y `shareable_contract_candidate` son señales de revisión, pueden solaparse y no equivalen a una decisión sobre propiedad o destino. Cada registro conserva `review_required` hasta una evaluación humana.
+
+Para regenerar el inventario del HEAD actual:
+
+```powershell
+python tools/asset_inventory.py --output docs/auditoria/asset_inventory.json
+```
+
+El reporte generado se debe actualizar en un commit posterior al código que lo genera para que `revision` identifique el árbol analizado. La lista no cubre Git history, artifacts, assets de release, ni archivos ignorados/no rastreados; éstos requieren inventarios separados. El OID informado es el identificador Git del blob, no un checksum SHA-256 de distribución.
 
 No se deben borrar ni sobrescribir activos con base sólo en esta tabla.

@@ -19,6 +19,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 13. [Auditoría Supabase](auditoria/05_AUDITORIA_SUPABASE.md): evidencia local y pruebas staging pendientes.
 14. [Estrategia de testing](calidad/01_ESTRATEGIA_DE_TESTING.md) y [matriz de regresión](calidad/02_MATRIZ_REGRESION.md).
 15. [Grafo AST completo y datos por módulo](auditoria/python_dependency_graph.json), generado por [`tools/python_dependency_graph.py`](../tools/python_dependency_graph.py); registra imports locales, ciclos candidatos, entrypoints, llamadas dinámicas, referencias de archivos y variables de entorno.
+16. [Inventario por ruta de los blobs rastreados](auditoria/asset_inventory.json), generado por [`tools/asset_inventory.py`](../tools/asset_inventory.py) desde metadatos Git; todas las clasificaciones son candidatas y requieren revisión.
 
 ## Estado actual
 
