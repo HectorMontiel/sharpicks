@@ -23,6 +23,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 17. [Snapshot de metadata del release público de modelos](auditoria/release_modelos_latest.json), sin descargas; verifica nombres, tamaños y digests de los 73 assets.
 18. [Distribución del core](arquitectura/03_ESTRATEGIA_DISTRIBUCION_CORE.md): alternativa de paquete privado y gates implementados para rechazar publicación pública/no verificada.
 19. [ADR-0001 de distribución del core](decisiones/ADR-0001-distribucion-core-privado.md): checkout privado fijado a SHA como propuesta; integración y aceptación pendientes.
+20. [Runbook de restauración de backups](runbooks/restore_backup_artifact.md): autentica el artifact existente y lo extrae con seguridad a un directorio local nuevo; restauración Supabase real aún pendiente.
 
 ## Estado actual
 
@@ -34,7 +35,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 - Producción/Supabase: sin cambios ejecutados por esta documentación.
 - Acciones de GitHub: fijadas por SHA en `bae8759973b2ef8f3d5c5c4ea38e2025a0caca46`; los checks `instalar`, `tests` y `validar` aprobaron sobre ese SHA.
 - Contrato de ejecución v1: implementado con 12 pruebas unitarias locales; el CI histórico del SHA `c162c75` pasó. DTO de exportación web v1 añadido en `sharpicks_contracts/web_v1.py`, aplicado a `hoy.json`/`analisis.json` con allowlists y tres pruebas específicas.
-- Validación de rama: 52 pruebas unitarias y regresores seleccionados pasan localmente; los tres workflows `instalar`, `tests` y `validar` aprobaron para el head de código `048143c`.
+- Validación de rama: 56 pruebas unittest descubiertas: 55 pasan y 1 integración OpenSSL se omite en esta estación; regresores seleccionados pasan. Los tres workflows aprobaron para `c3141d5`, incluido el round-trip OpenSSL sintético del restaurador.
 - Redacción de logs: errores HTTP de exportador y backup no incorporan cuerpos de respuesta; 9 casos canario/unitarios asociados pasan.
 - Grafo recursivo: generado para 773 archivos Python desde `4c1223a635ed628798e547645209cba67582f65b`; batería local del analizador/contratos pasa.
 - Inventario por ruta: 1,880 blobs rastreados (660,235,222 bytes) desde el tree `cb6c3e434390101ee204addc11b68e2251f99e13`; las etiquetas son heurísticas y requieren revisión humana, sin lectura de contenido.
@@ -43,6 +44,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 - Descarga de modelos: verifica SHA-256 contra metadata API y valida tipos/rutas del tar antes de extraer; 9 pruebas con fixtures locales, sin descargar modelos reales. Para `sharpicks-core` exige `CORE_MODELS_READ_TOKEN` y no envía el token de Actions del repo público. CI sigue en cola.
 - Lectura del core: ningún workflow productivo fue apuntado al repo privado porque aún no se ha verificado. La readiness de corte queda deliberadamente sin habilitar.
 - Supabase: preparada consulta de catálogo read-only para staging y tres guardas estáticas; no hay CLI/`psql` ni conexión al proyecto aquí, por lo que la sintaxis/resultados no se declaran validados contra la instancia.
+- Restore de backup: `tools/restore_backup_artifact.py` comprueba HMAC antes de descifrar el formato existente y extrae sólo archivos regulares bajo `respaldo/`; restauración DB real sigue pendiente.
 - Secretos: `tools/secret_scan.py` es una detección heurística que no muestra valores; en el primer scan alcanzó 1,040 archivos hidratados del checkout sparse y sólo reportó dos fixtures sintéticos. No cubre el historial completo, binarios, releases ni artifacts y no reemplaza Gitleaks/TruffleHog. GitHub Secret Scanning se habilitó para el repo público; la API de alertas no devolvió alertas, pero no se confirmó el backfill histórico.
 - ADR de distribución: registrada como propuesta (no operativa) la descarga del paquete privado por SHA en un job protegido; falta validar paquete y consumidores.
 

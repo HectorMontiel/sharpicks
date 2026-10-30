@@ -40,6 +40,13 @@
 - **CI:** para `2f43a94`, los tres workflows terminaron `success`. En `71e0141`, `validar` e instalación limpia fueron `success`; tests seguros quedó cancelado al entrar el siguiente commit. Para los SHA `2d73980` y `048143c`, los tres workflows terminaron `success`.
 - **Compatibilidad y límites:** se mantiene `picks`/`analisis` y se agrega `contract_version`; no se ha comprobado el sitio publicado/Cloudflare. Las tablas de Supabase y otros productos no pasan por este DTO.
 
+
+## Actualización: recuperación de artifacts cifrados
+
+- **Implementado localmente:** `tools/restore_backup_artifact.py` verifica el sidecar HMAC antes de iniciar OpenSSL, descifra el formato actual sin escribir un tar plano temporal, extrae sólo archivos regulares bajo `respaldo/` a un directorio nuevo y preserva el artifact fuente.
+- **Pruebas locales:** la suite ahora descubre 56 tests; 55 pasan y el test de cifrado/descifrado OpenSSL se omite porque OpenSSL no está instalado localmente. Los tests de HMAC incorrecto, traversal y symlink pasan. No se usó un artifact real ni hubo conexión Supabase.
+- **Validación externa:** CI de `c3141d5` aprobó los tres workflows; su runner Ubuntu ejecutó el round-trip OpenSSL con datos sintéticos. La restauración de un artifact real y una base aislada requiere staging y credenciales administradas fuera de esta tarea.
+- **Runbook:** [`runbooks/restore_backup_artifact.md`](../runbooks/restore_backup_artifact.md) describe la extracción local y sus límites.
 ## Metodología
 
 1. Se verificaron rama, commit y árbol con Git; el checkout usa clonación superficial y parcial (`blob:none`) porque el árbol tiene más de 650 MB. Se materializaron los fuentes Python, documentación, workflows, pruebas y SQL necesarios para inspección local. El inventario de conteos y tamaños proviene de la API GitHub del árbol recursivo del SHA, no de una descarga de todos los blobs.
