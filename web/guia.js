@@ -9,28 +9,98 @@
 // v498 — sale CADA VEZ que se abre la app hasta que se marca esa casilla.
 (function () {
   'use strict';
-  const CLAVE = 'sp_guia_v2';      // v529 — con el Pulso, los avisos por Telegram y el historial por periodo: todos la ven una vez más
+  const CLAVE = 'sp_guia_v3';      // v532 — enseña CÓMO funciona: abre un partido (cancha, Pulso, campana), el morado de la IA y Mi cuenta
   const NUNCA = CLAVE + '_nunca';
   const NOMBRE = { picks: 'Picks', vivo: 'En vivo', combinadas: 'Combinadas', mios: 'Mis picks', historial: 'Historial', planes: 'Planes' };
+  // v532 — el usuario: «agrégale a la guía el morado de la IA… si es gratis, todo censurado pero que se sepa qué se
+  // puede tener sin el VIP… la personalización de Telegram, ver el partido en vivo con la cancha, el Pulso… mostrar
+  // cómo funciona». La guía ABRE un partido (cancha, Pulso, campana) y Mi cuenta; al gratis le enseña el morado con
+  // candado. Sigue breve (14 pasos, una línea cada uno: test_v494).
   const PASOS = [
     { v: 'picks', sel: null, t: 'Bienvenido a SharPicks', d: 'Te enseñamos la app en un minuto. Toca «Siguiente» para avanzar.' },
     { v: 'picks', sel: '#destacados:not([hidden])', t: 'Los mejores del día', d: 'Los 💎 Diamante: nuestros picks más probables. Toca uno para verlo.' },
-    { v: 'picks', sel: '#pestanas', t: 'Elige el día', d: 'Hoy, mañana, pasado o ayer.' },
-    { v: 'picks', sel: '.busca-caja', t: 'Busca tu equipo', d: 'Escribe cualquier equipo y te salen sus partidos de todos los días.' },
-    { v: 'picks', sel: '#tarjetas .partido-fila, #tarjetas .liga-cab', t: 'Abre un partido', d: 'Toca un partido: el pick, sus estadísticas, la tabla y el marcador en vivo.' },
-    { v: 'vivo', sel: '#tarjetas .partido-fila, #nav [data-vista-ir="vivo"]', t: 'En vivo', d: 'Lo que se juega ahora, con su minuto, y si tu pick ya se cumplió.' },
-    { v: 'vivo', sel: '.pulso-cand, #tarjetas .partido-fila, #nav [data-vista-ir="vivo"]', t: '⚡ Pulso en vivo', d: 'En el 2.º tiempo, lo más probable que pase ahora (gol, córners) y lo que salió en el historial.' },
-    { v: 'combinadas', sel: '#armador:not([hidden])', t: 'Arma tu combinada', d: 'Elige los niveles y cuántas patas, y toca «Armar».' },
+    { v: 'picks', sel: '#destacados .dest.ia-2, #destacados .dest.guia-demo', t: '✨ El morado de la IA', d: 'Los que la IA ve con mayor probabilidad brillan en morado: aciertan 91 % (medido).' },
+    { v: 'picks', sel: '.busca-caja', t: 'Busca tu equipo', d: 'Elige el día arriba o escribe cualquier equipo: te salen sus partidos.' },
+    { v: 'vivo', sel: null, t: '⚽ Mira el partido', d: 'La cancha en vivo: tiros, goles, presión y el minuto exacto.' },
+    { v: 'vivo', sel: null, t: '⚡ Pulso en vivo', d: 'En el 2.º tiempo: lo más probable que pase ahora y lo que salió en el historial.' },
+    { v: 'vivo', sel: '.ficha:not([hidden]) .campana, .ficha:not([hidden]) .equipos', t: '🔔 Avísame de este partido', d: 'Toca la campana y te avisamos por Telegram de lo que pase en este partido.' },
+    { v: 'combinadas', sel: '#armador:not([hidden])', t: 'Arma tu combinada', d: 'Niveles y patas (2 a 20), «Armar», y la IA marca en morado las patas más probables.' },
     { v: 'combinadas', sel: '#combinadas-lista .dest, #combinadas-lista', t: 'Combinadas del día', d: 'Cuota y probabilidad de que se cumplan TODAS las patas.' },
     { v: 'mios', sel: '#tarjetas, #aviso, #nav [data-vista-ir="mios"]', t: 'Mis picks', d: 'En cualquier partido toca «☆ Seguir» y aparece aquí, con su resultado.' },
     { v: 'historial', sel: '#historial, #marcadores', t: 'Historial', d: 'Día, semana, mes, año o todo: todas las verdes y las rojas, sin esconder ninguna.' },
+    { v: 'picks', sel: '#micuenta:not([hidden]) #caja-tg, #cuenta', t: '🔔 Avisos por Telegram', d: 'Conecta tu Telegram y elige qué te avisamos: tus deportes, el ⚡ Pulso o tus partidos.' },
     { v: 'planes', sel: '.planes-grid', t: 'Planes', d: 'Gratis, monedas por pick (si sale roja, te las regresamos) o VIP con todo.' },
-    { v: 'picks', sel: '#cuenta', t: '🔔 Avisos por Telegram', d: 'Mi cuenta → «Conectar Telegram»: elige tus deportes, el ⚡ Pulso o un partido (la 🔔).' },
     { v: 'picks', sel: '.ayuda-btn', t: '¿Dudas?', d: 'Aquí está la ayuda con lo que significa cada cosa. Desde ahí repites esta guía.' },
   ];
+  // lo que cambia para quien NO es VIP: se le enseña qué tendría (con candado) y qué sí tiene gratis
+  const D_GRATIS = {
+    '✨ El morado de la IA': '🔒 VIP: la IA ilumina en morado los de mayor probabilidad (91 % medido).',
+    '⚡ Pulso en vivo': 'Gratis: «otro gol» y «2 córners». Con VIP o 🪙 monedas, todo el Pulso al minuto.',
+    'Arma tu combinada': 'Gratis armas con 🥇 Oro. Con VIP, todos los niveles y el morado de la IA en cada pata.',
+    '🔔 Avisos por Telegram': 'Entra y conecta tu Telegram: te avisamos de tus partidos (lo VIP, con candado).',
+  };
+  const esVip = () => !!(window.SPX && SPX.esVip && SPX.esVip());
+  const conCuenta = () => !!(window.SPX && SPX.yo && SPX.yo.user);
+  // abrir lo que el paso enseña (y cerrarlo al salir de él)
+  // la cancha y el Pulso sólo existen con partido en vivo (y el Pulso, en el 2.º tiempo): se enseñan SIEMPRE con una
+  // captura real (Atlético-MG–Cruzeiro, 29-oct), para que se vea igual a cualquier hora. La campana, en un partido real.
+  const IMG = { '⚽ Mira el partido': 'marca/guia-cancha.jpg', '⚡ Pulso en vivo': 'marca/guia-pulso.jpg' };
+  const FICHA = new Set(['🔔 Avísame de este partido']);
+  function abrirFicha() {
+    if (document.querySelector('.ficha:not([hidden]) .cancha')) return Promise.resolve();
+    const est = window.SP && SP.estado; if (!est) return Promise.resolve();
+    const todos = est.picks.concat(est.analisis || []).filter((p) => p.deporte === 'Fútbol' && p.espn);
+    const vivo = (p) => { const v = est.vivo && est.vivo[p.espn]; return v && v.fase === 'in'; };
+    const fin = (p) => { const v = est.vivo && est.vivo[p.espn]; return v && v.fase === 'post'; };
+    const p = todos.find(vivo) || todos.find((x) => !fin(x) && x.estado === 'pendiente') || todos[0];
+    if (!p) return Promise.resolve();
+    const b = document.createElement('button'); b.hidden = true; b.dataset.ficha = p.id;
+    document.body.appendChild(b); b.click(); b.remove();
+    return espera(1500);
+  }
+  function cerrarFicha() { const x = document.querySelector('.ficha:not([hidden]) [data-cerrar]'); if (x) x.click(); }
+  function abrirCuenta() {
+    if (!conCuenta()) return Promise.resolve();
+    const b = document.querySelector('[data-mi-cuenta]'); if (b) b.click();
+    return espera(1800);
+  }
+  function cerrarCuenta() { const m = document.getElementById('micuenta'); if (m && !m.hidden) { const x = m.querySelector('[data-cerrar-cuenta]'); if (x) x.click(); } }
+  // al gratis: el primer destacado con el morado «de muestra» y candado (se quita al seguir)
+  function demoMorado() {
+    if (esVip() || document.querySelector('#destacados .dest.ia-2')) return;
+    const d = document.querySelector('#destacados .dest'); if (!d) return;
+    d.classList.add('ia-2', 'guia-demo');
+    const f = d.querySelector('.fila');
+    if (f && !d.querySelector('.ia-sello')) f.insertAdjacentHTML('afterend', '<span class="ia-sello s2 guia-demo-sello">🔒 IA: mayor probabilidad · VIP</span>');
+  }
+  function quitarDemo() {
+    document.querySelectorAll('.guia-demo').forEach((d) => d.classList.remove('ia-2', 'guia-demo'));
+    document.querySelectorAll('.guia-demo-sello').forEach((x) => x.remove());
+  }
+  let cambioDia = false;
+  function destacadosDeManana() {
+    if (document.querySelector('#destacados:not([hidden]) .dest')) return Promise.resolve();
+    const b = document.querySelector('[data-dia="manana"]'); if (b) { b.click(); cambioDia = true; }
+    return espera(600);
+  }
+  async function preparar(p) {
+    if (!FICHA.has(p.t)) cerrarFicha();
+    if (p.t !== '🔔 Avisos por Telegram') cerrarCuenta();
+    if (p.t !== '✨ El morado de la IA') quitarDemo();
+    if (FICHA.has(p.t)) await abrirFicha();
+    if (p.t === 'Los mejores del día') await destacadosDeManana();      // sin destacados hoy, los de mañana
+    if (p.t === '✨ El morado de la IA') demoMorado();
+    if (p.t === '🔔 Avisos por Telegram') await abrirCuenta();
+  }
+  const texto = (p) => (!esVip() && D_GRATIS[p.t] && !(p.t === '🔔 Avisos por Telegram' && conCuenta()) ? D_GRATIS[p.t] : p.d);
   let i = 0, capa = null, luz = null, caja = null, nunca = false, desde = 'picks';
   const visible = (el) => { if (!el) return false; const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
-  const objetivo = (p) => (p.sel ? [...document.querySelectorAll(p.sel)].find(visible) || null : null);
+  // v532 — con varias opciones, la PRIMERA de la lista que esté a la vista (no la primera de la página): la campana antes que el marcador
+  const objetivo = (p) => {
+    if (!p.sel) return null;
+    for (const s of p.sel.split(/,(?![^(]*\))/)) { const el = [...document.querySelectorAll(s.trim())].find(visible); if (el) return el; }
+    return null;
+  };
   const vista = () => (window.SP && SP.estado && SP.estado.vista) || 'picks';
   const espera = (ms) => new Promise((r) => setTimeout(r, ms));
   function irA(v) {
@@ -47,6 +117,8 @@
     try { localStorage.setItem(CLAVE, hecho ? 'hecha' : 'omitida'); if (nunca) localStorage.setItem(NUNCA, '1'); } catch (e) { /* sin almacenamiento: no pasa nada */ }
     [capa, luz, caja].forEach((x) => x && x.remove());
     capa = luz = caja = null;
+    cerrarFicha(); cerrarCuenta(); quitarDemo();
+    if (cambioDia) { cambioDia = false; const h = document.querySelector('[data-dia="hoy"]'); if (h) h.click(); }
     window.removeEventListener('resize', colocar);
     irA(desde);                       // vuelve a donde estaba (la primera vez, Picks)
     window.scrollTo({ top: 0 });
@@ -86,15 +158,19 @@
       // cada paso en su pantalla; si su parte no está a la vista, se salta
       for (; n < PASOS.length; n++) {
         if (await irA(PASOS[n].v)) { if (!caja) return; }
+        await preparar(PASOS[n]);                                   // v532 — abre lo que el paso enseña
+        if (!caja) return;
         if (!PASOS[n].sel || objetivo(PASOS[n])) break;
       }
       if (n >= PASOS.length) { cerrar(true); return; }
       i = n;
       const p = PASOS[i], el = objetivo(p), ultimo = i === PASOS.length - 1;
-      caja.innerHTML = '<div class="guia-num">' + NOMBRE[p.v] + ' · ' + (i + 1) + ' de ' + PASOS.length + '</div><div class="guia-t">' + p.t + '</div><p class="guia-d">' + p.d + '</p>' +
+      caja.innerHTML = '<div class="guia-num">' + NOMBRE[p.v] + ' · ' + (i + 1) + ' de ' + PASOS.length + '</div><div class="guia-t">' + p.t + '</div><p class="guia-d">' + texto(p) + '</p>' +
+        (IMG[p.t] ? '<img class="guia-img" src="' + IMG[p.t] + '?v=532" alt="Así se ve: ' + p.t + '" loading="eager">' : '') +
         '<label class="guia-nunca"><input type="checkbox"' + (nunca ? ' checked' : '') + '> No volver a mostrar la guía</label>' +
         '<div class="guia-bot"><button type="button" class="guia-omitir">' + (ultimo ? 'Cerrar' : 'Omitir') + '</button>' +
         '<button type="button" class="guia-sig">' + (ultimo ? 'Listo' : 'Siguiente') + '</button></div>';
+      const img = caja.querySelector('.guia-img'); if (img) img.addEventListener('load', colocar);   // se recoloca al cargar
       if (el) el.scrollIntoView({ block: el.getBoundingClientRect().height > window.innerHeight * 0.5 ? 'start' : 'center' });
       requestAnimationFrame(colocar);
     } finally { ocupado = false; }

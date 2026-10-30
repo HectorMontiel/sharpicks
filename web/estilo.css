@@ -1129,3 +1129,5 @@ details.mas > summary::after { content: ' ▾'; }
 details.mas[open] > summary::after { content: ' ▴'; }
 .sn-hist { margin: 6px 0 4px; } .sn-hist .sn-m { max-width: 46vw; overflow: hidden; text-overflow: ellipsis; }
 .ia-morado-h { color: #ddd6fe; } .ia-morado-h small { color: var(--tenue); font-size: 11px; }
+/* v532 — la guía enseña la cancha y el Pulso con una captura real (se ven igual a cualquier hora) */
+.guia-img { display: block; width: 100%; max-height: 42vh; object-fit: contain; border-radius: 12px; margin: 8px 0 4px; border: 1px solid var(--borde); background: #0b1020; }
