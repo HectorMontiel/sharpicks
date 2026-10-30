@@ -27,6 +27,8 @@ import os
 import sys
 from typing import Dict, List, Optional
 
+from sharpicks_contracts.web_v1 import public_analysis, public_export
+
 logger = logging.getLogger('exportar_web')
 SALIDA = os.environ.get('WEB_DATOS', os.path.join('web', 'datos', 'hoy.json'))
 # v381 — el texto real de los picks premium, para el bot del canal VIP. Fuera
@@ -739,12 +741,13 @@ def main() -> int:
     os.makedirs(os.path.dirname(SALIDA), exist_ok=True)
     tmp = SALIDA + '.tmp'
     with open(tmp, 'w', encoding='utf-8') as f:
-        json.dump(r, f, ensure_ascii=False, indent=0)
+        json.dump(public_export(r), f, ensure_ascii=False, indent=0)
     os.replace(tmp, SALIDA)
     # v418 — las tarjetas de «sólo análisis», aparte (la página y la IA las leen)
     try:
         with open(ANALISIS + '.tmp', 'w', encoding='utf-8') as f:
-            json.dump({'generado': r.get('generado'), 'analisis': analisis}, f, ensure_ascii=False, indent=0)
+            json.dump(public_analysis({'generado': r.get('generado'), 'analisis': analisis}),
+                      f, ensure_ascii=False, indent=0)
         os.replace(ANALISIS + '.tmp', ANALISIS)
         print('web: %d tarjetas de sólo análisis' % len(analisis))
     except Exception as e:
