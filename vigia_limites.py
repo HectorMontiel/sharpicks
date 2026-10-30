@@ -72,12 +72,20 @@ def tam_comprimido(ruta: str, busca: str) -> int | None:
     url, key = os.environ.get('SUPABASE_URL', '').rstrip('/'), os.environ.get('SUPABASE_SERVICE_KEY')
     if not url or not key:
         return None
-    req = urllib.request.Request(url + ruta + (busca or ''), headers=dict(UA, **{'apikey': key, 'Authorization': 'Bearer ' + key,
-                                                                                 'Accept-Encoding': 'gzip', 'Accept': 'application/json'}))
+    h = dict(UA, **{'apikey': key, 'Accept-Encoding': 'gzip', 'Accept': 'application/json'})
+    if key.startswith('eyJ'):                       # la llave vieja (JWT) va también como Bearer; la nueva (sb_secret_) sólo como apikey
+        h['Authorization'] = 'Bearer ' + key
     try:
-        return len(urllib.request.urlopen(req, timeout=60).read())   # urllib no descomprime: es el tamaño en el cable
-    except Exception:
+        return len(urllib.request.urlopen(urllib.request.Request(url + ruta + (busca or ''), headers=h), timeout=60).read())   # sin descomprimir: lo del cable
+    except Exception as e:
+        global _ERR_TAM
+        if not _ERR_TAM:
+            _ERR_TAM = '%s %s' % (type(e).__name__, getattr(e, 'code', ''))
+            print('vigia: no se pudo medir %s (%s)' % (ruta, _ERR_TAM))
         return None
+
+
+_ERR_TAM = ''
 
 
 def medir_24h(ahora: dt.datetime, repetir: int = 80) -> dict:
@@ -99,7 +107,7 @@ def medir_24h(ahora: dt.datetime, repetir: int = 80) -> dict:
             por_ruta.setdefault(x['p'], []).append(b)
     # lo no medido NO se estima con el promedio ponderado (lo infla la consulta grande de picks): con la mediana
     tams = sorted(b for _, b in medidos)
-    prom = tams[len(tams) // 2] if tams else 5000
+    prom = tams[len(tams) // 2] if tams else 60000     # sin poder medir nada: un tamaño alto, para no quedarse corto
     cubiertos = sum(n for n, _ in medidos)
     bytes_get = sum(n * b for n, b in medidos)
     resto = max(0, n_get - cubiertos)
