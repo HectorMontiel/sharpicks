@@ -72,7 +72,8 @@ def tam_comprimido(ruta: str, busca: str) -> int | None:
     url, key = os.environ.get('SUPABASE_URL', '').rstrip('/'), os.environ.get('SUPABASE_SERVICE_KEY')
     if not url or not key:
         return None
-    h = dict(UA, **{'apikey': key, 'Accept-Encoding': 'gzip', 'Accept': 'application/json'})
+    # sin «Mozilla» en el agente: Supabase rechaza la llave secreta nueva (sb_secret_) si la petición parece de navegador
+    h = {'User-Agent': 'sharpicks-vigia/1.0', 'apikey': key, 'Accept-Encoding': 'gzip', 'Accept': 'application/json'}
     if key.startswith('eyJ'):                       # la llave vieja (JWT) va también como Bearer; la nueva (sb_secret_) sólo como apikey
         h['Authorization'] = 'Bearer ' + key
     try:
