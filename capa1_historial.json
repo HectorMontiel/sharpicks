@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-30T04:50:16Z",
+"actualizado": "2026-10-30T06:27:27Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -18401,6 +18401,16 @@
 "cuota": 1.56,
 "resultado": "verde",
 "marcador": "0-1"
+},
+{
+"dia": "2026-10-29",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Muhammad A./Zhang S. vs Errani S./Paolini J.",
+"apuesta": "Gana Errani S./Paolini J.",
+"cuota": 1.54,
+"resultado": "verde",
+"marcador": "0-2"
 },
 {
 "dia": "2026-10-29",
