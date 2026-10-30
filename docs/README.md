@@ -39,6 +39,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 - Publicador: en esta rama requiere un destino privado explícito/verificado y no versiona ni retira modelos si falla o no se marca readiness de consumidores. CI del código `bebbe57` está en cola; integración con repo/secret real no probada.
 - Descarga de modelos: verifica SHA-256 contra metadata API y valida tipos/rutas del tar antes de extraer; 9 pruebas con fixtures locales, sin descargar modelos reales. Para `sharpicks-core` exige `CORE_MODELS_READ_TOKEN` y no envía el token de Actions del repo público. CI sigue en cola.
 - Lectura del core: ningún workflow productivo fue apuntado al repo privado porque aún no se ha verificado. La readiness de corte queda deliberadamente sin habilitar.
+- Supabase: preparada consulta de catálogo read-only para staging y tres guardas estáticas; no hay CLI/`psql` ni conexión al proyecto aquí, por lo que la sintaxis/resultados no se declaran validados contra la instancia.
 
 ## Regla
 

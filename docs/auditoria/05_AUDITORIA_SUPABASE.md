@@ -3,6 +3,7 @@
 - **Estado:** OBSERVADO por revisión de archivos; estado remoto y de producción BLOQUEADO por falta de proyecto conectado.
 - **Fecha/SHA:** 2026-10-30 / `228c86a7fb03ed555465e56971170565f3029d9b`.
 - **Alcance:** migraciones SQL y configuración/Edge Functions versionadas. No se ejecutaron migraciones ni se consultó la base de datos.
+- **Revisión adicional:** 2026-10-30 / rama de hardening; se preparó [`supabase/auditoria_catalogo_readonly.sql`](../../supabase/auditoria_catalogo_readonly.sql) para lectura de catálogo en staging. No se ejecutó: este entorno no tiene `psql`, Supabase CLI ni proyecto conectado.
 
 ## Evidencia local
 
@@ -14,6 +15,7 @@
 - Migraciones contienen muchas funciones `SECURITY DEFINER`, varias con `search_path` fijado. Los grants/revokes varían por función; el nombre de la función no basta para decidir si su acceso es indebido. Deben verificarse definición efectiva, propietario, ACL y contexto de identidad.
 - `v508_seguridad.sql` crea `codigos_intentos`, habilita RLS, no define policy para esa tabla y revoca acceso de `anon`/`authenticated`, concediendo acceso a `service_role`. Esto es una decisión explícita en SQL, no evidencia del estado aplicado.
 - `v546_indices_search_path.sql` agrega seis índices y ajusta `search_path` de `public.nivel_pick`; es transaccional. `v547_optimizacion_rls.sql` modifica 11 políticas mediante `ALTER POLICY` envolviendo `auth.uid()` como initplan y sin cambiar deliberadamente los predicados. No fueron ejecutadas ni comparadas en staging.
+- Una búsqueda estática de las migraciones versionadas no encuentra uso de `ltree`, `pgcrypto`, `btree_gist`, `pgp_*` ni creación de operadores propios; sí encuentra `pg_cron` y `pg_net`. Esto limita el riesgo evidenciado por el código versionado, pero no sustituye el catálogo de extensiones desplegado. El changelog oficial publica cambios recientes de PostgreSQL 15/17 que pueden requerir revisar ciertos datos/índices si las extensiones afectadas están instaladas; verificar la versión y extensiones de staging antes de upgrades: [Supabase PostgreSQL 15.19 / 17.11 changelog](https://supabase.com/changelog/postgres-15-19-17-11-breaking-changes).
 
 ## Revisión de hallazgos históricos
 
@@ -43,3 +45,7 @@
 5. Aplicar v546/v547 primero en staging, comparar `EXPLAIN`, latencia, resultados y permisos; preparar rollback SQL antes de cualquier ventana productiva.
 6. Validar webhooks con eventos de prueba del proveedor y repetición de la misma notificación.
 7. Mantener todas las migraciones sin aplicar a producción hasta autorización explícita y evidencia de aceptación.
+
+## Consulta preparada
+
+`supabase/auditoria_catalogo_readonly.sql` devuelve versión/extensions instaladas, tablas y foreign tables públicas con RLS/policies, privilegios de tablas/secuencias para `anon`/`authenticated`, vistas y materialized views con owner/opción `security_invoker`, funciones públicas `SECURITY DEFINER` con sus privilegios efectivos, y triggers públicos. Inicia una transacción `READ ONLY` y termina con `ROLLBACK`; no devuelve filas de negocio ni los cuerpos de funciones. Ejecutar en una sesión autorizada de staging y conservar los resultados como evidencia protegida. La sintaxis y los resultados todavía requieren validación contra la versión del proyecto objetivo.
