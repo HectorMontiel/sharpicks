@@ -23,7 +23,7 @@
 - `RunResult.publishable` sólo es true para `success`; el exportador debe verificarlo antes de publicar.
 - `validate_result(request, result, expected_core_commit)` enlaza `run_id`, manifiesto de entrada y commit del core fijado antes de aceptar una respuesta.
 - `PublicPrediction` es una lista allowlisted. No colocar en ella features internas, razones de scoring, pesos, rutas ni IDs internos.
-- `tests.test_sharpicks_contracts` cubre 11 casos unitarios de aceptación/rechazo; el CI del SHA que los integra todavía está en ejecución.
+- `tests.test_sharpicks_contracts` cubre 12 casos unitarios de aceptación/rechazo; el CI del SHA `f53cd2646c219516293d195a4b6ab72b4fab6c68` todavía está en ejecución.
 
 ## Compatibilidad
 
