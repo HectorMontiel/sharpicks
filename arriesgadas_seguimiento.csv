@@ -1015,23 +1015,20 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-10-29,Gremio vs Athletico-PR,2026-10-30 00:30:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5542,1.714,0.0,0.0
 2026-10-31,Modena vs Mantova,2026-10-31 14:00:00,Goles Mantova: Más de 0.5,goles,equipo,visita,0.5,0.6444,1.455,,
 2026-10-31,Burnley vs Portsmouth,2026-10-31 15:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.584,1.741,,
-2026-10-31,Burnley vs Portsmouth,2026-10-31 15:00:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.5801,1.909,,
 2026-10-31,Burnley vs Portsmouth,2026-10-31 15:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.5623,1.87,,
-2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Goles: Más de 2.5,goles,total,total,2.5,0.5508,1.818,,
-2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.5534,1.647,,
-2026-10-30,Newport County vs Chesterfield,2026-10-30 19:45:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5544,1.69,,
+2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Goles: Más de 2.5,goles,total,total,2.5,0.5508,1.818,1.0,0.0
+2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.5534,1.647,10.0,1.0
+2026-10-30,Newport County vs Chesterfield,2026-10-30 19:45:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5544,1.69,1.0,1.0
 2026-10-30,Konyaspor vs Galatasaray,2026-10-30 17:00:00,Tiros Konyaspor: Más de 10.5,tiros,equipo,local,10.5,0.5782,1.889,9.0,0.0
 2026-10-31,San Jose Earthquakes vs Real Salt Lake,2026-10-31 21:00:00,Tiros a puerta San Jose Earthquakes: Más de 4.5,a_puerta,equipo,local,4.5,0.6447,1.714,,
 2026-10-31,San Jose Earthquakes vs Real Salt Lake,2026-10-31 21:00:00,Tiros Real Salt Lake: Más de 11.5,tiros,equipo,visita,11.5,0.559,1.909,,
 2026-10-31,San Jose Earthquakes vs Real Salt Lake,2026-10-31 21:00:00,Goles San Jose Earthquakes: Más de 1.5,goles,equipo,local,1.5,0.5546,1.741,,
 2026-11-01,Palermo vs Vicenza,2026-11-01 18:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.5795,1.6,,
-2026-10-30,Newport County vs Chesterfield,2026-10-30 19:45:00,Goles Chesterfield: Más de 1.5,goles,equipo,visita,1.5,0.5601,1.75,,
-2026-10-30,Sheffield United vs Wrexham,2026-10-30 20:00:00,Tiros a puerta Sheffield United: Más de 3.5,a_puerta,equipo,local,3.5,0.6399,1.5,,
-2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Tiros Lille: Más de 11.5,tiros,equipo,local,11.5,0.5655,1.538,,
-2026-10-30,Corinthians vs Mirassol,2026-10-30 23:00:00,Tiros Corinthians: Más de 15.5,tiros,equipo,local,15.5,0.562,1.53,,
+2026-10-30,Newport County vs Chesterfield,2026-10-30 19:45:00,Goles Chesterfield: Más de 1.5,goles,equipo,visita,1.5,0.5601,1.75,1.0,0.0
+2026-10-30,Sheffield United vs Wrexham,2026-10-30 20:00:00,Tiros a puerta Sheffield United: Más de 3.5,a_puerta,equipo,local,3.5,0.6399,1.5,4.0,1.0
+2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Tiros Lille: Más de 11.5,tiros,equipo,local,11.5,0.5655,1.538,16.0,1.0
 2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Tiros a puerta Racing Club: Más de 5.5,a_puerta,equipo,local,5.5,0.5653,1.846,,
 2026-10-31,Motherwell vs St Mirren,2026-10-31 15:00:00,Goles Motherwell: Más de 1.5,goles,equipo,local,1.5,0.556,1.667,,
-2026-10-31,Burnley vs Portsmouth,2026-10-31 15:00:00,Tiros: Más de 25.5,tiros,total,total,25.5,0.5532,1.867,,
 2026-10-31,PSV Eindhoven vs Willem II,2026-10-31 17:45:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6105,1.667,,
 2026-10-31,FC Cincinnati vs Philadelphia Union,2026-10-31 18:00:00,Goles Philadelphia Union: Más de 1.5,goles,equipo,visita,1.5,0.5773,1.667,,
 2026-10-31,Troyes vs Le Mans,2026-10-31 19:45:00,Tiros Le Mans: Más de 10.5,tiros,equipo,visita,10.5,0.5647,1.733,,
@@ -1041,8 +1038,8 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-01,Valerenga vs Tromso,2026-11-01 18:15:00,Goles Tromso: Más de 1.5,goles,equipo,visita,1.5,0.5529,1.9,,
 2026-11-01,Marseille vs Toulouse,2026-11-01 19:45:00,Goles Marseille: Más de 1.5,goles,equipo,local,1.5,0.5689,1.667,,
 2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Ambos marcan: Sí,btts,btts,total,1.0,0.552,1.769,,
-2026-10-30,Stenhousemuir vs Livingston,2026-10-30 19:30:00,Goles Stenhousemuir: Más de 0.5,goles,equipo,local,0.5,0.5828,1.5,,
-2026-10-30,Newport County vs Chesterfield,2026-10-30 19:45:00,Goles: Más de 2.5,goles,total,total,2.5,0.5506,1.786,,
+2026-10-30,Stenhousemuir vs Livingston,2026-10-30 19:30:00,Goles Stenhousemuir: Más de 0.5,goles,equipo,local,0.5,0.5828,1.5,0.0,0.0
+2026-10-30,Newport County vs Chesterfield,2026-10-30 19:45:00,Goles: Más de 2.5,goles,total,total,2.5,0.5506,1.786,5.0,1.0
 2026-10-30,Konyaspor vs Galatasaray,2026-10-30 17:00:00,Goles Galatasaray: Más de 1.5,goles,equipo,visita,1.5,0.6421,1.5,4.0,1.0
 2026-10-30,Konyaspor vs Galatasaray,2026-10-30 17:00:00,Goles Konyaspor: Más de 0.5,goles,equipo,local,0.5,0.6397,1.455,0.0,0.0
 2026-10-30,Konyaspor vs Galatasaray,2026-10-30 17:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.6224,1.546,4.0,1.0
@@ -1057,17 +1054,17 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Córners: Más de 8.5,corners,total,total,8.5,0.564,1.455,,
 2026-10-31,PSV Eindhoven vs Willem II,2026-10-31 17:45:00,Tiros a puerta Willem II: Más de 2.5,a_puerta,equipo,visita,2.5,0.5515,1.714,,
 2026-10-31,Sampdoria vs Virtus Entella,2026-10-31 18:30:00,Ambos marcan: No,btts,btts,total,0.0,0.5576,1.8,,
-2026-10-30,Stenhousemuir vs Livingston,2026-10-30 19:30:00,Ambos marcan: No,btts,btts,total,0.0,0.5815,1.95,,
-2026-10-30,Newport County vs Chesterfield,2026-10-30 19:45:00,Goles Newport County: Más de 0.5,goles,equipo,local,0.5,0.6269,1.5,,
-2026-10-30,Sheffield United vs Wrexham,2026-10-30 20:00:00,Tiros Wrexham: Más de 10.5,tiros,equipo,visita,10.5,0.6533,1.53,,
-2026-10-30,Sheffield United vs Wrexham,2026-10-30 20:00:00,Tiros a puerta: Más de 7.5,a_puerta,total,total,7.5,0.6201,1.53,,
-2026-10-30,Sheffield United vs Wrexham,2026-10-30 20:00:00,Tiros: Más de 24.5,tiros,total,total,24.5,0.5713,1.6,,
-2026-10-30,Sheffield United vs Wrexham,2026-10-30 20:00:00,Tiros a puerta Wrexham: Más de 3.5,a_puerta,equipo,visita,3.5,0.5699,1.818,,
-2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Tiros a puerta Lens: Más de 3.5,a_puerta,equipo,visita,3.5,0.6628,1.5,,
-2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Tiros Lens: Más de 11.5,tiros,equipo,visita,11.5,0.6337,1.692,,
-2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Córners: Más de 8.5,corners,total,total,8.5,0.607,1.625,,
-2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Tiros: Más de 24.5,tiros,total,total,24.5,0.563,1.538,,
-2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5608,1.769,,
+2026-10-30,Stenhousemuir vs Livingston,2026-10-30 19:30:00,Ambos marcan: No,btts,btts,total,0.0,0.5815,1.95,0.0,1.0
+2026-10-30,Newport County vs Chesterfield,2026-10-30 19:45:00,Goles Newport County: Más de 0.5,goles,equipo,local,0.5,0.6269,1.5,4.0,1.0
+2026-10-30,Sheffield United vs Wrexham,2026-10-30 20:00:00,Tiros Wrexham: Más de 10.5,tiros,equipo,visita,10.5,0.6533,1.53,9.0,0.0
+2026-10-30,Sheffield United vs Wrexham,2026-10-30 20:00:00,Tiros a puerta: Más de 7.5,a_puerta,total,total,7.5,0.6201,1.53,5.0,0.0
+2026-10-30,Sheffield United vs Wrexham,2026-10-30 20:00:00,Tiros: Más de 24.5,tiros,total,total,24.5,0.5713,1.6,22.0,0.0
+2026-10-30,Sheffield United vs Wrexham,2026-10-30 20:00:00,Tiros a puerta Wrexham: Más de 3.5,a_puerta,equipo,visita,3.5,0.5699,1.818,1.0,0.0
+2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Tiros a puerta Lens: Más de 3.5,a_puerta,equipo,visita,3.5,0.6628,1.5,3.0,0.0
+2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Tiros Lens: Más de 11.5,tiros,equipo,visita,11.5,0.6337,1.692,5.0,0.0
+2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Córners: Más de 8.5,corners,total,total,8.5,0.607,1.625,12.0,1.0
+2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Tiros: Más de 24.5,tiros,total,total,24.5,0.563,1.538,21.0,0.0
+2026-10-30,Lille vs Lens,2026-10-30 20:05:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5608,1.769,0.0,0.0
 2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Tiros: Más de 26.5,tiros,total,total,26.5,0.5842,1.571,,
 2026-10-31,Aston Villa vs Fulham,2026-10-31 20:00:00,Tiros Fulham: Más de 11.5,tiros,equipo,visita,11.5,0.5921,1.733,,
 2026-10-30,Huracan vs Tigre,2026-10-30 22:00:00,Tiros a puerta Huracan: Más de 3.5,a_puerta,equipo,local,3.5,0.6617,1.5,,
@@ -1079,17 +1076,18 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-10-30,Huracan vs Tigre,2026-10-30 22:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5753,1.7,,
 2026-10-30,Huracan vs Tigre,2026-10-30 22:00:00,Ambos marcan: No,btts,btts,total,0.0,0.5608,1.625,,
 2026-10-30,Huracan vs Tigre,2026-10-30 22:00:00,Tiros a puerta Tigre: Más de 3.5,a_puerta,equipo,visita,3.5,0.5561,2.0,,
-2026-10-30,Corinthians vs Mirassol,2026-10-30 23:00:00,Tiros a puerta Mirassol: Más de 2.5,a_puerta,equipo,visita,2.5,0.7136,1.52,,
-2026-10-30,Corinthians vs Mirassol,2026-10-30 23:00:00,Goles Mirassol: Más de 0.5,goles,equipo,visita,0.5,0.6347,1.5,,
-2026-10-30,Corinthians vs Mirassol,2026-10-30 23:00:00,Tiros Mirassol: Más de 9.5,tiros,equipo,visita,9.5,0.6198,1.471,,
-2026-10-30,Corinthians vs Mirassol,2026-10-30 23:00:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.5876,1.636,,
-2026-10-30,Corinthians vs Mirassol,2026-10-30 23:00:00,Córners: Más de 9.5,corners,total,total,9.5,0.583,1.556,,
-2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Córners: Más de 8.5,corners,total,total,8.5,0.6251,1.6,,
-2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Goles Aldosivi: Más de 0.5,goles,equipo,visita,0.5,0.6243,1.667,,
-2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.6073,1.583,,
-2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Tiros Racing Club: Más de 15.5,tiros,equipo,local,15.5,0.6065,1.667,,
-2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Goles Racing Club: Más de 1.5,goles,equipo,local,1.5,0.5878,1.833,,
-2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Goles: Más de 2.5,goles,total,total,2.5,0.5676,2.0,,
+2026-10-30,Corinthians vs Mirassol,2026-10-30 23:00:00,Tiros a puerta Mirassol: Más de 2.5,a_puerta,equipo,visita,2.5,0.7156,1.52,,
+2026-10-30,Corinthians vs Mirassol,2026-10-30 23:00:00,Goles Mirassol: Más de 0.5,goles,equipo,visita,0.5,0.6532,1.5,,
+2026-10-30,Corinthians vs Mirassol,2026-10-30 23:00:00,Tiros Mirassol: Más de 9.5,tiros,equipo,visita,9.5,0.6182,1.471,,
+2026-10-30,Corinthians vs Mirassol,2026-10-30 23:00:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.6158,1.636,,
+2026-10-30,Corinthians vs Mirassol,2026-10-30 23:00:00,Córners: Más de 9.5,corners,total,total,9.5,0.5869,1.556,,
+2026-10-30,Corinthians vs Mirassol,2026-10-30 23:00:00,Tiros Corinthians: Más de 15.5,tiros,equipo,local,15.5,0.5622,1.53,,
+2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Goles Aldosivi: Más de 0.5,goles,equipo,visita,0.5,0.6273,1.6,,
+2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Córners: Más de 8.5,corners,total,total,8.5,0.6259,1.6,,
+2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Tiros Racing Club: Más de 15.5,tiros,equipo,local,15.5,0.5876,1.667,,
+2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.5864,1.583,,
+2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Goles Racing Club: Más de 1.5,goles,equipo,local,1.5,0.585,1.8,,
+2026-10-30,Racing Club vs Aldosivi,2026-10-31 00:15:00,Goles: Más de 2.5,goles,total,total,2.5,0.5671,1.96,,
 2026-10-31,Kashima Antlers vs Cerezo Osaka,2026-10-31 06:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.6115,1.6,,
 2026-10-31,Vissel Kobe vs Nagoya Grampus,2026-10-31 06:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6033,1.625,,
 2026-10-31,Kashima Antlers vs Cerezo Osaka,2026-10-31 06:00:00,Goles Kashima Antlers: Más de 1.5,goles,equipo,local,1.5,0.6002,1.6,,
@@ -1134,21 +1132,24 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-10-31,Schalke 04 vs RB Leipzig,2026-10-31 14:30:00,Tiros: Más de 27.5,tiros,total,total,27.5,0.5587,1.615,,
 2026-10-31,Schalke 04 vs RB Leipzig,2026-10-31 14:30:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5567,1.455,,
 2026-10-31,Schalke 04 vs RB Leipzig,2026-10-31 14:30:00,Goles RB Leipzig: Más de 1.5,goles,equipo,visita,1.5,0.5549,1.546,,
-2026-10-31,Burnley vs Portsmouth,2026-10-31 15:00:00,Tiros Portsmouth: Más de 10.5,tiros,equipo,visita,10.5,0.6808,1.714,,
+2026-10-31,Burnley vs Portsmouth,2026-10-31 15:00:00,Tiros Portsmouth: Más de 9.5,tiros,equipo,visita,9.5,0.762,1.471,,
+2026-10-31,Burnley vs Portsmouth,2026-10-31 15:00:00,Tiros a puerta: Más de 7.5,a_puerta,total,total,7.5,0.67,1.53,,
 2026-10-31,Fredrikstad vs Rosenborg,2026-10-31 15:00:00,Tiros a puerta Fredrikstad: Más de 3.5,a_puerta,equipo,local,3.5,0.6531,1.6,,
 2026-10-31,Fredrikstad vs Rosenborg,2026-10-31 15:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.6493,1.625,,
 2026-10-31,Fredrikstad vs Rosenborg,2026-10-31 15:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6367,1.625,,
 2026-10-31,Fredrikstad vs Rosenborg,2026-10-31 15:00:00,Tiros a puerta Rosenborg: Más de 4.5,a_puerta,equipo,visita,4.5,0.6277,1.667,,
 2026-10-31,Burnley vs Portsmouth,2026-10-31 15:00:00,Tiros a puerta Portsmouth: Más de 3.5,a_puerta,equipo,visita,3.5,0.6243,1.846,,
 2026-10-31,Fredrikstad vs Rosenborg,2026-10-31 15:00:00,Córners: Más de 9.5,corners,total,total,9.5,0.6222,1.5,,
+2026-10-31,Burnley vs Portsmouth,2026-10-31 15:00:00,Tiros: Más de 24.5,tiros,total,total,24.5,0.6071,1.636,,
 2026-10-31,Fredrikstad vs Rosenborg,2026-10-31 15:00:00,Goles Rosenborg: Más de 1.5,goles,equipo,visita,1.5,0.5986,1.7,,
 2026-10-31,Motherwell vs St Mirren,2026-10-31 15:00:00,Córners: Más de 9.5,corners,total,total,9.5,0.5834,1.6,,
 2026-10-31,Motherwell vs St Mirren,2026-10-31 15:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.581,1.571,,
 2026-10-31,Fredrikstad vs Rosenborg,2026-10-31 15:00:00,Tiros Fredrikstad: Más de 12.5,tiros,equipo,local,12.5,0.5808,1.818,,
 2026-10-31,Kilmarnock vs St Johnstone,2026-10-31 15:00:00,Tiros Kilmarnock: Más de 13.5,tiros,equipo,local,13.5,0.5766,1.733,,
+2026-10-31,Burnley vs Portsmouth,2026-10-31 15:00:00,Tiros Burnley: Más de 12.5,tiros,equipo,local,12.5,0.5697,1.546,,
 2026-10-31,Motherwell vs St Mirren,2026-10-31 15:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.5689,1.6,,
 2026-10-31,Motherwell vs St Mirren,2026-10-31 15:00:00,Tiros St Mirren: Más de 11.5,tiros,equipo,visita,11.5,0.5647,1.7,,
-2026-10-31,Motherwell vs St Mirren,2026-10-31 15:00:00,Tiros Motherwell: Más de 15.5,tiros,equipo,local,15.5,0.5625,1.733,,
+2026-10-31,Motherwell vs St Mirren,2026-10-31 15:00:00,Tiros Motherwell: Más de 15.5,tiros,equipo,local,15.5,0.5625,1.75,,
 2026-10-31,Fredrikstad vs Rosenborg,2026-10-31 15:00:00,Tiros: Más de 27.5,tiros,total,total,27.5,0.5621,1.833,,
 2026-10-31,Kilmarnock vs St Johnstone,2026-10-31 15:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5521,1.546,,
 2026-10-31,Eibar vs Almeria,2026-10-31 15:15:00,Córners: Más de 8.5,corners,total,total,8.5,0.6485,1.455,,
@@ -1186,10 +1187,10 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-10-31,Aston Villa vs Fulham,2026-10-31 20:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.5609,1.667,,
 2026-10-31,Aston Villa vs Fulham,2026-10-31 20:00:00,Tiros a puerta Aston Villa: Más de 4.5,a_puerta,equipo,local,4.5,0.5605,1.692,,
 2026-10-31,Barcelona vs Alaves,2026-10-31 20:00:00,Tiros a puerta Barcelona: Más de 8.5,a_puerta,equipo,local,8.5,0.5557,1.778,,
-2026-10-31,San Jose Earthquakes vs Real Salt Lake,2026-10-31 21:00:00,Tiros a puerta Real Salt Lake: Más de 3.5,a_puerta,equipo,visita,3.5,0.7008,1.636,,
-2026-10-31,San Jose Earthquakes vs Real Salt Lake,2026-10-31 21:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.669,1.455,,
-2026-10-31,San Jose Earthquakes vs Real Salt Lake,2026-10-31 21:00:00,Tiros a puerta: Más de 9.5,a_puerta,total,total,9.5,0.5859,1.846,,
-2026-10-31,San Jose Earthquakes vs Real Salt Lake,2026-10-31 21:00:00,Córners: Más de 9.5,corners,total,total,9.5,0.5679,1.455,,
+2026-10-31,San Jose Earthquakes vs Real Salt Lake,2026-10-31 21:00:00,Tiros a puerta Real Salt Lake: Más de 3.5,a_puerta,equipo,visita,3.5,0.7008,1.647,,
+2026-10-31,San Jose Earthquakes vs Real Salt Lake,2026-10-31 21:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.669,1.462,,
+2026-10-31,San Jose Earthquakes vs Real Salt Lake,2026-10-31 21:00:00,Tiros a puerta: Más de 9.5,a_puerta,total,total,9.5,0.5859,1.889,,
+2026-10-31,San Jose Earthquakes vs Real Salt Lake,2026-10-31 21:00:00,Córners: Más de 9.5,corners,total,total,9.5,0.5679,1.476,,
 2026-10-31,Velez Sarsfield vs San Lorenzo,2026-10-31 22:15:00,Goles: Más de 1.5,goles,total,total,1.5,0.6666,1.455,,
 2026-10-31,Velez Sarsfield vs San Lorenzo,2026-10-31 22:15:00,Córners: Más de 8.5,corners,total,total,8.5,0.6077,1.667,,
 2026-10-31,Velez Sarsfield vs San Lorenzo,2026-10-31 22:15:00,Goles San Lorenzo: Más de 0.5,goles,equipo,visita,0.5,0.5939,1.6,,
@@ -1214,6 +1215,7 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.613,1.455,,
 2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Ambos marcan: No,btts,btts,total,0.0,0.6007,1.647,,
 2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Goles: Más de 1.5,goles,total,total,1.5,0.594,1.526,,
+2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Tiros: Más de 24.5,tiros,total,total,24.5,0.5592,1.846,,
 2026-11-01,Lazio vs Cagliari,2026-11-01 14:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.6522,1.556,,
 2026-11-01,Arezzo vs Ascoli,2026-11-01 14:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.6463,1.7,,
 2026-11-01,Lazio vs Cagliari,2026-11-01 14:00:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.6283,1.727,,
