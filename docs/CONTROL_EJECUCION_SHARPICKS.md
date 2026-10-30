@@ -37,7 +37,7 @@ Estados permitidos: PENDIENTE, EN EJECUCIÓN, IMPLEMENTADO, EN VALIDACIÓN, VALI
 | F11-01 | 11 | Medir y optimizar carga/costo tras baseline real | F0-02, workflows | PENDIENTE | Workflows críticos | Duraciones de checks de PR observadas; no equivalen a costos | Datos de facturación no visibles |
 | F12-01 | 12 | Implementar logs/alertas/runbooks y validar privacidad | Arquitectura y servicios | PENDIENTE | Operación y entrypoints | Pendiente |
 | F13-01 | 13 | Mantener manual, ADRs, runbooks y criterios alineados a lo implementado | Todas | EN EJECUCIÓN | `docs/` | Índice/documentación previos existen | Continua |
-| GIT-01 | 23 | Mantener rama autorizada, PR draft, cambios pequeños y evidencia | Trabajo local | EN EJECUCIÓN | Rama y PR #1 | Rama correcta; `c54abc7` publicado; sigue draft; CI remoto previo para `cacf22f` en cola y head nuevo aún no observado | Ninguno para este bloque |
+| GIT-01 | 23 | Mantener rama autorizada, PR draft, cambios pequeños y evidencia | Trabajo local | EN EJECUCIÓN | Rama y PR #1 | Rama correcta; `f638b2d` publicado; sigue draft; los tres workflows asociados a `f638b2d` figuran `queued` en GitHub al corte | Ninguno para este bloque |
 
 ## Distinción de validación
 
