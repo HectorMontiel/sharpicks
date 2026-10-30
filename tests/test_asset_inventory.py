@@ -42,6 +42,8 @@ class AssetInventoryTests(unittest.TestCase):
             (root / "tracked.txt").unlink()
             inventory = build_inventory(root, "HEAD")
             self.assertEqual(inventory["summary"]["tracked_blobs"], 1)
+            self.assertEqual(len(inventory["revision"]), 40)
+            self.assertEqual(inventory["revision_requested"], "HEAD")
             self.assertEqual(inventory["assets"][0]["path"], "tracked.txt")
             self.assertGreater(inventory["assets"][0]["size_bytes"], 0)
 

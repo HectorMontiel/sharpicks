@@ -95,11 +95,21 @@ def _git_tree(root: Path, revision: str) -> list[dict[str, Any]]:
 
 
 def build_inventory(root: Path, revision: str) -> dict[str, Any]:
-    rows = _git_tree(root.resolve(), revision)
+    resolved = subprocess.run(
+        ["git", "rev-parse", "--verify", f"{revision}^{{commit}}"],
+        cwd=root,
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        encoding="ascii",
+    ).stdout.strip()
+    rows = _git_tree(root.resolve(), resolved)
     totals = Counter(candidate for row in rows for candidate in row["classification_candidates"])
     return {
         "schema_version": 1,
-        "revision": revision,
+        "revision": resolved,
+        "revision_requested": revision,
         "method": "Git tree metadata and path heuristics; file contents are not read",
         "scope": "tracked blobs in the selected Git tree; excludes release assets, untracked files, and Git history",
         "summary": {
