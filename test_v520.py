@@ -59,6 +59,10 @@ def probar():
           'v521: el vigilante ya no corre en el PC (ni workflow ni script)')
     check("rpc('guardar_secreto'" not in wfs and 'rpc/guardar_secreto' in leer('.github', 'workflows', 'claves_supabase.yml'),
           'v521: las claves pasan de GitHub a Vault con el workflow «Claves a Supabase»')
+    sw = leer('.github', 'workflows', 'sitio_web.yml')
+    check('git checkout FETCH_HEAD -- "$f"' in sw and 'V=$(git rev-parse --short=7 FETCH_HEAD)' in sw,
+          'v522: el Sitio web publica el código de la página de main de ahora (no pisa un arreglo ya publicado)')
+    check("zona = /[zZ]|[+-]" in ts, 'v522: la nube lee las fechas con zona como la página (web/fechas.js)')
     cu = leer('web', 'cuenta.js')
     check("rpc('pulso_ia_hay'" in cu and "from('pulso_ia')" in cu and "rpc('pulso_senales_tasa')" in cu and "rpc('pulso_senales_ver'" in cu and 'function senalesHtml(p, v, vs, L, V)' in app and 'function iaPulso(p, v)' in app,
           'v520: la página destaca la recomendación y enseña su tasa')

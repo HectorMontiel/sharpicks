@@ -104,8 +104,18 @@ jobs:
       # v413 — los .sql de referencia viven en el repo, no en el sitio público
       # v514 — cada publicación lleva su versión en los .js y .css de index.html: el dominio propio los deja
       # 4 h en el navegador (Browser Cache TTL de Cloudflare) y un arreglo no llegaba hasta entonces
+      # v522 — EL CÓDIGO DE LA PÁGINA, SIEMPRE EL DE MAIN DE AHORA. Esta pasada tarda ~15 min: si mientras tanto se
+      # subió un arreglo de la página (y «Sitio web (rápido)» ya lo había publicado), al terminar esta lo PISABA con
+      # el código de cuando empezó (29-oct: producción volvió a e85d851 después de publicar v522). Los DATOS son los
+      # de esta pasada; el código (.js, .css, .html, íconos y el modelo del Pulso), el último de main.
       - name: Versionar los archivos de la página
-        run: sed -i -E "s#(src|href)=\"([a-z0-9_.-]+\.(js|css))\"#\1=\"\2?v=${GITHUB_SHA::7}\"#g" web/index.html && grep -c "?v=${GITHUB_SHA::7}" web/index.html
+        run: |
+          git fetch --quiet --depth=1 origin main
+          for f in $(git ls-tree --name-only FETCH_HEAD web/ | grep -E '\.(js|css|html|svg)$|^web/pulso_modelo\.json$'); do
+            git checkout FETCH_HEAD -- "$f" || echo "::warning::no se pudo poner al día $f"
+          done
+          V=$(git rev-parse --short=7 FETCH_HEAD)
+          sed -i -E "s#(src|href)=\"([a-z0-9_.-]+\.(js|css))\"#\1=\"\2?v=$V\"#g" web/index.html && grep -c "?v=$V" web/index.html
       - name: Quitar los .sql del sitio publicado
         run: rm -f web/*.sql
       - name: Publicar en Cloudflare Pages (sharpicksapp.com)

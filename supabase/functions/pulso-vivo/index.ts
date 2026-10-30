@@ -80,7 +80,12 @@ function mejor(ms: Dic[]) {
 }
 const lados = (p: Dic) => { const s = String(p.partido || ''), i = s.indexOf(' vs '); return i < 0 ? [s, ''] : [s.slice(0, i), s.slice(i + 4)]; };
 const nombre = (k: string, p: Dic) => { const [L, V] = lados(p); return NOMBRE[k].replace('%L', L).replace('%V', V); };
-const aFecha = (s: any) => { const d = new Date(String(s || '').trim().replace(' ', 'T') + 'Z'); return isNaN(d.getTime()) ? null : d; };
+// como web/fechas.js: «2026-10-29 23:00:00» es UTC; «2026-10-29T23:00:00+00:00» ya trae su zona (v522: antes daba fecha inválida)
+const aFecha = (s: any) => {
+  const t = String(s || '').trim().replace(' ', 'T'), zona = /[zZ]|[+-]\d{2}(?::?\d{2})?$/.test(t.slice(10));
+  const d = new Date(t + (zona ? '' : 'Z'));
+  return isNaN(d.getTime()) ? null : d;
+};
 // el día en CDMX (UTC−6, sin horario de verano desde 2022), como `diaDe` de la página
 const dia = (p: Dic) => { const d = aFecha(p.inicio); return d ? new Date(d.getTime() - 6 * 3600e3).toISOString().slice(0, 10) : String(p.fecha || ''); };
 // la misma clave que `clavePartido` de la página y que pulso_desbloqueos
