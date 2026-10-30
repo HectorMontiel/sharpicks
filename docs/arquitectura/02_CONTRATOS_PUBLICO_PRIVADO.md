@@ -21,6 +21,7 @@
 - La solicitud no contiene rutas del filesystem ni credenciales.
 - Se rechazan claves duplicadas en JSON y valores numéricos no estándar (`NaN`, `Infinity`).
 - `RunResult.publishable` sólo es true para `success`; el exportador debe verificarlo antes de publicar.
+- `validate_result(request, result, expected_core_commit)` enlaza `run_id`, manifiesto de entrada y commit del core fijado antes de aceptar una respuesta.
 - `PublicPrediction` es una lista allowlisted. No colocar en ella features internas, razones de scoring, pesos, rutas ni IDs internos.
 - `tests.test_sharpicks_contracts` cubre 11 casos unitarios de aceptación/rechazo; el CI del SHA que los integra todavía está en ejecución.
 

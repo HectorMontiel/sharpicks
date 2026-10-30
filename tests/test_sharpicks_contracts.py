@@ -13,6 +13,7 @@ from sharpicks_contracts import (
     dump_json,
     load_json,
     verify_artifact,
+    validate_result,
 )
 
 
@@ -141,6 +142,17 @@ class ContractTests(unittest.TestCase):
         invalid = RunRequest(**{**request.__dict__, "contract_version": "2.0.0"})
         with self.assertRaises(ContractError):
             dump_json(invalid)
+
+    def test_result_is_bound_to_request_and_pinned_core(self):
+        request = RunRequest.from_dict(request_payload())
+        commit = "a" * 40
+        result = RunResult.from_dict(result_payload())
+        self.assertEqual(validate_result(request, result, commit), result)
+        wrong_run = RunResult.from_dict({**result_payload(), "run_id": "00000000-0000-4000-8000-000000000002"})
+        with self.assertRaises(ContractError):
+            validate_result(request, wrong_run)
+        with self.assertRaises(ContractError):
+            validate_result(request, result, "b" * 40)
 
     def test_artifact_checksum_and_size_are_verified(self):
         data = b"sample"

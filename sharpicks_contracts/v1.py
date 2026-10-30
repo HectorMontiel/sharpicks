@@ -87,6 +87,8 @@ def _string_tuple(value: Any, name: str, allowed: frozenset[str] | None = None) 
 
 def _json_mapping(value: Any, name: str) -> dict[str, Any]:
     mapping = dict(_require_object(value, name))
+    if any(not isinstance(key, str) for key in mapping):
+        raise ContractError(f"{name} keys must be strings")
     try:
         json.dumps(mapping, allow_nan=False)
     except (TypeError, ValueError) as exc:
@@ -332,6 +334,12 @@ class RunResult:
         predictions = tuple(PublicPrediction.from_dict(item) for item in prediction_raw)
         if status != "success" and predictions:
             raise ContractError("partial/failed results must not contain publishable predictions")
+        input_manifest = tuple(InputArtifact.from_dict(item) for item in input_raw)
+        output_manifest = tuple(InputArtifact.from_dict(item) for item in output_raw)
+        if len({item.name for item in input_manifest}) != len(input_manifest):
+            raise ContractError("input_manifest names must be unique")
+        if len({item.name for item in output_manifest}) != len(output_manifest):
+            raise ContractError("output_manifest names must be unique")
         return cls(
             run_id=_uuid(value["run_id"], "run_id"),
             status=status,
@@ -339,8 +347,8 @@ class RunResult:
             completed_at_utc=completed,
             core_version=version,
             core_commit=commit,
-            input_manifest=tuple(InputArtifact.from_dict(item) for item in input_raw),
-            output_manifest=tuple(InputArtifact.from_dict(item) for item in output_raw),
+            input_manifest=input_manifest,
+            output_manifest=output_manifest,
             public_predictions=predictions,
             warnings=warnings,
             error_code=error_code,
@@ -393,6 +401,26 @@ def dump_json(value: RunRequest | RunResult) -> str:
     # Validate again so direct dataclass construction cannot bypass the contract.
     validated = type(value).from_dict(value.to_dict())
     return json.dumps(validated.to_dict(), ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False)
+
+
+def validate_result(
+    request: RunRequest,
+    result: RunResult,
+    expected_core_commit: str | None = None,
+) -> RunResult:
+    """Bind a result to its request and optionally to the pinned core commit."""
+    request = RunRequest.from_dict(request.to_dict())
+    result = RunResult.from_dict(result.to_dict())
+    if result.run_id != request.run_id:
+        raise ContractError("result run_id does not match request")
+    if result.input_manifest != request.input_manifest:
+        raise ContractError("result input_manifest does not match request")
+    if expected_core_commit is not None:
+        if not _COMMIT.fullmatch(expected_core_commit):
+            raise ContractError("expected_core_commit must be a full lowercase Git SHA")
+        if result.core_commit != expected_core_commit:
+            raise ContractError("result core_commit does not match pinned core commit")
+    return result
 
 
 def verify_artifact(path: str | Path, artifact: InputArtifact, chunk_size: int = 1024 * 1024) -> None:

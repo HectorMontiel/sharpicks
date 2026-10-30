@@ -10,6 +10,7 @@ from .v1 import (
     dump_json,
     load_json,
     verify_artifact,
+    validate_result,
 )
 
 __all__ = [
@@ -22,4 +23,5 @@ __all__ = [
     "dump_json",
     "load_json",
     "verify_artifact",
+    "validate_result",
 ]
