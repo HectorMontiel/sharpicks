@@ -12,7 +12,7 @@ class PublicWebContractTests(unittest.TestCase):
             "internal_feature_vector": {"secret": 1},
             "picks": [{"id": "pick-1", "partido": "Local vs Visita", "apuesta": "Local",
                        "prob": 0.61, "cuota": 1.9, "estado": "pendiente", "vip_hay": True,
-                       "debug_model": "private", "jug": [{"player": "VIP"}],
+                       "girado": None, "debug_model": "private", "jug": [{"player": "VIP"}],
                        "ctx": {"fl": ["G", "P"], "lin": {"casa": "VIP"},
                                "sl": {"n": 10, "gf": 1.2, "private_feature": 999}}}],
         })
@@ -42,6 +42,14 @@ class PublicWebContractTests(unittest.TestCase):
             public_export({"picks": [{"ctx": []}]})
         with self.assertRaises(ContractError):
             public_export({"picks": [{"ctx": {"h2h": [["bad", "shape"]]}}]})
+        with self.assertRaises(ContractError):
+            public_export({"generado": "2026-10-30T12:00:00", "picks": []})
+        with self.assertRaises(ContractError):
+            public_export({"generado": "2026-10-30T12:00:00Z",
+                           "picks": [{"id": "bad-prob", "prob": 1.2}]})
+        with self.assertRaises(ContractError):
+            public_export({"generado": "2026-10-30T12:00:00Z",
+                           "picks": [{"id": "bad-flag", "premium": "false"}]})
 
 
 if __name__ == "__main__":

@@ -8,6 +8,8 @@ and line data is served through the separately protected picks_vip table.
 from __future__ import annotations
 
 from collections.abc import Mapping
+from datetime import datetime, timezone
+import math
 from typing import Any
 
 from .v1 import ContractError
@@ -23,6 +25,26 @@ PUBLIC_PICK_FIELDS = frozenset({
 
 _CONTEXT_FIELDS = frozenset({"fl", "fv", "ul", "uv", "sl", "sv", "h2h", "bl", "bv"})
 _STAT_FIELDS = frozenset({"n", "gf", "gc", "o25", "btts", "tir", "cor", "tap", "tar", "pos"})
+_TEXT_FIELDS = frozenset({
+    "partido", "inicio", "fecha", "deporte", "liga", "apuesta", "porque", "resultado_c1",
+    "marcador", "espn", "logo_h", "logo_a", "tipo", "casa", "id",
+})
+_BOOL_FIELDS = frozenset({"elige", "girado", "premium", "gratis", "vip_hay", "solo_analisis"})
+_NUMBER_FIELDS = frozenset({"cuota", "prob", "ventaja"})
+
+
+def _utc_timestamp(value: Any, name: str, *, optional: bool = False) -> str | None:
+    if value is None and optional:
+        return None
+    if not isinstance(value, str) or not value.strip():
+        raise ContractError(f"{name} must be a non-empty UTC timestamp")
+    try:
+        parsed = datetime.fromisoformat(value[:-1] + "+00:00" if value.endswith("Z") else value)
+    except ValueError as exc:
+        raise ContractError(f"{name} must be an ISO-8601 timestamp") from exc
+    if parsed.tzinfo is None or parsed.utcoffset() != timezone.utc.utcoffset(parsed):
+        raise ContractError(f"{name} must use UTC timezone")
+    return value
 
 
 def _context(value: Any) -> dict[str, Any] | None:
@@ -55,6 +77,21 @@ def public_pick(value: Any) -> dict[str, Any]:
     if not isinstance(value, Mapping):
         raise ContractError("public pick must be an object")
     result = {key: item for key, item in value.items() if key in PUBLIC_PICK_FIELDS and key != "ctx"}
+    for key in _TEXT_FIELDS & result.keys():
+        if result[key] is not None and not isinstance(result[key], str):
+            raise ContractError(f"public pick {key} must be a string or null")
+    for key in _BOOL_FIELDS & result.keys():
+        if key == "girado" and result[key] is None:
+            continue
+        if not isinstance(result[key], bool):
+            raise ContractError(f"public pick {key} must be a boolean")
+    for key in _NUMBER_FIELDS & result.keys():
+        item = result[key]
+        if item is not None and (isinstance(item, bool) or not isinstance(item, (int, float))
+                                 or not math.isfinite(item)):
+            raise ContractError(f"public pick {key} must be a finite number or null")
+        if key == "prob" and item is not None and not 0 <= item <= 1:
+            raise ContractError("public pick prob must be a fraction in [0, 1]")
     if "ctx" in value:
         result["ctx"] = _context(value["ctx"])
     return result
@@ -67,10 +104,12 @@ def public_export(value: Any) -> dict[str, Any]:
     picks = value.get("picks")
     if not isinstance(picks, list):
         raise ContractError("public export picks must be an array")
+    generado = _utc_timestamp(value.get("generado"), "public export generado")
+    precalculo = _utc_timestamp(value.get("precalculo"), "public export precalculo", optional=True)
     return {
         "contract_version": WEB_EXPORT_VERSION,
-        "generado": value.get("generado"),
-        "precalculo": value.get("precalculo"),
+        "generado": generado,
+        "precalculo": precalculo,
         "picks": [public_pick(pick) for pick in picks],
     }
 
@@ -84,6 +123,6 @@ def public_analysis(value: Any) -> dict[str, Any]:
         raise ContractError("public analysis rows must be an array")
     return {
         "contract_version": WEB_EXPORT_VERSION,
-        "generado": value.get("generado"),
+        "generado": _utc_timestamp(value.get("generado"), "public analysis generado"),
         "analisis": [public_pick(row) for row in rows],
     }
