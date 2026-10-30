@@ -415,26 +415,26 @@
   },
   "Scunthorpe United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sumsel United",
-    "ratio": 0.6667,
+    "candidato": "Richmond United W",
+    "ratio": 0.5625,
     "visto": "2026-10-30"
   },
   "Hartlepool United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sumsel United",
-    "ratio": 0.6,
+    "candidato": "Richmond United W",
+    "ratio": 0.5625,
     "visto": "2026-10-30"
   },
   "Southend United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sumsel United",
-    "ratio": 0.7143,
+    "candidato": "Richmond United W",
+    "ratio": 0.6667,
     "visto": "2026-10-30"
   },
   "Sutton United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sumsel United",
-    "ratio": 0.6923,
+    "candidato": "Richmond United W",
+    "ratio": 0.6429,
     "visto": "2026-10-30"
   },
   "Helmond Sport": {
@@ -547,8 +547,8 @@
   },
   "Minnesota United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sumsel United",
-    "ratio": 0.6207,
+    "candidato": "Richmond United W",
+    "ratio": 0.5806,
     "visto": "2026-10-30"
   },
   "New England Revolution": {
@@ -1183,9 +1183,9 @@
   },
   "Dynamo Makhachkala": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dynamo Abomey",
-    "ratio": 0.5161,
-    "visto": "2026-10-25"
+    "candidato": "Dynamo Moscow U19",
+    "ratio": 0.5143,
+    "visto": "2026-10-30"
   },
   "1. FC Union Berlin": {
     "contexto": "cuotas_mx→futbol",
@@ -1309,8 +1309,8 @@
   },
   "Dundee United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sumsel United",
-    "ratio": 0.6923,
+    "candidato": "Richmond United W",
+    "ratio": 0.6429,
     "visto": "2026-10-30"
   },
   "Sheffield United": {
@@ -1339,8 +1339,8 @@
   },
   "Aston Villa": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Villa Dalmine",
-    "ratio": 0.4167,
+    "candidato": "Villa Mitre",
+    "ratio": 0.4545,
     "visto": "2026-10-30"
   },
   "Charlton Athletic": {
@@ -1621,8 +1621,8 @@
   },
   "JEF United Ichihara-Chiba": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sumsel United",
-    "ratio": 0.4211,
+    "candidato": "Richmond United W",
+    "ratio": 0.35,
     "visto": "2026-10-30"
   },
   "Sporting Cristal": {
@@ -1705,15 +1705,15 @@
   },
   "Lokomotiv Moscow": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dynamo Moscow U19",
-    "ratio": 0.5455,
-    "visto": "2026-10-23"
+    "candidato": "CSKA Moscow W",
+    "ratio": 0.5926,
+    "visto": "2026-10-30"
   },
   "Spartak Moscow": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "CSKA Moscow",
+    "candidato": "CSKA Moscow W",
     "ratio": 0.72,
-    "visto": "2026-10-29"
+    "visto": "2026-10-30"
   },
   "CSKA Moscow": {
     "contexto": "cuotas_mx→futbol",
@@ -2119,14 +2119,14 @@
   },
   "Sekhukhune United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sumsel United",
-    "ratio": 0.6,
+    "candidato": "Richmond United W",
+    "ratio": 0.5625,
     "visto": "2026-10-30"
   },
   "Kruger United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sumsel United",
-    "ratio": 0.6923,
+    "candidato": "Richmond United W",
+    "ratio": 0.5714,
     "visto": "2026-10-30"
   },
   "Central Coast Mariners": {
@@ -2197,9 +2197,9 @@
   },
   "Rodina Moscow": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "CSKA Moscow",
+    "candidato": "Dynamo Moscow U19",
     "ratio": 0.6667,
-    "visto": "2026-10-29"
+    "visto": "2026-10-30"
   },
   "Juan Pablo II": {
     "contexto": "cuotas_mx→futbol",
