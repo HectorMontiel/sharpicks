@@ -46,6 +46,22 @@ class RemoteModelIntegrityTests(unittest.TestCase):
         finally:
             models._TOKEN.clear()
 
+    def test_separate_core_repo_never_uses_or_requests_public_repo_token(self):
+        models._TOKEN.clear()
+        original_repo = models.REPO
+        try:
+            models.REPO = "HectorMontiel/sharpicks-core"
+            with patch.dict(os.environ, {
+                "CORE_MODELS_READ_TOKEN": "",
+                "GH_TOKEN": "public-workflow-token",
+                "GITHUB_TOKEN": "public-repository-token",
+            }, clear=False), patch("subprocess.run") as run:
+                self.assertEqual(models._token(), "")
+                run.assert_not_called()
+        finally:
+            models.REPO = original_repo
+            models._TOKEN.clear()
+
     def test_sha256_digest_is_strict_and_checked(self):
         with tempfile.NamedTemporaryFile(delete=False) as f:
             f.write(b"asset")

@@ -120,18 +120,21 @@ _TOKEN: dict = {}
 
 
 def _token() -> str:
-    """v510 — el repo es PRIVADO: el asset sólo se baja con token. En los workflows, `GH_TOKEN` (el token de
-    la corrida); en local, el de `gh auth token`. Sin token se intenta la URL pública (repo público o fork)."""
+    """Use a dedicated read token for model repos outside the public orchestrator."""
     if 't' not in _TOKEN:
-        t = (os.environ.get('CORE_MODELS_READ_TOKEN') or os.environ.get('GH_TOKEN')
-             or os.environ.get('GITHUB_TOKEN') or '')
+        t = os.environ.get('CORE_MODELS_READ_TOKEN') or ''
+        # Never send the public orchestrator's workflow token to a separate
+        # repository. A missing narrowly scoped core token must fail closed.
+        if not t and REPO == 'HectorMontiel/sharpicks':
+            t = os.environ.get('GH_TOKEN') or os.environ.get('GITHUB_TOKEN') or ''
         if not t:
-            try:
-                import subprocess
-                t = subprocess.run(['gh', 'auth', 'token'], capture_output=True, text=True,
-                                   timeout=10).stdout.strip()
-            except Exception:
-                t = ''
+            if REPO == 'HectorMontiel/sharpicks':
+                try:
+                    import subprocess
+                    t = subprocess.run(['gh', 'auth', 'token'], capture_output=True, text=True,
+                                       timeout=10).stdout.strip()
+                except Exception:
+                    t = ''
         _TOKEN['t'] = t
     return _TOKEN['t']
 

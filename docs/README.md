@@ -37,7 +37,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 - Inventario por ruta: 1,880 blobs rastreados (660,235,222 bytes) desde el tree `cb6c3e434390101ee204addc11b68e2251f99e13`; las etiquetas son heurísticas y requieren revisión humana, sin lectura de contenido.
 - Release pública: snapshot de `modelos-latest` confirma 72 archivos de modelos `.tar.gz` y un manifiesto JSON (735,067,828 bytes); se registra exposición P1 y se preservan los assets mientras no exista una migración validada.
 - Publicador: en esta rama requiere un destino privado explícito/verificado y no versiona ni retira modelos si falla o no se marca readiness de consumidores. CI del código `bebbe57` está en cola; integración con repo/secret real no probada.
-- Descarga de modelos: verifica SHA-256 contra metadata API y valida tipos/rutas del tar antes de extraer; 8 pruebas con fixtures locales, sin descargar modelos reales. CI del código `3ab63fe` sigue pendiente.
+- Descarga de modelos: verifica SHA-256 contra metadata API y valida tipos/rutas del tar antes de extraer; 9 pruebas con fixtures locales, sin descargar modelos reales. Para `sharpicks-core` exige `CORE_MODELS_READ_TOKEN` y no envía el token de Actions del repo público. CI sigue en cola.
 - Lectura del core: ningún workflow productivo fue apuntado al repo privado porque aún no se ha verificado. La readiness de corte queda deliberadamente sin habilitar.
 
 ## Regla

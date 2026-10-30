@@ -1,6 +1,6 @@
 # Control de ejecución de SharPicks
 
-- **Corte:** 2026-10-30, base auditada `228c86a7fb03ed555465e56971170565f3029d9b`; snapshot de inventario Git desde `cb6c3e434390101ee204addc11b68e2251f99e13`; release revisado a 2026-10-30; último head de código `3ab63fe`.
+- **Corte:** 2026-10-30, base auditada `228c86a7fb03ed555465e56971170565f3029d9b`; snapshot de inventario Git desde `cb6c3e434390101ee204addc11b68e2251f99e13`; release revisado a 2026-10-30; head publicado al inicio de este bloque `cacf22f`.
 - **Rama:** `hardening/free-audit-2026-10`.
 - **PR:** #1, abierto y draft.
 - **Regla de progreso:** no se calcula porcentaje hasta definir y cerrar un conjunto finito de criterios verificables; el inventario inicial contiene trabajo aún no dimensionado.
@@ -26,18 +26,18 @@ Estados permitidos: PENDIENTE, EN EJECUCIÓN, IMPLEMENTADO, EN VALIDACIÓN, VALI
 | F4-03 | 4 | Implementar integración real con core privado | Repositorio/contrato disponibles | BLOQUEADO | Workflows y adaptadores | No se observó `sharpicks-core` ni acceso a él | La API no resuelve el repo; no pedir tokens por chat |
 | F5-01 | 5 | Extraer componente propietario incremental con caracterización y rollback | F4-03, F6-01 | BLOQUEADO | Código core y consumidores | No se movió código en esta fase | Repositorio core no disponible y baseline de regresión incompleta |
 | F6-01 | 6 | Versionar modelos/datasets, checksums, manifiestos y recuperación privada | F4-03 | BLOQUEADO | Modelos, datos, release | Inventario visible; no se migraron activos | Repositorio/almacenamiento privado no disponible |
-| F6-02 | 6 | Validar digest GitHub de modelos y rechazar tar inseguro antes de extraer | Ninguna | IMPLEMENTADO | `modelos_remotos.py`, `tests/test_modelos_remotos_integrity.py` | 8 tests locales cubren token read-only, metadata ausente, digest válido/mismatch, traversal, symlink, tipo especial y extracción segura; `test_v510.py` actualizado | No validado contra asset privado ni firma independiente; compatibilidad del contenido/modelo sigue pendiente |
+| F6-02 | 6 | Validar digest GitHub de modelos y rechazar tar inseguro antes de extraer | Ninguna | IMPLEMENTADO | `modelos_remotos.py`, `tests/test_modelos_remotos_integrity.py` | 9 tests locales cubren token read-only, aislamiento del token público, metadata ausente, digest válido/mismatch, traversal, symlink, tipo especial y extracción segura; `test_v510.py` actualizado | No validado contra asset privado ni firma independiente; compatibilidad del contenido/modelo sigue pendiente |
 | F6-03 | 6 | Configurar workflows lectores para consumir el repo privado con token read-only | Core privado y consumers | PENDIENTE | `modelos_remotos.py`, workflows con motores | Código reconoce `REPO_MODELOS` y `CORE_MODELS_READ_TOKEN`; workflows no han sido apuntados al core y aún usan el release público | Depende de existencia/acceso a `sharpicks-core` y prueba de carga en entorno confiable |
 | F7-01 | 7 | Desacoplar exportador web y Telegram mediante salidas allowlisted | F4-02 | PENDIENTE | `exportar_web.py`, bots, contratos | Pendiente |
 | F8-01 | 8 | Revisar SQL, vistas, funciones, RLS y Edge Functions en archivos | F0-02 | EN EJECUCIÓN | `supabase/`, `docs/auditoria/05_AUDITORIA_SUPABASE.md` | Revisión estática de config, funciones/vistas y v546/v547 | No prueba estado desplegado ni catálogo completo |
 | F8-02 | 8 | Ejecutar pruebas de seguridad de Supabase en staging y preparar rollback | F8-01 | REQUIERE AUTORIZACIÓN | Proyecto de staging | No ejecutado | Acceso/entorno staging y autorización externa |
 | F9-01 | 9 | Probar restauración aislada de backup cifrado | Datos/entorno aislado | REQUIERE AUTORIZACIÓN | `respaldo_base.py`, workflow, staging | CI existente no constituye restore | Proyecto/credenciales aislados |
-| F10-01 | 10 | Añadir pruebas de contrato, grafo, inventario y publicación/descarga privada | F4-02, F1-01, F5-01 | EN EJECUCIÓN | `tests/`, `tools/`, `docs/calidad/` | 39 tests unittest (12 contrato + 7 grafo + 5 inventario Git + 2 release + 5 publisher + 8 descarga segura) y `test_v510.py` pasan local; CI del head `3ab63fe` pendiente | Baseline de predicción aún no caracterizado |
+| F10-01 | 10 | Añadir pruebas de contrato, grafo, inventario y publicación/descarga privada | F4-02, F1-01, F5-01 | EN EJECUCIÓN | `tests/`, `tools/`, `docs/calidad/` | 40 tests unittest (12 contrato + 7 grafo + 5 inventario Git + 2 release + 5 publisher + 9 descarga segura) y `test_v510.py` pasan local; CI remoto sigue en cola | Baseline de predicción aún no caracterizado |
 | F10-02 | 10 | Capturar baseline predictivo determinista por deporte/mercado | Datos sintéticos/fixtures y motores actuales | PENDIENTE | Fixtures/regresión | Pendiente | Se requiere seleccionar fixtures sin exponer datos propietarios |
 | F11-01 | 11 | Medir y optimizar carga/costo tras baseline real | F0-02, workflows | PENDIENTE | Workflows críticos | Duraciones de checks de PR observadas; no equivalen a costos | Datos de facturación no visibles |
 | F12-01 | 12 | Implementar logs/alertas/runbooks y validar privacidad | Arquitectura y servicios | PENDIENTE | Operación y entrypoints | Pendiente |
 | F13-01 | 13 | Mantener manual, ADRs, runbooks y criterios alineados a lo implementado | Todas | EN EJECUCIÓN | `docs/` | Índice/documentación previos existen | Continua |
-| GIT-01 | 23 | Mantener rama autorizada, PR draft, cambios pequeños y evidencia | Trabajo local | EN EJECUCIÓN | Rama y PR #1 | Rama correcta; commits recientes `98df7ab`, `bebbe57`, `3ab63fe` publicados; sigue draft; CI del head pendiente/cola | Ninguno para este bloque |
+| GIT-01 | 23 | Mantener rama autorizada, PR draft, cambios pequeños y evidencia | Trabajo local | EN EJECUCIÓN | Rama y PR #1 | Rama correcta; `cacf22f` publicado; sigue draft; CI remoto del head `cacf22f` en cola | Ninguno para este bloque |
 
 ## Distinción de validación
 
