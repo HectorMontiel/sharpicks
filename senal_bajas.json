@@ -1,16 +1,16 @@
 {
- "generado": "2026-10-29T15:41Z",
- "partidos_registrados": 782,
- "senales": 73,
+ "generado": "2026-10-30T03:22Z",
+ "partidos_registrados": 840,
+ "senales": 82,
  "umbral": 0.02,
  "minimo": 300,
- "con_cierre": 69,
- "clv_medio": 0.014798804084625274,
- "clv_p5": 0.005076612901058423,
+ "con_cierre": 77,
+ "clv_medio": 0.012670076843449674,
+ "clv_p5": 0.0039274270815080415,
  "liquidadas": 46,
  "acierto": 0.4782608695652174,
  "rinde": -0.1512608695652174,
- "rinde_p5": -0.3728190909090908,
+ "rinde_p5": -0.3834325609756097,
  "listo_para_decidir": false,
  "motivo": "faltan señales (46 de 300 liquidadas)"
 }
