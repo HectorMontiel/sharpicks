@@ -7,7 +7,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 1. [Manual de migración 0 a 100](MANUAL_MIGRACION_SHARPICKS_0_A_100.md): arquitectura destino, preparación de repositorio privado, seguridad de Actions, migración por fases, backups, Supabase, performance, pruebas, rollback y checklist de cierre.
 2. [Inventario de dependencias de los 18 workflows](INVENTARIO_DEPENDENCIAS_WORKFLOWS.md): clasificación de cada flujo, scripts, secretos observados, contratos, oleadas de extracción y gates.
 3. [Clasificación de activos y modelo de amenazas](CLASIFICACION_ACTIVOS_Y_MODELO_AMENAZAS.md): código/modelos/datasets, amenazas, controles, backups y riesgos críticos.
-4. [Plan de separación del core privado](PLAN_SEPARACION_CORE_PRIVADO.md): decisión de mantener el repositorio actual público, inventario inicial, flujos dependientes y criterios de aceptación.
+4. [Grafo de dependencias por entrypoint](GRAFO_DEPENDENCIAS_ENTRYPOINTS.md): imports directos, datos/archivos, variables de entorno y fronteras para extraer el core sin romper la web ni Telegram.\n5. [Plan de separación del core privado](PLAN_SEPARACION_CORE_PRIVADO.md): decisión de mantener el repositorio actual público, inventario inicial, flujos dependientes y criterios de aceptación.
 
 ## Estado actual
 
