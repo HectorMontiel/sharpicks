@@ -67,7 +67,10 @@ funcionar por que esto falle.
 """
 
 import logging
+import hashlib
+import hmac
 import os
+import re
 import shutil
 import tarfile
 import tempfile
@@ -135,25 +138,72 @@ def _token() -> str:
 _ASSETS: dict = {}
 
 
+def _digest_sha256_valido(digest: object) -> bool:
+    return isinstance(digest, str) and re.fullmatch(r'sha256:[0-9a-f]{64}', digest) is not None
+
+
+def _verificar_sha256(ruta: str, digest: object) -> bool:
+    """Verify downloaded release bytes before tar parsing/extraction."""
+    if not _digest_sha256_valido(digest):
+        return False
+    h = hashlib.sha256()
+    with open(ruta, 'rb') as f:
+        for bloque in iter(lambda: f.read(1 << 20), b''):
+            h.update(bloque)
+    return hmac.compare_digest('sha256:' + h.hexdigest(), digest)
+
+
+def _validar_miembro_tar(miembro) -> None:
+    """Reject traversal and non-regular entries before extracting a model tar."""
+    nombre = str(miembro.name).replace('\\', '/')
+    partes = nombre.split('/')
+    if (not nombre or nombre.startswith('/') or re.match(r'^[A-Za-z]:', nombre)
+            or '..' in partes):
+        raise ValueError('ruta insegura en el tar')
+    if miembro.issym() or miembro.islnk() or miembro.isdev() or miembro.isfifo():
+        raise ValueError('el tar contiene un enlace o archivo especial')
+    if not (miembro.isdir() or miembro.isfile()):
+        raise ValueError('tipo de archivo no permitido en el tar')
+
+
 def _pedir_asset(clave: str):
-    """La respuesta del asset: por la API con token (repo privado) o por la URL pública."""
+    """Fetch a release asset only after reading its GitHub SHA-256 metadata."""
     import requests
     tok = _token()
-    if not tok:
-        return requests.get(url_asset(clave), timeout=TIMEOUT_S, stream=True)
-    h = {'Authorization': 'Bearer ' + tok, 'X-GitHub-Api-Version': '2022-11-28'}
+    h = {'X-GitHub-Api-Version': '2022-11-28'}
+    if tok:
+        h['Authorization'] = 'Bearer ' + tok
     if 'lista' not in _ASSETS:
         rel = requests.get('https://api.github.com/repos/%s/releases/tags/%s' % (REPO, ETIQUETA),
                            headers=h, timeout=TIMEOUT_S)
         if rel.status_code != 200:
             return rel
-        _ASSETS['lista'] = {a['name']: a['url'] for a in rel.json().get('assets') or []}
-    url = _ASSETS['lista'].get('modelos-%s.tar.gz' % clave)
-    if not url:
+        _ASSETS['lista'] = {
+            a['name']: {'url': a.get('url'), 'digest': a.get('digest')}
+            for a in rel.json().get('assets') or []
+        }
+    asset = _ASSETS['lista'].get('modelos-%s.tar.gz' % clave)
+    if not asset:
         class _No:                                  # sin ese asset: igual que el 404 de la URL pública
             status_code = 404
         return _No()
-    return requests.get(url, headers=dict(h, Accept='application/octet-stream'), timeout=TIMEOUT_S, stream=True)
+    digest = asset.get('digest')
+    if not _digest_sha256_valido(digest):
+        class _SinDigest:
+            status_code = 422
+        return _SinDigest()
+    headers = dict(h)
+    url = asset.get('url')
+    if tok:
+        headers['Accept'] = 'application/octet-stream'
+    else:
+        # Public releases use the stable browser URL, but only after the API
+        # supplied a digest for the exact asset name.
+        url = url_asset(clave)
+        headers.pop('X-GitHub-Api-Version', None)
+    respuesta = requests.get(url, headers=headers, timeout=TIMEOUT_S, stream=True)
+    respuesta.sharpicks_expected_digest = digest
+    return respuesta
 
 
 def _descargar(clave: str) -> bool:
@@ -182,14 +232,15 @@ def _descargar(clave: str) -> bool:
             for trozo in r.iter_content(chunk_size=1 << 20):
                 if trozo:
                     f.write(trozo)
+        if not _verificar_sha256(tmp_tar, getattr(r, 'sharpicks_expected_digest', None)):
+            raise ValueError('el SHA-256 del asset no coincide con metadata GitHub')
         with tarfile.open(tmp_tar, 'r:gz') as tar:
-            # El tar lo produce `publicar_modelos.py` con rutas relativas y
-            # planas, pero se comprueba igual: un tar con `..` o rutas
-            # absolutas escribiría fuera del destino.
             for m in tar.getmembers():
-                if m.name.startswith(('/', '\\')) or '..' in m.name.split('/'):
-                    raise ValueError(f'ruta insegura en el tar: {m.name}')
-            tar.extractall(tmp_dir)
+                _validar_miembro_tar(m)
+            if hasattr(tarfile, 'data_filter'):
+                tar.extractall(tmp_dir, filter='data')
+            else:  # compatibilidad con Python < 3.12; member checks above remain mandatory
+                tar.extractall(tmp_dir)
         destino = os.path.join(RAIZ, clave)
         # `os.replace` sobre un directorio falla si el destino existe y no
         # está vacío, así que se aparta primero lo que hubiera.

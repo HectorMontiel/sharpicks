@@ -74,6 +74,8 @@ jobs:
           python -m unittest -v tests.test_asset_inventory
           python -m unittest -v tests.test_release_asset_inventory
           python -m unittest -v tests.test_public_model_publisher
+          python -m unittest -v tests.test_modelos_remotos_integrity
+          python test_v510.py
           python test_exportador_web_v402.py
           python test_v383.py
           python test_v389.py

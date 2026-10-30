@@ -38,8 +38,11 @@ def probar():
     sq = leer('supabase/v510_historial_dia_mx.sql')
     check("(inicio at time zone 'America/Mexico_City')::date" in sq and 'group by 1' in sq,
           'v510: el historial agrupa por el día de CDMX (como la portada)')
-    check('_pedir_asset' in leer('modelos_remotos.py') and "'Accept'" not in leer('modelos_remotos.py')[:0] and
-          "Accept='application/octet-stream'" in leer('modelos_remotos.py'), 'v510: los modelos se bajan con token por la API')
+    mr_source = leer('modelos_remotos.py')
+    check('_pedir_asset' in mr_source and '_digest_sha256_valido' in mr_source and
+          '_verificar_sha256' in mr_source and '_validar_miembro_tar' in mr_source and
+          "headers['Accept'] = 'application/octet-stream'" in mr_source,
+          'v510: los modelos se bajan por API, verifican SHA-256 y rechazan tar inseguro')
     for f in ('cuotas_mx', 'precalculo_dia', 'sitio_web', 'retrain_leagues', 'relevo', 'respaldo_base'):
         check('GH_TOKEN: ${{ github.token }}' in leer('.github/workflows/%s.yml' % f), 'v510: %s con GH_TOKEN' % f)
     sw = leer('.github/workflows/sitio_web.yml')
