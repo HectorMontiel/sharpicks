@@ -1084,6 +1084,8 @@ body::before, body::after { animation: none !important; }
 .sn-e.ok { color: var(--verde, #3ddc84); } .sn-e.mal { color: #f87171; } .sn-e.va { color: var(--tenue); }
 .sn-e .ic { width: 14px; height: 14px; }
 /* v524 — lo largo del historial, plegado: a la vista sólo los números que importan */
+.segmentos.cinco { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-bottom: 10px; }
+.segmentos.cinco .seg { padding: 7px 2px; font-size: 12px; white-space: nowrap; }
 details.mas { margin: 8px 0 2px; }
 details.mas > summary { cursor: pointer; list-style: none; font-size: 13px; font-weight: 700; color: var(--marca, var(--verde)); padding: 6px 0; }
 details.mas > summary::-webkit-details-marker { display: none; }

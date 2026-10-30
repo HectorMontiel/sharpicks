@@ -1252,7 +1252,8 @@
     pulsoHist();
     calibracionPicks();
     const caja = $('historial'); if (!caja || !sb) return;
-    const { data, error } = await sb.from('historial').select('*').limit(30);
+    // v525 — TODO el histórico (antes 30 días): el selector suma el día, la semana, el mes, el año o todo
+    const { data, error } = await aTiempo(todasSb((a, b) => sb.from('historial').select('*').order('fecha', { ascending: false }).range(a, b)), 10000, { data: null, error: true });
     if (error) {
       console.error('[sharpicks] no se pudo consultar el historial', error);
       caja.innerHTML = '<p class="aviso">No se pudo consultar el historial. No podemos confirmar los resultados; reintenta en un momento.</p>';
@@ -1270,10 +1271,7 @@
     const { data: med, error: medError } = await sb.from('ia_medicion').select('*');
     const p100 = (a, b) => (Number(a || 0) + Number(b || 0) ? Math.round(100 * Number(a || 0) / (Number(a || 0) + Number(b || 0))) + ' %' : '—');
     if (medError) console.error('[sharpicks] no se pudo consultar la calibración de la IA', medError);
-    if (filas.length) caja.innerHTML = '<div class="num">✅ ' + tv + ' ❌ ' + tr + ' <span class="pct">' + p100(tv, tr) + '</span></div>' +
-      '<div class="sub">💎 Diamante: ✅ ' + ev + ' ❌ ' + er + (ev + er ? ' · ' + Math.round(100 * ev / (ev + er)) + ' %' : '') + '</div>' +
-      (xv + xr ? '<div class="sub">💰 Cuota alta (errores de cuota): ✅ ' + xv + ' ❌ ' + xr + ' · ' + p100(xv, xr) + '</div>' : '') +
-      ''; caja.innerHTML += '';
+    void tv; void tr; void ev; void er; void xv; void xr;         // v525: las sumas ahora van por periodo (pintarPeriodo)
     // v391 — el bloque de la IA sale SIEMPRE (aunque aún no haya partidos terminados)
     const iaCaja = $('ia-hist');
     if (iaCaja) iaCaja.innerHTML = iaError ? '<p class="aviso">No se pudieron consultar las mediciones de la IA. Reintenta en un momento.</p>' : !ia ? '<p class="tenue">Sin datos de la IA todavía.</p>' :
@@ -1287,15 +1285,47 @@
     // v421 — sólo los días con picks liquidados (del 9 al 14-oct sólo se guardaban los 💰:
     // salían «0-0» y parecía que no hubo nada; los 💰 siguen sumados arriba)
     const conPicks = filas.filter((d) => (Number(d.verdes) || 0) + (Number(d.rojas) || 0) > 0);
-    // v524 — el usuario: «que el historial sea dinámico, si no se hace una listota, pero que no desaparezca»:
-    // los últimos 7 días a la vista y los demás plegados en «Ver todos los días»
+    hist.filas = filas; hist.conPicks = conPicks; hist.p100 = p100;
+    pintarPeriodo();
+  }
+
+  // v525 — EL HISTORIAL DINÁMICO. El usuario: «quiero seguir viendo cuántos han sido buenas en el último día, la
+  // última semana, el último mes, el último año y de todos los tiempos… que sea dinámico». Un selector arriba
+  // suma el periodo; debajo, los días de ese periodo (7 a la vista, los demás plegados: nada desaparece).
+  const hist = { per: (() => { try { return localStorage.getItem('sp_hist_per') || 'mes'; } catch (e) { return 'mes'; } })(), filas: [], conPicks: [] };
+  const PERIODOS = [['dia', 'Último día'], ['semana', '7 días'], ['mes', '30 días'], ['anio', 'Año'], ['todo', 'Todo']];
+  function enPeriodo(ds, per) {
+    if (per === 'todo' || !ds.length) return ds;
+    if (per === 'dia') return ds.filter((d) => d.fecha === ds[0].fecha);
+    const n = { semana: 7, mes: 30, anio: 365 }[per];
+    const corte = new Date(Date.now() - 6 * 3600e3 - n * 864e5).toISOString().slice(0, 10);   // días de CDMX
+    return ds.filter((d) => String(d.fecha) > corte);
+  }
+  function pintarPeriodo() {
+    const caja = $('historial'); if (!caja || !hist.filas.length) return;
+    const p100 = hist.p100, fs = enPeriodo(hist.filas, hist.per), conPicks = enPeriodo(hist.conPicks, hist.per);
+    const suma = (k) => fs.reduce((s, d) => s + (Number(d[k]) || 0), 0);
+    const tv = suma('verdes'), tr = suma('rojas'), ev = suma('verdes_elige'), er = suma('rojas_elige'), xv = suma('verdes_error'), xr = suma('rojas_error');
+    const tab = (k, t) => '<button class="seg' + (hist.per === k ? ' activa' : '') + '" data-hist-per="' + k + '">' + t + '</button>';
+    let h = '<div class="segmentos cinco">' + PERIODOS.map(([k, t]) => tab(k, t)).join('') + '</div>' +
+      '<div class="num">✅ ' + tv + ' ❌ ' + tr + ' <span class="pct">' + p100(tv, tr) + '</span></div>' +
+      '<div class="sub">💎 Diamante: ✅ ' + ev + ' ❌ ' + er + (ev + er ? ' · ' + Math.round(100 * ev / (ev + er)) + ' %' : '') + '</div>' +
+      (xv + xr ? '<div class="sub">💰 Cuota alta: ✅ ' + xv + ' ❌ ' + xr + ' · ' + p100(xv, xr) + '</div>' : '');
+    // los últimos 7 días del periodo a la vista y los demás plegados en «Ver N días más»
     const tablaDias = (ds) => '<table class="tabla"><tr><th>Día</th><th>✅</th><th>❌</th><th>%</th><th>💎</th><th>💰</th></tr>' +
       ds.map((d) => '<tr><td>' + esc(String(d.fecha).slice(5)) + '</td><td>' + d.verdes + '</td><td>' + d.rojas + '</td><td>' +
         esc(p100(d.verdes, d.rojas).replace(' %', '')) + '</td><td>' + d.verdes_elige + '-' + d.rojas_elige +
         '</td><td>' + (d.verdes_error || 0) + '-' + (d.rojas_error || 0) + '</td></tr>').join('') + '</table>';
-    if (conPicks.length) caja.innerHTML += tablaDias(conPicks.slice(0, 7)) +
+    if (conPicks.length) h += tablaDias(conPicks.slice(0, 7)) +
       (conPicks.length > 7 ? '<details class="mas"><summary>Ver ' + (conPicks.length - 7) + ' días más</summary>' + tablaDias(conPicks.slice(7)) + '</details>' : '');
+    caja.innerHTML = h;
   }
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-hist-per]'); if (!b) return;
+    hist.per = b.dataset.histPer;
+    try { localStorage.setItem('sp_hist_per', hist.per); } catch (er) { /* sólo se recuerda si se puede */ }
+    pintarPeriodo();
+  });
 
   // v399 — «lo que metería la IA» con ✅/❌, y si sus probabilidades son
   // honestas: cuando dijo 70-80 %, ¿cuánto salió de verdad? (`ia_medicion`)
