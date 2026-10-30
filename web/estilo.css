@@ -1086,6 +1086,15 @@ body::before, body::after { animation: none !important; }
 /* v524 — lo largo del historial, plegado: a la vista sólo los números que importan */
 .segmentos.cinco { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-bottom: 10px; }
 .segmentos.cinco .seg { padding: 7px 2px; font-size: 12px; white-space: nowrap; }
+/* v527 — avisos por Telegram: los chips de Mi cuenta y la campana de Ver partido */
+.chips-al { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 8px; }
+.chip-al { font: inherit; font-size: 13px; font-weight: 600; color: var(--tenue); background: rgba(255,255,255,.05); border: 1px solid var(--borde);
+  border-radius: 999px; padding: 6px 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
+.chip-al.on { color: var(--texto); border-color: rgba(61,220,132,.6); background: rgba(61,220,132,.16); }
+.campana { position: absolute; top: 14px; left: 14px; display: inline-flex; align-items: center; gap: 5px; font: inherit; font-size: 12.5px; font-weight: 700;
+  color: var(--tenue); background: rgba(255,255,255,.06); border: 1px solid var(--borde); border-radius: 999px; padding: 6px 11px; cursor: pointer; z-index: 2; }
+.campana .ic { width: 15px; height: 15px; }
+.campana.on { color: var(--texto); border-color: rgba(61,220,132,.6); background: rgba(61,220,132,.16); }
 details.mas { margin: 8px 0 2px; }
 details.mas > summary { cursor: pointer; list-style: none; font-size: 13px; font-weight: 700; color: var(--marca, var(--verde)); padding: 6px 0; }
 details.mas > summary::-webkit-details-marker { display: none; }

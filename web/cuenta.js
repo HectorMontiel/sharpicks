@@ -224,6 +224,7 @@
       tareas.push(sb.from('ia_calificaciones').select('analisis,voto,motivo').then(({ data, error }) => {
         if (!error) { yo.votosIA = {}; (data || []).forEach((x) => { yo.votosIA[x.analisis] = x; }); } }));
     } else { yo.perfil = null; yo.seguidos = new Set(); yo.desbloqueados = {}; yo.subs = []; yo.vip = {}; yo.pulso = {}; yo.pulsoIA = {}; }
+    if (yo.user) tareas.push(cargarAlertas());                         // v527 — la campana de Ver partido
     await Promise.all(tareas.map((t) => aTiempo(t, 6000, null)));
     if (yo.user) await aTiempo(cargarGustos(), 6000, null);
     try { avisoRenovacion(); } catch (e) { /* el aviso nunca tumba la página */ }
@@ -436,6 +437,7 @@
       '" placeholder="3-20 letras, números, _ o ." autocapitalize="off"><button class="ver" data-mi-usuario>Guardar</button></div></div>';
     h += '<div class="caja"><div class="tit">🎯 Mis intereses</div><p class="tenue chico">Tus deportes y ligas van primero y arman tu «✨ Para ti».</p>' +
       '<button class="ver" data-intereses>Elegir deportes y ligas</button></div>';
+    h += '<div class="caja" id="caja-tg">' + ESQ + '</div>';            // v527 — avisos personales por Telegram
     // v446 — sus reportes de errores (y, al administrador, los que faltan por revisar)
     h += '<div class="caja"><div class="tit">⚠️ ' + (esAdmin() ? 'Reportes' : 'Mis reportes') + '</div><div id="mis-reportes">' + ESQ + '</div></div>';
     h += '<div class="caja"><div class="tit">🎁 Canjear código</div><div class="fila-form"><input id="codigo" placeholder="SHARP-XXXX-XXXX" autocomplete="off"><button class="ver" data-canjear>Canjear</button></div></div>' +
@@ -445,7 +447,69 @@
     $('micuenta-cuerpo').innerHTML = h;
     $('micuenta').hidden = false;
     pintarReportes();
+    pintarAvisosTg();
   }
+
+  // ---------- v527 — AVISOS PERSONALES POR TELEGRAM ----------
+  // El usuario: «que desde SharPicks un usuario ligue que le manden alertas de algo en específico al Telegram:
+  // partido en específico, sólo algún deporte». Se liga con un código de un solo uso (el bot lo canjea) y se elige
+  // aquí qué avisar; la campana de «Ver partido» sigue un partido. Lo VIP sólo le llega completo al VIP.
+  const DEPS_TG = [['Fútbol', '⚽ Fútbol'], ['Tenis', '🎾 Tenis'], ['NBA', '🏀 NBA'], ['NFL', '🏈 NFL'], ['NHL', '🏒 NHL'], ['Béisbol', '⚾ Béisbol']];
+  async function cargarAlertas() {
+    if (!yo.user) { yo.alertas = []; yo.tgLigado = false; return; }
+    const [l, a] = await Promise.all([aTiempo(sb.rpc('telegram_ligado'), 6000, { data: null }), aTiempo(sb.from('alertas_tg').select('tipo,valor'), 6000, { data: null })]);
+    if (l && l.data != null) yo.tgLigado = !!l.data;
+    if (a && a.data) yo.alertas = a.data;
+  }
+  async function pintarAvisosTg() {
+    const caja = $('caja-tg'); if (!caja || !yo.user) return;
+    await cargarAlertas();
+    const tiene = (t, v) => (yo.alertas || []).some((x) => x.tipo === t && x.valor === v);
+    let h = '<div class="tit">🔔 Avisos por Telegram</div>';
+    if (!yo.tgLigado) {
+      h += '<p class="sub">Te avisamos por Telegram de lo que tú elijas: tus deportes, el ⚡ Pulso en vivo o un partido en específico.</p>' +
+        '<button class="vip-btn" data-tg-ligar>Conectar Telegram</button>';
+    } else {
+      const chip = (t, v, txt) => '<button class="chip-al' + (tiene(t, v) ? ' on' : '') + '" data-tg-al="' + t + '|' + esc(v) + '">' + txt + '</button>';
+      const parts = (yo.alertas || []).filter((x) => x.tipo === 'partido');
+      h += '<p class="sub">✅ Conectado. Toca lo que quieres que te avisemos:</p><div class="chips-al">' + chip('pulso', 'Fútbol', '⚡ Pulso en vivo') +
+        DEPS_TG.map(([v, t]) => chip('deporte', v, t)).join('') + '</div>' +
+        (parts.length ? '<p class="tenue chico">Partidos que sigues: ' + parts.map((x) => esc(String(x.valor).split('|')[1] || '')).join(' · ') + '</p>'
+          : '<p class="tenue chico">Para un partido en específico, toca la 🔔 en «Ver partido».</p>') +
+        '<button class="ver" data-tg-desligar>Desconectar Telegram</button>';
+    }
+    caja.innerHTML = h;
+  }
+  async function alternarAlerta(tipo, valor) {
+    if (!yo.user) { abrirAcceso('Entra para recibir avisos por Telegram.'); return; }
+    await cargarAlertas();
+    if (!yo.tgLigado) { abrirMiCuenta(); avisoApp('Primero conecta tu Telegram (Mi cuenta → Avisos por Telegram).'); return; }
+    const ya = (yo.alertas || []).some((x) => x.tipo === tipo && x.valor === valor);
+    const q = ya ? sb.from('alertas_tg').delete().match({ usuario: yo.user.id, tipo, valor }) : sb.from('alertas_tg').insert({ usuario: yo.user.id, tipo, valor });
+    const { error } = await aTiempo(q, 6000, { error: true });
+    if (error) { avisoApp('No se pudo guardar; intenta de nuevo.'); return; }
+    await cargarAlertas();
+    pintarAvisosTg();
+    if (window.SP && window.SP.pulsoIA) window.SP.pulsoIA();       // la campana de Ver partido cambia sola
+  }
+  document.addEventListener('click', async (e) => {
+    const t = e.target.closest('[data-tg-ligar],[data-tg-al],[data-tg-desligar],[data-tg-partido]'); if (!t || !sb) return;
+    if (t.hasAttribute('data-tg-ligar')) {
+      const bot = yo.precios.telegram_bot || 'EliteVIPicksBot';
+      const w = window.open('', '_blank');                          // se abre YA (el iPhone bloquea ventanas tras esperar)
+      const { data } = await aTiempo(sb.rpc('telegram_codigo'), 6000, { data: null });
+      if (!data) { if (w) w.close(); avisoApp('No se pudo crear el enlace; intenta de nuevo.'); return; }
+      const url = 'https://t.me/' + encodeURIComponent(bot) + '?start=' + encodeURIComponent(data);
+      if (w) w.location.href = url; else location.href = url;
+      return;
+    }
+    if (t.hasAttribute('data-tg-desligar')) { await aTiempo(sb.rpc('telegram_desligar'), 6000, null); await cargarAlertas(); pintarAvisosTg(); return; }
+    if (t.dataset.tgPartido) { alternarAlerta('partido', t.dataset.tgPartido); return; }
+    const [tipo, ...v] = t.dataset.tgAl.split('|');
+    alternarAlerta(tipo, v.join('|'));
+  });
+  // al volver de Telegram, la caja dice «Conectado» sola
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && $('caja-tg') && !$('micuenta').hidden) pintarAvisosTg(); });
 
   // ---------- v446 — LO QUE APORTAN LOS USUARIOS ----------
   // 1) «⚠️ Reportar un error»: lo revisa el administrador y, si es real, el

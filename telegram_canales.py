@@ -475,6 +475,66 @@ def meta_miembros(chat: str, enviados: Set) -> Optional[Tuple[str, List]]:
     return t, [(clave, 'gratis', 'regalo')]
 
 
+# ---------- v527 — avisos personales: los picks de SUS deportes o de SU partido, por mensaje directo ----------
+DEP_ALERTA = {'MLB': 'Béisbol', 'KBO': 'Béisbol'}
+
+
+def clave_partido(p: Dict) -> str:
+    """La misma clave que la página (`clavePartido`) y que las alertas por partido."""
+    L, _, V = str(p.get('partido') or '').partition(' vs ')
+    return '|'.join([p.get('deporte') or '', ' / '.join(sorted([L.lower().strip(), V.lower().strip()])), _dia_cdmx(p) or str(p.get('fecha') or '')])
+
+
+def armar_personales(picks: List[Dict], destinos: List[Dict], ya: Set[str], ahora: dt.datetime) -> List[Tuple]:
+    """[(chat, texto, cubre)]: a cada quien, en UN mensaje, sus picks que ya están en hora de apostar. El VIP los ve
+    completos; los demás, completos sólo los que no son VIP ni de pago (los otros, con candado para desbloquear)."""
+    vip_niv = niveles_vip()
+    ventana = [p for p in picks if p.get('estado') == 'pendiente' and _utc(p.get('inicio')) is not None
+               and ahora + dt.timedelta(minutes=10) < _utc(p.get('inicio')) <= ahora + dt.timedelta(hours=VENTANA_APUESTA_H)]
+    usuarios: Dict[str, Dict] = {}
+    for d in destinos:
+        u = usuarios.setdefault(d['usuario'], {'chat': d['chat'], 'vip': bool(d.get('vip')), 'dep': set(), 'par': set()})
+        if d['tipo'] == 'deporte':
+            u['dep'].add(d['valor'])
+        elif d['tipo'] == 'partido':
+            u['par'].add(d['valor'])
+    out = []
+    for uid, u in usuarios.items():
+        suyos = [p for p in ventana if (DEP_ALERTA.get(p.get('deporte'), p.get('deporte')) in u['dep'] or clave_partido(p) in u['par'])
+                 and 'dm:%s:%s' % (uid, p['id']) not in ya]
+        if not suyos:
+            continue
+        suyos.sort(key=lambda p: (not p.get('elige'), -float(p.get('prob') or 0)))
+        top = suyos[:MAX_VIP_MSG]
+        lineas = []
+        for p in top:
+            if u['vip'] or not (p.get('premium') or nivel(p) in vip_niv):
+                lineas.append(_cab_partido(p, ahora, ICONO.get(nivel(p), '')) + '\n' + _apuesta(p))
+            else:
+                lineas.append(_cab_partido(p, ahora, ICONO.get(nivel(p), '')) + '\n🔒 <b>Pick %s</b> · desbloquéalo en la app' % _e(nivel(p)))
+        mas = len(suyos) - len(top)
+        t = ('🔔 <b>Tus picks</b> · ⏰ ya es hora de apostar\n\n' + '\n\n'.join(lineas) +
+             ('\n\n➕ %d más en la app' % mas if mas > 0 else '') + '\n\n👉 ' + SITIO + PIE)
+        out.append((u['chat'], t, [('dm:%s:%s' % (uid, p['id']), 'dm', 'pick') for p in suyos]))
+    return out
+
+
+def destinos_alertas() -> Optional[Tuple[List[Dict], Set[str]]]:
+    """(quién quiere qué, lo ya mandado por mensaje directo), con la llave de servicio."""
+    url, key = os.environ.get('SUPABASE_URL'), os.environ.get('SUPABASE_SERVICE_KEY')
+    if not url or not key:
+        return None
+    import requests
+    h = {'apikey': key, 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json'}
+    r = requests.post(url.rstrip('/') + '/rest/v1/rpc/alertas_destinos', headers=h, json={}, timeout=30)
+    if not r.ok:
+        return None
+    desde = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=2)).isoformat()
+    e = requests.get(url.rstrip('/') + '/rest/v1/telegram_enviados', headers=h, timeout=30,
+                     params={'select': 'pick', 'canal': 'eq.dm', 'tipo': 'eq.pick', 'enviado': 'gte.' + desde, 'limit': 20000})
+    return r.json(), {x['pick'] for x in (e.json() if e.ok else [])}
+
+
 def armar(picks: List[Dict], enviados: Set, ahora: Optional[dt.datetime] = None) -> Dict[str, List]:
     """{canal: [(texto, [(pick, canal, tipo) que cubre])]} con sólo lo nuevo."""
     ahora = ahora or dt.datetime.now(dt.timezone.utc)
@@ -545,7 +605,18 @@ def main() -> int:
                 continue
             if enviar_a(chats[canal], texto, foto):
                 apuntar(cubre)
-    print('telegram: %s' % {k: len([m for m in v if m[0]]) for k, v in lotes.items()})
+    # v527 — los avisos personales (quien ligó su Telegram en la app y eligió deportes o partidos)
+    personales = 0
+    try:
+        dd = destinos_alertas() if not seco else None
+        if dd:
+            for chat, texto, cubre in armar_personales(picks, dd[0], dd[1], dt.datetime.now(dt.timezone.utc)):
+                if enviar_a(str(chat), texto):
+                    apuntar(cubre)
+                    personales += 1
+    except Exception as e:
+        logger.warning('[telegram] avisos personales: %s', e)
+    print('telegram: %s · personales %d' % ({k: len([m for m in v if m[0]]) for k, v in lotes.items()}, personales))
     return 0
 
 

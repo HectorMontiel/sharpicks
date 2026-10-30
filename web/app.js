@@ -54,6 +54,7 @@
     '🧱': ['shield-check'], '✋': ['hand'], '↗': ['trending-up'], '👤': ['user'], '👥': ['users'], '📢': ['megaphone'],
     '💬': ['message-circle'], '❓': ['circle-help'], '🔍': ['search'],
     '🟨': ['square', 'amarilla'], '🟥': ['square', 'roja-t'],
+    '⚡': ['zap', 'acento'], '🔔': ['bell'], '🔕': ['bell'],   // v527
     '📈': ['activity', 'acento'], '↩': ['undo-2'], '↔': ['arrow-left-right'], '🧩': ['puzzle'],   // v517
   };
   const RE_EMOJI = new RegExp('(' + Object.keys(EMOJI_ICO).map((e) => e.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\uFE0F?', 'g');
@@ -1814,7 +1815,11 @@
     const v = estado.vivo[p.espn];
     const [L, V] = lados(p);
     const otras = (agrupar(todos.filter((x) => clavePartido(x) === clavePartido(p) && !x.solo_analisis))[0]) || [];
+    // v527 — la campana: avisarme por Telegram de ESTE partido (señales del Pulso y sus picks)
+    const kAl = clavePartido(p), alOn = window.SPX && (SPX.yo.alertas || []).some((x) => x.tipo === 'partido' && x.valor === kAl);
     let h = '<button class="cerrar" data-cerrar>✕</button>' +
+      (window.SPX && SPX.yo.user && !(v && v.fase === 'post') ? '<button class="campana' + (alOn ? ' on' : '') + '" data-tg-partido="' + esc(kAl) + '" title="Avisarme por Telegram">' +
+        ico('bell') + '<span>' + (alOn ? 'Te aviso' : 'Avisarme') + '</span></button>' : '') +
       '<div class="equipos grande"><div class="eq">' + escudo(p.logo_h, L, p.deporte) + '<span>' + esc(L) + '</span></div>' +
       '<div class="marc">' + (v && v.fase !== 'pre' ? v.g[0] + ' - ' + v.g[1] : 'vs') + '<small>' + esc(v ? v.detalle : horaCdmx(aFecha(p.inicio))) + '</small></div>' +
       '<div class="eq der"><span>' + esc(V) + '</span>' + escudo(p.logo_a, V, p.deporte) + '</div></div>';

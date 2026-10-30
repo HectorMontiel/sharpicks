@@ -183,6 +183,42 @@ async function preguntarIA(p: Dic, e: Dic, ms: Dic[]) {
   return null;
 }
 
+// ---------- v527 — avisos personales (quien sigue el partido o prendió «Pulso en vivo») ----------
+let DESTINOS: Dic[] | null = null, dDesde = 0;
+async function destinos() {
+  if (DESTINOS && Date.now() - dDesde < 120e3) return DESTINOS;
+  const r = await fetch(SB + 'rpc/alertas_destinos', { method: 'POST', headers: H, body: '{}' });
+  DESTINOS = r.ok ? await r.json() : []; dDesde = Date.now();
+  return DESTINOS!;
+}
+async function avisosPersonales(p: Dic, e: Dic, clave: string, nuevas: Dic[]) {
+  const ds = (await destinos()).filter((d) => (d.tipo === 'partido' && d.valor === clave) || (d.tipo === 'pulso' && (p.deporte || 'Fútbol') === d.valor));
+  if (!ds.length) return 0;
+  const porUsuario = new Map<string, Dic>();
+  for (const d of ds) porUsuario.set(d.usuario, d);
+  const ids = [...porUsuario.keys()];
+  const abiertos = new Set(((await sbGet('pulso_desbloqueos', `select=usuario&partido=eq.${encodeURIComponent(clave)}&usuario=in.(${ids.join(',')})`)) || []).map((x: Dic) => x.usuario));
+  const ya = new Set(((await sbGet('telegram_enviados', `select=pick&canal=eq.dm&tipo=eq.pulso&pick=like.${encodeURIComponent('dm|*|' + clave + '|*')}&limit=5000`)) || []).map((x: Dic) => x.pick));
+  const s = await secretos(), [L, V] = lados(p);
+  let n = 0;
+  for (const [uid, d] of porUsuario) {
+    const xs = nuevas.filter((x) => !ya.has(`dm|${uid}|${clave}|${x.mercado}|${x.marcador}`));
+    if (!xs.length) continue;
+    const lleno = d.vip || abiertos.has(uid);
+    const cab = `🔔 <b>Tu alerta</b> · ⚡ Pulso · ${e.t}'\n⚽ ${esc(L)} <b>${e.g[0]}-${e.g[1]}</b> ${esc(V)}`;
+    const cuerpo = lleno
+      ? xs.map((x) => `🎯 <b>${esc(nombre(x.mercado, p))}</b> · ${Math.round(100 * x.prob)} %`).join('\n')
+      : `🎯 El Pulso detectó ${xs.length === 1 ? 'una jugada' : xs.length + ' jugadas'} de <b>${Math.floor(Math.max(...xs.map((x) => x.prob)) * 10) * 10} %+</b>\n🔓 Desbloquéala con 🪙 monedas o hazte 💎 VIP`;
+    const r = await fetch(`https://api.telegram.org/bot${s.TELEGRAM_BOT_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: d.chat, text: cab + '\n' + cuerpo + '\n👉 sharpicksapp.com', parse_mode: 'HTML', disable_web_page_preview: true }) });
+    if (!r.ok) continue;
+    await sbPost('telegram_enviados', xs.map((x) => ({ pick: `dm|${uid}|${clave}|${x.mercado}|${x.marcador}`, canal: 'dm', tipo: 'pulso',
+      texto: nombre(x.mercado, p), partido: p.partido, inicio: String(p.inicio) })));
+    n++;
+  }
+  return n;
+}
+
 // ---------- una vuelta ----------
 async function partidos() {
   const out: Dic[] = [], vistos = new Set<string>();
@@ -247,7 +283,8 @@ async function vuelta(seco: boolean) {
     const ms = mercados(rasgos(p.ctx || {}, e.t, e.g[0], e.g[1], e.c)), m = mejor(ms);
     res.lecturas.push({ partido: p.partido, minuto: e.t, marcador: `${e.g[0]}-${e.g[1]}`, mejor: m && { k: m.k, p: Math.round(1000 * m.p) / 1000 } });
     const marc = `${e.g[0]}-${e.g[1]}`;
-    // v522 — LA SEÑAL: la primera vez que un mercado cruza el 75 % y aún paga, con su minuto y sus córners
+    // v522 — LA SEÑAL: la primera vez que un mercado cruza el 70 % y aún paga, con su minuto y sus córners
+    const nuevas: Dic[] = [];
     for (const x of ms) {
       const k = [clave, x.k, marc].join('#');
       if (!x.tramo || x.p < SENAL_MIN || 1 / x.p < JUSTA_MIN || senales.has(k)) continue;
@@ -257,8 +294,9 @@ async function vuelta(seco: boolean) {
       const fila = { clave, partido: p.partido, fecha: dia(p), liga: p.liga || null, mercado: x.k, marcador: marc, minuto: e.t,
         corners: e.c, prob: Math.round(1000 * x.p) / 1000, ia: false };
       if (!seco) await sbPost('pulso_senales', fila);
-      senales.set(k, fila); res.senales = (res.senales || 0) + 1;
+      senales.set(k, fila); res.senales = (res.senales || 0) + 1; nuevas.push(fila);
     }
+    if (nuevas.length && !seco) res.dm = (res.dm || 0) + await avisosPersonales(p, e, clave, nuevas);
     if (!m || m.p < CANDIDATO_MIN) continue;
     let rec = recs.get(clave + '#' + marc) || null;
     // v524 — cumplida la recomendación, la IA da otra con las probabilidades de ahora (la cumplida queda en sus señales)
