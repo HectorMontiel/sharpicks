@@ -19,7 +19,7 @@
 | Supabase SQL/Edge Functions | 52 archivos SQL y 10 funciones en el árbol | Código de integración y reglas de negocio; mixto | Contratos/adaptadores públicos o implementación privada según lógica | No prueba esquema/despliegue actual |
 | Backup en Actions | Workflow genera ciphertext/HMAC con retención declarada de 30 días | Sensible/privado; generado | Destino privado independiente, retention policy y restore probado | No se inspeccionó artifact real ni se restauró |
 | Release `modelos-latest` | 73 assets; 735,067,828 bytes combinados según GitHub API | Modelo/dataset; probable privado | Registry o release privada del core | Assets no descargados; sus nombres y contents requieren inventario |
-| Inventario por cada blob rastreado | [`asset_inventory.json`](asset_inventory.json), generado de metadatos del árbol Git; incluye path, modo, OID Git y tamaño | Candidatos heurísticos solapados; todos marcados `review_required` | Debe decidirse archivo por archivo con revisión de contenido, consumidores, lineage y propietario | No lee contenido; no incluye historial Git, untracked/ignored ni assets de releases |
+| Inventario por cada blob rastreado | [`asset_inventory.json`](asset_inventory.json), snapshot del commit `cb6c3e434390101ee204addc11b68e2251f99e13`; incluye path, modo, OID Git y tamaño | 1,880 blobs / 660,235,222 bytes; candidatos heurísticos: 183 `private_candidate`, 161 `historical`, 195 `public_candidate`, 22 `generated`, 2 `shareable_contract_candidate`; etiquetas solapadas y los 1,880 requieren revisión | Debe decidirse archivo por archivo con revisión de contenido, consumidores, lineage y propietario | No lee contenido; no incluye historial Git, untracked/ignored ni assets de releases |
 | Secrets | Workflows referencian nombres de secrets de servicios | Secreto | GitHub Environments/Core según mínimo privilegio | No se leyeron valores; exposición real no comprobada |
 | Documentación y workflows | Reglas y operación visibles en repo público | Pública, salvo valores/estrategias sensibles | Mantener documentos generales y quitar ejemplos confidenciales | Revisar contenido antes de separar |
 
@@ -33,7 +33,7 @@
 
 ## Inventario reproducible por ruta
 
-`tools/asset_inventory.py` usa `git ls-tree` sobre un revision seleccionado, por lo que cubre blobs rastreados aun si no están presentes en un sparse checkout. No abre ni ejecuta los archivos. Las etiquetas `private_candidate`, `public_candidate`, `historical`, `generated`, `sensitive` y `shareable_contract_candidate` son señales de revisión, pueden solaparse y no equivalen a una decisión sobre propiedad o destino. Cada registro conserva `review_required` hasta una evaluación humana.
+`tools/asset_inventory.py` usa `git ls-tree` sobre un revision seleccionado, por lo que cubre blobs rastreados aun si no están presentes en un sparse checkout. No abre ni ejecuta los archivos. El snapshot adjunto se generó desde `cb6c3e434390101ee204addc11b68e2251f99e13`. Las etiquetas `private_candidate`, `public_candidate`, `historical`, `generated`, `sensitive` y `shareable_contract_candidate` son señales de revisión, pueden solaparse y no equivalen a una decisión sobre propiedad o destino. Cada registro conserva `review_required` hasta una evaluación humana.
 
 Para regenerar el inventario del HEAD actual:
 

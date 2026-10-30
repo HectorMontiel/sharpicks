@@ -32,6 +32,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 - Acciones de GitHub: fijadas por SHA en `bae8759973b2ef8f3d5c5c4ea38e2025a0caca46`; los checks `instalar`, `tests` y `validar` aprobaron sobre ese SHA.
 - Contrato público v1: implementado y 12 tests unitarios locales aprobados; `instalar`, `tests` y `validar` aprobaron en CI para el SHA `c162c7587cb960149459d41ede09097990250046`.
 - Grafo recursivo: generado para 773 archivos Python desde `4c1223a635ed628798e547645209cba67582f65b`; checks CI del PR para ese SHA están pendientes; batería local de 19 tests unittest y 8 scripts pasa.
+- Inventario por ruta: 1,880 blobs rastreados (660,235,222 bytes) desde el tree `cb6c3e434390101ee204addc11b68e2251f99e13`; las etiquetas son heurísticas y requieren revisión humana, sin lectura de contenido.
 
 ## Regla
 
