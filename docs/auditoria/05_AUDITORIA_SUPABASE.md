@@ -1,9 +1,9 @@
 # Auditoría estática de Supabase
 
-- **Estado:** OBSERVADO por revisión de archivos; estado remoto y de producción BLOQUEADO por falta de proyecto conectado.
+- **Estado:** revisión estática OBSERVADA; Supabase MCP conectado y metadata/advisors consultados en modo lectura. El entorno del proyecto visible no está clasificado como desarrollo, staging o producción; catálogo detallado en staging sigue PENDIENTE.
 - **Fecha/SHA:** 2026-10-30 / `228c86a7fb03ed555465e56971170565f3029d9b`.
-- **Alcance:** migraciones SQL y configuración/Edge Functions versionadas. No se ejecutaron migraciones ni se consultó la base de datos.
-- **Revisión adicional:** 2026-10-30 / rama de hardening; se preparó [`supabase/auditoria_catalogo_readonly.sql`](../../supabase/auditoria_catalogo_readonly.sql) para lectura de catálogo en staging. No se ejecutó: este entorno no tiene `psql`, Supabase CLI ni proyecto conectado.
+- **Alcance:** migraciones SQL y configuración/Edge Functions versionadas, más metadata/advisors vía MCP. No se leyeron filas de negocio ni se ejecutaron migraciones.
+- **Revisión adicional:** el MCP lista un proyecto activo sin ramas de desarrollo; `list_tables` y advisors de seguridad/rendimiento devolvieron metadata, no filas de negocio. No se ejecutó SQL, migración ni escritura. La consulta [`supabase/auditoria_catalogo_readonly.sql`](../../supabase/auditoria_catalogo_readonly.sql) sigue pendiente hasta disponer de un staging aislado.
 
 ## Evidencia local
 
@@ -36,9 +36,15 @@
 - Índices ya existentes, costo de v546, planes de consulta, rendimiento y equivalencia funcional de v547.
 - Backups Supabase, restauración, extensiones, triggers, webhooks internos, retención y políticas del proyecto.
 
+## Evidencia remota disponible
+
+- El conector MCP de Supabase está disponible y autorizó listar tablas públicas y leer advisors. Los advisors devolvieron hallazgos que coinciden con algunas categorías históricas (RLS sin policies, vistas y funciones `SECURITY DEFINER`, `search_path` y configuración de Auth), además de avisos de rendimiento.
+- Esta observación no permite concluir explotabilidad: todavía hay que confirmar las ACL efectivas y revisar la intención/cuerpo de cada función y vista. El entorno remoto no fue identificado por el propietario como staging; por eso no se ejecutó la consulta de catálogo ni se realizaron cambios.
+- La lista de proyectos no mostró ramas de desarrollo. Crear/identificar un staging separado es requisito previo para la prueba exhaustiva. Los detalles por objeto de los advisors se conservan fuera de este documento público hasta clasificar el entorno y el riesgo de divulgación.
+
 ## Plan seguro de staging
 
-1. Obtener schema-only y catálogo del proyecto de staging con acceso de mínimo privilegio; no volcar valores sensibles.
+1. Obtener schema-only y catálogo del proyecto de staging con acceso de mínimo privilegio; no volcar valores sensibles. Para MCP, preferir project scope y modo read-only durante la auditoría.
 2. Enumerar tablas públicas expuestas, RLS, policies y grants por `anon`, `authenticated` y `service_role`.
 3. Enumerar vistas, opciones `security_invoker`, propietario/grants y funciones `SECURITY DEFINER` con cuerpo, `search_path` y ACL.
 4. Probar cada endpoint con anon, sesión propia, sesión ajena y service role en fixtures sintéticos.
