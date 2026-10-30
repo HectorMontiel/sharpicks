@@ -1709,7 +1709,7 @@
   function iaPulso(p, v) {
     const yo = (window.SPX && SPX.yo) || {}, c = clavePartido(p), marc = v && v.g ? v.g[0] + '-' + v.g[1] : '';
     const r = (yo.pulsoIA || {})[c], h = (yo.pulsoHay || {})[c];
-    return { rec: r && r.marcador === marc ? r : null, hay: !!(h && h.marcador === marc) };       // v522: también la ya cumplida
+    return { rec: r && r.marcador === marc && r.acierto == null ? r : null, hay: !!(h && h.marcador === marc) };
   }
   // v522 — LAS SEÑALES DEL PULSO DE ESTE PARTIDO (70 %+ y que aún pagan), medidas: la nube las apunta al cruzar el
   // umbral y las califica (✅ en cuanto se cumplen, ❌ al pitido). Aquí, además, el estado de ahora con el marcador y
@@ -1720,28 +1720,40 @@
     if (k.startsWith('cor')) {
       const c = ((vs && vs.stats) || {}).wonCorners, n = c && c.v ? num(c.v[0]) + num(c.v[1]) : null;
       if (n == null || s.corners == null) return null;
-      return { ok: n - s.corners >= Number(k[3]), falta: s.corners + Number(k[3]) - n };
+      const meta = s.corners + Number(k[3]);
+      return { ok: n >= meta, falta: meta - n, base: s.corners, meta, van: n, que: 'cor' };
     }
     const tot = g[0] + g[1];
-    return k === 'gol' ? { ok: tot > gh + ga, falta: 1 } : k === 'gol2' ? { ok: tot - gh - ga >= 2, falta: gh + ga + 2 - tot }
-      : k === 'gol_l' ? { ok: g[0] > gh, falta: 1 } : k === 'gol_v' ? { ok: g[1] > ga, falta: 1 } : null;
+    // v524 — cada señal con sus números: lo que había al apuntarla, la meta y lo que va ahora
+    const r = (base, meta, van) => ({ ok: van >= meta, falta: meta - van, base, meta, van, que: 'gol' });
+    return k === 'gol' ? r(gh + ga, gh + ga + 1, tot) : k === 'gol2' ? r(gh + ga, gh + ga + 2, tot)
+      : k === 'gol_l' ? r(gh, gh + 1, g[0]) : k === 'gol_v' ? r(ga, ga + 1, g[1]) : null;
   }
   function senalesHtml(p, v, vs, L, V) {
     const ss = ((window.SPX && SPX.yo.pulsoSen) || {})[clavePartido(p)] || [];
     if (!ss.length || !window.PULSO) return '';
     const fin = v && v.fase === 'post';
-    const filas = ss.slice().sort((a, b) => a.minuto - b.minuto).map((s) => {
-      const va = s.acierto == null ? senalVa(s, v, vs) : null;
+    const fila = (s) => {
+      const va = s.acierto == null ? senalVa(s, v, vs) : null, nums = senalVa(s, v, vs);
       const ok = s.acierto === true || (va && va.ok), mal = s.acierto === false || (fin && va && !va.ok);
       const est = ok ? '<span class="sn-e ok">' + OK() + (s.cumplida_min ? ' ' + s.cumplida_min + "'" : ' sí') + '</span>'
         : mal ? '<span class="sn-e mal">' + MAL() + ' no</span>'
-        : '<span class="sn-e va">' + ico('hourglass') + (va && va.falta > 0 && s.mercado && s.mercado.startsWith('cor') ? ' faltan ' + va.falta : ' en curso') + '</span>';
+        : '<span class="sn-e va">' + ico('hourglass') + (va && va.falta > 0 ? ' falta' + (va.falta > 1 ? 'n ' : ' ') + va.falta : '') + '</span>';
       const que = s.mercado ? esc(PULSO.nombre(s.mercado, L, V)) + ' <b>' + Math.round(100 * Number(s.prob)) + '%</b>' : ico('lock', 'candado') + ' VIP';
-      return '<div class="sn-fila"><span class="sn-m">' + s.minuto + "' · " + esc(s.marcador) + '</span><span class="sn-q">' + que +
-        (s.ia ? ' <span class="pc-ia">' + ico('sparkles', 'acento') + ' IA</span>' : '') + '</span>' + est + '</div>';
-    }).join('');
-    const hechas = ss.filter((s) => s.acierto === true).length;
-    return '<div class="senales"><div class="sn-cab"><span>' + ico('target') + ' Señales del Pulso</span><small>70 %+ · ' + hechas + ' de ' + ss.length + ' cumplidas</small></div>' + filas + '</div>';
+      // «4 → 7 · van 6»: con cuántos se apuntó, a cuántos tiene que llegar y cuántos van (córners o goles)
+      const cuenta = s.mercado && nums ? '<small class="sn-n">' + ico(nums.que === 'cor' ? 'flag' : 'ball-football') + ' ' + nums.base + ' → ' + nums.meta +
+        (ok || mal ? '' : ' · van ' + nums.van) + '</small>' : '';
+      return '<div class="sn-fila"><span class="sn-m">' + s.minuto + "'</span><span class=\"sn-q\">" + que +
+        (s.ia ? ' <span class="pc-ia">' + ico('sparkles', 'acento') + '</span>' : '') + cuenta + '</span>' + est + '</div>';
+    };
+    // v524 — el usuario: «si ya se cumplió, se quita y se pone en la sección de las que ya se cumplieron»
+    const cumple = (s) => s.acierto === true || (s.acierto == null && (senalVa(s, v, vs) || {}).ok);
+    const falla = (s) => s.acierto === false || (s.acierto == null && fin && senalVa(s, v, vs) && !senalVa(s, v, vs).ok);
+    const orden = ss.slice().sort((a, b) => a.minuto - b.minuto);
+    const enJuego = orden.filter((s) => !cumple(s) && !falla(s)), hechas = orden.filter(cumple), fallas = orden.filter(falla);
+    const grupo = (tit, xs) => (xs.length ? '<div class="sn-sub">' + tit + '</div>' + xs.map(fila).join('') : '');
+    return '<div class="senales"><div class="sn-cab"><span>' + ico('target') + ' Señales 70 %+</span><small>' + hechas.length + ' de ' + ss.length + ' ' + OK() + '</small></div>' +
+      grupo('En juego', enJuego) + grupo('Ya se cumplieron', hechas) + grupo('No se cumplieron', fallas) + '</div>';
   }
   function pulsoAbierto(p) {
     return !!(window.SPX && (SPX.esVip() || (SPX.yo.pulso || {})[clavePartido(p)]));
@@ -1764,7 +1776,7 @@
     };
     const dest = top ? '<div class="pulso-top"><span class="pulso-top-et">' + ico('star', 'estrella') + ' Mejor ahora</span><b>' + esc(PULSO.nombre(top.k, L, V)) + '</b>' +
       '<span class="pulso-top-p">' + (abierto ? Math.round(100 * top.p) + '%' : Math.round(100 * top.tramo.desde) + '-' + Math.round(100 * top.tramo.hasta) + '%') + '</span>' +
-      '<small>' + (abierto ? 'si tu casa paga más de ' + top.justa.toFixed(2) + ', tiene valor' : 'salió ' + Math.round(100 * top.tramo.fue) + '% en el historial') + '</small></div>' : '';
+      '<small>' + (abierto ? 'valor si paga más de ' + top.justa.toFixed(2) : 'salió ' + Math.round(100 * top.tramo.fue) + '% en el historial') + '</small></div>' : '';
     const precio = Number((window.SPX && SPX.yo.precios.precio_pulso) || 2);
     // v520 — «IA + MODELO»: Gemini elige la mejor jugada SÓLO entre estos mercados de 70 %+ (en la nube, medida como señal)
     const ia = iaPulso(p, v);
@@ -1780,6 +1792,8 @@
       const falta = r.mercado.startsWith('cor') ? 'faltan ' + va.falta + (va.falta === 1 ? ' córner' : ' córners') : r.mercado === 'gol2' && va.falta === 1 ? 'falta 1 gol' : 'falta el gol';
       return { cl: '', txt: ico('hourglass') + ' ' + falta + (ahora ? ' · ahora ' + Math.round(100 * ahora.p) + '%' : '') };
     };
+    // v524 — cumplida, deja la caja (pasa a «Ya se cumplieron» en las señales) y la IA da una nueva con lo de ahora
+    if (ia.rec && iaEstado(ia.rec).cl === 'hecha') ia.rec = null;
     const iaE = ia.rec ? iaEstado(ia.rec) : null;
     const iaH = ia.rec ? '<div class="pulso-ia ' + iaE.cl + '"><span class="pulso-ia-et">' + ico('sparkles', 'acento') + ' IA + modelo · al ' + ia.rec.minuto + "' (" + esc(ia.rec.marcador) + ')</span><b>' + esc(PULSO.nombre(ia.rec.mercado, L, V)) + '</b>' +
         '<span class="pulso-top-p">' + Math.round(100 * Number(ia.rec.prob)) + '%</span>' + '<small class="ia-va">' + iaE.txt + '</small>' +

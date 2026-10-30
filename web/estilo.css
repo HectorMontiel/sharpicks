@@ -1074,9 +1074,19 @@ body::before, body::after { animation: none !important; }
 .sn-cab small { color: var(--tenue); font-weight: 600; font-size: 11.5px; }
 .sn-fila { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid rgba(255,255,255,.06); font-size: 13px; }
 .sn-fila:first-of-type { border-top: 0; }
+.sn-sub { margin: 8px 0 2px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--tenue); }
+.sn-sub + .sn-fila { border-top: 0; }
 .sn-m { color: var(--tenue); font-size: 12px; white-space: nowrap; }
 .sn-q { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sn-n { display: flex; align-items: center; gap: 4px; color: var(--tenue); font-size: 11.5px; margin-top: 1px; }
+.sn-n .ic { width: 12px; height: 12px; }
 .sn-e { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; font-size: 12px; white-space: nowrap; }
 .sn-e.ok { color: var(--verde, #3ddc84); } .sn-e.mal { color: #f87171; } .sn-e.va { color: var(--tenue); }
 .sn-e .ic { width: 14px; height: 14px; }
+/* v524 — lo largo del historial, plegado: a la vista sólo los números que importan */
+details.mas { margin: 8px 0 2px; }
+details.mas > summary { cursor: pointer; list-style: none; font-size: 13px; font-weight: 700; color: var(--marca, var(--verde)); padding: 6px 0; }
+details.mas > summary::-webkit-details-marker { display: none; }
+details.mas > summary::after { content: ' ▾'; }
+details.mas[open] > summary::after { content: ' ▴'; }
 .sn-hist { margin: 6px 0 4px; } .sn-hist .sn-m { max-width: 46vw; overflow: hidden; text-overflow: ellipsis; }

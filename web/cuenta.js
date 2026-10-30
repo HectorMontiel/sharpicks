@@ -1217,14 +1217,14 @@
   // v513 — el Pulso en vivo, medido en público: por mercado y por tramo de probabilidad, qué dijo en el 60' y el
   // 70' y qué salió (lo apunta `pulso_historial.py` con la misma cuenta que la página; nada se retoca).
   function senalesHist(sT, sU) {
-    if (!sT.length) return '<p class="chico">Señales del Pulso (70 %+): se califican en cuanto se cumplen; aquí verás las primeras al terminar los partidos de hoy.</p>';
+    if (!sT.length) return '<p class="tenue chico">Las señales del Pulso (70 %+) se califican en cuanto se cumplen.</p>';
     const n = sT.reduce((a, x) => a + Number(x.n), 0), ok = sT.reduce((a, x) => a + Number(x.aciertos), 0);
     const ia = sT.filter((x) => x.ia), ni = ia.reduce((a, x) => a + Number(x.n), 0), oi = ia.reduce((a, x) => a + Number(x.aciertos), 0);
     const NOM = { gol: 'Cae otro gol', gol2: '2 goles más', gol_l: 'Marca el local', gol_v: 'Marca el visitante', cor1: '1 córner más', cor2: '2 córners más', cor3: '3 córners más' };
-    return '<p class="chico"><b>Señales del Pulso (70 %+)</b>: <b>' + ok + ' ✅ ' + (n - ok) + ' ❌</b> · ' + Math.round(100 * ok / n) + ' %' +
-      (ni ? ' · elegidas por IA + modelo: <b>' + oi + ' ✅ ' + (ni - oi) + ' ❌</b> · ' + Math.round(100 * oi / ni) + ' %' : '') + '</p>' +
-      (sU.length ? '<div class="sn-hist">' + sU.map((x) => '<div class="sn-fila"><span class="sn-m">' + esc(x.partido) + ' · ' + x.minuto + "'</span><span class=\"sn-q\">" +
-        esc(NOM[x.mercado] || x.mercado || '') + ' <b>' + Math.round(100 * Number(x.prob)) + '%</b></span><span class="sn-e ' + (x.acierto ? 'ok">✅' : 'mal">❌') + '</span></div>').join('') + '</div>' : '');
+    return '<div class="num">✅ ' + ok + ' ❌ ' + (n - ok) + ' <span class="pct">' + Math.round(100 * ok / n) + ' %</span></div>' +
+      '<div class="sub">Señales del Pulso 70 %+' + (ni ? ' · IA + modelo: ✅ ' + oi + ' ❌ ' + (ni - oi) : '') + '</div>' +
+      (sU.length ? '<details class="mas"><summary>Últimas señales</summary><div class="sn-hist">' + sU.map((x) => '<div class="sn-fila"><span class="sn-m">' + esc(x.partido) + ' · ' + x.minuto + "'</span><span class=\"sn-q\">" +
+        esc(NOM[x.mercado] || x.mercado || '') + ' <b>' + Math.round(100 * Number(x.prob)) + '%</b></span><span class="sn-e ' + (x.acierto ? 'ok">✅' : 'mal">❌') + '</span></div>').join('') + '</div></details>' : '');
   }
   async function pulsoHist() {
     const caja = $('pulso-hist'); if (!caja || !sb) return;
@@ -1243,10 +1243,10 @@
         '<span class="calib-n">dijo <b>' + dijo + ' %</b> · salió <b>' + salio + ' %</b><small>' + xs.length + ' lecturas</small></span></div>';
     }).join('');
     const altos = data.filter((x) => Number(x.prob) >= 0.7 && x.acierto != null), ok = altos.filter((x) => x.acierto).length;
-    caja.innerHTML = '<div class="calib">' + filas + '</div>' +
-      (altos.length ? '<p class="chico">Cuando el Pulso dijo <b>70 % o más</b>: <b>' + ok + ' ✅ ' + (altos.length - ok) + ' ❌</b> · ' + Math.round(100 * ok / altos.length) + ' %</p>' : '') +
-      senalesHist(sT, sU) +
-      '<p class="tenue chico">Lecturas del 60\' y el 70\' de cada partido desde el ' + esc(data[0].fecha) + ', fallos incluidos. La rayita es lo que dijo el Pulso; la barra, lo que salió.</p>';
+    // v524 — breve: el número que importa a la vista; por mercado y la lista, plegados
+    caja.innerHTML = senalesHist(sT, sU) +
+      (altos.length ? '<div class="sub">Lecturas del 60\' y 70\' con 70 %+: ✅ ' + ok + ' ❌ ' + (altos.length - ok) + ' · ' + Math.round(100 * ok / altos.length) + ' %</div>' : '') +
+      '<details class="mas"><summary>Por mercado: lo que dijo y lo que salió</summary><div class="calib">' + filas + '</div></details>';
   }
   async function historial() {
     pulsoHist();
@@ -1287,11 +1287,14 @@
     // v421 — sólo los días con picks liquidados (del 9 al 14-oct sólo se guardaban los 💰:
     // salían «0-0» y parecía que no hubo nada; los 💰 siguen sumados arriba)
     const conPicks = filas.filter((d) => (Number(d.verdes) || 0) + (Number(d.rojas) || 0) > 0);
-    if (conPicks.length) caja.innerHTML +=
-      '<table class="tabla"><tr><th>Día</th><th>✅</th><th>❌</th><th>%</th><th>💎</th><th>💰</th></tr>' +
-      conPicks.map((d) => '<tr><td>' + esc(d.fecha) + '</td><td>' + d.verdes + '</td><td>' + d.rojas + '</td><td>' +
+    // v524 — el usuario: «que el historial sea dinámico, si no se hace una listota, pero que no desaparezca»:
+    // los últimos 7 días a la vista y los demás plegados en «Ver todos los días»
+    const tablaDias = (ds) => '<table class="tabla"><tr><th>Día</th><th>✅</th><th>❌</th><th>%</th><th>💎</th><th>💰</th></tr>' +
+      ds.map((d) => '<tr><td>' + esc(String(d.fecha).slice(5)) + '</td><td>' + d.verdes + '</td><td>' + d.rojas + '</td><td>' +
         esc(p100(d.verdes, d.rojas).replace(' %', '')) + '</td><td>' + d.verdes_elige + '-' + d.rojas_elige +
         '</td><td>' + (d.verdes_error || 0) + '-' + (d.rojas_error || 0) + '</td></tr>').join('') + '</table>';
+    if (conPicks.length) caja.innerHTML += tablaDias(conPicks.slice(0, 7)) +
+      (conPicks.length > 7 ? '<details class="mas"><summary>Ver ' + (conPicks.length - 7) + ' días más</summary>' + tablaDias(conPicks.slice(7)) + '</details>' : '');
   }
 
   // v399 — «lo que metería la IA» con ✅/❌, y si sus probabilidades son
@@ -1400,7 +1403,7 @@
     if (!it.length) { caja.innerHTML = h + '<p class="tenue">Todavía no hay envíos en este canal.</p>'; return; }
     h += '<div class="num">✅ ' + v + ' ❌ ' + r + (v + r ? ' <span class="pct">' + Math.round(100 * v / (v + r)) + ' %</span>' : '') + '</div>' +
       (comb.length ? '<div class="sub">🔗 Combinadas: ✅ ' + cv + ' ❌ ' + cr + ' · ⏳ ' + (comb.length - cv - cr) + '</div>' : '') +
-      '<div class="tg-items">' + it.slice(0, 40).map((x) => {
+      '<details class="mas"><summary>Ver los últimos envíos</summary><div class="tg-items">' + it.slice(0, 15).map((x) => {
         const hechas = x.ps.filter((p) => p.estado === 'verde').length;
         const chip = x.est === 'verde' ? '<span class="et verde">' + OK() + ' Verde</span>' : x.est === 'roja' ? '<span class="et roja">' + MAL() + ' Roja</span>'
           : '<span class="et vivo">⏳ ' + (x.comb ? hechas + ' de ' + x.ps.length + ' ✅' : 'Pendiente') + '</span>';
@@ -1409,7 +1412,7 @@
           ' · <b>' + cuota.toFixed(2) + '</b></span>' + chip + '</div>' +
           x.ps.map((p) => '<div class="tg-pata">' + (p.estado === 'verde' ? '✅' : p.estado === 'roja' ? '❌' : '⏳') + ' ' + esc(p.apuesta) +
             ' <span class="tenue">· ' + esc(p.partido) + (p.marcador ? ' ' + esc(p.marcador) : '') + '</span></div>').join('') + '</div>';
-      }).join('') + '</div>';
+      }).join('') + '</div></details>';
     caja.innerHTML = h;
   }
   document.addEventListener('click', (e) => { const b = e.target.closest('[data-tg-canal]'); if (b) { tg.canal = b.dataset.tgCanal; pintarTg(); } });

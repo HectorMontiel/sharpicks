@@ -27,7 +27,7 @@ const INSTRUCCION = 'Eres el analista en vivo de SharPicks. Te doy un partido de
   'estadísticas del momento y los mercados del Pulso con la probabilidad que da nuestro modelo (medido con miles de ' +
   'partidos) y lo que salió en el historial en ese tramo. Elige UNO de esos mercados: el que mejor combine probabilidad ' +
   'alta y lo que dicen las estadísticas del partido (quién ataca, tiros a puerta, córners, expulsados). No inventes ' +
-  'mercados ni probabilidades. Todos los mercados que te doy todavía pagan algo; si dudas, el de probabilidad más alta. Escribe el motivo en español sencillo, en una sola frase de 160 caracteres como máximo, sin emojis.';
+  'mercados ni probabilidades. Todos los mercados que te doy todavía pagan algo; si dudas, el de probabilidad más alta. Escribe el motivo en español sencillo, MUY breve: 8 a 12 palabras, sin cifras ni emojis.';
 
 type Dic = Record<string, any>;
 let M: Dic | null = null, mDesde = 0;
@@ -238,6 +238,9 @@ async function vuelta(seco: boolean) {
     for (const x of ms) {
       const k = [clave, x.k, marc].join('#');
       if (!x.tramo || x.p < SENAL_MIN || 1 / x.p < JUSTA_MIN || senales.has(k)) continue;
+      // v524 — UNA ABIERTA POR MERCADO: si la de ese mercado sigue sin cumplirse, es la misma apuesta (el usuario vio
+      // «3 córners más» al 48' y otra vez al 53' tras un gol; los córners no dependen del marcador). Otra, sólo al cumplirse.
+      if ([...senales.values()].some((y) => y.clave === clave && y.mercado === x.k && y.acierto == null)) continue;
       const fila = { clave, partido: p.partido, fecha: dia(p), liga: p.liga || null, mercado: x.k, marcador: marc, minuto: e.t,
         corners: e.c, prob: Math.round(1000 * x.p) / 1000, ia: false };
       if (!seco) await sbPost('pulso_senales', fila);
@@ -245,14 +248,17 @@ async function vuelta(seco: boolean) {
     }
     if (!m || m.p < CANDIDATO_MIN) continue;
     let rec = recs.get(clave + '#' + marc) || null;
-    if (!rec) {                                                    // la IA, una vez por partido y marcador
+    // v524 — cumplida la recomendación, la IA da otra con las probabilidades de ahora (la cumplida queda en sus señales)
+    const cumplida = !!rec && (rec.acierto != null || liquidar(rec, e.g, e.c) === true);
+    if (!rec || cumplida) {                                        // la IA: una por partido y marcador, y otra al cumplirse
       // sólo lo que aún paga (como «Mejor ahora»): un «1 córner más» al 96 % paga 1,04 y no sirve de recomendación
       const opciones = ms.filter((x) => x.tramo && x.p >= SENAL_MIN && 1 / x.p >= JUSTA_MIN), r = await preguntarIA(p, e, opciones);
       if (r) {
         const el = opciones.find((x) => x.k === r.mercado)!;
         rec = { ...r, clave, partido: p.partido, fecha: dia(p), marcador: marc, minuto: e.t, prob: Math.round(1000 * el.p) / 1000, corners: e.c };
         if (!seco) {
-          await sbPost('pulso_ia', rec);
+          await fetch(SB + 'pulso_ia', { method: 'POST', headers: { ...H, Prefer: 'resolution=merge-duplicates,return=minimal' },
+            body: JSON.stringify({ ...rec, acierto: null }) });
           // y su señal queda marcada como la elegida por la IA (para medirla aparte)
           await fetch(SB + `pulso_senales?clave=eq.${encodeURIComponent(clave)}&mercado=eq.${r.mercado}&marcador=eq.${encodeURIComponent(marc)}`,
             { method: 'PATCH', headers: { ...H, Prefer: 'return=minimal' }, body: JSON.stringify({ ia: true }) });
