@@ -172,12 +172,14 @@ def _apuesta(p: Dict) -> str:
         _e(p.get('apuesta')), float(p.get('cuota') or 0), round(100 * float(p.get('prob') or 0)))
 
 
-def _ticket(titulo: str, ps: List[Dict], ahora: dt.datetime, etiqueta: str) -> Optional[bytes]:
-    """v526 — el ticket en imagen (si algo falla, el mensaje sale sólo con texto)."""
+def _ticket(titulo: str, ps: List[Dict], ahora: dt.datetime, etiqueta: str, censurado: bool = False) -> Optional[bytes]:
+    """v526 — el ticket en imagen (si algo falla, el mensaje sale sólo con texto).
+    v548 — `censurado`: para el canal gratis (el pick, la cuota y la ganancia, borrosos; nunca se dibujan los reales)."""
     try:
         import tarjeta_tg
-        return tarjeta_tg.ticket(titulo, [{'partido': p.get('partido'), 'apuesta': p.get('apuesta'), 'cuota': p.get('cuota'),
-                                            'prob': p.get('prob'), 'cuando': _cuando(p, ahora).upper()} for p in ps], etiqueta)
+        return tarjeta_tg.ticket(titulo, [{'partido': p.get('partido'), 'apuesta': '' if censurado else p.get('apuesta'),
+                                            'cuota': None if censurado else p.get('cuota'), 'prob': None if censurado else p.get('prob'),
+                                            'cuando': _cuando(p, ahora).upper()} for p in ps], etiqueta, censurado=censurado)
     except Exception as e:
         logger.warning('[telegram] sin ticket: %s', e)
         return None
@@ -419,6 +421,24 @@ def armar_gratis(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[T
                  '\n\n'.join(_cab_partido(p, ahora) + '\n' + _apuesta(p) for p in mues) +
                  '\n\n🔒 En el VIP llegan al momento, todos los días 👉 ' + SITIO + PIE)
             out.append((t, [(clave, 'gratis', 'horario')] + [(p['id'], 'gratis', 'pick') for p in mues]))
+    # v548 — el usuario: «en el gratis también puedes decir que se van a enviar: cuál es la cuota, cuánto puedes ganar,
+    # pero bloqueado y la imagen censurada; para desbloquearla tienen que comprar el VIP». Cuando el VIP recibe sus picks
+    # de «hora de apostar», al gratis le llega el mismo ticket CENSURADO (se ven el partido y la hora; el pick, la cuota
+    # y la ganancia, borrosos). Uno cada 4 horas como mucho, entre las 8 y las 23, y nunca dos veces los mismos picks.
+    if 8 <= loc.hour < 23:
+        franja = 'teaser:%s:%02d' % (hoy, loc.hour // 4 * 4)
+        vip = niveles_vip()
+        listos = [p for p in picks if nivel(p) in vip and p.get('tipo') != 'error' and p.get('estado') == 'pendiente'
+                  and _utc(p.get('inicio')) is not None and ahora < _utc(p.get('inicio')) <= ahora + dt.timedelta(hours=VENTANA_APUESTA_H)
+                  and (p['id'], 'gratis', 'teaser') not in enviados]
+        if listos and (franja, 'gratis', 'teaser') not in enviados:
+            top = sorted(listos, key=lambda p: (not p.get('elige'), -float(p.get('prob') or 0)))[:MAX_VIP_MSG]
+            t = ('🔒💎 <b>Acaban de llegar %d picks al VIP</b>\n' % len(listos) +
+                 'Ya es hora de apostar: cuota, probabilidad y cuánto puedes ganar, sólo para VIP 👀\n\n' +
+                 '\n'.join('%s %s · 🕒 %s' % (DEP_EMO.get(p.get('deporte'), '🎯'), _e(p.get('partido')), _cuando(p, ahora)) for p in top) +
+                 '\n\n👉 Desbloquéalos: hazte VIP en ' + SITIO + PIE)
+            out.append((t, [(franja, 'gratis', 'teaser')] + [(p['id'], 'gratis', 'teaser') for p in listos],
+                        _ticket('Picks VIP · ya es hora', top, ahora, 'VIP', censurado=True)))
     # una vez al día: cómo le fue ayer al VIP (la prueba de que vale la pena)
     ayer = (loc - dt.timedelta(days=1)).strftime('%Y-%m-%d')
     clave = 'resumen-vip:' + ayer

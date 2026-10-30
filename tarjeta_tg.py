@@ -8,12 +8,38 @@ fuente DejaVu que trae matplotlib, para que salga igual en el servidor de GitHub
 
   ticket(titulo, patas, etiqueta='VIP')  → bytes PNG
     patas: [{'partido', 'apuesta', 'cuota', 'prob', 'cuando'}] (hasta 6)
+
+v548 — el usuario: «en lugar de $100 úsalo como si estuvieras apostando 10,000, a veces 5,000 o cifras arriba de 5,000
+y menos de 20,000». La apuesta del ejemplo sale de MONTOS (casi siempre 10,000) y es la misma para el mismo ticket.
+Y para el canal gratis: `censurado=True` deja ver el partido y la hora, pero el pick, la cuota, el % y lo que se gana
+salen borrosos (se dibuja un texto de relleno, nunca el real) con la franja «Sólo VIP».
 """
+import hashlib
 import io
 import os
 from typing import Dict, List, Optional
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
+
+MONTOS = (10000, 10000, 10000, 5000, 7500, 12000, 15000, 18000)
+
+
+def monto(patas: List[Dict]) -> int:
+    """La apuesta del ejemplo: entre 5,000 y 19,999, casi siempre 10,000, fija para el mismo ticket."""
+    clave = '|'.join('%s|%s' % (p.get('partido'), p.get('apuesta')) for p in patas).encode('utf-8')
+    return MONTOS[int(hashlib.md5(clave).hexdigest(), 16) % len(MONTOS)]
+
+
+def _pesos(n: float) -> str:
+    return '$' + format(int(round(n)), ',')
+
+
+def _borroso(im: Image.Image, caja, dibujar) -> None:
+    """Dibuja algo en una capa aparte y la pega muy borrosa en `caja` (x0, y0, x1, y1)."""
+    x0, y0, x1, y1 = caja
+    capa = im.crop(caja)
+    dibujar(ImageDraw.Draw(capa))
+    im.paste(capa.filter(ImageFilter.GaussianBlur(14)), (x0, y0))
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 ANCHO = 1080
@@ -48,9 +74,10 @@ def _corta(d: ImageDraw.ImageDraw, txt: str, f, ancho: int) -> str:
     return txt + '…'
 
 
-def ticket(titulo: str, patas: List[Dict], etiqueta: str = 'VIP', pie: Optional[str] = None) -> bytes:
+def ticket(titulo: str, patas: List[Dict], etiqueta: str = 'VIP', pie: Optional[str] = None, censurado: bool = False) -> bytes:
     patas = patas[:6]
-    fila_h, cab_h, pie_h = 190, 200, 150 if len(patas) > 1 else 110
+    apuesta = monto(patas)
+    fila_h, cab_h, pie_h = 190, 200, 150 if len(patas) > 1 or censurado else 110
     alto = cab_h + fila_h * len(patas) + pie_h + 40
     im = Image.new('RGB', (ANCHO, alto), FONDO)
     d = ImageDraw.Draw(im)
@@ -83,9 +110,23 @@ def ticket(titulo: str, patas: List[Dict], etiqueta: str = 'VIP', pie: Optional[
         prob_total *= prob or 1
         d.line([(70, y - 10), (ANCHO - 70, y - 10)], fill=BORDE, width=2)
         d.text((70, y + 4), _corta(d, '%s · %s' % (p.get('partido', ''), p.get('cuando', '')), _fuente(28, False), 700), font=_fuente(28, False), fill=TENUE)
+        fc = _fuente(46)
+        if censurado:
+            # nada real: texto de relleno, borroso, y la etiqueta «Sólo VIP» encima
+            _borroso(im, (60, y + 36, 800, y + 150), lambda c: (
+                c.text((10, 8), 'Gana XXXXXX XXXXXXX', font=_fuente(42), fill=BLANCO),
+                c.rounded_rectangle([10, 80, 610, 98], radius=9, fill=VERDE)))
+            _borroso(im, (ANCHO - 250, y + 10, ANCHO - 60, y + 100), lambda c: (
+                c.rounded_rectangle([20, 8, 180, 82], radius=18, fill=VERDE_OSC), c.text((45, 17), '1.XX', font=fc, fill=BLANCO)))
+            fv = _fuente(30)
+            tv = 'SÓLO VIP'
+            tw = d.textlength(tv, font=fv) + 40
+            d.rounded_rectangle([ANCHO - 70 - tw, y + 108, ANCHO - 70, y + 152], radius=22, fill=ORO)
+            d.text((ANCHO - 70 - tw + 20, y + 114), tv, font=fv, fill=FONDO)
+            y += fila_h
+            continue
         d.text((70, y + 44), _corta(d, p.get('apuesta', ''), _fuente(42), 700), font=_fuente(42), fill=BLANCO)
         # la cuota en su caja verde, a la derecha
-        fc = _fuente(46)
         ct = '%.2f' % cuota
         cw = d.textlength(ct, font=fc) + 50
         d.rounded_rectangle([ANCHO - 70 - cw, y + 18, ANCHO - 70, y + 92], radius=18, fill=VERDE_OSC)
@@ -96,13 +137,18 @@ def ticket(titulo: str, patas: List[Dict], etiqueta: str = 'VIP', pie: Optional[
         d.text((690, y + 106), '%d %%' % round(100 * prob), font=_fuente(32), fill=VERDE)
         y += fila_h
     d.line([(70, y - 10), (ANCHO - 70, y - 10)], fill=BORDE, width=2)
-    if len(patas) > 1:
+    tx = '%s  →  %s' % (_pesos(apuesta), _pesos(apuesta * cuota_total))
+    if censurado:
+        # lo que se gana también, borroso; encima, cómo desbloquearlo
+        d.text((70, y + 6), 'Cuota total y ganancia', font=_fuente(30, False), fill=TENUE)
+        _borroso(im, (60, y + 40, ANCHO - 60, y + 110), lambda c: c.text((10, 8), '%s  →  $XX,XXX     X.XX' % _pesos(apuesta), font=_fuente(44), fill=BLANCO))
+        msg = 'Desbloquéalo con VIP en sharpicksapp.com'
+        d.text(((ANCHO - d.textlength(msg, font=_fuente(30))) / 2, y + 62), msg, font=_fuente(30), fill=ORO)
+    elif len(patas) > 1:
         d.text((70, y + 6), 'Cuota total', font=_fuente(30, False), fill=TENUE)
         d.text((70, y + 44), '%.2f' % cuota_total, font=_fuente(52), fill=VERDE)
-        tx = '$100  →  $%d' % round(100 * cuota_total)
         d.text((ANCHO - 70 - d.textlength(tx, font=_fuente(40)), y + 52), tx, font=_fuente(40), fill=BLANCO)
     else:
-        tx = '$100  →  $%d' % round(100 * cuota_total)
         d.text((70, y + 10), tx, font=_fuente(40), fill=BLANCO)
     d.text((70, alto - 78), pie or 'sharpicksapp.com  ·  +18  ·  juega con responsabilidad', font=_fuente(24, False), fill=TENUE)
     out = io.BytesIO()
@@ -115,4 +161,5 @@ if __name__ == '__main__':
             {'partido': 'Fiorentina vs Atalanta', 'cuando': 'HOY 13:45', 'apuesta': 'Más de 1.5 goles', 'cuota': 1.18, 'prob': 0.86}]
     open('ticket_demo.png', 'wb').write(ticket('Combinada del día', demo, 'GRATIS'))
     open('ticket_demo_vip.png', 'wb').write(ticket('Pick VIP', demo[:1], 'VIP'))
+    open('ticket_demo_censurado.png', 'wb').write(ticket('Picks VIP · ya es hora', demo, 'VIP', censurado=True))
     print('listo')
