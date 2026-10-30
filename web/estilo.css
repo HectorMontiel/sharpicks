@@ -1153,6 +1153,30 @@ details.mas[open] > summary::after { content: ' ▴'; }
    cabe (sesión con monedas + VIP/ADMIN + usuario en un celular angosto), se queda sólo el logo. */
 .marca { flex: 1 1 0; min-width: 40px; overflow: hidden; container-type: inline-size; }
 #nombre { white-space: nowrap; }
-@container (max-width: 145px) { .marca-img, .marca-img img { width: 32px; height: 32px; } .marca #nombre { font-size: 14px; margin-left: -4px; } }
-@container (max-width: 108px) { .marca #nombre { display: none; } }
+@container (max-width: 145px) { .marca-img, .marca-img img { width: 30px; height: 30px; } .marca #nombre { font-size: 13px; margin-left: -5px; } }
+@container (max-width: 98px) { .marca #nombre { display: none; } }
 @media (max-width: 430px) { .derecha, .cuenta { gap: 6px; } .ayuda-btn { width: 28px; height: 28px; flex-shrink: 0; } }
+
+/* v541 — la cabecera con sesión cabe en cualquier iPhone (también 320-375 px): el usuario se corta con «…»,
+   y en los más angostos todo se aprieta un poco. Medido en 320, 375, 390, 402 y 440 px. */
+.cuenta .entrar { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cuenta { min-width: 0; }
+@media (max-width: 400px) {
+  .top { padding-left: 12px; padding-right: 12px; }
+  .cuenta .entrar { max-width: 104px; padding: 7px 10px; }
+  .saldo { font-size: 13px; }
+}
+@media (max-width: 350px) {
+  .derecha, .cuenta { gap: 4px; }
+  .cuenta .entrar { max-width: 84px; padding: 6px 8px; font-size: 13px; }
+  .vip-reloj { padding: 3px 6px; font-size: 11px; }
+  .ayuda-btn { width: 26px; height: 26px; }
+}
+/* En iPhone, Safari hace zoom al tocar un campo con letra menor a 16 px y la página queda
+   desacomodada: en pantallas táctiles los campos van a 16 px. */
+@media (pointer: coarse) { input, select, textarea { font-size: 16px !important; } }
+/* el buscador en celular: liga y búsqueda a la mitad, para que «Buscar equipo» se lea completo */
+@media (max-width: 400px) { .buscador { grid-template-columns: 1fr 1fr; } }
+/* v541 — iPad horizontal / pantallas de 900 px o más: la barra de abajo se salía por la izquierda (el vidrio le
+   ponía left/right de 12 px y se quedaba el translateX(-50%) de la regla de escritorio). Centrada, de 640 px. */
+@media (min-width: 900px) { .nav-abajo { left: 50%; right: auto; width: 640px; max-width: calc(100vw - 24px); transform: translateX(-50%); } }

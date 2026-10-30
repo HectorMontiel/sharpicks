@@ -221,11 +221,19 @@
         try { pintarCabecera(); } catch (e) { /* al final se repinta */ }
       }));
       tareas.push(sb.from('seguidos').select('pick').then(({ data }) => { yo.seguidos = new Set((data || []).map((x) => x.pick)); }));
-      tareas.push(todasSb((a, b) => sb.from('ia_analisis').select('*').gte('fecha', new Date(Date.now() - 2 * 864e5).toISOString().slice(0, 10)).order('id').range(a, b))
-        .then(({ data }) => { yo.ia = {}; (data || []).forEach((x) => { yo.ia[x.partido] = x; }); }));
-      // v482 — jugadores y líneas por estadística: sólo el VIP (la base lo filtra con es_pro())
-      tareas.push(todasSb((a, b) => sb.from('picks_vip').select('fecha,partido,jug,lin').gte('fecha', new Date(Date.now() - 2 * 864e5).toISOString().slice(0, 10)).order('clave').range(a, b))
-        .then(({ data, error }) => { if (!error) { yo.vip = {}; (data || []).forEach((x) => { yo.vip[x.fecha + '|' + x.partido] = x; }); } }));
+      // v543 — lo PESADO (el análisis de la IA ~470 KB y picks_vip ~100 KB) ya no se baja cada vez que el celular vuelve a
+      // la app (el vigilante de límites lo vio 130 veces al día en una sola cuenta VIP): como mucho cada 10 minutos, o si
+      // cambió la cuenta o aún no hay nada (al hacerse VIP, por ejemplo).
+      const pesado = !yo._pesadoEn || Date.now() - yo._pesadoEn > 10 * 60e3 || yo._pesadoDe !== yo.user.id ||
+        !Object.keys(yo.ia || {}).length || !Object.keys(yo.vip || {}).length;
+      if (pesado) {
+        yo._pesadoEn = Date.now(); yo._pesadoDe = yo.user.id;
+        tareas.push(todasSb((a, b) => sb.from('ia_analisis').select('*').gte('fecha', new Date(Date.now() - 2 * 864e5).toISOString().slice(0, 10)).order('id').range(a, b))
+          .then(({ data }) => { yo.ia = {}; (data || []).forEach((x) => { yo.ia[x.partido] = x; }); }));
+        // v482 — jugadores y líneas por estadística: sólo el VIP (la base lo filtra con es_pro())
+        tareas.push(todasSb((a, b) => sb.from('picks_vip').select('fecha,partido,jug,lin').gte('fecha', new Date(Date.now() - 2 * 864e5).toISOString().slice(0, 10)).order('clave').range(a, b))
+          .then(({ data, error }) => { if (!error) { yo.vip = {}; (data || []).forEach((x) => { yo.vip[x.fecha + '|' + x.partido] = x; }); } }));
+      }
       tareas.push(sb.from('suscripciones').select('*').eq('usuario', yo.user.id).order('actualizado', { ascending: false }).limit(10)
         .then(({ data }) => { yo.subs = data || []; }));
       tareas.push(textosPremium().then((t) => { if (t) yo.desbloqueados = t; }));
@@ -435,7 +443,7 @@
       aTiempo(sb.rpc('enlace_vip'), 5000, { data: null }),
     ]);
     const lugares = (r1 && r1.data) || 0, vipUrl = r2 && r2.data;
-    const pm = Number(yo.precios.precio_mensual || 149), pf = Number(yo.precios.precio_fundador || 99), ps = Number(yo.precios.precio_semestral || 749);
+    const pm = Number(yo.precios.precio_mensual || 189), pf = Number(yo.precios.precio_fundador || 129), ps = Number(yo.precios.precio_semestral || 919);
     let h = '<button class="cerrar" data-cerrar-cuenta>✕</button><h3>Mi cuenta</h3>' +
       '<div class="cuenta-cab"><b>@' + esc(p.usuario || '—') + '</b><span class="tenue">' + esc(yo.user.email || '') + '</span></div>' +
       '<div class="cuenta-plan">' + (esAdmin() ? '👑 <b>Administrador</b> · monedas y VIP ilimitados'

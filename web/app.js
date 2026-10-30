@@ -159,6 +159,18 @@
     return filas;
   }
 
+  // v543 — LA HUELLA. El vigilante de límites midió ~350 MB de salida al día con 5 usuarios: cada pestaña abierta bajaba
+  // todos los picks y las combinadas cada 3 minutos aunque no hubiera cambiado nada. Ahora primero se pide la huella
+  // (unos bytes, `huella_publica`) y sólo se baja lo que cambió. Si la huella falla, se baja todo como antes.
+  const _huella = { picks: null, comb: null };
+  async function huellaPublica(desde, desdeComb) {
+    try {
+      const r = await fetch(C.SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/rpc/huella_publica', { method: 'POST',
+        headers: { apikey: C.SUPABASE_ANON_KEY, Authorization: 'Bearer ' + C.SUPABASE_ANON_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_desde: desde, p_desde_comb: desdeComb }) });
+      return r.ok ? await r.json() : null;
+    } catch (e) { return null; }
+  }
   async function cargar() {
     // v384 — datos de apoyo (deportes con partidos pero sin pick)
     fetch('combinadas_simuladas.json?v=528').then((r) => r.ok ? r.json() : null).then((d) => { estado.combSim = d; }).catch(() => {});   // v421
@@ -169,11 +181,17 @@
     try {
       if (C.SUPABASE_URL && C.SUPABASE_ANON_KEY) {
         const desde = diaPestana(-2);
+        const h = await huellaPublica(desde, diaPestana(-30));
+        estado._huellaNueva = h;
         const pedirPicks = () => todasLasFilas(C.SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/picks?select=*&fecha=gte.' + desde + '&order=inicio.asc,id.asc');
-        // v515 — un tropiezo de la base (un 500 suelto) no manda a nadie al respaldo: se reintenta una vez
-        let datos;
-        try { datos = await pedirPicks(); } catch (e1) { await new Promise((r) => setTimeout(r, 1500)); datos = await pedirPicks(); }
-        estado.picks = datos;
+        // v543 — sin cambios desde la última vez: se queda lo que ya hay (no se baja nada)
+        if (!(h && h.picks && h.picks === _huella.picks && !estado.respaldoPicks && Array.isArray(estado.picks) && estado.picks.length)) {
+          // v515 — un tropiezo de la base (un 500 suelto) no manda a nadie al respaldo: se reintenta una vez
+          let datos;
+          try { datos = await pedirPicks(); } catch (e1) { await new Promise((r) => setTimeout(r, 1500)); datos = await pedirPicks(); }
+          estado.picks = datos;
+          _huella.picks = h && h.picks;
+        }
         estado.errorPicks = false;
         estado.respaldoPicks = false;
         $('actualizado').textContent = 'Datos de la base · ' + horaCdmx(new Date());
@@ -203,8 +221,11 @@
     // v396 — las combinadas (tabla pública `combinadas`)
     try {
       if (C.SUPABASE_URL && C.SUPABASE_ANON_KEY) {
-        const datosCombinadas = await todasLasFilas(C.SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/combinadas?select=*&fecha=gte.' + diaPestana(-30) + '&order=inicio.asc,id.asc');
-        estado.combinadas = datosCombinadas;
+        const hc = estado._huellaNueva;
+        if (!(hc && hc.comb && hc.comb === _huella.comb && Array.isArray(estado.combinadas))) {      // v543 — igual que los picks
+          estado.combinadas = await todasLasFilas(C.SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/combinadas?select=*&fecha=gte.' + diaPestana(-30) + '&order=inicio.asc,id.asc');
+          _huella.comb = hc && hc.comb;
+        }
         estado.errorCombinadas = false;
       } else {
         estado.combinadas = [];
@@ -2552,7 +2573,7 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { $('ficha').hidden = true; fichaId = null; } });
   setInterval(() => { $('reloj').textContent = F_HORA.format(new Date()) + ' CDMX'; }, 1000);
   cargar();
-  setInterval(cargar, 3 * 60 * 1000);   // picks nuevos y verdes/rojas oficiales
+  setInterval(() => { if (!document.hidden) cargar(); }, 3 * 60 * 1000);   // picks nuevos y verdes/rojas oficiales (v543: en segundo plano no; al volver, alVolver)
   setInterval(vivo, 20 * 1000);         // marcador y estadísticas (v436: cada 20 s)
   // v518 — el usuario: «cuando te sales un rato y vuelves, tarda en actualizarse el resultado y el
   // minuto». En segundo plano no se pide nada (v465) y el iPhone congela los relojes: al volver se

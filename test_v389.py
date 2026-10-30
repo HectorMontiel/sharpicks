@@ -24,7 +24,7 @@ def probar():
     check("mp('/v1/payments/' + id)" in w and "ref.startsWith('monedas|')" in w and "acreditar_compra" in w
           and "p.status === 'approved'" in w, 'el aviso comprueba el pago con Mercado Pago y acredita una vez')
     html = open(os.path.join('web', 'index.html'), encoding='utf-8').read()
-    check('3.00 o más</td><td>25' in html and '100 🪙 $49' in html, 'Planes enseña la tabla de precios y los paquetes')
+    check('3.00 o más</td><td>25' in html and '100 🪙 $65' in html, 'Planes enseña la tabla de precios y los paquetes')
 
 
 def probar_horas():

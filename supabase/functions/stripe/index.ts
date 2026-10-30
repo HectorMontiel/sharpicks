@@ -79,12 +79,12 @@ Deno.serve(async (req) => {
         const { data: reservado, error: errorReserva } = await admin.rpc('reservar_lugar_fundador', {
           p_id: 'reserva:' + crypto.randomUUID(),
           p_usuario: user.id,
-          p_precio: Number(A.precio_fundador ?? 99),
+          p_precio: Number(A.precio_fundador ?? 129),
         });
         if (errorReserva) throw new Error('No se pudo reservar una plaza fundador');
         fundador = reservado === true;
       }
-      const precio = Number(semestral ? A.precio_semestral ?? 749 : fundador ? A.precio_fundador ?? 99 : A.precio_mensual ?? 149);
+      const precio = Number(semestral ? A.precio_semestral ?? 919 : fundador ? A.precio_fundador ?? 129 : A.precio_mensual ?? 189);
       const meta = { tipo: 'vip', usuario: user.id, plan: semestral ? 'semestral' : 'mensual', fundador: fundador ? '1' : '0' };
       if (!renovar) {
         // pago único: el periodo y nada más (sin cobros automáticos)
