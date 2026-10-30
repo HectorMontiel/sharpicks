@@ -7,7 +7,7 @@
 
 | Objeto | Versión/función | Validación |
 |---|---|---|
-| Exportación pública web | `sharpicks_contracts/web_v1.py`, `contract_version=1.0.0`; envelope legacy `picks`/`analisis` | allowlist de filas y contexto, filtrado de claves desconocidas, datos `jug`/`ctx.lin` omitidos, `h2h` con cuatro strings por fila |
+| Exportación pública web | `sharpicks_contracts/web_v1.py`, `contract_version=1.0.0`; envelope legacy `picks`/`analisis` | allowlist de filas/contexto, filtrado de claves desconocidas, `jug`/`ctx.lin` omitidos, tipos validados, probabilidad finita en [0,1], timestamps UTC, `h2h` con cuatro strings por fila |
 | `RunRequest` | `contract_version=1.0.0`; evento/ventana, alcance deportivo, parámetros sin campos de secreto, manifiestos y salidas solicitadas | campos desconocidos rechazados, UUID, timestamps UTC, ventana ordenada, tipos JSON y nombres de manifiesto únicos |
 | `InputArtifact` | nombre lógico, versión semántica, SHA-256, tamaño y clasificación `public/private` | digest lowercase de 64 hex, tamaño entero no negativo, versión semántica |
 | `PublicPrediction` | evento/deporte/liga/mercado/selección, probabilidad, cuota decimal, nivel de acceso y hora | allowlist fija, probabilidad finita en [0,1], cuota decimal > 1, nivel reconocido, UTC |
@@ -24,7 +24,7 @@
 - `RunResult.publishable` sólo es true para `success`; el exportador debe verificarlo antes de publicar.
 - `validate_result(request, result, expected_core_commit)` enlaza `run_id`, manifiesto de entrada y commit del core fijado antes de aceptar una respuesta.
 - `PublicPrediction` es una lista allowlisted. No colocar en ella features internas, razones de scoring, pesos, rutas ni IDs internos.
-- `tests.test_sharpicks_contracts` cubre 12 casos unitarios de aceptación/rechazo; `tests.test_public_web_contract` cubre tres casos del exportador v1. En el head `2d73980`, los checks `instalar`, `tests` y `validar` terminaron success; el código validado está en su padre `71e0141`.
+- `tests.test_sharpicks_contracts` cubre 12 casos unitarios de aceptación/rechazo; `tests.test_public_web_contract` cubre tres casos del exportador v1. En el head `048143c`, los checks `instalar`, `tests` y `validar` terminaron success.
 
 ## Compatibilidad
 

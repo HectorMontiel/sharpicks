@@ -34,7 +34,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 - Producción/Supabase: sin cambios ejecutados por esta documentación.
 - Acciones de GitHub: fijadas por SHA en `bae8759973b2ef8f3d5c5c4ea38e2025a0caca46`; los checks `instalar`, `tests` y `validar` aprobaron sobre ese SHA.
 - Contrato de ejecución v1: implementado con 12 pruebas unitarias locales; el CI histórico del SHA `c162c75` pasó. DTO de exportación web v1 añadido en `sharpicks_contracts/web_v1.py`, aplicado a `hoy.json`/`analisis.json` con allowlists y tres pruebas específicas.
-- Validación de rama: 52 pruebas unitarias y regresores seleccionados pasan localmente; los tres workflows `instalar`, `tests` y `validar` aprobaron para el head documental `2d73980` que contiene el código de `71e0141`.
+- Validación de rama: 52 pruebas unitarias y regresores seleccionados pasan localmente; los tres workflows `instalar`, `tests` y `validar` aprobaron para el head de código `048143c`.
 - Redacción de logs: errores HTTP de exportador y backup no incorporan cuerpos de respuesta; 9 casos canario/unitarios asociados pasan.
 - Grafo recursivo: generado para 773 archivos Python desde `4c1223a635ed628798e547645209cba67582f65b`; batería local del analizador/contratos pasa.
 - Inventario por ruta: 1,880 blobs rastreados (660,235,222 bytes) desde el tree `cb6c3e434390101ee204addc11b68e2251f99e13`; las etiquetas son heurísticas y requieren revisión humana, sin lectura de contenido.

@@ -34,10 +34,10 @@
 
 ## Actualización: DTO público web
 
-- **Head de código:** `71e01412f9ef586f6d15fc54a8cf6365cc601f33`; PR #1 sigue abierto y draft.
-- **Cambio:** `sharpicks_contracts/web_v1.py` aplica allowlist versionada v1 a `hoy.json` y `analisis.json`, preserva el sobre legado y filtra claves superiores no declaradas, datos `jug`, `ctx.lin` y claves de contexto/estadística no públicas. El exportador usa el DTO al escribir estos archivos.
+- **Head de código:** `048143c6a1af2b25f2a180bdb17d30e68efc33ba`; PR #1 sigue abierto y draft.
+- **Cambio:** `sharpicks_contracts/web_v1.py` aplica allowlist versionada v1 a `hoy.json` y `analisis.json`, preserva el sobre legado y filtra claves superiores no declaradas, datos `jug`, `ctx.lin` y claves de contexto/estadística no públicas; valida tipos, probabilidades finitas en [0,1], tipos booleanos y timestamps UTC. El exportador usa el DTO al escribir estos archivos.
 - **Validación local:** 52 pruebas unittest, 6 pruebas de exportador, las pruebas heredadas seleccionadas (v383, v389, v390, v394-v396, v400 y v510), test JavaScript `test_web_v402.cjs`, compilación Python y `git diff --check` pasaron. Algunas pruebas de bots informaron que PIL no está instalado en este entorno y continuaron sin su subcaso de generación de ticket.
-- **CI:** para `2f43a94`, los tres workflows terminaron `success`. En `71e0141`, `validar` e instalación limpia fueron `success`; tests seguros quedó cancelado al entrar el siguiente commit. Para el head `2d73980` (documentación sobre el mismo código), los tres workflows terminaron `success`.
+- **CI:** para `2f43a94`, los tres workflows terminaron `success`. En `71e0141`, `validar` e instalación limpia fueron `success`; tests seguros quedó cancelado al entrar el siguiente commit. Para los SHA `2d73980` y `048143c`, los tres workflows terminaron `success`.
 - **Compatibilidad y límites:** se mantiene `picks`/`analisis` y se agrega `contract_version`; no se ha comprobado el sitio publicado/Cloudflare. Las tablas de Supabase y otros productos no pasan por este DTO.
 
 ## Metodología
