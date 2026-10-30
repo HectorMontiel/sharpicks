@@ -86,7 +86,7 @@ def probar():
     check(n == ['Baja de Julián Álvarez para el sábado'], 'v469: Google News trae lo de ANTES del inicio y sin «dónde ver»: %s' % n)
     check(pedidos and 'Atlético Madrid' in pedidos[0], 'v469: busca con el nombre completo de los alias («Ath Madrid» → «Atlético Madrid»)')
     src = open('ia_gemini.py', encoding='utf-8').read()
-    check("web = noticias_rss(lote) if dep == 'Fútbol' else {}" in src and "'jugadores_probables'" in src,
+    check("web = noticias_rss(lote)" in src and "'jugadores_probables'" in src,   # v533: en todos los deportes
           'v469: la IA recibe las noticias de Google News (todos los partidos) y los jugadores probables')
 
     app = open(os.path.join('web', 'app.js'), encoding='utf-8').read()

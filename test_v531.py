@@ -34,6 +34,11 @@ def probar():
     check("sb.rpc('ia_morado_tasa')" in cu and 'function moradoHist()' in cu and "'Más difícil'" not in app,
           'v531: el morado se mide en el historial; sin morado no se pone nada')
 
+    ia = io.open(os.path.join(AQUI, 'ia_gemini.py'), encoding='utf-8').read()
+    check('web = noticias_rss(lote)' in ia and 'web = noticias_web(lote' not in ia,
+          'v533: sólo Google News (la búsqueda de Gemini nunca respondió), en todos los deportes')
+    check("if nombre == 'v2' and k:" in ia and "json={'mejor_2h': x['mejor_apuesta']" in ia and "a.mejor_2h ?" in app,
+          'v533: la mejor jugada de 2 h antes se enseña (columnas aparte; la medición principal no se toca)')
 
 if __name__ == '__main__':
     probar()

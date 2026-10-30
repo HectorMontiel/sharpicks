@@ -198,8 +198,8 @@ def probar_v447():
         ia.analizar(('u', {}), [{'partido': 'A vs B', 'peso': 1, 'deporte': 'Fútbol'}, {'partido': 'C vs D', 'peso': -1, 'deporte': 'Fútbol'}], {})
     finally:
         ia.preguntar, ia.noticias_web, ia.guardar, ia.PAUSA_S, ia.noticias_rss = viejo_p, viejo_w, viejo_g, viejo_s, viejo_r
-    check(vistos == [('w', 'busqueda'), ('p', 'analisis', ia.MODELOS[0]), ('p', 'solo_analisis', ia.LITE[0])] and 'lite' in ia.LITE[0],
-          'v450: con pick va primero, con búsqueda y el mejor modelo; sin pick, con el lite y sin búsqueda')
+    check(vistos == [('p', 'analisis', ia.MODELOS[0]), ('p', 'solo_analisis', ia.LITE[0])] and 'lite' in ia.LITE[0],
+          'v450: con pick va primero y con el mejor modelo; sin pick, con el lite (v533: ya sin la búsqueda de Gemini)')
     # la cuenta del cupo
     ia.USO.clear()
     ia._contar('gemini-flash-latest', 'analisis', True)

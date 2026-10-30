@@ -875,10 +875,9 @@ def analizar(sb, lista: List[Dict], mercado: Dict, ventana: Optional[str] = None
             lotes += [(dep, nv < 2, del_dep[i:i + LOTE]) for i in range(0, len(del_dep), LOTE)]
     for dep, con_pick, lote in lotes:
         tipo = 'ventana' if ventana else 'analisis' if con_pick else 'solo_analisis'
-        # v469 — Google News para TODOS (es gratis); la búsqueda de Gemini sólo de respaldo con pick
-        web = noticias_rss(lote) if dep == 'Fútbol' else {}
-        if not web and con_pick:
-            web = noticias_web(lote, 'busqueda_ventana' if ventana else 'busqueda')
+        # v533 — SÓLO Google News, en todos los deportes. Barrido del 29-oct: la búsqueda de Gemini no respondió NI UNA
+        # vez desde el 22-oct (0 de 10-19 diarias) y gastaba llamadas; todas las noticias venían de Google News.
+        web = noticias_rss(lote)
         entrada = []
         for m in lote:
             d = datos_del_partido(m, mercado)
@@ -947,9 +946,34 @@ def ventanas(sb, picks: List[Dict], ahora: dt.datetime, mercado: Dict) -> int:
             continue
         k, sin_cupo = analizar(sbv, lista, mercado, nombre)
         n += k
+        if nombre == 'v2' and k:
+            copiar_2h(sb, sbv, [m['id'] for m in lista])
         if sin_cupo:
             break
     return n
+
+
+def copiar_2h(sb, sbv, ids: List[str]) -> int:
+    """v533 — la «mejor jugada» rehecha ~2 h antes (con noticias frescas) es la que se ENSEÑA: barrido del 29-oct, +20
+    pts sobre la del análisis de ~58 h antes (25 partidos, mitades +25/+15, p5 +8). Va en columnas aparte
+    (mejor_2h, prob_mejor_2h) para que la medición del análisis principal no se toque; se sigue midiendo en ia_ventanas."""
+    import requests
+    try:
+        r = requests.get(sbv[0], headers=sbv[1], timeout=30,
+                         params={'select': 'base,mejor_apuesta,prob_mejor_apuesta', 'id': 'in.(%s)' % ','.join('"%s|v2"' % i for i in ids)})
+        if not r.ok:
+            return 0
+        n = 0
+        for x in r.json():
+            if not x.get('mejor_apuesta'):
+                continue
+            rr = requests.patch(sb[0], headers=dict(sb[1], Prefer='return=minimal'), params={'id': 'eq.' + str(x['base'])}, timeout=20,
+                                json={'mejor_2h': x['mejor_apuesta'], 'prob_mejor_2h': x.get('prob_mejor_apuesta')})
+            n += rr.ok
+        return n
+    except Exception as e:
+        logger.warning('[ia] no se copió la mejor jugada de 2 h: %s', type(e).__name__)
+        return 0
 
 
 def guardar_uso(sb, ahora: dt.datetime):

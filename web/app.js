@@ -1577,7 +1577,10 @@
       '<div class="ia-pred">' + (fut && a.pred_goles ? 'Goles: <b>' + (a.pred_goles === 'mas' ? 'más de 2.5' : 'menos de 2.5') + '</b>' + pp(a.prob_goles) + ' · ' : '') +
       'confianza ' + '★'.repeat(a.confianza || 0) + '☆'.repeat(5 - (a.confianza || 0)) + '</div>' +
       // v470 — lo principal a la vista; lo demás en pestañas que se abren
-      (a.mejor_apuesta ? '<div class="ia-meter">🧠 Lo que metería la IA: <b>' + esc(a.mejor_apuesta) + '</b>' +
+      // v533 — si la IA la rehízo ~2 h antes (con noticias frescas), se enseña ésa: acertó +20 pts (barrido 29-oct)
+      (a.mejor_2h ? '<div class="ia-meter">🧠 Lo que metería la IA: <b>' + esc(a.mejor_2h) + '</b>' +
+        (a.prob_mejor_2h != null ? ' · ' + Math.round(100 * a.prob_mejor_2h) + ' %' : '') + ' <small>(2 h antes)</small></div>'
+      : a.mejor_apuesta ? '<div class="ia-meter">🧠 Lo que metería la IA: <b>' + esc(a.mejor_apuesta) + '</b>' +
         (a.prob_mejor_apuesta != null ? ' · ' + Math.round(100 * a.prob_mejor_apuesta) + ' %' : '') + '</div>' : '') +
       // v392 — más precisa: marcador, goles esperados, ambos anotan, córners, tarjetas (con ✅/❌ al terminar)
       sub('Predicciones', '<div class="ia-grid">' + [
