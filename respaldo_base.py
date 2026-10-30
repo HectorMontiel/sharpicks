@@ -66,7 +66,7 @@ def bajar(url: str, key: str, tabla: str) -> List[Dict]:
         r = requests.get(url.rstrip('/') + '/rest/v1/' + tabla, headers=_hdr(key, {'Range-Unit': 'items', 'Range': '%d-%d' % (a, a + PAGINA - 1)}),
                          params={'select': '*'}, timeout=120)
         if r.status_code not in (200, 206):
-            raise RuntimeError('%s: HTTP %s %s' % (tabla, r.status_code, r.text[:200]))
+            raise RuntimeError('%s: HTTP %s' % (tabla, r.status_code))
         lote = r.json()
         filas += lote
         if len(lote) < PAGINA:
@@ -85,7 +85,7 @@ def respaldar(url: str, key: str, salida: str) -> Dict:
         resumen['tablas'][t] = len(filas)
     r = requests.post(url.rstrip('/') + '/rest/v1/rpc/respaldo_auth', headers=_hdr(key, {'Content-Type': 'application/json'}), json={}, timeout=60)
     if not r.ok:
-        raise RuntimeError('respaldo_auth: HTTP %s %s' % (r.status_code, r.text[:200]))
+        raise RuntimeError('respaldo_auth: HTTP %s' % r.status_code)
     auth = r.json() or {}
     with open(os.path.join(salida, '_auth.json'), 'w', encoding='utf-8') as fh:
         json.dump(auth, fh, ensure_ascii=False, separators=(',', ':'), default=str)
@@ -109,7 +109,7 @@ def restaurar(url: str, key: str, carpeta: str) -> Dict:
             r = requests.post(url.rstrip('/') + '/rest/v1/' + t, json=filas[i:i + 500], timeout=120,
                               headers=_hdr(key, {'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates,return=minimal'}))
             if not r.ok:
-                raise RuntimeError('%s: HTTP %s %s' % (t, r.status_code, r.text[:200]))
+                raise RuntimeError('%s: HTTP %s' % (t, r.status_code))
         hecho[t] = len(filas)
     return hecho
 
