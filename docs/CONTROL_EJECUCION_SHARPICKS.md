@@ -1,6 +1,6 @@
 # Control de ejecución de SharPicks
 
-- **Corte:** 2026-10-30, base auditada `228c86a7fb03ed555465e56971170565f3029d9b`; último commit de código `f53cd2646c219516293d195a4b6ab72b4fab6c68`; validación CI confirmada en tree SHA `c162c7587cb960149459d41ede09097990250046`.
+- **Corte:** 2026-10-30, base auditada `228c86a7fb03ed555465e56971170565f3029d9b`; análisis estático generado desde `4c1223a635ed628798e547645209cba67582f65b`; checks CI de ese SHA en cola.
 - **Rama:** `hardening/free-audit-2026-10`.
 - **PR:** #1, abierto y draft.
 - **Regla de progreso:** no se calcula porcentaje hasta definir y cerrar un conjunto finito de criterios verificables; el inventario inicial contiene trabajo aún no dimensionado.
@@ -12,8 +12,9 @@ Estados permitidos: PENDIENTE, EN EJECUCIÓN, IMPLEMENTADO, EN VALIDACIÓN, VALI
 | F0-01 | 0 | Confirmar repo, rama, commit, árbol limpio, PR y checks | Ninguna | VALIDADO | Git, PR #1 | SHA y checks actuales registrados en `docs/auditoria/00_LINEA_BASE.md` | Ninguno |
 | F0-02 | 0 | Repetir conteos de archivos, workflows, SQL, JSON, CSV, modelos y releases | F0-01 | VALIDADO | Árbol remoto y releases | GitHub REST: 1,860 archivos, 768 Python, 18 workflows, 52 SQL, 554 JSON, 266 CSV, 5 JOBLIB; release de 73 assets | Metadatos; no incluye contenido de todos los blobs |
 | F0-03 | 0 | Crear inventario reproducible de entorno, limitaciones y riesgos iniciales | F0-01 | IMPLEMENTADO | `docs/auditoria/00_LINEA_BASE.md` | Evidencia documentada; revisión pendiente en este commit | Ninguno |
-| F1-01 | 1 | Completar grafo estático y clasificación de módulos Python | F0-02 | EN EJECUCIÓN | Fuentes Python, documentación de grafo | Documento anterior cubre imports directos de 12 entrypoints, no los 768 módulos | Imports dinámicos y resolución transitiva |
-| F1-02 | 1 | Confirmar archivos/variables/side effects de entrypoints críticos | F1-01 | PENDIENTE | Entry points descritos en mandato | Pendiente | Ninguno |
+| F1-01 | 1 | Construir grafo AST recursivo de imports, ciclos candidatos, entrypoints y referencias | F0-02 | IMPLEMENTADO | `tools/python_dependency_graph.py`, `docs/auditoria/01_GRAFO_ARQUITECTURA.md`, `docs/auditoria/python_dependency_graph.json` | 773 archivos parseados; 1,925 aristas locales, 11 componentes cíclicos candidatos, 44 scripts literales desde workflows, 0 errores AST; 7 pruebas del analizador | No resuelve ejecución condicional, plugins, comandos construidos ni efectos runtime |
+| F1-02 | 1 | Confirmar responsabilidades/propietarios de los módulos y revisar 11 ciclos | F1-01 | EN EJECUCIÓN | Hints heurísticos y componentes cíclicos reportados | 341 archivos reciben al menos una pista por nombre/ruta; 432 sin pista; faltan revisión por imports, I/O y comportamiento | Heurísticas no prueban responsabilidad ni criticidad |
+| F1-03 | 1 | Confirmar entradas/archivos/variables/side effects de entrypoints operativos críticos | F1-01 | PENDIENTE | Entry points de workflows y mandato | El AST enumera 581 guards/candidatos, 44 scripts literales de workflows; falta revisión de flujos e imports dinámicos | Scripts `-m`, comandos construidos/descargados y contexto de ejecución |
 | F2-01 | 2 | Inventariar triggers, permisos, Actions, artifacts y secretos referenciados de 18 workflows | F0-02 | IMPLEMENTADO | `.github/workflows/`, `docs/auditoria/02_AUDITORIA_GITHUB_ACTIONS.md` | Fuente: 18 YAML; referencias y triggers inspeccionados | Config privada y settings no visibles |
 | F2-02 | 2 | Fijar Actions externas a SHA y ejecutar regresión CI | F2-01 | VALIDADO | 16 workflows con `uses:`; 2 sin Actions externas | Commit `bae8759`; `instalar`, `tests`, `validar` aprobados | No incluye reducción de permisos |
 | F2-03 | 2 | Reducir permisos por job tras validar cada escritura | F2-01 | PENDIENTE | `.github/workflows/` | No se alteran cron ni permisos todavía | Configurar/regresión de flujos que escriben |
@@ -28,12 +29,12 @@ Estados permitidos: PENDIENTE, EN EJECUCIÓN, IMPLEMENTADO, EN VALIDACIÓN, VALI
 | F8-01 | 8 | Revisar SQL, vistas, funciones, RLS y Edge Functions en archivos | F0-02 | EN EJECUCIÓN | `supabase/`, `docs/auditoria/05_AUDITORIA_SUPABASE.md` | Revisión estática de config, funciones/vistas y v546/v547 | No prueba estado desplegado ni catálogo completo |
 | F8-02 | 8 | Ejecutar pruebas de seguridad de Supabase en staging y preparar rollback | F8-01 | REQUIERE AUTORIZACIÓN | Proyecto de staging | No ejecutado | Acceso/entorno staging y autorización externa |
 | F9-01 | 9 | Probar restauración aislada de backup cifrado | Datos/entorno aislado | REQUIERE AUTORIZACIÓN | `respaldo_base.py`, workflow, staging | CI existente no constituye restore | Proyecto/credenciales aislados |
-| F10-01 | 10 | Añadir pruebas de contrato, integración y regresión | F4-02, F5-01 | EN EJECUCIÓN | `tests/`, `docs/calidad/` | 12 tests de contrato locales y suite `validar` CI SHA `c162c75` aprobados | Baseline de predicción aún no caracterizado |
+| F10-01 | 10 | Añadir pruebas de contrato, grafo e integración/regresión | F4-02, F1-01, F5-01 | EN EJECUCIÓN | `tests/`, `tools/`, `docs/calidad/` | 19 tests unittest (12 contrato + 7 grafo), `test_exportador_web_v402.py` y scripts `test_v383.py`, `test_v389.py`, `test_v390.py`, `test_v394.py`, `test_v395.py`, `test_v396.py`, `test_v400.py` pasan localmente en Windows con UTF-8; sparse checkout ampliado para web y alias_manuales.json; checks CI del head `4c1223a` siguen pendientes | Baseline de predicción aún no caracterizado |
 | F10-02 | 10 | Capturar baseline predictivo determinista por deporte/mercado | Datos sintéticos/fixtures y motores actuales | PENDIENTE | Fixtures/regresión | Pendiente | Se requiere seleccionar fixtures sin exponer datos propietarios |
 | F11-01 | 11 | Medir y optimizar carga/costo tras baseline real | F0-02, workflows | PENDIENTE | Workflows críticos | Duraciones de checks de PR observadas; no equivalen a costos | Datos de facturación no visibles |
 | F12-01 | 12 | Implementar logs/alertas/runbooks y validar privacidad | Arquitectura y servicios | PENDIENTE | Operación y entrypoints | Pendiente |
 | F13-01 | 13 | Mantener manual, ADRs, runbooks y criterios alineados a lo implementado | Todas | EN EJECUCIÓN | `docs/` | Índice/documentación previos existen | Continua |
-| GIT-01 | 23 | Mantener rama autorizada, PR draft, cambios pequeños y evidencia | Trabajo local | EN EJECUCIÓN | Rama y PR #1 | Rama correcta; commits `bae8759`, `6c74576`, `601e52a`, `40e65e4`, `f53cd26` y `c162c75` están en PR; sigue draft; los 3 checks de `c162c75` pasan | Ninguno para este bloque |
+| GIT-01 | 23 | Mantener rama autorizada, PR draft, cambios pequeños y evidencia | Trabajo local | EN EJECUCIÓN | Rama y PR #1 | Rama correcta; últimos commits `3d312d5`, `bdc2dc4`, `4c1223a` en PR; sigue draft; checks del head en cola | Ninguno para este bloque |
 
 ## Distinción de validación
 

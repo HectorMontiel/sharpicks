@@ -18,6 +18,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 12. [Distribución del core](arquitectura/03_ESTRATEGIA_DISTRIBUCION_CORE.md): alternativa seleccionada y requisito de acceso.
 13. [Auditoría Supabase](auditoria/05_AUDITORIA_SUPABASE.md): evidencia local y pruebas staging pendientes.
 14. [Estrategia de testing](calidad/01_ESTRATEGIA_DE_TESTING.md) y [matriz de regresión](calidad/02_MATRIZ_REGRESION.md).
+15. [Grafo AST completo y datos por módulo](auditoria/python_dependency_graph.json), generado por [`tools/python_dependency_graph.py`](../tools/python_dependency_graph.py); registra imports locales, ciclos candidatos, entrypoints, llamadas dinámicas, referencias de archivos y variables de entorno.
 
 ## Estado actual
 
@@ -29,6 +30,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 - Producción/Supabase: sin cambios ejecutados por esta documentación.
 - Acciones de GitHub: fijadas por SHA en `bae8759973b2ef8f3d5c5c4ea38e2025a0caca46`; los checks `instalar`, `tests` y `validar` aprobaron sobre ese SHA.
 - Contrato público v1: implementado y 12 tests unitarios locales aprobados; `instalar`, `tests` y `validar` aprobaron en CI para el SHA `c162c7587cb960149459d41ede09097990250046`.
+- Grafo recursivo: generado para 773 archivos Python desde `4c1223a635ed628798e547645209cba67582f65b`; checks CI del PR para ese SHA están pendientes; batería local de 19 tests unittest y 8 scripts pasa.
 
 ## Regla
 

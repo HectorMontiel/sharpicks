@@ -2,6 +2,8 @@
 
 > Inspección estática de imports directos en 12 archivos de la rama principal. Es un mapa de primer nivel, no un SBOM ni un grafo transitivo completo. Los imports locales se identifican por nombre de módulo; imports de biblioteca estándar/terceros se conservan para el inventario de dependencias. Los imports dinámicos, subprocess, plugins, imports condicionales y rutas calculadas requieren inspección manual.
 
+> Complemento actualizado: [grafo AST recursivo](auditoria/01_GRAFO_ARQUITECTURA.md) y [detalle por módulo](auditoria/python_dependency_graph.json), generado por `tools/python_dependency_graph.py` sobre los 773 archivos Python del tree `4c1223a`. El analizador resuelve imports estáticos locales e informa candidatos dinámicos; este documento conserva el análisis manual enfocado en los entrypoints operativos prioritarios.
+
 ## 1. Entry points y módulos internos observados
 
 | Entry point | Imports locales directos observados | Archivos/datos referenciados en el código | Variables de entorno leídas directamente | Clasificación |
