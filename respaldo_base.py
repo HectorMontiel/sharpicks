@@ -41,8 +41,22 @@ def tablas(url: str, key: str) -> List[str]:
     r.raise_for_status()
     defs = (r.json().get('definitions') or {})
     paths = r.json().get('paths') or {}
-    # sólo tablas y vistas que se pueden leer (no los /rpc/…); las vistas se guardan también, no estorban
-    return sorted(k for k in defs if '/' + k in paths)
+    # PostgREST también expone vistas de lectura en OpenAPI. No deben restaurarse
+    # con POST: las vistas agregadas de SharPicks no son destinos de escritura.
+    # Mantener esta lista sincronizada con las vistas SQL del esquema.
+    vistas_solo_lectura = {
+        'seguidores',
+        'ia_disponibles',
+        'telegram_publicados',
+        'historial_niveles',
+        'ia_aciertos',
+    }
+    return sorted(
+        k for k in defs
+        if '/' + k in paths and k not in vistas_solo_lectura
+        and isinstance(paths.get('/' + k), dict)
+        and 'post' in {method.lower() for method in paths['/' + k]}
+    )
 
 
 def bajar(url: str, key: str, tabla: str) -> List[Dict]:
