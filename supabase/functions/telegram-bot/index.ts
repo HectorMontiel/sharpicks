@@ -55,10 +55,17 @@ Deno.serve(async (req) => {
           }
         }
       }
+      // v538 — la descripción del canal gratis (sólo ése, sólo este texto fijo: la manda el administrador desde aquí)
+      const cuerpoC = await req.clone().json().catch(() => ({}));
+      let desc: Dic = {};
+      if (cuerpoC.descripcion_gratis && s.TELEGRAM_CHAT_GRATIS) {
+        desc = await tg('setChatDescription', { chat_id: s.TELEGRAM_CHAT_GRATIS, description: 'Picks medidos, no adivinados. En vivo en sharpicksapp.com · +18' });
+      }
       const pr = permisos.result || {};
       return Response.json({ bot: yo.result && yo.result.username, webhook: w.ok, descripcion: w.description,
         vip: { estado: pr.status, aprobar: pr.can_invite_users, sacar: pr.can_restrict_members },
-        enlace_creado: !!(enlace.ok && enlace.result), enlace_viejo_apagado: enlace.viejo_apagado, motivo: enlace.description || enlace.viejo_motivo });
+        enlace_creado: !!(enlace.ok && enlace.result), enlace_viejo_apagado: enlace.viejo_apagado, motivo: enlace.description || enlace.viejo_motivo,
+        descripcion_gratis: desc.ok, descripcion_motivo: desc.description });
     }
     // 2. lo que le escriben al bot (firmado por Telegram)
     if (!s.telegram_webhook || req.headers.get('x-telegram-bot-api-secret-token') !== s.telegram_webhook) return new Response('no', { status: 401 });
