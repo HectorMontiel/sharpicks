@@ -72,6 +72,16 @@ subprocess.run(['python', 'job.py'])
             self.assertEqual(report["entrypoints"][0]["path"], "entry.py")
             self.assertIn("pkg.core", report["entrypoints"][0]["transitive_modules"])
 
+    def test_unresolved_imports_are_classified_by_stdlib_and_declared_requirements(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "requirements.txt").write_text("requests>=2\nscikit-learn>=1\n", encoding="utf-8")
+            (root / "entry.py").write_text("import json\nimport requests\nimport sklearn\nimport optional_pkg\n", encoding="utf-8")
+            summary = analyze_tree(root)["summary"]
+            self.assertEqual(summary["unresolved_stdlib_imports"], 1)
+            self.assertEqual(summary["unresolved_declared_dependency_imports"], 2)
+            self.assertEqual(summary["unresolved_other_imports"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()

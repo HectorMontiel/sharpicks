@@ -12,6 +12,7 @@ import ast
 import json
 import re
 import subprocess
+import sys
 from collections import Counter, defaultdict, deque
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -291,6 +292,27 @@ def _responsibility_hints(path: str) -> list[str]:
     ]
 
 
+def _declared_import_roots(root: Path) -> set[str]:
+    """Approximate direct import roots declared by requirements.txt."""
+    path = root / "requirements.txt"
+    if not path.exists():
+        return set()
+    aliases = {
+        "scikit-learn": "sklearn",
+        "beautifulsoup4": "bs4",
+        "pillow": "PIL",
+        "pyyaml": "yaml",
+    }
+    roots: set[str] = set()
+    for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        match = re.match(r"\s*([A-Za-z0-9_.-]+)", line)
+        if not match or line.lstrip().startswith(("#", "-")):
+            continue
+        distribution = match.group(1).lower().replace("_", "-")
+        roots.add(aliases.get(distribution, distribution.replace("-", "_")))
+    return roots
+
+
 def _collect_workflow_scripts(root: Path, known_paths: set[str]) -> dict[str, list[str]]:
     found: dict[str, list[str]] = defaultdict(list)
     workflow_dir = root / ".github" / "workflows"
@@ -397,6 +419,20 @@ def analyze_tree(root: Path) -> dict[str, Any]:
         })
 
     duplicates = {name: paths for name, paths in index.items() if len(paths) > 1}
+    declared_roots = _declared_import_roots(root)
+    unresolved_roots: Counter[str] = Counter()
+    unresolved_classes: Counter[str] = Counter()
+    for module_fact in facts:
+        for unresolved in module_fact.unresolved_imports:
+            name = unresolved.get("name", "")
+            root_name = name.split(".", 1)[0]
+            unresolved_roots[root_name] += 1
+            if root_name in sys.stdlib_module_names:
+                unresolved_classes["stdlib"] += 1
+            elif root_name in declared_roots:
+                unresolved_classes["declared_direct_dependency"] += 1
+            else:
+                unresolved_classes["optional_or_unclassified"] += 1
     summary = {
         "python_files": len(files),
         "modules": len(modules),
@@ -412,6 +448,9 @@ def analyze_tree(root: Path) -> dict[str, Any]:
         "cyclic_components": 0,
         "entrypoints": len(entrypoints),
         "workflow_script_paths": len(workflow_scripts),
+        "unresolved_stdlib_imports": unresolved_classes["stdlib"],
+        "unresolved_declared_dependency_imports": unresolved_classes["declared_direct_dependency"],
+        "unresolved_other_imports": unresolved_classes["optional_or_unclassified"],
     }
     hint_counts: Counter[str] = Counter(hint for item in facts for hint in item.responsibility_hints)
     cycle_list = _cycles(modules, edges)
@@ -427,6 +466,8 @@ def analyze_tree(root: Path) -> dict[str, Any]:
         "module_collisions": duplicates,
         "cycles": cycle_list,
         "top_incoming_modules": [{"module": name, "count": count} for name, count in incoming.most_common(30)],
+        "top_unresolved_import_roots": [{"root": name, "count": count} for name, count in unresolved_roots.most_common(50)],
+        "declared_direct_import_roots": sorted(declared_roots),
         "responsibility_hint_counts": dict(sorted(hint_counts.items())),
         "workflow_scripts": workflow_scripts,
         "entrypoints": entrypoints,
@@ -453,6 +494,9 @@ def markdown_report(report: dict[str, Any]) -> str:
         "modules": "Módulos/nombres de módulo",
         "resolved_import_edges": "Aristas locales resueltas",
         "unresolved_import_statements": "Import statements no resueltos localmente",
+        "unresolved_stdlib_imports": "No locales de biblioteca estándar",
+        "unresolved_declared_dependency_imports": "No locales de dependencias directas declaradas",
+        "unresolved_other_imports": "No locales opcionales/no clasificados",
         "dynamic_import_or_execution_sites": "Sitios de import/evaluación dinámica",
         "subprocess_sites": "Llamadas a subprocess/os.system",
         "file_reference_sites": "Referencias estáticas a archivos",
@@ -476,6 +520,9 @@ def markdown_report(report: dict[str, Any]) -> str:
     lines += ["", "## Módulos con mayor cantidad de importadores", "", "| Módulo | Importadores locales |", "|---|---:|"]
     for item in report["top_incoming_modules"][:20]:
         lines.append(f"| `{item['module']}` | {item['count']} |")
+    lines += ["", "## Raíces de imports que no resuelven a archivo local", "", "| Raíz | Referencias |", "|---|---:|"]
+    for item in report["top_unresolved_import_roots"][:30]:
+        lines.append(f"| `{item['root']}` | {item['count']} |")
     lines += ["", "## Componentes cíclicos", ""]
     if report["cycles"]:
         for component in report["cycles"]:
