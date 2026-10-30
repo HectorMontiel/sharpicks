@@ -45,6 +45,7 @@ El inventario más detallado por flujo, con cadencias y scripts, está en [`INVE
 - `retrain_leagues.yml` declara `contents: write`, corre diariamente y tiene timeout de 150 minutos. El comentario del workflow describe publicación/actualización de modelos. Esta auditoría no ejecutó ese proceso.
 - **Hardening de publicación de modelos en esta rama:** `publicar_modelos.py` requiere `REPO_MODELOS` explícito y confirma por API que el repositorio destino tenga `private=true` antes de crear/subir assets. El paso recibe el nombre del secret `CORE_RELEASE_TOKEN`; no se comprobó si el secret o variable existe. Si la publicación/verificación falla, el commit final omite `git add modelos/` y `.gitignore`. Retirar los pesos versionados requiere además `MODELOS_CORE_CONSUMERS_READY=true`, sin valor habilitado en esta rama. Tests locales cubren los gates; CI del nuevo head pendiente.
 - `sitio_web.yml` publica datos mediante Supabase/Pages y tiene varios secretos de servicios. El propio YAML corre validadores antes del paso de exportación; eso no demuestra que el payload actual esté completamente allowlisted.
+- `validate_sharpicks.yml` ejecuta la suite de `tests/`, pero antes no tenía filtros de ruta para `tests/**`, `tools/**`, `sharpicks_contracts/**` ni los módulos de distribución de modelos. Añadí esos filtros en PR y push; el patrón push ahora incluye `hardening/**` para que la rama autorizada reciba validación directa. No se cambiaron schedules ni operaciones productivas.
 - Se observan referencias de Actions fijadas arriba; dependencias instaladas con `pip` y acciones de runtime no quedan cubiertas por el pin de Actions. No hay lockfile completo de Python.
 - No se modificaron schedules, permisos, secretos, publicaciones ni workflows productivos en este cambio.
 
@@ -64,6 +65,7 @@ El inventario más detallado por flujo, con cadencias y scripts, está en [`INVE
 - Validación YAML local: no ejecutada aún.
 - Check GitHub Actions del PR antes de los pins: los jobs `instalar`, `tests` y `validar` estaban aprobados para el SHA base. No se consideran evidencia para un commit posterior.
 - CI del commit `bae8759`: `instalar`, `tests` y `validar` aprobados en GitHub. Estos checks no incluyen los cambios locales posteriores del contrato.
+- CI actualizado: la suite `unittest discover` cubre `tests/**` y sus herramientas/contratos ahora activan `validate_sharpicks.yml`. La ejecución GitHub para los commits recientes permanece en cola; esta ampliación aún no tiene resultado CI.
 - Operación de workflows productivos: no ejecutada ni afirmada.
 
 ## Criterios de aceptación pendientes

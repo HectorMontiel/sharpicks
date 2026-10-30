@@ -41,6 +41,7 @@ Esta documentación acompaña la rama `hardening/free-audit-2026-10`. Los docume
 - Descarga de modelos: verifica SHA-256 contra metadata API y valida tipos/rutas del tar antes de extraer; 9 pruebas con fixtures locales, sin descargar modelos reales. Para `sharpicks-core` exige `CORE_MODELS_READ_TOKEN` y no envía el token de Actions del repo público. CI sigue en cola.
 - Lectura del core: ningún workflow productivo fue apuntado al repo privado porque aún no se ha verificado. La readiness de corte queda deliberadamente sin habilitar.
 - Supabase: preparada consulta de catálogo read-only para staging y tres guardas estáticas; no hay CLI/`psql` ni conexión al proyecto aquí, por lo que la sintaxis/resultados no se declaran validados contra la instancia.
+- Secretos: `tools/secret_scan.py` es una detección heurística que no muestra valores; en el primer scan alcanzó 1,040 archivos hidratados del checkout sparse y sólo reportó dos fixtures sintéticos. No cubre el historial completo, binarios, releases ni artifacts y no reemplaza Gitleaks/TruffleHog. GitHub Secret Scanning se habilitó para el repo público; la API de alertas no devolvió alertas, pero no se confirmó el backfill histórico.
 - ADR de distribución: registrada como propuesta (no operativa) la descarga del paquete privado por SHA en un job protegido; falta validar paquete y consumidores.
 
 ## Regla

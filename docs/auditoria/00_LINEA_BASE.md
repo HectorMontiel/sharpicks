@@ -15,10 +15,12 @@
 - **Head remoto/local revisado:** `ac510af65aac76be66e29d8e5a104162d1744f01`; rama `hardening/free-audit-2026-10`; árbol de trabajo limpio al verificarlo.
 - **PR #1:** sigue abierto y draft; `headRefOid` concuerda con `ac510af`.
 - **CI remoto:** los workflows `Verificar instalación limpia de SharPicks`, `Validar SharPicks sin desplegar` y `Tests seguros SharPicks v402` reportan `queued` para `ac510af`. También permanecen en cola ejecuciones de SHAs anteriores. Ninguna se reporta como aprobada para este head.
-- **Validación local posterior:** 43 tests de unittest, `test_v510.py`, `py_compile` y `git diff --check` pasaron en Python 3.12 para el árbol con código hasta `f638b2d`; los commits posteriores `c5b18ab` y `ac510af` sólo cambiaron documentación. No equivale a CI ni staging.
+- **Validación local posterior:** 46 tests de unittest, `test_v510.py`, `py_compile` y `git diff --check` pasaron en Python 3.12 para el árbol con código hasta `f638b2d` más el scanner heurístico local; los commits posteriores fueron documentales. No equivale a CI ni staging.
 - **Cambios posteriores medibles:** downloader comprueba SHA-256 de metadata antes de extraer y rechaza entradas tar inseguras; para `sharpicks-core` exige `CORE_MODELS_READ_TOKEN`. Se preparó `supabase/auditoria_catalogo_readonly.sql`, pero no se ejecutó contra una base. `ADR-0001` sigue propuesta.
 - **Exposición de la release:** el snapshot revisado registra 73 assets, 72 archivos `.tar.gz`, 735,067,828 bytes y digests SHA-256 para todos; ningún asset fue descargado, retirado ni reemplazado.
 - **Estado de repositorio/producción:** no se pudo resolver `sharpicks-core`; no se conectó Supabase staging ni se ejecutó migración o cambio productivo.
+- **Escaneo preliminar de secretos:** `tools/secret_scan.py` inspeccionó 1,040 archivos locales de 1,889 rutas versionadas (checkout sparse). Reportó dos patrones de token de prueba en `tests/test_python_dependency_graph.py:59-60`; revisión con salida redactada confirmó que son literales sintéticos de fixture. La coincidencia de `access_token` en `supabase/functions/entrar/index.ts` quedó eliminada al corregir el detector de asignaciones para ignorar referencias de código. El scan no expuso valores, excluye binarios y no inspeccionó historia; no es un escaneo de secretos completo.
+- **Secret Scanning de GitHub:** habilitado en el repositorio público y confirmado por la API (`security_and_analysis.secret_scanning.status=enabled`). La API de alertas no devolvió alertas al consultar; no se considera prueba de backfill completo porque el endpoint de scan-history devuelve 404 al estar GitHub Advanced Security desactivado.
 
 ## Metodología
 
