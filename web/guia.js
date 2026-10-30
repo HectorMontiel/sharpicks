@@ -72,7 +72,7 @@
     const d = document.querySelector('#destacados .dest'); if (!d) return;
     d.classList.add('ia-2', 'guia-demo');
     const f = d.querySelector('.fila');
-    if (f && !d.querySelector('.ia-sello')) f.insertAdjacentHTML('afterend', '<span class="ia-sello s2 guia-demo-sello">🔒 IA: mayor probabilidad · VIP</span>');
+    if (f && !d.querySelector('.ia-sello')) f.insertAdjacentHTML('afterend', '<span class="ia-sello s2 guia-demo-sello">🔒 Modelo + IA: mayor probabilidad · VIP</span>');
   }
   function quitarDemo() {
     document.querySelectorAll('.guia-demo').forEach((d) => d.classList.remove('ia-2', 'guia-demo'));

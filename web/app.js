@@ -2008,7 +2008,7 @@
       '<span class="pf-pick"><span class="pf-niv">' + nv.i + '</span><span class="pf-ap">' + ap + '</span>' +
       '<span class="pf-cu">' + (p.cuota ? Number(p.cuota).toFixed(2) : '') + '</span>' +
       (ps.length > 1 ? '<span class="pf-mas">+' + (ps.length - 1) + '</span>' : '') + resumenPicks(ps) +
-      (ia ? '<span class="pf-ia s' + ia + '">' + ico('sparkles') + (ia === 2 ? ' IA: mayor probabilidad' : ' IA: a favor') + '</span>' : '') + '</span>' +
+      (ia ? '<span class="pf-ia s' + ia + '">' + ico('sparkles') + (ia === 2 ? ' Modelo + IA: mayor probabilidad' : ' Modelo + IA: a favor') + '</span>' : '') + '</span>' +
       '</button>' + (abierto ? '<div class="pf-detalle">' + tarjeta(ps) +
         // v468 — «hace falta algo para cerrar la tarjeta sin subir hasta arriba»: va pegado abajo mientras se lee
         '<div class="pf-cerrar"><button data-abrir="' + esc(k) + '" data-cerrar-pf="1">' + ico('chevron-down', 'arriba') + ' Cerrar</button></div></div>' : '') + '</div>';
@@ -2153,7 +2153,7 @@
   }
   // lo que de verdad salió en cada tono (💎/🔷/🥇, 17-30 oct): con eso «la IA le da más probabilidad» al modelo, medido
   const IA_SALIO = { 2: 0.91, 1: 0.86 };
-  const selloIA = (n) => (n ? '<span class="ia-sello s' + n + '">' + ico('sparkles') + (n === 2 ? ' IA: mayor probabilidad' : ' IA: a favor') +
+  const selloIA = (n) => (n ? '<span class="ia-sello s' + n + '">' + ico('sparkles') + (n === 2 ? ' Modelo + IA: mayor probabilidad' : ' Modelo + IA: a favor') +
     ' · salió ' + Math.round(100 * IA_SALIO[n]) + ' %</span>' : '');
   function veredictoIA(p) {
     const a = window.SPX && SPX.yo.ia ? SPX.yo.ia[p.partido] : null;
@@ -2226,7 +2226,7 @@
           const ia = iaSegura(p);              // v531 — sin morado no se pone nada («“más difícil” les quita credibilidad»)
           return '<div class="arm-pata' + (ia ? ' ia-' + ia : '') + '"><span class="arm-niv">' + nv.i + '</span><span class="arm-txt"><b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b><small>' +
             esc(L) + ' vs ' + esc(V) + ' · ' + esc(horaCdmx(aFecha(p.inicio))) + '</small></span><span class="arm-num"><b>' + Number(p.cuota).toFixed(2) + '</b><small>' + pct(p.prob) + '</small></span>' +
-            (ia ? '<span class="arm-ia ia-' + ia + '">' + ico('sparkles') + (ia === 2 ? ' Mayor probabilidad' : ' A favor') + '</span>' : '') + '</div>';
+            (ia ? '<span class="arm-ia ia-' + ia + '">' + ico('sparkles') + (ia === 2 ? ' Modelo + IA: mayor probabilidad' : ' Modelo + IA: a favor') + '</span>' : '') + '</div>';
         }).join('') +
           (r.fuera.length ? '<div class="arm-fuera">' + MAL() + ' La IA descartó: ' + r.fuera.map((p) => '<b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b> (' + esc(lados(p).join(' vs ')) + ')').join(', ') + ' · entró la siguiente más probable</div>' : '') +
           (r.patas.length < A.n ? '<p class="aviso">Sólo hay ' + r.patas.length + ' patas que cumplan (de partidos distintos y que aún no empiezan).</p>' : '') +

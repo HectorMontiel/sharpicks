@@ -22,7 +22,7 @@ def probar():
           'v531: el morado es sólo para el VIP')
     check("if (!['diamante', 'platino', 'oro'].includes(nivel(p).c)) return 0;" in app and 'return c >= 5 ? 2 : c >= 4 ? 1 : 0;' in app,
           'v531: sólo 💎/🔷/🥇 (en Plata la IA no separa), con la confianza 5 y 4 medidas')
-    check("const IA_SALIO = { 2: 0.91, 1: 0.86 };" in app and "' IA: mayor probabilidad'" in app,
+    check("const IA_SALIO = { 2: 0.91, 1: 0.86 };" in app and "' Modelo + IA: mayor probabilidad'" in app,
           'v531: el sello dice lo que de verdad salió («mayor probabilidad · salió 91 %»)')
     check("(ia ? ' ia-' + ia : '')" in app and "porIA(dest, (g) => g[0])" in app and "porIA(pt, (g) => g[0])" in app,
           'v531: Destacados y Para ti en morado, primero los que la IA ve mejor')

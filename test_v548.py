@@ -30,3 +30,23 @@ def test_gratis_recibe_el_vip_censurado():
     assert img and img[:4] == b'\x89PNG'
     ya = {(c[0], c[1], c[2]) for c in cubre}
     assert not [x for x in tc.armar_gratis(ps, ya, ahora) if x[0] and 'Acaban de llegar' in x[0]]   # no se repite
+
+
+def test_v549_errores_con_imagen_ia_primero_y_rojas():
+    import telegram_canales as tc
+    os.environ.pop('TELEGRAM_VIP_NIVELES', None)
+    ahora = dt.datetime(2026, 10, 30, 18, 0, tzinfo=dt.timezone.utc)
+    ini = (ahora + dt.timedelta(hours=2)).strftime('%Y-%m-%d %H:%M:%S')
+    err = {'id': 'e1', 'partido': 'Hlucin vs Sumperk', 'deporte': 'Fútbol', 'apuesta': 'Gana Hlucin', 'cuota': 1.70, 'prob': 0.65,
+           'tipo': 'error', 'ventaja': 0.11, 'estado': 'pendiente', 'inicio': ini}
+    a = {'id': 'a', 'partido': 'A vs B', 'deporte': 'Tenis', 'apuesta': 'Gana A', 'cuota': 1.1, 'prob': 0.90, 'estado': 'pendiente', 'inicio': ini}
+    b = {'id': 'b', 'partido': 'C vs D', 'deporte': 'Tenis', 'apuesta': 'Gana C', 'cuota': 1.2, 'prob': 0.82, 'estado': 'pendiente', 'inicio': ini, '_ia': 5}
+    v = tc.armar_vip([err, a, b], set(), ahora)
+    e = [x for x in v if 'Error de cuota' in x[0]]
+    assert e and len(e[-1]) == 3 and e[-1][2][:4] == b'\x89PNG'                 # el error de cuota lleva su ticket
+    h = [x for x in v if 'Ya es hora de apostar' in x[0]][0][0]
+    assert h.index('Gana C') < h.index('Gana A') and '✨ Modelo + IA: mayor probabilidad' in h   # la IA primero, con su sello
+    assert '✨' not in tc._apuesta(b)                                            # fuera del VIP no se pone
+    r1 = dict(a, estado='verde', marcador='2-0'); r2 = dict(b, estado='roja', marcador='0-2')
+    res = [x for x in tc.armar_vip([r1, r2], set(), ahora) if 'Resultados VIP' in x[0]][0][0]
+    assert '✅ Gana A' in res and '❌ Gana C' in res                              # las rojas también, con nombre

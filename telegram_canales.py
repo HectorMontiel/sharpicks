@@ -70,6 +70,8 @@ PIE = '\n\n🔞 <i>Juega con responsabilidad</i>'
 DEP_EMO = {'Fútbol': '⚽', 'Tenis': '🎾', 'NBA': '🏀', 'NFL': '🏈', 'NHL': '🏒', 'MLB': '⚾', 'KBO': '⚾', 'Béisbol': '⚾'}
 MAX_VIP_MSG = 6                   # VIP: lo mejor, no la lista entera (el resto, en la app)
 VENTANA_APUESTA_H = 4             # v351: la hora para apostar
+GANCHOS_VIP = ('🔥 El pick del momento', '💰 Se viene un partidazo con buenas ganancias', '🎯 Lo mejor para apostar ahora',
+               '🚀 Llegó la hora: picks con buena probabilidad')   # v549 — el encabezado del VIP, como marketing
 HORA_NOCHE = 22                   # 🌙 resumen del día (hora de CDMX)
 META_MIEMBROS = int(os.environ.get('TG_META_MIEMBROS', '100'))
 META_CODIGOS = 5
@@ -163,13 +165,15 @@ def _e(x) -> str:
     return html.escape(str(x if x is not None else ''))
 
 
-def _apuesta(p: Dict) -> str:
+def _apuesta(p: Dict, ia: bool = False) -> str:
+    """`ia`: el sello «✨ IA» (sólo en lo del VIP: la IA es del VIP)."""
     if p.get('tipo') == 'error':
         return '🚨 <b>%s</b> · 💸 %.2f · 🎯 %d %% · +%d %% de valor%s' % (
             _e(p.get('apuesta')), float(p.get('cuota') or 0), round(100 * float(p.get('prob') or 0)),
             round(100 * float(p.get('ventaja') or 0)), (' en ' + _e(p.get('casa'))) if p.get('casa') else '')
-    return '✅ <b>%s</b> · 💸 %.2f · 🎯 %d %%' % (
-        _e(p.get('apuesta')), float(p.get('cuota') or 0), round(100 * float(p.get('prob') or 0)))
+    return '✅ <b>%s</b> · 💸 %.2f · 🎯 %d %%%s' % (
+        _e(p.get('apuesta')), float(p.get('cuota') or 0), round(100 * float(p.get('prob') or 0)),
+        ' · ✨ Modelo + IA: mayor probabilidad' if ia and int(p.get('_ia') or 0) >= 5 else '')
 
 
 def _ticket(titulo: str, ps: List[Dict], ahora: dt.datetime, etiqueta: str, censurado: bool = False) -> Optional[bytes]:
@@ -189,16 +193,18 @@ def _cab_partido(p: Dict, ahora: dt.datetime, icono: str = '') -> str:
     return '%s %s<b>%s</b> · 🕒 %s' % (DEP_EMO.get(p.get('deporte'), '🎯'), icono + ' ' if icono else '', _e(p.get('partido')), _cuando(p, ahora))
 
 
-def _por_partido(ps: List[Dict], ahora: dt.datetime) -> List[str]:
+def _por_partido(ps: List[Dict], ahora: dt.datetime, ia: bool = False) -> List[str]:
     """Un bloque por partido con sus apuestas debajo (nunca el partido dos veces)."""
     g: Dict[str, List[Dict]] = {}
-    for p in sorted(ps, key=lambda x: (str(x.get('inicio')), not x.get('elige'), -float(x.get('prob') or 0))):
+    # v549 — en lo del VIP, a la misma hora, primero lo que la IA ve con mayor probabilidad
+    for p in sorted(ps, key=lambda x: (str(x.get('inicio')), not x.get('elige'), -(ia and int(x.get('_ia') or 0) >= 5),
+                                       -float(x.get('prob') or 0))):
         g.setdefault('%s|%s' % (p.get('partido'), str(p.get('inicio'))[:10]), []).append(p)
     out = []
     for grupo in g.values():
         mejor = max(grupo, key=lambda x: (bool(x.get('elige')), float(x.get('prob') or 0)))
         out.append(_cab_partido(grupo[0], ahora, ICONO[nivel(mejor)]) + '\n' +
-                   '\n'.join(_apuesta(p) for p in grupo))
+                   '\n'.join(_apuesta(p, ia) for p in grupo))
     return out
 
 
@@ -276,15 +282,25 @@ def armar_vip(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[Tupl
     if errs:
         trozos = _trozos('🚨💰 <b>Error de cuota · al momento</b>\n¡Corre! Las casas lo corrigen rápido. Apuesta poquito 👇',
                          _por_partido(errs, ahora))
-        out += [(t, []) for t in trozos[:-1]] + [(trozos[-1], [_cubre_pick(p, 'vip') for p in errs])]
+        # v549 — el usuario: «para los errores de cuota también la imagen con la cuota, lo que apuestas y lo que se gana».
+        # Va en el mismo mensaje (no uno más): el ticket con los más probables.
+        top_e = sorted(errs, key=lambda p: -float(p.get('prob') or 0))[:MAX_VIP_MSG]
+        out += [(t, []) for t in trozos[:-1]] + [(trozos[-1], [_cubre_pick(p, 'vip') for p in errs],
+                                                  _ticket('Error de cuota · al momento', top_e, ahora, 'VIP'))]
     # ⏰ los demás, al abrir su ventana para apostar (4 h antes)
     ya = [p for p in pend if p.get('tipo') != 'error'
           and _utc(p.get('inicio')) <= ahora + dt.timedelta(hours=VENTANA_APUESTA_H)]
     if ya:
         # lo mejor primero (💎 y la probabilidad más alta); el resto, en la app
-        top = sorted(ya, key=lambda p: (not p.get('elige'), -float(p.get('prob') or 0)))[:MAX_VIP_MSG]
+        # v549 — «manda lo que tenga buena probabilidad de cumplirse, apóyate con la IA»: primero el 💎, luego lo que la
+        # IA ve con mayor probabilidad (confianza 5: medido 91 % contra 82 % sin marca, v531) y luego la probabilidad
+        top = sorted(ya, key=lambda p: (not p.get('elige'), -(int(p.get('_ia') or 0) >= 5), -float(p.get('prob') or 0)))[:MAX_VIP_MSG]
         mas = len(ya) - len(top)
-        t = ('💎🔥 <b>VIP · Ya es hora de apostar</b> ⏰\n\n' + '\n\n'.join(_por_partido(top, ahora)) +
+        # v549 — el usuario: «hazlo como marketing: el pick del momento, que llegó la hora de apostar, que se viene un
+        # partido muy bueno y con buenas ganancias». El encabezado cambia (fijo para el mismo lote) y el sello
+        # «✨ Modelo + IA» sale sólo donde la IA coincide con el modelo; lo demás es nuestro modelo, sin sello.
+        gancho = GANCHOS_VIP[sum(ord(ch) for ch in ''.join(p['id'] for p in top)) % len(GANCHOS_VIP)]
+        t = ('💎 <b>VIP · %s</b>\n⏰ Ya es hora de apostar\n\n' % gancho + '\n\n'.join(_por_partido(top, ahora, ia=True)) +
              ('\n\n➕ <b>%d más</b> en la app 👉 %s' % (mas, SITIO) if mas > 0 else '') + PIE)
         out.append((t, [_cubre_pick(p, 'vip') for p in ya], _ticket('Picks VIP · hora de apostar', top, ahora, 'VIP')))
     out += _avisos_retiro(picks, enviados, 'vip', ahora)
@@ -297,7 +313,12 @@ def armar_vip(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[Tupl
         verdes = [p for p in res if p.get('estado') == 'verde'][:5]
         t = ('📊 <b>Resultados VIP</b> · ✅ %d ❌ %d%s\n' % (v, len(res) - v, ' 🔥' if v >= 0.8 * len(res) else '') +
              '\n'.join('✅ %s · %s %s' % (_e(p.get('apuesta')), _e(p.get('partido')), _e(p.get('marcador') or '')) for p in verdes) +
-             ('\n…y %d verdes más' % (v - len(verdes)) if v > len(verdes) else '') + '\n\n📈 Todo, verde y rojo, en el historial 👉 ' + SITIO)
+             ('\n…y %d verdes más' % (v - len(verdes)) if v > len(verdes) else '') +
+             # v549 — el usuario: «hay que decir cuando se cumplen y cuando no»: las rojas también, con nombre
+             ''.join('\n❌ %s · %s %s' % (_e(p.get('apuesta')), _e(p.get('partido')), _e(p.get('marcador') or ''))
+                     for p in [x for x in res if x.get('estado') == 'roja'][:3]) +
+             ('\n…y %d rojas más' % (len(res) - v - 3) if len(res) - v > 3 else '') +
+             '\n\n📈 Todo, verde y rojo, en el historial 👉 ' + SITIO)
         out.append((t, [(p['id'], 'vip', 'resultado') for p in res]))
     # 🌙 el resumen de la noche
     hoy = loc.strftime('%Y-%m-%d')
@@ -535,7 +556,7 @@ def armar_personales(picks: List[Dict], destinos: List[Dict], ya: Set[str], ahor
             # v534 — completo: al VIP, a lo que no es de pago, a lo que ESA persona desbloqueó con monedas, y a todos
             # con cuenta si el ajuste «premium_con_cuenta» está prendido (la misma regla que la página)
             if u['vip'] or con_cuenta or p['id'] in (abiertos or {}).get(uid, set()) or not (p.get('premium') or nivel(p) in vip_niv):
-                lineas.append(_cab_partido(p, ahora, ICONO.get(nivel(p), '')) + '\n' + _apuesta(p))
+                lineas.append(_cab_partido(p, ahora, ICONO.get(nivel(p), '')) + '\n' + _apuesta(p, bool(u['vip'])))
             else:
                 lineas.append(_cab_partido(p, ahora, ICONO.get(nivel(p), '')) + '\n🔒 <b>Pick %s</b> · desbloquéalo en la app' % _e(nivel(p)))
         mas = len(suyos) - len(top)
@@ -719,6 +740,25 @@ def enviar_a(chat: str, texto: str, foto: Optional[bytes] = None) -> bool:
     return False
 
 
+def poner_ia(picks: List[Dict]) -> int:
+    """v549 — la confianza de la IA (1-5) de cada partido de hoy y mañana, en `_ia`. Devuelve cuántos picks quedan con 5."""
+    url, key = os.environ.get('SUPABASE_URL'), os.environ.get('SUPABASE_SERVICE_KEY')
+    if not url or not key or not picks:
+        return 0
+    import requests
+    hoy = dt.datetime.now(CDMX).date()
+    r = requests.get(url.rstrip('/') + '/rest/v1/ia_analisis', timeout=30, headers={'apikey': key, 'Authorization': 'Bearer ' + key},
+                     params={'select': 'fecha,partido,confianza', 'fecha': 'gte.' + (hoy - dt.timedelta(days=1)).isoformat(), 'limit': 5000})
+    conf = {(str(x.get('fecha')), x.get('partido')): x.get('confianza') for x in (r.json() if r.ok else [])}
+    n = 0
+    for p in picks:
+        c = conf.get((str(p.get('fecha')), p.get('partido')))
+        if c is not None and nivel(p) in ('Diamante', 'Platino', 'Oro'):     # en Plata la IA no separa (medido, v531)
+            p['_ia'] = int(c)
+            n += int(c) >= 5
+    return n
+
+
 def main() -> int:
     logging.basicConfig(level=logging.INFO, format='%(levelname)s %(message)s')
     try:
@@ -743,6 +783,12 @@ def main() -> int:
                 p['apuesta'] = reales[p['id']]
     except Exception:
         pass
+    try:
+        n = poner_ia(picks)
+        if n:
+            print('telegram: %d picks con la IA en mayor probabilidad' % n)
+    except Exception as e:
+        logger.warning('[telegram] sin la confianza de la IA: %s', e)
     enviados = set() if seco else ya_enviados()
     if enviados is None:
         print('telegram: sin la base no se sabe qué ya se mandó: no se manda nada')
