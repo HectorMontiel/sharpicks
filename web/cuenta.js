@@ -1200,7 +1200,8 @@
     if (!sb || document.hidden) return;
     const desde = new Date(Date.now() - 864e5).toISOString().slice(0, 10), antes = JSON.stringify([yo.pulsoIA, yo.pulsoHay, yo.pulsoSen]);
     // v522 — las señales de 70 %+ de cada partido (la base tapa el mercado de las que siguen en juego si no eres VIP)
-    const sn = await aTiempo(sb.rpc('pulso_senales_ver', { p_desde: desde }), 6000, { data: null });
+    // (3 días: los partidos de «Ayer» también enseñan sus señales con lo que salió)
+    const sn = await aTiempo(sb.rpc('pulso_senales_ver', { p_desde: new Date(Date.now() - 3 * 864e5).toISOString().slice(0, 10) }), 6000, { data: null });
     if (sn && sn.data) { yo.pulsoSen = {}; sn.data.forEach((x) => { (yo.pulsoSen[x.clave] = yo.pulsoSen[x.clave] || []).push(x); }); }
     const h = await aTiempo(sb.rpc('pulso_ia_hay', { p_desde: desde }), 6000, { data: null });
     if (h && h.data) { yo.pulsoHay = {}; h.data.forEach((x) => { if (!yo.pulsoHay[x.clave]) yo.pulsoHay[x.clave] = x; }); }
