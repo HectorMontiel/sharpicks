@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-31T06:20:17Z",
+"actualizado": "2026-10-31T09:30:48Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -19540,6 +19540,26 @@
 "apuesta": "Gana Pakhtakor",
 "cuota": 1.56,
 "resultado": "verde",
+"marcador": "0-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Kudermetova P./Timofeeva M. vs Tjen J./Williams V.",
+"apuesta": "Gana Tjen J./Williams V.",
+"cuota": 1.4706,
+"resultado": "rojo",
+"marcador": "2-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Xiamen Feilu vs Nantong Haimen",
+"apuesta": "Gana Xiamen Feilu",
+"cuota": 3.1,
+"resultado": "rojo",
 "marcador": "0-1"
 }
 ]
