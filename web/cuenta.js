@@ -1117,15 +1117,27 @@
     caja.innerHTML = html;
   }
   // v440 — quitar de «Mis picks» (deslizando la fila), con «Deshacer» unos segundos
-  async function quitarSeguidos(ids, volver) {
-    ids = ids.filter(Boolean); if (!ids.length || !yo.user) return;
-    ids.forEach((id) => (volver ? yo.seguidos.add(id) : yo.seguidos.delete(id)));
+  async function quitarSeguidos(ids, volver, alPartido) {
+    ids = ids.filter(Boolean); if ((!ids.length && !alPartido) || !yo.user) return;
+    // v553 — el usuario: «sigo un partido para que me avise por Telegram, me aparece en Mis picks y al quitarlo no se
+    // quita». Ese partido estaba ahí por la campana 🔔 (alertas_tg), no por ☆ Seguir: ahora se quitan las dos cosas.
+    const seg = ids.filter((id) => (volver ? true : yo.seguidos.has(id)));
+    seg.forEach((id) => (volver ? yo.seguidos.add(id) : yo.seguidos.delete(id)));
+    const alAntes = yo.alertas || [];
+    if (alPartido) yo.alertas = volver ? alAntes.concat([{ tipo: 'partido', valor: alPartido }]) : alAntes.filter((x) => !(x.tipo === 'partido' && x.valor === alPartido));
     if (window.SP) { window.SP.estado.deslizado = null; window.SP.pintar(); }
-    const q = volver ? sb.from('seguidos').upsert(ids.map((pick) => ({ pick, usuario: yo.user.id })), { onConflict: 'usuario,pick', ignoreDuplicates: true })
-      : sb.from('seguidos').delete().in('pick', ids).eq('usuario', yo.user.id);
-    const res = await aTiempo(q, 6000, { error: 'tiempo' });
-    if (res && res.error) { ids.forEach((id) => (volver ? yo.seguidos.delete(id) : yo.seguidos.add(id))); if (window.SP) window.SP.pintar(); avisoFlotante('No se pudo: revisa tu conexión.'); return; }
-    if (!volver) avisoFlotante('Quitado de Mis picks', 'Deshacer', () => quitarSeguidos(ids, true));
+    const tareas = [];
+    if (seg.length) tareas.push(volver ? sb.from('seguidos').upsert(seg.map((pick) => ({ pick, usuario: yo.user.id })), { onConflict: 'usuario,pick', ignoreDuplicates: true })
+      : sb.from('seguidos').delete().in('pick', seg).eq('usuario', yo.user.id));
+    if (alPartido) tareas.push(volver ? sb.from('alertas_tg').insert({ usuario: yo.user.id, tipo: 'partido', valor: alPartido })
+      : sb.from('alertas_tg').delete().match({ usuario: yo.user.id, tipo: 'partido', valor: alPartido }));
+    const res = await Promise.all(tareas.map((q) => aTiempo(q, 6000, { error: 'tiempo' })));
+    if (res.some((r) => r && r.error)) {
+      seg.forEach((id) => (volver ? yo.seguidos.delete(id) : yo.seguidos.add(id)));
+      yo.alertas = alAntes;
+      if (window.SP) window.SP.pintar(); avisoFlotante('No se pudo: revisa tu conexión.'); return;
+    }
+    if (!volver) avisoFlotante(alPartido ? 'Quitado de Mis picks y sin avisos 🔕' : 'Quitado de Mis picks', 'Deshacer', () => quitarSeguidos(seg, true, alPartido));
   }
   function avisoFlotante(txt, boton, fn) {
     document.querySelectorAll('.aviso-flot').forEach((x) => x.remove());
@@ -1137,7 +1149,7 @@
   }
   document.addEventListener('click', (e) => {
     const q = e.target.closest('[data-dejar]');
-    if (q) { e.stopPropagation(); quitarSeguidos(q.dataset.dejar.split(',')); return; }
+    if (q) { e.stopPropagation(); quitarSeguidos(q.dataset.dejar.split(','), false, q.dataset.dejarAl || null); return; }
     const t = e.target.closest('[data-hist-rango]'); if (!t) return;
     rangoHist = Number(t.dataset.histRango); pintarHistorial($('mi-hist'));
   });

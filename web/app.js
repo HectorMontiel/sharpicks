@@ -1999,7 +1999,10 @@
     // (sólo VIP, `iaSegura`) también en la fila, con su sello
     const ia = Math.max(0, ...ps.map((x) => iaSegura(x)));
     return '<div class="partido-fila ' + nv.c + (abierto ? ' abierto' : '') + (mio ? ' deslizable' : '') + (abiertoRoce ? ' desliza' : '') + (sigo ? ' sigo' : '') + (ia ? ' ia-' + ia : '') + '" data-k="' + esc(k) + '">' +
-      (mio ? '<button class="quitar-fila" data-dejar="' + esc(ps.map((x) => x.id).join(',')) + '" aria-label="Quitar de Mis picks">🗑️ Quitar</button>' : '') +
+      // v553 — si está aquí por la campana 🔔, «Quitar» también la apaga (si no, el partido regresaba)
+      (mio ? '<button class="quitar-fila" data-dejar="' + esc(ps.map((x) => x.id).join(',')) + '"' +
+        ((SPX.yo.alertas || []).some((x) => x.tipo === 'partido' && x.valor === claveNombre(p)) ? ' data-dejar-al="' + esc(claveNombre(p)) + '"' : '') +
+        ' aria-label="Quitar de Mis picks">🗑️ Quitar</button>' : '') +
       '<button class="pf" data-abrir="' + esc(k) + '" aria-expanded="' + abierto + '"' + (abiertoRoce ? ' style="transform:translateX(-92px)"' : '') + '>' +
       relojFila(ps) +
       '<span class="pf-eqs">' + (sigo ? '<span class="pf-sigo">★ Lo sigues</span>' : '') + (estado.porHora ? '<span class="pf-lig">' + esc(ligaDe(p)) + '</span>' : '') +

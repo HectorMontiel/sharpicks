@@ -38,3 +38,10 @@ def test_v552_sin_repetidas_y_se_puede_borrar():
     assert "raise exception 'Ya guardaste esta misma combinada.';" in s
     assert "return 'ya empezó';" in s and "set estado = 'borrada'" in s
     assert "sb.rpc('borrar_combinada', { p_id: t.dataset.borrarComb })" in c and ".neq('estado', 'borrada')" in c
+
+
+def test_v553_quitar_tambien_apaga_la_campana():
+    a, c = leer('web', 'app.js'), leer('web', 'cuenta.js')
+    assert "' data-dejar-al=\"' + esc(claveNombre(p)) + '\"'" in a
+    assert "sb.from('alertas_tg').delete().match({ usuario: yo.user.id, tipo: 'partido', valor: alPartido })" in c
+    assert "quitarSeguidos(q.dataset.dejar.split(','), false, q.dataset.dejarAl || null)" in c
