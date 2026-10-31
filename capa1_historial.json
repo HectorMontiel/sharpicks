@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-31T22:05:33Z",
+"actualizado": "2026-10-31T23:40:20Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -19574,6 +19574,16 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Albacete vs Sabadell",
+"apuesta": "Empate",
+"cuota": 3.25,
+"resultado": "rojo",
+"marcador": "2-1"
+},
+{
+"dia": "2026-10-31",
 "nivel": "🏆",
 "deporte": "Fútbol",
 "partido": "Aldershot vs Gateshead",
@@ -19654,6 +19664,16 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Blumenau vs Figueirense",
+"apuesta": "Gana Figueirense",
+"cuota": 2.15,
+"resultado": "rojo",
+"marcador": "3-2"
+},
+{
+"dia": "2026-10-31",
 "nivel": "🏆",
 "deporte": "Fútbol",
 "partido": "Bologna vs Monza",
@@ -19686,11 +19706,51 @@
 "dia": "2026-10-31",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Carlos Mannucci vs Tacna Heroica",
+"apuesta": "Gana Carlos Mannucci",
+"cuota": 2.15,
+"resultado": "rojo",
+"marcador": "2-2"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Central Cordoba vs Canuelas",
 "apuesta": "Gana Canuelas",
 "cuota": 2.7,
 "resultado": "rojo",
 "marcador": "1-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Chaco For Ever vs Racing (Córdoba)",
+"apuesta": "Chaco For Ever o empate",
+"cuota": 1.154,
+"resultado": "verde",
+"marcador": "3-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Chaco For Ever vs Racing (Córdoba)",
+"apuesta": "Gana Chaco For Ever",
+"cuota": 1.7778,
+"resultado": "verde",
+"marcador": "3-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Chaco For Ever vs Racing Cordoba",
+"apuesta": "Gana Chaco For Ever",
+"cuota": 1.7778,
+"resultado": "verde",
+"marcador": "3-1"
 },
 {
 "dia": "2026-10-31",
@@ -20144,6 +20204,16 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Porto vs Estoril",
+"apuesta": "Gana Porto",
+"cuota": 1.2,
+"resultado": "verde",
+"marcador": "4-0"
+},
+{
+"dia": "2026-10-31",
 "nivel": "💰",
 "deporte": "Tenis",
 "partido": "Quevedo K. vs Tagger L.",
@@ -20191,6 +20261,16 @@
 "cuota": 1.167,
 "resultado": "verde",
 "marcador": "2-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "San Jose Sharks vs Ottawa Senators",
+"apuesta": "Handicap: Ottawa Senators +2.5",
+"cuota": 1.133,
+"resultado": "verde",
+"marcador": "1-5"
 },
 {
 "dia": "2026-10-31",
