@@ -109,8 +109,8 @@
   },
   "Fuerte San Francisco": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "U. San Martin",
-    "ratio": 0.5,
+    "candidato": "Real San Joaquin",
+    "ratio": 0.4444,
     "visto": "2026-10-31"
   },
   "Gimnasia y Esgrima (Jujuy)": {
@@ -529,8 +529,8 @@
   },
   "Club Jaiba Brava": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club America U21",
-    "ratio": 0.5625,
+    "candidato": "Club Brugge II W",
+    "ratio": 0.4667,
     "visto": "2026-10-31"
   },
   "Sportivo Ameliano": {
@@ -595,7 +595,7 @@
   },
   "Deportivo Maldonado": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Universitario",
+    "candidato": "Deportivo Tigres",
     "ratio": 0.5714,
     "visto": "2026-10-31"
   },
@@ -643,9 +643,9 @@
   },
   "Colón (Santa Fe)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Santa Cruz RJ",
-    "ratio": 0.4444,
-    "visto": "2026-10-28"
+    "candidato": "FC Santa Coloma",
+    "ratio": 0.5517,
+    "visto": "2026-10-31"
   },
   "Almirante Brown": {
     "contexto": "cuotas_mx→futbol",
@@ -733,8 +733,8 @@
   },
   "Houston Dynamo FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dynamo Douala",
-    "ratio": 0.4444,
+    "candidato": "SG Dynamo Dresden",
+    "ratio": 0.5161,
     "visto": "2026-10-31"
   },
   "Sporting Kansas City": {
@@ -895,7 +895,7 @@
   },
   "América Mineiro": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "America EC",
+    "candidato": "America MG",
     "ratio": 0.72,
     "visto": "2026-10-31"
   },
@@ -967,8 +967,8 @@
   },
   "Unión (Santa Fe)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Colon Santa Fe",
-    "ratio": 0.7857,
+    "candidato": "Union Nove Sedlo",
+    "ratio": 0.5333,
     "visto": "2026-10-31"
   },
   "Gimnasia La Plata": {
@@ -1039,9 +1039,9 @@
   },
   "Central Córdoba (Santiago del Estero)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Talleres Cordoba",
-    "ratio": 0.4314,
-    "visto": "2026-10-24"
+    "candidato": "Ind. del Valle",
+    "ratio": 0.3333,
+    "visto": "2026-10-31"
   },
   "Raith Rovers": {
     "contexto": "cuotas_mx→futbol",
@@ -1141,8 +1141,8 @@
   },
   "San Antonio Bulo Bulo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "SA Bulo Bulo",
-    "ratio": 0.7273,
+    "candidato": "San Carlos",
+    "ratio": 0.4516,
     "visto": "2026-10-31"
   },
   "Stade Laval": {
@@ -1189,8 +1189,8 @@
   },
   "1. FC Union Berlin": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Union Comercio",
-    "ratio": 0.5806,
+    "candidato": "Tasmania Berlin",
+    "ratio": 0.5625,
     "visto": "2026-10-31"
   },
   "Stockport County": {
@@ -1285,8 +1285,8 @@
   },
   "Deportivo Táchira": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Armenio",
-    "ratio": 0.7059,
+    "candidato": "Deportivo Tigres",
+    "ratio": 0.7879,
     "visto": "2026-10-31"
   },
   "Al Ittihad": {
@@ -1477,8 +1477,8 @@
   },
   "Sport Boys": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sport Huancayo 2",
-    "ratio": 0.5385,
+    "candidato": "Herk Sport Hasselt W",
+    "ratio": 0.5,
     "visto": "2026-10-31"
   },
   "Real Potosí": {
@@ -1597,9 +1597,9 @@
   },
   "Hamburg SV": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "ETSV Hamburg",
+    "candidato": "HEBC Hamburg",
     "ratio": 0.6364,
-    "visto": "2026-10-30"
+    "visto": "2026-10-31"
   },
   "Ajax Amsterdam": {
     "contexto": "cuotas_mx→futbol",
@@ -2205,7 +2205,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "San Juan FC",
     "ratio": 0.381,
-    "visto": "2026-10-25"
+    "visto": "2026-10-31"
   },
   "Beijing Guoan": {
     "contexto": "cuotas_mx→futbol",
@@ -2227,8 +2227,8 @@
   },
   "Paris Saint-Germain": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Amical Saint-Prex",
-    "ratio": 0.5556,
+    "candidato": null,
+    "ratio": 0.0,
     "visto": "2026-10-31"
   },
   "Lyon": {

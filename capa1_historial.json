@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-31T20:29:04Z",
+"actualizado": "2026-10-31T22:05:33Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -19726,6 +19726,26 @@
 "dia": "2026-10-31",
 "nivel": "🏆",
 "deporte": "Fútbol",
+"partido": "Deportivo Morón vs Ciudad de Bolívar",
+"apuesta": "Deportivo Morón o empate",
+"cuota": 1.154,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Douglas Haig vs Villa Mitre",
+"apuesta": "Gana Douglas Haig",
+"cuota": 2.2858,
+"resultado": "verde",
+"marcador": "3-0"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
 "partido": "Dynamo Moscow vs Akhmat Grozny",
 "apuesta": "Dynamo Moscow o empate",
 "cuota": 1.143,
@@ -19850,6 +19870,16 @@
 "apuesta": "Gana Tjen J./Williams V.",
 "cuota": 1.4706,
 "resultado": "rojo",
+"marcador": "2-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "LASK vs Tirol",
+"apuesta": "LASK o empate",
+"cuota": 1.1,
+"resultado": "verde",
 "marcador": "2-1"
 },
 {
@@ -20061,6 +20091,26 @@
 "cuota": 1.94,
 "resultado": "verde",
 "marcador": "3-0"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🔷",
+"deporte": "Fútbol",
+"partido": "Peñarol vs Montevideo Wanderers",
+"apuesta": "Gana Peñarol",
+"cuota": 1.455,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Peñarol vs Montevideo Wanderers",
+"apuesta": "Peñarol o empate",
+"cuota": 1.1,
+"resultado": "verde",
+"marcador": "1-1"
 },
 {
 "dia": "2026-10-31",
