@@ -2224,9 +2224,10 @@
         h += '<div class="arm-res">' + r.patas.map(({ p, v }) => {
           const [L, V] = lados(p), nv = nivel(p);
           const ia = iaSegura(p);              // v531 — sin morado no se pone nada («“más difícil” les quita credibilidad»)
-          return '<div class="arm-pata' + (ia ? ' ia-' + ia : '') + '"><span class="arm-niv">' + nv.i + '</span><span class="arm-txt"><b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b><small>' +
+          // v551 — el usuario: «que al picar el pick me lleve al partido para analizarlo»: cada pata abre su partido
+          return '<button type="button" class="arm-pata' + (ia ? ' ia-' + ia : '') + '" data-ficha="' + esc(p.id) + '" aria-label="Ver el partido"><span class="arm-niv">' + nv.i + '</span><span class="arm-txt"><b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b><small>' +
             esc(L) + ' vs ' + esc(V) + ' · ' + esc(horaCdmx(aFecha(p.inicio))) + '</small></span><span class="arm-num"><b>' + Number(p.cuota).toFixed(2) + '</b><small>' + pct(p.prob) + '</small></span>' +
-            (ia ? '<span class="arm-ia ia-' + ia + '">' + ico('sparkles') + (ia === 2 ? ' Modelo + IA: mayor probabilidad' : ' Modelo + IA: a favor') + '</span>' : '') + '</div>';
+            (ia ? '<span class="arm-ia ia-' + ia + '">' + ico('sparkles') + (ia === 2 ? ' Modelo + IA: mayor probabilidad' : ' Modelo + IA: a favor') + '</span>' : '') + '<span class="arm-ir">›</span></button>';
         }).join('') +
           (r.fuera.length ? '<div class="arm-fuera">' + MAL() + ' La IA descartó: ' + r.fuera.map((p) => '<b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b> (' + esc(lados(p).join(' vs ')) + ')').join(', ') + ' · entró la siguiente más probable</div>' : '') +
           (r.patas.length < A.n ? '<p class="aviso">Sólo hay ' + r.patas.length + ' patas que cumplan (de partidos distintos y que aún no empiezan).</p>' : '') +

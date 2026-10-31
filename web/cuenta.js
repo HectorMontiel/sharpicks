@@ -1017,6 +1017,8 @@
       (ps || []).forEach((p) => { extra[p.id] = p; });
     }
     if (turno !== turnoComb) return;
+    // v550 — una pata que la base ya no tiene la retiró el modelo antes de v550 (se borraba): no cuenta, como una nula
+    faltan.forEach((id) => { if (!extra[id]) extra[id] = { id, retirado: true, estado: 'nula', partido: '' }; });
     yo.hist = { combs: data || [], extra };
     // v463 — lo que ya terminó y el servidor aún no cerró: el resultado final a ESPN, al momento
     const viejos = Object.values(extra).filter((p) => p.estado === 'pendiente' && p.espn && aFechaP(p.inicio) < new Date(Date.now() - 2.5 * 3600e3));
@@ -1164,7 +1166,9 @@
     const yaVerde = c.estado === 'pendiente' && !yaRoja && ps.length && ps.every((p) => p._visto === 'verde' || p._visto === 'nula') && ps.some((p) => p._visto === 'verde');
     const hora = (p) => p.inicio ? new Intl.DateTimeFormat('es-MX', { timeZone: 'America/Mexico_City', hour: '2-digit', minute: '2-digit' }).format(aFechaP(p.inicio)) : '';
     const prox = ps.filter((p) => p.inicio && !empezo(p)).sort((a, b) => aFechaP(a.inicio) - aFechaP(b.inicio))[0];
-    const chip = c.estado === 'verde' ? '<span class="et verde">' + OK() + ' Verde' + (c.premio ? ' · +' + c.premio + ' 🪙' : '') + '</span>' : c.estado === 'roja' ? '<span class="et roja">' + MAL() + ' Roja</span>'
+    // v550 — verde de cuota 2+ sin premio: es la regla de una premiada por día (que no parezca que falló)
+    const chip = c.estado === 'verde' ? '<span class="et verde">' + OK() + ' Verde' + (c.premio ? ' · +' + c.premio + ' 🪙' : '') + '</span>' +
+      (!c.premio && PREMIO(Number(c.cuota)) ? '<small class="tenue sin-premio">Ya cobraste la premiada de ese día</small>' : '') : c.estado === 'roja' ? '<span class="et roja">' + MAL() + ' Roja</span>'
       : c.estado === 'nula' ? '<span class="et">↩️ Nula</span>'
       : yaRoja ? '<span class="et roja" title="Al pitazo; el servidor lo confirma">' + MAL() + ' Roja</span>'
       : yaVerde ? '<span class="et verde" title="Al pitazo; el servidor lo confirma y paga">' + OK() + ' Verde</span>'
@@ -1175,6 +1179,8 @@
       (pr ? (yaVerde ? '🪙 Ganaste <b>+' + pr + '</b> · se acredita al confirmarse' : '🪙 Si acierta: <b>+' + pr + '</b>') : 'Sin premio: desde cuota 2,00') + '</div>' : '';
     return '<div class="tg-item ' + c.estado + '"><div class="fila"><span>🔗 ' + c.patas.length + ' picks · <b>' + Number(c.cuota).toFixed(2) + '</b></span>' + chip + '</div>' + premio +
       ps.map((p) => {
+        if (p.retirado) return '<div class="tg-pata">↩️ <span class="tenue">Pick retirado por el modelo antes del partido · no cuenta</span></div>';
+        if (!p.id) return '<div class="tg-pata"><span class="tenue">Cargando…</span></div>';
         const ico = p._visto === 'verde' ? '✅' : p._visto === 'roja' ? '❌' : p._visto === 'nula' ? '↩️' : empezo(p) ? '🔴' : '🕒';
         const txt = ico + ' ' + apuesta(p.id ? p : { apuesta: '—' }) + ' <span class="tenue">· ' + esc(p.partido || '') + (p.estado === 'pendiente' && !empezo(p) && p.inicio ? ' · ' + hora(p) : '') +
           (p.cuota ? ' · ' + Number(p.cuota).toFixed(2) : '') + '</span>' +

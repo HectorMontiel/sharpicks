@@ -582,6 +582,23 @@ def _patas_fijas(url: str, key: str) -> Optional[set]:
             pt = c.get('patas') or []
             if c['id'] in pagadas or any(empezo(x) for x in pt):
                 out |= {x['id'] for x in pt if x.get('id')}
+        # v550 — el usuario: «en las combinadas que había metido se ven patas en blanco, sin descripción del partido». El
+        # borrado de lo retirado se llevaba también los picks que la gente ya usó: las patas de SUS combinadas (que
+        # entonces se liquidaban sin ellas y perdían el premio), lo que sigue y lo que desbloqueó con monedas (que ya no
+        # se devolvían si salía roja). Esos se quedan; se liquidan como cualquier otro (`liquidar_pendientes`).
+        ru = requests.get(base + 'combinadas_usuario', headers=hdr, timeout=30,
+                          params={'select': 'patas', 'estado': 'eq.pendiente', 'limit': 10000})
+        rs = requests.get(base + 'seguidos', headers=hdr, timeout=30, params={'select': 'pick', 'limit': 50000})
+        rd = requests.get(base + 'desbloqueos', headers=hdr, timeout=30, params={'select': 'pick', 'limit': 50000})
+        # y el usuario: «si mandas un pick se tiene que quedar con eso»: lo que ya salió por Telegram tampoco se retira
+        rt = requests.get(base + 'telegram_enviados', headers=hdr, timeout=30, params={'select': 'pick', 'tipo': 'eq.pick', 'limit': 50000})
+        if not ru.ok or not rs.ok or not rd.ok or not rt.ok:
+            logger.warning('[web] sin lo que usan los usuarios (%s/%s/%s/%s): no se borra lo retirado en esta pasada',
+                           ru.status_code, rs.status_code, rd.status_code, rt.status_code)
+            return None
+        for c in ru.json():
+            out |= set(c.get('patas') or [])
+        out |= {x['pick'] for x in rs.json() + rd.json() + rt.json() if x.get('pick')}
         return out
     except Exception as e:
         logger.warning('[web] sin combinadas (%s): no se borra lo retirado en esta pasada', e)

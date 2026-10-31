@@ -37,13 +37,21 @@ def probar():
              {'id': 'C', 'patas': [{'id': 'c1', 'inicio': luego}]}]                                   # comprada
     viejo = requests.get
     try:
-        requests.get = lambda u, **k: R(combs) if 'combinadas' in u and 'desbloqueos' not in u else R([{'combinada': 'C'}])
+        # v550 — también lo que usan los usuarios: sus combinadas, lo seguido, lo desbloqueado y lo mandado por Telegram
+        def falso(u, **k):
+            for fin, d in (('/combinadas', combs), ('/desbloqueos_combinada', [{'combinada': 'C'}]), ('/combinadas_usuario', [{'patas': ['u1']}]),
+                           ('/seguidos', [{'pick': 's1'}]), ('/desbloqueos', [{'pick': 'd1'}]), ('/telegram_enviados', [{'pick': 't1'}])):
+                if u.endswith(fin):
+                    return R(d)
+            return R([], ok=False)
+        requests.get = falso
         fijas = ew._patas_fijas('https://x.supabase.co', 'k')
         requests.get = lambda u, **k: R([], ok=False)
         sin = ew._patas_fijas('https://x.supabase.co', 'k')
     finally:
         requests.get = viejo
-    check(fijas == {'a1', 'a2', 'c1'}, 'v491: se conservan las patas de las combinadas empezadas o compradas (%s)' % sorted(fijas or []))
+    check(fijas == {'a1', 'a2', 'c1', 'u1', 's1', 'd1', 't1'},
+          'v491/v550: se conservan las patas de las combinadas empezadas o compradas y lo que usan los usuarios (%s)' % sorted(fijas or []))
     check(sin is None, 'v491: si no se pueden leer las combinadas, no se borra nada en esa pasada')
     src = open(os.path.join(AQUI, 'exportar_web.py'), encoding='utf-8').read()
     check("fijas = _patas_fijas(url, key)" in src and "fijas is not None and not _pasada_incompleta" in src
