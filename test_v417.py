@@ -327,7 +327,7 @@ def probar_v434():
     check(True,
           'v439: «Mi historial»: lo seguido, desbloqueado y combinado, con verdes/rojas y desglose por deporte')
     check('$100 a cada uno' not in cu, 'v440: el historial no pone dinero ni supuestos (decisión del usuario)')
-    check('.partido-fila.deslizable' in css and "document.addEventListener('touchmove'" in app and 'data-dejar=' in app and 'async function quitarSeguidos(ids, volver)' in cu,
+    check('.partido-fila.deslizable' in css and "document.addEventListener('touchmove'" in app and 'data-dejar=' in app and 'async function quitarSeguidos(ids, volver, alPartido)' in cu,   # v553: también apaga la campana
           'v440: en «Mis picks» se desliza la fila para quitarla, con «Deshacer»')
     check("ps.some(empezo) ? '<span class=\"et vivo\">🔴 En juego</span>'" in cu and 'class="tg-pata ir-partido" data-ficha=' in cu,
           'v441: la combinada dice «Por jugar» hasta que empieza alguno; cada pata abre su partido')
