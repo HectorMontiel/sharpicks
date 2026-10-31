@@ -660,10 +660,18 @@ def subir_supabase(picks: List[Dict], secretos: List[Dict] = ()) -> int:
     fijas = _patas_fijas(url, key)
     if n == len(filas) and filas and fijas is not None and not _pasada_incompleta(url, key, picks):
         ahora = dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S')
-        vivos = ','.join(sorted({p['id'] for p in picks} | fijas))
-        r = requests.delete(url.rstrip('/') + '/rest/v1/picks', timeout=30, headers=hdr,
-                            params={'estado': 'eq.pendiente', 'inicio': 'gt.' + ahora,
-                                    'id': 'not.in.(%s)' % vivos})
+        # v554 — la lista «not.in» con todo lo protegido (v550: también claves «comb:a+b» de Telegram) rompía la URL (400).
+        # Ahora se piden los pendientes futuros, se calcula aquí qué sobra y se borra por id, en tandas.
+        vivos = {p['id'] for p in picks} | fijas
+        rr = requests.get(url.rstrip('/') + '/rest/v1/picks', timeout=30, headers=hdr,
+                          params={'select': 'id', 'estado': 'eq.pendiente', 'inicio': 'gt.' + ahora, 'limit': 10000})
+        sobra = [x['id'] for x in (rr.json() if rr.ok else []) if x['id'] not in vivos]
+        r = rr
+        for i in range(0, len(sobra), 100):
+            r = requests.delete(url.rstrip('/') + '/rest/v1/picks', timeout=30, headers=hdr,
+                                params={'estado': 'eq.pendiente', 'id': 'in.(%s)' % ','.join(sobra[i:i + 100])})
+            if not r.ok:
+                break
         if not r.ok:
             logger.error('[web] no se pudo limpiar lo retirado: %s %s', r.status_code, r.text[:200])
             raise RuntimeError('Supabase no pudo limpiar picks retirados; se bloquea la publicación')

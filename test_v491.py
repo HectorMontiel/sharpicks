@@ -55,7 +55,7 @@ def probar():
     check(sin is None, 'v491: si no se pueden leer las combinadas, no se borra nada en esa pasada')
     src = open(os.path.join(AQUI, 'exportar_web.py'), encoding='utf-8').read()
     check("fijas = _patas_fijas(url, key)" in src and "fijas is not None and not _pasada_incompleta" in src
-          and "vivos = ','.join(sorted({p['id'] for p in picks} | fijas))" in src,
+          and "vivos = {p['id'] for p in picks} | fijas" in src,
           'v491: el borrado de lo retirado respeta las patas fijas')
     app = open(os.path.join(AQUI, 'web', 'app.js'), encoding='utf-8').read()
     check("const alt = kp ? estado.picks.concat(estado.analisis || []).find((q) => clavePartido(q) === kp) : null" in app
