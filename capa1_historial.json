@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-31T11:04:57Z",
+"actualizado": "2026-10-31T12:45:42Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -19561,6 +19561,56 @@
 "cuota": 2.3,
 "resultado": "rojo",
 "marcador": "0-0"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Mlada Boleslav U19 vs Hradec Kralove U19",
+"apuesta": "Gana Hradec Kralove U19",
+"cuota": 2.02,
+"resultado": "verde",
+"marcador": "1-3"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Quevedo K. vs Tagger L.",
+"apuesta": "Gana Tagger L.",
+"cuota": 1.5,
+"resultado": "verde",
+"marcador": "0-2"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Tempo Prague vs Slany",
+"apuesta": "Gana Tempo Prague",
+"cuota": 2.2,
+"resultado": "rojo",
+"marcador": "2-2"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Vysehrad vs Psary",
+"apuesta": "Gana Psary",
+"cuota": 1.52,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Vysehrad vs Psary",
+"apuesta": "Gana Psary",
+"cuota": 1.53,
+"resultado": "verde",
+"marcador": "1-2"
 },
 {
 "dia": "2026-10-31",
