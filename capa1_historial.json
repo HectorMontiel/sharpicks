@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-31T01:31:07Z",
+"actualizado": "2026-10-31T03:10:39Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -18704,6 +18704,16 @@
 },
 {
 "dia": "2026-10-30",
+"nivel": "🏆",
+"deporte": "NBA",
+"partido": "Boston Celtics vs Chicago Bulls",
+"apuesta": "Gana Boston Celtics",
+"cuota": 1.16,
+"resultado": "verde",
+"marcador": "125-111"
+},
+{
+"dia": "2026-10-30",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Brisbane Roar FC vs Auckland FC",
@@ -18874,6 +18884,16 @@
 },
 {
 "dia": "2026-10-30",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Florida Panthers vs Winnipeg Jets",
+"apuesta": "Handicap: Winnipeg Jets +3.5",
+"cuota": 1.133,
+"resultado": "verde",
+"marcador": "5-2"
+},
+{
+"dia": "2026-10-30",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Fylde vs Hornchurch",
@@ -18941,6 +18961,26 @@
 "cuota": 1.7,
 "resultado": "rojo",
 "marcador": "1-2"
+},
+{
+"dia": "2026-10-30",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Inter de San Carlos vs Escorpiones Belén",
+"apuesta": "Inter de San Carlos o empate",
+"cuota": 1.2,
+"resultado": "rojo",
+"marcador": "2-3"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Inter de San Carlos vs Escorpiones Belén",
+"apuesta": "Gana Inter de San Carlos",
+"cuota": 1.68,
+"resultado": "rojo",
+"marcador": "2-3"
 },
 {
 "dia": "2026-10-30",
@@ -19176,6 +19216,16 @@
 "dia": "2026-10-30",
 "nivel": "🏆",
 "deporte": "Fútbol",
+"partido": "Racing Club vs Aldosivi",
+"apuesta": "Racing Club o empate",
+"cuota": 1.167,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-10-30",
+"nivel": "🏆",
+"deporte": "Fútbol",
 "partido": "Real Potosí vs Independiente Petrolero",
 "apuesta": "Real Potosí o empate",
 "cuota": 1.1,
@@ -19351,6 +19401,26 @@
 "cuota": 3.3,
 "resultado": "verde",
 "marcador": "3-2"
+},
+{
+"dia": "2026-10-30",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Tampa Bay Rowdies vs Miami FC",
+"apuesta": "Tampa Bay Rowdies o empate",
+"cuota": 1.111,
+"resultado": "rojo",
+"marcador": "1-2"
+},
+{
+"dia": "2026-10-30",
+"nivel": "🔷",
+"deporte": "Fútbol",
+"partido": "Tampa Bay Rowdies vs Miami FC",
+"apuesta": "Gana Tampa Bay Rowdies",
+"cuota": 1.4,
+"resultado": "rojo",
+"marcador": "1-2"
 },
 {
 "dia": "2026-10-30",
