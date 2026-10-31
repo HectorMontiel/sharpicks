@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-31T15:45:03Z",
+"actualizado": "2026-10-31T17:19:43Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -19554,6 +19554,26 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Aldershot vs Gateshead",
+"apuesta": "Aldershot o empate",
+"cuota": 1.125,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Altrincham vs Carlisle",
+"apuesta": "Gana Altrincham",
+"cuota": 3.0,
+"resultado": "rojo",
+"marcador": "2-4"
+},
+{
+"dia": "2026-10-31",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Angkor Tiger vs Boeung Ket",
@@ -19574,11 +19594,61 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Barrow vs Eastleigh",
+"apuesta": "Barrow o empate",
+"cuota": 1.143,
+"resultado": "verde",
+"marcador": "1-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Bologna vs Monza",
+"apuesta": "Bologna o empate",
+"cuota": 1.2,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Bury vs Workington",
+"apuesta": "Gana Bury",
+"cuota": 1.4445,
+"resultado": "rojo",
+"marcador": "1-2"
+},
+{
+"dia": "2026-10-31",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Chrudim B vs Hlinsko",
 "apuesta": "Gana Hlinsko",
 "cuota": 1.65,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Dynamo Moscow vs Akhmat Grozny",
+"apuesta": "Dynamo Moscow o empate",
+"cuota": 1.143,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "El Bayadh vs ASM Oran",
+"apuesta": "Gana El Bayadh",
+"cuota": 3.15,
 "resultado": "rojo",
 "marcador": "1-1"
 },
@@ -19591,6 +19661,16 @@
 "cuota": 2.7,
 "resultado": "rojo",
 "marcador": "3-0"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Hajduk Split vs Gorica",
+"apuesta": "Gana Hajduk Split",
+"cuota": 1.3637,
+"resultado": "verde",
+"marcador": "5-0"
 },
 {
 "dia": "2026-10-31",
@@ -19646,11 +19726,31 @@
 "dia": "2026-10-31",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "MSP Batna vs Nezla",
+"apuesta": "Gana MSP Batna",
+"cuota": 1.3,
+"resultado": "verde",
+"marcador": "4-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Macarthur FC vs Western Sydney Wanderers FC",
 "apuesta": "Gana Western Sydney Wanderers FC",
 "cuota": 2.3,
 "resultado": "rojo",
 "marcador": "0-0"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Magra vs Azazga",
+"apuesta": "Gana Magra",
+"cuota": 1.99,
+"resultado": "verde",
+"marcador": "3-0"
 },
 {
 "dia": "2026-10-31",
@@ -19664,6 +19764,16 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Millwall vs Derby",
+"apuesta": "Millwall o empate",
+"cuota": 1.182,
+"resultado": "verde",
+"marcador": "4-1"
+},
+{
+"dia": "2026-10-31",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Mlada Boleslav U19 vs Hradec Kralove U19",
@@ -19671,6 +19781,16 @@
 "cuota": 2.02,
 "resultado": "verde",
 "marcador": "1-3"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Modena vs Mantova",
+"apuesta": "Modena o empate",
+"cuota": 1.177,
+"resultado": "verde",
+"marcador": "1-1"
 },
 {
 "dia": "2026-10-31",
@@ -19744,6 +19864,16 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Pinkafeld vs Halbturn",
+"apuesta": "Gana Halbturn",
+"cuota": 2.95,
+"resultado": "rojo",
+"marcador": "7-1"
+},
+{
+"dia": "2026-10-31",
 "nivel": "🏆",
 "deporte": "Fútbol",
 "partido": "Port Vale vs Rochdale",
@@ -19774,6 +19904,16 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Quorn vs Warrington",
+"apuesta": "Gana Warrington",
+"cuota": 2.35,
+"resultado": "rojo",
+"marcador": "3-2"
+},
+{
+"dia": "2026-10-31",
 "nivel": "🏆",
 "deporte": "Fútbol",
 "partido": "Racing (Montevideo) vs Cerro Largo",
@@ -19784,6 +19924,16 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Salford vs Exeter",
+"apuesta": "Salford o empate",
+"cuota": 1.167,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-10-31",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Shirak Gyumri vs BKMA",
@@ -19791,6 +19941,16 @@
 "cuota": 1.68,
 "resultado": "verde",
 "marcador": "2-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Shrewsbury vs Gillingham",
+"apuesta": "Gana Shrewsbury",
+"cuota": 2.05,
+"resultado": "rojo",
+"marcador": "1-2"
 },
 {
 "dia": "2026-10-31",
@@ -19806,11 +19966,31 @@
 "dia": "2026-10-31",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Sudtirol vs Cesena",
+"apuesta": "Empate",
+"cuota": 3.2,
+"resultado": "verde",
+"marcador": "1-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Tempo Prague vs Slany",
 "apuesta": "Gana Tempo Prague",
 "cuota": 2.2,
 "resultado": "rojo",
 "marcador": "2-2"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Truro vs Ebbsfleet",
+"apuesta": "Gana Ebbsfleet",
+"cuota": 3.4,
+"resultado": "rojo",
+"marcador": "3-0"
 },
 {
 "dia": "2026-10-31",
@@ -19831,6 +20011,16 @@
 "cuota": 1.53,
 "resultado": "verde",
 "marcador": "1-2"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Walton & Hersham vs Torquay",
+"apuesta": "Gana Torquay",
+"cuota": 1.65,
+"resultado": "verde",
+"marcador": "0-3"
 },
 {
 "dia": "2026-10-31",
@@ -19864,6 +20054,26 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Wolves vs Cardiff",
+"apuesta": "Wolves o empate",
+"cuota": 1.182,
+"resultado": "verde",
+"marcador": "3-0"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Wolves vs Cardiff",
+"apuesta": "Gana Wolves",
+"cuota": 1.6471,
+"resultado": "verde",
+"marcador": "3-0"
+},
+{
+"dia": "2026-10-31",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Xiamen Feilu vs Nantong Haimen",
@@ -19871,6 +20081,16 @@
 "cuota": 3.1,
 "resultado": "rojo",
 "marcador": "0-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Zeljeznicar vs Zrinjski",
+"apuesta": "Gana Zrinjski",
+"cuota": 1.6471,
+"resultado": "verde",
+"marcador": "0-4"
 }
 ]
 }
