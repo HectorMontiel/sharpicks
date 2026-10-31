@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-31T03:10:39Z",
+"actualizado": "2026-10-31T04:45:04Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -18674,6 +18674,16 @@
 },
 {
 "dia": "2026-10-30",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Atlético Bucaramanga vs Deportivo Pasto",
+"apuesta": "Atlético Bucaramanga o empate",
+"cuota": 1.154,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-10-30",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Baglan Dragons vs Treowen",
@@ -18781,6 +18791,16 @@
 "cuota": 1.177,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Correcaminos UAT vs Venados FC",
+"apuesta": "Gana Venados FC",
+"cuota": 3.1,
+"resultado": "rojo",
+"marcador": "0-0"
 },
 {
 "dia": "2026-10-30",
