@@ -34988,22 +34988,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5109905,2026-08-23,usl_championship,Orange County SC,Lyam MacKinnon,1472288,F,0,28,0,0,0,0.0,,3.0,70893.0
 5109905,2026-08-23,usl_championship,Orange County SC,Marcelo Palomino,1136257,M,0,21,0,0,0,0.0,,2.0,83439.0
 5109905,2026-08-23,usl_championship,Orange County SC,Mataeo Bunbury,1299720,F,0,12,1,1,0,0.0,,3.0,425803.0
-1000014535,2026-08-23,liga_mx,Puebla,Ricardo Gutiérrez,951053,G,1,90,0,0,0,0.0,11.0,0.0,
-1000014535,2026-08-23,liga_mx,Puebla,Iker Moreno,1352812,D,1,90,0,0,0,0.0,32.0,1.0,720991.0
-1000014535,2026-08-23,liga_mx,Puebla,Facundo Almada,995062,D,1,90,0,0,0,0.0,34.0,1.0,974579.0
-1000014535,2026-08-23,liga_mx,Puebla,Juan Pablo Vargas,734283,D,1,90,0,0,0,0.0,36.0,1.0,731903.0
-1000014535,2026-08-23,liga_mx,Puebla,Fernando Monárrez,1399027,D,1,89,2,0,0,0.04,38.0,1.0,734029.0
-1000014535,2026-08-23,liga_mx,Puebla,Brayan Garnica,684129,M,1,80,2,0,0,0.03,72.0,2.0,835012.0
-1000014535,2026-08-23,liga_mx,Puebla,Alejandro Organista,1139937,M,1,89,2,0,0,0.05,74.0,2.0,749701.0
-1000014535,2026-08-23,liga_mx,Puebla,Alonso Ramírez,1342851,M,1,90,1,0,0,0.1,76.0,2.0,453711.0
-1000014535,2026-08-23,liga_mx,Puebla,Carlos Baltazar,996036,M,1,74,2,2,1,0.19,78.0,2.0,670719.0
-1000014535,2026-08-23,liga_mx,Puebla,Kevin Velasco,978252,M,1,90,4,2,0,0.42,95.0,2.0,838013.0
-1000014535,2026-08-23,liga_mx,Puebla,Eduardo Mustre,1192467,F,1,89,3,2,2,0.11,115.0,3.0,129600.0
-1000014535,2026-08-23,liga_mx,Puebla,Óscar Villa,1199210,D,0,16,0,0,0,0.0,,1.0,270351.0
-1000014535,2026-08-23,liga_mx,Puebla,Lucas Camilo,1927931,M,0,10,1,1,0,0.08,,2.0,
-1000014535,2026-08-23,liga_mx,Puebla,José Pachuca,1504613,D,0,1,0,0,0,0.0,,1.0,1508454.0
-1000014535,2026-08-23,liga_mx,Puebla,Sergio Sanabria,1787334,M,0,1,0,0,0,0.0,,2.0,383637.0
-1000014535,2026-08-23,liga_mx,Puebla,Luifer Hernández,1199711,F,0,1,0,0,0,0.0,,3.0,539757.0
 1000014535,2026-08-23,liga_mx,Santos Laguna,Carlos Acevedo,751164,G,1,90,0,0,0,0.0,11.0,0.0,1452547.0
 1000014535,2026-08-23,liga_mx,Santos Laguna,Mauricio Cuevas,1079040,D,1,90,0,0,0,0.0,32.0,1.0,335785.0
 1000014535,2026-08-23,liga_mx,Santos Laguna,Franco Pardo,845263,D,1,90,0,0,0,0.0,34.0,1.0,1444113.0
@@ -35948,22 +35932,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000015253,2026-08-24,isr_premier,Bnei Sakhnin,Daniel Paraschiv,1025773,F,0,13,0,0,0,0.0,,3.0,480009.0
 1000015253,2026-08-24,isr_premier,Bnei Sakhnin,Iyad Abu Abaid,624072,D,0,6,0,0,0,0.0,,1.0,164189.0
 1000015253,2026-08-24,isr_premier,Bnei Sakhnin,Jubayer Bushnak,1543425,F,0,6,0,0,0,0.0,,3.0,364702.0
-1000014543,2026-08-24,liga_mx,Pumas,Keylor Navas,51949,G,1,90,0,0,0,0.0,11.0,0.0,709664.0
-1000014543,2026-08-24,liga_mx,Pumas,Rodrigo López,1381368,D,1,90,1,0,0,0.03,32.0,1.0,2310573.0
-1000014543,2026-08-24,liga_mx,Pumas,Nathan Silva,754495,D,1,90,0,0,0,0.0,34.0,1.0,2283607.0
-1000014543,2026-08-24,liga_mx,Pumas,Rubén Duarte,358138,D,1,90,1,0,0,0.09,36.0,1.0,1269875.0
-1000014543,2026-08-24,liga_mx,Pumas,Cristian Calderón,748811,D,1,73,0,0,0,0.0,38.0,1.0,956699.0
-1000014543,2026-08-24,liga_mx,Pumas,Adalberto Carrasquilla,643682,M,1,61,2,0,0,0.03,73.0,2.0,2566163.0
-1000014543,2026-08-24,liga_mx,Pumas,Pedro Vite,1108611,M,1,45,1,0,0,0.01,75.0,2.0,5992813.0
-1000014543,2026-08-24,liga_mx,Pumas,Víctor Arteaga,1448133,M,1,82,1,0,0,0.03,77.0,2.0,843225.0
-1000014543,2026-08-24,liga_mx,Pumas,Uriel Antuna,767021,F,1,90,3,0,0,0.08,103.0,3.0,1934465.0
-1000014543,2026-08-24,liga_mx,Pumas,Robert Morales,1211598,F,1,90,6,2,0,0.34,105.0,3.0,2017915.0
-1000014543,2026-08-24,liga_mx,Pumas,Juninho,728409,F,1,45,1,0,0,0.04,107.0,3.0,2045154.0
-1000014543,2026-08-24,liga_mx,Pumas,Israel Luna,1109048,M,0,45,3,2,0,0.13,,2.0,563815.0
-1000014543,2026-08-24,liga_mx,Pumas,Luciano Herrera,892643,F,0,45,3,2,1,0.35,,3.0,870458.0
-1000014543,2026-08-24,liga_mx,Pumas,Alan Medina,862174,F,0,29,1,0,0,0.06,,3.0,1319857.0
-1000014543,2026-08-24,liga_mx,Pumas,Pablo Bennevendo,1169770,D,0,17,0,0,0,0.0,,1.0,1849670.0
-1000014543,2026-08-24,liga_mx,Pumas,Guillermo Martínez,558539,F,0,8,0,0,0,0.0,,3.0,1066415.0
 1000014543,2026-08-24,liga_mx,Necaxa,Luis Jiménez,1602180,G,1,90,0,0,0,0.0,11.0,0.0,
 1000014543,2026-08-24,liga_mx,Necaxa,Kaiky Naves,1320170,D,1,90,0,0,0,0.0,33.0,1.0,1869398.0
 1000014543,2026-08-24,liga_mx,Necaxa,Alexis Peña,671970,D,1,90,0,0,0,0.0,35.0,1.0,1815569.0
@@ -169861,3 +169829,95 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000014625,2026-10-31,liga_mx,Atlas,Ryan Mmaee,635606,F,0,28,0,0,0,0.0,,3.0,1335320.0
 1000014625,2026-10-31,liga_mx,Atlas,Víctor Ríos,1520968,M,0,14,0,0,0,0.0,,2.0,2180655.0
 1000014625,2026-10-31,liga_mx,Atlas,Arturo González,292903,F,0,2,1,0,0,0.02,,3.0,1682645.0
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Gil Alcalá,610744,G,1,90,0,0,0,0.0,11.0,0.0,125116.0
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Sergio Vázquez,1432273,D,1,90,1,1,0,0.29,33.0,1.0,
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Juan Daccarett,1673874,D,1,90,2,0,0,0.06,35.0,1.0,
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Horacio Torres,1076860,D,1,90,0,0,0,0.0,37.0,1.0,458567.0
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Ángel Robles,1248072,M,1,75,4,0,0,0.31,62.0,2.0,462954.0
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Marco García,1125757,M,1,90,1,0,0,0.01,64.0,2.0,317664.0
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Édgar Alaffita,724355,M,1,90,2,2,0,0.05,66.0,2.0,125116.0
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Johan Alonzo,1295409,M,1,75,2,0,0,0.09,68.0,2.0,181536.0
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Óscar Millán,1092003,M,1,66,2,2,1,0.24,84.0,2.0,226469.0
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Ulíses Jaimes,560000,M,1,45,2,0,0,0.18,86.0,2.0,180482.0
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Martín Barragán,494183,F,1,66,1,1,1,0.07,105.0,3.0,204205.0
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Jordi Ferrer,1407178,F,0,45,3,1,1,0.27,,3.0,
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Ricardo Rentería,1465083,F,0,24,1,0,0,0.16,,3.0,
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Israel Larios,1436543,F,0,24,1,0,0,0.03,,3.0,
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Daniel Alvarado,1704912,M,0,15,0,0,0,0.0,,2.0,
+5898777,2026-10-31,mex_expansion,Atlético La Paz,Daniel Hernández,1182649,M,0,15,0,0,0,0.0,,2.0,165564.0
+5898777,2026-10-31,mex_expansion,Dorados,José Castro,1605768,G,1,90,0,0,0,0.0,11.0,0.0,
+5898777,2026-10-31,mex_expansion,Dorados,Diego García,1432290,D,1,70,0,0,0,0.0,32.0,1.0,497469.0
+5898777,2026-10-31,mex_expansion,Dorados,Willian González,1901744,D,1,83,2,0,0,0.17,34.0,1.0,
+5898777,2026-10-31,mex_expansion,Dorados,Christopher Castro,1722600,D,1,90,2,0,0,0.04,36.0,1.0,237143.0
+5898777,2026-10-31,mex_expansion,Dorados,Abraham Flores,1306879,D,1,46,0,0,0,0.0,38.0,1.0,214689.0
+5898777,2026-10-31,mex_expansion,Dorados,Marcos Flores,2140682,M,1,90,1,0,0,0.15,72.0,2.0,
+5898777,2026-10-31,mex_expansion,Dorados,Germán Padilla,1851538,M,1,90,0,0,0,0.0,74.0,2.0,
+5898777,2026-10-31,mex_expansion,Dorados,Francisco Contreras,1023023,M,1,90,2,1,0,0.12,76.0,2.0,323055.0
+5898777,2026-10-31,mex_expansion,Dorados,Jaime Álvarez,1504442,M,1,10,0,0,0,0.0,78.0,2.0,241290.0
+5898777,2026-10-31,mex_expansion,Dorados,Benjamín Sánchez,1385338,F,1,90,2,0,0,0.08,104.0,3.0,
+5898777,2026-10-31,mex_expansion,Dorados,Leonardo Vargas,1277926,F,1,45,2,1,0,0.09,106.0,3.0,192227.0
+5898777,2026-10-31,mex_expansion,Dorados,Jonathan Vaal,1516032,G,0,80,0,0,0,0.0,,0.0,
+5898777,2026-10-31,mex_expansion,Dorados,Sebastián Cervantes,1888855,D,0,44,0,0,0,0.0,,1.0,
+5898777,2026-10-31,mex_expansion,Dorados,Brandon Ordorica,2114930,M,0,44,0,0,0,0.0,,2.0,
+5898777,2026-10-31,mex_expansion,Dorados,Arath Egaña,1504441,F,0,20,0,0,0,0.0,,3.0,
+5898777,2026-10-31,mex_expansion,Dorados,Christian Leyva,1222038,F,0,7,1,0,0,0.07,,3.0,202917.0
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,James Delianov,1012192,G,1,90,0,0,0,0.0,11.0,0.0,245908.0
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Jesse Hill,1824552,D,1,46,0,0,0,0.0,32.0,1.0,
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Joe Shaughnessy,189927,D,1,90,1,0,0,0.05,34.0,1.0,100394.0
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Alexander Grant,316694,D,1,90,1,1,0,0.15,36.0,1.0,142872.0
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Daniel Wilmering,1031032,D,1,90,0,0,0,0.0,38.0,1.0,305211.0
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Nicholas Badolato,2237582,M,1,58,1,0,0,0.03,65.0,2.0,
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Zach Clough,568580,F,1,90,0,0,0,0.0,82.0,3.0,329537.0
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Will Dobson,1688565,M,1,58,0,0,0,0.0,84.0,2.0,803146.0
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Alex Nunes,1750231,M,1,45,1,0,0,0.04,86.0,2.0,398279.0
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Ethan Debono,1824403,F,1,58,1,1,0,0.03,88.0,3.0,
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Nikolaos Vergos,521755,F,1,90,3,2,0,0.54,115.0,3.0,261902.0
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Joel Bertolissio,1437063,D,0,44,0,0,0,0.0,,1.0,643962.0
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Xavier Bertoncello,1799002,F,0,45,3,1,0,0.35,,3.0,457166.0
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Alex Badolato,1312639,M,0,32,1,0,0,0.06,,2.0,482958.0
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Max Burgess,590367,M,0,32,0,0,0,0.0,,2.0,142038.0
+1000017570,2026-10-31,aus_aleague,Newcastle Jets,Joe Lolley,471149,F,0,32,1,0,0,0.05,,3.0,544120.0
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,Henry Gray,1325762,G,1,90,0,0,0,0.0,11.0,0.0,354491.0
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,Matthew Sheridan,1541879,D,1,90,0,0,0,0.0,32.0,1.0,420653.0
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,Bill Poni Tuiloma,505792,D,1,90,0,0,0,0.0,34.0,1.0,149299.0
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,Lukas Kelly-Heald,1477435,D,1,90,0,0,0,0.0,36.0,1.0,587330.0
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,James McGarry,686053,D,1,90,1,1,0,0.02,38.0,1.0,226825.0
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,Bryce Duke,1134447,M,1,85,0,0,0,0.0,72.0,2.0,483295.0
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,Max Anderson,1050300,M,1,90,1,0,0,0.13,74.0,2.0,304879.0
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,Alex Rufer,519240,M,1,90,1,0,0,0.03,76.0,2.0,384970.0
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,Kazuki Nagasawa,459493,M,1,90,0,0,0,0.0,78.0,2.0,123506.0
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,Corban Piper,1680420,F,1,85,2,1,1,1.07,104.0,3.0,291155.0
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,Rafael Durán,861895,F,1,58,1,0,0,0.04,106.0,3.0,267627.0
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,Nathan Walker,1685414,F,0,32,1,1,1,0.25,,3.0,444014.0
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,Luke Mitchell,1863524,M,0,5,0,0,0,0.0,,2.0,
+1000017570,2026-10-31,aus_aleague,Wellington Phoenix,Riley Bidois,1353588,F,0,5,1,1,1,0.44,,3.0,83260.0
+1000014627,2026-10-31,liga_mx,Puebla,Ricardo Gutiérrez,951053,G,1,90,0,0,0,0.0,11.0,0.0,
+1000014627,2026-10-31,liga_mx,Puebla,Iker Moreno,1352812,D,1,90,1,0,0,0.01,32.0,1.0,720991.0
+1000014627,2026-10-31,liga_mx,Puebla,Facundo Almada,995062,D,1,90,4,1,0,0.14,34.0,1.0,1117553.0
+1000014627,2026-10-31,liga_mx,Puebla,Juan Pablo Vargas,734283,D,1,90,1,1,0,0.09,36.0,1.0,992452.0
+1000014627,2026-10-31,liga_mx,Puebla,José Pachuca,1504613,D,1,82,2,0,0,0.28,38.0,1.0,1744309.0
+1000014627,2026-10-31,liga_mx,Puebla,Alejandro Organista,1139937,M,1,90,3,0,0,0.3,64.0,2.0,892903.0
+1000014627,2026-10-31,liga_mx,Puebla,Fernando Monárrez,1399027,M,1,90,0,0,0,0.0,66.0,2.0,768243.0
+1000014627,2026-10-31,liga_mx,Puebla,Brayan Garnica,684129,F,1,55,0,0,0,0.0,83.0,3.0,1115991.0
+1000014627,2026-10-31,liga_mx,Puebla,Eduardo Armenta,1329364,M,1,90,1,1,0,0.05,85.0,2.0,481746.0
+1000014627,2026-10-31,liga_mx,Puebla,Omar Moreno,1432127,F,1,76,2,1,1,0.22,87.0,3.0,1073326.0
+1000014627,2026-10-31,liga_mx,Puebla,Luifer Hernández,1199711,F,1,55,1,0,0,0.18,115.0,3.0,858406.0
+1000014627,2026-10-31,liga_mx,Puebla,Ignacio Maestro Puch,1221231,F,0,35,1,1,0,0.05,,3.0,1067049.0
+1000014627,2026-10-31,liga_mx,Puebla,Kevin Velasco,978252,F,0,35,1,1,0,0.01,,3.0,1143532.0
+1000014627,2026-10-31,liga_mx,Puebla,Carlos Baltazar,996036,M,0,14,0,0,0,0.0,,2.0,670518.0
+1000014627,2026-10-31,liga_mx,Puebla,Ángel Leyva,1707538,D,0,8,0,0,0,0.0,,1.0,728199.0
+1000014627,2026-10-31,liga_mx,Pumas,Keylor Navas,51949,G,1,90,0,0,0,0.0,11.0,0.0,681085.0
+1000014627,2026-10-31,liga_mx,Pumas,Rodrigo López,1381368,D,1,90,1,0,0,0.01,32.0,1.0,2479155.0
+1000014627,2026-10-31,liga_mx,Pumas,Nathan Silva,754495,D,1,90,1,1,0,0.13,34.0,1.0,2088836.0
+1000014627,2026-10-31,liga_mx,Pumas,Rubén Duarte,358138,D,1,85,0,0,0,0.0,36.0,1.0,1273621.0
+1000014627,2026-10-31,liga_mx,Pumas,Pablo Bennevendo,1169770,D,1,90,0,0,0,0.0,38.0,1.0,1833654.0
+1000014627,2026-10-31,liga_mx,Pumas,Uriel Antuna,767021,M,1,84,2,0,0,0.37,72.0,2.0,2239691.0
+1000014627,2026-10-31,liga_mx,Pumas,Adalberto Carrasquilla,643682,M,1,90,1,0,0,0.03,74.0,2.0,2047405.0
+1000014627,2026-10-31,liga_mx,Pumas,Pedro Vite,1108611,M,1,88,0,0,0,0.0,76.0,2.0,9033643.0
+1000014627,2026-10-31,liga_mx,Pumas,César Huerta,977404,M,1,72,3,1,0,0.59,78.0,2.0,2045128.0
+1000014627,2026-10-31,liga_mx,Pumas,Robert Morales,1211598,F,1,90,3,1,0,0.85,104.0,3.0,4253615.0
+1000014627,2026-10-31,liga_mx,Pumas,Juninho,728409,F,1,90,1,1,1,0.44,106.0,3.0,3870288.0
+1000014627,2026-10-31,liga_mx,Pumas,Víctor Arteaga,1448133,M,0,18,0,0,0,0.0,,2.0,668178.0
+1000014627,2026-10-31,liga_mx,Pumas,Alan Medina,862174,F,0,6,0,0,0,0.0,,3.0,1495276.0
+1000014627,2026-10-31,liga_mx,Pumas,Álvaro Angulo,860780,D,0,5,1,1,1,0.49,,1.0,2125119.0
+1000014627,2026-10-31,liga_mx,Pumas,Luciano Herrera,892643,F,0,2,0,0,0,0.0,,3.0,1245334.0
