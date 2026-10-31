@@ -31,3 +31,10 @@ def test_la_pagina_lo_dice():
 def test_v551_pata_del_armador_abre_el_partido():
     a = leer('web', 'app.js')
     assert "'<button type=\"button\" class=\"arm-pata' + (ia ? ' ia-' + ia : '') + '\" data-ficha=\"' + esc(p.id) + '\"" in a
+
+
+def test_v552_sin_repetidas_y_se_puede_borrar():
+    s, c = leer('supabase', 'v552_combinada_repetida_y_borrar.sql'), leer('web', 'cuenta.js')
+    assert "raise exception 'Ya guardaste esta misma combinada.';" in s
+    assert "return 'ya empezó';" in s and "set estado = 'borrada'" in s
+    assert "sb.rpc('borrar_combinada', { p_id: t.dataset.borrarComb })" in c and ".neq('estado', 'borrada')" in c

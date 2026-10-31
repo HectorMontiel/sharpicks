@@ -1204,3 +1204,5 @@ details.mas[open] > summary::after { content: ' ▴'; }
 button.arm-pata { width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid rgba(255,255,255,.06); color: inherit; font: inherit; cursor: pointer; position: relative; padding-right: 18px; }
 button.arm-pata:active { background: rgba(255,255,255,.04); }
 .arm-pata .arm-ir { position: absolute; right: 2px; top: 50%; transform: translateY(-50%); color: var(--tenue); font-size: 18px; }
+/* v552 — eliminar una combinada propia (antes de que empiece) */
+.borrar-comb { display: inline-block; margin: 2px 0 6px; padding: 5px 10px; border-radius: 10px; border: 1px solid rgba(248,113,113,.45); background: rgba(248,113,113,.08); color: #fca5a5; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }

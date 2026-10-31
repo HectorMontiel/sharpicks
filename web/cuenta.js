@@ -1002,7 +1002,7 @@
     const turno = ++turnoComb;
     let copia = null; try { copia = JSON.parse(localStorage.getItem(COMB_GUARDADAS()) || 'null'); } catch (e) { /* sin almacenamiento */ }
     if (copia && copia.length && !caja.dataset.pintada) { yo.hist = { combs: copia, extra: {} }; pintarCombinadas(caja); pintarHistorial($('mi-hist')); }
-    const { data, error } = await sb.from('combinadas_usuario').select('*').order('creado', { ascending: false }).limit(300);
+    const { data, error } = await sb.from('combinadas_usuario').select('*').neq('estado', 'borrada').order('creado', { ascending: false }).limit(300);   // v552
     if (turno !== turnoComb) return;                                  // ya hay una petición más nueva
     if (error) {
       if ((intento || 0) < 4) setTimeout(() => { if (turno === turnoComb) misCombinadas((intento || 0) + 1); }, 3000);
@@ -1178,6 +1178,8 @@
     const premio = c.estado === 'pendiente' && !yaRoja && (pr || !yaVerde) ? '<div class="comb-premio' + (pr ? '' : ' tenue') + '" title="Se paga una combinada premiada por día">' +
       (pr ? (yaVerde ? '🪙 Ganaste <b>+' + pr + '</b> · se acredita al confirmarse' : '🪙 Si acierta: <b>+' + pr + '</b>') : 'Sin premio: desde cuota 2,00') + '</div>' : '';
     return '<div class="tg-item ' + c.estado + '"><div class="fila"><span>🔗 ' + c.patas.length + ' picks · <b>' + Number(c.cuota).toFixed(2) + '</b></span>' + chip + '</div>' + premio +
+      // v552 — «si te equivocaste, que se pueda eliminar»: mientras ninguno de sus partidos haya empezado
+      (c.estado === 'pendiente' && !ps.some(empezo) ? '<button class="borrar-comb" data-borrar-comb="' + esc(c.id) + '">🗑️ Eliminar combinada</button>' : '') +
       ps.map((p) => {
         if (p.retirado) return '<div class="tg-pata">↩️ <span class="tenue">Pick retirado por el modelo antes del partido · no cuenta</span></div>';
         if (!p.id) return '<div class="tg-pata"><span class="tenue">Cargando…</span></div>';
@@ -1189,8 +1191,16 @@
       }).join('') + '</div>';
   }
   document.addEventListener('click', async (e) => {
-    const t = e.target.closest('[data-a-comb],[data-quitar-comb],[data-ver-boleto],[data-guardar-comb]');
+    const t = e.target.closest('[data-a-comb],[data-quitar-comb],[data-ver-boleto],[data-guardar-comb],[data-borrar-comb]');
     if (!t) return;
+    if (t.dataset.borrarComb) {
+      if (!(await confirmarApp('¿Eliminar esta combinada?', 'Se quita de «Mis picks». Ya no podrá ganar monedas.', 'Sí, eliminar'))) return;
+      t.disabled = true;
+      const { data, error } = await sb.rpc('borrar_combinada', { p_id: t.dataset.borrarComb });
+      if (error || data !== 'ok') { avisoApp(data === 'ya empezó' ? 'Uno de sus partidos ya empezó: ya no se puede quitar.' : 'Intenta de nuevo en un momento.', 'aviso', 'No se pudo eliminar'); t.disabled = false; return; }
+      misCombinadas();
+      return;
+    }
     if (t.dataset.aComb || t.dataset.quitarComb) {
       const id = t.dataset.aComb || t.dataset.quitarComb, ids = boleto();
       if (ids.includes(id)) guardarBoleto(ids.filter((x) => x !== id));
