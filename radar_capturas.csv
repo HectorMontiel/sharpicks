@@ -27776,3 +27776,66 @@ fecha,deporte,liga,home,away,inicio,pin_home,pin_draw,pin_away,q_home,q_away,mar
 2026-10-31,nba,TURKEY: TBL,Mersin SK,Ankara Kolejliler,1793451600,1.0376,,6.47,0.861793,0.138207,0.118322,1,0.0618,Novibet
 2026-10-31,nba,JAPAN: B.League One,Gifu Swoops,Fukui,1793509500,3.01,,1.2874,0.299576,0.700424,0.108985,1,0.0568,Playdoit
 2026-10-31,futbol,CZECH REPUBLIC: 4. liga - Group B,Ostrov,Hvezda Cheb,1793451600,1.7692,3.87,3.53,0.510635,0.255925,0.106911,1,0.0298,Novibet
+2026-10-31,futbol,ENGLAND: League Two,Salford,Exeter,1793458800,1.3831,5.0,7.86,0.688427,0.12114,0.05024,0,0.0,
+2026-10-31,futbol,ENGLAND: League Two,Shrewsbury,Gillingham,1793458800,1.9524,3.36,4.2,0.488776,0.227211,0.047904,0,0.0,
+2026-10-31,futbol,ENGLAND: League Two,Swindon,Rotherham,1793458800,2.29,3.66,2.99,0.418135,0.320244,0.044353,0,0.0,
+2026-10-31,futbol,ENGLAND: League Two,Tranmere,Cheltenham,1793458800,1.9709,3.75,3.67,0.484824,0.260365,0.046529,0,0.0,
+2026-10-31,futbol,ENGLAND: National League,Aldershot,Gateshead,1793458800,1.6579,4.11,4.94,0.575047,0.19299,0.048911,0,0.0,
+2026-10-31,futbol,ENGLAND: National League,Altrincham,Carlisle,1793458800,2.81,3.8,2.35,0.34069,0.407378,0.044562,1,0.0222,Playdoit
+2026-10-31,futbol,ENGLAND: National League,Boreham Wood,Hartlepool,1793458800,1.295,6.07,8.31,0.730364,0.113817,0.057282,0,0.0,
+2026-10-31,futbol,ENGLAND: National League,Solihull Moors,Kidderminster,1793458800,2.53,3.53,2.74,0.378778,0.349747,0.043507,0,0.0,
+2026-10-31,futbol,ENGLAND: National League,Wealdstone,Southend,1793458800,3.85,4.28,1.8065,0.248094,0.528737,0.046942,0,0.0,
+2026-10-31,futbol,ENGLAND: National League,Worthing,Sutton,1793458800,1.9174,4.17,3.5,0.498098,0.272872,0.047062,0,0.0,
+2026-10-31,futbol,ENGLAND: National League,Boston Utd,Scunthorpe,1793467800,2.49,3.79,2.63,0.38406,0.363616,0.045687,0,0.0,
+2026-10-31,futbol,ENGLAND: National League North,Bedford,Macclesfield,1793458800,3.19,3.46,2.2,0.296563,0.430016,0.057042,0,0.0,
+2026-10-31,futbol,ENGLAND: National League North,Chester,Hednesford,1793458800,2.02,3.68,3.45,0.468511,0.274317,0.056644,0,0.0,
+2026-10-31,futbol,ENGLAND: National League North,Hebburn Town,Harborough,1793458800,2.78,3.63,2.37,0.340271,0.399136,0.057135,0,0.0,
+2026-10-31,futbol,ENGLAND: National League North,Morecambe,Scarborough,1793458800,1.9174,3.83,3.62,0.492539,0.260883,0.058879,0,0.0,
+2026-10-31,futbol,ENGLAND: National League North,Southport,AFC Telford,1793458800,2.93,3.51,2.32,0.322821,0.407701,0.057232,0,0.0,
+2026-10-31,futbol,ENGLAND: National League North,Spennymoor,Chorley,1793458800,2.62,3.59,2.52,0.361078,0.375406,0.057056,0,0.0,
+2026-10-31,futbol,ENGLAND: National League North,Worksop,Brackley Town,1793458800,1.7812,3.88,4.22,0.531588,0.224375,0.056118,0,0.0,
+2026-10-31,futbol,ENGLAND: National League South,AFC Totton,Chelmsford,1793458800,3.42,4.25,1.885,0.276317,0.501329,0.058196,0,0.0,
+2026-10-31,futbol,ENGLAND: National League South,Billericay,Hemel Hempstead,1793458800,1.8621,3.83,3.86,0.507976,0.245052,0.057192,0,0.0,
+2026-10-31,futbol,ENGLAND: National League South,Braintree,Hampton & Richmond,1793458800,2.89,3.55,2.32,0.326822,0.407118,0.058745,0,0.0,
+2026-10-31,futbol,ENGLAND: National League South,Chesham,Folkestone,1793458800,2.38,4.03,2.57,0.397355,0.367979,0.057412,0,0.0,
+2026-10-31,futbol,ENGLAND: National League South,Dorking,Weston-super-Mare,1793458800,1.9174,3.79,3.67,0.493008,0.257573,0.057871,0,0.0,
+2026-10-31,futbol,ENGLAND: National League South,Dover,Farnham,1793458800,2.82,4.09,2.18,0.335226,0.433641,0.057824,0,0.0,
+2026-10-31,futbol,ENGLAND: National League South,Farnborough,Horsham FC,1793458800,2.87,3.6,2.32,0.329566,0.407696,0.057244,0,0.0,
+2026-10-31,futbol,ENGLAND: National League South,Maidstone,Slough,1793458800,1.3745,5.37,7.02,0.688821,0.13487,0.056207,0,0.0,
+2026-10-31,futbol,ENGLAND: National League South,Tonbridge,Salisbury,1793458800,2.45,3.78,2.6,0.386032,0.363761,0.057329,0,0.0,
+2026-10-31,futbol,ENGLAND: National League South,Truro,Ebbsfleet,1793458800,2.55,3.11,2.91,0.370889,0.325006,0.057343,1,0.0287,Playdoit
+2026-10-31,futbol,ENGLAND: National League South,Walton & Hersham,Torquay,1793458800,3.71,4.91,1.7143,0.255118,0.552114,0.056536,0,0.0,
+2026-10-31,futbol,ENGLAND: NPL Premier Division,Alfreton,Emley,1793458800,1.7143,4.03,3.94,0.537494,0.233864,0.085275,0,0.0,
+2026-10-31,futbol,ENGLAND: NPL Premier Division,Bury,Workington,1793458800,1.3534,5.69,5.88,0.681187,0.156789,0.084695,1,0.0325,Playdoit
+2026-10-31,futbol,ENGLAND: NPL Premier Division,Cleethorpes,Avro,1793458800,2.03,3.73,3.07,0.453417,0.299817,0.08644,0,0.0,
+2026-10-31,futbol,ENGLAND: NPL Premier Division,Curzon Ashton,Leek,1793458800,1.6897,4.11,3.99,0.545077,0.230831,0.085757,0,0.0,
+2026-10-31,futbol,ENGLAND: NPL Premier Division,Gainsborough,Bamber Bridge,1793458800,1.3984,5.16,5.68,0.659107,0.16227,0.084958,0,0.0,
+2026-10-31,futbol,ENGLAND: NPL Premier Division,Ilkeston,Hyde,1793458800,2.99,3.51,2.15,0.308399,0.42889,0.084465,0,0.0,
+2026-10-31,futbol,ENGLAND: NPL Premier Division,Quorn,Warrington,1793458800,2.88,3.87,2.03,0.316165,0.448549,0.098231,1,0.0809,Novibet
+2026-10-31,futbol,ENGLAND: NPL Premier Division,Whitby,Stockton,1793458800,3.06,3.86,2.01,0.301647,0.459224,0.083377,0,0.0,
+2026-10-31,futbol,ENGLAND: Southern League Premier Central,Bury Town,Banbury,1793458800,1.8,3.7,3.84,0.511447,0.239741,0.086242,0,0.0,
+2026-10-31,futbol,ENGLAND: Southern League Premier Central,Leighton Town,Bromsgrove,1793458800,5.81,4.27,1.4739,0.158665,0.625446,0.084781,0,0.0,
+2026-10-31,futbol,ENGLAND: Southern League Premier Central,Redditch,Needham Market,1793458800,2.6,3.43,2.44,0.354159,0.377382,0.085997,0,0.0,
+2026-10-31,futbol,ENGLAND: Southern League Premier Central,Rushall,Racing Club Warwick,1793458800,1.6289,4.06,4.43,0.565322,0.207867,0.08595,0,0.0,
+2026-10-31,futbol,ENGLAND: Southern League Premier Central,Stourbridge,Kettering,1793458800,2.66,3.33,2.45,0.346679,0.376394,0.084403,0,0.0,
+2026-10-31,futbol,ENGLAND: Southern League Premier Central,Stratford,Hitchin,1793458800,2.02,3.45,3.34,0.456559,0.276122,0.084306,0,0.0,
+2026-10-31,futbol,ENGLAND: Southern League Premier Central,Worcester,Real Bedford,1793458800,3.88,3.96,1.7407,0.237598,0.529604,0.084739,0,0.0,
+2026-10-31,futbol,ENGLAND: Southern League Premier South,Bath,Poole,1793458800,2.08,3.4,3.22,0.442923,0.286112,0.085446,0,0.0,
+2026-10-31,futbol,ENGLAND: Southern League Premier South,Chertsey,Basingstoke,1793458800,1.641,4.11,4.29,0.561234,0.214682,0.085794,0,0.0,
+2026-10-31,futbol,ENGLAND: Southern League Premier South,Evesham,Bracknell,1793458800,2.45,3.33,2.66,0.376394,0.346679,0.084403,0,0.0,
+2026-10-31,futbol,ENGLAND: Southern League Premier South,Frome,Chichester,1793458800,2.01,3.77,3.1,0.458391,0.297215,0.085345,0,0.0,
+2026-10-31,futbol,ENGLAND: Southern League Premier South,Gloucester,Berkhamsted,1793458800,1.7937,3.65,3.92,0.513083,0.234775,0.086581,0,0.0,
+2026-10-31,futbol,ENGLAND: Southern League Premier South,Gosport,Hanwell Town,1793458800,2.2,3.41,2.97,0.419129,0.310466,0.084501,0,0.0,
+2026-10-31,tenis,"WTA - SINGLES: Hong Kong (Hong Kong) - Qualification, hard",Prozorova T.,Stojsavljevic M.,1793498400,1.3021,,3.63,0.735995,0.264005,0.043472,0,0.0,
+2026-10-31,tenis,"WTA - SINGLES: Hong Kong (Hong Kong) - Qualification, hard",Sasnovich A.,Lee C. Y.,1793498400,1.3774,,3.15,0.695764,0.304236,0.043466,0,0.0,
+2026-10-31,tenis,"WTA - SINGLES: Hong Kong (Hong Kong) - Qualification, hard",Jones E.,Shubladze A.,1793503800,2.14,,1.7407,0.448553,0.551447,0.041771,0,0.0,
+2026-10-31,tenis,"WTA - SINGLES: Hong Kong (Hong Kong) - Qualification, hard",Sakatsume H.,Pridankina E.,1793503800,1.9524,,1.885,0.491218,0.508782,0.042694,0,0.0,
+2026-10-31,tenis,"WTA - DOUBLES: Tokyo (Japan), hard",Dabrowski G./Stefani L.,Errani S./Paolini J.,1793509200,1.6173,,2.26,0.58288,0.41712,0.060792,0,0.0,
+2026-10-31,tenis,"ITF MEN - SINGLES: M15 Yanagawa City (Japan), hard",Shiraishi H.,Yamanaka T.,1793494800,1.4132,,2.79,0.66378,0.33622,0.066037,1,0.0414,Novibet
+2026-10-31,nba,FRANCE: LNB,JL Bourg,Nanterre,1793475000,1.3096,,3.57,0.731617,0.268383,0.043704,1,0.1432,Novibet
+2026-10-31,nba,ITALY: Lega A,Treviso,Reggiana,1793475000,1.2375,,3.78,0.753363,0.246637,0.072631,1,0.0647,Novibet
+2026-10-31,nba,CZECH REPUBLIC: 1. Liga,Polabi,CZ.ACADEMY,1793541600,1.2342,,3.07,0.713257,0.286743,0.135974,1,0.0914,Novibet
+2026-10-31,nba,GERMANY: BBL,Bamberg,Jena,1793541600,1.0999,,7.2,0.86748,0.13252,0.048062,0,0.0,
+2026-10-31,nba,KOSOVO: Superliga,Peja,Bora,1793548800,1.9709,,1.6494,0.455598,0.544402,0.113663,0,0.0,
+2026-10-31,futbol,ARGENTINA: Primera C - Promotion - Play Offs,Estrella Del Sur,Deportivo Espanol,1793469600,2.66,2.47,2.96,0.33607,0.302009,0.118636,1,0.0226,Novibet
+2026-10-31,nba,USA: NBA,Utah Jazz,Portland Trail Blazers,1793473200,3.59,,1.3311,0.270488,0.729512,0.02981,1,0.0284,Novibet
