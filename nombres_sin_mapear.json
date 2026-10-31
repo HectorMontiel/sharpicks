@@ -13,8 +13,8 @@
   },
   "Atlético Madrid": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Atlanta",
-    "ratio": 0.6452,
+    "candidato": "Atletico PE",
+    "ratio": 0.6923,
     "visto": "2026-10-30"
   },
   "Atlético Tucumán": {
@@ -25,8 +25,8 @@
   },
   "Atlético de San Luis": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Atlanta",
-    "ratio": 0.6111,
+    "candidato": "Atletico PE",
+    "ratio": 0.6452,
     "visto": "2026-10-30"
   },
   "Barracas Central": {
@@ -121,9 +121,9 @@
   },
   "Independiente Medellín": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Independiente FBC",
-    "ratio": 0.7179,
-    "visto": "2026-10-27"
+    "candidato": "Independiente CBBA",
+    "ratio": 0.7,
+    "visto": "2026-10-30"
   },
   "Independiente Rivadavia": {
     "contexto": "cuotas_mx→futbol",
@@ -139,8 +139,8 @@
   },
   "Independiente del Valle": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Estrella Del Sur",
-    "ratio": 0.359,
+    "candidato": "Independiente CBBA",
+    "ratio": 0.7317,
     "visto": "2026-10-30"
   },
   "Inter Miami CF": {
@@ -211,8 +211,8 @@
   },
   "Real Betis": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Potosi",
-    "ratio": 0.6667,
+    "candidato": "Real Pilar",
+    "ratio": 0.6,
     "visto": "2026-10-30"
   },
   "Real Madrid": {
@@ -271,8 +271,8 @@
   },
   "Union St.-Gilloise": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Union La Calera",
-    "ratio": 0.5625,
+    "candidato": "Royale Union SG",
+    "ratio": 0.5,
     "visto": "2026-10-30"
   },
   "Universidad Católica (Quito)": {
@@ -631,8 +631,8 @@
   },
   "Gimnasia y Tiro (Salta)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Gimnasia L.P.",
-    "ratio": 0.6061,
+    "candidato": "Gimnasia Jujuy",
+    "ratio": 0.5714,
     "visto": "2026-10-30"
   },
   "C.D. Platense": {
@@ -763,20 +763,20 @@
   },
   "Atlético Goianiense": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Atlanta",
-    "ratio": 0.6286,
+    "candidato": "Atletico PE",
+    "ratio": 0.6667,
     "visto": "2026-10-30"
   },
   "Club Atlético Morelia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Atlanta",
-    "ratio": 0.5946,
+    "candidato": "Atletico PE",
+    "ratio": 0.625,
     "visto": "2026-10-30"
   },
   "Atlético Junior": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Atlanta",
-    "ratio": 0.6452,
+    "candidato": "Atletico PE",
+    "ratio": 0.6923,
     "visto": "2026-10-30"
   },
   "Atletico Rafaela": {
@@ -895,9 +895,9 @@
   },
   "América Mineiro": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "America De Cali",
-    "ratio": 0.6,
-    "visto": "2026-10-29"
+    "candidato": "America EC",
+    "ratio": 0.72,
+    "visto": "2026-10-30"
   },
   "Los Chankas": {
     "contexto": "cuotas_mx→futbol",
@@ -973,9 +973,9 @@
   },
   "Gimnasia La Plata": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Gimnasia L.P. 2",
-    "ratio": 0.7742,
-    "visto": "2026-10-29"
+    "candidato": "Gimnasia Jujuy",
+    "ratio": 0.5806,
+    "visto": "2026-10-30"
   },
   "Huddersfield Town": {
     "contexto": "cuotas_mx→futbol",
@@ -1027,8 +1027,8 @@
   },
   "Gimnasia (Mendoza)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Gimnasia L.P.",
-    "ratio": 0.6429,
+    "candidato": "Gimnasia Jujuy",
+    "ratio": 0.6,
     "visto": "2026-10-30"
   },
   "Deportivo Riestra": {
@@ -1111,8 +1111,8 @@
   },
   "Atlético Grau": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Atlanta",
-    "ratio": 0.6897,
+    "candidato": "Atletico PE",
+    "ratio": 0.75,
     "visto": "2026-10-30"
   },
   "São Paulo": {
@@ -1189,8 +1189,8 @@
   },
   "1. FC Union Berlin": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Union La Calera",
-    "ratio": 0.5,
+    "candidato": "Royale Union SG",
+    "ratio": 0.4375,
     "visto": "2026-10-30"
   },
   "Stockport County": {
@@ -1483,8 +1483,8 @@
   },
   "Real Potosí": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Pilar",
-    "ratio": 0.6667,
+    "candidato": "Nacional Potosi",
+    "ratio": 0.6923,
     "visto": "2026-10-30"
   },
   "AD San Carlos": {
@@ -1501,8 +1501,8 @@
   },
   "Unión La Calera": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Union Touarga",
-    "ratio": 0.5714,
+    "candidato": "Royal Union SG 2",
+    "ratio": 0.4516,
     "visto": "2026-10-30"
   },
   "Inter Kashi": {
@@ -1771,8 +1771,8 @@
   },
   "Deportes Concepcion": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "U. De Concepcion",
-    "ratio": 0.7647,
+    "candidato": "Deportes Rengo",
+    "ratio": 0.6061,
     "visto": "2026-10-30"
   },
   "Kaizer Chiefs": {
@@ -1843,9 +1843,9 @@
   },
   "Independiente Petrolero": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Independiente FBC",
-    "ratio": 0.7,
-    "visto": "2026-10-27"
+    "candidato": "Independiente CBBA",
+    "ratio": 0.6829,
+    "visto": "2026-10-30"
   },
   "Academia Puerto Cabello": {
     "contexto": "cuotas_mx→futbol",
