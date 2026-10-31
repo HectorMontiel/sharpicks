@@ -38,10 +38,35 @@ def probar():
     sq = leer('supabase/v510_historial_dia_mx.sql')
     check("(inicio at time zone 'America/Mexico_City')::date" in sq and 'group by 1' in sq,
           'v510: el historial agrupa por el día de CDMX (como la portada)')
-    check('_pedir_asset' in leer('modelos_remotos.py') and "'Accept'" not in leer('modelos_remotos.py')[:0] and
-          "Accept='application/octet-stream'" in leer('modelos_remotos.py'), 'v510: los modelos se bajan con token por la API')
-    for f in ('cuotas_mx', 'precalculo_dia', 'sitio_web', 'retrain_leagues', 'relevo', 'respaldo_base'):
+    mr_source = leer('modelos_remotos.py')
+    check('_pedir_asset' in mr_source and '_digest_sha256_valido' in mr_source and
+          '_verificar_sha256' in mr_source and '_validar_miembro_tar' in mr_source and
+          "headers['Accept'] = 'application/octet-stream'" in mr_source,
+          'v510: los modelos se bajan por API, verifican SHA-256 y rechazan tar inseguro')
+    for f in ('cuotas_mx', 'precalculo_dia', 'sitio_web', 'retrain_leagues', 'respaldo_base'):
         check('GH_TOKEN: ${{ github.token }}' in leer('.github/workflows/%s.yml' % f), 'v510: %s con GH_TOKEN' % f)
+    cuotas = leer('.github/workflows/cuotas_mx.yml')
+    check("    - cron: '7,37 * * * *'" in cuotas and '  workflow_dispatch:' in cuotas and
+          'permissions:\n  contents: read\n' in cuotas and
+          '  cuotas:\n' in cuotas and '    permissions:\n      contents: write\n' in cuotas and
+          '  disparar:\n    needs: cuotas\n    if: always()\n' in cuotas and
+          '    permissions:\n      actions: write\n' in cuotas and
+          '      saltar: ${{ steps.frescura.outputs.saltar }}' in cuotas and
+          'if: needs.cuotas.result == \'success\' && needs.cuotas.outputs.saltar != \'true\'' in cuotas and
+          '          SALTAR: ${{ needs.cuotas.outputs.saltar }}' in cuotas and
+          '          GH_TOKEN: ${{ github.token }}' in cuotas and
+          '          gh workflow run precalculo_dia.yml' in cuotas and
+          '          gh workflow run relevo.yml' in cuotas and
+          '\nenv:\n  GH_TOKEN:' not in cuotas and
+          'actions: write' not in cuotas.split('jobs:', 1)[0],
+          'v542: cuotas conserva cron/dispatch y separa contents:write de actions:write')
+    relevo = leer('.github/workflows/relevo.yml')
+    check('  esperar:\n' in relevo and '      contents: read\n' in relevo and
+          '  disparar:\n    needs: esperar\n' in relevo and
+          '    permissions:\n      actions: write\n' in relevo and
+          '\nenv:\n  GH_TOKEN:' not in relevo and
+          '          GH_TOKEN: ${{ github.token }}' in relevo,
+          'v541: relevo separa la espera read-only del dispatch con actions:write')
     sw = leer('.github/workflows/sitio_web.yml')
     check(sw.count('continue-on-error: true   # v510') == 3, 'v510: GitHub Pages no tumba la corrida en privado')
 

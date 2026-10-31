@@ -27,6 +27,8 @@ import os
 import sys
 from typing import Dict, List, Optional
 
+from sharpicks_contracts.web_v1 import public_analysis, public_export
+
 logger = logging.getLogger('exportar_web')
 SALIDA = os.environ.get('WEB_DATOS', os.path.join('web', 'datos', 'hoy.json'))
 # v381 — el texto real de los picks premium, para el bot del canal VIP. Fuera
@@ -310,7 +312,7 @@ def subir_vip(vip: Dict[str, Dict]) -> int:
     for i in range(0, len(filas), 200):
         r = requests.post(url.rstrip('/') + '/rest/v1/picks_vip', json=filas[i:i + 200], timeout=30, headers=hdr)
         if not r.ok:
-            logger.error('[web] picks_vip: %s %s', r.status_code, r.text[:200])
+            logger.error('[web] picks_vip: HTTP %s', r.status_code)
             raise RuntimeError('No se pudo guardar lo del VIP en Supabase; se bloquea la publicación')
     viejo = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=5)).strftime('%Y-%m-%d')
     requests.delete(url.rstrip('/') + '/rest/v1/picks_vip', timeout=30, headers=hdr, params={'fecha': 'lt.' + viejo})
@@ -644,7 +646,7 @@ def subir_supabase(picks: List[Dict], secretos: List[Dict] = ()) -> int:
         if r.ok:
             n += len(filas[i:i + 200])
         else:
-            logger.warning('[web] Supabase respondió %s: %s', r.status_code, r.text[:200])
+            logger.warning('[web] Supabase respondió HTTP %s', r.status_code)
             # v389 — si el lote falla, uno por uno: que un pick malo no tire a los otros 199
             for fila1 in filas[i:i + 200]:
                 r1 = requests.post(url.rstrip('/') + '/rest/v1/picks', json=[fila1], timeout=30, headers=hdr)
@@ -673,7 +675,7 @@ def subir_supabase(picks: List[Dict], secretos: List[Dict] = ()) -> int:
             if not r.ok:
                 break
         if not r.ok:
-            logger.error('[web] no se pudo limpiar lo retirado: %s %s', r.status_code, r.text[:200])
+            logger.error('[web] no se pudo limpiar lo retirado: HTTP %s', r.status_code)
             raise RuntimeError('Supabase no pudo limpiar picks retirados; se bloquea la publicación')
     if fallos_filas:
         logger.error('[web] no se sincronizaron %d picks: %s', len(fallos_filas), ','.join(str(x) for x in fallos_filas[:10]))
@@ -682,7 +684,7 @@ def subir_supabase(picks: List[Dict], secretos: List[Dict] = ()) -> int:
         r = requests.post(url.rstrip('/') + '/rest/v1/picks_premium', json=list(secretos), timeout=30,
                           headers=hdr)
         if not r.ok:
-            logger.error('[web] picks premium: %s %s', r.status_code, r.text[:200])
+            logger.error('[web] picks premium: HTTP %s', r.status_code)
             raise RuntimeError('No se pudo guardar el texto premium en Supabase; se bloquea la publicación')
     return n
 
@@ -764,12 +766,13 @@ def main() -> int:
     os.makedirs(os.path.dirname(SALIDA), exist_ok=True)
     tmp = SALIDA + '.tmp'
     with open(tmp, 'w', encoding='utf-8') as f:
-        json.dump(r, f, ensure_ascii=False, indent=0)
+        json.dump(public_export(r), f, ensure_ascii=False, indent=0)
     os.replace(tmp, SALIDA)
     # v418 — las tarjetas de «sólo análisis», aparte (la página y la IA las leen)
     try:
         with open(ANALISIS + '.tmp', 'w', encoding='utf-8') as f:
-            json.dump({'generado': r.get('generado'), 'analisis': analisis}, f, ensure_ascii=False, indent=0)
+            json.dump(public_analysis({'generado': r.get('generado'), 'analisis': analisis}),
+                      f, ensure_ascii=False, indent=0)
         os.replace(ANALISIS + '.tmp', ANALISIS)
         print('web: %d tarjetas de sólo análisis' % len(analisis))
     except Exception as e:
@@ -819,7 +822,7 @@ def main() -> int:
         if url and key:
             rr = requests.post(url.rstrip('/') + '/rest/v1/rpc/liquidar_combinadas_usuario', timeout=60,
                                headers={'apikey': key, 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json'}, json={})
-            print('web: combinadas de usuarios liquidadas: %s' % (rr.text[:40] if rr.ok else 'HTTP %s' % rr.status_code))
+            print('web: combinadas de usuarios liquidadas: HTTP %s' % rr.status_code)
     except Exception as e:
         logger.warning('[web] no se liquidaron las combinadas de usuarios: %s', e)
     print('web: %d picks en %s; %d subidos a Supabase; %d premium; %d combinadas'

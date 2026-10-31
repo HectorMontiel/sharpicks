@@ -310,7 +310,7 @@ def subir(picks: List[Dict], url: str, key: str, ahora: Optional[dt.datetime] = 
     r = requests.get(base + 'combinadas', headers=hdr, timeout=30,
                      params={'select': '*', 'fecha': 'gte.' + desde, 'limit': 2000})
     if not r.ok:
-        logger.error('[combinadas] no se pudo leer la tabla: %s %s', r.status_code, r.text[:200])
+        logger.error('[combinadas] no se pudo leer la tabla: HTTP %s', r.status_code)
         raise RuntimeError('No se pudo leer combinadas; no se puede publicar un estado consistente')
     viejas = r.json()
     # el estado de cada pata: de esta pasada o de la base
@@ -371,7 +371,7 @@ def subir(picks: List[Dict], url: str, key: str, ahora: Optional[dt.datetime] = 
         rr = requests.post(base + 'combinadas', headers=up, json=nuevas, timeout=30)
         n += len(nuevas) if rr.ok else 0
         if not rr.ok:
-            logger.error('[combinadas] %s %s', rr.status_code, rr.text[:200])
+            logger.error('[combinadas] no se pudo guardar la combinación: HTTP %s', rr.status_code)
             raise RuntimeError('No se pudieron guardar combinadas nuevas: HTTP %s' % rr.status_code)
     for f in filas:
         rr = requests.patch(base + 'combinadas', headers=up, params={'id': 'eq.' + f['id']},
