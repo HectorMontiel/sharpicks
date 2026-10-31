@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-31T12:45:42Z",
+"actualizado": "2026-10-31T14:21:46Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -19545,6 +19545,26 @@
 {
 "dia": "2026-10-31",
 "nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Angkor Tiger vs Boeung Ket",
+"apuesta": "Gana Boeung Ket",
+"cuota": 4.85,
+"resultado": "verde",
+"marcador": "0-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Angkor Tiger vs Boeung Ket",
+"apuesta": "Gana Angkor Tiger",
+"cuota": 1.5385,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
 "deporte": "Tenis",
 "partido": "Kudermetova P./Timofeeva M. vs Tjen J./Williams V.",
 "apuesta": "Gana Tjen J./Williams V.",
@@ -19561,6 +19581,16 @@
 "cuota": 2.3,
 "resultado": "rojo",
 "marcador": "0-0"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Matsuda R. vs Kobori M.",
+"apuesta": "Gana Kobori M.",
+"cuota": 2.1,
+"resultado": "verde",
+"marcador": "0-2"
 },
 {
 "dia": "2026-10-31",

@@ -55,8 +55,8 @@
   },
   "Chippa United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Mandel United",
-    "ratio": 0.6154,
+    "candidato": "FC United",
+    "ratio": 0.7273,
     "visto": "2026-10-31"
   },
   "Cienciano del Cusco": {
@@ -211,20 +211,20 @@
   },
   "Real Betis": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Pilar",
-    "ratio": 0.6,
+    "candidato": "Real Bedford",
+    "ratio": 0.6364,
     "visto": "2026-10-31"
   },
   "Real Madrid": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Pilar",
-    "ratio": 0.6667,
+    "candidato": "Real Bedford",
+    "ratio": 0.6957,
     "visto": "2026-10-31"
   },
   "Real Oviedo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Oruro",
-    "ratio": 0.6667,
+    "candidato": "Real Bedford",
+    "ratio": 0.6957,
     "visto": "2026-10-31"
   },
   "Real Salt Lake": {
@@ -235,14 +235,14 @@
   },
   "Real Sociedad": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Pilar",
-    "ratio": 0.6087,
+    "candidato": "Real Bedford",
+    "ratio": 0.64,
     "visto": "2026-10-31"
   },
   "Real Valladolid": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Pilar",
-    "ratio": 0.56,
+    "candidato": "Real Bedford",
+    "ratio": 0.5926,
     "visto": "2026-10-31"
   },
   "San Antonio FC": {
@@ -295,8 +295,8 @@
   },
   "Ayr United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Mandel United",
-    "ratio": 0.6957,
+    "candidato": "FC United",
+    "ratio": 0.7368,
     "visto": "2026-10-31"
   },
   "Atlético Nacional": {
@@ -361,8 +361,8 @@
   },
   "Red Bull New York": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Qingdao Red Lions",
-    "ratio": 0.3529,
+    "candidato": "Dag & Red",
+    "ratio": 0.2308,
     "visto": "2026-10-31"
   },
   "Cambridge United": {
@@ -391,8 +391,8 @@
   },
   "Real Sociedad II": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Pilar",
-    "ratio": 0.5385,
+    "candidato": "Real Bedford",
+    "ratio": 0.5714,
     "visto": "2026-10-31"
   },
   "Carlisle United": {
@@ -619,8 +619,8 @@
   },
   "New Mexico United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Mandel United",
-    "ratio": 0.6,
+    "candidato": "FC United",
+    "ratio": 0.6154,
     "visto": "2026-10-31"
   },
   "Sacramento Republic FC": {
@@ -691,21 +691,21 @@
   },
   "Harrogate Town": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Yate Town",
-    "ratio": 0.6957,
-    "visto": "2026-10-27"
+    "candidato": "Hanwell Town",
+    "ratio": 0.6154,
+    "visto": "2026-10-31"
   },
   "Grimsby Town": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Carmarthen Town",
-    "ratio": 0.5185,
-    "visto": "2026-10-23"
+    "candidato": "Bury Town",
+    "ratio": 0.6667,
+    "visto": "2026-10-31"
   },
   "Yeovil Town": {
     "contexto": "cuotas_mx→futbol",
     "candidato": "Hanwell Town",
     "ratio": 0.6087,
-    "visto": "2026-10-27"
+    "visto": "2026-10-31"
   },
   "Shrewsbury Town": {
     "contexto": "cuotas_mx→futbol",
@@ -729,7 +729,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Hanwell Town",
     "ratio": 0.5926,
-    "visto": "2026-10-27"
+    "visto": "2026-10-31"
   },
   "Houston Dynamo FC": {
     "contexto": "cuotas_mx→futbol",
@@ -751,9 +751,9 @@
   },
   "Boston River": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Boston Legacy W",
-    "ratio": 0.64,
-    "visto": "2026-10-25"
+    "candidato": "Boston Utd",
+    "ratio": 0.6364,
+    "visto": "2026-10-31"
   },
   "Atlético Bucaramanga": {
     "contexto": "cuotas_mx→futbol",
@@ -841,8 +841,8 @@
   },
   "AFC Wimbledon": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "AFC Toronto W",
-    "ratio": 0.5,
+    "candidato": "AFC Totton",
+    "ratio": 0.5217,
     "visto": "2026-10-31"
   },
   "AFC Hornchurch": {
@@ -943,8 +943,8 @@
   },
   "Red Bull Bragantino": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Qingdao Red Lions",
-    "ratio": 0.3333,
+    "candidato": "Dag & Red",
+    "ratio": 0.2143,
     "visto": "2026-10-31"
   },
   "Atlético-MG": {
@@ -979,9 +979,9 @@
   },
   "Huddersfield Town": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Cape Town City",
-    "ratio": 0.4615,
-    "visto": "2026-10-23"
+    "candidato": "Hebburn Town",
+    "ratio": 0.5517,
+    "visto": "2026-10-31"
   },
   "Luton Town": {
     "contexto": "cuotas_mx→futbol",
@@ -1189,8 +1189,8 @@
   },
   "1. FC Union Berlin": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Union Henndorf",
-    "ratio": 0.5161,
+    "candidato": "Royale Union SG",
+    "ratio": 0.4375,
     "visto": "2026-10-31"
   },
   "Stockport County": {
@@ -1243,8 +1243,8 @@
   },
   "Red Star FC 93": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Qingdao Red Lions",
-    "ratio": 0.3226,
+    "candidato": "Dag & Red",
+    "ratio": 0.2609,
     "visto": "2026-10-31"
   },
   "Dynamo Dresden": {
@@ -1303,8 +1303,8 @@
   },
   "Oxford United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Mandel United",
-    "ratio": 0.6154,
+    "candidato": "FC United",
+    "ratio": 0.7273,
     "visto": "2026-10-31"
   },
   "Dundee United": {
@@ -1315,8 +1315,8 @@
   },
   "Sheffield United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Mandel United",
-    "ratio": 0.6207,
+    "candidato": "FC United",
+    "ratio": 0.64,
     "visto": "2026-10-31"
   },
   "Santa Clara": {
@@ -1621,8 +1621,8 @@
   },
   "JEF United Ichihara-Chiba": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Mandel United",
-    "ratio": 0.4211,
+    "candidato": "FC United",
+    "ratio": 0.4706,
     "visto": "2026-10-31"
   },
   "Sporting Cristal": {
@@ -1803,7 +1803,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Weston-super-Mare",
     "ratio": 0.5,
-    "visto": "2026-10-28"
+    "visto": "2026-10-31"
   },
   "Feyenoord Rotterdam": {
     "contexto": "cuotas_mx→futbol",
@@ -2125,8 +2125,8 @@
   },
   "Kruger United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Mandel United",
-    "ratio": 0.6154,
+    "candidato": "FC United",
+    "ratio": 0.6364,
     "visto": "2026-10-31"
   },
   "Central Coast Mariners": {
@@ -2451,7 +2451,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "ATSV Salzburg",
     "ratio": 0.75,
-    "visto": "2026-10-24"
+    "visto": "2026-10-31"
   },
   "Fortuna Sittard": {
     "contexto": "cuotas_mx→futbol",
