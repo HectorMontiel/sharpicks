@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-30T23:57:22Z",
+"actualizado": "2026-10-31T01:31:07Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -18676,6 +18676,16 @@
 "dia": "2026-10-30",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Baglan Dragons vs Treowen",
+"apuesta": "Gana Baglan Dragons",
+"cuota": 2.1667,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Bodo/Glimt vs Viking",
 "apuesta": "Gana Bodo/Glimt",
 "cuota": 1.63,
@@ -18734,6 +18744,16 @@
 },
 {
 "dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Caerphilly vs Caerau Ely",
+"apuesta": "Gana Caerau Ely",
+"cuota": 2.1,
+"resultado": "verde",
+"marcador": "0-1"
+},
+{
+"dia": "2026-10-30",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Cailungo vs Juvenes/Dogana",
@@ -18741,6 +18761,16 @@
 "cuota": 1.76,
 "resultado": "rojo",
 "marcador": "1-1"
+},
+{
+"dia": "2026-10-30",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Corinthians vs Mirassol",
+"apuesta": "Corinthians o empate",
+"cuota": 1.177,
+"resultado": "verde",
+"marcador": "2-0"
 },
 {
 "dia": "2026-10-30",
@@ -18876,6 +18906,16 @@
 "dia": "2026-10-30",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Guaraní vs 2 de Mayo",
+"apuesta": "Gana Guaraní",
+"cuota": 2.0,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Hapoel Afula vs Kiryat Gat",
 "apuesta": "Gana Hapoel Afula",
 "cuota": 2.2,
@@ -18971,6 +19011,16 @@
 "cuota": 2.8572,
 "resultado": "verde",
 "marcador": "3-1"
+},
+{
+"dia": "2026-10-30",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Louisville City FC vs Pittsburgh Riverhounds",
+"apuesta": "Louisville City FC o empate",
+"cuota": 1.167,
+"resultado": "verde",
+"marcador": "1-0"
 },
 {
 "dia": "2026-10-30",
@@ -19116,11 +19166,41 @@
 "dia": "2026-10-30",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "RAAL La Louviere U21 vs K. Lierse S.K. U21",
+"apuesta": "Gana K. Lierse S.K. U21",
+"cuota": 3.55,
+"resultado": "verde",
+"marcador": "1-4"
+},
+{
+"dia": "2026-10-30",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Real Potosí vs Independiente Petrolero",
+"apuesta": "Real Potosí o empate",
+"cuota": 1.1,
+"resultado": "verde",
+"marcador": "1-1"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Rodez vs Dunkerque",
 "apuesta": "Gana Rodez",
 "cuota": 2.08,
 "resultado": "verde",
 "marcador": "1-0"
+},
+{
+"dia": "2026-10-30",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Santa Cruz U20 vs Atletico-MG U20",
+"apuesta": "Gana Atletico-MG U20",
+"cuota": 1.93,
+"resultado": "rojo",
+"marcador": "1-1"
 },
 {
 "dia": "2026-10-30",
@@ -19201,6 +19281,16 @@
 "cuota": 2.0,
 "resultado": "rojo",
 "marcador": "2-2"
+},
+{
+"dia": "2026-10-30",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Sportivo Trinidense vs Rubio Ñú",
+"apuesta": "Sportivo Trinidense o empate",
+"cuota": 1.167,
+"resultado": "rojo",
+"marcador": "2-4"
 },
 {
 "dia": "2026-10-30",
