@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-01T06:05:04Z",
+"actualizado": "2026-11-01T07:37:30Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -20091,6 +20091,16 @@
 "cuota": 1.9524,
 "resultado": "rojo",
 "marcador": "5-8"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Melbourne Victory vs Central Coast Mariners FC",
+"apuesta": "Melbourne Victory o empate",
+"cuota": 1.125,
+"resultado": "verde",
+"marcador": "1-1"
 },
 {
 "dia": "2026-10-31",
