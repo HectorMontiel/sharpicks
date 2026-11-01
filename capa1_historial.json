@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-10-31T23:40:20Z",
+"actualizado": "2026-11-01T01:13:40Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -19886,6 +19886,16 @@
 "dia": "2026-10-31",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Heist vs Houtvenne",
+"apuesta": "Gana Heist",
+"cuota": 1.8334,
+"resultado": "verde",
+"marcador": "4-0"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Kagran vs Dinamo Helfort",
 "apuesta": "Gana Dinamo Helfort",
 "cuota": 1.74,
@@ -19911,6 +19921,16 @@
 "cuota": 1.1,
 "resultado": "verde",
 "marcador": "2-3"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Knokke vs KRC Harelbeke",
+"apuesta": "Gana Knokke",
+"cuota": 1.6,
+"resultado": "rojo",
+"marcador": "0-2"
 },
 {
 "dia": "2026-10-31",
@@ -19961,6 +19981,16 @@
 "cuota": 1.5295,
 "resultado": "verde",
 "marcador": "0-4"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Lyra-Lierse vs Zelzate",
+"apuesta": "Gana Zelzate",
+"cuota": 3.05,
+"resultado": "verde",
+"marcador": "1-2"
 },
 {
 "dia": "2026-10-31",
@@ -20091,6 +20121,16 @@
 "cuota": 1.154,
 "resultado": "verde",
 "marcador": "1-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "New York Islanders vs Edmonton Oilers",
+"apuesta": "Handicap: Edmonton Oilers +2.5",
+"cuota": 1.133,
+"resultado": "verde",
+"marcador": "0-4"
 },
 {
 "dia": "2026-10-31",
@@ -20301,6 +20341,16 @@
 "cuota": 2.05,
 "resultado": "rojo",
 "marcador": "1-2"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Sportivo San Lorenzo vs Libertad",
+"apuesta": "Libertad o empate",
+"cuota": 1.111,
+"resultado": "rojo",
+"marcador": "2-1"
 },
 {
 "dia": "2026-10-31",
