@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-01T21:52:07Z",
+"actualizado": "2026-11-01T23:31:23Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -20736,6 +20736,16 @@
 "dia": "2026-11-01",
 "nivel": "🏆",
 "deporte": "Fútbol",
+"partido": "Atlético Grau vs Universitario",
+"apuesta": "Universitario o empate",
+"cuota": 1.182,
+"resultado": "verde",
+"marcador": "1-3"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
 "partido": "Baltika vs Akron Togliatti",
 "apuesta": "Baltika o empate",
 "cuota": 1.143,
@@ -20934,6 +20944,26 @@
 },
 {
 "dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Fuerte San Francisco vs Águila",
+"apuesta": "Águila o empate",
+"cuota": 1.167,
+"resultado": "verde",
+"marcador": "3-4"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Guabira vs Bolivar",
+"apuesta": "Gana Bolivar",
+"cuota": 2.03,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-01",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Hamburger SV II vs Hannover II",
@@ -21046,6 +21076,16 @@
 "dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Paredes vs Sao Joao Ver",
+"apuesta": "Gana Paredes",
+"cuota": 1.6,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Partizan vs Zemun",
 "apuesta": "Gana Partizan",
 "cuota": 1.19,
@@ -21106,6 +21146,16 @@
 "dia": "2026-11-01",
 "nivel": "🏆",
 "deporte": "Fútbol",
+"partido": "Sp Braga vs Famalicao",
+"apuesta": "Sp Braga o empate",
+"cuota": 1.167,
+"resultado": "verde",
+"marcador": "3-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
 "partido": "St Truiden vs Oud-Heverlee Leuven",
 "apuesta": "St Truiden o empate",
 "cuota": 1.167,
@@ -21146,6 +21196,16 @@
 "dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Tru-Juice vs Chapelton",
+"apuesta": "Gana Tru-Juice",
+"cuota": 2.1,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Turnov vs Dvur Kralove",
 "apuesta": "Gana Turnov",
 "cuota": 1.3847,
@@ -21161,6 +21221,16 @@
 "cuota": 2.3,
 "resultado": "rojo",
 "marcador": "1-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Vancouver Whitecaps vs Seattle Sounders",
+"apuesta": "Vancouver Whitecaps o empate",
+"cuota": 1.177,
+"resultado": "verde",
+"marcador": "5-1"
 },
 {
 "dia": "2026-11-01",

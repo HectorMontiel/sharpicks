@@ -331,8 +331,8 @@
   },
   "Club Atlético La Paz": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club America W",
-    "ratio": 0.625,
+    "candidato": "Atletico GO",
+    "ratio": 0.5806,
     "visto": "2026-11-01"
   },
   "Sporting JAX": {
@@ -343,8 +343,8 @@
   },
   "Atlanta United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Glacis United",
-    "ratio": 0.6667,
+    "candidato": "TRA United",
+    "ratio": 0.75,
     "visto": "2026-11-01"
   },
   "New York City FC": {
@@ -787,9 +787,9 @@
   },
   "San Martín (Tucumán)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "San Martin S.J.",
-    "ratio": 0.6875,
-    "visto": "2026-10-31"
+    "candidato": "San Martin Burzaco",
+    "ratio": 0.7222,
+    "visto": "2026-11-01"
   },
   "Sportivo San Lorenzo": {
     "contexto": "cuotas_mx→futbol",
@@ -1033,8 +1033,8 @@
   },
   "Central Córdoba (Santiago del Estero)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Delfines Del Este",
-    "ratio": 0.4615,
+    "candidato": "Central Stallions",
+    "ratio": 0.4231,
     "visto": "2026-11-01"
   },
   "Raith Rovers": {
@@ -1351,7 +1351,7 @@
   },
   "Club Brugge": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Leon",
+    "candidato": "Club Leon W",
     "ratio": 0.6,
     "visto": "2026-11-01"
   },

@@ -9312,119 +9312,127 @@ fecha,partido,clave_liga,equipo,lado,mercado,linea,c_mas,c_menos,p_casa,p_mod,ap
 2026-11-01,Santos Laguna vs Necaxa,liga_mx,Necaxa,visitante,a_puerta,2.5,1.25,3.333,0.7273,0.8221,,vivo,,2026-11-01T21:51:39Z
 2026-11-01,Santos Laguna vs Necaxa,liga_mx,Necaxa,visitante,a_puerta,3.5,1.6,2.143,0.5725,0.6594,,vivo,,2026-11-01T21:51:39Z
 2026-11-01,Santos Laguna vs Necaxa,liga_mx,Necaxa,visitante,a_puerta,4.5,2.143,1.583,0.4249,0.4789,,vivo,,2026-11-01T21:51:39Z
-2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Lanus,local,tiros,14.5,1.52,2.25,0.5968,0.6756,,vivo,,2026-11-01T21:51:39Z
-2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Lanus,local,tiros,15.5,1.7,1.95,0.5342,0.6055,,vivo,,2026-11-01T21:51:39Z
-2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Lanus,local,tiros,16.5,1.95,1.7,0.4658,0.534,,vivo,,2026-11-01T21:51:39Z
-2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Lanus,local,a_puerta,3.5,1.286,3.0,0.7,0.8584,,vivo,,2026-11-01T21:51:39Z
-2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Lanus,local,a_puerta,4.5,1.615,2.05,0.5593,0.7377,,vivo,,2026-11-01T21:51:39Z
-2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Lanus,local,a_puerta,5.5,2.143,1.556,0.4207,0.592,,vivo,,2026-11-01T21:51:39Z
-2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Gimnasia Mendoza,visitante,tiros,9.5,1.546,2.2,0.5873,0.6304,,vivo,,2026-11-01T21:51:39Z
-2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Gimnasia Mendoza,visitante,tiros,10.5,1.818,1.818,0.5,0.5326,,vivo,,2026-11-01T21:51:39Z
-2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Gimnasia Mendoza,visitante,tiros,11.5,2.167,1.571,0.4203,0.4369,,vivo,,2026-11-01T21:51:39Z
-2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Gimnasia Mendoza,visitante,a_puerta,2.5,1.5,2.25,0.6,0.7107,,vivo,,2026-11-01T21:51:39Z
-2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Gimnasia Mendoza,visitante,a_puerta,3.5,2.083,1.583,0.4318,0.5094,,vivo,,2026-11-01T21:51:39Z
-2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Gimnasia Mendoza,visitante,a_puerta,4.5,3.0,1.286,0.3,0.3237,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,New England Revolution vs Inter Miami,mls,New England Revolution,local,tiros,12.5,1.546,2.2,0.5873,0.4996,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,New England Revolution vs Inter Miami,mls,New England Revolution,local,tiros,13.5,1.778,1.889,0.5151,0.4141,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,New England Revolution vs Inter Miami,mls,New England Revolution,local,tiros,14.5,2.05,1.636,0.4438,0.3352,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,New England Revolution vs Inter Miami,mls,New England Revolution,local,a_puerta,3.5,1.333,2.857,0.6819,0.6908,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,New England Revolution vs Inter Miami,mls,New England Revolution,local,a_puerta,4.5,1.714,1.96,0.5335,0.5151,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,New England Revolution vs Inter Miami,mls,New England Revolution,local,a_puerta,5.5,2.25,1.53,0.4048,0.3494,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,New England Revolution vs Inter Miami,mls,Inter Miami,visitante,tiros,13.5,1.583,2.143,0.5751,0.5617,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,New England Revolution vs Inter Miami,mls,Inter Miami,visitante,tiros,14.5,1.818,1.846,0.5038,0.4813,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,New England Revolution vs Inter Miami,mls,Inter Miami,visitante,tiros,15.5,2.1,1.6,0.4324,0.4041,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,New England Revolution vs Inter Miami,mls,Inter Miami,visitante,a_puerta,4.5,1.53,2.25,0.5952,0.6759,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,New England Revolution vs Inter Miami,mls,Inter Miami,visitante,a_puerta,5.5,2.0,1.692,0.4583,0.5186,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,New England Revolution vs Inter Miami,mls,Inter Miami,visitante,a_puerta,6.5,2.667,1.375,0.3402,0.3681,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Cruz Azul vs Club Leon,liga_mx,Cruz Azul,local,tiros,16.5,1.667,2.0,0.5454,0.5307,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Cruz Azul vs Club Leon,liga_mx,Cruz Azul,local,tiros,17.5,1.909,1.76,0.4797,0.4601,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Cruz Azul vs Club Leon,liga_mx,Cruz Azul,local,tiros,18.5,2.167,1.571,0.4203,0.3927,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Cruz Azul vs Club Leon,liga_mx,Cruz Azul,local,a_puerta,5.5,1.462,2.4,0.6214,0.5937,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Cruz Azul vs Club Leon,liga_mx,Cruz Azul,local,a_puerta,6.5,1.833,1.833,0.5,0.4441,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Cruz Azul vs Club Leon,liga_mx,Cruz Azul,local,a_puerta,7.5,2.364,1.48,0.385,0.3096,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Cruz Azul vs Club Leon,liga_mx,Club Leon,visitante,tiros,9.5,1.667,2.0,0.5454,0.6878,más,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Cruz Azul vs Club Leon,liga_mx,Club Leon,visitante,tiros,10.5,1.96,1.714,0.4665,0.5956,más,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Cruz Azul vs Club Leon,liga_mx,Club Leon,visitante,tiros,11.5,2.364,1.48,0.385,0.5018,más,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Cruz Azul vs Club Leon,liga_mx,Club Leon,visitante,a_puerta,2.5,1.35,2.8,0.6747,0.7727,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Cruz Azul vs Club Leon,liga_mx,Club Leon,visitante,a_puerta,3.5,1.778,1.889,0.5151,0.5895,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Cruz Azul vs Club Leon,liga_mx,Club Leon,visitante,a_puerta,4.5,2.5,1.429,0.3637,0.4029,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Portland Timbers vs Houston Dynamo,mls,Portland Timbers,local,tiros,14.5,1.6,2.1,0.5676,0.6241,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Portland Timbers vs Houston Dynamo,mls,Portland Timbers,local,tiros,15.5,1.833,1.833,0.5,0.5502,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Portland Timbers vs Houston Dynamo,mls,Portland Timbers,local,tiros,16.5,2.083,1.615,0.4367,0.4768,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Portland Timbers vs Houston Dynamo,mls,Portland Timbers,local,a_puerta,4.5,1.48,2.364,0.615,0.732,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Portland Timbers vs Houston Dynamo,mls,Portland Timbers,local,a_puerta,5.5,1.909,1.76,0.4797,0.585,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Portland Timbers vs Houston Dynamo,mls,Portland Timbers,local,a_puerta,6.5,2.546,1.417,0.3576,0.4351,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Portland Timbers vs Houston Dynamo,mls,Houston Dynamo,visitante,tiros,10.5,1.583,2.143,0.5751,0.6002,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Portland Timbers vs Houston Dynamo,mls,Houston Dynamo,visitante,tiros,11.5,1.846,1.818,0.4962,0.5066,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Portland Timbers vs Houston Dynamo,mls,Houston Dynamo,visitante,tiros,12.5,2.143,1.583,0.4249,0.4163,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Portland Timbers vs Houston Dynamo,mls,Houston Dynamo,visitante,a_puerta,2.5,1.308,3.0,0.6964,0.7351,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Portland Timbers vs Houston Dynamo,mls,Houston Dynamo,visitante,a_puerta,3.5,1.714,1.96,0.5335,0.54,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Portland Timbers vs Houston Dynamo,mls,Houston Dynamo,visitante,a_puerta,4.5,2.364,1.48,0.385,0.3531,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Tenerife vs Andorra,esp_hypermotion,Tenerife,local,tiros,12.5,1.85,1.786,0.4912,0.4736,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Tenerife vs Andorra,esp_hypermotion,Tenerife,local,a_puerta,4.5,2.143,1.583,0.4249,0.4404,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Tenerife vs Andorra,esp_hypermotion,Andorra,visitante,tiros,10.5,1.75,1.889,0.5191,0.4932,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Tenerife vs Andorra,esp_hypermotion,Andorra,visitante,a_puerta,3.5,1.818,1.818,0.5,0.501,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Oviedo vs Las Palmas,esp_hypermotion,Oviedo,local,tiros,14.5,1.714,1.933,0.53,0.6167,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Oviedo vs Las Palmas,esp_hypermotion,Oviedo,local,a_puerta,4.5,1.615,2.083,0.5633,0.7038,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Oviedo vs Las Palmas,esp_hypermotion,Las Palmas,visitante,tiros,9.5,1.733,1.909,0.5242,0.5844,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Oviedo vs Las Palmas,esp_hypermotion,Las Palmas,visitante,a_puerta,3.5,2.05,1.636,0.4438,0.5018,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Genclerbirligi vs Alanyaspor,turquia,Genclerbirligi,local,tiros,12.5,1.727,1.923,0.5268,0.6348,más,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Genclerbirligi vs Alanyaspor,turquia,Genclerbirligi,local,a_puerta,4.5,2.143,1.583,0.4249,0.4714,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Genclerbirligi vs Alanyaspor,turquia,Alanyaspor,visitante,tiros,12.5,1.76,1.875,0.5158,0.4824,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Genclerbirligi vs Alanyaspor,turquia,Alanyaspor,visitante,a_puerta,4.5,2.05,1.636,0.4438,0.4314,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Valladolid vs Leganes,esp_hypermotion,Valladolid,local,tiros,14.5,1.818,1.818,0.5,0.5956,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Valladolid vs Leganes,esp_hypermotion,Valladolid,local,a_puerta,4.5,1.75,1.889,0.5191,0.5968,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Valladolid vs Leganes,esp_hypermotion,Leganes,visitante,tiros,10.5,1.75,1.889,0.5191,0.5075,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Valladolid vs Leganes,esp_hypermotion,Leganes,visitante,a_puerta,3.5,1.857,1.778,0.4891,0.4712,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Sassuolo vs Fiorentina,serie_a,Sassuolo,local,tiros,13.5,1.778,1.889,0.5151,0.4431,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Sassuolo vs Fiorentina,serie_a,Sassuolo,local,a_puerta,4.5,1.923,1.75,0.4764,0.4553,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Sassuolo vs Fiorentina,serie_a,Fiorentina,visitante,tiros,14.5,1.941,1.733,0.4717,0.4987,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Sassuolo vs Fiorentina,serie_a,Fiorentina,visitante,a_puerta,4.5,1.818,1.846,0.5038,0.5429,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Sonderjyske vs FC Copenhagen,dinamarca,Sonderjyske,local,tiros,10.5,1.818,1.818,0.5,0.469,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Sonderjyske vs FC Copenhagen,dinamarca,Sonderjyske,local,a_puerta,3.5,1.933,1.714,0.47,0.4988,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Sonderjyske vs FC Copenhagen,dinamarca,FC Copenhagen,visitante,tiros,15.5,1.75,1.889,0.5191,0.5498,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Sonderjyske vs FC Copenhagen,dinamarca,FC Copenhagen,visitante,a_puerta,5.5,1.733,1.909,0.5242,0.6089,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Reims vs Sochaux,fra_ligue2,Reims,local,tiros,15.5,1.909,1.733,0.4758,0.4739,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Reims vs Sochaux,fra_ligue2,Reims,local,a_puerta,5.5,2.0,1.667,0.4546,0.4783,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Reims vs Sochaux,fra_ligue2,Sochaux,visitante,tiros,10.5,1.818,1.818,0.5,0.54,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Reims vs Sochaux,fra_ligue2,Sochaux,visitante,a_puerta,3.5,2.0,1.667,0.4546,0.4952,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Atalanta vs Parma,serie_a,Atalanta,local,tiros,18.5,1.846,1.818,0.4962,0.4421,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Atalanta vs Parma,serie_a,Atalanta,local,a_puerta,5.5,1.647,2.05,0.5545,0.601,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Atalanta vs Parma,serie_a,Parma,visitante,tiros,10.5,1.733,1.941,0.5283,0.5654,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Atalanta vs Parma,serie_a,Parma,visitante,a_puerta,2.5,1.636,2.083,0.5601,0.7459,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Lorient vs Brest,ligue_1,Lorient,local,tiros,12.5,1.714,1.96,0.5335,0.4756,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Lorient vs Brest,ligue_1,Lorient,local,a_puerta,4.5,1.96,1.714,0.4665,0.4322,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Lorient vs Brest,ligue_1,Brest,visitante,tiros,11.5,1.778,1.889,0.5151,0.5917,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Lorient vs Brest,ligue_1,Brest,visitante,a_puerta,3.5,1.692,2.0,0.5417,0.5918,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Newcastle vs Everton,premier,Newcastle,local,tiros,14.5,1.76,1.909,0.5203,0.4836,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Newcastle vs Everton,premier,Newcastle,local,a_puerta,4.5,1.714,1.96,0.5335,0.5764,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Newcastle vs Everton,premier,Everton,visitante,tiros,12.5,1.96,1.714,0.4665,0.5615,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Newcastle vs Everton,premier,Everton,visitante,a_puerta,3.5,1.6,2.143,0.5725,0.6553,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Mallorca vs Cadiz,esp_hypermotion,Mallorca,local,tiros,15.5,1.818,1.818,0.5,0.4879,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Mallorca vs Cadiz,esp_hypermotion,Mallorca,local,a_puerta,5.5,2.083,1.615,0.4367,0.5172,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Mallorca vs Cadiz,esp_hypermotion,Cadiz,visitante,tiros,8.5,1.909,1.733,0.4758,0.5554,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Mallorca vs Cadiz,esp_hypermotion,Cadiz,visitante,a_puerta,2.5,1.818,1.818,0.5,0.6116,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Benfica vs Alverca,primeira,Benfica,local,tiros,20.5,1.889,1.75,0.4809,0.505,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Benfica vs Alverca,primeira,Benfica,local,a_puerta,7.5,1.923,1.727,0.4732,0.4911,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Benfica vs Alverca,primeira,Alverca,visitante,tiros,7.5,1.909,1.733,0.4758,0.4888,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Benfica vs Alverca,primeira,Alverca,visitante,a_puerta,2.5,2.1,1.6,0.4324,0.4927,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Gil Vicente vs Guimaraes,primeira,Gil Vicente,local,tiros,11.5,1.733,1.909,0.5242,0.6318,más,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Gil Vicente vs Guimaraes,primeira,Gil Vicente,local,a_puerta,3.5,1.85,1.786,0.4912,0.5992,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Gil Vicente vs Guimaraes,primeira,Guimaraes,visitante,tiros,11.5,1.714,1.933,0.53,0.5156,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Gil Vicente vs Guimaraes,primeira,Guimaraes,visitante,a_puerta,3.5,1.8,1.833,0.5045,0.5512,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Defensa y Justicia vs Independiente,argentina,Defensa y Justicia,local,tiros,14.5,1.923,1.692,0.468,0.5297,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Defensa y Justicia vs Independiente,argentina,Defensa y Justicia,local,a_puerta,4.5,1.786,1.818,0.5044,0.5309,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Defensa y Justicia vs Independiente,argentina,Independiente,visitante,tiros,13.5,1.857,1.75,0.4852,0.4442,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Defensa y Justicia vs Independiente,argentina,Independiente,visitante,a_puerta,4.5,2.083,1.583,0.4318,0.4035,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Platense vs Central Cordoba,argentina,Platense,local,tiros,16.5,1.786,1.818,0.5044,0.5528,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Platense vs Central Cordoba,argentina,Platense,local,a_puerta,5.5,1.846,1.76,0.4881,0.5915,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Platense vs Central Cordoba,argentina,Central Cordoba,visitante,tiros,9.5,1.923,1.692,0.468,0.5268,,vivo,,2026-11-01T21:51:39Z
-2026-11-02,Platense vs Central Cordoba,argentina,Central Cordoba,visitante,a_puerta,2.5,1.714,1.9,0.5257,0.6043,,vivo,,2026-11-01T21:51:39Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,tiros,11.5,1.846,1.76,0.4881,0.498,,vivo,,2026-11-01T21:51:39Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,a_puerta,3.5,1.818,1.786,0.4956,0.4936,,vivo,,2026-11-01T21:51:39Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,tiros,11.5,1.818,1.786,0.4956,0.6254,más,vivo,,2026-11-01T21:51:39Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,a_puerta,3.5,1.8,1.8,0.5,0.648,,vivo,,2026-11-01T21:51:39Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,tiros,16.5,1.923,1.7,0.4692,0.5489,,vivo,,2026-11-01T21:51:39Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,a_puerta,6.5,2.0,1.636,0.4499,0.3761,,vivo,,2026-11-01T21:51:39Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,tiros,9.5,1.9,1.714,0.4743,0.5965,más,vivo,,2026-11-01T21:51:39Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,a_puerta,3.5,2.143,1.556,0.4207,0.4843,,vivo,,2026-11-01T21:51:39Z
+2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Lanus,local,tiros,14.5,1.52,2.25,0.5968,0.6756,,vivo,,2026-11-01T23:30:49Z
+2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Lanus,local,tiros,15.5,1.7,1.95,0.5342,0.6055,,vivo,,2026-11-01T23:30:49Z
+2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Lanus,local,tiros,16.5,1.95,1.7,0.4658,0.534,,vivo,,2026-11-01T23:30:49Z
+2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Lanus,local,a_puerta,3.5,1.286,3.0,0.7,0.8584,,vivo,,2026-11-01T23:30:49Z
+2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Lanus,local,a_puerta,4.5,1.615,2.05,0.5593,0.7377,,vivo,,2026-11-01T23:30:49Z
+2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Lanus,local,a_puerta,5.5,2.143,1.556,0.4207,0.592,,vivo,,2026-11-01T23:30:49Z
+2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Gimnasia Mendoza,visitante,tiros,9.5,1.546,2.2,0.5873,0.6304,,vivo,,2026-11-01T23:30:49Z
+2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Gimnasia Mendoza,visitante,tiros,10.5,1.818,1.818,0.5,0.5326,,vivo,,2026-11-01T23:30:49Z
+2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Gimnasia Mendoza,visitante,tiros,11.5,2.167,1.571,0.4203,0.4369,,vivo,,2026-11-01T23:30:49Z
+2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Gimnasia Mendoza,visitante,a_puerta,2.5,1.5,2.25,0.6,0.7107,,vivo,,2026-11-01T23:30:49Z
+2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Gimnasia Mendoza,visitante,a_puerta,3.5,2.083,1.583,0.4318,0.5094,,vivo,,2026-11-01T23:30:49Z
+2026-11-01,Lanus vs Gimnasia Mendoza,argentina,Gimnasia Mendoza,visitante,a_puerta,4.5,3.0,1.286,0.3,0.3237,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,New England Revolution vs Inter Miami,mls,New England Revolution,local,tiros,12.5,1.546,2.2,0.5873,0.5003,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,New England Revolution vs Inter Miami,mls,New England Revolution,local,tiros,13.5,1.778,1.889,0.5151,0.4148,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,New England Revolution vs Inter Miami,mls,New England Revolution,local,tiros,14.5,2.05,1.636,0.4438,0.3359,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,New England Revolution vs Inter Miami,mls,New England Revolution,local,a_puerta,3.5,1.333,2.857,0.6819,0.685,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,New England Revolution vs Inter Miami,mls,New England Revolution,local,a_puerta,4.5,1.714,1.96,0.5335,0.5083,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,New England Revolution vs Inter Miami,mls,New England Revolution,local,a_puerta,5.5,2.25,1.53,0.4048,0.3429,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,New England Revolution vs Inter Miami,mls,Inter Miami,visitante,tiros,13.5,1.583,2.143,0.5751,0.5583,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,New England Revolution vs Inter Miami,mls,Inter Miami,visitante,tiros,14.5,1.818,1.846,0.5038,0.4777,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,New England Revolution vs Inter Miami,mls,Inter Miami,visitante,tiros,15.5,2.1,1.6,0.4324,0.4006,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,New England Revolution vs Inter Miami,mls,Inter Miami,visitante,a_puerta,4.5,1.53,2.25,0.5952,0.6774,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,New England Revolution vs Inter Miami,mls,Inter Miami,visitante,a_puerta,5.5,2.0,1.692,0.4583,0.5203,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,New England Revolution vs Inter Miami,mls,Inter Miami,visitante,a_puerta,6.5,2.667,1.375,0.3402,0.3698,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Cruz Azul vs Club Leon,liga_mx,Cruz Azul,local,tiros,16.5,1.667,2.0,0.5454,0.5307,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Cruz Azul vs Club Leon,liga_mx,Cruz Azul,local,tiros,17.5,1.909,1.76,0.4797,0.4601,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Cruz Azul vs Club Leon,liga_mx,Cruz Azul,local,tiros,18.5,2.167,1.571,0.4203,0.3927,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Cruz Azul vs Club Leon,liga_mx,Cruz Azul,local,a_puerta,5.5,1.462,2.4,0.6214,0.5937,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Cruz Azul vs Club Leon,liga_mx,Cruz Azul,local,a_puerta,6.5,1.833,1.833,0.5,0.4441,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Cruz Azul vs Club Leon,liga_mx,Cruz Azul,local,a_puerta,7.5,2.364,1.48,0.385,0.3096,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Cruz Azul vs Club Leon,liga_mx,Club Leon,visitante,tiros,9.5,1.667,2.0,0.5454,0.6878,más,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Cruz Azul vs Club Leon,liga_mx,Club Leon,visitante,tiros,10.5,1.96,1.714,0.4665,0.5956,más,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Cruz Azul vs Club Leon,liga_mx,Club Leon,visitante,tiros,11.5,2.364,1.48,0.385,0.5018,más,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Cruz Azul vs Club Leon,liga_mx,Club Leon,visitante,a_puerta,2.5,1.35,2.8,0.6747,0.7727,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Cruz Azul vs Club Leon,liga_mx,Club Leon,visitante,a_puerta,3.5,1.778,1.889,0.5151,0.5895,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Cruz Azul vs Club Leon,liga_mx,Club Leon,visitante,a_puerta,4.5,2.5,1.429,0.3637,0.4029,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Portland Timbers vs Houston Dynamo,mls,Portland Timbers,local,tiros,14.5,1.6,2.1,0.5676,0.6239,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Portland Timbers vs Houston Dynamo,mls,Portland Timbers,local,tiros,15.5,1.818,1.846,0.5038,0.55,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Portland Timbers vs Houston Dynamo,mls,Portland Timbers,local,tiros,16.5,2.083,1.615,0.4367,0.4766,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Portland Timbers vs Houston Dynamo,mls,Portland Timbers,local,a_puerta,4.5,1.48,2.364,0.615,0.7322,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Portland Timbers vs Houston Dynamo,mls,Portland Timbers,local,a_puerta,5.5,1.909,1.76,0.4797,0.5853,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Portland Timbers vs Houston Dynamo,mls,Portland Timbers,local,a_puerta,6.5,2.546,1.417,0.3576,0.4353,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Portland Timbers vs Houston Dynamo,mls,Houston Dynamo,visitante,tiros,10.5,1.583,2.143,0.5751,0.6012,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Portland Timbers vs Houston Dynamo,mls,Houston Dynamo,visitante,tiros,11.5,1.846,1.818,0.4962,0.5077,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Portland Timbers vs Houston Dynamo,mls,Houston Dynamo,visitante,tiros,12.5,2.143,1.583,0.4249,0.4174,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Portland Timbers vs Houston Dynamo,mls,Houston Dynamo,visitante,a_puerta,2.5,1.308,3.0,0.6964,0.7431,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Portland Timbers vs Houston Dynamo,mls,Houston Dynamo,visitante,a_puerta,3.5,1.714,1.96,0.5335,0.5503,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Portland Timbers vs Houston Dynamo,mls,Houston Dynamo,visitante,a_puerta,4.5,2.364,1.48,0.385,0.3632,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Tenerife vs Andorra,esp_hypermotion,Tenerife,local,tiros,12.5,1.85,1.786,0.4912,0.4736,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Tenerife vs Andorra,esp_hypermotion,Tenerife,local,a_puerta,4.5,2.143,1.583,0.4249,0.4404,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Tenerife vs Andorra,esp_hypermotion,Andorra,visitante,tiros,10.5,1.75,1.889,0.5191,0.4932,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Tenerife vs Andorra,esp_hypermotion,Andorra,visitante,a_puerta,3.5,1.818,1.818,0.5,0.501,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Oviedo vs Las Palmas,esp_hypermotion,Oviedo,local,tiros,14.5,1.727,1.923,0.5268,0.6167,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Oviedo vs Las Palmas,esp_hypermotion,Oviedo,local,a_puerta,4.5,1.615,2.083,0.5633,0.7038,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Oviedo vs Las Palmas,esp_hypermotion,Las Palmas,visitante,tiros,9.5,1.733,1.909,0.5242,0.5844,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Oviedo vs Las Palmas,esp_hypermotion,Las Palmas,visitante,a_puerta,3.5,2.05,1.636,0.4438,0.5018,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Genclerbirligi vs Alanyaspor,turquia,Genclerbirligi,local,tiros,12.5,1.727,1.923,0.5268,0.6348,más,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Genclerbirligi vs Alanyaspor,turquia,Genclerbirligi,local,a_puerta,4.5,2.143,1.583,0.4249,0.4714,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Genclerbirligi vs Alanyaspor,turquia,Alanyaspor,visitante,tiros,12.5,1.76,1.875,0.5158,0.4824,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Genclerbirligi vs Alanyaspor,turquia,Alanyaspor,visitante,a_puerta,4.5,2.05,1.636,0.4438,0.4314,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Valladolid vs Leganes,esp_hypermotion,Valladolid,local,tiros,14.5,1.818,1.818,0.5,0.5873,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Valladolid vs Leganes,esp_hypermotion,Valladolid,local,a_puerta,4.5,1.75,1.889,0.5191,0.5801,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Valladolid vs Leganes,esp_hypermotion,Leganes,visitante,tiros,10.5,1.75,1.889,0.5191,0.4891,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Valladolid vs Leganes,esp_hypermotion,Leganes,visitante,a_puerta,3.5,1.857,1.778,0.4891,0.4491,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sassuolo vs Fiorentina,serie_a,Sassuolo,local,tiros,12.5,1.538,2.222,0.591,0.5292,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sassuolo vs Fiorentina,serie_a,Sassuolo,local,tiros,13.5,1.778,1.889,0.5151,0.4438,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sassuolo vs Fiorentina,serie_a,Sassuolo,local,tiros,14.5,2.05,1.636,0.4438,0.3637,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sassuolo vs Fiorentina,serie_a,Sassuolo,local,a_puerta,3.5,1.455,2.429,0.6254,0.642,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sassuolo vs Fiorentina,serie_a,Sassuolo,local,a_puerta,4.5,1.923,1.75,0.4764,0.4593,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sassuolo vs Fiorentina,serie_a,Sassuolo,local,a_puerta,5.5,2.667,1.375,0.3402,0.2973,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sassuolo vs Fiorentina,serie_a,Fiorentina,visitante,tiros,13.5,1.667,2.0,0.5454,0.5756,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sassuolo vs Fiorentina,serie_a,Fiorentina,visitante,tiros,14.5,1.941,1.733,0.4717,0.4956,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sassuolo vs Fiorentina,serie_a,Fiorentina,visitante,tiros,15.5,2.25,1.53,0.4048,0.4183,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sassuolo vs Fiorentina,serie_a,Fiorentina,visitante,a_puerta,3.5,1.4,2.6,0.65,0.7098,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sassuolo vs Fiorentina,serie_a,Fiorentina,visitante,a_puerta,4.5,1.818,1.846,0.5038,0.5378,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sassuolo vs Fiorentina,serie_a,Fiorentina,visitante,a_puerta,5.5,2.5,1.429,0.3637,0.3716,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sonderjyske vs FC Copenhagen,dinamarca,Sonderjyske,local,tiros,10.5,1.818,1.818,0.5,0.469,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sonderjyske vs FC Copenhagen,dinamarca,Sonderjyske,local,a_puerta,3.5,1.933,1.714,0.47,0.4988,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sonderjyske vs FC Copenhagen,dinamarca,FC Copenhagen,visitante,tiros,15.5,1.75,1.889,0.5191,0.5498,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Sonderjyske vs FC Copenhagen,dinamarca,FC Copenhagen,visitante,a_puerta,5.5,1.733,1.909,0.5242,0.6089,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Reims vs Sochaux,fra_ligue2,Reims,local,tiros,15.5,1.909,1.733,0.4758,0.4739,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Reims vs Sochaux,fra_ligue2,Reims,local,a_puerta,5.5,2.0,1.667,0.4546,0.4783,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Reims vs Sochaux,fra_ligue2,Sochaux,visitante,tiros,10.5,1.818,1.818,0.5,0.54,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Reims vs Sochaux,fra_ligue2,Sochaux,visitante,a_puerta,3.5,2.0,1.667,0.4546,0.4952,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Atalanta vs Parma,serie_a,Atalanta,local,tiros,18.5,1.846,1.818,0.4962,0.4421,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Atalanta vs Parma,serie_a,Atalanta,local,a_puerta,5.5,1.647,2.05,0.5545,0.601,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Atalanta vs Parma,serie_a,Parma,visitante,tiros,10.5,1.733,1.941,0.5283,0.5654,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Atalanta vs Parma,serie_a,Parma,visitante,a_puerta,2.5,1.636,2.083,0.5601,0.7459,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Lorient vs Brest,ligue_1,Lorient,local,tiros,12.5,1.714,1.96,0.5335,0.4756,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Lorient vs Brest,ligue_1,Lorient,local,a_puerta,4.5,1.96,1.714,0.4665,0.4322,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Lorient vs Brest,ligue_1,Brest,visitante,tiros,11.5,1.778,1.889,0.5151,0.5917,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Lorient vs Brest,ligue_1,Brest,visitante,a_puerta,3.5,1.692,2.0,0.5417,0.5918,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Newcastle vs Everton,premier,Newcastle,local,tiros,14.5,1.76,1.909,0.5203,0.4836,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Newcastle vs Everton,premier,Newcastle,local,a_puerta,4.5,1.714,1.96,0.5335,0.5764,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Newcastle vs Everton,premier,Everton,visitante,tiros,12.5,1.96,1.714,0.4665,0.5615,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Newcastle vs Everton,premier,Everton,visitante,a_puerta,3.5,1.6,2.143,0.5725,0.6553,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Mallorca vs Cadiz,esp_hypermotion,Mallorca,local,tiros,15.5,1.818,1.818,0.5,0.4879,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Mallorca vs Cadiz,esp_hypermotion,Mallorca,local,a_puerta,5.5,2.083,1.615,0.4367,0.5172,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Mallorca vs Cadiz,esp_hypermotion,Cadiz,visitante,tiros,8.5,1.909,1.733,0.4758,0.5554,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Mallorca vs Cadiz,esp_hypermotion,Cadiz,visitante,a_puerta,2.5,1.818,1.818,0.5,0.6116,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Benfica vs Alverca,primeira,Benfica,local,tiros,20.5,1.857,1.778,0.4891,0.505,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Benfica vs Alverca,primeira,Benfica,local,a_puerta,7.5,1.923,1.727,0.4732,0.4911,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Benfica vs Alverca,primeira,Alverca,visitante,tiros,7.5,1.909,1.733,0.4758,0.4888,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Benfica vs Alverca,primeira,Alverca,visitante,a_puerta,2.5,2.083,1.615,0.4367,0.4927,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Gil Vicente vs Guimaraes,primeira,Gil Vicente,local,tiros,11.5,1.733,1.909,0.5242,0.6318,más,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Gil Vicente vs Guimaraes,primeira,Gil Vicente,local,a_puerta,3.5,1.85,1.786,0.4912,0.5992,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Gil Vicente vs Guimaraes,primeira,Guimaraes,visitante,tiros,11.5,1.714,1.933,0.53,0.5156,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Gil Vicente vs Guimaraes,primeira,Guimaraes,visitante,a_puerta,3.5,1.8,1.833,0.5045,0.5512,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Defensa y Justicia vs Independiente,argentina,Defensa y Justicia,local,tiros,14.5,1.923,1.692,0.468,0.5297,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Defensa y Justicia vs Independiente,argentina,Defensa y Justicia,local,a_puerta,4.5,1.786,1.818,0.5044,0.5309,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Defensa y Justicia vs Independiente,argentina,Independiente,visitante,tiros,13.5,1.857,1.75,0.4852,0.4442,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Defensa y Justicia vs Independiente,argentina,Independiente,visitante,a_puerta,4.5,2.083,1.583,0.4318,0.4035,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Platense vs Central Cordoba,argentina,Platense,local,tiros,16.5,1.786,1.818,0.5044,0.5528,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Platense vs Central Cordoba,argentina,Platense,local,a_puerta,5.5,1.846,1.76,0.4881,0.5915,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Platense vs Central Cordoba,argentina,Central Cordoba,visitante,tiros,9.5,1.923,1.692,0.468,0.5268,,vivo,,2026-11-01T23:30:49Z
+2026-11-02,Platense vs Central Cordoba,argentina,Central Cordoba,visitante,a_puerta,2.5,1.714,1.9,0.5257,0.6043,,vivo,,2026-11-01T23:30:49Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,tiros,11.5,1.846,1.76,0.4881,0.498,,vivo,,2026-11-01T23:30:49Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,a_puerta,3.5,1.818,1.786,0.4956,0.4936,,vivo,,2026-11-01T23:30:49Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,tiros,11.5,1.818,1.786,0.4956,0.6254,más,vivo,,2026-11-01T23:30:49Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,a_puerta,3.5,1.8,1.8,0.5,0.648,,vivo,,2026-11-01T23:30:49Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,tiros,16.5,1.923,1.7,0.4692,0.5489,,vivo,,2026-11-01T23:30:49Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,a_puerta,6.5,2.0,1.636,0.4499,0.3761,,vivo,,2026-11-01T23:30:49Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,tiros,9.5,1.9,1.714,0.4743,0.5965,más,vivo,,2026-11-01T23:30:49Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,a_puerta,3.5,2.143,1.556,0.4207,0.4843,,vivo,,2026-11-01T23:30:49Z
