@@ -28521,3 +28521,53 @@ fecha,deporte,liga,home,away,inicio,pin_home,pin_draw,pin_away,q_home,q_away,mar
 2026-11-01,tenis,"CHALLENGER MEN - SINGLES: Charlottesville (USA) - Qualification, hard (indoor)",Mayo A.,Chan D.,1793572200,1.4525,,2.72,0.651887,0.348113,0.056115,1,0.072,Novibet
 2026-11-01,nba,USA: NCAA,High Point,Liberty,1793595540,1.361,,3.29,0.707375,0.292625,0.038705,0,0.0,
 2026-11-01,futbol,COLOMBIA: Primera B - Clausura - Quadrangular,Real Cundinamarca,Tigres,1793559600,2.08,2.99,3.88,0.448082,0.240209,0.072949,1,0.027,Novibet
+2026-11-01,futbol,COSTA RICA: Primera Division - Apertura,Cartagines,San Carlos,1793552400,1.6211,3.91,5.67,0.588058,0.168131,0.048986,1,0.0221,Novibet
+2026-11-01,futbol,URUGUAY: Liga AUF Uruguaya - Clausura,Danubio,Nacional,1793561400,4.69,3.71,1.7692,0.203456,0.539345,0.047989,0,0.0,
+2026-11-01,futbol,USA: USL Championship - Play Offs,Lexington,Colorado Springs,1793559600,2.04,3.41,3.8,0.468366,0.251439,0.046609,0,0.0,
+2026-11-01,futbol,ALGERIA: Ligue 1,Temouchent,Biskra,1793637900,1.8621,3.11,4.7,0.501269,0.198598,0.071337,0,0.0,
+2026-11-01,futbol,ALGERIA: Ligue 1,CR Belouizdad,Saoura,1793646000,1.3546,4.34,9.99,0.690743,0.093662,0.06874,0,0.0,
+2026-11-01,futbol,ARGENTINA: Primera Nacional,All Boys,CA Estudiantes,1793635200,3.39,2.84,2.49,0.281285,0.382955,0.048704,0,0.0,
+2026-11-01,futbol,ARGENTINA: Primera Nacional,Atl. Rafaela,Patronato,1793642400,3.11,3.1,2.23,0.294304,0.410442,0.092555,0,0.0,
+2026-11-01,futbol,ARGENTINA: Torneo Federal - Promotion - Play Offs,Biblioteca Atenas,Sarmiento de La Banda,1793571300,1.9009,2.85,4.15,0.470581,0.215549,0.117908,1,0.0352,Playdoit
+2026-11-01,futbol,ASIA: AFC Champions League - League phase,Al Sadd (Qat),Al Ahli SC (Sau),1793635200,2.97,3.98,2.11,0.317076,0.446311,0.06189,1,0.041,Novibet
+2026-11-01,futbol,ASIA: AFC Champions League - League phase,Al Wasl (Uae),Al Quwa Al Jawiya (Irq),1793635200,1.2439,6.19,9.1,0.747582,0.102189,0.075364,0,0.0,
+2026-11-01,futbol,ASIA: AFC Champions League - League phase,Al Gharafa (Qat),Al Qadsiah (Sau),1793643300,5.64,4.75,1.4673,0.165805,0.637322,0.069355,0,0.0,
+2026-11-01,futbol,ASIA: AFC Champions League - League phase,Al Ittihad (Sau),Al Ain (Uae),1793643300,2.07,3.42,3.49,0.454879,0.269799,0.062022,0,0.0,
+2026-11-01,futbol,CHILE: Liga de Primera,Limache,A. Italiano,1793653200,2.15,3.79,3.08,0.441436,0.308145,0.053644,0,0.0,
+2026-11-01,futbol,COLOMBIA: Primera A - Clausura,Aguilas,Fortaleza,1793653500,1.9524,3.24,4.15,0.482381,0.22694,0.061796,0,0.0,
+2026-11-01,futbol,COSTA RICA: Primera Division - Apertura,Saprissa,Alajuelense,1793570400,1.8929,3.64,4.09,0.504327,0.233409,0.047514,0,0.0,
+2026-11-01,futbol,CZECH REPUBLIC: ChNL,Ostrava B,Jihlava,1793635200,2.32,3.55,2.69,0.39746,0.342791,0.084472,0,0.0,
+2026-11-01,futbol,ECUADOR: Liga Pro - Relegation Group,Orense,Tecnico U.,1793651400,1.7874,3.5,4.54,0.525104,0.206734,0.06545,1,0.0274,Playdoit
+2026-11-01,futbol,ENGLAND: Premier League,Newcastle,Everton,1793649600,2.33,3.58,3.08,0.415398,0.314246,0.033189,0,0.0,
+2026-11-01,futbol,FINLAND: Veikkausliiga - Championship Group,VPS,HJK,1793635200,7.98,5.6,1.3559,0.120331,0.708197,0.041402,0,0.0,
+2026-11-01,futbol,GREECE: Super League,Kalamata,Iraklis 1908,1793640600,2.28,3.18,3.34,0.416733,0.284477,0.052463,0,0.0,
+2026-11-01,futbol,HONDURAS: Liga Nacional - Apertura,Olancho,Platense,1793583000,1.5464,3.77,4.8,0.57725,0.185971,0.120249,0,0.0,
+2026-11-01,futbol,ISRAEL: Leumit League,H. Raanana,Kiryat Yam,1793638800,2.73,3.45,2.33,0.337498,0.395438,0.08534,0,0.0,
+2026-11-01,futbol,ISRAEL: Leumit League,Maccabi Jaffa,Hapoel Kfar Saba,1793638800,2.77,3.42,2.32,0.3329,0.397471,0.084443,0,0.0,
+2026-11-01,futbol,ISRAEL: Leumit League,SC Ashdod,Bnei Yehuda,1793638800,2.51,3.27,2.63,0.367383,0.35062,0.084445,0,0.0,
+2026-11-01,futbol,MONTENEGRO: Prva Crnogorska Liga,Bokelj,Buducnost,1793624400,2.94,2.88,2.52,0.313725,0.366013,0.084184,0,0.0,
+2026-11-01,futbol,NETHERLANDS: Eerste Divisie,Heracles,Oss,1793646000,1.1595,8.26,11.28,0.804397,0.082686,0.072159,1,0.0228,Novibet
+2026-11-01,futbol,NETHERLANDS: Eerste Divisie,Jong Ajax,Vitesse,1793646000,3.02,4.09,2.06,0.31207,0.457501,0.061061,0,0.0,
+2026-11-01,futbol,NICARAGUA: Liga Primera - Apertura,Ferretti,San Marcos,1793570400,1.3086,4.74,6.6,0.678266,0.134482,0.126661,0,0.0,
+2026-11-01,futbol,NICARAGUA: Liga Primera - Apertura,Rancho Santana,Matagalpa,1793574000,2.2,3.51,2.78,0.41354,0.327262,0.099158,0,0.0,
+2026-11-01,futbol,NICARAGUA: Liga Primera - Apertura,Managua FC,UNAN-Managua,1793581200,1.1923,6.13,10.06,0.761602,0.090264,0.101251,0,0.0,
+2026-11-01,futbol,PERU: Liga 1 - Clausura,Cajamarca,Deportivo Garcilaso,1793643300,2.94,3.65,2.19,0.317668,0.426458,0.07073,0,0.0,
+2026-11-01,futbol,POLAND: Ekstraklasa,Zaglebie,Korona Kielce,1793638800,2.48,3.42,2.8,0.383015,0.339242,0.052766,0,0.0,
+2026-11-01,futbol,POLAND: Ekstraklasa,Rakow,Pogon Szczecin,1793647800,2.28,3.8,2.85,0.416667,0.333333,0.052632,0,0.0,
+2026-11-01,futbol,POLAND: Division 1,S. Rzeszow,Puszcza,1793647800,2.43,3.39,2.83,0.388278,0.333398,0.059865,0,0.0,
+2026-11-01,futbol,POLAND: Division 2,Chojniczanka,Avia Swidnik,1793638800,2.09,3.51,3.11,0.441021,0.296377,0.084913,0,0.0,
+2026-11-01,futbol,PORTUGAL: Liga Next Gen U23,Leixoes U23,Rio Ave U23,1793635200,2.96,3.7,2.09,0.310919,0.440345,0.086577,0,0.0,
+2026-11-01,futbol,ROMANIA: Superliga,FC Voluntari,Farul Constanta,1793633400,2.96,3.69,2.26,0.321347,0.420879,0.051318,0,0.0,
+2026-11-01,futbol,ROMANIA: Superliga,U. Cluj,FCSB,1793644200,2.5,3.67,2.59,0.377865,0.364734,0.05858,0,0.0,
+2026-11-01,futbol,SERBIA: Mozzart Bet Super Liga,Mladost,Radnik,1793638800,2.58,3.0,2.75,0.357375,0.335283,0.084567,0,0.0,
+2026-11-01,tenis,"CHALLENGER MEN - SINGLES: Charlottesville (USA) - Qualification, hard (indoor)",Okonkwo O.,Trotter J. K.,1793555155,4.72,,1.1838,0.200515,0.799485,0.056602,0,0.0,
+2026-11-01,tenis,"WTA - SINGLES: Hong Kong (Hong Kong), hard",Liu C.,Prozorova T.,1793599200,1.9901,,1.885,0.486439,0.513561,0.032991,1,0.0201,Novibet
+2026-11-01,nba,QATAR: QBL,Al Sadd,Al Arabi,1793552400,1.7143,,2.06,0.545797,0.454203,0.068765,1,0.1233,Novibet
+2026-11-01,nba,CZECH REPUBLIC: NBL,Opava,Hradec Kralove,1793552400,1.2004,,3.87,0.763253,0.236747,0.091454,1,0.036,Novibet
+2026-11-01,nba,GERMANY: BBL,Bonn,Alba Berlin,1793552400,1.8065,,2.04,0.530352,0.469648,0.043753,1,0.07,Novibet
+2026-11-01,nba,SPAIN: ACB,Unicaja,Barcelona,1793556000,1.5882,,2.42,0.603762,0.396238,0.042867,1,0.0256,Novibet
+2026-11-01,nba,HONG KONG: A1,Fukien,Eagle,1793703600,4.13,,1.137,0.215872,0.784128,0.121638,0,0.0,
+2026-11-01,nba,HONG KONG: A1,Able Hon Friends,Chun Yu,1793709600,2.17,,1.578,0.421025,0.578975,0.094543,0,0.0,
+2026-11-01,nba,ISRAEL: Liga Leumit,Otef Darom,Migdal Haemek,1793721600,1.4505,,2.44,0.627169,0.372831,0.099254,0,0.0,
+2026-11-01,nba,URUGUAY: Liga Uruguaya,Union Atletica,Penarol,1793665800,4.62,,1.1391,0.197791,0.802209,0.094336,0,0.0,
+2026-11-01,nba,LEBANON: Division 1,Atlas,Al-Riyadi,1793553300,10.13,,1.0195,0.091439,0.908561,0.07959,0,0.0,
