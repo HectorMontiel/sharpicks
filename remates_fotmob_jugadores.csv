@@ -14959,21 +14959,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5853463,2026-08-07,rumania,Rapid Bucuresti,Claudiu Petrila,975428,F,0,28,2,2,0,0.0,,3.0,1817024.0
 5853463,2026-08-07,rumania,Rapid Bucuresti,Rares Pop,1362633,F,0,17,0,0,0,0.0,,3.0,813437.0
 5853463,2026-08-07,rumania,Rapid Bucuresti,Mohammed Kamara,1012204,F,0,3,0,0,0,0.0,,3.0,494924.0
-5781701,2026-08-07,eredivisie,Cambuur,Thijs Jansen,1201749,G,1,90,0,0,0,0.0,11.0,0.0,436920.0
-5781701,2026-08-07,eredivisie,Cambuur,Rik Mulders,1082599,D,1,46,0,0,0,0.0,32.0,1.0,475632.0
-5781701,2026-08-07,eredivisie,Cambuur,Ismaël Baouf,1572671,D,1,90,0,0,0,0.0,34.0,1.0,1915307.0
-5781701,2026-08-07,eredivisie,Cambuur,Jamal Amofa,1069658,D,1,90,1,0,0,0.02,36.0,1.0,258843.0
-5781701,2026-08-07,eredivisie,Cambuur,Lucas Jetten,1665409,D,1,65,0,0,0,0.0,38.0,1.0,1151562.0
-5781701,2026-08-07,eredivisie,Cambuur,Ryan van de Pavert,1695691,M,1,46,0,0,0,0.0,73.0,2.0,
-5781701,2026-08-07,eredivisie,Cambuur,Rafik El Arguioui,1344244,M,1,90,3,1,0,0.28,75.0,2.0,796141.0
-5781701,2026-08-07,eredivisie,Cambuur,Nicky Souren,867309,M,1,90,0,0,0,0.0,77.0,2.0,255344.0
-5781701,2026-08-07,eredivisie,Cambuur,Iwan Henstra,1541465,F,1,90,2,1,0,0.17,103.0,3.0,120960.0
-5781701,2026-08-07,eredivisie,Cambuur,Skye Vink,1403394,F,1,81,2,0,0,0.08,105.0,3.0,778031.0
-5781701,2026-08-07,eredivisie,Cambuur,Ilyès Hamache,1280182,M,1,90,2,0,0,0.15,107.0,2.0,686306.0
-5781701,2026-08-07,eredivisie,Cambuur,Morgan Costarelli,1690090,D,0,45,1,0,0,0.02,,1.0,
-5781701,2026-08-07,eredivisie,Cambuur,Sami Bouhoudane,1623572,F,0,44,0,0,0,0.0,,3.0,701644.0
-5781701,2026-08-07,eredivisie,Cambuur,Ethan Apkakou,1893952,M,0,25,0,0,0,0.0,,2.0,402636.0
-5781701,2026-08-07,eredivisie,Cambuur,Wessel van der Goot,1965668,M,0,9,0,0,0,0.0,,2.0,
 5781701,2026-08-07,eredivisie,Excelsior,Stijn van Gassel,510425,G,1,90,0,0,0,0.0,11.0,0.0,607640.0
 5781701,2026-08-07,eredivisie,Excelsior,Nolan Martens,1587680,D,1,75,1,0,0,0.03,32.0,1.0,531436.0
 5781701,2026-08-07,eredivisie,Excelsior,Rick Meissen,1217654,D,1,90,0,0,0,0.0,34.0,1.0,667536.0
@@ -15693,22 +15678,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5804234,2026-08-08,suiza,Grasshopper,Alieu Conateh,1795740,F,0,27,1,1,0,0.02,,3.0,817494.0
 5804234,2026-08-08,suiza,Grasshopper,Loris Giandomenico,1765924,D,0,3,0,0,0,0.0,,1.0,328887.0
 5804234,2026-08-08,suiza,Grasshopper,Denis Sahin,1970906,M,0,4,1,0,0,0.1,,2.0,
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Kjetil Haug,760747,G,1,90,0,0,0,0.0,11.0,0.0,381500.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Alfons Sampsted,635947,D,1,90,0,0,0,0.0,32.0,1.0,1110999.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Julius Dirksen,1218553,D,1,75,2,1,1,0.23,34.0,1.0,561187.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Joris Kramer,629493,D,1,90,1,0,0,0.01,36.0,1.0,1235864.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Dean James,1180694,D,1,75,1,1,0,0.1,38.0,1.0,1197713.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Melle Meulensteen,864893,M,1,75,2,2,1,0.15,64.0,2.0,1745310.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Evert Linthorst,935623,M,1,90,0,0,0,0.0,66.0,2.0,1042002.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Søren Tengstedt,1060542,F,1,90,4,1,1,0.73,83.0,3.0,391443.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Mathis Suray,1192848,F,1,83,1,0,0,0.04,85.0,3.0,2128300.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Victor Edvardsen,658222,F,1,90,2,1,0,0.19,87.0,3.0,1022384.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Stefán Sigurdarson,1044355,F,1,62,2,1,0,0.08,115.0,3.0,1673698.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Erik Flataker,1255835,F,0,28,3,2,1,0.76,,3.0,927127.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Giovanni van Zwam,1252057,D,0,15,0,0,0,0.0,,1.0,446444.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Calvin Twigt,1196739,M,0,15,0,0,0,0.0,,2.0,820375.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Thibo Baeten,1047663,F,0,15,1,1,0,0.07,,3.0,577993.0
-5781702,2026-08-08,eredivisie,Go Ahead Eagles,Richonell Margaret,1014841,F,0,7,1,0,0,0.05,,3.0,697539.0
 5887566,2026-08-08,primeira,Vitoria de Guimaraes,Oliwier Zych,1117055,G,1,90,0,0,0,0.0,11.0,0.0,1607842.0
 5887566,2026-08-08,primeira,Vitoria de Guimaraes,Maga,1282445,D,1,69,1,0,0,0.02,32.0,1.0,1255503.0
 5887566,2026-08-08,primeira,Vitoria de Guimaraes,Thiago Balieiro,1709721,D,1,90,1,0,0,0.01,34.0,1.0,
@@ -15805,22 +15774,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5845959,2026-08-08,aut_bundesliga,Sturm Graz,Nelson Weiper,1367614,F,0,28,2,2,2,0.46,,3.0,12572065.0
 5845959,2026-08-08,aut_bundesliga,Sturm Graz,Axel Kayombo,1515630,F,0,12,1,0,0,0.51,,3.0,1791040.0
 5845959,2026-08-08,aut_bundesliga,Sturm Graz,Paul-Friedrich Koller,1002670,D,0,5,0,0,0,0.0,,1.0,1013037.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,Vladislav Torop,1083848,G,1,90,0,0,0,0.0,11.0,0.0,1587330.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,Milan Gajic,504033,D,1,90,1,0,0,0.01,32.0,1.0,1669595.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,João Victor,1047358,D,1,90,0,0,0,0.0,34.0,1.0,2661691.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,Kirill Danilov,1800905,D,1,90,1,0,0,0.02,36.0,1.0,1501843.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,Matheus,653592,D,1,90,0,0,0,0.0,38.0,1.0,
-5847257,2026-08-08,rus_premier,CSKA Moscow,Matvey Kislyak,1448015,M,1,90,3,2,0,0.15,65.0,2.0,22656912.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,Danil Krugovoy,807823,F,1,67,0,0,0,0.0,82.0,3.0,3279265.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,Ivan Oblyakov,772541,M,1,65,2,0,0,0.21,84.0,2.0,9385720.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,Dmitri Barinov,634287,M,1,65,1,0,0,0.09,86.0,2.0,5859054.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,Kirill Glebov,1448014,F,1,59,2,0,0,0.2,88.0,3.0,11690720.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,Luciano Gondou,1232258,F,1,59,1,1,0,0.06,115.0,3.0,7498365.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,Matija Popovic,1606580,F,0,31,1,0,0,0.09,,3.0,
-5847257,2026-08-08,rus_premier,CSKA Moscow,Tamerlan Musaev,1138071,F,0,31,0,0,0,0.0,,3.0,2726724.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,Matheus Alves,1733303,M,0,25,0,0,0,0.0,,2.0,8424157.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,Danila Kozlov,1447835,F,0,25,0,0,0,0.0,,3.0,4823280.0
-5847257,2026-08-08,rus_premier,CSKA Moscow,Imran Firov,1917220,F,0,23,1,0,0,0.01,,3.0,1158732.0
 5847257,2026-08-08,rus_premier,FC Rostov,Rustam Yatimov,1059627,G,1,90,0,0,0,0.0,11.0,0.0,1478470.0
 5847257,2026-08-08,rus_premier,FC Rostov,Viktor Melekhin,1279717,D,1,90,1,0,0,0.04,32.0,1.0,2965095.0
 5847257,2026-08-08,rus_premier,FC Rostov,Oumar Sako,1012798,D,1,90,1,0,0,0.03,34.0,1.0,1352919.0
@@ -17833,22 +17786,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000016452,2026-08-09,bol_division,Always Ready,Edisson Restrepo,973703,D,0,27,0,0,0,0.0,,1.0,153231.0
 1000016452,2026-08-09,bol_division,Always Ready,Darío Torrico,1213525,M,0,23,0,0,0,0.0,,2.0,322662.0
 1000016452,2026-08-09,bol_division,Always Ready,José Herrera,1210950,D,0,11,0,0,0,0.0,,1.0,
-5847140,2026-08-09,rus_premier,FC Orenburg,Bogdan Ovsyannikov,1027313,G,1,90,0,0,0,0.0,11.0,0.0,818395.0
-5847140,2026-08-09,rus_premier,FC Orenburg,Maxime Sivis,822680,D,1,90,0,0,0,0.0,32.0,1.0,478915.0
-5847140,2026-08-09,rus_premier,FC Orenburg,John Palacios,1433042,D,1,90,0,0,0,0.0,34.0,1.0,
-5847140,2026-08-09,rus_premier,FC Orenburg,Aleksei Tataev,640668,D,1,90,0,0,0,0.0,36.0,1.0,
-5847140,2026-08-09,rus_premier,FC Orenburg,Emil Tsenov,1411812,D,1,63,2,1,1,0.23,38.0,1.0,874419.0
-5847140,2026-08-09,rus_premier,FC Orenburg,Evgeny Bolotov,1066251,M,1,90,1,0,0,0.07,73.0,2.0,
-5847140,2026-08-09,rus_premier,FC Orenburg,Ruslan Kul,1204346,M,1,74,1,1,0,0.03,75.0,2.0,560812.0
-5847140,2026-08-09,rus_premier,FC Orenburg,Dmitri Rybchinskiy,865005,M,1,63,2,1,0,0.17,77.0,2.0,
-5847140,2026-08-09,rus_premier,FC Orenburg,Damián Puebla,1437366,M,1,81,2,0,0,0.12,103.0,2.0,1904782.0
-5847140,2026-08-09,rus_premier,FC Orenburg,Gedeon Guzina,979441,F,1,90,2,0,0,0.05,105.0,3.0,337133.0
-5847140,2026-08-09,rus_premier,FC Orenburg,Renat Golybin,1647278,F,1,74,3,0,0,0.19,107.0,3.0,746863.0
-5847140,2026-08-09,rus_premier,FC Orenburg,Danila Vedernikov,1087657,D,0,26,0,0,0,0.0,,1.0,650611.0
-5847140,2026-08-09,rus_premier,FC Orenburg,Andrey Kasadzhikov,2076297,F,0,26,0,0,0,0.0,,3.0,
-5847140,2026-08-09,rus_premier,FC Orenburg,Dmitriy Vasiljev,1339790,M,0,16,0,0,0,0.0,,2.0,1263669.0
-5847140,2026-08-09,rus_premier,FC Orenburg,Egor Nazarenko,1468796,F,0,16,0,0,0,0.0,,3.0,
-5847140,2026-08-09,rus_premier,FC Orenburg,Alexandre Jesus,1235639,F,0,9,0,0,0,0.0,,3.0,728139.0
 5811718,2026-08-09,bel_pro_league,Royal Antwerp,Taishi Brandon Nozawa,1134460,G,1,90,0,0,0,0.0,11.0,0.0,2015809.0
 5811718,2026-08-09,bel_pro_league,Royal Antwerp,Semm Renders,1676874,M,1,46,0,0,0,0.0,32.0,2.0,1526830.0
 5811718,2026-08-09,bel_pro_league,Royal Antwerp,Yuto Tsunashima,1437306,D,1,90,1,0,0,0.08,34.0,1.0,1334524.0
@@ -172210,3 +172147,64 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000017574,2026-11-01,aus_aleague,Adelaide United,Harry Crawford,1713669,F,0,45,1,0,0,0.0,,3.0,362243.0
 1000017574,2026-11-01,aus_aleague,Adelaide United,Ryan Kitto,497657,D,0,23,1,1,0,0.01,,1.0,142054.0
 1000017574,2026-11-01,aus_aleague,Adelaide United,Anselmo,202343,M,0,23,0,0,0,0.0,,2.0,128951.0
+5781788,2026-10-31,eredivisie,Cambuur,Thijs Jansen,1201749,G,1,90,0,0,0,0.0,11.0,0.0,569109.0
+5781788,2026-10-31,eredivisie,Cambuur,Devid Eugene Bouah,921598,D,1,82,1,0,0,0.14,32.0,1.0,525915.0
+5781788,2026-10-31,eredivisie,Cambuur,Ismaël Baouf,1572671,D,1,82,2,2,1,0.37,34.0,1.0,3612759.0
+5781788,2026-10-31,eredivisie,Cambuur,Billy van Duijl,1362137,D,1,82,2,1,1,0.13,36.0,1.0,1590950.0
+5781788,2026-10-31,eredivisie,Cambuur,Morgan Costarelli,1690090,D,1,82,2,0,0,0.07,38.0,1.0,
+5781788,2026-10-31,eredivisie,Cambuur,Mathieu Maertens,497572,M,1,68,1,0,0,0.05,73.0,2.0,254280.0
+5781788,2026-10-31,eredivisie,Cambuur,Nicky Souren,867309,M,1,78,0,0,0,0.0,75.0,2.0,353747.0
+5781788,2026-10-31,eredivisie,Cambuur,Rafik El Arguioui,1344244,M,1,81,3,1,1,0.47,77.0,2.0,774221.0
+5781788,2026-10-31,eredivisie,Cambuur,Jason Çeka,1210615,F,1,78,3,3,1,0.19,103.0,3.0,751821.0
+5781788,2026-10-31,eredivisie,Cambuur,Nicolas Binder,1195326,F,1,68,0,0,0,0.0,105.0,3.0,394093.0
+5781788,2026-10-31,eredivisie,Cambuur,Ilyès Hamache,1280182,F,1,82,1,0,0,0.11,107.0,3.0,908378.0
+5781788,2026-10-31,eredivisie,Cambuur,Ethan Apkakou,1893952,M,0,22,0,0,0,0.0,,2.0,726971.0
+5781788,2026-10-31,eredivisie,Cambuur,Sami Bouhoudane,1623572,F,0,22,0,0,0,0.0,,3.0,1147354.0
+5781788,2026-10-31,eredivisie,Cambuur,Daan Visser,1737697,M,0,12,0,0,0,0.0,,2.0,724348.0
+5781788,2026-10-31,eredivisie,Cambuur,Iwan Henstra,1541465,F,0,12,0,0,0,0.0,,3.0,209018.0
+5781788,2026-10-31,eredivisie,Cambuur,Skye Vink,1403394,F,0,9,0,0,0,0.0,,3.0,939665.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Jasper Cillessen,212512,G,1,90,0,0,0,0.0,11.0,0.0,143619.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Alfons Sampsted,635947,D,1,82,2,0,0,0.04,32.0,1.0,1122711.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Julius Dirksen,1218553,D,1,90,0,0,0,0.0,34.0,1.0,1036822.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Joris Kramer,629493,D,1,90,0,0,0,0.0,36.0,1.0,1053040.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Dean James,1180694,D,1,46,0,0,0,0.0,38.0,1.0,1195401.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Melle Meulensteen,864893,M,1,90,0,0,0,0.0,64.0,2.0,1721413.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Evert Linthorst,935623,M,1,46,0,0,0,0.0,66.0,2.0,1233581.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Oskar Siira Sivertsen,1139499,F,1,46,0,0,0,0.0,83.0,3.0,764175.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Søren Tengstedt,1060542,F,1,82,2,0,0,0.09,85.0,3.0,497206.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Mathis Suray,1192848,F,1,81,0,0,0,0.0,87.0,3.0,2208168.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Victor Edvardsen,658222,M,1,75,0,0,0,0.0,115.0,2.0,1154761.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Tomas Galvez,1424835,D,0,44,0,0,0,0.0,,1.0,1219761.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Stefán Sigurðarson,1044355,F,0,37,3,0,0,0.09,,3.0,1760138.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Thibo Baeten,1047663,F,0,37,3,1,0,0.38,,3.0,659885.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Richonell Margaret,1014841,F,0,15,0,0,0,0.0,,3.0,665255.0
+5781788,2026-10-31,eredivisie,Go Ahead Eagles,Yassir Salah Rahmouni,1794261,M,0,9,0,0,0,0.0,,2.0,1229990.0
+5847220,2026-11-01,rus_premier,FC Orenburg,Bogdan Ovsyannikov,1027313,G,1,90,0,0,0,0.0,11.0,0.0,973065.0
+5847220,2026-11-01,rus_premier,FC Orenburg,Maxime Sivis,822680,D,1,90,0,0,0,0.0,32.0,1.0,682110.0
+5847220,2026-11-01,rus_premier,FC Orenburg,Jhon Palacios,1433042,D,1,90,1,0,0,0.06,34.0,1.0,
+5847220,2026-11-01,rus_premier,FC Orenburg,Aleksei Tataev,640668,D,1,90,1,1,0,0.15,36.0,1.0,725387.0
+5847220,2026-11-01,rus_premier,FC Orenburg,Emil Tsenov,1411812,D,1,90,2,0,0,0.07,38.0,1.0,1025322.0
+5847220,2026-11-01,rus_premier,FC Orenburg,Ruslan Kul,1204346,M,1,90,3,1,0,0.38,64.0,2.0,670611.0
+5847220,2026-11-01,rus_premier,FC Orenburg,Evgeny Bolotov,1066251,M,1,90,0,0,0,0.0,66.0,2.0,982293.0
+5847220,2026-11-01,rus_premier,FC Orenburg,Jordhy Thompson,1252233,F,1,82,1,1,0,0.04,83.0,3.0,1264755.0
+5847220,2026-11-01,rus_premier,FC Orenburg,Damián Puebla,1437366,M,1,79,3,2,0,0.28,85.0,2.0,1998618.0
+5847220,2026-11-01,rus_premier,FC Orenburg,Dmitri Rybchinskiy,865005,F,1,82,0,0,0,0.0,87.0,3.0,357708.0
+5847220,2026-11-01,rus_premier,FC Orenburg,Gedeon Guzina,979441,F,1,89,1,0,0,0.02,115.0,3.0,339599.0
+5847220,2026-11-01,rus_premier,FC Orenburg,Andrey Kasadzhikov,2076297,F,0,11,0,0,0,0.0,,3.0,
+5847220,2026-11-01,rus_premier,FC Orenburg,Anton Lukashov,1635709,D,0,8,0,0,0,0.0,,1.0,321762.0
+5847220,2026-11-01,rus_premier,FC Orenburg,Renat Golybin,1647278,F,0,8,1,0,0,0.09,,3.0,773957.0
+5847220,2026-11-01,rus_premier,FC Orenburg,Egor Nazarenko,1468796,M,0,1,0,0,0,0.0,,2.0,
+5847220,2026-11-01,rus_premier,CSKA Moscow,Maksim Borisko,863717,G,1,90,0,0,0,0.0,11.0,0.0,1773473.0
+5847220,2026-11-01,rus_premier,CSKA Moscow,Matvey Lukin,1353027,D,1,90,0,0,0,0.0,33.0,1.0,5198107.0
+5847220,2026-11-01,rus_premier,CSKA Moscow,Dzhamalutdin Abdulkadyrov,1655751,D,1,90,0,0,0,0.0,35.0,1.0,893064.0
+5847220,2026-11-01,rus_premier,CSKA Moscow,Kirill Danilov,1800905,D,1,90,0,0,0,0.0,37.0,1.0,3339112.0
+5847220,2026-11-01,rus_premier,CSKA Moscow,Mohamed Azzi,1520107,D,1,90,1,0,0,0.06,51.0,1.0,1047108.0
+5847220,2026-11-01,rus_premier,CSKA Moscow,Danil Krugovoy,807823,D,1,90,1,1,0,0.01,59.0,1.0,4883298.0
+5847220,2026-11-01,rus_premier,CSKA Moscow,Ivan Oblyakov,772541,M,1,90,1,0,0,0.02,73.0,2.0,10440056.0
+5847220,2026-11-01,rus_premier,CSKA Moscow,Matvey Kislyak,1448015,M,1,90,2,1,0,0.14,75.0,2.0,26695769.0
+5847220,2026-11-01,rus_premier,CSKA Moscow,Ivan Oleynikov,1026618,F,1,81,1,1,0,0.03,77.0,3.0,1481699.0
+5847220,2026-11-01,rus_premier,CSKA Moscow,Kirill Glebov,1448014,F,1,88,3,0,0,0.15,104.0,3.0,13052586.0
+5847220,2026-11-01,rus_premier,CSKA Moscow,Tamerlan Musaev,1138071,F,1,56,1,0,0,0.16,106.0,3.0,1714834.0
+5847220,2026-11-01,rus_premier,CSKA Moscow,Luciano Gondou,1232258,F,0,34,0,0,0,0.0,,3.0,8402606.0
+5847220,2026-11-01,rus_premier,CSKA Moscow,Matheus Alves,1733303,M,0,9,2,1,0,0.05,,2.0,7817175.0
+5847220,2026-11-01,rus_premier,CSKA Moscow,Henrique Carmo,1636880,F,0,2,0,0,0,0.0,,3.0,6716236.0

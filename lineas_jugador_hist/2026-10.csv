@@ -274282,45 +274282,45 @@ fecha,clave_liga,home,away,jugador,equipo,objetivo,linea,cuota_primera,cuota,cap
 2026-10-31,eng_championship,Burnley,Portsmouth,Zeki Amdouni,BRN,tot,2.5,1.4546,1.4546,2026-10-29T04:47:17Z,,
 2026-10-31,eng_championship,Burnley,Portsmouth,Zeki Amdouni,BRN,tot,3.5,2.1429,2.1429,2026-10-29T04:47:17Z,,
 2026-10-31,eng_championship,Burnley,Portsmouth,Zeki Amdouni,BRN,tot,4.5,3.6,3.6,2026-10-29T04:47:17Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Alfons Sampsted,GAE,on,0.5,4.0,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Alfons Sampsted,GAE,tot,0.5,1.9,1.875,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Alfons Sampsted,GAE,tot,1.5,5.0,5.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Billy van Duijl,CAM,on,0.5,3.8,3.8,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Billy van Duijl,CAM,tot,0.5,1.75,1.75,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Billy van Duijl,CAM,tot,1.5,4.5,4.5,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Alfons Sampsted,GAE,on,0.5,4.0,4.0,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Alfons Sampsted,GAE,tot,0.5,1.9,1.875,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Alfons Sampsted,GAE,tot,1.5,5.0,5.0,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Billy van Duijl,CAM,on,0.5,3.8,3.8,2026-10-31T17:20:45Z,1,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Billy van Duijl,CAM,tot,0.5,1.75,1.75,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Billy van Duijl,CAM,tot,1.5,4.5,4.5,2026-10-31T17:20:45Z,2,82
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Damian Westerhof,CAM,on,0.5,2.1429,2.6667,2026-10-30T23:58:52Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Damian Westerhof,CAM,on,1.5,7.5,11.0,2026-10-30T23:58:52Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Damian Westerhof,CAM,tot,0.5,1.32,1.32,2026-10-30T23:58:52Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Damian Westerhof,CAM,tot,1.5,2.5455,2.5455,2026-10-30T23:58:52Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Damian Westerhof,CAM,tot,2.5,5.5,5.5,2026-10-30T23:58:52Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Dean James,GAE,on,0.5,3.4,3.3334,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Dean James,GAE,on,1.5,18.0,17.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Dean James,GAE,tot,0.5,1.48,1.48,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Dean James,GAE,tot,1.5,3.2,3.2,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,on,0.5,3.2,3.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,on,1.5,17.0,14.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,tot,0.5,1.5,1.4546,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,tot,1.5,3.3334,3.1,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Dean James,GAE,on,0.5,3.4,3.3334,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Dean James,GAE,on,1.5,18.0,17.0,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Dean James,GAE,tot,0.5,1.48,1.48,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Dean James,GAE,tot,1.5,3.2,3.2,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,on,0.5,3.2,3.0,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,on,1.5,17.0,14.0,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,tot,0.5,1.5,1.4546,2026-10-31T17:20:45Z,1,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,tot,1.5,3.3334,3.1,2026-10-31T17:20:45Z,1,82
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Erik Flataker Hovden,GAE,on,0.5,1.25,1.2308,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Erik Flataker Hovden,GAE,on,1.5,2.4,2.3,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Erik Flataker Hovden,GAE,on,2.5,5.5,5.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Erik Flataker Hovden,GAE,tot,2.5,1.4546,1.4546,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Erik Flataker Hovden,GAE,tot,3.5,2.1429,2.1429,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Erik Flataker Hovden,GAE,tot,4.5,3.5,3.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,on,0.5,2.5,2.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,on,1.5,10.0,11.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,tot,0.5,1.2728,1.2728,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,tot,1.5,2.3,2.3,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,tot,2.5,5.0,5.0,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,on,0.5,2.5,2.6,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,on,1.5,10.0,11.0,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,tot,0.5,1.2728,1.2728,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,tot,1.5,2.3,2.3,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,tot,2.5,5.0,5.0,2026-10-31T17:20:45Z,0,22
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Eus Waayers,GAE,on,0.5,3.2,3.2,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Eus Waayers,GAE,on,1.5,16.0,16.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Eus Waayers,GAE,tot,0.5,1.5834,1.5834,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Eus Waayers,GAE,tot,1.5,3.6667,3.6667,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,on,0.5,2.2,2.2,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,on,1.5,8.0,8.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,tot,0.5,1.1819,1.1819,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,tot,1.5,1.95,1.95,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,tot,2.5,4.0,4.0,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,on,0.5,2.2,2.2,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,on,1.5,8.0,8.0,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,tot,0.5,1.1819,1.1819,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,tot,1.5,1.95,1.95,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,tot,2.5,4.0,4.0,2026-10-31T17:20:45Z,0,46
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Fabian Kvam,CAM,on,0.5,1.95,2.05,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Fabian Kvam,CAM,on,1.5,6.0,6.5,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Fabian Kvam,CAM,tot,1.5,1.3847,1.35,2026-10-31T17:20:45Z,,
@@ -274333,90 +274333,90 @@ fecha,clave_liga,home,away,jugador,equipo,objetivo,linea,cuota_primera,cuota,cap
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Giovanni Van Zwam,GAE,on,0.5,3.8,3.8,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Giovanni Van Zwam,GAE,tot,0.5,1.75,1.75,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Giovanni Van Zwam,GAE,tot,1.5,4.5,4.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,on,0.5,1.5455,1.5455,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,on,1.5,4.0,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,tot,1.5,1.35,1.35,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,tot,2.5,2.1429,2.1429,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,tot,3.5,3.8,3.8,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,on,0.5,3.1,2.7143,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,on,1.5,15.0,11.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,tot,0.5,1.52,1.4167,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,tot,1.5,3.5,3.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,on,0.5,1.52,1.5834,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,on,1.5,3.6667,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,tot,1.5,1.3,1.3,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,tot,2.5,1.95,1.95,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,tot,3.5,3.4,3.4,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jason Ceka,CAM,on,0.5,1.7778,1.7778,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jason Ceka,CAM,on,1.5,5.0,5.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jason Ceka,CAM,tot,0.5,1.06,1.06,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jason Ceka,CAM,tot,1.5,1.5,1.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jason Ceka,CAM,tot,2.5,2.5,2.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Joris Kramer,GAE,on,0.5,3.6667,3.6667,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Joris Kramer,GAE,on,1.5,20.0,20.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Joris Kramer,GAE,tot,0.5,1.7143,1.7143,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Joris Kramer,GAE,tot,1.5,4.25,4.25,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,on,0.5,1.5455,1.5455,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,on,1.5,4.0,4.0,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,tot,1.5,1.35,1.35,2026-10-31T17:20:45Z,1,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,tot,2.5,2.1429,2.1429,2026-10-31T17:20:45Z,1,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,tot,3.5,3.8,3.8,2026-10-31T17:20:45Z,1,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,on,0.5,3.1,2.7143,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,on,1.5,15.0,11.0,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,tot,0.5,1.52,1.4167,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,tot,1.5,3.5,3.0,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,on,0.5,1.52,1.5834,2026-10-31T17:20:45Z,0,12
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,on,1.5,3.6667,4.0,2026-10-31T17:20:45Z,0,12
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,tot,1.5,1.3,1.3,2026-10-31T17:20:45Z,0,12
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,tot,2.5,1.95,1.95,2026-10-31T17:20:45Z,0,12
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,tot,3.5,3.4,3.4,2026-10-31T17:20:45Z,0,12
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jason Ceka,CAM,on,0.5,1.7778,1.7778,2026-10-31T17:20:45Z,3,78
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jason Ceka,CAM,on,1.5,5.0,5.0,2026-10-31T17:20:45Z,3,78
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jason Ceka,CAM,tot,0.5,1.06,1.06,2026-10-31T17:20:45Z,3,78
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jason Ceka,CAM,tot,1.5,1.5,1.5,2026-10-31T17:20:45Z,3,78
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jason Ceka,CAM,tot,2.5,2.5,2.5,2026-10-31T17:20:45Z,3,78
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Joris Kramer,GAE,on,0.5,3.6667,3.6667,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Joris Kramer,GAE,on,1.5,20.0,20.0,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Joris Kramer,GAE,tot,0.5,1.7143,1.7143,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Joris Kramer,GAE,tot,1.5,4.25,4.25,2026-10-31T17:20:45Z,0,90
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jorn Berkhout,CAM,on,0.5,3.2,3.2,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jorn Berkhout,CAM,on,1.5,16.0,16.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jorn Berkhout,CAM,tot,0.5,1.6471,1.5455,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Jorn Berkhout,CAM,tot,1.5,4.0,3.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,on,0.5,3.4,3.4,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,on,1.5,18.0,18.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,tot,0.5,1.6154,1.6154,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,tot,1.5,4.0,4.0,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,on,0.5,3.4,3.4,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,on,1.5,18.0,18.0,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,tot,0.5,1.6154,1.6154,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,tot,1.5,4.0,4.0,2026-10-31T17:20:45Z,0,90
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Lucas Jetten,CAM,on,0.5,3.6,3.4,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Lucas Jetten,CAM,on,1.5,20.0,18.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Lucas Jetten,CAM,tot,0.5,1.6471,1.5455,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Lucas Jetten,CAM,tot,1.5,4.0,3.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,on,0.5,1.6154,1.6154,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,on,1.5,4.25,4.25,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,tot,1.5,1.3,1.3,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,tot,2.5,1.95,1.95,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,tot,3.5,3.4,3.4,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathis Suray,GAE,on,0.5,1.4546,1.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathis Suray,GAE,on,1.5,3.3334,3.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathis Suray,GAE,tot,1.5,1.1819,1.1819,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathis Suray,GAE,tot,2.5,1.68,1.68,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathis Suray,GAE,tot,3.5,2.6667,2.6667,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,on,0.5,1.7,1.75,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,on,1.5,4.5,5.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,tot,1.5,1.3,1.3847,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,tot,2.5,1.95,2.2,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,tot,3.5,3.4,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,on,0.5,3.3334,3.1,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,on,1.5,17.0,15.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,tot,0.5,1.52,1.4167,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,tot,1.5,3.5,3.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicky Souren,CAM,on,0.5,2.7143,2.7143,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicky Souren,CAM,on,1.5,11.0,11.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicky Souren,CAM,tot,0.5,1.3847,1.3847,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicky Souren,CAM,tot,1.5,2.8,2.8,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,on,0.5,1.3847,1.4167,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,on,1.5,3.0,3.1,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,tot,1.5,1.1819,1.1819,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,tot,2.5,1.6154,1.6154,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,tot,3.5,2.6,2.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,on,0.5,1.4167,1.4167,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,on,1.5,3.1,3.2,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,tot,1.5,1.2308,1.25,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,tot,2.5,1.75,1.8182,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,tot,3.5,2.9,3.0,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,on,0.5,1.6154,1.6154,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,on,1.5,4.25,4.25,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,tot,1.5,1.3,1.3,2026-10-31T17:20:45Z,1,68
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,tot,2.5,1.95,1.95,2026-10-31T17:20:45Z,1,68
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,tot,3.5,3.4,3.4,2026-10-31T17:20:45Z,1,68
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathis Suray,GAE,on,0.5,1.4546,1.5,2026-10-31T17:20:45Z,0,81
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathis Suray,GAE,on,1.5,3.3334,3.5,2026-10-31T17:20:45Z,0,81
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathis Suray,GAE,tot,1.5,1.1819,1.1819,2026-10-31T17:20:45Z,0,81
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathis Suray,GAE,tot,2.5,1.68,1.68,2026-10-31T17:20:45Z,0,81
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Mathis Suray,GAE,tot,3.5,2.6667,2.6667,2026-10-31T17:20:45Z,0,81
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,on,0.5,1.7,1.75,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,on,1.5,4.5,5.0,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,tot,1.5,1.3,1.3847,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,tot,2.5,1.95,2.2,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,tot,3.5,3.4,4.0,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,on,0.5,3.3334,3.1,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,on,1.5,17.0,15.0,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,tot,0.5,1.52,1.4167,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,tot,1.5,3.5,3.0,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicky Souren,CAM,on,0.5,2.7143,2.7143,2026-10-31T17:20:45Z,0,78
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicky Souren,CAM,on,1.5,11.0,11.0,2026-10-31T17:20:45Z,0,78
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicky Souren,CAM,tot,0.5,1.3847,1.3847,2026-10-31T17:20:45Z,0,78
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicky Souren,CAM,tot,1.5,2.8,2.8,2026-10-31T17:20:45Z,0,78
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,on,0.5,1.3847,1.4167,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,on,1.5,3.0,3.1,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,tot,1.5,1.1819,1.1819,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,tot,2.5,1.6154,1.6154,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,tot,3.5,2.6,2.6,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,on,0.5,1.4167,1.4167,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,on,1.5,3.1,3.2,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,tot,1.5,1.2308,1.25,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,tot,2.5,1.75,1.8182,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,tot,3.5,2.9,3.0,2026-10-31T17:20:45Z,0,46
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Pim Saathof,GAE,on,0.5,2.05,2.05,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Pim Saathof,GAE,on,1.5,7.0,6.5,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Pim Saathof,GAE,tot,0.5,1.25,1.25,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Pim Saathof,GAE,tot,1.5,2.25,2.25,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Pim Saathof,GAE,tot,2.5,4.75,4.75,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,on,0.5,1.32,1.35,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,on,1.5,2.75,2.8572,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,on,2.5,7.0,7.0,2026-10-30T09:43:55Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,tot,1.5,1.1667,1.1667,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,tot,2.5,1.6,1.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,tot,3.5,2.5,2.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,on,0.5,1.875,1.875,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,on,1.5,5.5,5.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,tot,0.5,1.1,1.1,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,tot,1.5,1.68,1.68,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,tot,2.5,3.0,3.0,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,on,0.5,1.32,1.35,2026-10-31T17:20:45Z,1,81
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,on,1.5,2.75,2.8572,2026-10-31T17:20:45Z,1,81
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,on,2.5,7.0,7.0,2026-10-30T09:43:55Z,1,81
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,tot,1.5,1.1667,1.1667,2026-10-31T17:20:45Z,3,81
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,tot,2.5,1.6,1.6,2026-10-31T17:20:45Z,3,81
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,tot,3.5,2.5,2.5,2026-10-31T17:20:45Z,3,81
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,on,0.5,1.875,1.875,2026-10-31T17:20:45Z,0,15
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,on,1.5,5.5,5.5,2026-10-31T17:20:45Z,0,15
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,tot,0.5,1.1,1.1,2026-10-31T17:20:45Z,0,15
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,tot,1.5,1.68,1.68,2026-10-31T17:20:45Z,0,15
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,tot,2.5,3.0,3.0,2026-10-31T17:20:45Z,0,15
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rik Mulders,CAM,on,0.5,2.8,2.7143,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rik Mulders,CAM,on,1.5,12.0,11.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Rik Mulders,CAM,tot,0.5,1.3847,1.3847,2026-10-31T17:20:45Z,,
@@ -274426,16 +274426,16 @@ fecha,clave_liga,home,away,jugador,equipo,objetivo,linea,cuota_primera,cuota,cap
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Robbin Weijenberg,GAE,tot,0.5,1.077,1.125,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Robbin Weijenberg,GAE,tot,1.5,1.6,1.75,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Robbin Weijenberg,GAE,tot,2.5,2.8,3.2,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,on,0.5,1.35,1.3847,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,on,1.5,2.8572,3.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,tot,1.5,1.1819,1.1819,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,tot,2.5,1.6471,1.6471,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,tot,3.5,2.6667,2.6667,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Skye Vink,CAM,on,0.5,1.5455,1.52,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Skye Vink,CAM,on,1.5,4.0,3.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Skye Vink,CAM,tot,1.5,1.3,1.2858,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Skye Vink,CAM,tot,2.5,1.95,1.9,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Skye Vink,CAM,tot,3.5,3.4,3.3334,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,on,0.5,1.35,1.3847,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,on,1.5,2.8572,3.0,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,tot,1.5,1.1819,1.1819,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,tot,2.5,1.6471,1.6471,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,tot,3.5,2.6667,2.6667,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Skye Vink,CAM,on,0.5,1.5455,1.52,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Skye Vink,CAM,on,1.5,4.0,3.6,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Skye Vink,CAM,tot,1.5,1.3,1.2858,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Skye Vink,CAM,tot,2.5,1.95,1.9,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Skye Vink,CAM,tot,3.5,3.4,3.3334,2026-10-31T17:20:45Z,0,9
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Soren Tengstedt,GAE,on,0.5,1.2308,1.25,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Soren Tengstedt,GAE,on,1.5,2.3,2.4,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Soren Tengstedt,GAE,on,2.5,5.0,5.5,2026-10-31T17:20:45Z,,
@@ -274448,24 +274448,24 @@ fecha,clave_liga,home,away,jugador,equipo,objetivo,linea,cuota_primera,cuota,cap
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Stefan Ingi Sigurdarson,GAE,tot,1.5,1.1429,1.1429,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Stefan Ingi Sigurdarson,GAE,tot,2.5,1.5455,1.5455,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Stefan Ingi Sigurdarson,GAE,tot,3.5,2.3637,2.3637,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,on,0.5,1.5834,1.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,on,1.5,4.0,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,tot,1.5,1.2858,1.2858,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,tot,2.5,1.95,1.95,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,tot,3.5,3.3334,3.3334,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,on,0.5,1.5834,1.6,2026-10-31T17:20:45Z,1,37
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,on,1.5,4.0,4.0,2026-10-31T17:20:45Z,1,37
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,tot,1.5,1.2858,1.2858,2026-10-31T17:20:45Z,3,37
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,tot,2.5,1.95,1.95,2026-10-31T17:20:45Z,3,37
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,tot,3.5,3.3334,3.3334,2026-10-31T17:20:45Z,3,37
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Tino Jukic,GAE,on,0.5,3.6,3.6,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Tino Jukic,GAE,on,1.5,20.0,20.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Tino Jukic,GAE,tot,0.5,1.6,1.6,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Tino Jukic,GAE,tot,1.5,3.8,3.8,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,on,0.5,3.5,3.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,on,1.5,19.0,19.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,tot,0.5,1.68,1.68,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,tot,1.5,4.0,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,on,0.5,1.6154,1.6154,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,on,1.5,4.0,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,tot,1.5,1.32,1.32,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,tot,2.5,2.0,2.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,tot,3.5,3.5,3.5,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,on,0.5,3.5,3.5,2026-10-31T17:20:45Z,0,44
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,on,1.5,19.0,19.0,2026-10-31T17:20:45Z,0,44
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,tot,0.5,1.68,1.68,2026-10-31T17:20:45Z,0,44
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,tot,1.5,4.0,4.0,2026-10-31T17:20:45Z,0,44
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,on,0.5,1.6154,1.6154,2026-10-31T17:20:45Z,0,75
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,on,1.5,4.0,4.0,2026-10-31T17:20:45Z,0,75
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,tot,1.5,1.32,1.32,2026-10-31T17:20:45Z,0,75
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,tot,2.5,2.0,2.0,2026-10-31T17:20:45Z,0,75
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,tot,3.5,3.5,3.5,2026-10-31T17:20:45Z,0,75
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Wessel van der Goot,CAM,on,0.5,1.8,1.8,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Wessel van der Goot,CAM,on,1.5,5.0,5.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Wessel van der Goot,CAM,tot,0.5,1.077,1.077,2026-10-31T17:20:45Z,,
@@ -274481,11 +274481,11 @@ fecha,clave_liga,home,away,jugador,equipo,objetivo,linea,cuota_primera,cuota,cap
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Wiebe van der Heide,CAM,tot,1.5,1.3847,1.3847,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Wiebe van der Heide,CAM,tot,2.5,2.1429,2.1429,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Wiebe van der Heide,CAM,tot,3.5,4.0,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,on,0.5,2.1,2.3637,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,on,1.5,7.5,9.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,tot,0.5,1.1539,1.2308,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,tot,1.5,1.9,2.1429,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,tot,2.5,3.6667,4.5,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,on,0.5,2.1,2.3637,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,on,1.5,7.5,9.0,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,tot,0.5,1.1539,1.2308,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,tot,1.5,1.9,2.1429,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,tot,2.5,3.6667,4.5,2026-10-31T17:20:45Z,0,9
 2026-10-31,ita_serie_b,Catanzaro,Padova,Alessandro Capelli,PAD,on,0.5,1.6471,1.7,2026-10-31T15:46:23Z,0,90
 2026-10-31,ita_serie_b,Catanzaro,Padova,Alessandro Capelli,PAD,on,1.5,4.5,4.5,2026-10-31T15:46:23Z,0,90
 2026-10-31,ita_serie_b,Catanzaro,Padova,Alessandro Capelli,PAD,tot,0.5,1.05,1.05,2026-10-31T15:46:23Z,0,90
@@ -287727,45 +287727,45 @@ fecha,clave_liga,home,away,jugador,equipo,objetivo,linea,cuota_primera,cuota,cap
 2026-10-31,esp_hypermotion,Real Sociedad II,Girona,Álex Moreno,GIR,on,1.5,14.0,17.0,2026-10-31T12:47:13Z,0,90
 2026-10-31,esp_hypermotion,Real Sociedad II,Girona,Álex Moreno,GIR,tot,0.5,1.4167,1.5,2026-10-31T12:47:13Z,1,90
 2026-10-31,esp_hypermotion,Real Sociedad II,Girona,Álex Moreno,GIR,tot,1.5,3.0,3.3334,2026-10-31T12:47:13Z,1,90
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Alfons Sampsted,GAE,on,0.5,4.0,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Alfons Sampsted,GAE,tot,0.5,1.9,1.875,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Alfons Sampsted,GAE,tot,1.5,5.0,5.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Billy van Duijl,CAM,on,0.5,3.8,3.8,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Billy van Duijl,CAM,tot,0.5,1.75,1.75,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Billy van Duijl,CAM,tot,1.5,4.5,4.5,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Alfons Sampsted,GAE,on,0.5,4.0,4.0,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Alfons Sampsted,GAE,tot,0.5,1.9,1.875,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Alfons Sampsted,GAE,tot,1.5,5.0,5.0,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Billy van Duijl,CAM,on,0.5,3.8,3.8,2026-10-31T17:20:45Z,1,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Billy van Duijl,CAM,tot,0.5,1.75,1.75,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Billy van Duijl,CAM,tot,1.5,4.5,4.5,2026-10-31T17:20:45Z,2,82
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Damian Westerhof,CAM,on,0.5,2.1429,2.6667,2026-10-30T23:58:52Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Damian Westerhof,CAM,on,1.5,7.5,11.0,2026-10-30T23:58:52Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Damian Westerhof,CAM,tot,0.5,1.32,1.32,2026-10-30T23:58:52Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Damian Westerhof,CAM,tot,1.5,2.5455,2.5455,2026-10-30T23:58:52Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Damian Westerhof,CAM,tot,2.5,5.5,5.5,2026-10-30T23:58:52Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Dean James,GAE,on,0.5,3.4,3.3334,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Dean James,GAE,on,1.5,18.0,17.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Dean James,GAE,tot,0.5,1.48,1.48,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Dean James,GAE,tot,1.5,3.2,3.2,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,on,0.5,3.2,3.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,on,1.5,17.0,14.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,tot,0.5,1.5,1.4546,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,tot,1.5,3.3334,3.1,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Dean James,GAE,on,0.5,3.4,3.3334,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Dean James,GAE,on,1.5,18.0,17.0,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Dean James,GAE,tot,0.5,1.48,1.48,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Dean James,GAE,tot,1.5,3.2,3.2,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,on,0.5,3.2,3.0,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,on,1.5,17.0,14.0,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,tot,0.5,1.5,1.4546,2026-10-31T17:20:45Z,1,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Devid Eugene Bouah,CAM,tot,1.5,3.3334,3.1,2026-10-31T17:20:45Z,1,82
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Erik Flataker Hovden,GAE,on,0.5,1.25,1.2308,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Erik Flataker Hovden,GAE,on,1.5,2.4,2.3,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Erik Flataker Hovden,GAE,on,2.5,5.5,5.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Erik Flataker Hovden,GAE,tot,2.5,1.4546,1.4546,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Erik Flataker Hovden,GAE,tot,3.5,2.1429,2.1429,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Erik Flataker Hovden,GAE,tot,4.5,3.5,3.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,on,0.5,2.5,2.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,on,1.5,10.0,11.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,tot,0.5,1.2728,1.2728,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,tot,1.5,2.3,2.3,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,tot,2.5,5.0,5.0,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,on,0.5,2.5,2.6,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,on,1.5,10.0,11.0,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,tot,0.5,1.2728,1.2728,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,tot,1.5,2.3,2.3,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ethan Apkakou,CAM,tot,2.5,5.0,5.0,2026-10-31T17:20:45Z,0,22
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Eus Waayers,GAE,on,0.5,3.2,3.2,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Eus Waayers,GAE,on,1.5,16.0,16.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Eus Waayers,GAE,tot,0.5,1.5834,1.5834,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Eus Waayers,GAE,tot,1.5,3.6667,3.6667,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,on,0.5,2.2,2.2,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,on,1.5,8.0,8.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,tot,0.5,1.1819,1.1819,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,tot,1.5,1.95,1.95,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,tot,2.5,4.0,4.0,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,on,0.5,2.2,2.2,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,on,1.5,8.0,8.0,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,tot,0.5,1.1819,1.1819,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,tot,1.5,1.95,1.95,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Evert Linthorst,GAE,tot,2.5,4.0,4.0,2026-10-31T17:20:45Z,0,46
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Fabian Kvam,CAM,on,0.5,1.95,2.05,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Fabian Kvam,CAM,on,1.5,6.0,6.5,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Fabian Kvam,CAM,tot,1.5,1.3847,1.35,2026-10-31T17:20:45Z,,
@@ -287778,90 +287778,90 @@ fecha,clave_liga,home,away,jugador,equipo,objetivo,linea,cuota_primera,cuota,cap
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Giovanni Van Zwam,GAE,on,0.5,3.8,3.8,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Giovanni Van Zwam,GAE,tot,0.5,1.75,1.75,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Giovanni Van Zwam,GAE,tot,1.5,4.5,4.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,on,0.5,1.5455,1.5455,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,on,1.5,4.0,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,tot,1.5,1.35,1.35,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,tot,2.5,2.1429,2.1429,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,tot,3.5,3.8,3.8,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,on,0.5,3.1,2.7143,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,on,1.5,15.0,11.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,tot,0.5,1.52,1.4167,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,tot,1.5,3.5,3.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,on,0.5,1.52,1.5834,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,on,1.5,3.6667,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,tot,1.5,1.3,1.3,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,tot,2.5,1.95,1.95,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,tot,3.5,3.4,3.4,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jason Ceka,CAM,on,0.5,1.7778,1.7778,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jason Ceka,CAM,on,1.5,5.0,5.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jason Ceka,CAM,tot,0.5,1.06,1.06,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jason Ceka,CAM,tot,1.5,1.5,1.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jason Ceka,CAM,tot,2.5,2.5,2.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Joris Kramer,GAE,on,0.5,3.6667,3.6667,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Joris Kramer,GAE,on,1.5,20.0,20.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Joris Kramer,GAE,tot,0.5,1.7143,1.7143,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Joris Kramer,GAE,tot,1.5,4.25,4.25,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,on,0.5,1.5455,1.5455,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,on,1.5,4.0,4.0,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,tot,1.5,1.35,1.35,2026-10-31T17:20:45Z,1,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,tot,2.5,2.1429,2.1429,2026-10-31T17:20:45Z,1,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ilyes Hamache,CAM,tot,3.5,3.8,3.8,2026-10-31T17:20:45Z,1,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,on,0.5,3.1,2.7143,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,on,1.5,15.0,11.0,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,tot,0.5,1.52,1.4167,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Ismael Baouf,CAM,tot,1.5,3.5,3.0,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,on,0.5,1.52,1.5834,2026-10-31T17:20:45Z,0,12
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,on,1.5,3.6667,4.0,2026-10-31T17:20:45Z,0,12
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,tot,1.5,1.3,1.3,2026-10-31T17:20:45Z,0,12
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,tot,2.5,1.95,1.95,2026-10-31T17:20:45Z,0,12
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Iwan Henstra,CAM,tot,3.5,3.4,3.4,2026-10-31T17:20:45Z,0,12
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jason Ceka,CAM,on,0.5,1.7778,1.7778,2026-10-31T17:20:45Z,3,78
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jason Ceka,CAM,on,1.5,5.0,5.0,2026-10-31T17:20:45Z,3,78
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jason Ceka,CAM,tot,0.5,1.06,1.06,2026-10-31T17:20:45Z,3,78
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jason Ceka,CAM,tot,1.5,1.5,1.5,2026-10-31T17:20:45Z,3,78
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jason Ceka,CAM,tot,2.5,2.5,2.5,2026-10-31T17:20:45Z,3,78
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Joris Kramer,GAE,on,0.5,3.6667,3.6667,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Joris Kramer,GAE,on,1.5,20.0,20.0,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Joris Kramer,GAE,tot,0.5,1.7143,1.7143,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Joris Kramer,GAE,tot,1.5,4.25,4.25,2026-10-31T17:20:45Z,0,90
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jorn Berkhout,CAM,on,0.5,3.2,3.2,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jorn Berkhout,CAM,on,1.5,16.0,16.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jorn Berkhout,CAM,tot,0.5,1.6471,1.5455,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Jorn Berkhout,CAM,tot,1.5,4.0,3.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,on,0.5,3.4,3.4,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,on,1.5,18.0,18.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,tot,0.5,1.6154,1.6154,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,tot,1.5,4.0,4.0,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,on,0.5,3.4,3.4,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,on,1.5,18.0,18.0,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,tot,0.5,1.6154,1.6154,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Julius Dirksen,GAE,tot,1.5,4.0,4.0,2026-10-31T17:20:45Z,0,90
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Lucas Jetten,CAM,on,0.5,3.6,3.4,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Lucas Jetten,CAM,on,1.5,20.0,18.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Lucas Jetten,CAM,tot,0.5,1.6471,1.5455,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Lucas Jetten,CAM,tot,1.5,4.0,3.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,on,0.5,1.6154,1.6154,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,on,1.5,4.25,4.25,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,tot,1.5,1.3,1.3,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,tot,2.5,1.95,1.95,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,tot,3.5,3.4,3.4,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathis Suray,GAE,on,0.5,1.4546,1.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathis Suray,GAE,on,1.5,3.3334,3.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathis Suray,GAE,tot,1.5,1.1819,1.1819,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathis Suray,GAE,tot,2.5,1.68,1.68,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathis Suray,GAE,tot,3.5,2.6667,2.6667,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,on,0.5,1.7,1.75,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,on,1.5,4.5,5.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,tot,1.5,1.3,1.3847,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,tot,2.5,1.95,2.2,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,tot,3.5,3.4,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,on,0.5,3.3334,3.1,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,on,1.5,17.0,15.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,tot,0.5,1.52,1.4167,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,tot,1.5,3.5,3.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicky Souren,CAM,on,0.5,2.7143,2.7143,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicky Souren,CAM,on,1.5,11.0,11.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicky Souren,CAM,tot,0.5,1.3847,1.3847,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicky Souren,CAM,tot,1.5,2.8,2.8,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,on,0.5,1.3847,1.4167,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,on,1.5,3.0,3.1,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,tot,1.5,1.1819,1.1819,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,tot,2.5,1.6154,1.6154,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,tot,3.5,2.6,2.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,on,0.5,1.4167,1.4167,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,on,1.5,3.1,3.2,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,tot,1.5,1.2308,1.25,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,tot,2.5,1.75,1.8182,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,tot,3.5,2.9,3.0,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,on,0.5,1.6154,1.6154,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,on,1.5,4.25,4.25,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,tot,1.5,1.3,1.3,2026-10-31T17:20:45Z,1,68
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,tot,2.5,1.95,1.95,2026-10-31T17:20:45Z,1,68
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathieu Maertens,CAM,tot,3.5,3.4,3.4,2026-10-31T17:20:45Z,1,68
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathis Suray,GAE,on,0.5,1.4546,1.5,2026-10-31T17:20:45Z,0,81
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathis Suray,GAE,on,1.5,3.3334,3.5,2026-10-31T17:20:45Z,0,81
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathis Suray,GAE,tot,1.5,1.1819,1.1819,2026-10-31T17:20:45Z,0,81
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathis Suray,GAE,tot,2.5,1.68,1.68,2026-10-31T17:20:45Z,0,81
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Mathis Suray,GAE,tot,3.5,2.6667,2.6667,2026-10-31T17:20:45Z,0,81
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,on,0.5,1.7,1.75,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,on,1.5,4.5,5.0,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,tot,1.5,1.3,1.3847,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,tot,2.5,1.95,2.2,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Melle Meulensteen,GAE,tot,3.5,3.4,4.0,2026-10-31T17:20:45Z,0,90
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,on,0.5,3.3334,3.1,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,on,1.5,17.0,15.0,2026-10-31T17:20:45Z,0,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,tot,0.5,1.52,1.4167,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Morgan Costarelli,CAM,tot,1.5,3.5,3.0,2026-10-31T17:20:45Z,2,82
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicky Souren,CAM,on,0.5,2.7143,2.7143,2026-10-31T17:20:45Z,0,78
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicky Souren,CAM,on,1.5,11.0,11.0,2026-10-31T17:20:45Z,0,78
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicky Souren,CAM,tot,0.5,1.3847,1.3847,2026-10-31T17:20:45Z,0,78
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicky Souren,CAM,tot,1.5,2.8,2.8,2026-10-31T17:20:45Z,0,78
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,on,0.5,1.3847,1.4167,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,on,1.5,3.0,3.1,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,tot,1.5,1.1819,1.1819,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,tot,2.5,1.6154,1.6154,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Nicolas Binder,CAM,tot,3.5,2.6,2.6,2026-10-31T17:20:45Z,0,68
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,on,0.5,1.4167,1.4167,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,on,1.5,3.1,3.2,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,tot,1.5,1.2308,1.25,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,tot,2.5,1.75,1.8182,2026-10-31T17:20:45Z,0,46
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Oskar Siira Sivertsen,GAE,tot,3.5,2.9,3.0,2026-10-31T17:20:45Z,0,46
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Pim Saathof,GAE,on,0.5,2.05,2.05,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Pim Saathof,GAE,on,1.5,7.0,6.5,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Pim Saathof,GAE,tot,0.5,1.25,1.25,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Pim Saathof,GAE,tot,1.5,2.25,2.25,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Pim Saathof,GAE,tot,2.5,4.75,4.75,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,on,0.5,1.32,1.35,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,on,1.5,2.75,2.8572,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,on,2.5,7.0,7.0,2026-10-30T09:43:55Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,tot,1.5,1.1667,1.1667,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,tot,2.5,1.6,1.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,tot,3.5,2.5,2.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,on,0.5,1.875,1.875,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,on,1.5,5.5,5.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,tot,0.5,1.1,1.1,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,tot,1.5,1.68,1.68,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,tot,2.5,3.0,3.0,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,on,0.5,1.32,1.35,2026-10-31T17:20:45Z,1,81
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,on,1.5,2.75,2.8572,2026-10-31T17:20:45Z,1,81
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,on,2.5,7.0,7.0,2026-10-30T09:43:55Z,1,81
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,tot,1.5,1.1667,1.1667,2026-10-31T17:20:45Z,3,81
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,tot,2.5,1.6,1.6,2026-10-31T17:20:45Z,3,81
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rafik El Arguioui,CAM,tot,3.5,2.5,2.5,2026-10-31T17:20:45Z,3,81
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,on,0.5,1.875,1.875,2026-10-31T17:20:45Z,0,15
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,on,1.5,5.5,5.5,2026-10-31T17:20:45Z,0,15
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,tot,0.5,1.1,1.1,2026-10-31T17:20:45Z,0,15
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,tot,1.5,1.68,1.68,2026-10-31T17:20:45Z,0,15
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Richonell Margaret,GAE,tot,2.5,3.0,3.0,2026-10-31T17:20:45Z,0,15
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rik Mulders,CAM,on,0.5,2.8,2.7143,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rik Mulders,CAM,on,1.5,12.0,11.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Rik Mulders,CAM,tot,0.5,1.3847,1.3847,2026-10-31T17:20:45Z,,
@@ -287871,16 +287871,16 @@ fecha,clave_liga,home,away,jugador,equipo,objetivo,linea,cuota_primera,cuota,cap
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Robbin Weijenberg,GAE,tot,0.5,1.077,1.125,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Robbin Weijenberg,GAE,tot,1.5,1.6,1.75,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Robbin Weijenberg,GAE,tot,2.5,2.8,3.2,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,on,0.5,1.35,1.3847,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,on,1.5,2.8572,3.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,tot,1.5,1.1819,1.1819,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,tot,2.5,1.6471,1.6471,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,tot,3.5,2.6667,2.6667,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Skye Vink,CAM,on,0.5,1.5455,1.52,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Skye Vink,CAM,on,1.5,4.0,3.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Skye Vink,CAM,tot,1.5,1.3,1.2858,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Skye Vink,CAM,tot,2.5,1.95,1.9,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Skye Vink,CAM,tot,3.5,3.4,3.3334,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,on,0.5,1.35,1.3847,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,on,1.5,2.8572,3.0,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,tot,1.5,1.1819,1.1819,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,tot,2.5,1.6471,1.6471,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Sami Bouhoudane,CAM,tot,3.5,2.6667,2.6667,2026-10-31T17:20:45Z,0,22
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Skye Vink,CAM,on,0.5,1.5455,1.52,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Skye Vink,CAM,on,1.5,4.0,3.6,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Skye Vink,CAM,tot,1.5,1.3,1.2858,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Skye Vink,CAM,tot,2.5,1.95,1.9,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Skye Vink,CAM,tot,3.5,3.4,3.3334,2026-10-31T17:20:45Z,0,9
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Soren Tengstedt,GAE,on,0.5,1.2308,1.25,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Soren Tengstedt,GAE,on,1.5,2.3,2.4,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Soren Tengstedt,GAE,on,2.5,5.0,5.5,2026-10-31T17:20:45Z,,
@@ -287893,24 +287893,24 @@ fecha,clave_liga,home,away,jugador,equipo,objetivo,linea,cuota_primera,cuota,cap
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Stefan Ingi Sigurdarson,GAE,tot,1.5,1.1429,1.1429,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Stefan Ingi Sigurdarson,GAE,tot,2.5,1.5455,1.5455,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Stefan Ingi Sigurdarson,GAE,tot,3.5,2.3637,2.3637,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,on,0.5,1.5834,1.6,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,on,1.5,4.0,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,tot,1.5,1.2858,1.2858,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,tot,2.5,1.95,1.95,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,tot,3.5,3.3334,3.3334,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,on,0.5,1.5834,1.6,2026-10-31T17:20:45Z,1,37
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,on,1.5,4.0,4.0,2026-10-31T17:20:45Z,1,37
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,tot,1.5,1.2858,1.2858,2026-10-31T17:20:45Z,3,37
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,tot,2.5,1.95,1.95,2026-10-31T17:20:45Z,3,37
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Thibo Baeten,GAE,tot,3.5,3.3334,3.3334,2026-10-31T17:20:45Z,3,37
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Tino Jukic,GAE,on,0.5,3.6,3.6,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Tino Jukic,GAE,on,1.5,20.0,20.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Tino Jukic,GAE,tot,0.5,1.6,1.6,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Tino Jukic,GAE,tot,1.5,3.8,3.8,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,on,0.5,3.5,3.5,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,on,1.5,19.0,19.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,tot,0.5,1.68,1.68,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,tot,1.5,4.0,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,on,0.5,1.6154,1.6154,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,on,1.5,4.0,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,tot,1.5,1.32,1.32,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,tot,2.5,2.0,2.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,tot,3.5,3.5,3.5,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,on,0.5,3.5,3.5,2026-10-31T17:20:45Z,0,44
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,on,1.5,19.0,19.0,2026-10-31T17:20:45Z,0,44
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,tot,0.5,1.68,1.68,2026-10-31T17:20:45Z,0,44
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Tomas Galvez,GAE,tot,1.5,4.0,4.0,2026-10-31T17:20:45Z,0,44
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,on,0.5,1.6154,1.6154,2026-10-31T17:20:45Z,0,75
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,on,1.5,4.0,4.0,2026-10-31T17:20:45Z,0,75
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,tot,1.5,1.32,1.32,2026-10-31T17:20:45Z,0,75
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,tot,2.5,2.0,2.0,2026-10-31T17:20:45Z,0,75
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Victor Kaj Edvardsen,GAE,tot,3.5,3.5,3.5,2026-10-31T17:20:45Z,0,75
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Wessel van der Goot,CAM,on,0.5,1.8,1.8,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Wessel van der Goot,CAM,on,1.5,5.0,5.0,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Wessel van der Goot,CAM,tot,0.5,1.077,1.077,2026-10-31T17:20:45Z,,
@@ -287926,11 +287926,11 @@ fecha,clave_liga,home,away,jugador,equipo,objetivo,linea,cuota_primera,cuota,cap
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Wiebe van der Heide,CAM,tot,1.5,1.3847,1.3847,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Wiebe van der Heide,CAM,tot,2.5,2.1429,2.1429,2026-10-31T17:20:45Z,,
 2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Wiebe van der Heide,CAM,tot,3.5,4.0,4.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,on,0.5,2.1,2.3637,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,on,1.5,7.5,9.0,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,tot,0.5,1.1539,1.2308,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,tot,1.5,1.9,2.1429,2026-10-31T17:20:45Z,,
-2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,tot,2.5,3.6667,4.5,2026-10-31T17:20:45Z,,
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,on,0.5,2.1,2.3637,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,on,1.5,7.5,9.0,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,tot,0.5,1.1539,1.2308,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,tot,1.5,1.9,2.1429,2026-10-31T17:20:45Z,0,9
+2026-10-31,eredivisie,SC Cambuur,Go Ahead Eagles,Yassir Salah Rahmouni,GAE,tot,2.5,3.6667,4.5,2026-10-31T17:20:45Z,0,9
 2026-10-31,ita_serie_b,Sampdoria,Virtus Entella,Alessandro Di Pardo,SAM,on,0.5,3.8,3.8,2026-10-31T17:20:45Z,,
 2026-10-31,ita_serie_b,Sampdoria,Virtus Entella,Alessandro Di Pardo,SAM,tot,0.5,1.68,1.68,2026-10-31T17:20:45Z,,
 2026-10-31,ita_serie_b,Sampdoria,Virtus Entella,Alessandro Di Pardo,SAM,tot,1.5,4.25,4.25,2026-10-31T17:20:45Z,,

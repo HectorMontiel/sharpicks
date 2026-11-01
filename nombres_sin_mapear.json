@@ -79,9 +79,9 @@
   },
   "Defensor Sporting": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sporting CP B",
-    "ratio": 0.5333,
-    "visto": "2026-10-31"
+    "candidato": "Sporting Cascades",
+    "ratio": 0.4706,
+    "visto": "2026-11-01"
   },
   "Deportivo Moquegua": {
     "contexto": "cuotas_mx→futbol",
@@ -145,8 +145,8 @@
   },
   "Inter Miami CF": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Inter Escaldes",
-    "ratio": 0.56,
+    "candidato": "Inter Kashi",
+    "ratio": 0.6364,
     "visto": "2026-11-01"
   },
   "Inter de San Carlos": {
@@ -175,14 +175,14 @@
   },
   "Manchester United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Mandel United",
-    "ratio": 0.7333,
-    "visto": "2026-10-31"
+    "candidato": "Bechem United",
+    "ratio": 0.6667,
+    "visto": "2026-11-01"
   },
   "Montevideo City Torque": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "London City Lionesses W",
-    "ratio": 0.5581,
+    "candidato": "Melbourne City W (Aus)",
+    "ratio": 0.5238,
     "visto": "2026-11-01"
   },
   "Montevideo Wanderers": {
@@ -211,14 +211,14 @@
   },
   "Real Betis": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real San Joaquin",
-    "ratio": 0.4615,
+    "candidato": "Real Calepina",
+    "ratio": 0.6087,
     "visto": "2026-11-01"
   },
   "Real Madrid": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Cundinamarca",
-    "ratio": 0.5714,
+    "candidato": "Real Calepina",
+    "ratio": 0.5833,
     "visto": "2026-11-01"
   },
   "Real Oviedo": {
@@ -235,14 +235,14 @@
   },
   "Real Sociedad": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real San Joaquin",
-    "ratio": 0.5517,
+    "candidato": "Real Calepina",
+    "ratio": 0.6154,
     "visto": "2026-11-01"
   },
   "Real Valladolid": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real San Joaquin",
-    "ratio": 0.5161,
+    "candidato": "Real Calepina",
+    "ratio": 0.5714,
     "visto": "2026-11-01"
   },
   "San Antonio FC": {
@@ -745,9 +745,9 @@
   },
   "Sporting Gijón": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sporting CP B",
-    "ratio": 0.6667,
-    "visto": "2026-10-31"
+    "candidato": "Sporting Cascades",
+    "ratio": 0.5806,
+    "visto": "2026-11-01"
   },
   "Boston River": {
     "contexto": "cuotas_mx→futbol",
@@ -967,8 +967,8 @@
   },
   "Unión (Santa Fe)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Union Nove Sedlo",
-    "ratio": 0.5333,
+    "candidato": "Santa Ana",
+    "ratio": 0.5217,
     "visto": "2026-11-01"
   },
   "Gimnasia La Plata": {
@@ -1357,8 +1357,8 @@
   },
   "Sporting Club Delhi": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Brugge II W",
-    "ratio": 0.4242,
+    "candidato": "Sporting Cascades",
+    "ratio": 0.6667,
     "visto": "2026-11-01"
   },
   "Shanghai Shenhua": {
@@ -1621,9 +1621,9 @@
   },
   "Sporting Cristal": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sporting Escaldes",
+    "candidato": "Sporting Cascades",
     "ratio": 0.7273,
-    "visto": "2026-10-31"
+    "visto": "2026-11-01"
   },
   "Zenit St Petersburg": {
     "contexto": "cuotas_mx→futbol",
@@ -1645,9 +1645,9 @@
   },
   "Newcastle United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Mandel United",
+    "candidato": "Bechem United",
     "ratio": 0.6897,
-    "visto": "2026-10-31"
+    "visto": "2026-11-01"
   },
   "GV San José": {
     "contexto": "cuotas_mx→futbol",
@@ -1716,9 +1716,9 @@
     "visto": "2026-10-30"
   },
   "Sporting CP": {
-    "contexto": "oddsapi",
-    "candidato": "Sporting Lisbon",
-    "ratio": 0.6923,
+    "contexto": "cuotas_mx→futbol",
+    "candidato": "Sporting Cascades",
+    "ratio": 0.7143,
     "visto": "2026-11-01"
   },
   "Austria Vienna": {
@@ -2107,8 +2107,8 @@
   },
   "Real Tomayapo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Cundinamarca",
-    "ratio": 0.5333,
+    "candidato": "Real Calepina",
+    "ratio": 0.5385,
     "visto": "2026-11-01"
   },
   "Sekhukhune United FC": {
