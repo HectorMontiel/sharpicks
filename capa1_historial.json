@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-01T18:42:37Z",
+"actualizado": "2026-11-01T20:17:35Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -20754,6 +20754,16 @@
 },
 {
 "dia": "2026-11-01",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Bohemians vs Sparta Prague",
+"apuesta": "Gana Sparta Prague",
+"cuota": 1.78,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Bourges 18 W vs Metz W",
@@ -20771,6 +20781,46 @@
 "cuota": 1.46,
 "resultado": "rojo",
 "marcador": "1-3"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Burgos CF vs Castellon",
+"apuesta": "Gana Castellon",
+"cuota": 2.15,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Burgos vs Castellon",
+"apuesta": "Empate",
+"cuota": 3.4,
+"resultado": "verde",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Burgos vs Castellon",
+"apuesta": "Gana Castellon",
+"cuota": 2.15,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Cartaginés vs AD San Carlos",
+"apuesta": "Cartaginés o empate",
+"cuota": 1.167,
+"resultado": "verde",
+"marcador": "3-0"
 },
 {
 "dia": "2026-11-01",
@@ -20891,6 +20941,26 @@
 "cuota": 1.154,
 "resultado": "verde",
 "marcador": "2-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Leones Negros vs Tepatitlan de Morelos",
+"apuesta": "Gana Leones Negros",
+"cuota": 1.28,
+"resultado": "verde",
+"marcador": "3-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Lumezzane vs Arzignano",
+"apuesta": "Gana Lumezzane",
+"cuota": 2.8,
+"resultado": "rojo",
+"marcador": "1-1"
 },
 {
 "dia": "2026-11-01",
