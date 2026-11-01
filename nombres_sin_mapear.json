@@ -7,14 +7,14 @@
   },
   "Atletico Balboa": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Atlanta",
-    "ratio": 0.7742,
-    "visto": "2026-10-31"
+    "candidato": "Atletico GO",
+    "ratio": 0.7692,
+    "visto": "2026-11-01"
   },
   "Atlético Madrid": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico-MG",
-    "ratio": 0.7692,
+    "candidato": "Atletico GO",
+    "ratio": 0.6923,
     "visto": "2026-11-01"
   },
   "Atlético Tucumán": {
@@ -55,8 +55,8 @@
   },
   "Chippa United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "TRA United",
-    "ratio": 0.6957,
+    "candidato": "FC United",
+    "ratio": 0.7273,
     "visto": "2026-11-01"
   },
   "Cienciano del Cusco": {
@@ -211,14 +211,14 @@
   },
   "Real Betis": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Sociedad",
-    "ratio": 0.5217,
+    "candidato": "Real Bedford",
+    "ratio": 0.6364,
     "visto": "2026-11-01"
   },
   "Real Madrid": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Sociedad",
-    "ratio": 0.5833,
+    "candidato": "Real Bedford",
+    "ratio": 0.6957,
     "visto": "2026-11-01"
   },
   "Real Oviedo": {
@@ -235,8 +235,8 @@
   },
   "Real Sociedad": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real San Joaquin",
-    "ratio": 0.5517,
+    "candidato": "Real Bedford",
+    "ratio": 0.64,
     "visto": "2026-11-01"
   },
   "Real Valladolid": {
@@ -325,15 +325,15 @@
   },
   "Nacional Asunción": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Olimpia Asuncion",
-    "ratio": 0.6061,
+    "candidato": "Atl. Nacional",
+    "ratio": 0.5517,
     "visto": "2026-11-01"
   },
   "Club Atlético La Paz": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Atlanta",
-    "ratio": 0.6667,
-    "visto": "2026-10-31"
+    "candidato": "Club America W",
+    "ratio": 0.625,
+    "visto": "2026-11-01"
   },
   "Sporting JAX": {
     "contexto": "cuotas_mx→futbol",
@@ -769,7 +769,7 @@
   },
   "Club Atlético Morelia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico-MG",
+    "candidato": "Atletico GO",
     "ratio": 0.625,
     "visto": "2026-11-01"
   },
@@ -793,8 +793,8 @@
   },
   "Sportivo San Lorenzo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo San Pedro",
-    "ratio": 0.6667,
+    "candidato": "Sportivo Barracas",
+    "ratio": 0.5405,
     "visto": "2026-11-01"
   },
   "Wycombe Wanderers": {
@@ -1297,8 +1297,8 @@
   },
   "Oxford United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "TRA United",
-    "ratio": 0.6957,
+    "candidato": "FC United",
+    "ratio": 0.7273,
     "visto": "2026-11-01"
   },
   "Dundee United": {
@@ -1513,8 +1513,8 @@
   },
   "Preston North End": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Preston U21",
-    "ratio": 0.5714,
+    "candidato": "Preston",
+    "ratio": 0.5833,
     "visto": "2026-11-01"
   },
   "Bolton Wanderers": {
@@ -1765,8 +1765,8 @@
   },
   "Deportes Concepcion": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "U. de Deportes",
-    "ratio": 0.5,
+    "candidato": "D. Concepcion",
+    "ratio": 0.7742,
     "visto": "2026-11-01"
   },
   "Kaizer Chiefs": {
@@ -1977,7 +1977,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Johor DT (Mys)",
     "ratio": 0.6,
-    "visto": "2026-10-27"
+    "visto": "2026-11-01"
   },
   "Daejeon Hana Citizen": {
     "contexto": "cuotas_mx→futbol",
@@ -1987,8 +1987,8 @@
   },
   "Port FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Shanghai Port B",
-    "ratio": 0.4211,
+    "candidato": "Shanghai Port (Chn)",
+    "ratio": 0.381,
     "visto": "2026-11-01"
   },
   "Red Star Belgrade": {
@@ -2025,7 +2025,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Shamal (Qat)",
     "ratio": 0.6316,
-    "visto": "2026-10-27"
+    "visto": "2026-11-01"
   },
   "TSG Hoffenheim": {
     "contexto": "cuotas_mx→futbol",
@@ -2511,7 +2511,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Jeonbuk (Kor)",
     "ratio": 0.6061,
-    "visto": "2026-10-27"
+    "visto": "2026-11-01"
   },
   "Jong AZ": {
     "contexto": "cuotas_mx→futbol",
@@ -2685,6 +2685,12 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Orlando Pride W",
     "ratio": 0.7857,
+    "visto": "2026-11-01"
+  },
+  "Seattle Sounders FC": {
+    "contexto": "cuotas_mx→futbol",
+    "candidato": "Seattle Reign W",
+    "ratio": 0.6207,
     "visto": "2026-11-01"
   }
 }

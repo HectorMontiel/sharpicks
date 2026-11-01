@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-01T20:17:35Z",
+"actualizado": "2026-11-01T21:52:07Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -20824,6 +20824,16 @@
 },
 {
 "dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Charleroi vs RAAL La Louviere",
+"apuesta": "Charleroi o empate",
+"cuota": 1.111,
+"resultado": "verde",
+"marcador": "5-2"
+},
+{
+"dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Chlumec nad Cidlinou vs Usti nad Orlici",
@@ -20841,6 +20851,36 @@
 "cuota": 3.1,
 "resultado": "verde",
 "marcador": "0-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Cusco FC vs Sport Boys",
+"apuesta": "Cusco FC o empate",
+"cuota": 1.133,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🔷",
+"deporte": "Fútbol",
+"partido": "Cusco FC vs Sport Boys",
+"apuesta": "Gana Cusco FC",
+"cuota": 1.48,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Danubio vs Nacional",
+"apuesta": "Nacional o empate",
+"cuota": 1.182,
+"resultado": "verde",
+"marcador": "1-2"
 },
 {
 "dia": "2026-11-01",
@@ -20984,6 +21024,26 @@
 },
 {
 "dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Palermo vs Vicenza",
+"apuesta": "Palermo o empate",
+"cuota": 1.133,
+"resultado": "verde",
+"marcador": "3-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Palmeiras vs Vasco",
+"apuesta": "Gana Palmeiras",
+"cuota": 1.77,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Partizan vs Zemun",
@@ -20991,6 +21051,16 @@
 "cuota": 1.19,
 "resultado": "verde",
 "marcador": "3-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Real Cundinamarca vs Tigres",
+"apuesta": "Gana Real Cundinamarca",
+"cuota": 2.25,
+"resultado": "rojo",
+"marcador": "0-0"
 },
 {
 "dia": "2026-11-01",
@@ -21041,6 +21111,16 @@
 "cuota": 1.167,
 "resultado": "rojo",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "The Strongest vs GV San Jose",
+"apuesta": "Gana The Strongest",
+"cuota": 1.3,
+"resultado": "verde",
+"marcador": "4-2"
 },
 {
 "dia": "2026-11-01",
