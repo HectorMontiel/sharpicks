@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-01T01:13:40Z",
+"actualizado": "2026-11-01T02:48:39Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -19834,6 +19834,16 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Estudiantes L.P. vs Instituto",
+"apuesta": "Estudiantes L.P. o empate",
+"cuota": 1.182,
+"resultado": "verde",
+"marcador": "3-3"
+},
+{
+"dia": "2026-10-31",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "FK Frydek-Mistek vs Artis Brno B",
@@ -20094,6 +20104,16 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Montreal Canadiens vs Pittsburgh Penguins",
+"apuesta": "Handicap: Montreal Canadiens +2.5",
+"cuota": 1.125,
+"resultado": "verde",
+"marcador": "5-4"
+},
+{
+"dia": "2026-10-31",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Nesebar vs Chernomorets 1919",
@@ -20189,6 +20209,16 @@
 "partido": "Ostrov vs Hvezda Cheb",
 "apuesta": "Gana Ostrov",
 "cuota": 1.94,
+"resultado": "verde",
+"marcador": "3-0"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Pachuca vs Tigres UANL",
+"apuesta": "Gana Pachuca",
+"cuota": 2.25,
 "resultado": "verde",
 "marcador": "3-0"
 },
@@ -20441,6 +20471,26 @@
 "cuota": 1.59,
 "resultado": "verde",
 "marcador": "2-5"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Vancouver Canucks vs Toronto Maple Leafs",
+"apuesta": "Handicap: Toronto Maple Leafs +2.5",
+"cuota": 1.111,
+"resultado": "verde",
+"marcador": "2-4"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Vancouver Canucks vs Toronto Maple Leafs",
+"apuesta": "Handicap: Vancouver Canucks +3.5",
+"cuota": 1.1,
+"resultado": "verde",
+"marcador": "2-4"
 },
 {
 "dia": "2026-10-31",

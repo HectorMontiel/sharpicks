@@ -343,8 +343,8 @@
   },
   "Atlanta United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Victoria United",
-    "ratio": 0.6207,
+    "candidato": "Glacis United",
+    "ratio": 0.6667,
     "visto": "2026-11-01"
   },
   "New York City FC": {
@@ -1716,10 +1716,10 @@
     "visto": "2026-10-30"
   },
   "Sporting CP": {
-    "contexto": "cuotas_mx→futbol",
-    "candidato": "Sporting Escaldes",
-    "ratio": 0.7143,
-    "visto": "2026-10-31"
+    "contexto": "oddsapi",
+    "candidato": "Sporting Lisbon",
+    "ratio": 0.6923,
+    "visto": "2026-11-01"
   },
   "Austria Vienna": {
     "contexto": "cuotas_mx→futbol",
@@ -1939,9 +1939,9 @@
   },
   "AEK Athens": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "AEK Larnaca",
-    "ratio": 0.5714,
-    "visto": "2026-10-31"
+    "candidato": "Athens Kallithea",
+    "ratio": 0.4615,
+    "visto": "2026-11-01"
   },
   "Kyoto Sanga": {
     "contexto": "cuotas_mx→futbol",
@@ -2010,10 +2010,10 @@
     "visto": "2026-10-28"
   },
   "Lens": {
-    "contexto": "cuotas_mx→futbol",
-    "candidato": "Lens U19",
-    "ratio": 0.6667,
-    "visto": "2026-10-12"
+    "contexto": "oddsapi",
+    "candidato": "RC Lens",
+    "ratio": 0.7273,
+    "visto": "2026-11-01"
   },
   "PSV Eindhoven": {
     "contexto": "cuotas_mx→futbol",
@@ -2217,7 +2217,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Sarakinos Volos",
     "ratio": 0.4167,
-    "visto": "2026-10-17"
+    "visto": "2026-11-01"
   },
   "Paris Saint-Germain": {
     "contexto": "cuotas_mx→futbol",
@@ -2425,8 +2425,8 @@
   },
   "Adelaide United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Bechem United",
-    "ratio": 0.6429,
+    "candidato": "Glacis United",
+    "ratio": 0.7143,
     "visto": "2026-11-01"
   },
   "Shabab Al Ahli": {
@@ -2643,6 +2643,12 @@
     "contexto": "oddsapi",
     "candidato": "1. FC Köln",
     "ratio": 0.6316,
+    "visto": "2026-11-01"
+  },
+  "Internazionale": {
+    "contexto": "oddsapi",
+    "candidato": "Inter Milan",
+    "ratio": 0.48,
     "visto": "2026-11-01"
   }
 }

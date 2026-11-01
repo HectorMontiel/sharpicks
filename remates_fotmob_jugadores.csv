@@ -21939,22 +21939,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000009071,2026-08-15,ecu_liga_pro,Libertad,Jostin Bravo,1817584,M,0,21,0,0,0,0.0,,2.0,272436.0
 1000009071,2026-08-15,ecu_liga_pro,Libertad,Yermán Quiñonez,1829059,D,0,11,1,0,0,0.0,,1.0,
 1000009071,2026-08-15,ecu_liga_pro,Libertad,Stick Castro,1732743,M,0,11,1,0,0,0.0,,2.0,155639.0
-5115937,2026-08-15,argentina,Estudiantes,Fernando Muslera,56829,G,1,90,0,0,0,0.0,11.0,0.0,652585.0
-5115937,2026-08-15,argentina,Estudiantes,Eros Mancuso,1249664,D,1,90,2,1,1,0.12,32.0,1.0,2233466.0
-5115937,2026-08-15,argentina,Estudiantes,Santiago Núñez,1315102,D,1,90,0,0,0,0.0,34.0,1.0,1569929.0
-5115937,2026-08-15,argentina,Estudiantes,Tomás Palacios,1344726,D,1,90,1,0,0,0.04,36.0,1.0,2923139.0
-5115937,2026-08-15,argentina,Estudiantes,Gastón Benedetti,1214100,D,1,61,0,0,0,0.0,38.0,1.0,1752169.0
-5115937,2026-08-15,argentina,Estudiantes,Ezequiel Piovi,793315,M,1,76,2,0,0,0.04,64.0,2.0,811399.0
-5115937,2026-08-15,argentina,Estudiantes,Alexis Castro,623986,M,1,90,4,2,1,0.37,66.0,2.0,629994.0
-5115937,2026-08-15,argentina,Estudiantes,Baltasar Rodríguez,1362433,F,1,61,0,0,0,0.0,83.0,3.0,2856676.0
-5115937,2026-08-15,argentina,Estudiantes,Tiago Palacios,1231195,M,1,70,4,2,1,0.57,85.0,2.0,2803729.0
-5115937,2026-08-15,argentina,Estudiantes,Joaquín Tobio Burgos,1685812,F,1,90,2,1,1,0.5,87.0,3.0,1410454.0
-5115937,2026-08-15,argentina,Estudiantes,Adolfo Gaich,957220,F,1,61,4,1,0,0.75,115.0,3.0,602970.0
-5115937,2026-08-15,argentina,Estudiantes,Eric Meza,1201768,D,0,29,0,0,0,0.0,,1.0,1695270.0
-5115937,2026-08-15,argentina,Estudiantes,Joaquín Correa,319631,F,0,29,0,0,0,0.0,,3.0,1320775.0
-5115937,2026-08-15,argentina,Estudiantes,Guido Carrillo,267894,F,0,29,1,1,0,0.08,,3.0,415669.0
-5115937,2026-08-15,argentina,Estudiantes,José Sosa,18518,M,0,20,1,0,0,0.03,,2.0,296481.0
-5115937,2026-08-15,argentina,Estudiantes,Edwuin Cetré,924959,F,0,14,1,0,0,0.02,,3.0,2239944.0
 5868019,2026-08-15,laliga,Sevilla,Odysseas Vlachodimos,304355,G,1,90,0,0,0,0.0,11.0,0.0,2146677.0
 5868019,2026-08-15,laliga,Sevilla,Juan Iglesias,1102289,D,1,90,0,0,0,0.0,32.0,1.0,2966241.0
 5868019,2026-08-15,laliga,Sevilla,Arouna Sangante,1244272,D,1,90,0,0,0,0.0,34.0,1.0,6056135.0
@@ -23552,21 +23536,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5115936,2026-08-16,argentina,Central Córdoba de Santiago,Marco Iacobellis,1097396,M,0,44,0,0,0,0.0,,2.0,351597.0
 5115936,2026-08-16,argentina,Central Córdoba de Santiago,Leonardo Sequeira,795724,F,0,45,1,0,0,0.05,,3.0,448450.0
 5115936,2026-08-16,argentina,Central Córdoba de Santiago,Joaquín Flores,1895783,F,0,29,0,0,0,0.0,,3.0,533909.0
-5115936,2026-08-16,argentina,Instituto,Marcos Ledesma,591557,G,1,90,0,0,0,0.0,11.0,0.0,852323.0
-5115936,2026-08-16,argentina,Instituto,Jonathan Galván,615932,D,1,64,1,0,0,0.01,33.0,1.0,433278.0
-5115936,2026-08-16,argentina,Instituto,Leonel Mosevich,690435,D,1,90,1,1,0,0.04,35.0,1.0,670910.0
-5115936,2026-08-16,argentina,Instituto,Fernando Alarcón,647928,D,1,90,0,0,0,0.0,37.0,1.0,722294.0
-5115936,2026-08-16,argentina,Instituto,Giuliano Cerato,1098253,M,1,90,0,0,0,0.0,72.0,2.0,970392.0
-5115936,2026-08-16,argentina,Instituto,Gustavo Abregú,960080,M,1,90,0,0,0,0.0,74.0,2.0,275148.0
-5115936,2026-08-16,argentina,Instituto,Matías Gallardo,1653420,M,1,90,1,0,0,0.02,76.0,2.0,680310.0
-5115936,2026-08-16,argentina,Instituto,Diego Sosa,867739,M,1,90,2,0,0,0.53,78.0,2.0,374435.0
-5115936,2026-08-16,argentina,Instituto,Jhon Córdoba,1390351,F,1,65,0,0,0,0.0,103.0,3.0,995581.0
-5115936,2026-08-16,argentina,Instituto,Matías Tissera,832836,F,1,64,3,1,0,0.33,105.0,3.0,424714.0
-5115936,2026-08-16,argentina,Instituto,Alex Luna,1314218,F,1,77,2,1,0,0.26,107.0,3.0,4728222.0
-5115936,2026-08-16,argentina,Instituto,Agustín Massaccesi,1606849,D,0,26,0,0,0,0.0,,1.0,360471.0
-5115936,2026-08-16,argentina,Instituto,Facundo Suárez,971269,F,0,26,2,2,1,0.26,,3.0,345692.0
-5115936,2026-08-16,argentina,Instituto,Jeremías Lázaro,1609545,M,0,25,0,0,0,0.0,,2.0,668495.0
-5115936,2026-08-16,argentina,Instituto,Jonás Acevedo,882460,M,0,13,1,1,0,0.08,,2.0,280486.0
 5115934,2026-08-16,argentina,Barracas Central,Marcelo Miño,847988,G,1,90,0,0,0,0.0,11.0,0.0,340182.0
 5115934,2026-08-16,argentina,Barracas Central,Kevin Jappert,1609268,D,1,75,1,0,0,0.05,33.0,1.0,1758334.0
 5115934,2026-08-16,argentina,Barracas Central,Fernando Tobio,115671,D,1,90,1,1,0,0.49,35.0,1.0,572501.0
@@ -30427,20 +30396,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000014536,2026-08-22,liga_mx,CF América,Ramón Juárez,1085776,D,0,7,0,0,0,0.0,,1.0,3050011.0
 1000014536,2026-08-22,liga_mx,CF América,Cristián Borja,683964,D,0,7,0,0,0,0.0,,1.0,1004380.0
 1000014536,2026-08-22,liga_mx,CF América,Edwin Cerrillo,1026051,M,0,7,0,0,0,0.0,,2.0,1923852.0
-1000014540,2026-08-22,liga_mx,Tigres,Nahuel Guzmán,193993,G,1,90,0,0,0,0.0,11.0,0.0,568818.0
-1000014540,2026-08-22,liga_mx,Tigres,Jesús Garza,1075104,D,1,90,1,0,0,0.06,32.0,1.0,1578206.0
-1000014540,2026-08-22,liga_mx,Tigres,Rafael Guerrero,1295538,D,1,77,0,0,0,0.0,34.0,1.0,977416.0
-1000014540,2026-08-22,liga_mx,Tigres,Alan Franco,832165,D,1,90,0,0,0,0.0,36.0,1.0,2552455.0
-1000014540,2026-08-22,liga_mx,Tigres,Vladimir Loroña,950917,D,1,69,1,0,0,0.01,38.0,1.0,691353.0
-1000014540,2026-08-22,liga_mx,Tigres,Fernando Gorriarán,495198,M,1,90,2,0,0,0.07,64.0,2.0,1940422.0
-1000014540,2026-08-22,liga_mx,Tigres,Rômulo,1072253,M,1,90,0,0,0,0.0,66.0,2.0,3788577.0
-1000014540,2026-08-22,liga_mx,Tigres,Diego Lainez,828972,F,1,89,5,1,0,0.18,83.0,3.0,4635338.0
-1000014540,2026-08-22,liga_mx,Tigres,Juan Brunetta,793586,M,1,90,5,2,1,0.22,85.0,2.0,3934120.0
-1000014540,2026-08-22,liga_mx,Tigres,Diego Sánchez,1612708,F,1,90,2,0,0,0.12,87.0,3.0,
-1000014540,2026-08-22,liga_mx,Tigres,Rodrigo Aguirre,401095,F,1,90,2,1,1,0.78,115.0,3.0,1850933.0
-1000014540,2026-08-22,liga_mx,Tigres,Isac Galván,0,M,0,21,0,0,0,0.0,,2.0,
-1000014540,2026-08-22,liga_mx,Tigres,Joaquim,1257033,D,0,13,0,0,0,0.0,,1.0,4524625.0
-1000014540,2026-08-22,liga_mx,Tigres,Mauro Laínez,643756,M,0,1,0,0,0,0.0,,2.0,351103.0
 1000014540,2026-08-22,liga_mx,Atlante,Oscar Jiménez,463774,G,1,90,0,0,0,0.0,11.0,0.0,297774.0
 1000014540,2026-08-22,liga_mx,Atlante,Nico Carrera,1309373,D,1,82,1,0,0,0.02,33.0,1.0,425202.0
 1000014540,2026-08-22,liga_mx,Atlante,Eduardo Tercero,862169,D,1,90,0,0,0,0.0,35.0,1.0,167632.0
@@ -30817,22 +30772,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000014542,2026-08-23,liga_mx,Atlético de San Luis,Luis Nájera,1280818,M,0,28,1,1,1,0.23,,2.0,
 1000014542,2026-08-23,liga_mx,Atlético de San Luis,Benjamín Galdames,988124,M,0,18,0,0,0,0.0,,2.0,1636676.0
 1000014542,2026-08-23,liga_mx,Atlético de San Luis,Santiago Muñoz,1109767,F,0,10,0,0,0,0.0,,3.0,1522488.0
-1000014542,2026-08-23,liga_mx,Pachuca,Carlos Moreno,991005,G,1,90,1,1,1,0.15,11.0,0.0,2675266.0
-1000014542,2026-08-23,liga_mx,Pachuca,Carlos Sánchez,1432143,D,1,90,0,0,0,0.0,32.0,1.0,
-1000014542,2026-08-23,liga_mx,Pachuca,Eduardo Bauermann,641247,D,1,33,1,0,0,0.2,34.0,1.0,1039566.0
-1000014542,2026-08-23,liga_mx,Pachuca,Sergio Barreto,907723,D,1,90,3,0,0,0.12,36.0,1.0,2030417.0
-1000014542,2026-08-23,liga_mx,Pachuca,Francisco Venegas,693677,D,1,90,0,0,0,0.0,38.0,1.0,883040.0
-1000014542,2026-08-23,liga_mx,Pachuca,Christian Rivera,732548,M,1,90,0,0,0,0.0,64.0,2.0,1370886.0
-1000014542,2026-08-23,liga_mx,Pachuca,Elías Montiel,1502909,M,1,78,0,0,0,0.0,66.0,2.0,
-1000014542,2026-08-23,liga_mx,Pachuca,Kenedy,467354,F,1,38,0,0,0,0.0,83.0,3.0,553308.0
-1000014542,2026-08-23,liga_mx,Pachuca,Alán Bautista,1292484,M,1,58,0,0,0,0.0,85.0,2.0,
-1000014542,2026-08-23,liga_mx,Pachuca,Oussama Idrissi,690188,F,1,78,1,0,0,0.02,87.0,3.0,2996255.0
-1000014542,2026-08-23,liga_mx,Pachuca,José Salomon Rondon,51545,F,1,58,0,0,0,0.0,115.0,3.0,994503.0
-1000014542,2026-08-23,liga_mx,Pachuca,Jorge Berlanga,1502906,D,0,52,0,0,0,0.0,,1.0,1532635.0
-1000014542,2026-08-23,liga_mx,Pachuca,Adrián Alcaraz,1354553,F,0,32,1,0,0,0.03,,3.0,885093.0
-1000014542,2026-08-23,liga_mx,Pachuca,Nicolás Vallejo,1388237,F,0,32,2,1,0,0.44,,3.0,1290570.0
-1000014542,2026-08-23,liga_mx,Pachuca,Mauricio Isaís,1128764,D,0,12,1,0,0,0.04,,1.0,852718.0
-1000014542,2026-08-23,liga_mx,Pachuca,Sergio Rodríguez,1789747,M,0,12,0,0,0,0.0,,2.0,
 1000019023,2026-08-23,bol_division,Real Tomayapo,Luis Cárdenas,493791,G,1,90,0,0,0,0.0,11.0,0.0,
 1000019023,2026-08-23,bol_division,Real Tomayapo,Robson dos Santos,1272887,D,1,20,2,0,0,0.0,32.0,1.0,136326.0
 1000019023,2026-08-23,bol_division,Real Tomayapo,David Robles,580126,D,1,90,1,0,0,0.0,34.0,1.0,98141.0
@@ -42579,22 +42518,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5115963,2026-08-30,argentina,Aldosivi,Elías López,1074868,D,0,27,0,0,0,0.0,,1.0,461809.0
 5115963,2026-08-30,argentina,Aldosivi,Nicolás Cordero,1020747,F,0,20,0,0,0,0.0,,3.0,496871.0
 5115963,2026-08-30,argentina,Aldosivi,Agustín Palavecino,1311635,F,0,20,1,0,0,0.02,,3.0,753472.0
-1000018888,2026-08-30,ven_primera,Caracas,Frankarlos Benítez,1353726,G,1,90,0,0,0,0.0,11.0,0.0,420167.0
-1000018888,2026-08-30,ven_primera,Caracas,Eduardo Fereira,921605,D,1,90,1,0,0,0.0,32.0,1.0,
-1000018888,2026-08-30,ven_primera,Caracas,Jesús Quintero,1254923,D,1,90,1,0,0,0.0,34.0,1.0,290938.0
-1000018888,2026-08-30,ven_primera,Caracas,Francisco La Mantía,518821,D,1,90,0,0,0,0.0,36.0,1.0,136419.0
-1000018888,2026-08-30,ven_primera,Caracas,Jesús Yendis,1003272,D,1,90,0,0,0,0.0,38.0,1.0,163733.0
-1000018888,2026-08-30,ven_primera,Caracas,Wilfred Correa,1626751,M,1,74,1,1,0,0.0,72.0,2.0,502536.0
-1000018888,2026-08-30,ven_primera,Caracas,Irving Gudiño,1137795,M,1,90,1,0,0,0.0,74.0,2.0,253587.0
-1000018888,2026-08-30,ven_primera,Caracas,Christian Larotonda,1138678,M,1,90,0,0,0,0.0,76.0,2.0,169296.0
-1000018888,2026-08-30,ven_primera,Caracas,Robert Hernández,641140,M,1,85,3,0,0,0.0,78.0,2.0,138686.0
-1000018888,2026-08-30,ven_primera,Caracas,Jeriel De Santis,1055734,F,1,74,2,0,0,0.0,104.0,3.0,232462.0
-1000018888,2026-08-30,ven_primera,Caracas,Alejandro Villarreal,1590260,F,1,85,0,0,0,0.0,106.0,3.0,585201.0
-1000018888,2026-08-30,ven_primera,Caracas,Michael Covea,294500,M,0,16,0,0,0,0.0,,2.0,138043.0
-1000018888,2026-08-30,ven_primera,Caracas,Sebastián González,1933478,F,0,16,0,0,0,0.0,,3.0,335732.0
-1000018888,2026-08-30,ven_primera,Caracas,Ángel Figueroa,1736529,M,0,5,1,0,0,0.0,,2.0,
-1000018888,2026-08-30,ven_primera,Caracas,Mauricio Márquez,1091458,F,0,5,0,0,0,0.0,,3.0,302966.0
-1000018888,2026-08-30,ven_primera,Caracas,Miguel Vegas,1626745,M,0,1,0,0,0,0.0,,2.0,
 1000018889,2026-08-30,ven_primera,Trujillanos FC,Osnel García,2037329,G,1,90,0,0,0,0.0,11.0,0.0,
 1000018889,2026-08-30,ven_primera,Trujillanos FC,Manuel Granados,495683,D,1,77,1,0,0,0.0,32.0,1.0,107266.0
 1000018889,2026-08-30,ven_primera,Trujillanos FC,Ezequiel Gnemmi,1374132,D,1,90,0,0,0,0.0,34.0,1.0,
@@ -42611,22 +42534,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000018889,2026-08-30,ven_primera,Trujillanos FC,Jhonny González,799710,D,0,13,0,0,0,0.0,,1.0,132165.0
 1000018889,2026-08-30,ven_primera,Trujillanos FC,Giordani Parra,0,F,0,13,0,0,0,0.0,,3.0,
 1000018889,2026-08-30,ven_primera,Trujillanos FC,Juan Pablo Valiente,0,M,0,9,0,0,0,0.0,,2.0,
-1000018889,2026-08-30,ven_primera,Monagas SC,Eduardo Lima,243303,G,1,90,0,0,0,0.0,11.0,0.0,98141.0
-1000018889,2026-08-30,ven_primera,Monagas SC,Alexis Rodas,950414,D,1,90,1,1,0,0.0,33.0,1.0,168973.0
-1000018889,2026-08-30,ven_primera,Monagas SC,Nicolás Henry,1269446,D,1,90,0,0,0,0.0,35.0,1.0,154652.0
-1000018889,2026-08-30,ven_primera,Monagas SC,Facundo Queiroz,1390277,D,1,57,1,1,0,0.0,37.0,1.0,161250.0
-1000018889,2026-08-30,ven_primera,Monagas SC,Rafael Arace,496166,M,1,90,2,1,0,0.0,71.0,2.0,103428.0
-1000018889,2026-08-30,ven_primera,Monagas SC,Henrry Díaz,2018114,M,1,45,1,1,0,0.0,73.0,2.0,607014.0
-1000018889,2026-08-30,ven_primera,Monagas SC,Jean Colorado,1053728,M,1,90,0,0,0,0.0,75.0,2.0,232510.0
-1000018889,2026-08-30,ven_primera,Monagas SC,Andrés Romero,1209413,M,1,57,2,1,0,0.0,77.0,2.0,499135.0
-1000018889,2026-08-30,ven_primera,Monagas SC,Cristian Ramírez,1259587,M,1,75,0,0,0,0.0,79.0,2.0,259925.0
-1000018889,2026-08-30,ven_primera,Monagas SC,Ronald Rodríguez,1491247,F,1,79,2,2,1,0.0,104.0,3.0,
-1000018889,2026-08-30,ven_primera,Monagas SC,Luis González,242707,F,1,90,1,0,0,0.0,106.0,3.0,153231.0
-1000018889,2026-08-30,ven_primera,Monagas SC,Fernando Basante,1357425,F,0,44,0,0,0,0.0,,3.0,396287.0
-1000018889,2026-08-30,ven_primera,Monagas SC,John Mancilla,1844562,M,0,33,0,0,0,0.0,,2.0,
-1000018889,2026-08-30,ven_primera,Monagas SC,Antonio Romero,679062,F,0,33,0,0,0,0.0,,3.0,213944.0
-1000018889,2026-08-30,ven_primera,Monagas SC,Edder Farías,97331,F,0,15,1,0,0,0.0,,3.0,118181.0
-1000018889,2026-08-30,ven_primera,Monagas SC,Dhylan Castillo,1804465,M,0,11,0,0,0,0.0,,2.0,191560.0
 5887614,2026-08-30,primeira,Famalicão,Lazar Carevic,727379,G,1,90,0,0,0,0.0,11.0,0.0,1945577.0
 5887614,2026-08-30,primeira,Famalicão,Rodrigo Pinheiro,1080508,D,1,90,2,0,0,0.07,32.0,1.0,1935177.0
 5887614,2026-08-30,primeira,Famalicão,Léo Realpe,1031759,D,1,90,0,0,0,0.0,34.0,1.0,1759962.0
@@ -172047,3 +171954,99 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000022590,2026-10-31,ven_primera,Deportivo Táchira,Edicson Tamiche,1634627,D,0,16,0,0,0,0.0,,1.0,
 1000022590,2026-10-31,ven_primera,Deportivo Táchira,Carlos Calzadilla,1273200,M,0,9,0,0,0,0.0,,2.0,352422.0
 1000022590,2026-10-31,ven_primera,Deportivo Táchira,Óscar Hernández,578042,D,0,8,0,0,0,0.0,,1.0,134101.0
+1000014628,2026-10-31,liga_mx,Pachuca,Carlos Moreno,991005,G,1,90,0,0,0,0.0,11.0,0.0,2729804.0
+1000014628,2026-10-31,liga_mx,Pachuca,Jorge Berlanga,1502906,D,1,76,0,0,0,0.0,32.0,1.0,1712892.0
+1000014628,2026-10-31,liga_mx,Pachuca,Eduardo Bauermann,641247,D,1,90,0,0,0,0.0,34.0,1.0,1062025.0
+1000014628,2026-10-31,liga_mx,Pachuca,Sergio Barreto,907723,D,1,90,0,0,0,0.0,36.0,1.0,2141719.0
+1000014628,2026-10-31,liga_mx,Pachuca,Francisco Venegas,693677,D,1,90,1,0,0,0.18,38.0,1.0,964487.0
+1000014628,2026-10-31,liga_mx,Pachuca,Christian Rivera,732548,M,1,90,1,0,0,0.02,64.0,2.0,1425528.0
+1000014628,2026-10-31,liga_mx,Pachuca,Alán Bautista,1292484,M,1,76,2,1,0,0.38,66.0,2.0,4566730.0
+1000014628,2026-10-31,liga_mx,Pachuca,Nicolás Vallejo,1388237,F,1,63,2,0,0,0.09,83.0,3.0,1609670.0
+1000014628,2026-10-31,liga_mx,Pachuca,Rodolfo Pizarro,390785,M,1,89,3,0,0,0.32,85.0,2.0,972475.0
+1000014628,2026-10-31,liga_mx,Pachuca,Oussama Idrissi,690188,F,1,89,3,1,0,0.17,87.0,3.0,4342396.0
+1000014628,2026-10-31,liga_mx,Pachuca,José Salomon Rondon,51545,F,1,90,6,3,2,1.41,115.0,3.0,1074969.0
+1000014628,2026-10-31,liga_mx,Pachuca,Kenedy,467354,M,0,27,2,1,1,0.08,,2.0,508818.0
+1000014628,2026-10-31,liga_mx,Pachuca,Mauricio Isaís,1128764,D,0,14,1,1,0,0.05,,1.0,837273.0
+1000014628,2026-10-31,liga_mx,Pachuca,Sebastián Santos,1433093,M,0,14,0,0,0,0.0,,2.0,1227980.0
+1000014628,2026-10-31,liga_mx,Pachuca,Thomas Contreras,2144759,M,0,1,0,0,0,0.0,,2.0,
+1000014628,2026-10-31,liga_mx,Pachuca,Cristóbal Hernández,1888849,F,0,1,0,0,0,0.0,,3.0,
+1000014628,2026-10-31,liga_mx,Tigres,Nahuel Guzmán,193993,G,1,90,0,0,0,0.0,11.0,0.0,496389.0
+1000014628,2026-10-31,liga_mx,Tigres,Jesús Garza,1075104,D,1,72,2,0,0,0.17,32.0,1.0,3984220.0
+1000014628,2026-10-31,liga_mx,Tigres,Alan Franco,832165,D,1,90,0,0,0,0.0,34.0,1.0,2657057.0
+1000014628,2026-10-31,liga_mx,Tigres,Rafael Guerrero,1295538,D,1,72,0,0,0,0.0,36.0,1.0,910399.0
+1000014628,2026-10-31,liga_mx,Tigres,Mauro Laínez,643756,D,1,90,0,0,0,0.0,38.0,1.0,732369.0
+1000014628,2026-10-31,liga_mx,Tigres,Fernando Gorriarán,495198,M,1,90,0,0,0,0.0,64.0,2.0,1875276.0
+1000014628,2026-10-31,liga_mx,Tigres,Emiliano Gómez,935366,M,1,90,3,0,0,0.09,66.0,2.0,2698876.0
+1000014628,2026-10-31,liga_mx,Tigres,Diego Lainez,828972,F,1,57,1,0,0,0.04,83.0,3.0,4864619.0
+1000014628,2026-10-31,liga_mx,Tigres,Juan Brunetta,793586,M,1,90,3,2,0,0.09,85.0,2.0,7561059.0
+1000014628,2026-10-31,liga_mx,Tigres,Diego Sánchez,1612708,F,1,46,0,0,0,0.0,87.0,3.0,
+1000014628,2026-10-31,liga_mx,Tigres,Guillermo Martínez,558539,F,1,56,0,0,0,0.0,115.0,3.0,1050627.0
+1000014628,2026-10-31,liga_mx,Tigres,Jonathan Herrera,974948,F,0,44,0,0,0,0.0,,3.0,4828908.0
+1000014628,2026-10-31,liga_mx,Tigres,Rodrigo Aguirre,401095,F,0,34,0,0,0,0.0,,3.0,1931756.0
+1000014628,2026-10-31,liga_mx,Tigres,Ricardo Monreal,1023022,F,0,33,1,0,0,0.04,,3.0,1671285.0
+1000014628,2026-10-31,liga_mx,Tigres,Vladimir Loroña,950917,D,0,18,0,0,0,0.0,,1.0,672271.0
+1000014628,2026-10-31,liga_mx,Tigres,César Araújo,1076308,M,0,18,0,0,0,0.0,,2.0,4230347.0
+1000019607,2026-11-01,argentina,Estudiantes,Fernando Muslera,56829,G,1,90,0,0,0,0.0,11.0,0.0,686357.0
+1000019607,2026-11-01,argentina,Estudiantes,Eros Mancuso,1249664,D,1,90,1,1,0,0.02,32.0,1.0,2306651.0
+1000019607,2026-11-01,argentina,Estudiantes,Santiago Núñez,1315102,D,1,90,0,0,0,0.0,34.0,1.0,1758464.0
+1000019607,2026-11-01,argentina,Estudiantes,Marcos Rojo,161035,D,1,90,0,0,0,0.0,36.0,1.0,387757.0
+1000019607,2026-11-01,argentina,Estudiantes,Gastón Benedetti,1214100,D,1,85,0,0,0,0.0,38.0,1.0,1930282.0
+1000019607,2026-11-01,argentina,Estudiantes,Ezequiel Piovi,793315,M,1,75,0,0,0,0.0,64.0,2.0,827766.0
+1000019607,2026-11-01,argentina,Estudiantes,Alexis Castro,623986,M,1,57,2,1,0,0.73,66.0,2.0,620104.0
+1000019607,2026-11-01,argentina,Estudiantes,Tiago Palacios,1231195,F,1,85,4,2,1,0.28,83.0,3.0,2915071.0
+1000019607,2026-11-01,argentina,Estudiantes,Joaquín Correa,319631,M,1,57,1,0,0,0.05,85.0,2.0,1132173.0
+1000019607,2026-11-01,argentina,Estudiantes,Joaquín Tobio Burgos,1685812,F,1,90,2,0,0,0.09,87.0,3.0,1390004.0
+1000019607,2026-11-01,argentina,Estudiantes,Guido Carrillo,267894,F,1,90,3,2,1,0.32,115.0,3.0,488530.0
+1000019607,2026-11-01,argentina,Estudiantes,Ramiro Funes Mori,213878,D,0,33,0,0,0,0.0,,1.0,317093.0
+1000019607,2026-11-01,argentina,Estudiantes,Bautista Kociubinski,1201582,M,0,33,0,0,0,0.0,,2.0,329950.0
+1000019607,2026-11-01,argentina,Estudiantes,Baltasar Rodríguez,1362433,M,0,15,1,1,0,0.02,,2.0,4569089.0
+1000019607,2026-11-01,argentina,Estudiantes,Edwuin Cetré,924959,F,0,5,1,0,0,0.02,,3.0,2350174.0
+1000019607,2026-11-01,argentina,Estudiantes,Fabricio Pérez,1680411,F,0,5,1,1,1,0.44,,3.0,3023551.0
+1000019607,2026-11-01,argentina,Instituto,Marcos Ledesma,591557,G,1,90,0,0,0,0.0,11.0,0.0,859788.0
+1000019607,2026-11-01,argentina,Instituto,Jonathan Galván,615932,D,1,60,1,0,0,0.05,33.0,1.0,541924.0
+1000019607,2026-11-01,argentina,Instituto,Leonel Mosevich,690435,D,1,90,1,1,1,0.21,35.0,1.0,817482.0
+1000019607,2026-11-01,argentina,Instituto,Fernando Alarcón,647928,D,1,90,0,0,0,0.0,37.0,1.0,863201.0
+1000019607,2026-11-01,argentina,Instituto,Giuliano Cerato,1098253,M,1,60,0,0,0,0.0,72.0,2.0,1213421.0
+1000019607,2026-11-01,argentina,Instituto,Gustavo Abregú,960080,M,1,90,0,0,0,0.0,74.0,2.0,395205.0
+1000019607,2026-11-01,argentina,Instituto,Matías Gallardo,1653420,M,1,90,1,1,0,0.02,76.0,2.0,623183.0
+1000019607,2026-11-01,argentina,Instituto,Diego Sosa,867739,M,1,90,0,0,0,0.0,78.0,2.0,560192.0
+1000019607,2026-11-01,argentina,Instituto,Jeremías Lázaro,1609545,F,1,40,1,1,0,0.02,103.0,3.0,747993.0
+1000019607,2026-11-01,argentina,Instituto,Facundo Suárez,971269,F,1,60,1,1,1,0.65,105.0,3.0,272611.0
+1000019607,2026-11-01,argentina,Instituto,Alex Luna,1314218,F,1,84,2,0,0,0.06,107.0,3.0,4928724.0
+1000019607,2026-11-01,argentina,Instituto,Jhon Córdoba,1390351,M,0,50,1,1,1,0.01,,2.0,1115625.0
+1000019607,2026-11-01,argentina,Instituto,Agustín Massaccesi,1606849,D,0,30,0,0,0,0.0,,1.0,347398.0
+1000019607,2026-11-01,argentina,Instituto,Hernán de la Fuente,900404,D,0,30,1,0,0,0.08,,1.0,246297.0
+1000019607,2026-11-01,argentina,Instituto,Matías Tissera,832836,F,0,30,0,0,0,0.0,,3.0,376916.0
+1000019607,2026-11-01,argentina,Instituto,Ignacio Méndez,847986,M,0,6,0,0,0,0.0,,2.0,437834.0
+1000022591,2026-10-31,ven_primera,Caracas,Frankarlos Benítez,1353726,G,1,90,0,0,0,0.0,11.0,0.0,338383.0
+1000022591,2026-10-31,ven_primera,Caracas,Eduardo Fereira,921605,D,1,90,0,0,0,0.0,32.0,1.0,
+1000022591,2026-10-31,ven_primera,Caracas,Jesús Quintero,1254923,D,1,90,1,0,0,0.0,34.0,1.0,324474.0
+1000022591,2026-10-31,ven_primera,Caracas,Francisco La Mantía,518821,D,1,90,0,0,0,0.0,36.0,1.0,132561.0
+1000022591,2026-10-31,ven_primera,Caracas,Jesús Yendis,1003272,D,1,90,0,0,0,0.0,38.0,1.0,158147.0
+1000022591,2026-10-31,ven_primera,Caracas,Irving Gudiño,1137795,M,1,90,0,0,0,0.0,64.0,2.0,313771.0
+1000022591,2026-10-31,ven_primera,Caracas,Christian Larotonda,1138678,M,1,74,0,0,0,0.0,66.0,2.0,169095.0
+1000022591,2026-10-31,ven_primera,Caracas,Ángel Figueroa,1736529,F,1,73,3,1,0,0.0,83.0,3.0,
+1000022591,2026-10-31,ven_primera,Caracas,Michael Covea,294500,M,1,57,2,1,1,0.0,85.0,2.0,138043.0
+1000022591,2026-10-31,ven_primera,Caracas,Wilfred Correa,1626751,F,1,77,2,0,0,0.0,87.0,3.0,436751.0
+1000022591,2026-10-31,ven_primera,Caracas,Alejandro Villarreal,1590260,F,1,74,2,2,1,0.0,115.0,3.0,401847.0
+1000022591,2026-10-31,ven_primera,Caracas,Charly Vegas,1765460,F,0,33,0,0,0,0.0,,3.0,462312.0
+1000022591,2026-10-31,ven_primera,Caracas,Chris Martínez,1736531,F,0,17,0,0,0,0.0,,3.0,
+1000022591,2026-10-31,ven_primera,Caracas,Miguel Vegas,1626745,M,0,16,0,0,0,0.0,,2.0,
+1000022591,2026-10-31,ven_primera,Caracas,Sebastián González,1933478,F,0,16,0,0,0,0.0,,3.0,349322.0
+1000022591,2026-10-31,ven_primera,Caracas,Mauricio Márquez,1091458,F,0,13,0,0,0,0.0,,3.0,336342.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Eduardo Lima,243303,G,1,90,0,0,0,0.0,11.0,0.0,112006.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Kevin De la Hoz,921621,D,1,90,1,0,0,0.0,32.0,1.0,177192.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Felipe Jaramillo,1032813,D,1,90,0,0,0,0.0,34.0,1.0,151786.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Nicolás Henry,1269446,D,1,90,3,1,1,0.0,36.0,1.0,143609.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Jesús Paz,1439778,D,1,90,1,0,0,0.0,38.0,1.0,
+1000022591,2026-10-31,ven_primera,Monagas SC,Andrés Romero,1209413,M,1,79,1,1,1,0.0,64.0,2.0,365306.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Jean Colorado,1053728,M,1,55,0,0,0,0.0,66.0,2.0,232309.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Rafael Arace,496166,F,1,54,2,1,0,0.0,83.0,3.0,138043.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Luis González,242707,M,1,40,0,0,0,0.0,85.0,2.0,153231.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Bryan Urueña,1354169,F,1,46,0,0,0,0.0,87.0,3.0,188522.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Fernando Basante,1357425,F,1,90,4,1,0,0.0,115.0,3.0,417774.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Antonio Romero,679062,F,0,50,1,1,1,0.0,,3.0,213944.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Dhylan Castillo,1804465,M,0,44,0,0,0,0.0,,2.0,180517.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Édgar Carrión,1263839,M,0,36,0,0,0,0.0,,2.0,264454.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Santiago Natera,1458780,M,0,35,0,0,0,0.0,,2.0,312322.0
+1000022591,2026-10-31,ven_primera,Monagas SC,Alexis Rodas,950414,D,0,11,0,0,0,0.0,,1.0,176583.0
