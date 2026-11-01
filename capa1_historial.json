@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-01T14:01:42Z",
+"actualizado": "2026-11-01T15:33:29Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -20726,6 +20726,56 @@
 "dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Feignies-Aulnoye vs Borgo",
+"apuesta": "Gana Feignies-Aulnoye",
+"cuota": 1.93,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Frydek-Mistek B vs Pusta Polom",
+"apuesta": "Gana Frydek-Mistek B",
+"cuota": 1.8182,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Hamburger SV II vs Hannover II",
+"apuesta": "Gana Hannover II",
+"cuota": 1.6154,
+"resultado": "rojo",
+"marcador": "4-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Hostoun vs Steti",
+"apuesta": "Gana Hostoun",
+"cuota": 1.3,
+"resultado": "verde",
+"marcador": "5-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Malmo FF vs Hammarby",
+"apuesta": "Gana Hammarby",
+"cuota": 1.6667,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Shandong Taishan B vs Shenzhen",
 "apuesta": "Gana Shandong Taishan B",
 "cuota": 1.68,
@@ -20741,6 +20791,26 @@
 "cuota": 1.57,
 "resultado": "verde",
 "marcador": "0-4"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Trabzonspor vs Gaziantep",
+"apuesta": "Trabzonspor o empate",
+"cuota": 1.1,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Turnov vs Dvur Kralove",
+"apuesta": "Gana Turnov",
+"cuota": 1.3847,
+"resultado": "verde",
+"marcador": "4-0"
 }
 ]
 }

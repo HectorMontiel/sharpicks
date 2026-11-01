@@ -55,8 +55,8 @@
   },
   "Chippa United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Victoria United",
-    "ratio": 0.7143,
+    "candidato": "Glacis United",
+    "ratio": 0.6923,
     "visto": "2026-11-01"
   },
   "Cienciano del Cusco": {
@@ -145,8 +145,8 @@
   },
   "Inter Miami CF": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Inter Kashi",
-    "ratio": 0.6364,
+    "candidato": "Inter Wanica",
+    "ratio": 0.6957,
     "visto": "2026-11-01"
   },
   "Inter de San Carlos": {
@@ -175,7 +175,7 @@
   },
   "Manchester United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Bechem United",
+    "candidato": "Glacis United",
     "ratio": 0.6667,
     "visto": "2026-11-01"
   },
@@ -211,8 +211,8 @@
   },
   "Real Betis": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Bamako",
-    "ratio": 0.5714,
+    "candidato": "Real Avila",
+    "ratio": 0.6,
     "visto": "2026-11-01"
   },
   "Real Madrid": {
@@ -223,8 +223,8 @@
   },
   "Real Oviedo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Bamako",
-    "ratio": 0.5455,
+    "candidato": "Real Sociedad",
+    "ratio": 0.75,
     "visto": "2026-11-01"
   },
   "Real Salt Lake": {
@@ -241,8 +241,8 @@
   },
   "Real Valladolid": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Bamako",
-    "ratio": 0.6154,
+    "candidato": "Real Madrid W",
+    "ratio": 0.6923,
     "visto": "2026-11-01"
   },
   "San Antonio FC": {
@@ -343,8 +343,8 @@
   },
   "Atlanta United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Plateau United",
-    "ratio": 0.7143,
+    "candidato": "Glacis United",
+    "ratio": 0.6667,
     "visto": "2026-11-01"
   },
   "New York City FC": {
@@ -463,9 +463,9 @@
   },
   "Chacarita Juniors": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Shenzhen Juniors",
-    "ratio": 0.5455,
-    "visto": "2026-10-31"
+    "candidato": "Malaga Juniors",
+    "ratio": 0.7097,
+    "visto": "2026-11-01"
   },
   "Cerro Largo": {
     "contexto": "cuotas_mx→futbol",
@@ -547,8 +547,8 @@
   },
   "Minnesota United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Rivers United",
-    "ratio": 0.6897,
+    "candidato": "Glacis United",
+    "ratio": 0.6207,
     "visto": "2026-11-01"
   },
   "New England Revolution": {
@@ -619,8 +619,8 @@
   },
   "New Mexico United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Victoria United",
-    "ratio": 0.625,
+    "candidato": "Glacis United",
+    "ratio": 0.5333,
     "visto": "2026-11-01"
   },
   "Sacramento Republic FC": {
@@ -763,8 +763,8 @@
   },
   "Atlético Goianiense": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico-MG",
-    "ratio": 0.6667,
+    "candidato": "Atletico Monzon",
+    "ratio": 0.7059,
     "visto": "2026-11-01"
   },
   "Club Atlético Morelia": {
@@ -859,9 +859,9 @@
   },
   "Deportes Tolima": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportes Rengo",
-    "ratio": 0.6897,
-    "visto": "2026-10-31"
+    "candidato": "U. de Deportes",
+    "ratio": 0.5714,
+    "visto": "2026-11-01"
   },
   "Tampa Bay Rowdies": {
     "contexto": "cuotas_mx→futbol",
@@ -1009,15 +1009,15 @@
   },
   "Boca Juniors": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Shenzhen Juniors",
-    "ratio": 0.5714,
-    "visto": "2026-10-31"
+    "candidato": "Malaga Juniors",
+    "ratio": 0.6923,
+    "visto": "2026-11-01"
   },
   "Argentinos Juniors": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Shenzhen Juniors",
-    "ratio": 0.6471,
-    "visto": "2026-10-31"
+    "candidato": "Malaga Juniors",
+    "ratio": 0.625,
+    "visto": "2026-11-01"
   },
   "Gimnasia (Mendoza)": {
     "contexto": "cuotas_mx→futbol",
@@ -1129,9 +1129,9 @@
   },
   "West Ham United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Mandel United",
+    "candidato": "Glacis United",
     "ratio": 0.5714,
-    "visto": "2026-10-31"
+    "visto": "2026-11-01"
   },
   "San Antonio Bulo Bulo": {
     "contexto": "cuotas_mx→futbol",
@@ -1147,7 +1147,7 @@
   },
   "Queens Park Rangers": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "FC Rangers",
+    "candidato": "Bo Rangers",
     "ratio": 0.5517,
     "visto": "2026-11-01"
   },
@@ -1249,8 +1249,8 @@
   },
   "Stade de Reims": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Stade Renard",
-    "ratio": 0.6154,
+    "candidato": "Stade Malien",
+    "ratio": 0.5385,
     "visto": "2026-11-01"
   },
   "Deportivo Garcilaso": {
@@ -1297,8 +1297,8 @@
   },
   "Oxford United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Victoria United",
-    "ratio": 0.6429,
+    "candidato": "Glacis United",
+    "ratio": 0.5385,
     "visto": "2026-11-01"
   },
   "Dundee United": {
@@ -1309,9 +1309,9 @@
   },
   "Sheffield United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Mandel United",
-    "ratio": 0.6207,
-    "visto": "2026-10-31"
+    "candidato": "Glacis United",
+    "ratio": 0.5517,
+    "visto": "2026-11-01"
   },
   "Santa Clara": {
     "contexto": "cuotas_mx→futbol",
@@ -1501,8 +1501,8 @@
   },
   "Inter Kashi": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Inter Escaldes",
-    "ratio": 0.64,
+    "candidato": "Inter Wanica",
+    "ratio": 0.6957,
     "visto": "2026-11-01"
   },
   "Al Shabab": {
@@ -1645,8 +1645,8 @@
   },
   "Newcastle United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Bechem United",
-    "ratio": 0.6897,
+    "candidato": "Glacis United",
+    "ratio": 0.6207,
     "visto": "2026-11-01"
   },
   "GV San José": {
@@ -1753,9 +1753,9 @@
   },
   "Deportes Limache": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportes Rengo",
-    "ratio": 0.6667,
-    "visto": "2026-10-31"
+    "candidato": "U. de Deportes",
+    "ratio": 0.5517,
+    "visto": "2026-11-01"
   },
   "Coquimbo Unido": {
     "contexto": "cuotas_mx→futbol",
@@ -1765,9 +1765,9 @@
   },
   "Deportes Concepcion": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportes Rengo",
-    "ratio": 0.6061,
-    "visto": "2026-10-31"
+    "candidato": "U. de Deportes",
+    "ratio": 0.5,
+    "visto": "2026-11-01"
   },
   "Kaizer Chiefs": {
     "contexto": "cuotas_mx→futbol",
@@ -1777,8 +1777,8 @@
   },
   "Buriram United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Rivers United",
-    "ratio": 0.7407,
+    "candidato": "Glacis United",
+    "ratio": 0.5926,
     "visto": "2026-11-01"
   },
   "AFC Bournemouth": {
@@ -1831,9 +1831,9 @@
   },
   "Stade Rennais": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Stade Briochin",
-    "ratio": 0.5926,
-    "visto": "2026-10-30"
+    "candidato": "Stade Malien",
+    "ratio": 0.64,
+    "visto": "2026-11-01"
   },
   "Independiente Petrolero": {
     "contexto": "cuotas_mx→futbol",
@@ -2113,14 +2113,14 @@
   },
   "Sekhukhune United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Bechem United",
-    "ratio": 0.6667,
+    "candidato": "Glacis United",
+    "ratio": 0.5333,
     "visto": "2026-11-01"
   },
   "Kruger United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Rivers United",
-    "ratio": 0.7692,
+    "candidato": "Glacis United",
+    "ratio": 0.6154,
     "visto": "2026-11-01"
   },
   "Central Coast Mariners": {
@@ -2185,9 +2185,9 @@
   },
   "Asteras Tripoli": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Al Ahly Tripoli (Lby)",
-    "ratio": 0.5882,
-    "visto": "2026-10-24"
+    "candidato": "Asteras Stavrou",
+    "ratio": 0.7333,
+    "visto": "2026-11-01"
   },
   "Rodina Moscow": {
     "contexto": "cuotas_mx→futbol",
@@ -2337,7 +2337,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Leuven II W",
     "ratio": 0.6667,
-    "visto": "2026-10-23"
+    "visto": "2026-11-01"
   },
   "Waasland-Beveren": {
     "contexto": "cuotas_mx→futbol",
@@ -2661,6 +2661,24 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "PAOK Kristonis",
     "ratio": 0.4444,
+    "visto": "2026-11-01"
+  },
+  "Gil Vicente": {
+    "contexto": "cuotas_mx→futbol",
+    "candidato": "Espanol de San Vicente",
+    "ratio": 0.5455,
+    "visto": "2026-11-01"
+  },
+  "CD Minera": {
+    "contexto": "cuotas_mx→futbol",
+    "candidato": "Deportiva Minera",
+    "ratio": 0.64,
+    "visto": "2026-11-01"
+  },
+  "Reus FC Reddis": {
+    "contexto": "cuotas_mx→futbol",
+    "candidato": "Reus FCR",
+    "ratio": 0.7273,
     "visto": "2026-11-01"
   }
 }

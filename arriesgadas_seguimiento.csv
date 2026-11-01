@@ -1149,7 +1149,7 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-10-31,Rodina Moscow vs Krasnodar,2026-10-31 16:45:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5551,1.636,1.0,1.0
 2026-10-31,Aalesund vs Sandefjord,2026-10-31 17:00:00,Córners: Más de 10.5,corners,total,total,10.5,0.5518,1.556,14.0,1.0
 2026-10-31,Barcelona vs Alaves,2026-10-31 20:00:00,Tiros a puerta Barcelona: Más de 8.5,a_puerta,equipo,local,8.5,0.5657,1.75,7.0,0.0
-2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Tiros: Más de 30.5,tiros,total,total,30.5,0.5558,1.818,,
+2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Tiros: Más de 30.5,tiros,total,total,30.5,0.5558,1.818,30.0,0.0
 2026-10-31,Schalke 04 vs RB Leipzig,2026-10-31 14:30:00,Córners: Más de 8.5,corners,total,total,8.5,0.6873,1.455,10.0,1.0
 2026-10-31,Schalke 04 vs RB Leipzig,2026-10-31 14:30:00,Tiros Schalke 04: Más de 11.5,tiros,equipo,local,11.5,0.6021,1.636,6.0,0.0
 2026-10-31,Schalke 04 vs RB Leipzig,2026-10-31 14:30:00,Tiros a puerta RB Leipzig: Más de 4.5,a_puerta,equipo,visita,4.5,0.5934,1.52,10.0,1.0
@@ -1272,15 +1272,15 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-10-31,Pachuca vs Tigres UANL,2026-10-31 23:00:00,Tiros Tigres UANL: Más de 11.5,tiros,equipo,visita,11.5,0.6082,1.583,,
 2026-10-31,Pachuca vs Tigres UANL,2026-10-31 23:00:00,Tiros: Más de 27.5,tiros,total,total,27.5,0.6053,1.571,,
 2026-10-31,Pachuca vs Tigres UANL,2026-10-31 23:00:00,Córners: Más de 9.5,corners,total,total,9.5,0.5688,1.69,,
-2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Tiros a puerta Falkirk: Más de 3.5,a_puerta,equipo,local,3.5,0.5777,1.875,,
+2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Tiros a puerta Falkirk: Más de 3.5,a_puerta,equipo,local,3.5,0.5777,1.875,2.0,0.0
 2026-10-31,Yokohama F. Marinos vs Kawasaki Frontale,2026-11-01 04:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6375,1.5,1.0,1.0
 2026-10-31,Yokohama F. Marinos vs Kawasaki Frontale,2026-11-01 04:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.6216,1.583,6.0,1.0
 2026-10-31,Yokohama F. Marinos vs Kawasaki Frontale,2026-11-01 04:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5811,1.556,11.0,1.0
 2026-11-01,Como vs Venezia,2026-11-01 11:30:00,Tiros: Más de 29.5,tiros,total,total,29.5,0.5587,1.6,26.0,0.0
-2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Tiros a puerta: Más de 6.5,a_puerta,total,total,6.5,0.6763,1.455,,
+2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Tiros a puerta: Más de 6.5,a_puerta,total,total,6.5,0.6763,1.455,9.0,1.0
 2026-11-01,Frosinone vs Torino,2026-11-01 14:00:00,Tiros Torino: Más de 12.5,tiros,equipo,visita,12.5,0.5512,1.571,,
 2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.5506,1.867,,
-2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Tiros Celtic: Más de 17.5,tiros,equipo,visita,17.5,0.5586,1.538,,
+2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Tiros Celtic: Más de 17.5,tiros,equipo,visita,17.5,0.5586,1.538,24.0,1.0
 2026-11-01,Lazio vs Cagliari,2026-11-01 14:00:00,Tiros: Más de 26.5,tiros,total,total,26.5,0.6032,1.636,,
 2026-11-01,Arezzo vs Ascoli,2026-11-01 14:00:00,Tiros: Más de 25.5,tiros,total,total,25.5,0.5734,1.538,,
 2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Tiros Besiktas: Más de 14.5,tiros,equipo,visita,14.5,0.6043,1.7,,
@@ -1296,39 +1296,36 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-01,Como vs Venezia,2026-11-01 11:30:00,Goles Venezia: Más de 0.5,goles,equipo,visita,0.5,0.6082,1.5,0.0,0.0
 2026-11-01,Como vs Venezia,2026-11-01 11:30:00,Tiros Venezia: Más de 9.5,tiros,equipo,visita,9.5,0.6067,1.636,7.0,0.0
 2026-11-01,Como vs Venezia,2026-11-01 11:30:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5643,1.625,0.0,0.0
-2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Córners: Más de 9.5,corners,total,total,9.5,0.5957,1.5,,
-2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5663,1.69,,
+2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Córners: Más de 9.5,corners,total,total,9.5,0.5957,1.5,14.0,1.0
+2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5663,1.69,0.0,0.0
 2026-11-01,Lazio vs Cagliari,2026-11-01 14:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5664,2.0,,
 2026-11-01,Lecce vs Genoa,2026-11-01 17:00:00,Tiros Lecce: Más de 11.5,tiros,equipo,local,11.5,0.5597,1.667,,
 2026-11-01,Burgos vs Castellon,2026-11-01 17:30:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6029,1.625,,
 2026-11-01,Burgos vs Castellon,2026-11-01 17:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.598,1.714,,
 2026-11-01,Burgos vs Castellon,2026-11-01 17:30:00,Tiros Castellon: Más de 12.5,tiros,equipo,visita,12.5,0.5818,1.583,,
 2026-11-01,Burgos vs Castellon,2026-11-01 17:30:00,Tiros: Más de 24.5,tiros,total,total,24.5,0.5777,1.546,,
-2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Tiros: Más de 26.5,tiros,total,total,26.5,0.5619,1.615,,
-2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Tiros a puerta Napoli: Más de 3.5,a_puerta,equipo,visita,3.5,0.5521,1.941,,
-2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Tiros a puerta Juventus: Más de 4.5,a_puerta,equipo,local,4.5,0.5504,1.778,,
 2026-11-02,GAIS vs AIK,2026-11-02 18:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.6413,1.455,,
-2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Córners: Más de 7.5,corners,total,total,7.5,0.7031,1.455,,
-2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Tiros Getafe: Más de 9.5,tiros,equipo,local,9.5,0.6988,1.53,,
-2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Tiros a puerta Celtic: Más de 5.5,a_puerta,equipo,visita,5.5,0.6917,1.462,,
-2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Tiros Sevilla: Más de 10.5,tiros,equipo,visita,10.5,0.6895,1.48,,
-2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Tiros Falkirk: Más de 9.5,tiros,equipo,local,9.5,0.6877,1.583,,
-2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Tiros Granada: Más de 10.5,tiros,equipo,visita,10.5,0.6688,1.6,,
-2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.6605,1.471,,
-2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Tiros a puerta: Más de 9.5,a_puerta,total,total,9.5,0.6504,1.571,,
-2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Tiros: Más de 22.5,tiros,total,total,22.5,0.6392,1.615,,
-2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Goles Falkirk: Más de 0.5,goles,equipo,local,0.5,0.6387,1.455,,
-2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Ambos marcan: No,btts,btts,total,0.0,0.6281,1.714,,
-2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Tiros: Más de 25.5,tiros,total,total,25.5,0.6229,1.667,,
-2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.6218,1.455,,
-2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.6035,1.667,,
-2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Tiros Eldense: Más de 13.5,tiros,equipo,local,13.5,0.6032,1.692,,
-2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Tiros a puerta Eldense: Más de 4.5,a_puerta,equipo,local,4.5,0.6009,1.818,,
-2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Tiros a puerta Granada: Más de 3.5,a_puerta,equipo,visita,3.5,0.599,1.571,,
-2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Tiros a puerta Sevilla: Más de 3.5,a_puerta,equipo,visita,3.5,0.5973,1.6,,
-2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Goles Getafe: Más de 0.5,goles,equipo,local,0.5,0.5816,1.526,,
-2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.58,1.625,,
-2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Goles: Más de 1.5,goles,total,total,1.5,0.5637,1.5,,
+2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Córners: Más de 7.5,corners,total,total,7.5,0.7031,1.455,4.0,0.0
+2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Tiros Getafe: Más de 9.5,tiros,equipo,local,9.5,0.6988,1.53,11.0,1.0
+2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Tiros a puerta Celtic: Más de 5.5,a_puerta,equipo,visita,5.5,0.6917,1.462,9.0,1.0
+2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Tiros Sevilla: Más de 10.5,tiros,equipo,visita,10.5,0.6895,1.48,12.0,1.0
+2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Tiros Falkirk: Más de 9.5,tiros,equipo,local,9.5,0.6877,1.583,6.0,0.0
+2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Tiros Granada: Más de 10.5,tiros,equipo,visita,10.5,0.6688,1.6,8.0,0.0
+2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.6605,1.471,2.0,0.0
+2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Tiros a puerta: Más de 9.5,a_puerta,total,total,9.5,0.6504,1.571,11.0,1.0
+2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Tiros: Más de 22.5,tiros,total,total,22.5,0.6392,1.615,23.0,1.0
+2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Goles Falkirk: Más de 0.5,goles,equipo,local,0.5,0.6387,1.455,2.0,1.0
+2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Ambos marcan: No,btts,btts,total,0.0,0.6281,1.714,1.0,0.0
+2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Tiros: Más de 25.5,tiros,total,total,25.5,0.6229,1.667,21.0,0.0
+2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.6218,1.455,6.0,0.0
+2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.6035,1.667,9.0,1.0
+2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Tiros Eldense: Más de 13.5,tiros,equipo,local,13.5,0.6032,1.692,13.0,0.0
+2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Tiros a puerta Eldense: Más de 4.5,a_puerta,equipo,local,4.5,0.6009,1.818,6.0,1.0
+2026-11-01,Eldense vs Granada,2026-11-01 13:00:00,Tiros a puerta Granada: Más de 3.5,a_puerta,equipo,visita,3.5,0.599,1.571,3.0,0.0
+2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Tiros a puerta Sevilla: Más de 3.5,a_puerta,equipo,visita,3.5,0.5973,1.6,4.0,1.0
+2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Goles Getafe: Más de 0.5,goles,equipo,local,0.5,0.5816,1.526,3.0,1.0
+2026-11-01,Falkirk vs Celtic,2026-11-01 13:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.58,1.625,0.0,0.0
+2026-11-01,Getafe vs Sevilla,2026-11-01 13:00:00,Goles: Más de 1.5,goles,total,total,1.5,0.5637,1.5,4.0,1.0
 2026-11-01,Lazio vs Cagliari,2026-11-01 14:00:00,Tiros a puerta: Más de 7.5,a_puerta,total,total,7.5,0.7682,1.5,,
 2026-11-01,Lazio vs Cagliari,2026-11-01 14:00:00,Tiros a puerta Lazio: Más de 4.5,a_puerta,equipo,local,4.5,0.7654,1.462,,
 2026-11-01,Empoli vs Juve Stabia,2026-11-01 14:00:00,Tiros Juve Stabia: Más de 11.5,tiros,equipo,visita,11.5,0.7199,1.5,,
@@ -1355,21 +1352,24 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-01,Empoli vs Juve Stabia,2026-11-01 14:00:00,Tiros a puerta Empoli: Más de 3.5,a_puerta,equipo,local,3.5,0.5841,1.615,,
 2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Goles Kasimpasa: Más de 0.5,goles,equipo,local,0.5,0.6198,1.455,,
 2026-11-01,Burgos vs Castellon,2026-11-01 17:30:00,Tiros a puerta Castellon: Más de 4.5,a_puerta,equipo,visita,4.5,0.5753,1.8,,
+2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Tiros: Más de 23.5,tiros,total,total,23.5,0.5748,1.53,,
+2026-11-01,Palermo vs Vicenza,2026-11-01 18:30:00,Tiros a puerta Palermo: Más de 5.5,a_puerta,equipo,local,5.5,0.5827,1.571,,
+2026-11-01,Palermo vs Vicenza,2026-11-01 18:30:00,Tiros Vicenza: Más de 10.5,tiros,equipo,visita,10.5,0.551,1.538,,
 2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Goles Besiktas: Más de 1.5,goles,equipo,visita,1.5,0.6694,1.556,,
 2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.6614,1.546,,
 2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Tiros a puerta Besiktas: Más de 5.5,a_puerta,equipo,visita,5.5,0.6136,1.786,,
-2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Tiros Kasimpasa: Más de 10.5,tiros,equipo,local,10.5,0.6135,1.75,,
+2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Tiros Kasimpasa: Más de 10.5,tiros,equipo,local,10.5,0.6135,1.733,,
 2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6011,1.6,,
-2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Tiros a puerta: Más de 9.5,a_puerta,total,total,9.5,0.6006,1.909,,
-2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Tiros: Más de 26.5,tiros,total,total,26.5,0.5874,1.778,,
-2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Tiros a puerta Kasimpasa: Más de 3.5,a_puerta,equipo,local,3.5,0.575,1.933,,
-2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Tiros Liverpool: Más de 11.5,tiros,equipo,local,11.5,0.6444,1.615,,
-2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Tiros a puerta Arsenal: Más de 3.5,a_puerta,equipo,visita,3.5,0.6336,1.5,,
-2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Tiros a puerta: Más de 7.5,a_puerta,total,total,7.5,0.6272,1.5,,
-2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Córners: Más de 8.5,corners,total,total,8.5,0.605,1.5,,
-2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Tiros a puerta Liverpool: Más de 3.5,a_puerta,equipo,local,3.5,0.6034,1.636,,
-2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Tiros Arsenal: Más de 11.5,tiros,equipo,visita,11.5,0.5822,1.5,,
-2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5654,1.647,,
+2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Tiros a puerta: Más de 9.5,a_puerta,total,total,9.5,0.6006,1.875,,
+2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Tiros: Más de 26.5,tiros,total,total,26.5,0.5874,1.76,,
+2026-11-01,Kasimpasa vs Besiktas,2026-11-01 16:00:00,Tiros a puerta Kasimpasa: Más de 3.5,a_puerta,equipo,local,3.5,0.575,1.909,,
+2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Tiros a puerta Arsenal: Más de 3.5,a_puerta,equipo,visita,3.5,0.6863,1.5,,
+2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Tiros a puerta: Más de 7.5,a_puerta,total,total,7.5,0.6569,1.5,,
+2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Tiros Arsenal: Más de 11.5,tiros,equipo,visita,11.5,0.6233,1.5,,
+2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Tiros Liverpool: Más de 11.5,tiros,equipo,local,11.5,0.6151,1.5,,
+2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Córners: Más de 8.5,corners,total,total,8.5,0.6059,1.5,,
+2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Tiros a puerta Liverpool: Más de 3.5,a_puerta,equipo,local,3.5,0.5887,1.636,,
+2026-11-01,Liverpool vs Arsenal,2026-11-01 16:30:00,Ambos marcan: Sí,btts,btts,total,1.0,0.575,1.625,,
 2026-11-01,Lokomotiv Moscow vs Spartak Moscow,2026-11-01 16:45:00,Goles Spartak Moscow: Más de 1.5,goles,equipo,visita,1.5,0.6596,1.556,,
 2026-11-01,Lokomotiv Moscow vs Spartak Moscow,2026-11-01 16:45:00,Goles: Más de 2.5,goles,total,total,2.5,0.6509,1.556,,
 2026-11-01,Lokomotiv Moscow vs Spartak Moscow,2026-11-01 16:45:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5947,1.583,,
@@ -1378,32 +1378,31 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-01,Lecce vs Genoa,2026-11-01 17:00:00,Ambos marcan: No,btts,btts,total,0.0,0.5853,1.769,,
 2026-11-01,Elche vs Valencia,2026-11-01 17:30:00,Tiros Valencia: Más de 9.5,tiros,equipo,visita,9.5,0.7284,1.462,,
 2026-11-01,Elche vs Valencia,2026-11-01 17:30:00,Tiros a puerta Elche: Más de 3.5,a_puerta,equipo,local,3.5,0.7002,1.455,,
-2026-11-01,Burgos vs Castellon,2026-11-01 17:30:00,Tiros a puerta: Más de 7.5,a_puerta,total,total,7.5,0.6751,1.52,,
+2026-11-01,Burgos vs Castellon,2026-11-01 17:30:00,Tiros a puerta: Más de 7.5,a_puerta,total,total,7.5,0.6751,1.455,,
 2026-11-01,Elche vs Valencia,2026-11-01 17:30:00,Tiros a puerta: Más de 7.5,a_puerta,total,total,7.5,0.6632,1.615,,
 2026-11-01,Elche vs Valencia,2026-11-01 17:30:00,Tiros Elche: Más de 12.5,tiros,equipo,local,12.5,0.638,1.53,,
 2026-11-01,Elche vs Valencia,2026-11-01 17:30:00,Tiros: Más de 24.5,tiros,total,total,24.5,0.6286,1.6,,
-2026-11-01,Burgos vs Castellon,2026-11-01 17:30:00,Tiros Burgos: Más de 10.5,tiros,equipo,local,10.5,0.6168,1.636,,
+2026-11-01,Burgos vs Castellon,2026-11-01 17:30:00,Tiros Burgos: Más de 10.5,tiros,equipo,local,10.5,0.6168,1.583,,
 2026-11-01,Elche vs Valencia,2026-11-01 17:30:00,Córners: Más de 8.5,corners,total,total,8.5,0.5986,1.571,,
-2026-11-01,Burgos vs Castellon,2026-11-01 17:30:00,Tiros a puerta Burgos: Más de 3.5,a_puerta,equipo,local,3.5,0.593,1.76,,
+2026-11-01,Burgos vs Castellon,2026-11-01 17:30:00,Tiros a puerta Burgos: Más de 3.5,a_puerta,equipo,local,3.5,0.593,1.75,,
 2026-11-01,Elche vs Valencia,2026-11-01 17:30:00,Tiros a puerta Valencia: Más de 3.5,a_puerta,equipo,visita,3.5,0.5817,1.909,,
 2026-11-01,Elche vs Valencia,2026-11-01 17:30:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5796,1.741,,
 2026-11-01,Elche vs Valencia,2026-11-01 17:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.558,1.941,,
 2026-11-01,Burgos vs Castellon,2026-11-01 17:30:00,Córners: Más de 8.5,corners,total,total,8.5,0.5557,1.6,,
+2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Tiros a puerta Boca Juniors: Más de 3.5,a_puerta,equipo,local,3.5,0.6751,1.52,,
 2026-11-01,Maritimo vs Santa Clara,2026-11-01 18:00:00,Goles: Más de 1.5,goles,total,total,1.5,0.6659,1.471,,
-2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Tiros a puerta Boca Juniors: Más de 3.5,a_puerta,equipo,local,3.5,0.6579,1.583,,
-2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Goles River Plate: Más de 0.5,goles,equipo,visita,0.5,0.6486,1.5,,
-2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Tiros Boca Juniors: Más de 11.5,tiros,equipo,local,11.5,0.6434,1.583,,
+2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Tiros Boca Juniors: Más de 11.5,tiros,equipo,local,11.5,0.646,1.583,,
+2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Goles River Plate: Más de 0.5,goles,equipo,visita,0.5,0.6426,1.5,,
 2026-11-01,Maritimo vs Santa Clara,2026-11-01 18:00:00,Tiros a puerta Santa Clara: Más de 3.5,a_puerta,equipo,visita,3.5,0.6328,1.571,,
 2026-11-01,Maritimo vs Santa Clara,2026-11-01 18:00:00,Córners: Más de 7.5,corners,total,total,7.5,0.6325,1.455,,
 2026-11-01,Maritimo vs Santa Clara,2026-11-01 18:00:00,Tiros a puerta: Más de 6.5,a_puerta,total,total,6.5,0.63,1.583,,
-2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Córners: Más de 7.5,corners,total,total,7.5,0.6245,1.5,,
+2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Córners: Más de 7.5,corners,total,total,7.5,0.6283,1.5,,
 2026-11-01,Maritimo vs Santa Clara,2026-11-01 18:00:00,Tiros Maritimo: Más de 8.5,tiros,equipo,local,8.5,0.6195,1.455,,
 2026-11-01,Maritimo vs Santa Clara,2026-11-01 18:00:00,Goles Maritimo: Más de 0.5,goles,equipo,local,0.5,0.6164,1.5,,
 2026-11-01,Maritimo vs Santa Clara,2026-11-01 18:00:00,Tiros a puerta Maritimo: Más de 2.5,a_puerta,equipo,local,2.5,0.6126,1.692,,
-2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Tiros a puerta: Más de 7.5,a_puerta,total,total,7.5,0.5897,1.786,,
+2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Tiros a puerta: Más de 7.5,a_puerta,total,total,7.5,0.601,1.667,,
 2026-11-01,Maritimo vs Santa Clara,2026-11-01 18:00:00,Tiros Santa Clara: Más de 11.5,tiros,equipo,visita,11.5,0.5798,1.5,,
-2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Tiros: Más de 23.5,tiros,total,total,23.5,0.5748,1.53,,
-2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Tiros River Plate: Más de 10.5,tiros,equipo,visita,10.5,0.5602,1.538,,
+2026-11-01,Boca Juniors vs River Plate,2026-11-01 18:00:00,Tiros River Plate: Más de 10.5,tiros,equipo,visita,10.5,0.5555,1.52,,
 2026-11-01,Valerenga vs Tromso,2026-11-01 18:15:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.698,1.462,,
 2026-11-01,Valerenga vs Tromso,2026-11-01 18:15:00,Ambos marcan: Sí,btts,btts,total,1.0,0.667,1.455,,
 2026-11-01,Valerenga vs Tromso,2026-11-01 18:15:00,Goles: Más de 2.5,goles,total,total,2.5,0.6612,1.52,,
@@ -1413,24 +1412,25 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-01,Valerenga vs Tromso,2026-11-01 18:15:00,Tiros: Más de 27.5,tiros,total,total,27.5,0.5787,1.615,,
 2026-11-01,Valerenga vs Tromso,2026-11-01 18:15:00,Tiros a puerta Tromso: Más de 4.5,a_puerta,equipo,visita,4.5,0.5783,1.818,,
 2026-11-01,Valerenga vs Tromso,2026-11-01 18:15:00,Tiros Tromso: Más de 12.5,tiros,equipo,visita,12.5,0.5733,1.667,,
-2026-11-01,Palermo vs Vicenza,2026-11-01 18:30:00,Goles Palermo: Más de 1.5,goles,equipo,local,1.5,0.6149,1.5,,
-2026-11-01,Palermo vs Vicenza,2026-11-01 18:30:00,Goles Vicenza: Más de 0.5,goles,equipo,visita,0.5,0.5878,1.5,,
-2026-11-01,Palermo vs Vicenza,2026-11-01 18:30:00,Tiros a puerta Palermo: Más de 5.5,a_puerta,equipo,local,5.5,0.5827,1.571,,
-2026-11-01,Palermo vs Vicenza,2026-11-01 18:30:00,Córners: Más de 8.5,corners,total,total,8.5,0.5815,1.455,,
-2026-11-01,Palermo vs Vicenza,2026-11-01 18:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.5696,1.583,,
-2026-11-01,Palermo vs Vicenza,2026-11-01 18:30:00,Tiros Vicenza: Más de 10.5,tiros,equipo,visita,10.5,0.551,1.538,,
+2026-11-01,Palermo vs Vicenza,2026-11-01 18:30:00,Goles Palermo: Más de 1.5,goles,equipo,local,1.5,0.6052,1.5,,
+2026-11-01,Palermo vs Vicenza,2026-11-01 18:30:00,Córners: Más de 8.5,corners,total,total,8.5,0.576,1.455,,
+2026-11-01,Palermo vs Vicenza,2026-11-01 18:30:00,Goles Vicenza: Más de 0.5,goles,equipo,visita,0.5,0.5718,1.5,,
+2026-11-01,Palermo vs Vicenza,2026-11-01 18:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.5524,1.583,,
 2026-11-01,Marseille vs Toulouse,2026-11-01 19:45:00,Tiros Toulouse: Más de 10.5,tiros,equipo,visita,10.5,0.7605,1.615,,
 2026-11-01,Marseille vs Toulouse,2026-11-01 19:45:00,Tiros a puerta Toulouse: Más de 3.5,a_puerta,equipo,visita,3.5,0.7109,1.538,,
+2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Tiros a puerta: Más de 7.5,a_puerta,total,total,7.5,0.6681,1.538,,
 2026-11-01,Marseille vs Toulouse,2026-11-01 19:45:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6632,1.476,,
 2026-11-01,Marseille vs Toulouse,2026-11-01 19:45:00,Goles: Más de 2.5,goles,total,total,2.5,0.661,1.48,,
-2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Tiros a puerta: Más de 7.5,a_puerta,total,total,7.5,0.6547,1.538,,
-2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Córners: Más de 8.5,corners,total,total,8.5,0.6194,1.571,,
-2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Tiros Napoli: Más de 10.5,tiros,equipo,visita,10.5,0.5836,1.583,,
+2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Córners: Más de 8.5,corners,total,total,8.5,0.6591,1.546,,
+2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Tiros Juventus: Más de 14.5,tiros,equipo,local,14.5,0.6147,1.636,,
+2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Tiros Napoli: Más de 10.5,tiros,equipo,visita,10.5,0.6045,1.583,,
+2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Tiros: Más de 26.5,tiros,total,total,26.5,0.5898,1.615,,
 2026-11-01,Marseille vs Toulouse,2026-11-01 19:45:00,Tiros a puerta Marseille: Más de 4.5,a_puerta,equipo,local,4.5,0.5826,1.5,,
 2026-11-01,Marseille vs Toulouse,2026-11-01 19:45:00,Tiros: Más de 26.5,tiros,total,total,26.5,0.5785,1.7,,
-2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Tiros Juventus: Más de 14.5,tiros,equipo,local,14.5,0.5759,1.636,,
 2026-11-01,Marseille vs Toulouse,2026-11-01 19:45:00,Córners: Más de 8.5,corners,total,total,8.5,0.5657,1.625,,
 2026-11-01,Marseille vs Toulouse,2026-11-01 19:45:00,Goles Marseille: Más de 1.5,goles,equipo,local,1.5,0.5583,1.625,,
+2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Tiros a puerta Napoli: Más de 3.5,a_puerta,equipo,visita,3.5,0.5568,1.941,,
+2026-11-01,Juventus vs Napoli,2026-11-01 19:45:00,Tiros a puerta Juventus: Más de 4.5,a_puerta,equipo,local,4.5,0.5563,1.778,,
 2026-11-01,Marseille vs Toulouse,2026-11-01 19:45:00,Tiros a puerta: Más de 9.5,a_puerta,total,total,9.5,0.5511,1.714,,
 2026-11-02,Genclerbirligi vs Alanyaspor,2026-11-02 17:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.6467,1.5,,
 2026-11-02,Sassuolo vs Fiorentina,2026-11-02 17:30:00,Córners: Más de 8.5,corners,total,total,8.5,0.6328,1.6,,
@@ -1452,6 +1452,6 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-02,Mallorca vs Cadiz,2026-11-02 20:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.6102,1.455,,
 2026-11-02,Mallorca vs Cadiz,2026-11-02 20:00:00,Goles Mallorca: Más de 1.5,goles,equipo,local,1.5,0.5762,1.667,,
 2026-11-02,Mallorca vs Cadiz,2026-11-02 20:00:00,Goles Cadiz: Más de 0.5,goles,equipo,visita,0.5,0.568,1.75,,
-2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Córners: Más de 8.5,corners,total,total,8.5,0.6835,1.5,,
+2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Córners: Más de 8.5,corners,total,total,8.5,0.6793,1.5,,
 2026-11-02,Defensa y Justicia vs Independiente,2026-11-02 22:00:00,Goles Independiente: Más de 0.5,goles,equipo,visita,0.5,0.6593,1.455,,
 2026-11-02,Defensa y Justicia vs Independiente,2026-11-02 22:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.6065,1.556,,
