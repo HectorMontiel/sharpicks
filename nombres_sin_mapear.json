@@ -133,8 +133,8 @@
   },
   "Independiente Santa Fe": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Independiente CBBA",
-    "ratio": 0.75,
+    "candidato": "Santa Ana",
+    "ratio": 0.3871,
     "visto": "2026-11-01"
   },
   "Independiente del Valle": {
@@ -1261,9 +1261,9 @@
   },
   "Sporting San José": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sporting Escaldes",
-    "ratio": 0.7059,
-    "visto": "2026-10-31"
+    "candidato": "GV San Jose",
+    "ratio": 0.7143,
+    "visto": "2026-11-01"
   },
   "Universidad Católica": {
     "contexto": "cuotas_mx→futbol",
@@ -1357,9 +1357,9 @@
   },
   "Sporting Club Delhi": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sporting Escaldes",
-    "ratio": 0.7222,
-    "visto": "2026-10-31"
+    "candidato": "Club Brugge II W",
+    "ratio": 0.4242,
+    "visto": "2026-11-01"
   },
   "Shanghai Shenhua": {
     "contexto": "cuotas_mx→futbol",
@@ -2649,6 +2649,12 @@
     "contexto": "oddsapi",
     "candidato": "Inter Milan",
     "ratio": 0.48,
+    "visto": "2026-11-01"
+  },
+  "Olympiacos": {
+    "contexto": "oddsapi",
+    "candidato": "Olympiakos Piraeus",
+    "ratio": 0.6429,
     "visto": "2026-11-01"
   }
 }

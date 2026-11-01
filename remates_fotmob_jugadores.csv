@@ -25272,22 +25272,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5811724,2026-08-16,bel_pro_league,Anderlecht,Joshua Nga Kana,1817363,M,0,11,0,0,0,0.0,,2.0,
 5811724,2026-08-16,bel_pro_league,Anderlecht,Marco Kana,1076974,D,0,3,1,1,0,0.05,,1.0,2272565.0
 5811724,2026-08-16,bel_pro_league,Anderlecht,Adriano Bertaccini,1073421,F,0,3,2,0,0,0.26,,3.0,3674042.0
-1000014527,2026-08-16,liga_mx,Monterrey,Luis Cárdenas,514295,G,1,90,0,0,0,0.0,11.0,0.0,530645.0
-1000014527,2026-08-16,liga_mx,Monterrey,Ricardo Chávez,659597,D,1,90,0,0,0,0.0,32.0,1.0,1510783.0
-1000014527,2026-08-16,liga_mx,Monterrey,Víctor Guzmán,1128493,D,1,90,1,0,0,0.08,34.0,1.0,5136482.0
-1000014527,2026-08-16,liga_mx,Monterrey,Alonso Aceves,1203562,D,1,37,0,0,0,0.0,36.0,1.0,1985860.0
-1000014527,2026-08-16,liga_mx,Monterrey,Gerardo Arteaga,797924,D,1,90,1,0,0,0.05,38.0,1.0,1830639.0
-1000014527,2026-08-16,liga_mx,Monterrey,Óliver Torres,316771,M,1,90,2,0,0,0.03,64.0,2.0,1882778.0
-1000014527,2026-08-16,liga_mx,Monterrey,Orbelín Pineda,559986,M,1,63,1,1,1,0.18,66.0,2.0,2999452.0
-1000014527,2026-08-16,liga_mx,Monterrey,Luca Orellano,988833,F,1,90,3,2,1,0.33,83.0,3.0,3772302.0
-1000014527,2026-08-16,liga_mx,Monterrey,Diego Rossi,743534,M,1,63,4,2,1,0.57,85.0,2.0,3989516.0
-1000014527,2026-08-16,liga_mx,Monterrey,Lucas Ocampos,357080,F,1,71,5,2,1,0.63,87.0,3.0,1771044.0
-1000014527,2026-08-16,liga_mx,Monterrey,Hugo Cuypers,737974,F,1,63,6,2,1,0.78,115.0,3.0,4834177.0
-1000014527,2026-08-16,liga_mx,Monterrey,Jorge Rodríguez,564610,M,0,53,1,1,1,0.01,,2.0,1719866.0
-1000014527,2026-08-16,liga_mx,Monterrey,Iker Fimbres,1513010,M,0,27,1,0,0,0.01,,2.0,3894700.0
-1000014527,2026-08-16,liga_mx,Monterrey,Aldo de Nigris,1843224,F,0,27,2,0,0,0.46,,3.0,
-1000014527,2026-08-16,liga_mx,Monterrey,Roberto de la Rosa,868061,F,0,27,0,0,0,0.0,,3.0,1415802.0
-1000014527,2026-08-16,liga_mx,Monterrey,Jesús Corona,210956,M,0,19,1,0,0,0.02,,2.0,991800.0
 5109889,2026-08-16,usl_championship,Oakland Roots SC,Kendall McIntosh,533126,G,1,90,0,0,0,0.0,11.0,0.0,50000.0
 5109889,2026-08-16,usl_championship,Oakland Roots SC,Julian Bravo,1366626,D,1,68,1,1,0,0.0,32.0,1.0,76988.0
 5109889,2026-08-16,usl_championship,Oakland Roots SC,Michael Edwards,1252225,D,1,90,1,0,0,0.0,34.0,1.0,80651.0
@@ -27654,38 +27638,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5868412,2026-08-22,esp_hypermotion,Leganes,Álex Millán,1093297,F,0,29,0,0,0,0.0,,3.0,
 5868412,2026-08-22,esp_hypermotion,Leganes,Dani Rodríguez,213516,F,0,29,0,0,0,0.0,,3.0,205238.0
 5868412,2026-08-22,esp_hypermotion,Leganes,Rubén Pena,364239,D,0,4,0,0,0,0.0,,1.0,257932.0
-1000014538,2026-08-22,liga_mx,Chivas,Raúl Rangel,1227878,G,1,90,0,0,0,0.0,11.0,0.0,5358162.0
-1000014538,2026-08-22,liga_mx,Chivas,Miguel Gómez,1333094,D,1,53,0,0,0,0.0,33.0,1.0,929193.0
-1000014538,2026-08-22,liga_mx,Chivas,Diego Campillo,1169763,D,1,90,1,1,1,0.04,35.0,1.0,1948389.0
-1000014538,2026-08-22,liga_mx,Chivas,Luis Romo,921174,D,1,90,0,0,0,0.0,37.0,1.0,2253848.0
-1000014538,2026-08-22,liga_mx,Chivas,Santiago Sandoval,1786010,M,1,64,2,2,1,0.26,62.0,2.0,3323703.0
-1000014538,2026-08-22,liga_mx,Chivas,Omar Govea,610473,M,1,90,0,0,0,0.0,64.0,2.0,1024694.0
-1000014538,2026-08-22,liga_mx,Chivas,Rubén González,430764,M,1,90,0,0,0,0.0,66.0,2.0,1195500.0
-1000014538,2026-08-22,liga_mx,Chivas,Hugo Camberos,1603101,M,1,64,0,0,0,0.0,68.0,2.0,
-1000014538,2026-08-22,liga_mx,Chivas,Roberto Alvarado,720737,M,1,90,1,1,1,0.16,84.0,2.0,4987423.0
-1000014538,2026-08-22,liga_mx,Chivas,Efraín Álvarez,927365,M,1,53,1,0,0,0.04,86.0,2.0,5448177.0
-1000014538,2026-08-22,liga_mx,Chivas,Ricardo Marín,693676,F,1,72,7,4,2,1.78,105.0,3.0,1457388.0
-1000014538,2026-08-22,liga_mx,Chivas,Luis Gabriel Rey,1222037,D,0,37,0,0,0,0.0,,1.0,1659408.0
-1000014538,2026-08-22,liga_mx,Chivas,Brian Gutiérrez,1170238,M,0,37,0,0,0,0.0,,2.0,5855855.0
-1000014538,2026-08-22,liga_mx,Chivas,Jordán Carrillo,1171126,M,0,26,1,0,0,0.02,,2.0,1593870.0
-1000014538,2026-08-22,liga_mx,Chivas,Kevin Castañeda,951049,M,0,26,0,0,0,0.0,,2.0,2680022.0
-1000014538,2026-08-22,liga_mx,Chivas,Ángel Sepúlveda,215428,F,0,18,0,0,0,0.0,,3.0,730782.0
-1000014538,2026-08-22,liga_mx,Tijuana,José Antonio Rodriguez,324432,G,1,90,0,0,0,0.0,11.0,0.0,423395.0
-1000014538,2026-08-22,liga_mx,Tijuana,Rafael Fernández,1169764,D,1,90,1,0,0,0.04,32.0,1.0,1524995.0
-1000014538,2026-08-22,liga_mx,Tijuana,Jackson Porozo,1032039,D,1,90,0,0,0,0.0,34.0,1.0,1635200.0
-1000014538,2026-08-22,liga_mx,Tijuana,Alejandro Gómez,1010407,D,1,90,2,0,0,0.08,36.0,1.0,2311534.0
-1000014538,2026-08-22,liga_mx,Tijuana,Pablo Ortíz,1504865,D,1,46,0,0,0,0.0,38.0,1.0,863704.0
-1000014538,2026-08-22,liga_mx,Tijuana,Iván Tona,1071276,M,1,90,2,1,0,0.12,65.0,2.0,1391254.0
-1000014538,2026-08-22,liga_mx,Tijuana,Ramiro Árciga,1455072,F,1,56,1,0,0,0.04,82.0,3.0,2967872.0
-1000014538,2026-08-22,liga_mx,Tijuana,Gilberto Mora,1670377,M,1,79,1,0,0,0.37,84.0,2.0,8316496.0
-1000014538,2026-08-22,liga_mx,Tijuana,Ignacio Rivero,430015,M,1,46,0,0,0,0.0,86.0,2.0,1281546.0
-1000014538,2026-08-22,liga_mx,Tijuana,Adonis Preciado,1072829,F,1,90,0,0,0,0.0,88.0,3.0,1094450.0
-1000014538,2026-08-22,liga_mx,Tijuana,Diego Abreu,1603564,F,1,45,1,0,0,0.08,115.0,3.0,561470.0
-1000014538,2026-08-22,liga_mx,Tijuana,Alan Vega,1225758,D,0,45,3,0,0,0.06,,1.0,807759.0
-1000014538,2026-08-22,liga_mx,Tijuana,Jonathan Padilla,1457724,F,0,45,1,1,0,0.03,,3.0,
-1000014538,2026-08-22,liga_mx,Tijuana,Elias Manoel,1248672,F,0,45,3,2,2,0.24,,3.0,1338553.0
-1000014538,2026-08-22,liga_mx,Tijuana,Francisco González,1042571,F,0,34,1,0,0,0.04,,3.0,1141445.0
-1000014538,2026-08-22,liga_mx,Tijuana,Ángel Zapata,1173461,M,0,11,0,0,0,0.0,,2.0,588309.0
 5109906,2026-08-22,usl_championship,Monterey Bay FC,Fernando Delgado,1261616,G,1,90,0,0,0,0.0,11.0,0.0,293760.0
 5109906,2026-08-22,usl_championship,Monterey Bay FC,Quinton Elliot,1780532,D,1,90,0,0,0,0.0,32.0,1.0,
 5109906,2026-08-22,usl_championship,Monterey Bay FC,Kelsey Egwu,1682712,D,1,90,0,0,0,0.0,34.0,1.0,151688.0
@@ -30396,22 +30348,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000014536,2026-08-22,liga_mx,CF América,Ramón Juárez,1085776,D,0,7,0,0,0,0.0,,1.0,3050011.0
 1000014536,2026-08-22,liga_mx,CF América,Cristián Borja,683964,D,0,7,0,0,0,0.0,,1.0,1004380.0
 1000014536,2026-08-22,liga_mx,CF América,Edwin Cerrillo,1026051,M,0,7,0,0,0,0.0,,2.0,1923852.0
-1000014540,2026-08-22,liga_mx,Atlante,Oscar Jiménez,463774,G,1,90,0,0,0,0.0,11.0,0.0,297774.0
-1000014540,2026-08-22,liga_mx,Atlante,Nico Carrera,1309373,D,1,82,1,0,0,0.02,33.0,1.0,425202.0
-1000014540,2026-08-22,liga_mx,Atlante,Eduardo Tercero,862169,D,1,90,0,0,0,0.0,35.0,1.0,167632.0
-1000014540,2026-08-22,liga_mx,Atlante,Aaron Quirós,1244341,D,1,90,0,0,0,0.0,37.0,1.0,1370474.0
-1000014540,2026-08-22,liga_mx,Atlante,Walter Portales,1190694,D,1,90,0,0,0,0.0,51.0,1.0,270987.0
-1000014540,2026-08-22,liga_mx,Atlante,Walter Clar,497408,D,1,58,0,0,0,0.0,59.0,1.0,318927.0
-1000014540,2026-08-22,liga_mx,Atlante,Octavio Vázquez,1888856,M,1,41,0,0,0,0.0,73.0,2.0,
-1000014540,2026-08-22,liga_mx,Atlante,Eugenio Pizzuto,1107285,M,1,90,1,0,0,0.02,75.0,2.0,201010.0
-1000014540,2026-08-22,liga_mx,Atlante,Luis Calzadilla,1114432,M,1,90,0,0,0,0.0,77.0,2.0,407558.0
-1000014540,2026-08-22,liga_mx,Atlante,Jhojan Julio,860927,F,1,82,2,1,0,0.1,104.0,3.0,637918.0
-1000014540,2026-08-22,liga_mx,Atlante,Luis Puente,1109128,F,1,82,3,1,0,0.89,106.0,3.0,545395.0
-1000014540,2026-08-22,liga_mx,Atlante,Armando Escobar,1028589,D,0,49,1,1,0,0.1,,1.0,116127.0
-1000014540,2026-08-22,liga_mx,Atlante,Martín Sarrafiore,816993,M,0,32,1,1,0,0.02,,2.0,621041.0
-1000014540,2026-08-22,liga_mx,Atlante,Cristóbal Alfaro,1832995,D,0,8,0,0,0,0.0,,1.0,
-1000014540,2026-08-22,liga_mx,Atlante,José González,1288844,M,0,8,0,0,0,0.0,,2.0,172800.0
-1000014540,2026-08-22,liga_mx,Atlante,Joaquín Moxica,1577972,F,0,8,2,0,0,0.19,,3.0,
 1000014539,2026-08-22,liga_mx,León,Óscar García,1339704,G,1,90,0,0,0,0.0,11.0,0.0,1929391.0
 1000014539,2026-08-22,liga_mx,León,Bryan Colula,658480,D,1,80,0,0,0,0.0,32.0,1.0,1083818.0
 1000014539,2026-08-22,liga_mx,León,Jhohan Romaña,1133142,D,1,66,1,0,0,0.1,34.0,1.0,3126663.0
@@ -52253,22 +52189,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5109934,2026-09-05,usl_championship,Brooklyn,Johnny Klein,1460074,M,0,12,0,0,0,0.0,,2.0,76984.0
 5109934,2026-09-05,usl_championship,Brooklyn,Pierre da Silva,754584,F,0,12,0,0,0,0.0,,3.0,109708.0
 5109934,2026-09-05,usl_championship,Brooklyn,So Nishikawa,1138224,D,0,8,0,0,0,0.0,,1.0,50000.0
-5071324,2026-09-05,mls,Colorado Rapids,Adam Beaudry,1610216,G,1,90,0,0,0,0.0,11.0,0.0,694086.0
-5071324,2026-09-05,mls,Colorado Rapids,Noah Cobb,1258251,D,1,59,1,0,0,0.04,32.0,1.0,1113903.0
-5071324,2026-09-05,mls,Colorado Rapids,Rob Holding,626667,D,1,90,1,0,0,0.07,34.0,1.0,1402459.0
-5071324,2026-09-05,mls,Colorado Rapids,Loïc Williams,1280203,D,1,90,0,0,0,0.0,36.0,1.0,1428667.0
-5071324,2026-09-05,mls,Colorado Rapids,Miguel Navarro,1048053,D,1,90,0,0,0,0.0,38.0,1.0,1268695.0
-5071324,2026-09-05,mls,Colorado Rapids,Joshua Atencio,981376,M,1,59,1,0,0,0.02,73.0,2.0,1516935.0
-5071324,2026-09-05,mls,Colorado Rapids,Paxten Aaronson,1171008,M,1,77,1,0,0,0.04,75.0,2.0,5537083.0
-5071324,2026-09-05,mls,Colorado Rapids,Wayne Frederick,1610223,M,1,68,0,0,0,0.0,77.0,2.0,367887.0
-5071324,2026-09-05,mls,Colorado Rapids,Darren Yapi,1190710,F,1,90,1,0,0,0.42,103.0,3.0,1748311.0
-5071324,2026-09-05,mls,Colorado Rapids,Youssef Maziz,814619,M,1,59,0,0,0,0.0,105.0,2.0,463161.0
-5071324,2026-09-05,mls,Colorado Rapids,Georgi Minoungou,1387862,F,1,90,3,2,0,0.08,107.0,3.0,1422548.0
-5071324,2026-09-05,mls,Colorado Rapids,Kosi Thompson,1261310,D,0,31,1,0,0,0.1,,1.0,530756.0
-5071324,2026-09-05,mls,Colorado Rapids,Reggie Cannon,825603,D,0,31,0,0,0,0.0,,1.0,954285.0
-5071324,2026-09-05,mls,Colorado Rapids,Alex Harris,1663077,F,0,31,1,0,0,0.03,,3.0,552094.0
-5071324,2026-09-05,mls,Colorado Rapids,Donavan Phillip,1786169,F,0,22,0,0,0,0.0,,3.0,
-5071324,2026-09-05,mls,Colorado Rapids,Keegan Rosenberry,729473,D,0,14,0,0,0,0.0,,1.0,275235.0
 5868435,2026-09-05,esp_hypermotion,Sporting Gijón,Rubén Yánez,477594,G,1,90,0,0,0,0.0,11.0,0.0,640784.0
 5868435,2026-09-05,esp_hypermotion,Sporting Gijón,Guille Rosas,1120109,D,1,90,1,0,0,0.02,32.0,1.0,1553774.0
 5868435,2026-09-05,esp_hypermotion,Sporting Gijón,Aimar Duñabeitia,1580248,D,1,90,3,0,0,0.41,34.0,1.0,245931.0
@@ -65323,21 +65243,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5190704,2026-09-10,bra_serie_b,Ceará,Lenny Lobato,1232260,F,0,28,1,0,0,0.01,,3.0,617244.0
 5190704,2026-09-10,bra_serie_b,Ceará,Lucas Mugni,201788,M,0,17,0,0,0,0.0,,2.0,322260.0
 5190704,2026-09-10,bra_serie_b,Ceará,Lucca,1441321,F,0,17,4,0,0,0.22,,3.0,633205.0
-5071343,2026-09-10,mls,Chicago Fire FC,Chris Brady,1245998,G,1,90,0,0,0,0.0,11.0,0.0,2380886.0
-5071343,2026-09-10,mls,Chicago Fire FC,Jonathan Dean,1170975,D,1,67,0,0,0,0.0,32.0,1.0,468440.0
-5071343,2026-09-10,mls,Chicago Fire FC,Jack Elliott,830664,D,1,90,1,0,0,0.12,34.0,1.0,1162958.0
-5071343,2026-09-10,mls,Chicago Fire FC,Noah Allen,1340790,D,1,90,0,0,0,0.0,36.0,1.0,2152637.0
-5071343,2026-09-10,mls,Chicago Fire FC,Andrew Gutman,1018587,D,1,90,0,0,0,0.0,38.0,1.0,674121.0
-5071343,2026-09-10,mls,Chicago Fire FC,Anton Salétros,482204,M,1,89,2,1,0,0.06,73.0,2.0,1446985.0
-5071343,2026-09-10,mls,Chicago Fire FC,Djé D'Avilla,1525182,M,1,90,0,0,0,0.0,75.0,2.0,1800171.0
-5071343,2026-09-10,mls,Chicago Fire FC,Robin Lod,293569,M,1,56,1,0,0,0.25,77.0,2.0,712250.0
-5071343,2026-09-10,mls,Chicago Fire FC,Philip Zinckernagel,449279,F,1,90,0,0,0,0.0,103.0,3.0,2108873.0
-5071343,2026-09-10,mls,Chicago Fire FC,Robert Lewandowski,93447,F,1,90,1,1,1,0.35,105.0,3.0,4841231.0
-5071343,2026-09-10,mls,Chicago Fire FC,Maren Haile-Selassie,861753,F,1,67,2,0,0,0.17,107.0,3.0,826972.0
-5071343,2026-09-10,mls,Chicago Fire FC,Puso Dithejane,1646522,F,0,34,2,1,0,0.19,,3.0,675595.0
-5071343,2026-09-10,mls,Chicago Fire FC,Leonardo Barroso,1525424,D,0,23,0,0,0,0.0,,1.0,1302982.0
-5071343,2026-09-10,mls,Chicago Fire FC,Sergio Oregel,1338620,M,0,23,1,0,0,0.02,,2.0,1474256.0
-5071343,2026-09-10,mls,Chicago Fire FC,Mauricio Pineda,1136089,M,0,1,0,0,0,0.0,,2.0,450815.0
 5071343,2026-09-10,mls,Inter Miami CF,Dayne St. Clair,1026105,G,1,90,0,0,0,0.0,11.0,0.0,1604103.0
 5071343,2026-09-10,mls,Inter Miami CF,Ian Fray,1171135,D,1,90,1,0,0,0.07,32.0,1.0,550671.0
 5071343,2026-09-10,mls,Inter Miami CF,Casemiro,208494,M,1,90,1,1,1,0.15,34.0,2.0,3902946.0
@@ -172050,3 +171955,193 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000022591,2026-10-31,ven_primera,Monagas SC,Édgar Carrión,1263839,M,0,36,0,0,0,0.0,,2.0,264454.0
 1000022591,2026-10-31,ven_primera,Monagas SC,Santiago Natera,1458780,M,0,35,0,0,0,0.0,,2.0,312322.0
 1000022591,2026-10-31,ven_primera,Monagas SC,Alexis Rodas,950414,D,0,11,0,0,0,0.0,,1.0,176583.0
+5071475,2026-11-01,mls,Colorado Rapids,Nicholas Hansen,1098753,G,1,90,0,0,0,0.0,11.0,0.0,255269.0
+5071475,2026-11-01,mls,Colorado Rapids,Keegan Rosenberry,729473,D,1,62,0,0,0,0.0,32.0,1.0,275235.0
+5071475,2026-11-01,mls,Colorado Rapids,Rob Holding,626667,D,1,90,0,0,0,0.0,34.0,1.0,1421236.0
+5071475,2026-11-01,mls,Colorado Rapids,Loïc Williams,1280203,D,1,90,0,0,0,0.0,36.0,1.0,2252163.0
+5071475,2026-11-01,mls,Colorado Rapids,Miguel Navarro,1048053,D,1,90,0,0,0,0.0,38.0,1.0,1266352.0
+5071475,2026-11-01,mls,Colorado Rapids,Wayne Frederick,1610223,M,1,90,1,0,0,0.3,64.0,2.0,441464.0
+5071475,2026-11-01,mls,Colorado Rapids,Hamzat Ojediran,1442054,M,1,77,2,0,0,0.06,66.0,2.0,2156088.0
+5071475,2026-11-01,mls,Colorado Rapids,Morgan Whittaker,1081288,F,1,90,5,2,1,0.33,83.0,3.0,19578165.0
+5071475,2026-11-01,mls,Colorado Rapids,Paxten Aaronson,1171008,M,1,90,3,2,1,0.63,85.0,2.0,7157196.0
+5071475,2026-11-01,mls,Colorado Rapids,Georgi Minoungou,1387862,F,1,67,2,0,0,0.03,87.0,3.0,1494327.0
+5071475,2026-11-01,mls,Colorado Rapids,Darren Yapi,1190710,F,1,62,1,0,0,0.04,115.0,3.0,3302989.0
+5071475,2026-11-01,mls,Colorado Rapids,Noah Cobb,1258251,D,0,28,0,0,0,0.0,,1.0,1024569.0
+5071475,2026-11-01,mls,Colorado Rapids,Donavan Phillip,1786169,F,0,28,0,0,0,0.0,,3.0,316563.0
+5071475,2026-11-01,mls,Colorado Rapids,Theodore Ku-DiPietro,1079285,M,0,23,0,0,0,0.0,,2.0,841886.0
+5071475,2026-11-01,mls,Colorado Rapids,Sayed Abu Farkhi,1518943,F,0,13,0,0,0,0.0,,3.0,2067324.0
+5071475,2026-11-01,mls,Chicago Fire FC,Chris Brady,1245998,G,1,90,0,0,0,0.0,11.0,0.0,2883024.0
+5071475,2026-11-01,mls,Chicago Fire FC,Jonathan Dean,1170975,D,1,90,1,0,0,0.01,32.0,1.0,498024.0
+5071475,2026-11-01,mls,Chicago Fire FC,Jack Elliott,830664,D,1,90,2,0,0,0.04,34.0,1.0,1203558.0
+5071475,2026-11-01,mls,Chicago Fire FC,Mbekezeli Mbokazi,1719066,D,1,90,0,0,0,0.0,36.0,1.0,1461805.0
+5071475,2026-11-01,mls,Chicago Fire FC,Noah Allen,1340790,D,1,82,1,0,0,0.17,38.0,1.0,1971885.0
+5071475,2026-11-01,mls,Chicago Fire FC,Philip Zinckernagel,449279,F,1,87,2,1,0,0.06,72.0,3.0,2155329.0
+5071475,2026-11-01,mls,Chicago Fire FC,Anton Salétros,482204,M,1,90,1,0,0,0.04,74.0,2.0,1492154.0
+5071475,2026-11-01,mls,Chicago Fire FC,Djé D'Avilla,1525182,M,1,63,0,0,0,0.0,76.0,2.0,3927135.0
+5071475,2026-11-01,mls,Chicago Fire FC,Jonathan Bamba,466478,F,1,90,5,3,2,1.33,78.0,3.0,2119407.0
+5071475,2026-11-01,mls,Chicago Fire FC,Johan Gómez,1057432,M,1,81,0,0,0,0.0,104.0,2.0,433070.0
+5071475,2026-11-01,mls,Chicago Fire FC,Maren Haile-Selassie,861753,F,1,63,0,0,0,0.0,106.0,3.0,912857.0
+5071475,2026-11-01,mls,Chicago Fire FC,Anzor Mekvabishvili,1176843,M,0,27,0,0,0,0.0,,2.0,1605026.0
+5071475,2026-11-01,mls,Chicago Fire FC,Robert Lewandowski,93447,F,0,27,1,1,1,0.54,,3.0,8527749.0
+5071475,2026-11-01,mls,Chicago Fire FC,André Franco,1080684,M,0,9,0,0,0,0.0,,2.0,706054.0
+5071475,2026-11-01,mls,Chicago Fire FC,Andrew Gutman,1018587,D,0,8,0,0,0,0.0,,1.0,698735.0
+5071475,2026-11-01,mls,Chicago Fire FC,Puso Dithejane,1646522,F,0,3,1,1,1,0.13,,3.0,810714.0
+1000014629,2026-11-01,liga_mx,Chivas,Raúl Rangel,1227878,G,1,90,0,0,0,0.0,11.0,0.0,8931234.0
+1000014629,2026-11-01,liga_mx,Chivas,Daniel Aguirre,1251789,D,1,90,1,0,0,0.15,33.0,1.0,2322706.0
+1000014629,2026-11-01,liga_mx,Chivas,Diego Campillo,1169763,D,1,90,0,0,0,0.0,35.0,1.0,3616202.0
+1000014629,2026-11-01,liga_mx,Chivas,Luis Romo,921174,D,1,64,1,0,0,0.03,37.0,1.0,2308956.0
+1000014629,2026-11-01,liga_mx,Chivas,Richard Ledezma,942980,M,1,86,0,0,0,0.0,62.0,2.0,6543814.0
+1000014629,2026-11-01,liga_mx,Chivas,Rubén González,430764,M,1,90,0,0,0,0.0,64.0,2.0,1200885.0
+1000014629,2026-11-01,liga_mx,Chivas,Omar Govea,610473,M,1,70,0,0,0,0.0,66.0,2.0,1019666.0
+1000014629,2026-11-01,liga_mx,Chivas,Bryan González,1112940,M,1,90,1,0,0,0.03,68.0,2.0,9654842.0
+1000014629,2026-11-01,liga_mx,Chivas,Roberto Alvarado,720737,M,1,90,2,2,0,0.27,84.0,2.0,10609234.0
+1000014629,2026-11-01,liga_mx,Chivas,Efraín Álvarez,927365,M,1,70,3,2,1,0.2,86.0,2.0,9145206.0
+1000014629,2026-11-01,liga_mx,Chivas,Santiago Sandoval,1786010,F,1,64,5,3,2,0.75,105.0,3.0,7844697.0
+1000014629,2026-11-01,liga_mx,Chivas,Luis Gabriel Rey,1222037,D,0,26,0,0,0,0.0,,1.0,1718798.0
+1000014629,2026-11-01,liga_mx,Chivas,Ricardo Marín,693676,F,0,26,0,0,0,0.0,,3.0,1899547.0
+1000014629,2026-11-01,liga_mx,Chivas,Brian Gutiérrez,1170238,M,0,20,0,0,0,0.0,,2.0,9955598.0
+1000014629,2026-11-01,liga_mx,Chivas,Kevin Castañeda,951049,M,0,20,1,0,0,0.05,,2.0,5788846.0
+1000014629,2026-11-01,liga_mx,Chivas,Jordán Carrillo,1171126,M,0,4,1,0,0,0.08,,2.0,3580185.0
+1000014629,2026-11-01,liga_mx,Atlante,Oscar Jiménez,463774,G,1,90,0,0,0,0.0,11.0,0.0,151672.0
+1000014629,2026-11-01,liga_mx,Atlante,Nico Carrera,1309373,D,1,90,0,0,0,0.0,33.0,1.0,202618.0
+1000014629,2026-11-01,liga_mx,Atlante,Diogo Bagüí,1682280,D,1,46,0,0,0,0.0,35.0,1.0,
+1000014629,2026-11-01,liga_mx,Atlante,Aaron Quirós,1244341,D,1,90,0,0,0,0.0,37.0,1.0,1362145.0
+1000014629,2026-11-01,liga_mx,Atlante,Walter Portales,1190694,D,1,90,0,0,0,0.0,51.0,1.0,468518.0
+1000014629,2026-11-01,liga_mx,Atlante,Luis Calzadilla,1114432,D,1,90,1,1,0,0.04,59.0,1.0,362671.0
+1000014629,2026-11-01,liga_mx,Atlante,Eugenio Pizzuto,1107285,M,1,37,0,0,0,0.0,73.0,2.0,208019.0
+1000014629,2026-11-01,liga_mx,Atlante,Martín Fernández,1053835,M,1,70,0,0,0,0.0,75.0,2.0,242897.0
+1000014629,2026-11-01,liga_mx,Atlante,Martín Sarrafiore,816993,M,1,70,3,1,1,0.53,77.0,2.0,915632.0
+1000014629,2026-11-01,liga_mx,Atlante,Joaquín Moxica,1577972,F,1,90,1,1,0,0.07,104.0,3.0,
+1000014629,2026-11-01,liga_mx,Atlante,Jhojan Julio,860927,F,1,90,2,1,1,0.83,106.0,3.0,705184.0
+1000014629,2026-11-01,liga_mx,Atlante,Edgar Jiménez,1432353,M,0,53,1,0,0,0.08,,2.0,
+1000014629,2026-11-01,liga_mx,Atlante,Eduardo Tercero,862169,D,0,44,0,0,0,0.0,,1.0,133514.0
+1000014629,2026-11-01,liga_mx,Atlante,Maximiliano García,1432163,M,0,20,0,0,0,0.0,,2.0,291244.0
+1000014629,2026-11-01,liga_mx,Atlante,Luis Puente,1109128,F,0,20,0,0,0,0.0,,3.0,749159.0
+1000014629,2026-11-01,liga_mx,Atlante,José González,1288844,M,0,1,0,0,0,0.0,,2.0,200961.0
+1000014630,2026-11-01,liga_mx,Monterrey,Esteban Andrada,184662,G,1,90,0,0,0,0.0,11.0,0.0,405311.0
+1000014630,2026-11-01,liga_mx,Monterrey,Ricardo Chávez,659597,D,1,86,2,0,0,0.24,32.0,1.0,1608454.0
+1000014630,2026-11-01,liga_mx,Monterrey,Víctor Guzmán,1128493,D,1,86,0,0,0,0.0,34.0,1.0,5586792.0
+1000014630,2026-11-01,liga_mx,Monterrey,Carlos Salcedo,431992,D,1,90,0,0,0,0.0,36.0,1.0,1099954.0
+1000014630,2026-11-01,liga_mx,Monterrey,Gerardo Arteaga,797924,D,1,90,1,0,0,0.03,38.0,1.0,1912592.0
+1000014630,2026-11-01,liga_mx,Monterrey,Óliver Torres,316771,M,1,90,0,0,0,0.0,64.0,2.0,1773068.0
+1000014630,2026-11-01,liga_mx,Monterrey,César Garza,1572849,M,1,90,0,0,0,0.0,66.0,2.0,2164115.0
+1000014630,2026-11-01,liga_mx,Monterrey,Diego Rossi,743534,F,1,90,2,0,0,0.21,83.0,3.0,6893957.0
+1000014630,2026-11-01,liga_mx,Monterrey,Lucas Ocampos,357080,M,1,86,4,1,1,0.28,85.0,2.0,1936897.0
+1000014630,2026-11-01,liga_mx,Monterrey,Jesús Corona,210956,F,1,61,1,1,0,0.04,87.0,3.0,1023794.0
+1000014630,2026-11-01,liga_mx,Monterrey,Hugo Cuypers,737974,F,1,90,5,3,2,1.56,115.0,3.0,9728664.0
+1000014630,2026-11-01,liga_mx,Monterrey,Aldo de Nigris,1843224,F,0,29,1,0,0,0.12,,3.0,
+1000014630,2026-11-01,liga_mx,Monterrey,Stefan Medina,206767,D,0,4,1,0,0,0.02,,1.0,1103896.0
+1000014630,2026-11-01,liga_mx,Monterrey,Érick Aguirre,564634,M,0,4,0,0,0,0.0,,2.0,1160602.0
+1000014630,2026-11-01,liga_mx,Monterrey,Luca Orellano,988833,F,0,4,2,2,0,0.03,,3.0,7483302.0
+1000014630,2026-11-01,liga_mx,Tijuana,José Antonio Rodriguez,324432,G,1,90,0,0,0,0.0,11.0,0.0,442380.0
+1000014630,2026-11-01,liga_mx,Tijuana,Rafael Fernández,1169764,D,1,90,0,0,0,0.0,33.0,1.0,1572523.0
+1000014630,2026-11-01,liga_mx,Tijuana,Jackson Porozo,1032039,D,1,90,1,1,1,0.15,35.0,1.0,1764770.0
+1000014630,2026-11-01,liga_mx,Tijuana,Unai Bilbao,616540,D,1,90,0,0,0,0.0,37.0,1.0,702098.0
+1000014630,2026-11-01,liga_mx,Tijuana,Ramiro Árciga,1455072,D,1,45,1,0,0,0.03,51.0,1.0,5018809.0
+1000014630,2026-11-01,liga_mx,Tijuana,Alan Vega,1225758,D,1,46,0,0,0,0.0,59.0,1.0,766549.0
+1000014630,2026-11-01,liga_mx,Tijuana,Francisco González,1042571,M,1,78,0,0,0,0.0,72.0,2.0,1141445.0
+1000014630,2026-11-01,liga_mx,Tijuana,Ignacio Rivero,430015,M,1,90,0,0,0,0.0,74.0,2.0,1235511.0
+1000014630,2026-11-01,liga_mx,Tijuana,Iván Tona,1071276,M,1,90,0,0,0,0.0,76.0,2.0,1535434.0
+1000014630,2026-11-01,liga_mx,Tijuana,Adonis Preciado,1072829,M,1,70,3,2,2,0.55,78.0,2.0,1295772.0
+1000014630,2026-11-01,liga_mx,Tijuana,Mourad El Ghezouani,1119943,F,1,70,0,0,0,0.0,115.0,3.0,1698430.0
+1000014630,2026-11-01,liga_mx,Tijuana,Pablo Ortíz,1504865,D,0,44,0,0,0,0.0,,1.0,887139.0
+1000014630,2026-11-01,liga_mx,Tijuana,Gilberto Mora,1670377,M,0,44,0,0,0,0.0,,2.0,13614594.0
+1000014630,2026-11-01,liga_mx,Tijuana,Jonathan Padilla,1457724,F,0,20,0,0,0,0.0,,3.0,
+1000014630,2026-11-01,liga_mx,Tijuana,Elias Manoel,1248672,F,0,20,0,0,0,0.0,,3.0,1145227.0
+1000014630,2026-11-01,liga_mx,Tijuana,Joban González,1729963,F,0,12,0,0,0,0.0,,3.0,
+5898775,2026-11-01,mex_expansion,Piratas,Humberto Hernández,70250,G,1,90,0,0,0,0.0,11.0,0.0,141649.0
+5898775,2026-11-01,mex_expansion,Piratas,Diego Cruz,683765,D,1,90,1,0,0,0.01,32.0,1.0,148239.0
+5898775,2026-11-01,mex_expansion,Piratas,Ángel López,2101218,D,1,90,1,0,0,0.05,34.0,1.0,
+5898775,2026-11-01,mex_expansion,Piratas,Ramon Palomares,2098226,D,1,90,1,0,0,0.05,36.0,1.0,
+5898775,2026-11-01,mex_expansion,Piratas,Kenneth Jaime,1373792,D,1,75,0,0,0,0.0,38.0,1.0,
+5898775,2026-11-01,mex_expansion,Piratas,Omar Soto,1437906,M,1,85,2,1,0,0.03,73.0,2.0,222315.0
+5898775,2026-11-01,mex_expansion,Piratas,Jesús Venegas,1242124,M,1,75,1,0,0,0.01,75.0,2.0,230141.0
+5898775,2026-11-01,mex_expansion,Piratas,Brian Figueroa,863133,M,1,75,2,1,0,0.09,77.0,2.0,382521.0
+5898775,2026-11-01,mex_expansion,Piratas,Juan Gamboa,1072518,F,1,90,4,1,0,0.32,103.0,3.0,295915.0
+5898775,2026-11-01,mex_expansion,Piratas,Daniel Lajud,922565,F,1,90,3,0,0,0.08,105.0,3.0,169738.0
+5898775,2026-11-01,mex_expansion,Piratas,José Clemente,966230,F,1,55,2,1,0,0.19,107.0,3.0,275142.0
+5898775,2026-11-01,mex_expansion,Piratas,Christian Fernandez,2101219,M,0,35,2,2,0,0.08,,2.0,
+5898775,2026-11-01,mex_expansion,Piratas,Rolando González,821785,D,0,15,1,1,1,0.02,,1.0,122649.0
+5898775,2026-11-01,mex_expansion,Piratas,Gabriel López,1380588,M,0,15,2,1,0,0.05,,2.0,207360.0
+5898775,2026-11-01,mex_expansion,Piratas,Francisco García,1384970,F,0,15,0,0,0,0.0,,3.0,
+5898775,2026-11-01,mex_expansion,Piratas,Ibe Fofana,0,F,0,5,0,0,0,0.0,,3.0,
+5898775,2026-11-01,mex_expansion,Tapatío,Eduardo García,1432423,G,1,90,0,0,0,0.0,11.0,0.0,679510.0
+5898775,2026-11-01,mex_expansion,Tapatío,Ángel Chávez,1457481,D,1,90,1,0,0,0.03,33.0,1.0,
+5898775,2026-11-01,mex_expansion,Tapatío,Rodrigo Parra,1232295,D,1,90,0,0,0,0.0,35.0,1.0,202451.0
+5898775,2026-11-01,mex_expansion,Tapatío,Carlos Hernández,1887568,D,1,81,0,0,0,0.0,37.0,1.0,
+5898775,2026-11-01,mex_expansion,Tapatío,Juan Uribe,1678155,M,1,75,1,1,0,0.03,62.0,2.0,
+5898775,2026-11-01,mex_expansion,Tapatío,Samir Inda,1801113,M,1,90,0,0,0,0.0,64.0,2.0,521137.0
+5898775,2026-11-01,mex_expansion,Tapatío,Saúl Zamora,1125520,M,1,90,0,0,0,0.0,66.0,2.0,579715.0
+5898775,2026-11-01,mex_expansion,Tapatío,Leonel Calderon,2102300,M,1,59,0,0,0,0.0,68.0,2.0,
+5898775,2026-11-01,mex_expansion,Tapatío,Daniel Villaseca,1456982,M,1,82,2,1,1,0.54,85.0,2.0,
+5898775,2026-11-01,mex_expansion,Tapatío,Leo Torres,1083265,F,1,75,4,3,0,0.1,104.0,3.0,330932.0
+5898775,2026-11-01,mex_expansion,Tapatío,Vladimir Moragrega,1041260,F,1,90,0,0,0,0.0,106.0,3.0,633195.0
+5898775,2026-11-01,mex_expansion,Tapatío,Sebastián Esparza,1664561,D,0,31,0,0,0,0.0,,1.0,
+5898775,2026-11-01,mex_expansion,Tapatío,Leonardo Jiménez,1455515,M,0,15,0,0,0,0.0,,2.0,292166.0
+5898775,2026-11-01,mex_expansion,Tapatío,Cruz Medina,1387850,F,0,15,0,0,0,0.0,,3.0,742588.0
+5898775,2026-11-01,mex_expansion,Tapatío,Diego Delgadillo,1603097,D,0,9,0,0,0,0.0,,1.0,141012.0
+5898775,2026-11-01,mex_expansion,Tapatío,Carlos Corona,1887570,M,0,9,0,0,0,0.0,,2.0,
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,Jared Muñoz,1432342,G,1,90,0,0,0,0.0,11.0,0.0,113930.0
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,Eduardo González,1010154,D,1,71,1,1,1,0.21,32.0,1.0,
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,Sergio Flores,643748,D,1,90,0,0,0,0.0,34.0,1.0,359923.0
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,José Múnoz,1380070,D,1,90,0,0,0,0.0,36.0,1.0,184918.0
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,David Oteo,1662067,D,1,90,1,1,1,0.03,38.0,1.0,
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,Éric Cantú,926588,M,1,90,0,0,0,0.0,64.0,2.0,129289.0
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,José Reyes,1431169,M,1,45,1,1,0,0.06,66.0,2.0,
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,Alonso Escoboza,277141,F,1,90,1,0,0,0.1,83.0,3.0,122649.0
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,Luis Gutiérrez,1432216,M,1,78,0,0,0,0.0,85.0,2.0,
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,Jair González,1174785,F,1,71,0,0,0,0.0,87.0,3.0,379017.0
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,Juan Angulo,1203625,F,1,85,2,2,1,0.81,115.0,3.0,
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,Rubén Domínguez,1309334,M,0,44,0,0,0,0.0,,2.0,86964.0
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,Andy Garcia,824319,M,0,19,0,0,0,0.0,,2.0,90952.0
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,Jan Ontiveros,1380836,M,0,19,0,0,0,0.0,,2.0,
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,Jared Torres,1688256,F,0,12,0,0,0,0.0,,3.0,
+5898771,2026-11-01,mex_expansion,Alacranes de Durango,Luis Loroña,396182,F,0,5,1,1,0,0.03,,3.0,123070.0
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Ramón Pasquel,862173,G,1,90,0,0,0,0.0,11.0,0.0,64839.0
+5898771,2026-11-01,mex_expansion,Atlético Morelia,René López,1203563,D,1,90,0,0,0,0.0,32.0,1.0,219985.0
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Jose Van Rankin,310528,D,1,90,1,0,0,0.04,34.0,1.0,
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Daniel Zamora,927569,D,1,45,1,0,0,0.03,36.0,1.0,226377.0
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Raúl Sandoval,996034,D,1,81,0,0,0,0.0,38.0,1.0,485713.0
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Josué Martínez,1289093,M,1,75,1,0,0,0.01,64.0,2.0,277732.0
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Diego Aguilar,671730,M,1,90,1,1,1,0.07,66.0,2.0,149440.0
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Michell Rodríguez,1079606,F,1,45,2,0,0,0.08,83.0,3.0,521223.0
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Misael Domínguez,71048,M,1,61,1,0,0,0.06,85.0,2.0,
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Mauro Nambo,1727113,F,1,90,1,1,0,0.03,87.0,3.0,
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Alonso Flores,1432263,F,1,90,2,1,0,0.05,115.0,3.0,194159.0
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Gabriel Martínez,1328484,D,0,44,0,0,0,0.0,,1.0,190915.0
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Robert Castellanos,859508,D,0,44,0,0,0,0.0,,1.0,50000.0
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Víctor López,1432155,M,0,29,2,1,0,0.06,,2.0,597371.0
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Ander Izarra,1563025,F,0,15,1,0,0,0.07,,3.0,316262.0
+5898771,2026-11-01,mex_expansion,Atlético Morelia,Orlando Botello,1169777,F,0,9,0,0,0,0.0,,3.0,234417.0
+5898773,2026-11-01,mex_expansion,Cancún FC,Edson Arce,1516498,G,1,90,0,0,0,0.0,11.0,0.0,
+5898773,2026-11-01,mex_expansion,Cancún FC,Jonathan Hernández,1554749,D,1,85,0,0,0,0.0,32.0,1.0,
+5898773,2026-11-01,mex_expansion,Cancún FC,Rodrigo Reyes,1169761,D,1,63,0,0,0,0.0,34.0,1.0,260945.0
+5898773,2026-11-01,mex_expansion,Cancún FC,Luis Bustillos,1432172,D,1,90,1,0,0,0.01,36.0,1.0,
+5898773,2026-11-01,mex_expansion,Cancún FC,Alek Álvarez,1178451,D,1,90,0,0,0,0.0,38.0,1.0,376392.0
+5898773,2026-11-01,mex_expansion,Cancún FC,Christo Vela,1378994,M,1,76,1,0,0,0.21,73.0,2.0,483230.0
+5898773,2026-11-01,mex_expansion,Cancún FC,Armando Chávez,1138098,M,1,90,0,0,0,0.0,75.0,2.0,222107.0
+5898773,2026-11-01,mex_expansion,Cancún FC,Karel Campos,1226470,M,1,90,2,0,0,0.2,77.0,2.0,497664.0
+5898773,2026-11-01,mex_expansion,Cancún FC,Gipson Preciado,1483118,F,1,90,2,2,2,0.97,103.0,3.0,
+5898773,2026-11-01,mex_expansion,Cancún FC,Thiago Gigena,1727517,F,1,76,1,0,0,0.05,105.0,3.0,298274.0
+5898773,2026-11-01,mex_expansion,Cancún FC,José Rodríguez,1392218,F,1,85,1,0,0,0.07,107.0,3.0,
+5898773,2026-11-01,mex_expansion,Cancún FC,Jair Cortés,1025121,D,0,27,0,0,0,0.0,,1.0,453037.0
+5898773,2026-11-01,mex_expansion,Cancún FC,Cesar Salaya,1838721,M,0,14,0,0,0,0.0,,2.0,
+5898773,2026-11-01,mex_expansion,Cancún FC,Leonel López,534735,M,0,14,1,1,0,0.05,,2.0,107404.0
+5898773,2026-11-01,mex_expansion,Cancún FC,Daniel Guillén,1432303,D,0,5,0,0,0,0.0,,1.0,425226.0
+5898773,2026-11-01,mex_expansion,Cancún FC,Christopher Trejo,951735,F,0,5,0,0,0,0.0,,3.0,570437.0
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Gerardo Ruiz,70517,G,1,90,0,0,0,0.0,11.0,0.0,95682.0
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Óscar Manzanárez,896548,D,1,90,0,0,0,0.0,33.0,1.0,162785.0
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Alberto Ríos,1662069,D,1,90,0,0,0,0.0,35.0,1.0,
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Ian Ramírez,1383123,D,1,79,0,0,0,0.0,37.0,1.0,
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Ricardo Peña,769570,M,1,79,0,0,0,0.0,72.0,2.0,106707.0
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Iván Ochoa,726366,M,1,90,0,0,0,0.0,74.0,2.0,106707.0
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Édson Torres,769592,M,1,90,0,0,0,0.0,76.0,2.0,304420.0
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Axl Padilla,1433833,M,1,90,0,0,0,0.0,78.0,2.0,247506.0
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Jesús López,996206,F,1,63,1,0,0,0.03,103.0,3.0,
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Daniel López,862812,F,1,90,0,0,0,0.0,105.0,3.0,267483.0
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Cristian Cruz,1248970,F,1,90,1,1,0,0.04,107.0,3.0,
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Jonathan Tovar,1399378,D,0,27,2,0,0,0.1,,1.0,265589.0
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Sebastián Martínez,1385983,D,0,11,0,0,0,0.0,,1.0,
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Néstor Corona,1227863,F,0,11,0,0,0,0.0,,3.0,142831.0
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Eduardo Escalante,1664789,M,0,1,1,1,0,0.2,,2.0,
+5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,André Ham,1432167,F,0,1,0,0,0,0.0,,3.0,

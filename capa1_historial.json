@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-01T02:48:39Z",
+"actualizado": "2026-11-01T04:27:38Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -19884,6 +19884,16 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Guadalajara Chivas vs Atlante",
+"apuesta": "Guadalajara Chivas o empate",
+"cuota": 1.133,
+"resultado": "verde",
+"marcador": "4-2"
+},
+{
+"dia": "2026-10-31",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Hajduk Split vs Gorica",
@@ -20064,6 +20074,16 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "MLB",
+"partido": "Mazatlan vs Jaguares de Nayarit",
+"apuesta": "Gana Mazatlan",
+"cuota": 1.9524,
+"resultado": "rojo",
+"marcador": "5-8"
+},
+{
+"dia": "2026-10-31",
 "nivel": "🏆",
 "deporte": "Fútbol",
 "partido": "Millwall vs Derby",
@@ -20091,6 +20111,16 @@
 "cuota": 1.177,
 "resultado": "verde",
 "marcador": "1-1"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Monterrey vs Club Tijuana",
+"apuesta": "Monterrey o empate",
+"cuota": 1.167,
+"resultado": "verde",
+"marcador": "3-3"
 },
 {
 "dia": "2026-10-31",
