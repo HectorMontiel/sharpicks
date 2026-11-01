@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-01T07:37:30Z",
+"actualizado": "2026-11-01T10:48:45Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -19785,6 +19785,16 @@
 {
 "dia": "2026-10-31",
 "nivel": "💰",
+"deporte": "Tenis",
+"partido": "Dabrowski G./Stefani L. vs Errani S./Paolini J.",
+"apuesta": "Gana Dabrowski G./Stefani L.",
+"cuota": 1.61,
+"resultado": "rojo",
+"marcador": "0-2"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Deportivo Camioneros vs Excursionistas",
 "apuesta": "Gana Deportivo Camioneros",
@@ -20384,6 +20394,16 @@
 },
 {
 "dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "MLB",
+"partido": "Samsung Lions vs KIA Tigers",
+"apuesta": "Gana Samsung Lions",
+"cuota": 2.05,
+"resultado": "verde",
+"marcador": "6-1"
+},
+{
+"dia": "2026-10-31",
 "nivel": "🏆",
 "deporte": "NHL",
 "partido": "San Jose Sharks vs Ottawa Senators",
@@ -20681,6 +20701,16 @@
 "cuota": 1.6471,
 "resultado": "verde",
 "marcador": "0-4"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Shandong Taishan B vs Shenzhen",
+"apuesta": "Gana Shandong Taishan B",
+"cuota": 1.68,
+"resultado": "verde",
+"marcador": "3-2"
 }
 ]
 }
