@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-01T15:33:29Z",
+"actualizado": "2026-11-01T17:14:13Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -20706,6 +20706,36 @@
 "dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Aarhus Fremad vs Hillerod",
+"apuesta": "Gana Aarhus Fremad",
+"cuota": 2.2,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Baltika vs Akron Togliatti",
+"apuesta": "Baltika o empate",
+"cuota": 1.143,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Bourges 18 W vs Metz W",
+"apuesta": "Gana Bourges 18 W",
+"cuota": 3.55,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Brno B vs Karvina B",
 "apuesta": "Gana Brno B",
 "cuota": 1.46,
@@ -20721,6 +20751,16 @@
 "cuota": 2.2,
 "resultado": "rojo",
 "marcador": "0-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Empoli vs Juve Stabia",
+"apuesta": "Empate",
+"cuota": 3.2,
+"resultado": "verde",
+"marcador": "2-2"
 },
 {
 "dia": "2026-11-01",
@@ -20764,6 +20804,26 @@
 },
 {
 "dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Inter Kashi vs FC GOA",
+"apuesta": "FC GOA o empate",
+"cuota": 1.133,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🔷",
+"deporte": "Fútbol",
+"partido": "Inter Kashi vs FC GOA",
+"apuesta": "Gana FC GOA",
+"cuota": 1.444,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Malmo FF vs Hammarby",
@@ -20771,6 +20831,36 @@
 "cuota": 1.6667,
 "resultado": "verde",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Ostrava vs Plzen",
+"apuesta": "Gana Plzen",
+"cuota": 1.9,
+"resultado": "verde",
+"marcador": "0-4"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Rijeka vs Varazdin",
+"apuesta": "Gana Rijeka",
+"cuota": 1.75,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Salzburg vs A. Lustenau",
+"apuesta": "Gana Salzburg",
+"cuota": 1.21,
+"resultado": "verde",
+"marcador": "5-1"
 },
 {
 "dia": "2026-11-01",
@@ -20811,6 +20901,26 @@
 "cuota": 1.3847,
 "resultado": "verde",
 "marcador": "4-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Wolfsberger AC vs Sturm Graz",
+"apuesta": "Sturm Graz o empate",
+"cuota": 1.167,
+"resultado": "verde",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Wolverhampton W vs Bristol City W",
+"apuesta": "Gana Wolverhampton W",
+"cuota": 3.2,
+"resultado": "verde",
+"marcador": "2-1"
 }
 ]
 }

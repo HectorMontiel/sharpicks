@@ -31,9 +31,9 @@
   },
   "Barracas Central": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Central Cordoba",
-    "ratio": 0.4516,
-    "visto": "2026-10-31"
+    "candidato": "Sportivo Barracas",
+    "ratio": 0.4848,
+    "visto": "2026-11-01"
   },
   "Belgrano (Córdoba)": {
     "contexto": "cuotas_mx→futbol",
@@ -61,8 +61,8 @@
   },
   "Cienciano del Cusco": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Ind. del Valle",
-    "ratio": 0.4375,
+    "candidato": "Ind. Valle del Cauca",
+    "ratio": 0.5263,
     "visto": "2026-11-01"
   },
   "Club Olimpia": {
@@ -85,8 +85,8 @@
   },
   "Deportivo Moquegua": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Tigres",
-    "ratio": 0.6471,
+    "candidato": "Deportivo Nacional",
+    "ratio": 0.6667,
     "visto": "2026-11-01"
   },
   "Deportivo Recoleta": {
@@ -211,8 +211,8 @@
   },
   "Real Betis": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Avila",
-    "ratio": 0.6,
+    "candidato": "Real Madrid W",
+    "ratio": 0.5714,
     "visto": "2026-11-01"
   },
   "Real Madrid": {
@@ -265,9 +265,9 @@
   },
   "Técnico Universitario": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Universitario",
-    "ratio": 0.7727,
-    "visto": "2026-10-31"
+    "candidato": "Tecnico U.",
+    "ratio": 0.6,
+    "visto": "2026-11-01"
   },
   "Union St.-Gilloise": {
     "contexto": "cuotas_mx→futbol",
@@ -277,9 +277,9 @@
   },
   "Universidad Católica (Quito)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Universidad O&M",
-    "ratio": 0.6341,
-    "visto": "2026-10-31"
+    "candidato": "LDU Quito",
+    "ratio": 0.4,
+    "visto": "2026-11-01"
   },
   "Wolverhampton Wanderers": {
     "contexto": "cuotas_mx→futbol",
@@ -319,8 +319,8 @@
   },
   "São Bernardo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sao Salvador",
-    "ratio": 0.5833,
+    "candidato": "Sao Joao Ver",
+    "ratio": 0.5,
     "visto": "2026-11-01"
   },
   "Nacional Asunción": {
@@ -445,9 +445,9 @@
   },
   "Estudiantes (Buenos Aires)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Estudiantes L.P.",
-    "ratio": 0.6667,
-    "visto": "2026-10-31"
+    "candidato": "CA Estudiantes",
+    "ratio": 0.5789,
+    "visto": "2026-11-01"
   },
   "San Miguel": {
     "contexto": "cuotas_mx→futbol",
@@ -463,8 +463,8 @@
   },
   "Chacarita Juniors": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Malaga Juniors",
-    "ratio": 0.7097,
+    "candidato": "Boca Juniors",
+    "ratio": 0.6897,
     "visto": "2026-11-01"
   },
   "Cerro Largo": {
@@ -493,8 +493,8 @@
   },
   "Deportivo Pasto": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Tigres",
-    "ratio": 0.7097,
+    "candidato": "Deportivo Garcilaso",
+    "ratio": 0.7647,
     "visto": "2026-11-01"
   },
   "All Boys": {
@@ -535,14 +535,14 @@
   },
   "Sportivo Ameliano": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sportivo Las Parejas",
-    "ratio": 0.6486,
+    "candidato": "Sportivo Barracas",
+    "ratio": 0.6471,
     "visto": "2026-11-01"
   },
   "Sportivo Trinidense": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sportivo Las Parejas",
-    "ratio": 0.6154,
+    "candidato": "Sportivo Barracas",
+    "ratio": 0.6111,
     "visto": "2026-11-01"
   },
   "Minnesota United FC": {
@@ -595,8 +595,8 @@
   },
   "Deportivo Maldonado": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo San Pedro",
-    "ratio": 0.6842,
+    "candidato": "Deportivo Nacional",
+    "ratio": 0.7568,
     "visto": "2026-11-01"
   },
   "Deportivo Maipú": {
@@ -763,8 +763,8 @@
   },
   "Atlético Goianiense": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Monzon",
-    "ratio": 0.7059,
+    "candidato": "Atletico GO",
+    "ratio": 0.7333,
     "visto": "2026-11-01"
   },
   "Club Atlético Morelia": {
@@ -1003,9 +1003,9 @@
   },
   "Newell's Old Boys": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Young Boys Reutlingen",
-    "ratio": 0.3158,
-    "visto": "2026-10-31"
+    "candidato": "All Boys",
+    "ratio": 0.56,
+    "visto": "2026-11-01"
   },
   "Boca Juniors": {
     "contexto": "cuotas_mx→futbol",
@@ -1015,8 +1015,8 @@
   },
   "Argentinos Juniors": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Malaga Juniors",
-    "ratio": 0.625,
+    "candidato": "Boca Juniors",
+    "ratio": 0.6,
     "visto": "2026-11-01"
   },
   "Gimnasia (Mendoza)": {
@@ -1033,8 +1033,8 @@
   },
   "Central Córdoba (Santiago del Estero)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Ind. del Valle",
-    "ratio": 0.3333,
+    "candidato": "Delfines Del Este",
+    "ratio": 0.4615,
     "visto": "2026-11-01"
   },
   "Raith Rovers": {
@@ -1083,7 +1083,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Vancouver Rise W",
     "ratio": 0.7273,
-    "visto": "2026-10-18"
+    "visto": "2026-11-01"
   },
   "Leones Negros": {
     "contexto": "cuotas_mx→futbol",
@@ -1147,8 +1147,8 @@
   },
   "Queens Park Rangers": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Bo Rangers",
-    "ratio": 0.5517,
+    "candidato": "Posta Rangers",
+    "ratio": 0.625,
     "visto": "2026-11-01"
   },
   "Gamba Osaka": {
@@ -1231,9 +1231,9 @@
   },
   "Derby County": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Ross County",
-    "ratio": 0.6957,
-    "visto": "2026-10-12"
+    "candidato": "Derby U21",
+    "ratio": 0.6667,
+    "visto": "2026-11-01"
   },
   "Red Star FC 93": {
     "contexto": "cuotas_mx→futbol",
@@ -1471,8 +1471,8 @@
   },
   "Sport Boys": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Ibis Sport Club",
-    "ratio": 0.5,
+    "candidato": "All Boys",
+    "ratio": 0.5556,
     "visto": "2026-11-01"
   },
   "Real Potosí": {
@@ -1513,14 +1513,14 @@
   },
   "Preston North End": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Preston",
-    "ratio": 0.5833,
-    "visto": "2026-10-31"
+    "candidato": "Preston U21",
+    "ratio": 0.5714,
+    "visto": "2026-11-01"
   },
   "Bolton Wanderers": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "WS Wanderers W",
-    "ratio": 0.7143,
+    "candidato": "Bolton U21",
+    "ratio": 0.5385,
     "visto": "2026-11-01"
   },
   "KV Kortrijk": {
@@ -1603,9 +1603,9 @@
   },
   "Jong FC Utrecht": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Jong AZ",
-    "ratio": 0.4545,
-    "visto": "2026-10-30"
+    "candidato": "Jong Ajax",
+    "ratio": 0.4167,
+    "visto": "2026-11-01"
   },
   "ADO Den Haag": {
     "contexto": "cuotas_mx→futbol",
@@ -1669,9 +1669,9 @@
   },
   "Comerciantes Unidos": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Boca Unidos",
-    "ratio": 0.6,
-    "visto": "2026-10-25"
+    "candidato": "Defensores Unidos",
+    "ratio": 0.6111,
+    "visto": "2026-11-01"
   },
   "Deportivo Cuenca": {
     "contexto": "cuotas_mx→futbol",
@@ -1935,7 +1935,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Neftchi Fargona (Uzb)",
     "ratio": 0.7647,
-    "visto": "2026-10-26"
+    "visto": "2026-11-01"
   },
   "AEK Athens": {
     "contexto": "cuotas_mx→futbol",
@@ -2179,9 +2179,9 @@
   },
   "Jong PSV": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "PSV U19",
-    "ratio": 0.4,
-    "visto": "2026-10-31"
+    "candidato": "Jong Ajax",
+    "ratio": 0.5882,
+    "visto": "2026-11-01"
   },
   "Asteras Tripoli": {
     "contexto": "cuotas_mx→futbol",
