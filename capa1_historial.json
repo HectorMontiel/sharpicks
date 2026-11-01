@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-01T04:27:38Z",
+"actualizado": "2026-11-01T06:05:04Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -19765,6 +19765,16 @@
 {
 "dia": "2026-10-31",
 "nivel": "🏆",
+"deporte": "NHL",
+"partido": "Colorado Avalanche vs Calgary Flames",
+"apuesta": "Handicap: Calgary Flames +4.5",
+"cuota": 1.133,
+"resultado": "verde",
+"marcador": "5-2"
+},
+{
+"dia": "2026-10-31",
+"nivel": "🏆",
 "deporte": "Fútbol",
 "partido": "Columbus Crew vs DC United",
 "apuesta": "Columbus Crew o empate",
@@ -20371,6 +20381,16 @@
 "cuota": 1.133,
 "resultado": "verde",
 "marcador": "1-5"
+},
+{
+"dia": "2026-10-31",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Sasnovich A. vs Lee C. Y.",
+"apuesta": "Gana Sasnovich A.",
+"cuota": 1.41,
+"resultado": "verde",
+"marcador": "2-0"
 },
 {
 "dia": "2026-10-31",

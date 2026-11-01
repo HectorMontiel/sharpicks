@@ -21782,22 +21782,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000018876,2026-08-15,ven_primera,Rayo Zuliano,Joiser Arias,1130544,M,0,27,0,0,0,0.0,,2.0,188559.0
 1000018876,2026-08-15,ven_primera,Rayo Zuliano,Jaider Julio,1463625,D,0,13,0,0,0,0.0,,1.0,253655.0
 1000018876,2026-08-15,ven_primera,Rayo Zuliano,Luis Dugarte,1739952,F,0,13,0,0,0,0.0,,3.0,
-1000014526,2026-08-15,liga_mx,Toluca,Luis García,417520,G,1,75,0,0,0,0.0,11.0,0.0,507467.0
-1000014526,2026-08-15,liga_mx,Toluca,Bruno Méndez,933574,D,1,90,0,0,0,0.0,33.0,1.0,2842329.0
-1000014526,2026-08-15,liga_mx,Toluca,Federico Pereira,1053836,D,1,90,0,0,0,0.0,35.0,1.0,6427435.0
-1000014526,2026-08-15,liga_mx,Toluca,Everardo López,1353113,D,1,90,0,0,0,0.0,37.0,1.0,1572612.0
-1000014526,2026-08-15,liga_mx,Toluca,Diego Barbosa,766850,D,1,60,2,1,0,0.07,51.0,1.0,1553488.0
-1000014526,2026-08-15,liga_mx,Toluca,Brian García,1205874,D,1,90,2,1,0,0.05,59.0,1.0,2084447.0
-1000014526,2026-08-15,liga_mx,Toluca,Jesús Angulo,730888,M,1,60,1,0,0,0.02,73.0,2.0,2521492.0
-1000014526,2026-08-15,liga_mx,Toluca,Franco Romero,833581,M,1,90,1,0,0,0.03,75.0,2.0,4390723.0
-1000014526,2026-08-15,liga_mx,Toluca,Érick Gutiérrez,497838,M,1,74,0,0,0,0.0,77.0,2.0,920116.0
-1000014526,2026-08-15,liga_mx,Toluca,Jorge Díaz,914079,F,1,82,0,0,0,0.0,104.0,3.0,
-1000014526,2026-08-15,liga_mx,Toluca,Federico Viñas,1032811,F,1,90,4,0,0,0.89,106.0,3.0,1958764.0
-1000014526,2026-08-15,liga_mx,Toluca,Pável Pérez,1179357,M,0,30,0,0,0,0.0,,2.0,1551767.0
-1000014526,2026-08-15,liga_mx,Toluca,Helinho,935183,F,0,30,1,0,0,0.01,,3.0,3461890.0
-1000014526,2026-08-15,liga_mx,Toluca,Fernando Arce,659034,M,0,16,0,0,0,0.0,,2.0,651054.0
-1000014526,2026-08-15,liga_mx,Toluca,Hugo González,188123,G,0,15,0,0,0,0.0,,0.0,401575.0
-1000014526,2026-08-15,liga_mx,Toluca,Víctor Guzmán,643749,M,0,8,0,0,0,0.0,,2.0,1223202.0
 5115935,2026-08-15,argentina,Belgrano,Thiago Cardozo,643566,G,1,90,0,0,0,0.0,11.0,0.0,2106881.0
 5115935,2026-08-15,argentina,Belgrano,Leonardo Morales,795485,D,1,33,0,0,0,0.0,32.0,1.0,796500.0
 5115935,2026-08-15,argentina,Belgrano,Alexis Maldonado,743052,D,1,90,0,0,0,0.0,34.0,1.0,1033314.0
@@ -30332,22 +30316,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803543,2026-08-22,jpn_j1,Gamba Osaka,Eli Adams,1261617,F,0,27,1,0,0,0.03,,3.0,552705.0
 5803543,2026-08-22,jpn_j1,Gamba Osaka,Naru Nakatsumi,1862331,F,0,11,3,2,0,0.23,,3.0,
 5803543,2026-08-22,jpn_j1,Gamba Osaka,Takashi Usami,166653,M,0,4,0,0,0,0.0,,2.0,262252.0
-1000014536,2026-08-22,liga_mx,CF América,Rodolfo Cota,111873,G,1,90,0,0,0,0.0,11.0,0.0,428947.0
-1000014536,2026-08-22,liga_mx,CF América,Dagoberto Espinoza,1576897,D,1,83,0,0,0,0.0,32.0,1.0,1997613.0
-1000014536,2026-08-22,liga_mx,CF América,Israel Reyes,1074586,D,1,83,0,0,0,0.0,34.0,1.0,3544980.0
-1000014536,2026-08-22,liga_mx,CF América,Sebastián Cáceres,1020026,D,1,90,0,0,0,0.0,36.0,1.0,2238657.0
-1000014536,2026-08-22,liga_mx,CF América,Kevin Álvarez,924737,D,1,90,3,1,0,0.06,38.0,1.0,1397564.0
-1000014536,2026-08-22,liga_mx,CF América,Erick Sánchez,772320,M,1,83,3,2,0,0.36,64.0,2.0,4794530.0
-1000014536,2026-08-22,liga_mx,CF América,Alan Cervantes,848049,M,1,90,0,0,0,0.0,66.0,2.0,2412415.0
-1000014536,2026-08-22,liga_mx,CF América,Isaías Violante,1197375,F,1,72,0,0,0,0.0,83.0,3.0,5277501.0
-1000014536,2026-08-22,liga_mx,CF América,Raphael Veiga,750740,M,1,90,4,2,0,0.3,85.0,2.0,5814670.0
-1000014536,2026-08-22,liga_mx,CF América,Brian Rodríguez,941660,F,1,72,4,1,0,0.08,87.0,3.0,6137606.0
-1000014536,2026-08-22,liga_mx,CF América,Henry Martín,558452,F,1,90,3,3,2,1.01,115.0,3.0,1290380.0
-1000014536,2026-08-22,liga_mx,CF América,Diego Arriaga,1704909,M,0,18,0,0,0,0.0,,2.0,
-1000014536,2026-08-22,liga_mx,CF América,Óscar Perea,1433034,F,0,18,1,1,0,0.12,,3.0,2190310.0
-1000014536,2026-08-22,liga_mx,CF América,Ramón Juárez,1085776,D,0,7,0,0,0,0.0,,1.0,3050011.0
-1000014536,2026-08-22,liga_mx,CF América,Cristián Borja,683964,D,0,7,0,0,0,0.0,,1.0,1004380.0
-1000014536,2026-08-22,liga_mx,CF América,Edwin Cerrillo,1026051,M,0,7,0,0,0,0.0,,2.0,1923852.0
 1000014539,2026-08-22,liga_mx,León,Óscar García,1339704,G,1,90,0,0,0,0.0,11.0,0.0,1929391.0
 1000014539,2026-08-22,liga_mx,León,Bryan Colula,658480,D,1,80,0,0,0,0.0,32.0,1.0,1083818.0
 1000014539,2026-08-22,liga_mx,León,Jhohan Romaña,1133142,D,1,66,1,0,0,0.1,34.0,1.0,3126663.0
@@ -172145,3 +172113,64 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Néstor Corona,1227863,F,0,11,0,0,0,0.0,,3.0,142831.0
 5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,Eduardo Escalante,1664789,M,0,1,1,1,0,0.2,,2.0,
 5898773,2026-11-01,mex_expansion,Jaiba Brava del Tampico-Madero,André Ham,1432167,F,0,1,0,0,0,0.0,,3.0,
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Jack Duncan,240056,G,1,90,0,0,0,0.0,11.0,0.0,133514.0
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Harrison Shillington,1554828,D,1,90,0,0,0,0.0,32.0,1.0,342929.0
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Tom Lockyer,369761,D,1,90,1,0,0,0.01,34.0,1.0,119930.0
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Jason Davidson,192303,D,1,90,0,0,0,0.0,36.0,1.0,124437.0
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Franco Lino,1565855,D,1,90,1,1,0,0.02,38.0,1.0,
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Louis D'Arrigo,915630,M,1,62,0,0,0,0.0,64.0,2.0,207748.0
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Jordi Valadon,1332670,M,1,90,1,1,1,0.03,66.0,2.0,440621.0
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Keegan Jelacic,1224986,F,1,14,0,0,0,0.0,83.0,3.0,
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Guillermo May,979800,M,1,82,0,0,0,0.0,85.0,2.0,437181.0
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Clarismario Santos,1368342,F,1,82,2,1,0,0.03,87.0,3.0,241663.0
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Charles Nduka,1241593,F,1,90,2,1,0,0.15,115.0,3.0,249331.0
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Philipp Ziereis,276711,D,0,76,0,0,0,0.0,,1.0,287026.0
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Denis Genreau,814530,M,0,28,0,0,0,0.0,,2.0,409207.0
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Michael Ghossaini,1702590,F,0,8,0,0,0,0.0,,3.0,
+1000017573,2026-11-01,aus_aleague,Melbourne Victory,Matthew Grimaldi,1534818,F,0,8,1,0,0,0.04,,3.0,380437.0
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Andrew Redmayne,110616,G,1,90,0,0,0,0.0,11.0,0.0,131561.0
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Storm Roux,424603,D,1,90,0,0,0,0.0,32.0,1.0,117291.0
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Diesel Herrington,1414871,D,1,90,0,0,0,0.0,34.0,1.0,337982.0
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Noah McCann,1797425,D,1,90,0,0,0,0.0,36.0,1.0,
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Lucas Mauragis,1170521,D,1,90,1,0,0,0.11,38.0,1.0,273580.0
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Ali Auglah,1125140,M,1,90,2,2,0,0.13,72.0,2.0,209477.0
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Chris Donnell,1316579,M,1,90,1,1,0,0.08,74.0,2.0,240894.0
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Haine Eames,1678528,M,1,78,1,1,0,0.03,76.0,2.0,840584.0
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Alexander Bolton,2347479,M,1,64,1,0,0,0.02,78.0,2.0,
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Bailey Brandtman,1603555,F,1,78,2,1,0,0.08,104.0,3.0,300014.0
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Oli Lavale,1635566,F,1,87,2,1,1,0.26,106.0,3.0,292145.0
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Luke Becvinovski,1820424,F,0,26,0,0,0,0.0,,3.0,
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Arthur De Lima,1678529,M,0,12,1,1,0,0.13,,2.0,648491.0
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Jesse Mantell,1949001,M,0,12,0,0,0,0.0,,2.0,
+1000017573,2026-11-01,aus_aleague,Central Coast Mariners,Presley Ortiz,1824871,F,0,3,0,0,0,0.0,,3.0,
+1000014631,2026-11-01,liga_mx,CF América,Luis Malagón,724529,G,1,90,0,0,0,0.0,11.0,0.0,2214148.0
+1000014631,2026-11-01,liga_mx,CF América,Kevin Álvarez,924737,D,1,90,1,0,0,0.03,32.0,1.0,1555226.0
+1000014631,2026-11-01,liga_mx,CF América,Santiago Bueno,848034,D,1,90,0,0,0,0.0,34.0,1.0,10224392.0
+1000014631,2026-11-01,liga_mx,CF América,Santiago Ramos,1073724,D,1,90,0,0,0,0.0,36.0,1.0,14210947.0
+1000014631,2026-11-01,liga_mx,CF América,Franco Rossano,1656865,D,1,55,0,0,0,0.0,38.0,1.0,1813891.0
+1000014631,2026-11-01,liga_mx,CF América,Israel Reyes,1074586,M,1,90,3,0,0,0.19,64.0,2.0,7032353.0
+1000014631,2026-11-01,liga_mx,CF América,Erick Sánchez,772320,M,1,90,2,0,0,0.05,66.0,2.0,5760258.0
+1000014631,2026-11-01,liga_mx,CF América,Isaías Violante,1197375,F,1,55,1,1,0,0.01,83.0,3.0,6905131.0
+1000014631,2026-11-01,liga_mx,CF América,Carlos Álvarez,1209980,M,1,78,1,1,0,0.12,85.0,2.0,15221906.0
+1000014631,2026-11-01,liga_mx,CF América,Óscar Perea,1433034,F,1,90,3,1,0,0.26,87.0,3.0,2046713.0
+1000014631,2026-11-01,liga_mx,CF América,Henry Martín,558452,F,1,89,3,2,2,1.22,115.0,3.0,1317329.0
+1000014631,2026-11-01,liga_mx,CF América,Cristián Borja,683964,D,0,35,0,0,0,0.0,,1.0,981999.0
+1000014631,2026-11-01,liga_mx,CF América,Miguel Borja,281995,F,0,35,1,0,0,0.12,,3.0,1031315.0
+1000014631,2026-11-01,liga_mx,CF América,Alexis Gutiérrez,1010702,M,0,12,0,0,0,0.0,,2.0,2879088.0
+1000014631,2026-11-01,liga_mx,CF América,Alan Cervantes,848049,M,0,1,0,0,0,0.0,,2.0,2676651.0
+1000014631,2026-11-01,liga_mx,Toluca,Luis García,417520,G,1,90,0,0,0,0.0,11.0,0.0,732333.0
+1000014631,2026-11-01,liga_mx,Toluca,Santiago Simón,1208803,D,1,90,0,0,0,0.0,32.0,1.0,5193911.0
+1000014631,2026-11-01,liga_mx,Toluca,Bruno Méndez,933574,D,1,70,0,0,0,0.0,34.0,1.0,2138515.0
+1000014631,2026-11-01,liga_mx,Toluca,Federico Pereira,1053836,D,1,90,3,1,0,0.25,36.0,1.0,6916877.0
+1000014631,2026-11-01,liga_mx,Toluca,Jesús Gallardo,597976,D,1,90,0,0,0,0.0,38.0,1.0,1608678.0
+1000014631,2026-11-01,liga_mx,Toluca,Fernando Arce,659034,M,1,66,0,0,0,0.0,64.0,2.0,651054.0
+1000014631,2026-11-01,liga_mx,Toluca,Franco Romero,833581,M,1,90,1,0,0,0.03,66.0,2.0,6869877.0
+1000014631,2026-11-01,liga_mx,Toluca,Helinho,935183,F,1,65,2,1,0,0.08,83.0,3.0,6392603.0
+1000014631,2026-11-01,liga_mx,Toluca,Jorge Díaz,914079,M,1,59,0,0,0,0.0,85.0,2.0,431274.0
+1000014631,2026-11-01,liga_mx,Toluca,Nicolás Castro,1099712,F,1,69,2,1,0,0.05,87.0,3.0,6602901.0
+1000014631,2026-11-01,liga_mx,Toluca,Federico Viñas,1032811,F,1,90,2,1,1,0.34,115.0,3.0,5072385.0
+1000014631,2026-11-01,liga_mx,Toluca,Everardo López,1353113,D,0,31,0,0,0,0.0,,1.0,3396842.0
+1000014631,2026-11-01,liga_mx,Toluca,Alexis Vega,728365,F,0,25,5,3,1,1.08,,3.0,6737902.0
+1000014631,2026-11-01,liga_mx,Toluca,Érick Gutiérrez,497838,M,0,24,1,0,0,0.03,,2.0,856547.0
+1000014631,2026-11-01,liga_mx,Toluca,Jesús Angulo,730888,M,0,21,1,0,0,0.01,,2.0,2316033.0
+1000014631,2026-11-01,liga_mx,Toluca,Paulinho,361377,F,0,20,0,0,0,0.0,,3.0,2388977.0
