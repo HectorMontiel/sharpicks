@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-01T17:14:13Z",
+"actualizado": "2026-11-01T18:42:37Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -20716,11 +20716,41 @@
 "dia": "2026-11-01",
 "nivel": "🏆",
 "deporte": "Fútbol",
+"partido": "Arouca vs Nacional",
+"apuesta": "Arouca o empate",
+"cuota": 1.182,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Atl. Tordesillas vs Numancia",
+"apuesta": "Gana Numancia",
+"cuota": 3.25,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
 "partido": "Baltika vs Akron Togliatti",
 "apuesta": "Baltika o empate",
 "cuota": 1.143,
 "resultado": "verde",
 "marcador": "2-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Binche vs Stockay-Warfusee",
+"apuesta": "Gana Stockay-Warfusee",
+"cuota": 2.8572,
+"resultado": "rojo",
+"marcador": "1-0"
 },
 {
 "dia": "2026-11-01",
@@ -20751,6 +20781,36 @@
 "cuota": 2.2,
 "resultado": "rojo",
 "marcador": "0-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Coruxo FC vs Sestao",
+"apuesta": "Gana Sestao",
+"cuota": 3.1,
+"resultado": "verde",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Dender vs Genk U23",
+"apuesta": "Gana Dender",
+"cuota": 1.47,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Dinamo Batumi vs Meshakhte Tkibuli",
+"apuesta": "Gana Dinamo Batumi",
+"cuota": 1.23,
+"resultado": "verde",
+"marcador": "1-0"
 },
 {
 "dia": "2026-11-01",
@@ -20824,6 +20884,16 @@
 },
 {
 "dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Kasimpasa vs Besiktas",
+"apuesta": "Besiktas o empate",
+"cuota": 1.154,
+"resultado": "verde",
+"marcador": "2-2"
+},
+{
+"dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Malmo FF vs Hammarby",
@@ -20841,6 +20911,16 @@
 "cuota": 1.9,
 "resultado": "verde",
 "marcador": "0-4"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Partizan vs Zemun",
+"apuesta": "Gana Partizan",
+"cuota": 1.19,
+"resultado": "verde",
+"marcador": "3-0"
 },
 {
 "dia": "2026-11-01",
@@ -20864,6 +20944,16 @@
 },
 {
 "dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Sarpsborg 08 vs Kristiansund",
+"apuesta": "Sarpsborg 08 o empate",
+"cuota": 1.125,
+"resultado": "rojo",
+"marcador": "2-4"
+},
+{
+"dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Shandong Taishan B vs Shenzhen",
@@ -20871,6 +20961,16 @@
 "cuota": 1.68,
 "resultado": "verde",
 "marcador": "3-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "St Truiden vs Oud-Heverlee Leuven",
+"apuesta": "St Truiden o empate",
+"cuota": 1.167,
+"resultado": "rojo",
+"marcador": "1-2"
 },
 {
 "dia": "2026-11-01",
@@ -20901,6 +21001,26 @@
 "cuota": 1.3847,
 "resultado": "verde",
 "marcador": "4-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "U. Catolica vs U. De Chile",
+"apuesta": "Gana U. De Chile",
+"cuota": 2.3,
+"resultado": "rojo",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Verona vs Carrarese",
+"apuesta": "Verona o empate",
+"cuota": 1.167,
+"resultado": "verde",
+"marcador": "3-0"
 },
 {
 "dia": "2026-11-01",
