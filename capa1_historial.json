@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-01T12:29:06Z",
+"actualizado": "2026-11-01T14:01:42Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -20731,6 +20731,16 @@
 "cuota": 1.68,
 "resultado": "verde",
 "marcador": "3-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Tiffy Army vs Life FC",
+"apuesta": "Gana Life FC",
+"cuota": 1.57,
+"resultado": "verde",
+"marcador": "0-4"
 }
 ]
 }

@@ -15415,22 +15415,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5887558,2026-08-08,primeira,Sporting CP,Iván Fresneda,1325998,D,0,12,0,0,0,0.0,,1.0,13551099.0
 5887558,2026-08-08,primeira,Sporting CP,Luís Guilherme,1458757,F,0,12,0,0,0,0.0,,3.0,13320299.0
 5887558,2026-08-08,primeira,Sporting CP,Jesse Derry,1526704,F,0,8,0,0,0,0.0,,3.0,216000.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Kilian Nikièma,1313190,G,1,90,0,0,0,0.0,11.0,0.0,784673.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Milan Hokke,1553389,D,1,90,0,0,0,0.0,32.0,1.0,452865.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Pascal Mulder,1585703,D,1,85,1,0,0,0.1,34.0,1.0,191942.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Matteo Waem,1182584,D,1,90,0,0,0,0.0,36.0,1.0,785452.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Sékou Sylla,1282284,D,1,90,1,0,0,0.06,38.0,1.0,307777.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Daryl van Mieghem,277609,F,1,64,0,0,0,0.0,72.0,3.0,132714.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Finn de Bruin,1599289,M,1,57,2,0,0,0.23,74.0,2.0,299256.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Juho Kilo,1300344,M,1,90,0,0,0,0.0,76.0,2.0,1323429.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Jalen Hawkings,1159196,F,1,57,0,0,0,0.0,78.0,3.0,312571.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Evan Rottier,1183486,M,1,64,1,0,0,0.21,104.0,2.0,518252.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Yannick Eduardo,1554760,F,1,90,2,0,0,0.16,106.0,3.0,578989.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Mylian Jiménez,1243243,M,0,33,2,0,0,0.08,,2.0,305187.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Illaijh de Ruijter,1690581,F,0,33,0,0,0,0.0,,3.0,1023436.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Jesse Bal,1483075,F,0,26,0,0,0,0.0,,3.0,765775.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Nigel Thomas,1012783,F,0,26,1,0,0,0.01,,3.0,252405.0
-5781699,2026-08-08,eredivisie,ADO Den Haag,Lasse Wilhelm,1426063,D,0,5,0,0,0,0.0,,1.0,554390.0
 5811714,2026-08-08,bel_pro_league,Westerlo,Andreas Jungdal,1183740,G,1,90,0,0,0,0.0,11.0,0.0,1907082.0
 5811714,2026-08-08,bel_pro_league,Westerlo,Michée Ndembi,1803402,D,1,90,0,0,0,0.0,33.0,1.0,689884.0
 5811714,2026-08-08,bel_pro_league,Westerlo,Seiji Kimura,1122594,D,1,90,0,0,0,0.0,35.0,1.0,1308247.0
@@ -18557,22 +18541,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5100945,2026-08-09,irlanda,Bohemian FC,Sadou Diallo,760742,M,0,45,1,0,0,0.03,,2.0,50000.0
 5100945,2026-08-09,irlanda,Bohemian FC,Connor Parsons,1093048,F,0,21,1,0,0,0.07,,3.0,106764.0
 5100945,2026-08-09,irlanda,Bohemian FC,Markuss Strods,1690586,F,0,10,0,0,0,0.0,,3.0,240807.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Jasper Schendelaar,873529,G,1,90,0,0,0,0.0,11.0,0.0,1002552.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Olivier Aertssen,1327791,D,1,90,0,0,0,0.0,32.0,1.0,851511.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Simon Graves,923488,D,1,90,0,0,0,0.0,34.0,1.0,1135561.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Nick Viergever,164246,D,1,90,0,0,0,0.0,36.0,1.0,300813.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Sherel Floranus,671327,D,1,90,0,0,0,0.0,38.0,1.0,532104.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Tobias Sommer,1129028,M,1,85,1,1,0,0.35,73.0,2.0,1211522.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Thijs Oosting,932541,M,1,74,0,0,0,0.0,75.0,2.0,796725.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Ryan Thomas,496356,M,1,85,0,0,0,0.0,77.0,2.0,523690.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Dylan Mbayo,1022702,F,1,61,1,0,0,0.03,103.0,3.0,693640.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Koen Kostons,782561,F,1,90,2,0,0,0.05,105.0,3.0,2754930.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Ibrahim Cissoko,1282156,F,1,60,2,1,0,0.08,107.0,3.0,1042417.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Damian van der Haar,1328885,D,0,30,0,0,0,0.0,,1.0,830542.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Gabriel Reiziger,1701453,F,0,28,0,0,0,0.0,,3.0,659662.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Tijs Velthuis,1092256,D,0,16,0,0,0,0.0,,1.0,626386.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Elias Sørensen,961340,F,0,5,1,0,0,0.08,,3.0,977556.0
-5781697,2026-08-09,eredivisie,PEC Zwolle,Odysseus Velanas,775666,F,0,5,0,0,0,0.0,,3.0,326666.0
 5793908,2026-08-09,sco_premiership,Celtic,Viljami Sinisalo,1185782,G,1,90,0,0,0,0.0,11.0,0.0,1020477.0
 5793908,2026-08-09,sco_premiership,Celtic,Alistair Johnston,1055426,D,1,46,0,0,0,0.0,32.0,1.0,5987181.0
 5793908,2026-08-09,sco_premiership,Celtic,Cameron Carter-Vickers,643589,D,1,90,0,0,0,0.0,34.0,1.0,9806713.0
@@ -172208,3 +172176,222 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5847220,2026-11-01,rus_premier,CSKA Moscow,Luciano Gondou,1232258,F,0,34,0,0,0,0.0,,3.0,8402606.0
 5847220,2026-11-01,rus_premier,CSKA Moscow,Matheus Alves,1733303,M,0,9,2,1,0,0.05,,2.0,7817175.0
 5847220,2026-11-01,rus_premier,CSKA Moscow,Henrique Carmo,1636880,F,0,2,0,0,0,0.0,,3.0,6716236.0
+5977793,2026-11-01,fem_italia,Inter,Cecilia Rán Runarsdottir,1241206,G,1,90,0,0,0,0.0,11.0,0.0,
+5977793,2026-11-01,fem_italia,Inter,Shei García,1044302,D,1,81,1,1,0,0.0,32.0,1.0,
+5977793,2026-11-01,fem_italia,Inter,Marija Milinković,1398364,D,1,90,0,0,0,0.0,34.0,1.0,
+5977793,2026-11-01,fem_italia,Inter,Ivana Andrés,646113,D,1,90,1,1,0,0.0,36.0,1.0,
+5977793,2026-11-01,fem_italia,Inter,Chiara Robustellini,1400282,D,1,90,2,1,0,0.0,38.0,1.0,
+5977793,2026-11-01,fem_italia,Inter,Toni Payne,887281,M,1,72,1,1,0,0.0,72.0,2.0,
+5977793,2026-11-01,fem_italia,Inter,Irene Santi,1185040,M,1,90,1,0,0,0.0,74.0,2.0,
+5977793,2026-11-01,fem_italia,Inter,Maša Tomašević,1555904,M,1,66,0,0,0,0.0,76.0,2.0,
+5977793,2026-11-01,fem_italia,Inter,Haley Bugeja,1138109,F,1,72,3,2,2,0.0,78.0,3.0,
+5977793,2026-11-01,fem_italia,Inter,Brittany Raphino,1622303,F,1,73,1,0,0,0.0,104.0,3.0,
+5977793,2026-11-01,fem_italia,Inter,Michela Cambiaghi,1184979,F,1,90,5,2,0,0.0,106.0,3.0,
+5977793,2026-11-01,fem_italia,Inter,Karolina Lea Vilhjálmsdottir,1091704,M,0,24,1,0,0,0.0,,2.0,
+5977793,2026-11-01,fem_italia,Inter,Benedetta Glionna,1184942,M,0,18,1,0,0,0.0,,2.0,
+5977793,2026-11-01,fem_italia,Inter,Marie Detruyer,1375221,M,0,18,0,0,0,0.0,,2.0,
+5977793,2026-11-01,fem_italia,Inter,Elisa Polli,1184940,F,0,17,0,0,0,0.0,,3.0,
+5977793,2026-11-01,fem_italia,Inter,Emma Kullberg,1038494,D,0,9,0,0,0,0.0,,1.0,
+5977793,2026-11-01,fem_italia,Lazio,Angel Mukasa,1234808,G,1,90,0,0,0,0.0,11.0,0.0,
+5977793,2026-11-01,fem_italia,Lazio,Lidia Consolini,1676721,M,1,90,0,0,0,0.0,33.0,2.0,
+5977793,2026-11-01,fem_italia,Lazio,Megan Connolly,944260,D,1,90,0,0,0,0.0,35.0,1.0,
+5977793,2026-11-01,fem_italia,Lazio,Carola Zannini,1405948,D,1,90,0,0,0,0.0,37.0,1.0,
+5977793,2026-11-01,fem_italia,Lazio,Julia Roddar,942350,M,1,64,0,0,0,0.0,65.0,2.0,
+5977793,2026-11-01,fem_italia,Lazio,Macarena Portales,1044192,F,1,64,0,0,0,0.0,82.0,3.0,
+5977793,2026-11-01,fem_italia,Lazio,Antonietta Castiello,1290611,M,1,73,0,0,0,0.0,84.0,2.0,
+5977793,2026-11-01,fem_italia,Lazio,Manuela Sciabica,1414757,M,1,73,3,1,0,0.0,86.0,2.0,
+5977793,2026-11-01,fem_italia,Lazio,Martina Zanoli,1184919,D,1,90,0,0,0,0.0,88.0,1.0,
+5977793,2026-11-01,fem_italia,Lazio,Noemi Visentin,1290622,F,1,90,0,0,0,0.0,104.0,3.0,
+5977793,2026-11-01,fem_italia,Lazio,Carla Camacho,1345377,F,1,73,3,1,0,0.0,106.0,3.0,
+5977793,2026-11-01,fem_italia,Lazio,Emma Martín,1346718,M,0,26,0,0,0,0.0,,2.0,
+5977793,2026-11-01,fem_italia,Lazio,Soufiya Ngueleu,1371226,F,0,26,1,1,0,0.0,,3.0,
+5977793,2026-11-01,fem_italia,Lazio,Anna Longobardi,1366013,M,0,17,0,0,0,0.0,,2.0,
+5977793,2026-11-01,fem_italia,Lazio,Eleonora Goldoni,1184993,M,0,17,1,0,0,0.0,,2.0,
+5977793,2026-11-01,fem_italia,Lazio,Margaux Le Mouël,1224410,M,0,17,0,0,0,0.0,,2.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Meritxell Font,1410506,G,1,90,0,0,0,0.0,11.0,0.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Nerea Carmona,1552839,D,1,90,0,0,0,0.0,32.0,1.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Cristina Cubedo,1044334,D,1,90,1,1,0,0.0,34.0,1.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Lucía Martínez,1402695,M,1,90,0,0,0,0.0,36.0,2.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Sonia Majarín,1091780,D,1,82,0,0,0,0.0,38.0,1.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Elena Julve,1402561,F,1,90,2,2,0,0.0,72.0,3.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,María Llompart,1044262,M,1,82,0,0,0,0.0,74.0,2.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Lorena Navarro,1102361,M,1,90,0,0,0,0.0,76.0,2.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Paula Sánchez,1651172,F,1,74,1,0,0,0.0,78.0,3.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Irina Uribe,1402562,F,1,74,2,1,0,0.0,104.0,3.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Mirari Uria,1301937,F,1,60,0,0,0,0.0,106.0,3.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Kathelyn Noëlle Hendriks,1417674,F,0,30,0,0,0,0.0,,3.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Izarne Sarasola,1345399,D,0,16,1,0,0,0.0,,1.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Sheila Guijarro,1296332,F,0,16,0,0,0,0.0,,3.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Lucia Carmona,1980640,D,0,8,0,0,0,0.0,,1.0,
+5882335,2026-11-01,fem_espana,Levante Badalona,Chinyere Kalu,1692238,M,0,8,0,0,0,0.0,,2.0,
+5882335,2026-11-01,fem_espana,Barcelona,Cata Coll,1178008,G,1,90,0,0,0,0.0,11.0,0.0,
+5882335,2026-11-01,fem_espana,Barcelona,Martina Fernández,1345250,D,1,90,1,1,0,0.0,32.0,1.0,
+5882335,2026-11-01,fem_espana,Barcelona,Marta Torrejón,298603,D,1,90,2,0,0,0.0,34.0,1.0,
+5882335,2026-11-01,fem_espana,Barcelona,Renee van Asten,1812076,D,1,62,1,0,0,0.0,36.0,1.0,
+5882335,2026-11-01,fem_espana,Barcelona,Carla Juliá,1602001,D,1,73,1,0,0,0.0,38.0,1.0,
+5882335,2026-11-01,fem_espana,Barcelona,Clara Serrajordi,1686783,M,1,52,2,1,0,0.0,64.0,2.0,
+5882335,2026-11-01,fem_espana,Barcelona,Caroline Graham Hansen,215716,F,1,73,3,2,1,0.0,66.0,3.0,
+5882335,2026-11-01,fem_espana,Barcelona,Kerolin,1268071,F,1,90,5,2,2,0.0,83.0,3.0,
+5882335,2026-11-01,fem_espana,Barcelona,Aitana Bonmatí,887411,M,1,62,0,0,0,0.0,85.0,2.0,
+5882335,2026-11-01,fem_espana,Barcelona,Rosalía Domínguez,1630741,F,1,90,0,0,0,0.0,87.0,3.0,
+5882335,2026-11-01,fem_espana,Barcelona,Mayssa Baha,2175142,F,1,90,2,1,0,0.0,115.0,3.0,
+5882335,2026-11-01,fem_espana,Barcelona,Patri Guijarro,887405,M,0,38,0,0,0,0.0,,2.0,
+5882335,2026-11-01,fem_espana,Barcelona,Aïcha Camara,1686782,D,0,28,1,0,0,0.0,,1.0,
+5882335,2026-11-01,fem_espana,Barcelona,Sydney Schertenleib,1660200,M,0,28,1,0,0,0.0,,2.0,
+5882335,2026-11-01,fem_espana,Barcelona,Esmee Brugts,1214641,D,0,17,0,0,0,0.0,,1.0,
+5882335,2026-11-01,fem_espana,Barcelona,Clàudia Pina,1031791,F,0,17,2,2,1,0.0,,3.0,
+5749733,2026-11-01,serie_a,Como,Jean Butez,560939,G,1,90,0,0,0,0.0,11.0,0.0,7314817.0
+5749733,2026-11-01,serie_a,Como,Yan Couto,1109171,D,1,82,1,0,0,0.02,32.0,1.0,18787018.0
+5749733,2026-11-01,serie_a,Como,Jacobo Ramón,1413963,D,1,90,0,0,0,0.0,34.0,1.0,26053753.0
+5749733,2026-11-01,serie_a,Como,Marc-Oliver Kempf,355356,D,1,90,2,1,0,0.09,36.0,1.0,1746965.0
+5749733,2026-11-01,serie_a,Como,Kaiki,1459564,D,1,90,2,0,0,0.1,38.0,1.0,15068398.0
+5749733,2026-11-01,serie_a,Como,Samuele Ricci,941656,M,1,74,2,0,0,0.05,64.0,2.0,22650496.0
+5749733,2026-11-01,serie_a,Como,Luis Milla,638090,M,1,90,1,0,0,0.02,66.0,2.0,3119916.0
+5749733,2026-11-01,serie_a,Como,Lucas Da Cunha,1076647,M,1,73,2,2,1,0.94,83.0,2.0,24787976.0
+5749733,2026-11-01,serie_a,Como,Nico Paz,1347574,M,1,73,2,0,0,0.04,85.0,2.0,68135329.0
+5749733,2026-11-01,serie_a,Como,Martin Baturina,1215064,F,1,84,4,1,0,0.16,87.0,3.0,38694503.0
+5749733,2026-11-01,serie_a,Como,Anastasios Douvikas,873270,F,1,90,3,0,0,0.13,115.0,3.0,22676464.0
+5749733,2026-11-01,serie_a,Como,Maxence Caqueret,846000,M,0,17,0,0,0,0.0,,2.0,15368155.0
+5749733,2026-11-01,serie_a,Como,Mattia Liberali,1593861,M,0,16,0,0,0,0.0,,2.0,8599823.0
+5749733,2026-11-01,serie_a,Como,Máximo Perrone,1336582,M,0,16,0,0,0,0.0,,2.0,42829871.0
+5749733,2026-11-01,serie_a,Como,Ivan Smolčić,1353289,D,0,8,0,0,0,0.0,,1.0,5267091.0
+5749733,2026-11-01,serie_a,Como,Álex Valle,1384881,D,0,6,0,0,0,0.0,,1.0,17702055.0
+5749733,2026-11-01,serie_a,Venezia,Filip Stanković,1130600,G,1,90,0,0,0,0.0,11.0,0.0,9123213.0
+5749733,2026-11-01,serie_a,Venezia,Redouane Halhal,1298186,D,1,90,0,0,0,0.0,33.0,1.0,4523715.0
+5749733,2026-11-01,serie_a,Venezia,Matías Moreno,1605748,D,1,90,0,0,0,0.0,35.0,1.0,10352638.0
+5749733,2026-11-01,serie_a,Venezia,Juan Jesus,197352,D,1,90,0,0,0,0.0,37.0,1.0,800687.0
+5749733,2026-11-01,serie_a,Venezia,Antoine Hainaut,1290968,M,1,62,0,0,0,0.0,71.0,2.0,3698212.0
+5749733,2026-11-01,serie_a,Venezia,Thórir Helgason,939593,M,1,78,1,0,0,0.02,73.0,2.0,1350402.0
+5749733,2026-11-01,serie_a,Venezia,Simon Sohm,975242,M,1,62,0,0,0,0.0,75.0,2.0,9232096.0
+5749733,2026-11-01,serie_a,Venezia,Gianluca Busio,924431,M,1,55,1,0,0,0.05,77.0,2.0,8034176.0
+5749733,2026-11-01,serie_a,Venezia,Pasquale Mazzocchi,675327,M,1,90,0,0,0,0.0,79.0,2.0,1037955.0
+5749733,2026-11-01,serie_a,Venezia,Akor Adams,958640,F,1,90,0,0,0,0.0,104.0,3.0,13901366.0
+5749733,2026-11-01,serie_a,Venezia,Lion Lauberbach,866165,F,1,55,0,0,0,0.0,106.0,3.0,1808033.0
+5749733,2026-11-01,serie_a,Venezia,Kike Pérez,888167,M,0,35,1,0,0,0.05,,2.0,1392896.0
+5749733,2026-11-01,serie_a,Venezia,John Yeboah,845368,F,0,35,2,0,0,0.03,,3.0,6246246.0
+5749733,2026-11-01,serie_a,Venezia,Richie Sagrado,1388039,M,0,28,0,0,0,0.0,,2.0,1591948.0
+5749733,2026-11-01,serie_a,Venezia,Toma Bašić,651435,M,0,28,1,1,0,0.01,,2.0,2067683.0
+5749733,2026-11-01,serie_a,Venezia,Albion Rrahmani,1379468,F,0,12,1,0,0,0.01,,3.0,7272365.0
+6362011,2026-11-01,ind_isl,Mumbai City FC,TP Rehenesh,581034,G,1,90,0,0,0,0.0,11.0,0.0,50000.0
+6362011,2026-11-01,ind_isl,Mumbai City FC,Valpuia,1104579,D,1,90,0,0,0,0.0,32.0,1.0,76516.0
+6362011,2026-11-01,ind_isl,Mumbai City FC,Lazar Ćirković,280458,D,1,90,0,0,0,0.0,34.0,1.0,50000.0
+6362011,2026-11-01,ind_isl,Mumbai City FC,Carlos Delgado,244456,D,1,90,0,0,0,0.0,36.0,1.0,50000.0
+6362011,2026-11-01,ind_isl,Mumbai City FC,Akash Mishra,1207540,D,1,90,0,0,0,0.0,38.0,1.0,327464.0
+6362011,2026-11-01,ind_isl,Mumbai City FC,Lalnuntluanga Bawitlung,1438018,M,1,74,0,0,0,0.0,73.0,2.0,
+6362011,2026-11-01,ind_isl,Mumbai City FC,Zothanpuia,1704605,M,1,90,4,2,1,0.64,75.0,2.0,
+6362011,2026-11-01,ind_isl,Mumbai City FC,Sergio Llamas,574177,M,1,90,0,0,0,0.0,77.0,2.0,50000.0
+6362011,2026-11-01,ind_isl,Mumbai City FC,Hridaya Jain,1707289,F,1,58,3,2,0,0.62,103.0,3.0,233064.0
+6362011,2026-11-01,ind_isl,Mumbai City FC,Muhammad Ajsal,1399583,F,1,89,4,3,1,0.71,105.0,3.0,106518.0
+6362011,2026-11-01,ind_isl,Mumbai City FC,Noufal PN,1459170,F,1,90,0,0,0,0.0,107.0,3.0,50000.0
+6362011,2026-11-01,ind_isl,Mumbai City FC,Farukh Choudhary,894712,F,0,32,1,1,0,0.1,,3.0,50000.0
+6362011,2026-11-01,ind_isl,Mumbai City FC,Brandon Fernandes,636469,M,0,16,0,0,0,0.0,,2.0,50000.0
+6362011,2026-11-01,ind_isl,Mumbai City FC,Nathan Rodrigues,1538076,D,0,1,0,0,0,0.0,,1.0,161161.0
+6362011,2026-11-01,ind_isl,Mumbai City FC,Yuvraj Kadam,2367150,F,0,1,1,0,0,0.05,,3.0,
+6362011,2026-11-01,ind_isl,SC Delhi,Nora Fernandes,1459669,G,1,90,0,0,0,0.0,11.0,0.0,50000.0
+6362011,2026-11-01,ind_isl,SC Delhi,Lamgoulen Gou Hangshing,1425988,D,1,46,0,0,0,0.0,32.0,1.0,50000.0
+6362011,2026-11-01,ind_isl,SC Delhi,Duván Viáfara,1393529,D,1,90,3,0,0,0.07,34.0,1.0,52158.0
+6362011,2026-11-01,ind_isl,SC Delhi,Clarence Fernandes,1409137,D,1,90,0,0,0,0.0,36.0,1.0,124200.0
+6362011,2026-11-01,ind_isl,SC Delhi,Manoj Mohammed,1016661,D,1,90,3,1,0,0.12,38.0,1.0,50000.0
+6362011,2026-11-01,ind_isl,SC Delhi,K Sourav,1459173,M,1,71,1,0,0,0.02,73.0,2.0,60077.0
+6362011,2026-11-01,ind_isl,SC Delhi,Lalrinliana Hnamte,1313459,M,1,90,2,2,0,0.07,75.0,2.0,188812.0
+6362011,2026-11-01,ind_isl,SC Delhi,Mohammed Azhar,1458910,M,1,46,0,0,0,0.0,77.0,2.0,167956.0
+6362011,2026-11-01,ind_isl,SC Delhi,Juan Peña,1557211,F,1,90,4,2,1,0.35,103.0,3.0,
+6362011,2026-11-01,ind_isl,SC Delhi,Rodriguinho,1302004,F,1,71,1,0,0,0.02,105.0,3.0,99976.0
+6362011,2026-11-01,ind_isl,SC Delhi,Mohammed Aimen,1400441,F,1,89,7,3,0,0.3,107.0,3.0,86083.0
+6362011,2026-11-01,ind_isl,SC Delhi,Ashutosh Mehta,581043,D,0,45,2,1,0,0.29,,1.0,50000.0
+6362011,2026-11-01,ind_isl,SC Delhi,Richard Ndayishimiye,1730227,M,0,44,0,0,0,0.0,,2.0,
+6362011,2026-11-01,ind_isl,SC Delhi,Augustine Lalrochana,1459555,F,0,19,0,0,0,0.0,,3.0,192038.0
+6362011,2026-11-01,ind_isl,SC Delhi,Carlos Fortes,570976,F,0,19,2,1,1,0.79,,3.0,127341.0
+6362011,2026-11-01,ind_isl,SC Delhi,Akshat Mehra,1901340,D,0,1,1,1,1,0.05,,1.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Sofía Fuente,1301542,G,1,90,0,0,0,0.0,11.0,0.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Hanane Aït El Haj,1464952,D,1,90,0,0,0,0.0,32.0,1.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Ines,1044248,D,1,90,2,1,1,0.0,34.0,1.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Pichi,1301543,D,1,90,1,1,0,0.0,36.0,1.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Merche Izal,1843411,D,1,89,0,0,0,0.0,38.0,1.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Nayadet López,1271157,M,1,90,1,0,0,0.0,65.0,2.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Almudena Rivero,1345657,M,1,90,1,1,0,0.0,82.0,2.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Laura Navajas,2155697,M,1,90,0,0,0,0.0,84.0,2.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Elene Viles,1345400,M,1,90,0,0,0,0.0,86.0,2.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Ainhoa Guallar,1843399,F,1,70,1,0,0,0.0,88.0,3.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Carmen Sobron,1843412,F,1,90,4,2,0,0.0,115.0,3.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Sarah Brasero-Carreira,1580521,M,0,20,0,0,0,0.0,,2.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Amaya García,1592032,D,0,1,0,0,0,0.0,,1.0,
+5882333,2026-11-01,fem_espana,Deportivo Alavés,Reyes Moreno,2155706,F,0,1,0,0,0,0.0,,3.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Julia Arrula,1591800,G,1,90,0,0,0,0.0,11.0,0.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Esther Laborde,1349774,M,1,57,1,0,0,0.0,32.0,2.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Nahia Aparicio,1345407,D,1,90,0,0,0,0.0,34.0,1.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Claudia,1050217,D,1,90,0,0,0,0.0,36.0,1.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Laura Camino,1546575,D,1,90,2,0,0,0.0,38.0,1.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Maren Lezeta,1688653,M,1,89,1,0,0,0.0,73.0,2.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Intza Eguiguren,1652283,F,1,57,0,0,0,0.0,75.0,3.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Ainoa Campo,1195378,M,1,90,2,0,0,0.0,77.0,2.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Ainhoa Marín,1122046,F,1,82,2,1,1,0.0,103.0,3.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Nerea Eizagirre,1043815,F,1,90,1,0,0,0.0,105.0,3.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Cecilia Marcos,1130798,F,1,90,2,0,0,0.0,107.0,3.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Ainhoa Vicente,1044156,D,0,33,0,0,0,0.0,,1.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Arola Aparicio,1213654,F,0,33,1,0,0,0.0,,3.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Sonya Keefe,1701699,F,0,8,0,0,0,0.0,,3.0,
+5882333,2026-11-01,fem_espana,Real Sociedad,Ava Seelenfreund,1610959,F,0,1,0,0,0,0.0,,3.0,
+5781792,2026-11-01,eredivisie,PEC Zwolle,Jasper Schendelaar,873529,G,1,90,0,0,0,0.0,11.0,0.0,894047.0
+5781792,2026-11-01,eredivisie,PEC Zwolle,Olivier Aertssen,1327791,D,1,74,2,0,0,0.15,32.0,1.0,833662.0
+5781792,2026-11-01,eredivisie,PEC Zwolle,Simon Graves,923488,D,1,90,1,0,0,0.07,34.0,1.0,1005084.0
+5781792,2026-11-01,eredivisie,PEC Zwolle,Nick Viergever,164246,D,1,90,1,0,0,0.14,36.0,1.0,303695.0
+5781792,2026-11-01,eredivisie,PEC Zwolle,Damian van der Haar,1328885,D,1,90,2,0,0,0.02,38.0,1.0,752620.0
+5781792,2026-11-01,eredivisie,PEC Zwolle,Ryan Thomas,496356,M,1,90,1,0,0,0.03,73.0,2.0,583337.0
+5781792,2026-11-01,eredivisie,PEC Zwolle,Gilles van der Wal,1946368,F,1,90,2,0,0,0.07,75.0,3.0,
+5781792,2026-11-01,eredivisie,PEC Zwolle,Tobias Sommer,1129028,M,1,88,3,2,0,0.33,77.0,2.0,1407202.0
+5781792,2026-11-01,eredivisie,PEC Zwolle,Dylan Mbayo,1022702,F,1,73,1,1,1,0.11,103.0,3.0,777966.0
+5781792,2026-11-01,eredivisie,PEC Zwolle,Sydney van Hooijdonk,949481,F,1,90,5,2,0,0.29,105.0,3.0,1001497.0
+5781792,2026-11-01,eredivisie,PEC Zwolle,Younes Namli,320672,F,1,60,4,0,0,0.12,107.0,3.0,714172.0
+5781792,2026-11-01,eredivisie,PEC Zwolle,Thijs Oosting,932541,M,0,30,1,0,0,0.07,,2.0,948647.0
+5781792,2026-11-01,eredivisie,PEC Zwolle,Ibrahim Cissoko,1282156,F,0,17,0,0,0,0.0,,3.0,1128838.0
+5781792,2026-11-01,eredivisie,PEC Zwolle,Jan Bürger,1759640,D,0,16,1,0,0,0.04,,1.0,2961100.0
+5781792,2026-11-01,eredivisie,PEC Zwolle,Tijs Velthuis,1092256,D,0,2,0,0,0,0.0,,1.0,634246.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Kilian Nikièma,1313190,G,1,90,0,0,0,0.0,11.0,0.0,1231112.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Jonas Jensen-Abbew,1243931,D,1,46,0,0,0,0.0,32.0,1.0,822490.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Matteo Waem,1182584,D,1,90,1,0,0,0.03,34.0,1.0,784983.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Pascal Mulder,1585703,D,1,90,0,0,0,0.0,36.0,1.0,398010.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Milan Hokke,1553389,D,1,90,0,0,0,0.0,38.0,1.0,618008.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Matěj Sín,1335046,M,1,61,2,0,0,0.08,73.0,2.0,3645076.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Evan Rottier,1183486,M,1,90,5,1,0,0.25,75.0,2.0,668192.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Juho Kilo,1300344,M,1,90,0,0,0,0.0,77.0,2.0,1277923.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Nigel Thomas,1012783,F,1,61,0,0,0,0.0,103.0,3.0,357159.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Yannick Eduardo,1554760,F,1,78,0,0,0,0.0,105.0,3.0,1500739.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Jalen Hawkings,1159196,M,1,45,2,1,0,0.08,107.0,2.0,529860.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Othniël Raterink,1444577,D,0,45,1,0,0,0.05,,1.0,1665527.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Cameron Peupion,1197512,F,0,44,0,0,0,0.0,,3.0,549348.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Daryl van Mieghem,277609,F,0,29,1,1,0,0.02,,3.0,275193.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Jesse Bal,1483075,F,0,29,0,0,0,0.0,,3.0,1020738.0
+5781792,2026-11-01,eredivisie,ADO Den Haag,Donat Barany,1179041,F,0,12,0,0,0,0.0,,3.0,817022.0
+5904788,2026-11-01,turquia,Amed Sportif,Alban Lafont,698273,G,1,90,0,0,0,0.0,11.0,0.0,1791033.0
+5904788,2026-11-01,turquia,Amed Sportif,Ermal Krasniqi,1315511,F,1,55,2,1,1,0.15,32.0,3.0,872905.0
+5904788,2026-11-01,turquia,Amed Sportif,Mehmet Yeşil,751842,D,1,90,0,0,0,0.0,34.0,1.0,771963.0
+5904788,2026-11-01,turquia,Amed Sportif,David Bates,470399,D,1,90,0,0,0,0.0,36.0,1.0,970522.0
+5904788,2026-11-01,turquia,Amed Sportif,Umut Meraş,707668,D,1,85,0,0,0,0.0,38.0,1.0,557598.0
+5904788,2026-11-01,turquia,Amed Sportif,Rayan Raveloson,591529,M,1,90,0,0,0,0.0,64.0,2.0,970637.0
+5904788,2026-11-01,turquia,Amed Sportif,Furkan Soyalp,390642,M,1,55,1,0,0,0.04,66.0,2.0,258296.0
+5904788,2026-11-01,turquia,Amed Sportif,Rayan Lutin,1514624,F,1,90,2,1,0,0.2,83.0,3.0,814829.0
+5904788,2026-11-01,turquia,Amed Sportif,Dia Saba,289473,M,1,77,5,1,0,0.91,85.0,2.0,288665.0
+5904788,2026-11-01,turquia,Amed Sportif,Samuel Ballet,1097796,F,1,90,6,3,3,3.39,87.0,3.0,1711868.0
+5904788,2026-11-01,turquia,Amed Sportif,Gift Orban,1368557,F,1,78,4,1,1,0.26,115.0,3.0,8846068.0
+5904788,2026-11-01,turquia,Amed Sportif,Ali Turap Bülbül,1393739,D,0,35,0,0,0,0.0,,1.0,745147.0
+5904788,2026-11-01,turquia,Amed Sportif,Gökhan Gül,642495,D,0,35,0,0,0,0.0,,1.0,866587.0
+5904788,2026-11-01,turquia,Amed Sportif,Collins Sor,1054011,F,0,13,0,0,0,0.0,,3.0,1904851.0
+5904788,2026-11-01,turquia,Amed Sportif,Mohamed Khalil,1697928,F,0,12,0,0,0,0.0,,3.0,337068.0
+5904788,2026-11-01,turquia,Amed Sportif,Kahraman Demirtaş,919749,D,0,5,0,0,0,0.0,,1.0,265395.0
+5904788,2026-11-01,turquia,Eyüpspor,Emre Bilgin,1178124,G,1,90,0,0,0,0.0,11.0,0.0,562833.0
+5904788,2026-11-01,turquia,Eyüpspor,Talha Ülvan,1393698,D,1,30,0,0,0,0.0,32.0,1.0,656185.0
+5904788,2026-11-01,turquia,Eyüpspor,Jawad El Yamiq,798736,D,1,90,0,0,0,0.0,34.0,1.0,259319.0
+5904788,2026-11-01,turquia,Eyüpspor,Zak Jules,708872,D,1,90,0,0,0,0.0,36.0,1.0,389882.0
+5904788,2026-11-01,turquia,Eyüpspor,Mete Kaan Demir,872726,M,1,90,0,0,0,0.0,38.0,2.0,253046.0
+5904788,2026-11-01,turquia,Eyüpspor,Chandrel Massanga,1120319,M,1,90,0,0,0,0.0,65.0,2.0,281878.0
+5904788,2026-11-01,turquia,Eyüpspor,Bilal Boutobba,605858,F,1,62,1,0,0,0.06,82.0,3.0,642887.0
+5904788,2026-11-01,turquia,Eyüpspor,David Costa,1523340,M,1,90,0,0,0,0.0,84.0,2.0,359776.0
+5904788,2026-11-01,turquia,Eyüpspor,Charles-André Raux Yao,1668290,M,1,62,0,0,0,0.0,86.0,2.0,528418.0
+5904788,2026-11-01,turquia,Eyüpspor,Lenny Pintor,889626,F,1,85,1,0,0,0.02,88.0,3.0,371242.0
+5904788,2026-11-01,turquia,Eyüpspor,Yusuf Barası,1125999,F,1,46,0,0,0,0.0,115.0,3.0,974604.0
+5904788,2026-11-01,turquia,Eyüpspor,Hamza Akman,1388936,M,0,60,0,0,0,0.0,,2.0,605956.0
+5904788,2026-11-01,turquia,Eyüpspor,Ahmed Abdullahi,1439393,F,0,45,4,2,1,0.83,,3.0,745931.0
+5904788,2026-11-01,turquia,Eyüpspor,Abdelhamid Sabiri,769644,M,0,28,2,0,0,0.07,,2.0,359213.0
+5904788,2026-11-01,turquia,Eyüpspor,Konrad Michalak,815981,F,0,28,0,0,0,0.0,,3.0,353977.0
+5904788,2026-11-01,turquia,Eyüpspor,Arda Yavuz,1697516,D,0,5,0,0,0,0.0,,1.0,589321.0
