@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-01T23:31:23Z",
+"actualizado": "2026-11-02T01:11:01Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -20754,6 +20754,26 @@
 },
 {
 "dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Belgrano vs Barracas Central",
+"apuesta": "Belgrano o empate",
+"cuota": 1.182,
+"resultado": "verde",
+"marcador": "2-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Biblioteca Atenas vs Sarmiento de La Banda",
+"apuesta": "Gana Biblioteca Atenas",
+"cuota": 2.125,
+"resultado": "verde",
+"marcador": "4-2"
+},
+{
+"dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Binche vs Stockay-Warfusee",
@@ -20825,6 +20845,16 @@
 {
 "dia": "2026-11-01",
 "nivel": "🏆",
+"deporte": "NHL",
+"partido": "Carolina Hurricanes vs Winnipeg Jets",
+"apuesta": "Handicap: Winnipeg Jets +3.5",
+"cuota": 1.125,
+"resultado": "rojo",
+"marcador": "7-0"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
 "deporte": "Fútbol",
 "partido": "Cartaginés vs AD San Carlos",
 "apuesta": "Cartaginés o empate",
@@ -20854,6 +20884,16 @@
 },
 {
 "dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "NFL",
+"partido": "Cincinnati Bengals vs Tennessee Titans",
+"apuesta": "Gana Cincinnati Bengals",
+"cuota": 1.177,
+"resultado": "verde",
+"marcador": "43-36"
+},
+{
+"dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Coruxo FC vs Sestao",
@@ -20861,6 +20901,16 @@
 "cuota": 3.1,
 "resultado": "verde",
 "marcador": "0-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Cuiabá vs São Bernardo",
+"apuesta": "Cuiabá o empate",
+"cuota": 1.154,
+"resultado": "rojo",
+"marcador": "1-2"
 },
 {
 "dia": "2026-11-01",
@@ -20926,6 +20976,26 @@
 "dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "FC Rangers vs FC Santa Coloma",
+"apuesta": "Gana FC Santa Coloma",
+"cuota": 2.02,
+"resultado": "verde",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "FC Rangers vs FC Santa Coloma",
+"apuesta": "Gana FC Santa Coloma",
+"cuota": 1.79,
+"resultado": "verde",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Feignies-Aulnoye vs Borgo",
 "apuesta": "Gana Feignies-Aulnoye",
 "cuota": 1.93,
@@ -20951,6 +21021,26 @@
 "cuota": 1.167,
 "resultado": "verde",
 "marcador": "3-4"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Gimnasia y Tiro (Salta) vs Quilmes",
+"apuesta": "Gimnasia y Tiro (Salta) o empate",
+"cuota": 1.2,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Gremio vs Atletico-MG",
+"apuesta": "Gana Atletico-MG",
+"cuota": 3.2,
+"resultado": "rojo",
+"marcador": "2-0"
 },
 {
 "dia": "2026-11-01",
@@ -21005,6 +21095,16 @@
 {
 "dia": "2026-11-01",
 "nivel": "🏆",
+"deporte": "NFL",
+"partido": "Jacksonville Jaguars vs Indianapolis Colts",
+"apuesta": "Gana Jacksonville Jaguars",
+"cuota": 1.22,
+"resultado": "verde",
+"marcador": "42-7"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
 "deporte": "Fútbol",
 "partido": "Kasimpasa vs Besiktas",
 "apuesta": "Besiktas o empate",
@@ -21026,6 +21126,26 @@
 "dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Lexington vs Colorado Springs",
+"apuesta": "Gana Lexington",
+"cuota": 2.05,
+"resultado": "rojo",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Lexington vs Colorado Springs Switchbacks FC",
+"apuesta": "Gana Lexington",
+"cuota": 2.05,
+"resultado": "rojo",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Lumezzane vs Arzignano",
 "apuesta": "Gana Lumezzane",
 "cuota": 2.8,
@@ -21041,6 +21161,26 @@
 "cuota": 1.6667,
 "resultado": "verde",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Novorizontino vs Operario-PR",
+"apuesta": "Gana Novorizontino",
+"cuota": 1.5,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Novorizontino vs Operário PR",
+"apuesta": "Novorizontino o empate",
+"cuota": 1.111,
+"resultado": "verde",
+"marcador": "2-1"
 },
 {
 "dia": "2026-11-01",
@@ -21106,6 +21246,16 @@
 "dia": "2026-11-01",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Real San Joaquin vs Provincial Ovalle",
+"apuesta": "Gana Provincial Ovalle",
+"cuota": 3.35,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Rijeka vs Varazdin",
 "apuesta": "Gana Rijeka",
 "cuota": 1.75,
@@ -21121,6 +21271,16 @@
 "cuota": 1.21,
 "resultado": "verde",
 "marcador": "5-1"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "San Martin T. vs Colegiales",
+"apuesta": "Gana Colegiales",
+"cuota": 2.5715,
+"resultado": "rojo",
+"marcador": "0-0"
 },
 {
 "dia": "2026-11-01",
@@ -21160,6 +21320,16 @@
 "apuesta": "St Truiden o empate",
 "cuota": 1.167,
 "resultado": "rojo",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-01",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Tatjana Maria vs Bianca Andreescu",
+"apuesta": "Gana Bianca Andreescu",
+"cuota": 1.74,
+"resultado": "verde",
 "marcador": "1-2"
 },
 {
