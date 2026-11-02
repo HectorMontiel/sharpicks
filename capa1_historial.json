@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-02T17:03:30Z",
+"actualizado": "2026-11-02T18:36:16Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -21506,6 +21506,16 @@
 "dia": "2026-11-02",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Al Sadd (Qat) vs Al Ahli SC (Sau)",
+"apuesta": "Gana Al Sadd (Qat)",
+"cuota": 3.3,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Al Taraji vs Al Batin",
 "apuesta": "Gana Al Batin",
 "cuota": 3.25,
@@ -21516,11 +21526,31 @@
 "dia": "2026-11-02",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Al Wasl (Uae) vs Al Quwa Al Jawiya (Irq)",
+"apuesta": "Gana Al Wasl (Uae)",
+"cuota": 1.31,
+"resultado": "verde",
+"marcador": "4-3"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Bani Yas U23 vs Al Jazira U23",
 "apuesta": "Gana Al Jazira U23",
 "cuota": 2.09,
 "resultado": "verde",
 "marcador": "0-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Brezice vs Beltinci",
+"apuesta": "Gana Beltinci",
+"cuota": 1.52,
+"resultado": "verde",
+"marcador": "0-6"
 },
 {
 "dia": "2026-11-02",
@@ -21555,12 +21585,42 @@
 {
 "dia": "2026-11-02",
 "nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Inter Turku vs Gnistan",
+"apuesta": "Gana Inter Turku",
+"cuota": 1.43,
+"resultado": "verde",
+"marcador": "4-3"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Karpaty Lviv vs Kudrivka",
+"apuesta": "Gana Karpaty Lviv",
+"cuota": 1.44,
+"resultado": "verde",
+"marcador": "5-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
 "deporte": "Tenis",
 "partido": "Lee C. Y. vs Sakkari M.",
 "apuesta": "Gana Sakkari M.",
 "cuota": 1.27,
 "resultado": "verde",
 "marcador": "0-2"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Leixoes U23 vs Rio Ave U23",
+"apuesta": "Gana Rio Ave U23",
+"cuota": 2.25,
+"resultado": "verde",
+"marcador": "1-4"
 },
 {
 "dia": "2026-11-02",
@@ -21584,6 +21644,16 @@
 },
 {
 "dia": "2026-11-02",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Oviedo vs Las Palmas",
+"apuesta": "Oviedo o empate",
+"cuota": 1.177,
+"resultado": "rojo",
+"marcador": "2-3"
+},
+{
+"dia": "2026-11-02",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Posta Rangers vs 3K FC",
@@ -21594,6 +21664,26 @@
 },
 {
 "dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Sport Huancayo vs FBC Melgar",
+"apuesta": "Gana Sport Huancayo",
+"cuota": 2.15,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Sport Huancayo vs Melgar",
+"apuesta": "Gana Sport Huancayo",
+"cuota": 2.15,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-02",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Teleoptik vs Javor",
@@ -21601,6 +21691,36 @@
 "cuota": 1.56,
 "resultado": "verde",
 "marcador": "2-3"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Torpedo Kutaisi vs Dila Gori",
+"apuesta": "Gana Torpedo Kutaisi",
+"cuota": 2.4,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Umm Al Hassam vs Bahrain SC",
+"apuesta": "Gana Bahrain SC",
+"cuota": 1.6,
+"resultado": "verde",
+"marcador": "1-3"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Umm Al Hassam vs Bahrain SC",
+"apuesta": "Gana Bahrain SC",
+"cuota": 1.72,
+"resultado": "verde",
+"marcador": "1-3"
 }
 ]
 }
