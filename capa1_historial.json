@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-02T04:19:14Z",
+"actualizado": "2026-11-02T09:05:53Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -21491,6 +21491,26 @@
 "cuota": 3.2,
 "resultado": "verde",
 "marcador": "2-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Golubic V. vs Boulter K.",
+"apuesta": "Gana Golubic V.",
+"cuota": 2.4,
+"resultado": "rojo",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Liu C. vs Prozorova T.",
+"apuesta": "Gana Liu C.",
+"cuota": 2.1,
+"resultado": "verde",
+"marcador": "2-0"
 }
 ]
 }
