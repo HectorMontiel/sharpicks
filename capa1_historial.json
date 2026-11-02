@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-02T10:43:27Z",
+"actualizado": "2026-11-02T12:17:47Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -21519,6 +21519,16 @@
 "partido": "Liu C. vs Prozorova T.",
 "apuesta": "Gana Liu C.",
 "cuota": 2.1,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Maleckova J./Skoch M. vs Fossa Huergo N./Pridankina E.",
+"apuesta": "Gana Maleckova J./Skoch M.",
+"cuota": 2.05,
 "resultado": "verde",
 "marcador": "2-0"
 }
