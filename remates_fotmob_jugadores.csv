@@ -49961,19 +49961,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5868435,2026-09-05,esp_hypermotion,Girona,Carles Pérez,873297,F,0,22,2,1,1,0.27,,3.0,974254.0
 5868435,2026-09-05,esp_hypermotion,Girona,Abdul Mumin,776591,D,0,11,0,0,0,0.0,,1.0,1773180.0
 5868435,2026-09-05,esp_hypermotion,Girona,Javier Boñar,1367926,D,0,11,0,0,0,0.0,,1.0,
-5071322,2026-09-05,mls,Houston Dynamo FC,Jonathan Bond,186882,G,1,90,0,0,0,0.0,11.0,0.0,126212.0
-5071322,2026-09-05,mls,Houston Dynamo FC,Felipe Andrade,1501511,D,1,90,1,0,0,0.04,32.0,1.0,1533598.0
-5071322,2026-09-05,mls,Houston Dynamo FC,Lucas Halter,1043762,D,1,90,0,0,0,0.0,34.0,1.0,1118897.0
-5071322,2026-09-05,mls,Houston Dynamo FC,Agustin Resch,1910398,D,1,90,1,1,0,0.04,36.0,1.0,285361.0
-5071322,2026-09-05,mls,Houston Dynamo FC,Lawrence Ennali,1274604,M,1,90,2,1,0,0.1,38.0,2.0,1240655.0
-5071322,2026-09-05,mls,Houston Dynamo FC,Artur,750922,M,1,90,1,0,0,0.03,64.0,2.0,1429434.0
-5071322,2026-09-05,mls,Houston Dynamo FC,Héctor Herrera,274623,M,1,90,0,0,0,0.0,66.0,2.0,210232.0
-5071322,2026-09-05,mls,Houston Dynamo FC,Mateusz Bogusz,954194,F,1,90,8,1,0,0.49,83.0,3.0,2918260.0
-5071322,2026-09-05,mls,Houston Dynamo FC,Agustín Bouzat,723682,M,1,79,0,0,0,0.0,85.0,2.0,354010.0
-5071322,2026-09-05,mls,Houston Dynamo FC,Guilherme Augusto,763151,F,1,90,5,2,0,0.26,87.0,3.0,1573098.0
-5071322,2026-09-05,mls,Houston Dynamo FC,Duncan McGuire,1439982,F,1,66,0,0,0,0.0,115.0,3.0,1483048.0
-5071322,2026-09-05,mls,Houston Dynamo FC,Ibrahim Aliyu,1178505,M,0,24,0,0,0,0.0,,2.0,621046.0
-5071322,2026-09-05,mls,Houston Dynamo FC,Matthew Arana,1781979,M,0,11,0,0,0,0.0,,2.0,
 1000019036,2026-09-05,bol_division,Oriente Petrolero,Alejandro Torrez,1686623,G,1,90,0,0,0,0.0,11.0,0.0,
 1000019036,2026-09-05,bol_division,Oriente Petrolero,Marco Velasco,1813484,D,1,65,1,0,0,0.0,32.0,1.0,
 1000019036,2026-09-05,bol_division,Oriente Petrolero,Mizael Monteiro,1446561,D,1,90,0,0,0,0.0,34.0,1.0,
@@ -58593,22 +58580,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803574,2026-09-06,jpn_j1,Machida Zelvia,Tete Yengi,1220549,F,0,24,0,0,0,0.0,,3.0,396114.0
 5803574,2026-09-06,jpn_j1,Machida Zelvia,Yusuke Matsuo,1064870,F,0,5,1,1,1,0.29,,3.0,447626.0
 5803574,2026-09-06,jpn_j1,Machida Zelvia,Mitchell Duke,245633,F,0,4,0,0,0,0.0,,3.0,239318.0
-5071332,2026-09-06,mls,Portland Timbers,James Pantemis,878311,G,1,90,0,0,0,0.0,11.0,0.0,483433.0
-5071332,2026-09-06,mls,Portland Timbers,Eric Miller,525618,D,1,81,0,0,0,0.0,32.0,1.0,50000.0
-5071332,2026-09-06,mls,Portland Timbers,Finn Surman,1325761,D,1,90,0,0,0,0.0,34.0,1.0,1351812.0
-5071332,2026-09-06,mls,Portland Timbers,Kamal Miller,1027412,D,1,90,0,0,0,0.0,36.0,1.0,1162958.0
-5071332,2026-09-06,mls,Portland Timbers,Jimer Fory,1200658,D,1,90,1,1,0,0.52,38.0,1.0,1337247.0
-5071332,2026-09-06,mls,Portland Timbers,Cole Bassett,955472,M,1,90,1,0,0,0.07,73.0,2.0,2311568.0
-5071332,2026-09-06,mls,Portland Timbers,José Caicedo,1331128,M,1,37,0,0,0,0.0,75.0,2.0,1919872.0
-5071332,2026-09-06,mls,Portland Timbers,David Da Costa,1138769,M,1,82,1,0,0,0.05,77.0,2.0,3419184.0
-5071332,2026-09-06,mls,Portland Timbers,Kristoffer Velde,837731,F,1,90,3,1,1,0.16,103.0,3.0,1620825.0
-5071332,2026-09-06,mls,Portland Timbers,Vincent Janssen,467022,F,1,68,4,3,3,2.37,105.0,3.0,2131034.0
-5071332,2026-09-06,mls,Portland Timbers,Ariel Lassiter,564832,F,1,68,1,0,0,0.02,107.0,3.0,89152.0
-5071332,2026-09-06,mls,Portland Timbers,Joao Ortiz,950372,M,0,53,0,0,0,0.0,,2.0,937559.0
-5071332,2026-09-06,mls,Portland Timbers,Diego Chará,50336,M,0,22,0,0,0,0.0,,2.0,50000.0
-5071332,2026-09-06,mls,Portland Timbers,Antony,1248736,F,0,22,0,0,0,0.0,,3.0,2271168.0
-5071332,2026-09-06,mls,Portland Timbers,Ian Smith,1715234,D,0,9,0,0,0,0.0,,1.0,219045.0
-5071332,2026-09-06,mls,Portland Timbers,Joel Waterman,1100258,D,0,9,0,0,0,0.0,,1.0,1252316.0
 5071331,2026-09-06,mls,LA Galaxy,James Marcinkowski,847987,G,1,90,0,0,0,0.0,11.0,0.0,
 5071331,2026-09-06,mls,LA Galaxy,Harbor Miller,1683714,F,1,90,2,1,0,0.08,32.0,3.0,1501755.0
 5071331,2026-09-06,mls,LA Galaxy,Jakob Glesnes,259484,D,1,90,2,0,0,0.07,34.0,1.0,1252144.0
@@ -174065,3 +174036,35 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000014208,2026-11-01,col_primera_a,Alianza FC,Josy Pérez,1800326,M,0,15,1,0,0,0.31,,2.0,281294.0
 1000014208,2026-11-01,col_primera_a,Alianza FC,Jesús Muñoz,1432967,M,0,15,0,0,0,0.0,,2.0,371686.0
 1000014208,2026-11-01,col_primera_a,Alianza FC,Charly Villegas,1724711,F,0,5,0,0,0,0.0,,3.0,444665.0
+5071484,2026-11-02,mls,Portland Timbers,James Pantemis,878311,G,1,90,0,0,0,0.0,11.0,0.0,502392.0
+5071484,2026-11-02,mls,Portland Timbers,Ronald Hernández,830156,D,1,90,0,0,0,0.0,32.0,1.0,52721.0
+5071484,2026-11-02,mls,Portland Timbers,Finn Surman,1325761,D,1,90,1,0,0,0.22,34.0,1.0,1858045.0
+5071484,2026-11-02,mls,Portland Timbers,Joel Waterman,1100258,D,1,90,0,0,0,0.0,36.0,1.0,1007435.0
+5071484,2026-11-02,mls,Portland Timbers,Ian Smith,1715234,D,1,90,3,0,0,0.21,38.0,1.0,219045.0
+5071484,2026-11-02,mls,Portland Timbers,José Caicedo,1331128,M,1,89,0,0,0,0.0,65.0,2.0,3374161.0
+5071484,2026-11-02,mls,Portland Timbers,Ariel Lassiter,564832,F,1,82,1,1,0,0.07,82.0,3.0,87999.0
+5071484,2026-11-02,mls,Portland Timbers,Eric Izoita,1780962,M,1,62,1,0,0,0.02,84.0,2.0,912412.0
+5071484,2026-11-02,mls,Portland Timbers,David Da Costa,1138769,M,1,89,2,2,1,0.36,86.0,2.0,4724397.0
+5071484,2026-11-02,mls,Portland Timbers,Kristoffer Velde,837731,F,1,90,2,1,1,0.66,88.0,3.0,3446025.0
+5071484,2026-11-02,mls,Portland Timbers,Vincent Janssen,467022,F,1,82,3,1,1,1.51,115.0,3.0,2201096.0
+5071484,2026-11-02,mls,Portland Timbers,Cole Bassett,955472,M,0,28,0,0,0,0.0,,2.0,2330345.0
+5071484,2026-11-02,mls,Portland Timbers,Alexander Aravena,1190850,F,0,8,1,1,0,0.1,,3.0,2831407.0
+5071484,2026-11-02,mls,Portland Timbers,Omir Fernandez,1024172,F,0,8,1,0,0,0.06,,3.0,464995.0
+5071484,2026-11-02,mls,Portland Timbers,Joao Ortiz,950372,M,0,1,1,0,0,0.05,,2.0,938803.0
+5071484,2026-11-02,mls,Portland Timbers,Diego Chará,50336,M,0,1,0,0,0,0.0,,2.0,59700.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Jonathan Bond,186882,G,1,90,0,0,0,0.0,11.0,0.0,151851.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Lawrence Ennali,1274604,D,1,90,2,0,0,0.1,32.0,1.0,1279049.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Lucas Halter,1043762,D,1,90,2,0,0,0.13,34.0,1.0,1293805.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Agustin Resch,1910398,D,1,90,0,0,0,0.0,36.0,1.0,454999.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Franco Negri,789046,D,1,36,0,0,0,0.0,38.0,1.0,57064.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Diadie Samassékou,643646,M,1,90,0,0,0,0.0,64.0,2.0,448914.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Artur,750922,M,1,66,0,0,0,0.0,66.0,2.0,1469789.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Ibrahim Aliyu,1178505,M,1,66,1,0,0,0.04,83.0,2.0,507523.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Agustín Bouzat,723682,M,1,90,1,1,1,0.08,85.0,2.0,348735.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Mateusz Bogusz,954194,F,1,90,1,0,0,0.04,87.0,3.0,5916399.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Lyle Foster,881500,F,1,66,1,0,0,0.09,115.0,3.0,7026065.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Duane Holmes,480787,M,0,47,0,0,0,0.0,,2.0,152819.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Felipe Andrade,1501511,D,0,24,0,0,0,0.0,,1.0,1581215.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Matthew Arana,1781979,M,0,24,0,0,0,0.0,,2.0,
+5071484,2026-11-02,mls,Houston Dynamo FC,Duncan McGuire,1439982,F,0,24,0,0,0,0.0,,3.0,1180971.0
+5071484,2026-11-02,mls,Houston Dynamo FC,Nick Markanich,1337963,F,0,7,0,0,0,0.0,,3.0,148667.0
