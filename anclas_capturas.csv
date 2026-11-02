@@ -55186,3 +55186,649 @@ fecha,capturado,event_id,deporte,liga,home,away,inicio,casa_id,c_home,c_draw,c_a
 2026-11-01,2026-11-01T23:18:07Z,QLJvvrFd,futbol,PERU: Liga 1 - Clausura,Comerciantes Unidos,AD Tarma,1793736000,925,2.16,3.28,3.21,,,
 2026-11-01,2026-11-01T23:18:07Z,YBQfwKZ8,futbol,RUSSIA: Russian Cup - Regions Path,S. Kostroma,Volna Nizhegorodskaya,1793723400,1187,1.29,4.6,7.4,,,
 2026-11-01,2026-11-01T23:18:07Z,YBQfwKZ8,futbol,RUSSIA: Russian Cup - Regions Path,S. Kostroma,Volna Nizhegorodskaya,1793723400,925,1.37,5.36,8.15,,,
+2026-11-02,2026-11-02T00:56:55Z,IFcI8RXg,futbol,BRAZIL: Serie A,Bragantino,Santos,1793660400,1187,2.16,3.7,3.01,2.21,3.85,3.09
+2026-11-02,2026-11-02T00:56:55Z,IFcI8RXg,futbol,BRAZIL: Serie A,Bragantino,Santos,1793660400,575,2.22,3.9,3.12,2.21,3.85,3.09
+2026-11-02,2026-11-02T00:56:55Z,IFcI8RXg,futbol,BRAZIL: Serie A,Bragantino,Santos,1793660400,925,2.19,3.82,3.1,2.21,3.85,3.09
+2026-11-02,2026-11-02T00:56:55Z,CUEDtKBO,futbol,ARGENTINA: Primera B,San Martin Burzaco,UAI Urquiza,1793642400,1187,5.1,3.99,1.54,4.87,3.82,1.5155
+2026-11-02,2026-11-02T00:56:55Z,CUEDtKBO,futbol,ARGENTINA: Primera B,San Martin Burzaco,UAI Urquiza,1793642400,575,4.87,3.82,1.52,4.87,3.82,1.5155
+2026-11-02,2026-11-02T00:56:55Z,CUEDtKBO,futbol,ARGENTINA: Primera B,San Martin Burzaco,UAI Urquiza,1793642400,925,5.74,4.05,1.46,4.87,3.82,1.5155
+2026-11-02,2026-11-02T00:56:55Z,dhQdKGpn,futbol,FRANCE: Ligue 2,Red Star,Nancy,1793648700,1187,2.2,3.3,2.96,2.31,3.45,3.13
+2026-11-02,2026-11-02T00:56:55Z,dhQdKGpn,futbol,FRANCE: Ligue 2,Red Star,Nancy,1793648700,575,2.39,3.45,3.13,2.31,3.45,3.13
+2026-11-02,2026-11-02T00:56:55Z,dhQdKGpn,futbol,FRANCE: Ligue 2,Red Star,Nancy,1793648700,925,2.29,3.42,2.93,2.31,3.45,3.13
+2026-11-02,2026-11-02T00:56:55Z,dnoZZrZh,futbol,AFRICA: CAF Champions League Women,USFAS Bamako W (Mli),Ampem Darkoa W (Gha),1793631600,925,2.54,2.97,2.55,,,
+2026-11-02,2026-11-02T00:56:55Z,GO3A9Qf5,futbol,ALBANIA: Abissnet Superiore,Vora,Dinamo City,1793622600,925,3.05,3.24,2.12,,,
+2026-11-02,2026-11-02T00:56:55Z,pMMpg5AO,futbol,ALBANIA: Abissnet Superiore,Teuta,Partizani,1793640600,925,1.3,4.5,8.8,,,
+2026-11-02,2026-11-02T00:56:55Z,bFo6dfkT,futbol,ALBANIA: Kategoria e Parë,Sopoti Librazhd,Iliria Fushe-Kruje,1793622600,925,3.72,3.48,1.81,,,
+2026-11-02,2026-11-02T00:56:55Z,CbmbbGKG,futbol,ALBANIA: Kategoria e Parë,Flamurtari,Kukesi,1793631600,925,1.59,3.62,4.92,,,
+2026-11-02,2026-11-02T00:56:55Z,KvLBwZ8r,futbol,ALGERIA: Ligue 1,Temouchent,Biskra,1793637900,1187,1.82,3.02,4.5,,,
+2026-11-02,2026-11-02T00:56:55Z,KvLBwZ8r,futbol,ALGERIA: Ligue 1,Temouchent,Biskra,1793637900,575,1.88,3.12,4.7,,,
+2026-11-02,2026-11-02T00:56:55Z,KvLBwZ8r,futbol,ALGERIA: Ligue 1,Temouchent,Biskra,1793637900,925,1.78,3.02,4.68,,,
+2026-11-02,2026-11-02T00:56:55Z,pSmBpm5S,futbol,ALGERIA: Ligue 1,CR Belouizdad,Saoura,1793646000,1187,1.33,4.1,9.4,,,
+2026-11-02,2026-11-02T00:56:55Z,pSmBpm5S,futbol,ALGERIA: Ligue 1,CR Belouizdad,Saoura,1793646000,575,1.36,4.4,10.04,,,
+2026-11-02,2026-11-02T00:56:55Z,pSmBpm5S,futbol,ALGERIA: Ligue 1,CR Belouizdad,Saoura,1793646000,925,1.3,4.25,9.85,,,
+2026-11-02,2026-11-02T00:56:55Z,GUTkd4eo,futbol,ARGENTINA: Primera Nacional,All Boys,CA Estudiantes,1793635200,1187,3.23,2.72,2.39,,,
+2026-11-02,2026-11-02T00:56:55Z,GUTkd4eo,futbol,ARGENTINA: Primera Nacional,All Boys,CA Estudiantes,1793635200,575,3.45,2.84,2.52,,,
+2026-11-02,2026-11-02T00:56:55Z,GUTkd4eo,futbol,ARGENTINA: Primera Nacional,All Boys,CA Estudiantes,1793635200,925,3.15,2.65,2.43,,,
+2026-11-02,2026-11-02T00:56:55Z,6Pa6Syj5,futbol,ARGENTINA: Primera Nacional,Atl. Rafaela,Patronato,1793642400,1187,3.2,3.01,2.3,,,
+2026-11-02,2026-11-02T00:56:55Z,6Pa6Syj5,futbol,ARGENTINA: Primera Nacional,Atl. Rafaela,Patronato,1793642400,575,3.33,3.04,2.36,,,
+2026-11-02,2026-11-02T00:56:55Z,6Pa6Syj5,futbol,ARGENTINA: Primera Nacional,Atl. Rafaela,Patronato,1793642400,925,3.04,3.05,2.23,,,
+2026-11-02,2026-11-02T00:56:55Z,dEO6BvBb,futbol,ARGENTINA: Primera B,Argentino de Quilmes,Brown Adrogue,1793642400,1187,4.85,3.21,1.73,,,
+2026-11-02,2026-11-02T00:56:55Z,dEO6BvBb,futbol,ARGENTINA: Primera B,Argentino de Quilmes,Brown Adrogue,1793642400,575,4.87,3.2,1.72,,,
+2026-11-02,2026-11-02T00:56:55Z,dEO6BvBb,futbol,ARGENTINA: Primera B,Argentino de Quilmes,Brown Adrogue,1793642400,925,5.29,3.15,1.67,,,
+2026-11-02,2026-11-02T00:56:55Z,MaYegceU,futbol,ARGENTINA: Primera B,Comunicaciones,Talleres (R.E),1793642400,1187,2.07,3.32,3.21,,,
+2026-11-02,2026-11-02T00:56:55Z,MaYegceU,futbol,ARGENTINA: Primera B,Comunicaciones,Talleres (R.E),1793642400,575,2.05,3.32,3.24,,,
+2026-11-02,2026-11-02T00:56:55Z,MaYegceU,futbol,ARGENTINA: Primera B,Comunicaciones,Talleres (R.E),1793642400,925,2.08,3.16,3.24,,,
+2026-11-02,2026-11-02T00:56:55Z,xC85D0tn,futbol,ARGENTINA: Primera B,Defensores Unidos,Laferrere,1793642400,1187,3.02,3.0,2.32,,,
+2026-11-02,2026-11-02T00:56:55Z,xC85D0tn,futbol,ARGENTINA: Primera B,Defensores Unidos,Laferrere,1793642400,575,3.01,3.0,2.31,,,
+2026-11-02,2026-11-02T00:56:55Z,xC85D0tn,futbol,ARGENTINA: Primera B,Defensores Unidos,Laferrere,1793642400,925,3.04,2.99,2.26,,,
+2026-11-02,2026-11-02T00:56:55Z,WKqJy3Pr,futbol,ARGENTINA: Primera C - Promotion - Play Offs,Sportivo Barracas,Leones de Rosario,1793642400,1187,2.82,2.75,2.56,,,
+2026-11-02,2026-11-02T00:56:55Z,WKqJy3Pr,futbol,ARGENTINA: Primera C - Promotion - Play Offs,Sportivo Barracas,Leones de Rosario,1793642400,925,2.64,2.79,2.6,,,
+2026-11-02,2026-11-02T00:56:55Z,QLegIG7s,futbol,ARMENIA: First League,Andranik,Bentonit,1793617200,925,1.97,4.4,2.67,,,
+2026-11-02,2026-11-02T00:56:55Z,ptcdK3wS,futbol,ARMENIA: First League,Ararat Yerevan 2,Mika,1793617200,925,2.17,4.03,2.41,,,
+2026-11-02,2026-11-02T00:56:55Z,fZYLzPN8,futbol,ARMENIA: First League,Avshar Ararat,Urartu 2,1793617200,925,1.39,4.56,5.88,,,
+2026-11-02,2026-11-02T00:56:55Z,tCrSEs1k,futbol,ARMENIA: First League,Noah 2,Pyunik Yerevan 2,1793628000,925,4.73,4.41,1.49,,,
+2026-11-02,2026-11-02T00:56:55Z,pErZIzyJ,futbol,ARUBA: Division di Honor,Deportivo Nacional,Racing Club Aruba,1793577600,1187,2.72,4.3,2.08,,,
+2026-11-02,2026-11-02T00:56:55Z,pErZIzyJ,futbol,ARUBA: Division di Honor,Deportivo Nacional,Racing Club Aruba,1793577600,925,3.2,4.34,1.86,,,
+2026-11-02,2026-11-02T00:56:55Z,xWwPFj5F,futbol,ASIA: AFC Champions League - League phase,Pakhtakor (Uzb),Al Nassr (Sau),1793627100,1187,6.0,4.1,1.57,,,
+2026-11-02,2026-11-02T00:56:55Z,xWwPFj5F,futbol,ASIA: AFC Champions League - League phase,Pakhtakor (Uzb),Al Nassr (Sau),1793627100,575,5.96,4.24,1.54,,,
+2026-11-02,2026-11-02T00:56:55Z,xWwPFj5F,futbol,ASIA: AFC Champions League - League phase,Pakhtakor (Uzb),Al Nassr (Sau),1793627100,925,5.49,4.37,1.57,,,
+2026-11-02,2026-11-02T00:56:55Z,pdsXDUZR,futbol,ASIA: AFC Champions League - League phase,Al Sadd (Qat),Al Ahli SC (Sau),1793635200,1187,2.84,3.68,2.37,,,
+2026-11-02,2026-11-02T00:56:55Z,pdsXDUZR,futbol,ASIA: AFC Champions League - League phase,Al Sadd (Qat),Al Ahli SC (Sau),1793635200,575,2.77,3.71,2.44,,,
+2026-11-02,2026-11-02T00:56:55Z,pdsXDUZR,futbol,ASIA: AFC Champions League - League phase,Al Sadd (Qat),Al Ahli SC (Sau),1793635200,925,2.82,3.7,2.37,,,
+2026-11-02,2026-11-02T00:56:55Z,tSS288ck,futbol,ASIA: AFC Champions League - League phase,Al Wasl (Uae),Al Quwa Al Jawiya (Irq),1793635200,1187,1.25,6.4,9.4,,,
+2026-11-02,2026-11-02T00:56:55Z,tSS288ck,futbol,ASIA: AFC Champions League - League phase,Al Wasl (Uae),Al Quwa Al Jawiya (Irq),1793635200,575,1.27,6.32,9.59,,,
+2026-11-02,2026-11-02T00:56:55Z,tSS288ck,futbol,ASIA: AFC Champions League - League phase,Al Wasl (Uae),Al Quwa Al Jawiya (Irq),1793635200,925,1.28,6.16,9.9,,,
+2026-11-02,2026-11-02T00:56:55Z,lhWA6nS1,futbol,ASIA: AFC Champions League - League phase,Tractor (Irn),Neftchi Fargona (Uzb),1793635200,1187,2.23,3.17,3.56,,,
+2026-11-02,2026-11-02T00:56:55Z,lhWA6nS1,futbol,ASIA: AFC Champions League - League phase,Tractor (Irn),Neftchi Fargona (Uzb),1793635200,575,2.22,3.12,3.45,,,
+2026-11-02,2026-11-02T00:56:55Z,lhWA6nS1,futbol,ASIA: AFC Champions League - League phase,Tractor (Irn),Neftchi Fargona (Uzb),1793635200,925,2.16,3.33,3.53,,,
+2026-11-02,2026-11-02T00:56:55Z,EVNdUkK8,futbol,ASIA: AFC Champions League - League phase,Al Gharafa (Qat),Al Qadsiah (Sau),1793643300,1187,6.0,5.0,1.47,,,
+2026-11-02,2026-11-02T00:56:55Z,EVNdUkK8,futbol,ASIA: AFC Champions League - League phase,Al Gharafa (Qat),Al Qadsiah (Sau),1793643300,575,5.94,4.92,1.49,,,
+2026-11-02,2026-11-02T00:56:55Z,EVNdUkK8,futbol,ASIA: AFC Champions League - League phase,Al Gharafa (Qat),Al Qadsiah (Sau),1793643300,925,5.64,4.72,1.52,,,
+2026-11-02,2026-11-02T00:56:55Z,pIpUBs4s,futbol,ASIA: AFC Champions League - League phase,Al Ittihad (Sau),Al Ain (Uae),1793643300,1187,2.09,3.59,3.47,,,
+2026-11-02,2026-11-02T00:56:55Z,pIpUBs4s,futbol,ASIA: AFC Champions League - League phase,Al Ittihad (Sau),Al Ain (Uae),1793643300,575,2.14,3.54,3.45,,,
+2026-11-02,2026-11-02T00:56:55Z,pIpUBs4s,futbol,ASIA: AFC Champions League - League phase,Al Ittihad (Sau),Al Ain (Uae),1793643300,925,2.13,3.49,3.45,,,
+2026-11-02,2026-11-02T00:56:55Z,E5Qnukhk,futbol,AZERBAIJAN: Premier League,Sumqayit,Safa Baku,1793631600,1187,1.73,3.41,4.2,,,
+2026-11-02,2026-11-02T00:56:55Z,E5Qnukhk,futbol,AZERBAIJAN: Premier League,Sumqayit,Safa Baku,1793631600,575,1.76,3.7,4.29,,,
+2026-11-02,2026-11-02T00:56:55Z,E5Qnukhk,futbol,AZERBAIJAN: Premier League,Sumqayit,Safa Baku,1793631600,925,1.68,3.38,4.62,,,
+2026-11-02,2026-11-02T00:56:55Z,Eo6V6tBO,futbol,BAHRAIN: King's Cup,Al Shabbab,Tadamun Buri,1793631600,925,2.13,3.15,3.1,,,
+2026-11-02,2026-11-02T00:56:55Z,xOqmPNQh,futbol,BAHRAIN: King's Cup,Umm Al Hassam,Bahrain SC,1793631600,925,4.45,3.98,1.58,,,
+2026-11-02,2026-11-02T00:56:55Z,zLC6ssFL,futbol,BELARUS: Pershaya Liga,FC Gomel 2,Minsk 2,1793617200,925,2.66,4.05,2.05,,,
+2026-11-02,2026-11-02T00:56:55Z,UN9bq3p9,futbol,BELARUS: Pershaya Liga,Molodechno,Osipovichi,1793620800,925,1.44,4.71,4.9,,,
+2026-11-02,2026-11-02T00:56:55Z,tEZakG4m,futbol,BOLIVIA: Division Profesional,Tomayapo,Blooming,1793654100,1187,2.02,3.55,3.25,,,
+2026-11-02,2026-11-02T00:56:55Z,tEZakG4m,futbol,BOLIVIA: Division Profesional,Tomayapo,Blooming,1793654100,575,2.11,3.65,3.19,,,
+2026-11-02,2026-11-02T00:56:55Z,tEZakG4m,futbol,BOLIVIA: Division Profesional,Tomayapo,Blooming,1793654100,925,2.02,3.4,3.15,,,
+2026-11-02,2026-11-02T00:56:55Z,dv9GtR0B,futbol,BRAZIL: Serie B,Fortaleza,Atletico GO,1793646000,1187,2.18,3.29,3.26,,,
+2026-11-02,2026-11-02T00:56:55Z,dv9GtR0B,futbol,BRAZIL: Serie B,Fortaleza,Atletico GO,1793646000,575,2.24,3.4,3.39,,,
+2026-11-02,2026-11-02T00:56:55Z,dv9GtR0B,futbol,BRAZIL: Serie B,Fortaleza,Atletico GO,1793646000,925,2.07,3.28,3.43,,,
+2026-11-02,2026-11-02T00:56:55Z,EuckmW2E,futbol,BRAZIL: Gaucho 3 - Play Offs,Cruz A.,GA Farroupilha,1793642400,925,1.63,3.54,4.72,,,
+2026-11-02,2026-11-02T00:56:55Z,4z7mLN5e,futbol,BRAZIL: Copa Fares Lopes,Atletico-CE,Vila Real,1793642400,925,2.1,3.22,3.1,,,
+2026-11-02,2026-11-02T00:56:55Z,SpbXhUp1,futbol,BULGARIA: Vtora liga,Svoge,Ludogorets II,1793622600,1187,2.45,3.07,2.89,,,
+2026-11-02,2026-11-02T00:56:55Z,SpbXhUp1,futbol,BULGARIA: Vtora liga,Svoge,Ludogorets II,1793622600,575,2.37,2.96,2.79,,,
+2026-11-02,2026-11-02T00:56:55Z,SpbXhUp1,futbol,BULGARIA: Vtora liga,Svoge,Ludogorets II,1793622600,925,2.3,3.05,2.89,,,
+2026-11-02,2026-11-02T00:56:55Z,MmePfjGl,futbol,BULGARIA: Vtora liga,Dobrudzha,Fratria,1793633400,1187,4.3,3.67,1.65,,,
+2026-11-02,2026-11-02T00:56:55Z,MmePfjGl,futbol,BULGARIA: Vtora liga,Dobrudzha,Fratria,1793633400,925,4.45,3.6,1.65,,,
+2026-11-02,2026-11-02T00:56:55Z,GlTiDbWF,futbol,BULGARIA: Vtora liga,Montana,Spartak Pleven,1793633400,1187,1.73,3.55,4.0,,,
+2026-11-02,2026-11-02T00:56:55Z,GlTiDbWF,futbol,BULGARIA: Vtora liga,Montana,Spartak Pleven,1793633400,925,1.74,3.55,3.95,,,
+2026-11-02,2026-11-02T00:56:55Z,O65Dd6rp,futbol,CHILE: Liga de Primera,Limache,A. Italiano,1793653200,1187,2.11,3.74,3.0,,,
+2026-11-02,2026-11-02T00:56:55Z,O65Dd6rp,futbol,CHILE: Liga de Primera,Limache,A. Italiano,1793653200,575,2.21,3.84,3.11,,,
+2026-11-02,2026-11-02T00:56:55Z,O65Dd6rp,futbol,CHILE: Liga de Primera,Limache,A. Italiano,1793653200,925,2.04,3.6,3.01,,,
+2026-11-02,2026-11-02T00:56:55Z,QBl6aUs4,futbol,COLOMBIA: Primera A - Clausura,Aguilas,Fortaleza,1793653500,1187,1.93,3.21,4.1,,,
+2026-11-02,2026-11-02T00:56:55Z,QBl6aUs4,futbol,COLOMBIA: Primera A - Clausura,Aguilas,Fortaleza,1793653500,575,2.0,3.4,4.2,,,
+2026-11-02,2026-11-02T00:56:55Z,QBl6aUs4,futbol,COLOMBIA: Primera A - Clausura,Aguilas,Fortaleza,1793653500,925,1.93,3.38,3.77,,,
+2026-11-02,2026-11-02T00:56:55Z,UszPttld,futbol,COLOMBIA: Primera B - Clausura - Quadrangular,Ind. Valle del Cauca,Boca Juniors,1793646000,1187,1.58,3.58,5.1,,,
+2026-11-02,2026-11-02T00:56:55Z,UszPttld,futbol,COLOMBIA: Primera B - Clausura - Quadrangular,Ind. Valle del Cauca,Boca Juniors,1793646000,575,1.61,3.83,5.42,,,
+2026-11-02,2026-11-02T00:56:55Z,UszPttld,futbol,COLOMBIA: Primera B - Clausura - Quadrangular,Ind. Valle del Cauca,Boca Juniors,1793646000,925,1.56,3.64,5.26,,,
+2026-11-02,2026-11-02T00:56:55Z,nXZ2WvhD,futbol,COLOMBIA: Copa Colombia - Second stage,Santa Fe,Once Caldas,1793582100,1187,2.37,3.1,2.97,,,
+2026-11-02,2026-11-02T00:56:55Z,nXZ2WvhD,futbol,COLOMBIA: Copa Colombia - Second stage,Santa Fe,Once Caldas,1793582100,575,2.43,3.3,3.02,,,
+2026-11-02,2026-11-02T00:56:55Z,nXZ2WvhD,futbol,COLOMBIA: Copa Colombia - Second stage,Santa Fe,Once Caldas,1793582100,925,2.28,3.16,2.85,,,
+2026-11-02,2026-11-02T00:56:55Z,SdWmxTZA,futbol,CZECH REPUBLIC: ChNL,Ostrava B,Jihlava,1793635200,1187,2.27,3.45,2.65,,,
+2026-11-02,2026-11-02T00:56:55Z,SdWmxTZA,futbol,CZECH REPUBLIC: ChNL,Ostrava B,Jihlava,1793635200,575,2.32,3.8,2.69,,,
+2026-11-02,2026-11-02T00:56:55Z,SdWmxTZA,futbol,CZECH REPUBLIC: ChNL,Ostrava B,Jihlava,1793635200,925,2.25,3.36,2.63,,,
+2026-11-02,2026-11-02T00:56:55Z,GMfjutrA,futbol,ECUADOR: Liga Pro - Relegation Group,Orense,Tecnico U.,1793651400,1187,1.77,3.45,4.33,,,
+2026-11-02,2026-11-02T00:56:55Z,GMfjutrA,futbol,ECUADOR: Liga Pro - Relegation Group,Orense,Tecnico U.,1793651400,575,1.81,3.55,4.61,,,
+2026-11-02,2026-11-02T00:56:55Z,GMfjutrA,futbol,ECUADOR: Liga Pro - Relegation Group,Orense,Tecnico U.,1793651400,925,1.83,3.34,4.49,,,
+2026-11-02,2026-11-02T00:56:55Z,xrbqtfpL,futbol,EGYPT: League Cup,Al Ahly,Arab Contractors,1793642400,1187,1.36,4.4,7.5,,,
+2026-11-02,2026-11-02T00:56:55Z,xrbqtfpL,futbol,EGYPT: League Cup,Al Ahly,Arab Contractors,1793642400,575,1.39,4.61,7.78,,,
+2026-11-02,2026-11-02T00:56:55Z,xrbqtfpL,futbol,EGYPT: League Cup,Al Ahly,Arab Contractors,1793642400,925,1.34,4.15,8.15,,,
+2026-11-02,2026-11-02T00:56:55Z,YceoIxQh,futbol,ENGLAND: Premier League,Newcastle,Everton,1793649600,1187,2.3,3.62,3.13,,,
+2026-11-02,2026-11-02T00:56:55Z,YceoIxQh,futbol,ENGLAND: Premier League,Newcastle,Everton,1793649600,575,2.31,3.59,3.19,,,
+2026-11-02,2026-11-02T00:56:55Z,YceoIxQh,futbol,ENGLAND: Premier League,Newcastle,Everton,1793649600,925,2.38,3.74,3.05,,,
+2026-11-02,2026-11-02T00:56:55Z,jZulsTas,futbol,ENGLAND: National League South,Chelmsford,Farnham,1793648700,1187,1.84,3.8,3.29,,,
+2026-11-02,2026-11-02T00:56:55Z,jZulsTas,futbol,ENGLAND: National League South,Chelmsford,Farnham,1793648700,575,1.91,3.92,3.43,,,
+2026-11-02,2026-11-02T00:56:55Z,jZulsTas,futbol,ENGLAND: National League South,Chelmsford,Farnham,1793648700,925,1.8,3.72,3.56,,,
+2026-11-02,2026-11-02T00:56:55Z,ADm4RZrp,futbol,ENGLAND: Isthmian League Premier Division,Aveley,St. Albans,1793648700,1187,2.61,3.68,2.28,,,
+2026-11-02,2026-11-02T00:56:55Z,ADm4RZrp,futbol,ENGLAND: Isthmian League Premier Division,Aveley,St. Albans,1793648700,575,2.6,3.67,2.27,,,
+2026-11-02,2026-11-02T00:56:55Z,ADm4RZrp,futbol,ENGLAND: Isthmian League Premier Division,Aveley,St. Albans,1793648700,925,2.65,3.58,2.21,,,
+2026-11-02,2026-11-02T00:56:55Z,n3U5aNem,futbol,ENGLAND: Premier League Cup,Bolton U21,QPR U21,1793646000,1187,2.14,3.66,2.71,,,
+2026-11-02,2026-11-02T00:56:55Z,n3U5aNem,futbol,ENGLAND: Premier League Cup,Bolton U21,QPR U21,1793646000,575,2.17,3.93,2.81,,,
+2026-11-02,2026-11-02T00:56:55Z,n3U5aNem,futbol,ENGLAND: Premier League Cup,Bolton U21,QPR U21,1793646000,925,2.09,3.56,2.86,,,
+2026-11-02,2026-11-02T00:56:55Z,vZnUNCde,futbol,ENGLAND: Premier League Cup,Bournemouth U21,Cardiff U21,1793646000,1187,1.87,3.83,3.18,,,
+2026-11-02,2026-11-02T00:56:55Z,vZnUNCde,futbol,ENGLAND: Premier League Cup,Bournemouth U21,Cardiff U21,1793646000,575,1.92,4.06,3.26,,,
+2026-11-02,2026-11-02T00:56:55Z,vZnUNCde,futbol,ENGLAND: Premier League Cup,Bournemouth U21,Cardiff U21,1793646000,925,1.89,3.7,3.23,,,
+2026-11-02,2026-11-02T00:56:55Z,z7ZTgJPO,futbol,ENGLAND: Premier League Cup,Exeter U21,Reading U21,1793646000,1187,2.89,4.1,1.92,,,
+2026-11-02,2026-11-02T00:56:55Z,z7ZTgJPO,futbol,ENGLAND: Premier League Cup,Exeter U21,Reading U21,1793646000,575,2.97,4.18,1.96,,,
+2026-11-02,2026-11-02T00:56:55Z,z7ZTgJPO,futbol,ENGLAND: Premier League Cup,Exeter U21,Reading U21,1793646000,925,3.09,3.85,1.9,,,
+2026-11-02,2026-11-02T00:56:55Z,W8qMPYRr,futbol,ENGLAND: Premier League Cup,Hull U21,Derby U21,1793646000,1187,2.72,3.8,2.09,,,
+2026-11-02,2026-11-02T00:56:55Z,W8qMPYRr,futbol,ENGLAND: Premier League Cup,Hull U21,Derby U21,1793646000,575,2.79,3.9,2.13,,,
+2026-11-02,2026-11-02T00:56:55Z,W8qMPYRr,futbol,ENGLAND: Premier League Cup,Hull U21,Derby U21,1793646000,925,2.78,3.62,2.12,,,
+2026-11-02,2026-11-02T00:56:55Z,StWLeueC,futbol,ENGLAND: Premier League Cup,Preston U21,Fleetwood U21,1793646000,1187,1.58,4.8,3.71,,,
+2026-11-02,2026-11-02T00:56:55Z,StWLeueC,futbol,ENGLAND: Premier League Cup,Preston U21,Fleetwood U21,1793646000,575,1.61,4.97,3.82,,,
+2026-11-02,2026-11-02T00:56:55Z,StWLeueC,futbol,ENGLAND: Premier League Cup,Preston U21,Fleetwood U21,1793646000,925,1.51,4.5,4.47,,,
+2026-11-02,2026-11-02T00:56:55Z,KGSDc1Qa,futbol,ENGLAND: Premier League Cup,Wycombe U21,Brentford U21,1793646000,1187,6.7,6.2,1.25,,,
+2026-11-02,2026-11-02T00:56:55Z,KGSDc1Qa,futbol,ENGLAND: Premier League Cup,Wycombe U21,Brentford U21,1793646000,575,7.07,6.49,1.26,,,
+2026-11-02,2026-11-02T00:56:55Z,KGSDc1Qa,futbol,ENGLAND: Premier League Cup,Wycombe U21,Brentford U21,1793646000,925,8.1,5.8,1.23,,,
+2026-11-02,2026-11-02T00:56:55Z,0SFwLmdf,futbol,ETHIOPIA: Premier League,Ethiopia Nigd Bank,Ethiopian Insurance,1793620800,575,2.79,2.67,2.78,,,
+2026-11-02,2026-11-02T00:56:55Z,0SFwLmdf,futbol,ETHIOPIA: Premier League,Ethiopia Nigd Bank,Ethiopian Insurance,1793620800,925,2.59,2.72,2.71,,,
+2026-11-02,2026-11-02T00:56:55Z,IwLRFXn2,futbol,FINLAND: Veikkausliiga - Championship Group,VPS,HJK,1793635200,1187,7.2,5.1,1.31,,,
+2026-11-02,2026-11-02T00:56:55Z,IwLRFXn2,futbol,FINLAND: Veikkausliiga - Championship Group,VPS,HJK,1793635200,575,7.96,5.58,1.36,,,
+2026-11-02,2026-11-02T00:56:55Z,IwLRFXn2,futbol,FINLAND: Veikkausliiga - Championship Group,VPS,HJK,1793635200,925,7.38,5.25,1.34,,,
+2026-11-02,2026-11-02T00:56:55Z,ID4UUYpS,futbol,GEORGIA: Crystalbet Erovnuli Liga,Torpedo Kutaisi,Dila Gori,1793631600,1187,2.41,3.28,2.56,,,
+2026-11-02,2026-11-02T00:56:55Z,ID4UUYpS,futbol,GEORGIA: Crystalbet Erovnuli Liga,Torpedo Kutaisi,Dila Gori,1793631600,575,2.35,3.35,2.65,,,
+2026-11-02,2026-11-02T00:56:55Z,ID4UUYpS,futbol,GEORGIA: Crystalbet Erovnuli Liga,Torpedo Kutaisi,Dila Gori,1793631600,925,2.34,3.38,2.51,,,
+2026-11-02,2026-11-02T00:56:55Z,25kEuirI,futbol,GERMANY: DFB Pokal Women,Wolfsburg W,Hoffenheim W,1793638800,1187,1.2,5.6,9.2,,,
+2026-11-02,2026-11-02T00:56:55Z,25kEuirI,futbol,GERMANY: DFB Pokal Women,Wolfsburg W,Hoffenheim W,1793638800,575,1.2,5.52,8.92,,,
+2026-11-02,2026-11-02T00:56:55Z,25kEuirI,futbol,GERMANY: DFB Pokal Women,Wolfsburg W,Hoffenheim W,1793638800,925,1.2,6.2,8.6,,,
+2026-11-02,2026-11-02T00:56:55Z,SpQXD8Oq,futbol,GHANA: Division One League,Dormaa,Yapei,1793631600,1187,1.59,3.57,5.3,,,
+2026-11-02,2026-11-02T00:56:55Z,SpQXD8Oq,futbol,GHANA: Division One League,Dormaa,Yapei,1793631600,925,1.56,3.54,5.39,,,
+2026-11-02,2026-11-02T00:56:55Z,I5ePCR4L,futbol,GREECE: Super League,Kalamata,Iraklis 1908,1793640600,1187,2.24,3.04,3.28,,,
+2026-11-02,2026-11-02T00:56:55Z,I5ePCR4L,futbol,GREECE: Super League,Kalamata,Iraklis 1908,1793640600,575,2.35,3.15,3.4,,,
+2026-11-02,2026-11-02T00:56:55Z,I5ePCR4L,futbol,GREECE: Super League,Kalamata,Iraklis 1908,1793640600,925,2.28,3.13,3.21,,,
+2026-11-02,2026-11-02T00:56:55Z,EwjnTN2D,futbol,GREECE: Super League 2,Marko,Kalamaria,1793624400,1187,1.11,6.8,19.0,,,
+2026-11-02,2026-11-02T00:56:55Z,EwjnTN2D,futbol,GREECE: Super League 2,Marko,Kalamaria,1793624400,575,1.12,6.9,20.21,,,
+2026-11-02,2026-11-02T00:56:55Z,EwjnTN2D,futbol,GREECE: Super League 2,Marko,Kalamaria,1793624400,925,1.11,6.3,15.0,,,
+2026-11-02,2026-11-02T00:56:55Z,2iGqFt3b,futbol,GREECE: Gamma Ethniki - Group 4,Digenis Neochori,Ethnikos Neou,1793538000,925,12.7,5.0,1.2,,,
+2026-11-02,2026-11-02T00:56:55Z,W4JpeGFs,futbol,HONDURAS: Liga Nacional - Apertura,Olancho,Platense,1793583000,1187,1.39,4.8,6.7,,,
+2026-11-02,2026-11-02T00:56:55Z,W4JpeGFs,futbol,HONDURAS: Liga Nacional - Apertura,Olancho,Platense,1793583000,575,1.37,4.59,6.35,,,
+2026-11-02,2026-11-02T00:56:55Z,W4JpeGFs,futbol,HONDURAS: Liga Nacional - Apertura,Olancho,Platense,1793583000,925,1.34,4.6,7.9,,,
+2026-11-02,2026-11-02T00:56:55Z,pznZj5lA,futbol,HUNGARY: NB II.,DVTK,Kecskemeti TE,1793644200,1187,2.68,3.5,2.3,,,
+2026-11-02,2026-11-02T00:56:55Z,pznZj5lA,futbol,HUNGARY: NB II.,DVTK,Kecskemeti TE,1793644200,575,2.67,3.5,2.29,,,
+2026-11-02,2026-11-02T00:56:55Z,pznZj5lA,futbol,HUNGARY: NB II.,DVTK,Kecskemeti TE,1793644200,925,2.59,3.4,2.26,,,
+2026-11-02,2026-11-02T00:56:55Z,8YYxIUrp,futbol,IRAN: Azadegan League,Besat Kermanshah,Saipa,1793619000,925,3.27,2.94,2.16,,,
+2026-11-02,2026-11-02T00:56:55Z,xjr7NjLM,futbol,IRAN: Azadegan League,Ario Eslamshahr,Fard,1793620800,925,2.56,2.56,3.05,,,
+2026-11-02,2026-11-02T00:56:55Z,GbxoG8Dd,futbol,IRAN: Azadegan League,Mes Rafsanjan,Pars Janoobi Jam,1793624400,925,2.56,2.77,2.7,,,
+2026-11-02,2026-11-02T00:56:55Z,8hPWwC53,futbol,IRAN: Azadegan League,Naft Gachsaran,Mes Kerman,1793625300,925,2.78,2.66,2.59,,,
+2026-11-02,2026-11-02T00:56:55Z,f9NvxjzG,futbol,IRAN: Azadegan League,Shahin Bandar Ameri,Shenavarsazi Qeshm,1793625300,925,4.81,3.13,1.72,,,
+2026-11-02,2026-11-02T00:56:55Z,2ZQnzU4S,futbol,IRAN: Azadegan League,Naft Bandar Abbas,Novin Ahvaz,1793628000,925,2.05,2.96,3.52,,,
+2026-11-02,2026-11-02T00:56:55Z,rTKFxlnf,futbol,ISRAEL: Ligat ha'Al,Hap. Ramat Gan,Maccabi Tel Aviv,1793642400,1187,8.4,6.2,1.26,,,
+2026-11-02,2026-11-02T00:56:55Z,rTKFxlnf,futbol,ISRAEL: Ligat ha'Al,Hap. Ramat Gan,Maccabi Tel Aviv,1793642400,575,8.54,6.23,1.29,,,
+2026-11-02,2026-11-02T00:56:55Z,rTKFxlnf,futbol,ISRAEL: Ligat ha'Al,Hap. Ramat Gan,Maccabi Tel Aviv,1793642400,925,8.7,5.85,1.26,,,
+2026-11-02,2026-11-02T00:56:55Z,A3hxTPw3,futbol,ISRAEL: Leumit League,H. Raanana,Kiryat Yam,1793638800,1187,2.67,3.41,2.34,,,
+2026-11-02,2026-11-02T00:56:55Z,A3hxTPw3,futbol,ISRAEL: Leumit League,H. Raanana,Kiryat Yam,1793638800,575,2.69,3.45,2.36,,,
+2026-11-02,2026-11-02T00:56:55Z,A3hxTPw3,futbol,ISRAEL: Leumit League,H. Raanana,Kiryat Yam,1793638800,925,2.56,3.42,2.28,,,
+2026-11-02,2026-11-02T00:56:55Z,ITepR38F,futbol,ISRAEL: Leumit League,Maccabi Jaffa,Hapoel Kfar Saba,1793638800,1187,2.71,3.33,2.27,,,
+2026-11-02,2026-11-02T00:56:55Z,ITepR38F,futbol,ISRAEL: Leumit League,Maccabi Jaffa,Hapoel Kfar Saba,1793638800,575,2.77,3.53,2.32,,,
+2026-11-02,2026-11-02T00:56:55Z,ITepR38F,futbol,ISRAEL: Leumit League,Maccabi Jaffa,Hapoel Kfar Saba,1793638800,925,2.72,3.38,2.25,,,
+2026-11-02,2026-11-02T00:56:55Z,fTuIu3N8,futbol,ISRAEL: Leumit League,SC Ashdod,Bnei Yehuda,1793638800,1187,2.46,3.19,2.57,,,
+2026-11-02,2026-11-02T00:56:55Z,fTuIu3N8,futbol,ISRAEL: Leumit League,SC Ashdod,Bnei Yehuda,1793638800,575,2.52,3.29,2.61,,,
+2026-11-02,2026-11-02T00:56:55Z,fTuIu3N8,futbol,ISRAEL: Leumit League,SC Ashdod,Bnei Yehuda,1793638800,925,2.38,3.25,2.54,,,
+2026-11-02,2026-11-02T00:56:55Z,d88B0KuA,futbol,ISRAEL: Liga Alef North,Tzeirey Tamra,Hapoel Karmiel,1793624400,925,4.85,4.15,1.51,,,
+2026-11-02,2026-11-02T00:56:55Z,OfA32tBc,futbol,ISRAEL: Liga Alef North,Nof Hagalil,Nahariya,1793635200,925,1.72,3.75,3.83,,,
+2026-11-02,2026-11-02T00:56:55Z,SjJvnLQG,futbol,ISRAEL: Liga Alef North,Hapoel Umm al-Fahm,Maccabi Nujeidat Ahmad,1793640600,925,1.77,3.55,3.82,,,
+2026-11-02,2026-11-02T00:56:55Z,pMnr11HN,futbol,ISRAEL: Liga Alef South,Hapoel Azor,Jerusalem FC,1793633400,925,2.13,3.44,2.87,,,
+2026-11-02,2026-11-02T00:56:55Z,thYDeuuo,futbol,ISRAEL: Liga Alef South,Nordia Jerusalem,Kfar Saba 1928,1793637000,925,6.85,4.2,1.38,,,
+2026-11-02,2026-11-02T00:56:55Z,nkLaJrXi,futbol,ISRAEL: Liga Alef South,Maccabi Yavne,Shimshon Tel Aviv,1793637900,925,2.62,3.35,2.26,,,
+2026-11-02,2026-11-02T00:56:55Z,UVuS4qIb,futbol,ISRAEL: Liga Alef South,M. Ironi Kiryat Malachi,Holon Yermiyahu,1793639700,925,2.16,3.28,2.94,,,
+2026-11-02,2026-11-02T00:56:55Z,dIsK65mn,futbol,ISRAEL: Liga Alef South,M. Ironi Ashdod,Ramat Hasharon,1793645400,925,4.23,3.6,1.74,,,
+2026-11-02,2026-11-02T00:56:55Z,8bAIc9k3,futbol,ITALY: Serie C - Group A,Juventus U23,Pro Vercelli,1793647800,575,1.7,3.86,4.71,,,
+2026-11-02,2026-11-02T00:56:55Z,8bAIc9k3,futbol,ITALY: Serie C - Group A,Juventus U23,Pro Vercelli,1793647800,925,1.64,3.64,4.45,,,
+2026-11-02,2026-11-02T00:56:55Z,QHsngSr3,futbol,ITALY: Primavera 1,Empoli U20,Cagliari U20,1793613600,925,1.91,3.84,3.07,,,
+2026-11-02,2026-11-02T00:56:55Z,O6MAG6HL,futbol,ITALY: Serie A Women,Fiorentina W,Juventus W,1793647800,575,3.15,3.56,2.06,,,
+2026-11-02,2026-11-02T00:56:55Z,O6MAG6HL,futbol,ITALY: Serie A Women,Fiorentina W,Juventus W,1793647800,925,3.0,3.45,2.06,,,
+2026-11-02,2026-11-02T00:56:55Z,zwYQdnFd,futbol,KENYA: Premier League,Ulinzi Stars,Mathare Utd.,1793613600,925,2.4,2.79,3.01,,,
+2026-11-02,2026-11-02T00:56:55Z,4CCA4bY2,futbol,KENYA: Premier League,Posta Rangers,3K FC,1793617200,1187,2.5,2.94,2.94,,,
+2026-11-02,2026-11-02T00:56:55Z,4CCA4bY2,futbol,KENYA: Premier League,Posta Rangers,3K FC,1793617200,925,2.27,2.91,3.08,,,
+2026-11-02,2026-11-02T00:56:55Z,Qqtu6jhA,futbol,KENYA: Premier League,Tusker,Mara Sugar,1793620800,925,2.37,2.76,3.08,,,
+2026-11-02,2026-11-02T00:56:55Z,QPkop9Vj,futbol,KENYA: Premier League,Shabana,Police FC,1793625300,925,2.59,2.71,2.72,,,
+2026-11-02,2026-11-02T00:56:55Z,t8pF1FbL,futbol,KUWAIT: Premier League,Al Naser,Al Shabab,1793634300,1187,1.75,3.64,4.0,,,
+2026-11-02,2026-11-02T00:56:55Z,t8pF1FbL,futbol,KUWAIT: Premier League,Al Naser,Al Shabab,1793634300,575,1.75,3.6,4.02,,,
+2026-11-02,2026-11-02T00:56:55Z,t8pF1FbL,futbol,KUWAIT: Premier League,Al Naser,Al Shabab,1793634300,925,1.67,3.68,4.2,,,
+2026-11-02,2026-11-02T00:56:55Z,b9K6AhbL,futbol,KYRGYZSTAN: Premier Liga,Aldier,Alga,1793538000,925,6.69,4.67,1.34,,,
+2026-11-02,2026-11-02T00:56:55Z,fu6x5WLr,futbol,KYRGYZSTAN: Premier Liga,Talant,Asia Talas,1793616300,925,3.81,4.0,1.67,,,
+2026-11-02,2026-11-02T00:56:55Z,259p3Aje,futbol,KYRGYZSTAN: Premier Liga,Abdysh-Ata,Bishkek City,1793624400,925,4.96,3.86,1.54,,,
+2026-11-02,2026-11-02T00:56:55Z,AVCh1lL7,futbol,KYRGYZSTAN: Premier Liga,Alay Osh,Neftchi Kochkor-Ata,1793624400,925,1.86,3.75,3.25,,,
+2026-11-02,2026-11-02T00:56:55Z,0ECcEizq,futbol,LIBYA: Premier League,Al Ahly Tripoli,Al Khmes,1793638800,925,1.08,6.83,17.0,,,
+2026-11-02,2026-11-02T00:56:55Z,Gtg0Ri8b,futbol,MALI: Premiere Division,Diarra,Djoliba,1793635200,1187,4.4,3.06,1.84,,,
+2026-11-02,2026-11-02T00:56:55Z,Gtg0Ri8b,futbol,MALI: Premiere Division,Diarra,Djoliba,1793635200,925,4.49,3.02,1.8,,,
+2026-11-02,2026-11-02T00:56:55Z,O6d8PVxB,futbol,MALI: Premiere Division,Korofina,Derby Academie,1793635200,925,2.09,2.84,3.59,,,
+2026-11-02,2026-11-02T00:56:55Z,KbH4VffT,futbol,MALTA: Premier League - First stage - Main,Gzira,Marsaxlokk,1793646000,1187,4.4,3.64,1.73,,,
+2026-11-02,2026-11-02T00:56:55Z,KbH4VffT,futbol,MALTA: Premier League - First stage - Main,Gzira,Marsaxlokk,1793646000,575,4.36,3.62,1.78,,,
+2026-11-02,2026-11-02T00:56:55Z,KbH4VffT,futbol,MALTA: Premier League - First stage - Main,Gzira,Marsaxlokk,1793646000,925,4.13,3.72,1.76,,,
+2026-11-02,2026-11-02T00:56:55Z,Y38pF1Ua,futbol,MAURITANIA: Ligue 1,Pompiers,Nouakchott King's,1793638800,925,1.61,3.52,4.93,,,
+2026-11-02,2026-11-02T00:56:55Z,KK6hDuaC,futbol,MAURITANIA: Ligue 1,Douane,Nouadhibou,1793649000,925,2.89,3.08,2.33,,,
+2026-11-02,2026-11-02T00:56:55Z,Q5JD0znA,futbol,MONGOLIA: Premier League,Hunters,FC Ulaanbaatar,1793595600,1187,10.0,7.3,1.16,,,
+2026-11-02,2026-11-02T00:56:55Z,Q5JD0znA,futbol,MONGOLIA: Premier League,Hunters,FC Ulaanbaatar,1793595600,925,16.0,9.2,1.05,,,
+2026-11-02,2026-11-02T00:56:55Z,bJHLbEGM,futbol,MONGOLIA: Premier League,Central Stallions,Deren,1793606400,925,1.87,4.2,3.13,,,
+2026-11-02,2026-11-02T00:56:55Z,8rhCSDx3,futbol,MONTENEGRO: Prva Crnogorska Liga,Mladost DG,Sutjeska,1793620800,1187,4.1,3.18,1.82,,,
+2026-11-02,2026-11-02T00:56:55Z,8rhCSDx3,futbol,MONTENEGRO: Prva Crnogorska Liga,Mladost DG,Sutjeska,1793620800,575,4.18,3.27,1.85,,,
+2026-11-02,2026-11-02T00:56:55Z,8rhCSDx3,futbol,MONTENEGRO: Prva Crnogorska Liga,Mladost DG,Sutjeska,1793620800,925,4.01,3.22,1.82,,,
+2026-11-02,2026-11-02T00:56:55Z,fajKQi7F,futbol,MONTENEGRO: Prva Crnogorska Liga,Bokelj,Buducnost,1793624400,1187,2.87,2.81,2.47,,,
+2026-11-02,2026-11-02T00:56:55Z,fajKQi7F,futbol,MONTENEGRO: Prva Crnogorska Liga,Bokelj,Buducnost,1793624400,575,2.94,2.88,2.52,,,
+2026-11-02,2026-11-02T00:56:55Z,fajKQi7F,futbol,MONTENEGRO: Prva Crnogorska Liga,Bokelj,Buducnost,1793624400,925,2.78,2.85,2.43,,,
+2026-11-02,2026-11-02T00:56:55Z,2sT0wrZp,futbol,NETHERLANDS: Eerste Divisie,Heracles,Oss,1793646000,1187,1.15,8.0,11.0,,,
+2026-11-02,2026-11-02T00:56:55Z,2sT0wrZp,futbol,NETHERLANDS: Eerste Divisie,Heracles,Oss,1793646000,575,1.19,8.2,11.0,,,
+2026-11-02,2026-11-02T00:56:55Z,2sT0wrZp,futbol,NETHERLANDS: Eerste Divisie,Heracles,Oss,1793646000,925,1.17,7.2,11.9,,,
+2026-11-02,2026-11-02T00:56:55Z,drLAeseT,futbol,NETHERLANDS: Eerste Divisie,Jong Ajax,Vitesse,1793646000,1187,2.93,4.0,2.04,,,
+2026-11-02,2026-11-02T00:56:55Z,drLAeseT,futbol,NETHERLANDS: Eerste Divisie,Jong Ajax,Vitesse,1793646000,575,3.01,4.15,2.09,,,
+2026-11-02,2026-11-02T00:56:55Z,drLAeseT,futbol,NETHERLANDS: Eerste Divisie,Jong Ajax,Vitesse,1793646000,925,3.01,3.98,2.02,,,
+2026-11-02,2026-11-02T00:56:55Z,v7dSAtU6,futbol,NICARAGUA: Liga Primera - Apertura,Managua FC,UNAN-Managua,1793581200,575,1.22,5.89,10.08,,,
+2026-11-02,2026-11-02T00:56:55Z,v7dSAtU6,futbol,NICARAGUA: Liga Primera - Apertura,Managua FC,UNAN-Managua,1793581200,925,1.25,5.94,10.3,,,
+2026-11-02,2026-11-02T00:56:55Z,jByjW1Rq,futbol,NORTH MACEDONIA: 1. MFL,FK Skopje,Sileks,1793617200,575,6.83,3.93,1.39,,,
+2026-11-02,2026-11-02T00:56:55Z,jByjW1Rq,futbol,NORTH MACEDONIA: 1. MFL,FK Skopje,Sileks,1793617200,925,7.5,4.25,1.35,,,
+2026-11-02,2026-11-02T00:56:55Z,jVRqhql3,futbol,NORTH MACEDONIA: 1. MFL,Bashkimi,Arsimi,1793624400,925,2.95,3.54,2.05,,,
+2026-11-02,2026-11-02T00:56:55Z,KSpKyO3M,futbol,NORTH MACEDONIA: 1. MFL,Vardar,Struga,1793624400,925,1.71,3.42,4.32,,,
+2026-11-02,2026-11-02T00:56:55Z,IuwAXbB7,futbol,NORWAY: Toppserien Women,Valerenga W,Lyn W,1793638800,1187,1.37,5.2,5.8,,,
+2026-11-02,2026-11-02T00:56:55Z,IuwAXbB7,futbol,NORWAY: Toppserien Women,Valerenga W,Lyn W,1793638800,575,1.38,5.26,5.9,,,
+2026-11-02,2026-11-02T00:56:55Z,IuwAXbB7,futbol,NORWAY: Toppserien Women,Valerenga W,Lyn W,1793638800,925,1.36,5.1,5.63,,,
+2026-11-02,2026-11-02T00:56:55Z,febOofY2,futbol,PERU: Liga 1 - Clausura,Cajamarca,Deportivo Garcilaso,1793643300,1187,2.87,3.56,2.15,,,
+2026-11-02,2026-11-02T00:56:55Z,febOofY2,futbol,PERU: Liga 1 - Clausura,Cajamarca,Deportivo Garcilaso,1793643300,575,2.94,3.66,2.25,,,
+2026-11-02,2026-11-02T00:56:55Z,febOofY2,futbol,PERU: Liga 1 - Clausura,Cajamarca,Deportivo Garcilaso,1793643300,925,2.92,3.6,2.2,,,
+2026-11-02,2026-11-02T00:56:55Z,IPVicWQi,futbol,POLAND: Ekstraklasa,Zaglebie,Korona Kielce,1793638800,1187,2.41,3.3,2.72,,,
+2026-11-02,2026-11-02T00:56:55Z,IPVicWQi,futbol,POLAND: Ekstraklasa,Zaglebie,Korona Kielce,1793638800,575,2.55,3.44,2.83,,,
+2026-11-02,2026-11-02T00:56:55Z,IPVicWQi,futbol,POLAND: Ekstraklasa,Zaglebie,Korona Kielce,1793638800,925,2.51,3.28,2.61,,,
+2026-11-02,2026-11-02T00:56:55Z,C6DQgcKa,futbol,POLAND: Ekstraklasa,Rakow,Pogon Szczecin,1793647800,1187,2.24,3.65,2.75,,,
+2026-11-02,2026-11-02T00:56:55Z,C6DQgcKa,futbol,POLAND: Ekstraklasa,Rakow,Pogon Szczecin,1793647800,575,2.32,3.86,2.91,,,
+2026-11-02,2026-11-02T00:56:55Z,C6DQgcKa,futbol,POLAND: Ekstraklasa,Rakow,Pogon Szczecin,1793647800,925,2.27,3.68,2.72,,,
+2026-11-02,2026-11-02T00:56:55Z,dYBev4m2,futbol,POLAND: Division 1,LKS Lodz,Polonia Warszawa,1793647800,1187,2.28,3.57,2.8,,,
+2026-11-02,2026-11-02T00:56:55Z,dYBev4m2,futbol,POLAND: Division 1,LKS Lodz,Polonia Warszawa,1793647800,575,2.35,3.66,2.88,,,
+2026-11-02,2026-11-02T00:56:55Z,dYBev4m2,futbol,POLAND: Division 1,LKS Lodz,Polonia Warszawa,1793647800,925,2.25,3.34,2.76,,,
+2026-11-02,2026-11-02T00:56:55Z,r9tGbYYG,futbol,POLAND: Division 1,S. Rzeszow,Puszcza,1793647800,1187,2.4,3.33,2.8,,,
+2026-11-02,2026-11-02T00:56:55Z,r9tGbYYG,futbol,POLAND: Division 1,S. Rzeszow,Puszcza,1793647800,575,2.45,3.6,2.86,,,
+2026-11-02,2026-11-02T00:56:55Z,r9tGbYYG,futbol,POLAND: Division 1,S. Rzeszow,Puszcza,1793647800,925,2.31,3.26,2.64,,,
+2026-11-02,2026-11-02T00:56:55Z,lz5YQRh4,futbol,POLAND: Division 2,Chojniczanka,Avia Swidnik,1793638800,1187,2.13,3.45,2.98,,,
+2026-11-02,2026-11-02T00:56:55Z,lz5YQRh4,futbol,POLAND: Division 2,Chojniczanka,Avia Swidnik,1793638800,575,2.15,3.48,3.0,,,
+2026-11-02,2026-11-02T00:56:55Z,lz5YQRh4,futbol,POLAND: Division 2,Chojniczanka,Avia Swidnik,1793638800,925,2.0,3.45,3.13,,,
+2026-11-02,2026-11-02T00:56:55Z,zs2gO75k,futbol,PORTUGAL: Liga Portugal,Benfica,Alverca,1793650500,1187,1.17,7.2,13.0,,,
+2026-11-02,2026-11-02T00:56:55Z,zs2gO75k,futbol,PORTUGAL: Liga Portugal,Benfica,Alverca,1793650500,575,1.15,7.5,13.0,,,
+2026-11-02,2026-11-02T00:56:55Z,zs2gO75k,futbol,PORTUGAL: Liga Portugal,Benfica,Alverca,1793650500,925,1.16,8.55,19.0,,,
+2026-11-02,2026-11-02T00:56:55Z,dOxQZ6kS,futbol,PORTUGAL: Liga Next Gen U23,Leixoes U23,Rio Ave U23,1793635200,1187,2.7,3.84,2.15,,,
+2026-11-02,2026-11-02T00:56:55Z,dOxQZ6kS,futbol,PORTUGAL: Liga Next Gen U23,Leixoes U23,Rio Ave U23,1793635200,575,2.73,3.89,2.17,,,
+2026-11-02,2026-11-02T00:56:55Z,dOxQZ6kS,futbol,PORTUGAL: Liga Next Gen U23,Leixoes U23,Rio Ave U23,1793635200,925,2.78,3.58,2.13,,,
+2026-11-02,2026-11-02T00:56:55Z,AggQhho2,futbol,ROMANIA: Superliga,FC Voluntari,Farul Constanta,1793633400,1187,2.86,3.51,2.22,,,
+2026-11-02,2026-11-02T00:56:55Z,AggQhho2,futbol,ROMANIA: Superliga,FC Voluntari,Farul Constanta,1793633400,575,3.16,3.69,2.22,,,
+2026-11-02,2026-11-02T00:56:55Z,AggQhho2,futbol,ROMANIA: Superliga,FC Voluntari,Farul Constanta,1793633400,925,3.0,3.48,2.18,,,
+2026-11-02,2026-11-02T00:56:55Z,zFgJEZ7L,futbol,ROMANIA: Superliga,U. Cluj,FCSB,1793644200,1187,2.44,3.57,2.53,,,
+2026-11-02,2026-11-02T00:56:55Z,zFgJEZ7L,futbol,ROMANIA: Superliga,U. Cluj,FCSB,1793644200,575,2.55,3.7,2.65,,,
+2026-11-02,2026-11-02T00:56:55Z,zFgJEZ7L,futbol,ROMANIA: Superliga,U. Cluj,FCSB,1793644200,925,2.48,3.6,2.47,,,
+2026-11-02,2026-11-02T00:56:55Z,fRQRbTsA,futbol,SAUDI ARABIA: Division 2,Al Safa,Wej SC,1793620500,575,3.82,3.29,1.81,,,
+2026-11-02,2026-11-02T00:56:55Z,fRQRbTsA,futbol,SAUDI ARABIA: Division 2,Al Safa,Wej SC,1793620500,925,3.81,3.3,1.84,,,
+2026-11-02,2026-11-02T00:56:55Z,vyfFxwR7,futbol,SAUDI ARABIA: Division 2,Al Rayan,Al Qalah,1793622600,575,2.44,3.12,2.58,,,
+2026-11-02,2026-11-02T00:56:55Z,vyfFxwR7,futbol,SAUDI ARABIA: Division 2,Al Rayan,Al Qalah,1793622600,925,2.3,3.32,2.59,,,
+2026-11-02,2026-11-02T00:56:55Z,WUt10tJE,futbol,SAUDI ARABIA: Division 2,Hottain,Al Gottah,1793622900,575,2.03,3.12,3.27,,,
+2026-11-02,2026-11-02T00:56:55Z,WUt10tJE,futbol,SAUDI ARABIA: Division 2,Hottain,Al Gottah,1793622900,925,1.98,3.28,3.34,,,
+2026-11-02,2026-11-02T00:56:55Z,M3NUNmPh,futbol,SENEGAL: Ligue 1,US Goree,Ouakam,1793637000,925,2.35,2.4,4.08,,,
+2026-11-02,2026-11-02T00:56:55Z,xYQjVySa,futbol,SERBIA: Mozzart Bet Super Liga,Mladost,Radnik,1793638800,1187,2.83,3.14,2.68,,,
+2026-11-02,2026-11-02T00:56:55Z,xYQjVySa,futbol,SERBIA: Mozzart Bet Super Liga,Mladost,Radnik,1793638800,575,2.74,3.2,2.59,,,
+2026-11-02,2026-11-02T00:56:55Z,xYQjVySa,futbol,SERBIA: Mozzart Bet Super Liga,Mladost,Radnik,1793638800,925,2.68,3.27,2.68,,,
+2026-11-02,2026-11-02T00:56:55Z,djg9b8wH,futbol,SERBIA: Mozzart Bet Prva Liga,Bor 1919,Sp. Subotica,1793620800,1187,3.55,3.47,1.96,,,
+2026-11-02,2026-11-02T00:56:55Z,djg9b8wH,futbol,SERBIA: Mozzart Bet Prva Liga,Bor 1919,Sp. Subotica,1793620800,925,3.74,3.6,1.84,,,
+2026-11-02,2026-11-02T00:56:55Z,U3iHdn8T,futbol,SERBIA: Mozzart Bet Prva Liga,Graficar Beograd,Napredak,1793620800,1187,2.7,3.27,2.47,,,
+2026-11-02,2026-11-02T00:56:55Z,U3iHdn8T,futbol,SERBIA: Mozzart Bet Prva Liga,Graficar Beograd,Napredak,1793620800,925,2.65,3.2,2.44,,,
+2026-11-02,2026-11-02T00:56:55Z,t0ng2jvh,futbol,SERBIA: Mozzart Bet Prva Liga,Teleoptik,Javor,1793620800,1187,4.85,4.2,1.54,,,
+2026-11-02,2026-11-02T00:56:55Z,t0ng2jvh,futbol,SERBIA: Mozzart Bet Prva Liga,Teleoptik,Javor,1793620800,925,4.82,3.9,1.6,,,
+2026-11-02,2026-11-02T00:56:55Z,nyjnOjh4,futbol,SERBIA: Mozzart Bet Prva Liga,Dubocica,Vozdovac,1793631600,1187,2.69,3.25,2.41,,,
+2026-11-02,2026-11-02T00:56:55Z,nyjnOjh4,futbol,SERBIA: Mozzart Bet Prva Liga,Dubocica,Vozdovac,1793631600,925,2.7,3.3,2.35,,,
+2026-11-02,2026-11-02T00:56:55Z,lQk10U84,futbol,SERBIA: Mozzart Bet Prva Liga,Metalac,Jedinstvo U.,1793638800,1187,1.9,3.51,3.53,,,
+2026-11-02,2026-11-02T00:56:55Z,lQk10U84,futbol,SERBIA: Mozzart Bet Prva Liga,Metalac,Jedinstvo U.,1793638800,925,1.87,3.7,3.53,,,
+2026-11-02,2026-11-02T00:56:55Z,APoQUtz3,futbol,SLOVENIA: 2. SNL,Brezice,Beltinci,1793635200,1187,4.6,3.95,1.6,,,
+2026-11-02,2026-11-02T00:56:55Z,APoQUtz3,futbol,SLOVENIA: 2. SNL,Brezice,Beltinci,1793635200,925,4.81,3.98,1.54,,,
+2026-11-02,2026-11-02T00:56:55Z,rJ7tNUGd,futbol,SLOVENIA: 2. SNL,Triglav,NK Krka,1793637000,1187,1.3,4.6,8.1,,,
+2026-11-02,2026-11-02T00:56:55Z,rJ7tNUGd,futbol,SLOVENIA: 2. SNL,Triglav,NK Krka,1793637000,925,1.32,4.75,7.1,,,
+2026-11-02,2026-11-02T00:56:55Z,tGhi4TwP,futbol,SPAIN: LaLiga,Dep. A Coruna,Osasuna,1793649600,1187,2.2,3.31,3.66,,,
+2026-11-02,2026-11-02T00:56:55Z,tGhi4TwP,futbol,SPAIN: LaLiga,Dep. A Coruna,Osasuna,1793649600,575,2.19,3.3,3.71,,,
+2026-11-02,2026-11-02T00:56:55Z,tGhi4TwP,futbol,SPAIN: LaLiga,Dep. A Coruna,Osasuna,1793649600,925,2.28,3.45,3.49,,,
+2026-11-02,2026-11-02T00:56:55Z,lxOuURQE,futbol,SPAIN: LaLiga2,Tenerife,Andorra,1793624400,1187,2.34,3.18,3.14,,,
+2026-11-02,2026-11-02T00:56:55Z,lxOuURQE,futbol,SPAIN: LaLiga2,Tenerife,Andorra,1793624400,575,2.25,3.25,3.32,,,
+2026-11-02,2026-11-02T00:56:55Z,lxOuURQE,futbol,SPAIN: LaLiga2,Tenerife,Andorra,1793624400,925,2.32,3.28,3.28,,,
+2026-11-02,2026-11-02T00:56:55Z,UJeN0eFc,futbol,SPAIN: LaLiga2,Oviedo,Las Palmas,1793632500,1187,1.68,3.8,4.5,,,
+2026-11-02,2026-11-02T00:56:55Z,UJeN0eFc,futbol,SPAIN: LaLiga2,Oviedo,Las Palmas,1793632500,575,1.74,3.97,4.94,,,
+2026-11-02,2026-11-02T00:56:55Z,UJeN0eFc,futbol,SPAIN: LaLiga2,Oviedo,Las Palmas,1793632500,925,1.76,3.86,4.64,,,
+2026-11-02,2026-11-02T00:56:55Z,llhwcDEM,futbol,SPAIN: LaLiga2,Valladolid,Leganes,1793640600,1187,1.99,3.4,3.53,,,
+2026-11-02,2026-11-02T00:56:55Z,llhwcDEM,futbol,SPAIN: LaLiga2,Valladolid,Leganes,1793640600,575,2.06,3.58,3.86,,,
+2026-11-02,2026-11-02T00:56:55Z,llhwcDEM,futbol,SPAIN: LaLiga2,Valladolid,Leganes,1793640600,925,2.0,3.7,3.68,,,
+2026-11-02,2026-11-02T00:56:55Z,2D3ywhNj,futbol,SPAIN: LaLiga2,Mallorca,Cadiz CF,1793649600,1187,1.47,4.1,6.5,,,
+2026-11-02,2026-11-02T00:56:55Z,2D3ywhNj,futbol,SPAIN: LaLiga2,Mallorca,Cadiz CF,1793649600,575,1.52,4.25,7.0,,,
+2026-11-02,2026-11-02T00:56:55Z,2D3ywhNj,futbol,SPAIN: LaLiga2,Mallorca,Cadiz CF,1793649600,925,1.51,4.28,6.91,,,
+2026-11-02,2026-11-02T00:56:55Z,hEvnQx4D,futbol,SPAIN: Primera RFEF - Group 2,Jaen,Algeciras,1793639700,1187,2.36,3.15,2.83,,,
+2026-11-02,2026-11-02T00:56:55Z,hEvnQx4D,futbol,SPAIN: Primera RFEF - Group 2,Jaen,Algeciras,1793639700,575,2.36,3.25,2.98,,,
+2026-11-02,2026-11-02T00:56:55Z,hEvnQx4D,futbol,SPAIN: Primera RFEF - Group 2,Jaen,Algeciras,1793639700,925,2.28,3.04,2.96,,,
+2026-11-02,2026-11-02T00:56:55Z,GYvLhKaC,futbol,SPAIN: Segunda RFEF - Group 4,Tenerife B,Don Benito,1793617200,1187,1.98,3.38,3.58,,,
+2026-11-02,2026-11-02T00:56:55Z,GYvLhKaC,futbol,SPAIN: Segunda RFEF - Group 4,Tenerife B,Don Benito,1793617200,575,1.8,3.35,3.35,,,
+2026-11-02,2026-11-02T00:56:55Z,GYvLhKaC,futbol,SPAIN: Segunda RFEF - Group 4,Tenerife B,Don Benito,1793617200,925,1.9,3.36,3.55,,,
+2026-11-02,2026-11-02T00:56:55Z,APZiAV2U,futbol,SPAIN: Liga F Women,Costa Adeje Tenerife W,Athletic Bilbao W,1793646000,1187,2.6,3.09,2.59,,,
+2026-11-02,2026-11-02T00:56:55Z,APZiAV2U,futbol,SPAIN: Liga F Women,Costa Adeje Tenerife W,Athletic Bilbao W,1793646000,575,2.62,3.12,2.61,,,
+2026-11-02,2026-11-02T00:56:55Z,APZiAV2U,futbol,SPAIN: Liga F Women,Costa Adeje Tenerife W,Athletic Bilbao W,1793646000,925,2.56,3.13,2.44,,,
+2026-11-02,2026-11-02T00:56:55Z,0nMWfA6l,futbol,SURINAME: SML,Coronie Boys,Leo Victor,1793570400,925,17.0,10.0,1.0,,,
+2026-11-02,2026-11-02T00:56:55Z,zD5VZgZI,futbol,SWEDEN: Superettan,Oster,Helsingborg,1793642400,1187,2.47,3.66,2.66,,,
+2026-11-02,2026-11-02T00:56:55Z,zD5VZgZI,futbol,SWEDEN: Superettan,Oster,Helsingborg,1793642400,575,2.47,3.75,2.71,,,
+2026-11-02,2026-11-02T00:56:55Z,zD5VZgZI,futbol,SWEDEN: Superettan,Oster,Helsingborg,1793642400,925,2.41,3.52,2.58,,,
+2026-11-02,2026-11-02T00:56:55Z,nwfFwxzf,futbol,SWEDEN: Superettan,Landskrona,Orebro,1793642700,1187,1.72,4.3,4.2,,,
+2026-11-02,2026-11-02T00:56:55Z,nwfFwxzf,futbol,SWEDEN: Superettan,Landskrona,Orebro,1793642700,575,1.78,4.28,4.25,,,
+2026-11-02,2026-11-02T00:56:55Z,nwfFwxzf,futbol,SWEDEN: Superettan,Landskrona,Orebro,1793642700,925,1.74,3.95,3.98,,,
+2026-11-02,2026-11-02T00:56:55Z,G8IvdRug,futbol,SWEDEN: Allsvenskan Women,Hacken W,Kristianstad W,1793638800,1187,1.2,6.0,10.0,,,
+2026-11-02,2026-11-02T00:56:55Z,G8IvdRug,futbol,SWEDEN: Allsvenskan Women,Hacken W,Kristianstad W,1793638800,575,1.2,6.23,10.46,,,
+2026-11-02,2026-11-02T00:56:55Z,G8IvdRug,futbol,SWEDEN: Allsvenskan Women,Hacken W,Kristianstad W,1793638800,925,1.19,5.85,10.2,,,
+2026-11-02,2026-11-02T00:56:55Z,zPDE84Pb,futbol,SWEDEN: Allsvenskan Women,Malmo FF W,Norrkoping W,1793638800,1187,1.32,5.4,5.9,,,
+2026-11-02,2026-11-02T00:56:55Z,zPDE84Pb,futbol,SWEDEN: Allsvenskan Women,Malmo FF W,Norrkoping W,1793638800,575,1.34,5.71,6.15,,,
+2026-11-02,2026-11-02T00:56:55Z,zPDE84Pb,futbol,SWEDEN: Allsvenskan Women,Malmo FF W,Norrkoping W,1793638800,925,1.27,5.0,8.25,,,
+2026-11-02,2026-11-02T00:56:55Z,CWGze7Cb,futbol,SYRIA: Premier League,Al Ittihad Aleppo,Qamishli,1793620800,925,1.12,6.84,12.2,,,
+2026-11-02,2026-11-02T00:56:55Z,YJ61btJj,futbol,SYRIA: Premier League,Al Taliya,Homs Al Fidaa,1793624400,925,4.61,3.39,1.67,,,
+2026-11-02,2026-11-02T00:56:55Z,8Ckq8Mcc,futbol,TAJIKISTAN: Vysshaya Liga,CSKA Pomir Dushanbe,Istiqlol Dushanbe,1793617200,925,3.8,3.24,1.86,,,
+2026-11-02,2026-11-02T00:56:55Z,t6ccpJ5j,futbol,TAJIKISTAN: Vysshaya Liga,Istaravshan,Regar-TadAZ,1793617200,925,17.0,7.55,1.06,,,
+2026-11-02,2026-11-02T00:56:55Z,WQ2TYHnp,futbol,TANZANIA: Ligi Kuu Bara,TRA United,Fountain Gate,1793617200,1187,1.63,3.41,5.3,,,
+2026-11-02,2026-11-02T00:56:55Z,WQ2TYHnp,futbol,TANZANIA: Ligi Kuu Bara,TRA United,Fountain Gate,1793617200,925,1.59,3.38,5.44,,,
+2026-11-02,2026-11-02T00:56:55Z,4hGzXeHd,futbol,TANZANIA: Ligi Kuu Bara,Mashujaa,Pamba,1793625300,925,1.95,3.04,3.75,,,
+2026-11-02,2026-11-02T00:56:55Z,YRfKv8z3,futbol,TANZANIA: Ligi Kuu Bara,Simba,Namungo,1793635200,1187,1.16,5.8,17.0,,,
+2026-11-02,2026-11-02T00:56:55Z,YRfKv8z3,futbol,TANZANIA: Ligi Kuu Bara,Simba,Namungo,1793635200,925,1.06,7.24,17.0,,,
+2026-11-02,2026-11-02T00:56:55Z,GGwu3sgn,futbol,THAILAND: Thai League 1,Chonburi,Pathum United,1793620800,1187,2.51,3.55,2.41,,,
+2026-11-02,2026-11-02T00:56:55Z,GGwu3sgn,futbol,THAILAND: Thai League 1,Chonburi,Pathum United,1793620800,575,2.63,3.62,2.52,,,
+2026-11-02,2026-11-02T00:56:55Z,GGwu3sgn,futbol,THAILAND: Thai League 1,Chonburi,Pathum United,1793620800,925,2.6,3.32,2.29,,,
+2026-11-02,2026-11-02T00:56:55Z,SKIGVZCr,futbol,TURKEY: U19 League,Genclerbirligi U19,Alanyaspor U19,1793620800,575,1.67,3.91,4.11,,,
+2026-11-02,2026-11-02T00:56:55Z,SKIGVZCr,futbol,TURKEY: U19 League,Genclerbirligi U19,Alanyaspor U19,1793620800,925,1.59,4.05,4.3,,,
+2026-11-02,2026-11-02T00:56:55Z,zsAzVC7k,futbol,TURKEY: Super Lig Women,Trabzonspor W,Besiktas W,1793617200,925,1.61,4.05,4.14,,,
+2026-11-02,2026-11-02T00:56:55Z,AuhdI4SH,futbol,UKRAINE: Premier League,FK Zorya Luhansk,Epitsentr,1793617200,1187,1.95,3.45,3.41,,,
+2026-11-02,2026-11-02T00:56:55Z,AuhdI4SH,futbol,UKRAINE: Premier League,FK Zorya Luhansk,Epitsentr,1793617200,575,1.98,3.54,3.52,,,
+2026-11-02,2026-11-02T00:56:55Z,AuhdI4SH,futbol,UKRAINE: Premier League,FK Zorya Luhansk,Epitsentr,1793617200,925,2.04,3.66,3.48,,,
+2026-11-02,2026-11-02T00:56:55Z,CSWTW3sB,futbol,UKRAINE: Premier League,Kryvbas,Dyn. Kyiv,1793617200,1187,6.2,4.7,1.39,,,
+2026-11-02,2026-11-02T00:56:55Z,CSWTW3sB,futbol,UKRAINE: Premier League,Kryvbas,Dyn. Kyiv,1793617200,575,6.8,4.85,1.41,,,
+2026-11-02,2026-11-02T00:56:55Z,CSWTW3sB,futbol,UKRAINE: Premier League,Kryvbas,Dyn. Kyiv,1793617200,925,6.55,4.95,1.44,,,
+2026-11-02,2026-11-02T00:56:55Z,foV3TkRH,futbol,UKRAINE: Persha Liga,Kolos Kovalivka 2,Metalist Kharkiv,1793613600,1187,2.93,3.16,2.29,,,
+2026-11-02,2026-11-02T00:56:55Z,foV3TkRH,futbol,UKRAINE: Persha Liga,Kolos Kovalivka 2,Metalist Kharkiv,1793613600,575,2.96,2.94,2.27,,,
+2026-11-02,2026-11-02T00:56:55Z,foV3TkRH,futbol,UKRAINE: Persha Liga,Kolos Kovalivka 2,Metalist Kharkiv,1793613600,925,2.95,2.98,2.34,,,
+2026-11-02,2026-11-02T00:56:55Z,jkMSqBBb,futbol,UKRAINE: Persha Liga,Zhytomyr 2,Oleksandriya,1793619000,1187,4.3,3.83,1.67,,,
+2026-11-02,2026-11-02T00:56:55Z,jkMSqBBb,futbol,UKRAINE: Persha Liga,Zhytomyr 2,Oleksandriya,1793619000,575,4.14,3.72,1.64,,,
+2026-11-02,2026-11-02T00:56:55Z,jkMSqBBb,futbol,UKRAINE: Persha Liga,Zhytomyr 2,Oleksandriya,1793619000,925,4.1,3.7,1.7,,,
+2026-11-02,2026-11-02T00:56:55Z,GjSRmnIG,futbol,UKRAINE: Druha Liga,Nyva Vinnytsya,Bratslav Vinnytsia,1793610000,1187,2.97,3.14,2.36,,,
+2026-11-02,2026-11-02T00:56:55Z,GjSRmnIG,futbol,UKRAINE: Druha Liga,Nyva Vinnytsya,Bratslav Vinnytsia,1793610000,925,2.84,3.35,2.32,,,
+2026-11-02,2026-11-02T00:56:55Z,4fFKhVdB,futbol,UKRAINE: Premier League 2,Kolos Kovalivka U21,Polissya Zhytomyr U21,1793613600,1187,2.53,3.59,2.24,,,
+2026-11-02,2026-11-02T00:56:55Z,4fFKhVdB,futbol,UKRAINE: Premier League 2,Kolos Kovalivka U21,Polissya Zhytomyr U21,1793613600,925,2.52,3.64,2.22,,,
+2026-11-02,2026-11-02T00:56:55Z,YFtvgvif,futbol,UKRAINE: Premier League 2,LNZ Cherkasy U21,FC Kharkiv U21,1793613600,1187,2.08,3.59,2.77,,,
+2026-11-02,2026-11-02T00:56:55Z,YFtvgvif,futbol,UKRAINE: Premier League 2,LNZ Cherkasy U21,FC Kharkiv U21,1793613600,925,2.11,3.64,2.78,,,
+2026-11-02,2026-11-02T00:56:55Z,b3qV5jTQ,futbol,UNITED ARAB EMIRATES: Pro League U23,Al Nasr U23,Al Sharjah U23,1793624100,1187,4.0,4.0,1.61,,,
+2026-11-02,2026-11-02T00:56:55Z,b3qV5jTQ,futbol,UNITED ARAB EMIRATES: Pro League U23,Al Nasr U23,Al Sharjah U23,1793624100,925,4.24,4.1,1.59,,,
+2026-11-02,2026-11-02T00:56:55Z,Uoz10Ujl,futbol,UNITED ARAB EMIRATES: Pro League U23,Bani Yas U23,Al Jazira U23,1793624100,1187,2.37,3.6,2.38,,,
+2026-11-02,2026-11-02T00:56:55Z,Uoz10Ujl,futbol,UNITED ARAB EMIRATES: Pro League U23,Bani Yas U23,Al Jazira U23,1793624100,925,2.38,3.58,2.38,,,
+2026-11-02,2026-11-02T00:56:55Z,xCw9b8L0,futbol,UNITED ARAB EMIRATES: Pro League U23,Hatta U23,Al Wahda U23,1793624100,925,2.91,3.78,2.0,,,
+2026-11-02,2026-11-02T00:56:55Z,OA7u7iDL,futbol,ARGENTINA: Liga Profesional - Clausura,Defensa y Justicia,Independiente,1793656800,1187,2.21,3.06,3.33,,,
+2026-11-02,2026-11-02T00:56:55Z,OA7u7iDL,futbol,ARGENTINA: Liga Profesional - Clausura,Defensa y Justicia,Independiente,1793656800,575,2.23,3.24,3.62,,,
+2026-11-02,2026-11-02T00:56:55Z,OA7u7iDL,futbol,ARGENTINA: Liga Profesional - Clausura,Defensa y Justicia,Independiente,1793656800,925,2.19,3.31,3.41,,,
+2026-11-02,2026-11-02T00:56:55Z,d2pRAfVg,futbol,ARGENTINA: Liga Profesional - Clausura,Atl. Tucuman,Argentinos Jrs,1793664900,1187,2.89,2.93,2.54,,,
+2026-11-02,2026-11-02T00:56:55Z,d2pRAfVg,futbol,ARGENTINA: Liga Profesional - Clausura,Atl. Tucuman,Argentinos Jrs,1793664900,575,3.04,3.07,2.64,,,
+2026-11-02,2026-11-02T00:56:55Z,d2pRAfVg,futbol,ARGENTINA: Liga Profesional - Clausura,Atl. Tucuman,Argentinos Jrs,1793664900,925,3.02,3.02,2.57,,,
+2026-11-02,2026-11-02T00:56:55Z,4SmZ8Ya6,futbol,ARGENTINA: Liga Profesional - Clausura,Ind. Rivadavia,Banfield,1793664900,1187,1.57,3.98,5.6,,,
+2026-11-02,2026-11-02T00:56:55Z,4SmZ8Ya6,futbol,ARGENTINA: Liga Profesional - Clausura,Ind. Rivadavia,Banfield,1793664900,575,1.6,4.13,5.88,,,
+2026-11-02,2026-11-02T00:56:55Z,4SmZ8Ya6,futbol,ARGENTINA: Liga Profesional - Clausura,Ind. Rivadavia,Banfield,1793664900,925,1.57,4.03,6.02,,,
+2026-11-02,2026-11-02T00:56:55Z,UkjtOov3,futbol,ARMENIA: First League,Olympia Yerevan,BKMA 2,1793703600,925,1.83,4.08,3.13,,,
+2026-11-02,2026-11-02T00:56:55Z,xGglMP8F,futbol,ARMENIA: First League,Shirak Gyumri 2,Ararat-Armenia 2,1793703600,925,2.1,3.98,2.62,,,
+2026-11-02,2026-11-02T00:56:55Z,x8VKtvTP,futbol,ARUBA: Division di Honor,Bubali,Caiquetio,1793665800,1187,1.35,4.8,6.2,,,
+2026-11-02,2026-11-02T00:56:55Z,x8VKtvTP,futbol,ARUBA: Division di Honor,Bubali,Caiquetio,1793665800,925,1.33,4.9,6.51,,,
+2026-11-02,2026-11-02T00:56:55Z,O8TditmA,futbol,ASIA: AFC Champions League - League phase,Newcastle Jets (Aus),Shanghai Port (Chn),1793691900,925,2.6,4.04,2.09,,,
+2026-11-02,2026-11-02T00:56:55Z,ELGrrxAd,futbol,ASIA: AFC Champions League - League phase,Jeonbuk (Kor),Johor DT (Mys),1793700000,925,2.13,3.59,2.77,,,
+2026-11-02,2026-11-02T00:56:55Z,hrlxALYg,futbol,ASIA: AFC Champions League - League phase,Esteghlal F.C. (Irn),Shamal (Qat),1793721600,925,2.52,3.28,2.37,,,
+2026-11-02,2026-11-02T00:56:55Z,08ip8a36,futbol,ASIA: AFC Champions League - League phase,Al Hilal (Sau),Shabab Al Ahli Dubai (Uae),1793729700,925,1.41,4.52,5.55,,,
+2026-11-02,2026-11-02T00:56:55Z,8fuHGRZF,futbol,CHILE: Liga de Primera,D. Concepcion,Palestino,1793662200,1187,2.51,3.41,2.61,,,
+2026-11-02,2026-11-02T00:56:55Z,8fuHGRZF,futbol,CHILE: Liga de Primera,D. Concepcion,Palestino,1793662200,575,2.61,3.56,2.7,,,
+2026-11-02,2026-11-02T00:56:55Z,8fuHGRZF,futbol,CHILE: Liga de Primera,D. Concepcion,Palestino,1793662200,925,2.45,3.3,2.5,,,
+2026-11-02,2026-11-02T00:56:55Z,6kjMensT,futbol,COLOMBIA: Primera A - Clausura,Bucaramanga,Atl. Nacional,1793668500,1187,3.17,3.16,2.19,,,
+2026-11-02,2026-11-02T00:56:55Z,6kjMensT,futbol,COLOMBIA: Primera A - Clausura,Bucaramanga,Atl. Nacional,1793668500,575,3.26,3.55,2.27,,,
+2026-11-02,2026-11-02T00:56:55Z,6kjMensT,futbol,COLOMBIA: Primera A - Clausura,Bucaramanga,Atl. Nacional,1793668500,925,3.02,3.38,2.21,,,
+2026-11-02,2026-11-02T00:56:55Z,vgRIQ6t3,futbol,COLOMBIA: Primera A - Clausura,Pereira,Deportes Tolima,1793737800,1187,6.0,3.83,1.51,,,
+2026-11-02,2026-11-02T00:56:55Z,vgRIQ6t3,futbol,COLOMBIA: Primera A - Clausura,Pereira,Deportes Tolima,1793737800,575,6.45,4.1,1.54,,,
+2026-11-02,2026-11-02T00:56:55Z,vgRIQ6t3,futbol,COLOMBIA: Primera A - Clausura,Pereira,Deportes Tolima,1793737800,925,5.88,4.05,1.51,,,
+2026-11-02,2026-11-02T00:56:55Z,MyNA4qt3,futbol,COLOMBIA: Primera B - Clausura - Quadrangular,U. Magdalena,Envigado,1793661000,1187,1.83,3.13,4.1,,,
+2026-11-02,2026-11-02T00:56:55Z,MyNA4qt3,futbol,COLOMBIA: Primera B - Clausura - Quadrangular,U. Magdalena,Envigado,1793661000,575,1.9,3.3,4.33,,,
+2026-11-02,2026-11-02T00:56:55Z,MyNA4qt3,futbol,COLOMBIA: Primera B - Clausura - Quadrangular,U. Magdalena,Envigado,1793661000,925,1.84,3.2,4.0,,,
+2026-11-02,2026-11-02T00:56:55Z,rRa0bB14,futbol,DENMARK: Betano Pokalen,Lyngby,Randers FC,1793725200,1187,2.07,3.41,3.0,,,
+2026-11-02,2026-11-02T00:56:55Z,rRa0bB14,futbol,DENMARK: Betano Pokalen,Lyngby,Randers FC,1793725200,575,2.11,3.6,3.08,,,
+2026-11-02,2026-11-02T00:56:55Z,rRa0bB14,futbol,DENMARK: Betano Pokalen,Lyngby,Randers FC,1793725200,925,2.1,3.58,3.08,,,
+2026-11-02,2026-11-02T00:56:55Z,fmhXnH1S,futbol,ENGLAND: Championship,Blackburn,Stoke,1793735100,1187,2.64,3.23,2.66,,,
+2026-11-02,2026-11-02T00:56:55Z,fmhXnH1S,futbol,ENGLAND: Championship,Blackburn,Stoke,1793735100,575,2.69,3.31,2.71,,,
+2026-11-02,2026-11-02T00:56:55Z,fmhXnH1S,futbol,ENGLAND: Championship,Blackburn,Stoke,1793735100,925,2.52,3.32,2.7,,,
+2026-11-02,2026-11-02T00:56:55Z,MaPjhCw8,futbol,ENGLAND: Championship,Charlton,Bolton,1793735100,1187,2.23,3.5,3.03,,,
+2026-11-02,2026-11-02T00:56:55Z,MaPjhCw8,futbol,ENGLAND: Championship,Charlton,Bolton,1793735100,575,2.31,3.6,3.07,,,
+2026-11-02,2026-11-02T00:56:55Z,MaPjhCw8,futbol,ENGLAND: Championship,Charlton,Bolton,1793735100,925,2.2,3.48,3.05,,,
+2026-11-02,2026-11-02T00:56:55Z,QVr3sePk,futbol,ENGLAND: Championship,Derby,Norwich,1793735100,1187,3.23,3.74,2.05,,,
+2026-11-02,2026-11-02T00:56:55Z,QVr3sePk,futbol,ENGLAND: Championship,Derby,Norwich,1793735100,575,3.33,3.81,2.1,,,
+2026-11-02,2026-11-02T00:56:55Z,QVr3sePk,futbol,ENGLAND: Championship,Derby,Norwich,1793735100,925,3.26,3.58,2.07,,,
+2026-11-02,2026-11-02T00:56:55Z,4tCThItm,futbol,ENGLAND: Championship,Portsmouth,Swansea,1793735100,1187,2.66,3.3,2.59,,,
+2026-11-02,2026-11-02T00:56:55Z,4tCThItm,futbol,ENGLAND: Championship,Portsmouth,Swansea,1793735100,575,2.79,3.37,2.63,,,
+2026-11-02,2026-11-02T00:56:55Z,4tCThItm,futbol,ENGLAND: Championship,Portsmouth,Swansea,1793735100,925,2.58,3.24,2.64,,,
+2026-11-02,2026-11-02T00:56:55Z,bqsBuZg2,futbol,ENGLAND: Championship,Preston,Sheffield Utd,1793735100,1187,3.12,3.76,2.09,,,
+2026-11-02,2026-11-02T00:56:55Z,bqsBuZg2,futbol,ENGLAND: Championship,Preston,Sheffield Utd,1793735100,575,3.35,3.76,2.14,,,
+2026-11-02,2026-11-02T00:56:55Z,bqsBuZg2,futbol,ENGLAND: Championship,Preston,Sheffield Utd,1793735100,925,3.13,3.62,2.11,,,
+2026-11-02,2026-11-02T00:56:55Z,4tUd3xn9,futbol,ENGLAND: Championship,QPR,Burnley,1793735100,1187,1.97,3.74,3.45,,,
+2026-11-02,2026-11-02T00:56:55Z,4tUd3xn9,futbol,ENGLAND: Championship,QPR,Burnley,1793735100,575,2.08,3.78,3.51,,,
+2026-11-02,2026-11-02T00:56:55Z,4tUd3xn9,futbol,ENGLAND: Championship,QPR,Burnley,1793735100,925,1.99,3.64,3.42,,,
+2026-11-02,2026-11-02T00:56:55Z,C6X41GGL,futbol,ENGLAND: Championship,Watford,Lincoln,1793735100,1187,2.43,3.41,2.77,,,
+2026-11-02,2026-11-02T00:56:55Z,C6X41GGL,futbol,ENGLAND: Championship,Watford,Lincoln,1793735100,575,2.49,3.51,2.81,,,
+2026-11-02,2026-11-02T00:56:55Z,C6X41GGL,futbol,ENGLAND: Championship,Watford,Lincoln,1793735100,925,2.4,3.34,2.79,,,
+2026-11-02,2026-11-02T00:56:55Z,nNlPlwXF,futbol,ENGLAND: Championship,Birmingham,Millwall,1793736000,1187,1.94,3.6,3.68,,,
+2026-11-02,2026-11-02T00:56:55Z,nNlPlwXF,futbol,ENGLAND: Championship,Birmingham,Millwall,1793736000,575,2.0,3.65,3.75,,,
+2026-11-02,2026-11-02T00:56:55Z,nNlPlwXF,futbol,ENGLAND: Championship,Birmingham,Millwall,1793736000,925,1.98,3.6,3.48,,,
+2026-11-02,2026-11-02T00:56:55Z,8xJzdfvq,futbol,ENGLAND: Championship,West Brom,Southampton,1793736000,1187,2.41,3.56,2.71,,,
+2026-11-02,2026-11-02T00:56:55Z,8xJzdfvq,futbol,ENGLAND: Championship,West Brom,Southampton,1793736000,575,2.46,3.65,2.77,,,
+2026-11-02,2026-11-02T00:56:55Z,8xJzdfvq,futbol,ENGLAND: Championship,West Brom,Southampton,1793736000,925,2.44,3.52,2.62,,,
+2026-11-02,2026-11-02T00:56:55Z,SfwERv5N,futbol,ENGLAND: League One,Huddersfield,Luton,1793735100,1187,1.97,3.58,3.21,,,
+2026-11-02,2026-11-02T00:56:55Z,SfwERv5N,futbol,ENGLAND: League One,Huddersfield,Luton,1793735100,575,2.03,3.8,3.36,,,
+2026-11-02,2026-11-02T00:56:55Z,SfwERv5N,futbol,ENGLAND: League One,Huddersfield,Luton,1793735100,925,2.01,3.7,3.3,,,
+2026-11-02,2026-11-02T00:56:55Z,nL3JaPG6,futbol,ENGLAND: League One,Wigan,Mansfield,1793735100,1187,3.06,3.33,2.12,,,
+2026-11-02,2026-11-02T00:56:55Z,nL3JaPG6,futbol,ENGLAND: League One,Wigan,Mansfield,1793735100,1207,2.18,3.35,2.69,,,
+2026-11-02,2026-11-02T00:56:55Z,nL3JaPG6,futbol,ENGLAND: League One,Wigan,Mansfield,1793735100,575,3.35,3.57,2.19,,,
+2026-11-02,2026-11-02T00:56:55Z,nL3JaPG6,futbol,ENGLAND: League One,Wigan,Mansfield,1793735100,925,3.14,3.44,2.17,,,
+2026-11-02,2026-11-02T00:56:55Z,fBErhd3b,futbol,ENGLAND: League Two,Northampton,Oldham,1793735100,1187,2.34,3.04,2.91,,,
+2026-11-02,2026-11-02T00:56:55Z,fBErhd3b,futbol,ENGLAND: League Two,Northampton,Oldham,1793735100,575,2.44,3.3,3.04,,,
+2026-11-02,2026-11-02T00:56:55Z,fBErhd3b,futbol,ENGLAND: League Two,Northampton,Oldham,1793735100,925,2.36,3.13,2.99,,,
+2026-11-02,2026-11-02T00:56:55Z,baqdu7Ug,futbol,ENGLAND: National League South,Dorking,Hampton & Richmond,1793735100,1187,1.43,4.6,5.2,,,
+2026-11-02,2026-11-02T00:56:55Z,baqdu7Ug,futbol,ENGLAND: National League South,Dorking,Hampton & Richmond,1793735100,575,1.47,4.79,5.52,,,
+2026-11-02,2026-11-02T00:56:55Z,baqdu7Ug,futbol,ENGLAND: National League South,Dorking,Hampton & Richmond,1793735100,925,1.4,4.65,5.67,,,
+2026-11-02,2026-11-02T00:56:55Z,8IrdcBFb,futbol,ENGLAND: National League South,Farnborough,Ebbsfleet,1793735100,1187,4.3,4.0,1.59,,,
+2026-11-02,2026-11-02T00:56:55Z,8IrdcBFb,futbol,ENGLAND: National League South,Farnborough,Ebbsfleet,1793735100,575,4.52,4.26,1.63,,,
+2026-11-02,2026-11-02T00:56:55Z,8IrdcBFb,futbol,ENGLAND: National League South,Farnborough,Ebbsfleet,1793735100,925,4.53,4.1,1.56,,,
+2026-11-02,2026-11-02T00:56:55Z,fcacfBw3,futbol,ENGLAND: NPL Premier Division,Ashton Utd,Warrington,1793735100,925,2.21,3.52,2.69,,,
+2026-11-02,2026-11-02T00:56:55Z,6gUxzshl,futbol,ENGLAND: NPL Premier Division,Bury,Avro,1793735100,925,1.73,3.9,3.65,,,
+2026-11-02,2026-11-02T00:56:55Z,nDwes4rH,futbol,ENGLAND: NPL Premier Division,Curzon Ashton,FC United,1793735100,925,1.72,3.72,3.87,,,
+2026-11-02,2026-11-02T00:56:55Z,8vCDeFKO,futbol,ENGLAND: NPL Premier Division,Emley,Bamber Bridge,1793735100,1187,1.89,4.1,3.25,,,
+2026-11-02,2026-11-02T00:56:55Z,8vCDeFKO,futbol,ENGLAND: NPL Premier Division,Emley,Bamber Bridge,1793735100,575,1.88,4.04,3.21,,,
+2026-11-02,2026-11-02T00:56:55Z,8vCDeFKO,futbol,ENGLAND: NPL Premier Division,Emley,Bamber Bridge,1793735100,925,2.09,3.64,2.82,,,
+2026-11-02,2026-11-02T00:56:55Z,EwOvf2qK,futbol,ENGLAND: NPL Premier Division,Guiseley,Leek,1793735100,925,1.55,3.94,4.76,,,
+2026-11-02,2026-11-02T00:56:55Z,jeV41ern,futbol,ENGLAND: Southern League Premier Central,Anstey Nomads,Real Bedford,1793735100,925,2.66,3.64,2.18,,,
+2026-11-02,2026-11-02T00:56:55Z,xCTCaZCb,futbol,ENGLAND: Southern League Premier Central,Bury Town,Kettering,1793735100,925,2.21,3.42,2.75,,,
+2026-11-02,2026-11-02T00:56:55Z,EiyONdzq,futbol,ENGLAND: Southern League Premier South,Bracknell,Chertsey,1793735100,925,3.22,3.68,1.9,,,
+2026-11-02,2026-11-02T00:56:55Z,l44XtCG8,futbol,ENGLAND: Southern League Premier South,Chippenham,Evesham,1793735100,925,2.03,3.44,3.07,,,
+2026-11-02,2026-11-02T00:56:55Z,bZ94Nmt0,futbol,ENGLAND: Southern League Premier South,Plymouth Parkway,Uxbridge,1793735100,925,2.41,3.42,2.41,,,
+2026-11-02,2026-11-02T00:56:55Z,CviEXnMc,futbol,ENGLAND: Southern League Premier South,Poole,Hanwell Town,1793735100,925,1.76,3.64,3.75,,,
+2026-11-02,2026-11-02T00:56:55Z,2qA88zee,futbol,ENGLAND: Isthmian League Premier Division,Brentwood,Leatherhead,1793735100,925,1.95,3.72,3.05,,,
+2026-11-02,2026-11-02T00:56:55Z,GCkDqZ4S,futbol,ENGLAND: Isthmian League Premier Division,Eastbourne Boro,Stanway,1793735100,925,1.29,4.75,8.1,,,
+2026-11-02,2026-11-02T00:56:55Z,nFIzp3G8,futbol,ENGLAND: Isthmian League Premier Division,Lewes,Dartford,1793735100,925,2.86,3.48,2.12,,,
+2026-11-02,2026-11-02T00:56:55Z,YkNrmTSH,futbol,ENGLAND: Isthmian League Premier Division,Wingate & Finchley,Burgess Hill,1793735100,925,2.36,3.44,2.45,,,
+2026-11-02,2026-11-02T00:56:55Z,xK9rfn3E,futbol,EUROPE: Champions League - League phase,Feyenoord,Inter,1793736000,1187,3.89,4.33,1.81,,,
+2026-11-02,2026-11-02T00:56:55Z,xK9rfn3E,futbol,EUROPE: Champions League - League phase,Feyenoord,Inter,1793736000,575,3.95,4.45,1.86,,,
+2026-11-02,2026-11-02T00:56:55Z,xK9rfn3E,futbol,EUROPE: Champions League - League phase,Feyenoord,Inter,1793736000,925,4.07,4.37,1.85,,,
+2026-11-02,2026-11-02T00:56:55Z,6TK5I5v3,futbol,EUROPE: Champions League - League phase,LASK,Slovan Bratislava,1793736000,1187,1.44,5.2,6.5,,,
+2026-11-02,2026-11-02T00:56:55Z,6TK5I5v3,futbol,EUROPE: Champions League - League phase,LASK,Slovan Bratislava,1793736000,575,1.45,5.27,6.8,,,
+2026-11-02,2026-11-02T00:56:55Z,6TK5I5v3,futbol,EUROPE: Champions League - League phase,LASK,Slovan Bratislava,1793736000,925,1.5,5.03,6.67,,,
+2026-11-02,2026-11-02T00:56:55Z,8rnngLzB,futbol,EUROPE: Champions League - League phase,Manchester Utd,AS Roma,1793736000,1187,2.42,3.97,2.75,,,
+2026-11-02,2026-11-02T00:56:55Z,8rnngLzB,futbol,EUROPE: Champions League - League phase,Manchester Utd,AS Roma,1793736000,575,2.42,4.1,2.84,,,
+2026-11-02,2026-11-02T00:56:55Z,8rnngLzB,futbol,EUROPE: Champions League - League phase,Manchester Utd,AS Roma,1793736000,925,2.44,4.06,2.79,,,
+2026-11-02,2026-11-02T00:56:55Z,jcbxx5zf,futbol,JAMAICA: Premier League,Molynes,Mount Pleasant,1793657100,1187,7.0,4.4,1.38,,,
+2026-11-02,2026-11-02T00:56:55Z,jcbxx5zf,futbol,JAMAICA: Premier League,Molynes,Mount Pleasant,1793657100,575,6.77,4.35,1.39,,,
+2026-11-02,2026-11-02T00:56:55Z,jcbxx5zf,futbol,JAMAICA: Premier League,Molynes,Mount Pleasant,1793657100,925,7.35,4.2,1.36,,,
+2026-11-02,2026-11-02T00:56:55Z,OAdpzq56,futbol,JAMAICA: Premier League,Waterhouse,Cavalier,1793667600,1187,2.22,3.17,2.9,,,
+2026-11-02,2026-11-02T00:56:55Z,OAdpzq56,futbol,JAMAICA: Premier League,Waterhouse,Cavalier,1793667600,925,2.19,3.18,2.97,,,
+2026-11-02,2026-11-02T00:56:55Z,fiWPgRgt,futbol,JAPAN: J2 League,Toyama,Vegalta Sendai,1793681700,575,2.68,3.7,2.46,,,
+2026-11-02,2026-11-02T00:56:55Z,fiWPgRgt,futbol,JAPAN: J2 League,Toyama,Vegalta Sendai,1793681700,925,2.54,3.26,2.39,,,
+2026-11-02,2026-11-02T00:56:55Z,2HZXi5Oh,futbol,JAPAN: J2 League,Fujieda MYFC,Iwata,1793682000,575,3.06,3.3,2.43,,,
+2026-11-02,2026-11-02T00:56:55Z,2HZXi5Oh,futbol,JAPAN: J2 League,Fujieda MYFC,Iwata,1793682000,925,2.91,3.04,2.31,,,
+2026-11-02,2026-11-02T00:56:55Z,QydGZN8O,futbol,JAPAN: J2 League,Kofu,Albirex Niigata,1793682000,575,3.38,3.35,2.26,,,
+2026-11-02,2026-11-02T00:56:55Z,QydGZN8O,futbol,JAPAN: J2 League,Kofu,Albirex Niigata,1793682000,925,2.98,3.08,2.24,,,
+2026-11-02,2026-11-02T00:56:55Z,SpCwwxbJ,futbol,JAPAN: J2 League,Montedio Yamagata,Tokushima,1793682000,575,2.46,3.3,3.02,,,
+2026-11-02,2026-11-02T00:56:55Z,SpCwwxbJ,futbol,JAPAN: J2 League,Montedio Yamagata,Tokushima,1793682000,925,2.34,3.0,2.89,,,
+2026-11-02,2026-11-02T00:56:55Z,reyllNNH,futbol,JAPAN: J2 League,Oita Trinita,Vanraure,1793682000,575,2.16,3.2,3.64,,,
+2026-11-02,2026-11-02T00:56:55Z,reyllNNH,futbol,JAPAN: J2 League,Oita Trinita,Vanraure,1793682000,925,2.03,3.05,3.51,,,
+2026-11-02,2026-11-02T00:56:55Z,t25MplHP,futbol,JAPAN: J2 League,Omiya Ardija,Iwaki,1793682000,575,1.98,3.9,3.41,,,
+2026-11-02,2026-11-02T00:56:55Z,t25MplHP,futbol,JAPAN: J2 League,Omiya Ardija,Iwaki,1793682000,925,1.87,3.64,3.38,,,
+2026-11-02,2026-11-02T00:56:55Z,pbf0w69a,futbol,JAPAN: J2 League,Yokohama FC,Blaublitz,1793682000,575,1.84,3.79,4.45,,,
+2026-11-02,2026-11-02T00:56:55Z,pbf0w69a,futbol,JAPAN: J2 League,Yokohama FC,Blaublitz,1793682000,925,1.67,3.55,4.44,,,
+2026-11-02,2026-11-02T00:56:55Z,zVXujqg5,futbol,JAPAN: J2 League,Imabari,Hokkaido Consadole Sapporo,1793685000,575,2.94,3.5,2.41,,,
+2026-11-02,2026-11-02T00:56:55Z,zVXujqg5,futbol,JAPAN: J2 League,Imabari,Hokkaido Consadole Sapporo,1793685000,925,2.79,3.22,2.29,,,
+2026-11-02,2026-11-02T00:56:55Z,UVLRJDCL,futbol,LIBYA: Premier League,Asswehly,Al Bashaer,1793725200,925,1.3,4.17,9.75,,,
+2026-11-02,2026-11-02T00:56:55Z,YRpQg83j,futbol,MEXICO: Liga Premier Serie A,Halcones Negros,Apodaca,1793671500,925,1.39,4.6,5.81,,,
+2026-11-02,2026-11-02T00:56:55Z,MZuiqD1D,futbol,MEXICO: Liga MX Women - Apertura,Club Leon W,Atl. San Luis W,1793667960,1187,1.72,4.1,3.47,,,
+2026-11-02,2026-11-02T00:56:55Z,MZuiqD1D,futbol,MEXICO: Liga MX Women - Apertura,Club Leon W,Atl. San Luis W,1793667960,575,1.76,4.43,3.61,,,
+2026-11-02,2026-11-02T00:56:55Z,MZuiqD1D,futbol,MEXICO: Liga MX Women - Apertura,Club Leon W,Atl. San Luis W,1793667960,925,1.66,3.92,3.97,,,
+2026-11-02,2026-11-02T00:56:55Z,QLJvvrFd,futbol,PERU: Liga 1 - Clausura,Comerciantes Unidos,AD Tarma,1793736000,1187,2.13,3.23,3.16,,,
+2026-11-02,2026-11-02T00:56:55Z,QLJvvrFd,futbol,PERU: Liga 1 - Clausura,Comerciantes Unidos,AD Tarma,1793736000,575,2.18,3.5,3.22,,,
+2026-11-02,2026-11-02T00:56:55Z,QLJvvrFd,futbol,PERU: Liga 1 - Clausura,Comerciantes Unidos,AD Tarma,1793736000,925,2.16,3.28,3.21,,,
+2026-11-02,2026-11-02T00:56:55Z,YBQfwKZ8,futbol,RUSSIA: Russian Cup - Regions Path,S. Kostroma,Volna Nizhegorodskaya,1793723400,1187,1.29,4.6,7.4,,,
+2026-11-02,2026-11-02T00:56:55Z,YBQfwKZ8,futbol,RUSSIA: Russian Cup - Regions Path,S. Kostroma,Volna Nizhegorodskaya,1793723400,925,1.37,5.36,8.15,,,
+2026-11-02,2026-11-02T00:56:55Z,WUYYsb5m,futbol,SCOTLAND: Challenge Cup - Play Offs,Aberdeen B,Queen's Park,1793735100,1187,4.2,3.83,1.63,,,
+2026-11-02,2026-11-02T00:56:55Z,WUYYsb5m,futbol,SCOTLAND: Challenge Cup - Play Offs,Aberdeen B,Queen's Park,1793735100,575,4.28,3.88,1.65,,,
+2026-11-02,2026-11-02T00:56:55Z,WUYYsb5m,futbol,SCOTLAND: Challenge Cup - Play Offs,Aberdeen B,Queen's Park,1793735100,925,4.07,3.88,1.66,,,
+2026-11-02,2026-11-02T00:56:55Z,QBzkvG4C,futbol,SCOTLAND: Challenge Cup - Play Offs,Annan,Ayr,1793735100,1187,5.2,4.2,1.47,,,
+2026-11-02,2026-11-02T00:56:55Z,QBzkvG4C,futbol,SCOTLAND: Challenge Cup - Play Offs,Annan,Ayr,1793735100,575,5.25,4.36,1.47,,,
+2026-11-02,2026-11-02T00:56:55Z,QBzkvG4C,futbol,SCOTLAND: Challenge Cup - Play Offs,Annan,Ayr,1793735100,925,5.37,4.25,1.46,,,
+2026-11-02,2026-11-02T00:56:55Z,QDmatLRr,futbol,SAUDI ARABIA: Division 2,Al Sahel,Al Qwarah,1793620500,575,1.88,3.16,3.67,1.885,3.16,3.67
+2026-11-02,2026-11-02T00:56:55Z,QDmatLRr,futbol,SAUDI ARABIA: Division 2,Al Sahel,Al Qwarah,1793620500,925,1.85,3.22,3.89,1.885,3.16,3.67
+2026-11-02,2026-11-02T00:56:55Z,n1NJ0kDc,futbol,SAUDI ARABIA: Division 2,Al Taraji,Al Batin,1793620500,575,2.42,3.42,2.42,2.42,3.42,2.42
+2026-11-02,2026-11-02T00:56:55Z,n1NJ0kDc,futbol,SAUDI ARABIA: Division 2,Al Taraji,Al Batin,1793620500,925,2.44,3.28,2.45,2.42,3.42,2.42
+2026-11-02,2026-11-02T00:56:55Z,QkQtUT9C,futbol,ARGENTINA: Primera Nacional,Chacarita Juniors,Nueva Chicago,1793642400,1187,2.3,2.96,3.26,2.36,3.04,3.37
+2026-11-02,2026-11-02T00:56:55Z,QkQtUT9C,futbol,ARGENTINA: Primera Nacional,Chacarita Juniors,Nueva Chicago,1793642400,575,2.37,3.04,3.44,2.36,3.04,3.37
+2026-11-02,2026-11-02T00:56:55Z,QkQtUT9C,futbol,ARGENTINA: Primera Nacional,Chacarita Juniors,Nueva Chicago,1793642400,925,2.24,2.91,3.16,2.36,3.04,3.37
+2026-11-02,2026-11-02T00:56:55Z,rkNdp2Ca,futbol,ARGENTINA: Primera B,Liniers,Ituzaingo,1793642400,1187,1.5,3.63,6.5,1.5025,3.62,6.4
+2026-11-02,2026-11-02T00:56:55Z,rkNdp2Ca,futbol,ARGENTINA: Primera B,Liniers,Ituzaingo,1793642400,575,1.5,3.62,6.4,1.5025,3.62,6.4
+2026-11-02,2026-11-02T00:56:55Z,rkNdp2Ca,futbol,ARGENTINA: Primera B,Liniers,Ituzaingo,1793642400,925,1.48,3.54,6.74,1.5025,3.62,6.4
+2026-11-02,2026-11-02T00:56:55Z,tl20p91n,futbol,BRAZIL: Serie B,Athletic Club,Ceara,1793653200,1187,2.44,3.01,3.05,2.49,3.1,3.15
+2026-11-02,2026-11-02T00:56:55Z,tl20p91n,futbol,BRAZIL: Serie B,Athletic Club,Ceara,1793653200,575,2.5,3.1,3.19,2.49,3.1,3.15
+2026-11-02,2026-11-02T00:56:55Z,tl20p91n,futbol,BRAZIL: Serie B,Athletic Club,Ceara,1793653200,925,2.38,3.05,3.02,2.49,3.1,3.15
+2026-11-02,2026-11-02T00:56:55Z,MHO4lFhB,futbol,BULGARIA: efbet League,Cherno More,Botev Vratsa,1793631600,1187,1.93,3.09,3.93,1.9901,3.27,4.13
+2026-11-02,2026-11-02T00:56:55Z,MHO4lFhB,futbol,BULGARIA: efbet League,Cherno More,Botev Vratsa,1793631600,575,1.99,3.27,4.22,1.9901,3.27,4.13
+2026-11-02,2026-11-02T00:56:55Z,MHO4lFhB,futbol,BULGARIA: efbet League,Cherno More,Botev Vratsa,1793631600,925,1.94,3.18,4.0,1.9901,3.27,4.13
+2026-11-02,2026-11-02T00:56:55Z,bH8x3E74,futbol,BULGARIA: efbet League,Arda,Septemvri Sofia,1793640600,1187,1.63,3.61,4.9,1.6711,3.83,5.12
+2026-11-02,2026-11-02T00:56:55Z,bH8x3E74,futbol,BULGARIA: efbet League,Arda,Septemvri Sofia,1793640600,575,1.67,3.83,5.62,1.6711,3.83,5.12
+2026-11-02,2026-11-02T00:56:55Z,bH8x3E74,futbol,BULGARIA: efbet League,Arda,Septemvri Sofia,1793640600,925,1.62,3.68,5.27,1.6711,3.83,5.12
+2026-11-02,2026-11-02T00:56:55Z,hxVpVtCD,futbol,DENMARK: Superliga,Sonderjyske,FC Copenhagen,1793642400,1187,6.2,4.75,1.42,6.5,5.04,1.4505
+2026-11-02,2026-11-02T00:56:55Z,hxVpVtCD,futbol,DENMARK: Superliga,Sonderjyske,FC Copenhagen,1793642400,575,6.52,5.04,1.46,6.5,5.04,1.4505
+2026-11-02,2026-11-02T00:56:55Z,hxVpVtCD,futbol,DENMARK: Superliga,Sonderjyske,FC Copenhagen,1793642400,925,6.51,4.6,1.43,6.5,5.04,1.4505
+2026-11-02,2026-11-02T00:56:55Z,pQMJHgIk,futbol,FINLAND: Veikkausliiga - Championship Group,Inter Turku,Gnistan,1793635200,1187,1.36,4.8,7.4,1.3846,5.19,7.92
+2026-11-02,2026-11-02T00:56:55Z,pQMJHgIk,futbol,FINLAND: Veikkausliiga - Championship Group,Inter Turku,Gnistan,1793635200,575,1.41,5.19,7.92,1.3846,5.19,7.92
+2026-11-02,2026-11-02T00:56:55Z,pQMJHgIk,futbol,FINLAND: Veikkausliiga - Championship Group,Inter Turku,Gnistan,1793635200,925,1.4,4.75,6.9,1.3846,5.19,7.92
+2026-11-02,2026-11-02T00:56:55Z,0KHPEFtR,futbol,FRANCE: Ligue 1,Lorient,Brest,1793648700,1187,2.44,3.21,2.91,2.51,3.29,3.05
+2026-11-02,2026-11-02T00:56:55Z,0KHPEFtR,futbol,FRANCE: Ligue 1,Lorient,Brest,1793648700,575,2.52,3.35,3.08,2.51,3.29,3.05
+2026-11-02,2026-11-02T00:56:55Z,0KHPEFtR,futbol,FRANCE: Ligue 1,Lorient,Brest,1793648700,925,2.56,3.39,3.03,2.51,3.29,3.05
+2026-11-02,2026-11-02T00:56:55Z,U5O4IfFb,futbol,FRANCE: Ligue 2,Reims,Sochaux,1793648700,1187,1.71,3.57,4.4,1.7576,3.81,4.69
+2026-11-02,2026-11-02T00:56:55Z,U5O4IfFb,futbol,FRANCE: Ligue 2,Reims,Sochaux,1793648700,575,1.76,3.89,4.72,1.7576,3.81,4.69
+2026-11-02,2026-11-02T00:56:55Z,U5O4IfFb,futbol,FRANCE: Ligue 2,Reims,Sochaux,1793648700,925,1.67,3.84,4.75,1.7576,3.81,4.69
+2026-11-02,2026-11-02T00:56:55Z,AuhHEmz9,futbol,GREECE: Super League,Atromitos,Volos,1793635200,1187,1.87,3.47,3.91,1.9091,3.59,4.13
+2026-11-02,2026-11-02T00:56:55Z,AuhHEmz9,futbol,GREECE: Super League,Atromitos,Volos,1793635200,575,1.92,3.59,4.17,1.9091,3.59,4.13
+2026-11-02,2026-11-02T00:56:55Z,AuhHEmz9,futbol,GREECE: Super League,Atromitos,Volos,1793635200,925,1.84,3.55,4.09,1.9091,3.59,4.13
+2026-11-02,2026-11-02T00:56:55Z,Eg2kiOLt,futbol,GUATEMALA: Liga Nacional - Apertura,Comunicaciones,Deportivo Mixco,1793584800,1187,1.58,3.88,5.3,1.5882,3.88,5.42
+2026-11-02,2026-11-02T00:56:55Z,Eg2kiOLt,futbol,GUATEMALA: Liga Nacional - Apertura,Comunicaciones,Deportivo Mixco,1793584800,575,1.59,3.88,5.42,1.5882,3.88,5.42
+2026-11-02,2026-11-02T00:56:55Z,Eg2kiOLt,futbol,GUATEMALA: Liga Nacional - Apertura,Comunicaciones,Deportivo Mixco,1793584800,925,1.55,3.68,5.17,1.5882,3.88,5.42
+2026-11-02,2026-11-02T00:56:55Z,vXVypWgK,futbol,ISRAEL: Ligat ha'Al,Hapoel Tel Aviv,Maccabi Haifa,1793644200,1187,2.06,3.71,3.12,2.1,3.8,3.2
+2026-11-02,2026-11-02T00:56:55Z,vXVypWgK,futbol,ISRAEL: Ligat ha'Al,Hapoel Tel Aviv,Maccabi Haifa,1793644200,575,2.1,3.8,3.3,2.1,3.8,3.2
+2026-11-02,2026-11-02T00:56:55Z,vXVypWgK,futbol,ISRAEL: Ligat ha'Al,Hapoel Tel Aviv,Maccabi Haifa,1793644200,925,2.03,3.7,3.16,2.1,3.8,3.2
+2026-11-02,2026-11-02T00:56:55Z,Aq2r7rHq,futbol,ISRAEL: Leumit League,Hapoel Kfar Shalem,Ironi Modiin,1793638800,1187,1.41,4.4,5.7,1.4329,4.55,5.97
+2026-11-02,2026-11-02T00:56:55Z,Aq2r7rHq,futbol,ISRAEL: Leumit League,Hapoel Kfar Shalem,Ironi Modiin,1793638800,575,1.43,4.55,5.97,1.4329,4.55,5.97
+2026-11-02,2026-11-02T00:56:55Z,Aq2r7rHq,futbol,ISRAEL: Leumit League,Hapoel Kfar Shalem,Ironi Modiin,1793638800,925,1.4,4.35,6.08,1.4329,4.55,5.97
+2026-11-02,2026-11-02T00:56:55Z,YHemANS7,futbol,ITALY: Serie A,Sassuolo,Fiorentina,1793640600,1187,2.79,3.65,2.31,2.9,3.81,2.36
+2026-11-02,2026-11-02T00:56:55Z,YHemANS7,futbol,ITALY: Serie A,Sassuolo,Fiorentina,1793640600,575,2.9,3.85,2.42,2.9,3.81,2.36
+2026-11-02,2026-11-02T00:56:55Z,YHemANS7,futbol,ITALY: Serie A,Sassuolo,Fiorentina,1793640600,925,2.94,3.79,2.43,2.9,3.81,2.36
+2026-11-02,2026-11-02T00:56:55Z,buLL6lMF,futbol,ITALY: Serie A,Atalanta,Parma,1793648700,1187,1.49,4.5,5.9,1.5181,4.68,6.17
+2026-11-02,2026-11-02T00:56:55Z,buLL6lMF,futbol,ITALY: Serie A,Atalanta,Parma,1793648700,575,1.54,4.7,6.17,1.5181,4.68,6.17
+2026-11-02,2026-11-02T00:56:55Z,buLL6lMF,futbol,ITALY: Serie A,Atalanta,Parma,1793648700,925,1.56,4.68,6.3,1.5181,4.68,6.17
+2026-11-02,2026-11-02T00:56:55Z,h8w6yJY0,futbol,ITALY: Serie C - Group A,Novara,Desenzano,1793647800,575,2.11,3.35,3.72,2.1,3.07,3.72
+2026-11-02,2026-11-02T00:56:55Z,h8w6yJY0,futbol,ITALY: Serie C - Group A,Novara,Desenzano,1793647800,925,1.99,3.08,3.55,2.1,3.07,3.72
+2026-11-02,2026-11-02T00:56:55Z,QZpFVJWb,futbol,ITALY: Serie C - Group C,Casarano,Foggia,1793647800,575,2.45,3.35,3.04,2.54,3.15,2.78
+2026-11-02,2026-11-02T00:56:55Z,QZpFVJWb,futbol,ITALY: Serie C - Group C,Casarano,Foggia,1793647800,925,2.35,3.06,2.7,2.54,3.15,2.78
+2026-11-02,2026-11-02T00:56:55Z,MmuW5LMF,futbol,MEXICO: Liga MX - Apertura,Cruz Azul,Club Leon,1793581800,1187,1.72,3.95,4.7,1.7463,4.03,4.7
+2026-11-02,2026-11-02T00:56:55Z,MmuW5LMF,futbol,MEXICO: Liga MX - Apertura,Cruz Azul,Club Leon,1793581800,575,1.72,4.12,4.85,1.7463,4.03,4.7
+2026-11-02,2026-11-02T00:56:55Z,MmuW5LMF,futbol,MEXICO: Liga MX - Apertura,Cruz Azul,Club Leon,1793581800,925,1.71,3.99,4.86,1.7463,4.03,4.7
+2026-11-02,2026-11-02T00:56:55Z,KKbSDOAc,futbol,NETHERLANDS: Eerste Divisie,Jong PSV,NAC Breda,1793646000,1187,4.8,4.5,1.53,4.94,4.76,1.5525
+2026-11-02,2026-11-02T00:56:55Z,KKbSDOAc,futbol,NETHERLANDS: Eerste Divisie,Jong PSV,NAC Breda,1793646000,575,4.94,4.76,1.58,4.94,4.76,1.5525
+2026-11-02,2026-11-02T00:56:55Z,KKbSDOAc,futbol,NETHERLANDS: Eerste Divisie,Jong PSV,NAC Breda,1793646000,925,4.67,4.55,1.55,4.94,4.76,1.5525
+2026-11-02,2026-11-02T00:56:55Z,SQBtjLIj,futbol,NETHERLANDS: Eerste Divisie,Jong Utrecht,Dordrecht,1793646000,1187,2.22,3.6,2.83,2.28,3.69,2.94
+2026-11-02,2026-11-02T00:56:55Z,SQBtjLIj,futbol,NETHERLANDS: Eerste Divisie,Jong Utrecht,Dordrecht,1793646000,575,2.28,3.85,2.95,2.28,3.69,2.94
+2026-11-02,2026-11-02T00:56:55Z,SQBtjLIj,futbol,NETHERLANDS: Eerste Divisie,Jong Utrecht,Dordrecht,1793646000,925,2.25,3.6,2.8,2.28,3.69,2.94
+2026-11-02,2026-11-02T00:56:55Z,v1GvtM4t,futbol,NORWAY: OBOS-ligaen,Kongsvinger,Stabaek,1793642400,1187,2.05,4.2,2.61,2.14,4.49,2.76
+2026-11-02,2026-11-02T00:56:55Z,v1GvtM4t,futbol,NORWAY: OBOS-ligaen,Kongsvinger,Stabaek,1793642400,575,2.16,4.54,2.77,2.14,4.49,2.76
+2026-11-02,2026-11-02T00:56:55Z,v1GvtM4t,futbol,NORWAY: OBOS-ligaen,Kongsvinger,Stabaek,1793642400,925,2.18,4.25,2.6,2.14,4.49,2.76
+2026-11-02,2026-11-02T00:56:55Z,rFTpk8Nc,futbol,PERU: Liga 1 - Clausura,Sport Huancayo,FBC Melgar,1793635200,1187,2.07,3.69,2.93,2.12,3.75,3.01
+2026-11-02,2026-11-02T00:56:55Z,rFTpk8Nc,futbol,PERU: Liga 1 - Clausura,Sport Huancayo,FBC Melgar,1793635200,575,2.14,3.75,3.06,2.12,3.75,3.01
+2026-11-02,2026-11-02T00:56:55Z,rFTpk8Nc,futbol,PERU: Liga 1 - Clausura,Sport Huancayo,FBC Melgar,1793635200,925,2.12,3.65,2.99,2.12,3.75,3.01
+2026-11-02,2026-11-02T00:56:55Z,KOzUWQ7T,futbol,PERU: Liga 1 - Clausura,Sporting Cristal,FC Cajamarca,1793651400,1187,1.23,5.9,9.0,1.2336,6.28,9.5
+2026-11-02,2026-11-02T00:56:55Z,KOzUWQ7T,futbol,PERU: Liga 1 - Clausura,Sporting Cristal,FC Cajamarca,1793651400,575,1.25,6.28,9.5,1.2336,6.28,9.5
+2026-11-02,2026-11-02T00:56:55Z,KOzUWQ7T,futbol,PERU: Liga 1 - Clausura,Sporting Cristal,FC Cajamarca,1793651400,925,1.23,6.0,10.0,1.2336,6.28,9.5
+2026-11-02,2026-11-02T00:56:55Z,QkFIeJkm,futbol,POLAND: Ekstraklasa,Radomiak Radom,Slask Wroclaw,1793638800,1187,2.14,3.58,2.95,2.23,3.75,3.07
+2026-11-02,2026-11-02T00:56:55Z,QkFIeJkm,futbol,POLAND: Ekstraklasa,Radomiak Radom,Slask Wroclaw,1793638800,575,2.25,3.78,3.06,2.23,3.75,3.07
+2026-11-02,2026-11-02T00:56:55Z,QkFIeJkm,futbol,POLAND: Ekstraklasa,Radomiak Radom,Slask Wroclaw,1793638800,925,2.13,3.62,3.0,2.23,3.75,3.07
+2026-11-02,2026-11-02T00:56:55Z,n5kyisX7,futbol,POLAND: Division 1,Polonia Bytom,Odra Opole,1793638800,1187,2.05,3.73,3.14,2.11,3.82,3.18
+2026-11-02,2026-11-02T00:56:55Z,n5kyisX7,futbol,POLAND: Division 1,Polonia Bytom,Odra Opole,1793638800,575,2.15,3.82,3.22,2.11,3.82,3.18
+2026-11-02,2026-11-02T00:56:55Z,n5kyisX7,futbol,POLAND: Division 1,Polonia Bytom,Odra Opole,1793638800,925,1.96,3.5,3.23,2.11,3.82,3.18
+2026-11-02,2026-11-02T00:56:55Z,nq8M98jd,futbol,PORTUGAL: Liga Portugal,Gil Vicente,Vitoria Guimaraes,1793650500,1187,2.79,2.93,2.6,2.92,3.07,2.72
+2026-11-02,2026-11-02T00:56:55Z,nq8M98jd,futbol,PORTUGAL: Liga Portugal,Gil Vicente,Vitoria Guimaraes,1793650500,575,2.92,3.11,2.72,2.92,3.07,2.72
+2026-11-02,2026-11-02T00:56:55Z,nq8M98jd,futbol,PORTUGAL: Liga Portugal,Gil Vicente,Vitoria Guimaraes,1793650500,925,2.97,3.26,2.58,2.92,3.07,2.72
+2026-11-02,2026-11-02T00:56:55Z,IHNCli6l,futbol,PORTUGAL: Liga Portugal 2,Penafiel,Feirense,1793642400,1187,1.85,3.39,4.1,1.8772,3.54,4.21
+2026-11-02,2026-11-02T00:56:55Z,IHNCli6l,futbol,PORTUGAL: Liga Portugal 2,Penafiel,Feirense,1793642400,575,1.9,3.55,4.43,1.8772,3.54,4.21
+2026-11-02,2026-11-02T00:56:55Z,IHNCli6l,futbol,PORTUGAL: Liga Portugal 2,Penafiel,Feirense,1793642400,925,1.89,3.38,3.94,1.8772,3.54,4.21
+2026-11-02,2026-11-02T00:56:55Z,ENTc6WuP,futbol,RUSSIA: Premier League,Krylya Sovetov,Zenit,1793631600,1187,5.6,4.4,1.55,5.69,4.45,1.5618
+2026-11-02,2026-11-02T00:56:55Z,ENTc6WuP,futbol,RUSSIA: Premier League,Krylya Sovetov,Zenit,1793631600,575,5.69,4.45,1.56,5.69,4.45,1.5618
+2026-11-02,2026-11-02T00:56:55Z,ENTc6WuP,futbol,RUSSIA: Premier League,Krylya Sovetov,Zenit,1793631600,925,5.84,4.56,1.6,5.69,4.45,1.5618
+2026-11-02,2026-11-02T00:56:55Z,8GyD3ouA,futbol,SAUDI ARABIA: Division 1,Al Jabalain,Al Bukiryah,1793622600,1187,1.58,3.69,5.7,1.5917,3.73,5.73
+2026-11-02,2026-11-02T00:56:55Z,8GyD3ouA,futbol,SAUDI ARABIA: Division 1,Al Jabalain,Al Bukiryah,1793622600,575,1.59,3.73,6.06,1.5917,3.73,5.73
+2026-11-02,2026-11-02T00:56:55Z,8GyD3ouA,futbol,SAUDI ARABIA: Division 1,Al Jabalain,Al Bukiryah,1793622600,925,1.5,3.7,5.83,1.5917,3.73,5.73
+2026-11-02,2026-11-02T00:56:55Z,p6xtknQG,futbol,SAUDI ARABIA: Division 1,Al Orubah,Al Anwar,1793622600,1187,2.57,3.06,2.53,2.66,3.18,2.62
+2026-11-02,2026-11-02T00:56:55Z,p6xtknQG,futbol,SAUDI ARABIA: Division 1,Al Orubah,Al Anwar,1793622600,575,2.66,3.18,2.62,2.66,3.18,2.62
+2026-11-02,2026-11-02T00:56:55Z,p6xtknQG,futbol,SAUDI ARABIA: Division 1,Al Orubah,Al Anwar,1793622600,925,2.48,3.06,2.55,2.66,3.18,2.62
+2026-11-02,2026-11-02T00:56:55Z,tUZK1P9M,futbol,SAUDI ARABIA: Division 1,Al Jeel,Al Najma,1793630400,1187,5.4,3.72,1.56,5.64,3.83,1.5814
+2026-11-02,2026-11-02T00:56:55Z,tUZK1P9M,futbol,SAUDI ARABIA: Division 1,Al Jeel,Al Najma,1793630400,575,5.76,3.83,1.58,5.64,3.83,1.5814
+2026-11-02,2026-11-02T00:56:55Z,tUZK1P9M,futbol,SAUDI ARABIA: Division 1,Al Jeel,Al Najma,1793630400,925,5.56,3.74,1.51,5.64,3.83,1.5814
+2026-11-02,2026-11-02T00:56:55Z,j3Ljd3Xq,futbol,SAUDI ARABIA: Division 1,Al Zulfi,Al Jandal,1793631300,1187,1.85,3.26,4.0,1.8696,3.35,4.19
+2026-11-02,2026-11-02T00:56:55Z,j3Ljd3Xq,futbol,SAUDI ARABIA: Division 1,Al Zulfi,Al Jandal,1793631300,575,1.89,3.35,4.19,1.8696,3.35,4.19
+2026-11-02,2026-11-02T00:56:55Z,j3Ljd3Xq,futbol,SAUDI ARABIA: Division 1,Al Zulfi,Al Jandal,1793631300,925,1.77,3.28,4.21,1.8696,3.35,4.19
+2026-11-02,2026-11-02T00:56:55Z,S44WsFB5,futbol,SERBIA: Mozzart Bet Super Liga,Radnicki Nis,Zeleznicar Pancevo,1793638800,1187,3.69,3.35,2.04,3.48,3.17,1.9615
+2026-11-02,2026-11-02T00:56:55Z,S44WsFB5,futbol,SERBIA: Mozzart Bet Super Liga,Radnicki Nis,Zeleznicar Pancevo,1793638800,575,3.48,3.35,2.0,3.48,3.17,1.9615
+2026-11-02,2026-11-02T00:56:55Z,S44WsFB5,futbol,SERBIA: Mozzart Bet Super Liga,Radnicki Nis,Zeleznicar Pancevo,1793638800,925,3.85,3.36,2.02,3.48,3.17,1.9615
+2026-11-02,2026-11-02T00:56:55Z,pQ64l1OF,futbol,SLOVENIA: Prva liga,Bravo,Koper,1793635200,1187,3.25,3.55,1.98,3.41,3.71,2.05
+2026-11-02,2026-11-02T00:56:55Z,pQ64l1OF,futbol,SLOVENIA: Prva liga,Bravo,Koper,1793635200,575,3.41,3.75,2.08,3.41,3.71,2.05
+2026-11-02,2026-11-02T00:56:55Z,pQ64l1OF,futbol,SLOVENIA: Prva liga,Bravo,Koper,1793635200,925,3.32,3.46,1.94,3.41,3.71,2.05
+2026-11-02,2026-11-02T00:56:55Z,W2IjtgkQ,futbol,SOUTH AFRICA: Motsepe Foundation Championship,Cape Town City,Magesi,1793640600,1187,2.11,2.94,3.55,2.11,2.93,3.54
+2026-11-02,2026-11-02T00:56:55Z,W2IjtgkQ,futbol,SOUTH AFRICA: Motsepe Foundation Championship,Cape Town City,Magesi,1793640600,575,2.11,2.93,3.54,2.11,2.93,3.54
+2026-11-02,2026-11-02T00:56:55Z,W2IjtgkQ,futbol,SOUTH AFRICA: Motsepe Foundation Championship,Cape Town City,Magesi,1793640600,925,2.06,2.99,3.46,2.11,2.93,3.54
+2026-11-02,2026-11-02T00:56:55Z,nZSWTK4l,futbol,SPAIN: Primera RFEF - Group 2,Huesca,Gimnastic,1793647800,1187,1.66,3.37,5.1,1.6757,3.42,5.12
+2026-11-02,2026-11-02T00:56:55Z,nZSWTK4l,futbol,SPAIN: Primera RFEF - Group 2,Huesca,Gimnastic,1793647800,575,1.68,3.8,5.12,1.6757,3.42,5.12
+2026-11-02,2026-11-02T00:56:55Z,nZSWTK4l,futbol,SPAIN: Primera RFEF - Group 2,Huesca,Gimnastic,1793647800,925,1.63,3.38,5.07,1.6757,3.42,5.12
+2026-11-02,2026-11-02T00:56:55Z,6iUR0UvJ,futbol,SWEDEN: Allsvenskan,GAIS,AIK,1793642400,1187,1.84,3.89,3.86,1.8547,3.95,3.92
+2026-11-02,2026-11-02T00:56:55Z,6iUR0UvJ,futbol,SWEDEN: Allsvenskan,GAIS,AIK,1793642400,575,1.86,3.99,4.01,1.8547,3.95,3.92
+2026-11-02,2026-11-02T00:56:55Z,6iUR0UvJ,futbol,SWEDEN: Allsvenskan,GAIS,AIK,1793642400,925,1.78,3.92,3.94,1.8547,3.95,3.92
+2026-11-02,2026-11-02T00:56:55Z,hr3pJBfm,futbol,SWEDEN: Allsvenskan,Mjallby,Kalmar,1793642400,1187,2.52,3.4,2.71,2.55,3.45,2.75
+2026-11-02,2026-11-02T00:56:55Z,hr3pJBfm,futbol,SWEDEN: Allsvenskan,Mjallby,Kalmar,1793642400,575,2.56,3.46,2.79,2.55,3.45,2.75
+2026-11-02,2026-11-02T00:56:55Z,hr3pJBfm,futbol,SWEDEN: Allsvenskan,Mjallby,Kalmar,1793642400,925,2.45,3.34,2.72,2.55,3.45,2.75
+2026-11-02,2026-11-02T00:56:55Z,2qfAPmVr,futbol,TURKEY: Super Lig,Genclerbirligi,Alanyaspor,1793638800,1187,2.59,3.19,2.62,2.72,3.35,2.71
+2026-11-02,2026-11-02T00:56:55Z,2qfAPmVr,futbol,TURKEY: Super Lig,Genclerbirligi,Alanyaspor,1793638800,575,2.75,3.35,2.72,2.72,3.35,2.71
+2026-11-02,2026-11-02T00:56:55Z,2qfAPmVr,futbol,TURKEY: Super Lig,Genclerbirligi,Alanyaspor,1793638800,925,2.78,3.42,2.64,2.72,3.35,2.71
+2026-11-02,2026-11-02T00:56:55Z,tGSEAW8r,futbol,TURKEY: 1. Lig,Kayserispor,Muglaspor,1793638800,1187,1.43,4.3,6.2,1.4651,4.49,6.6
+2026-11-02,2026-11-02T00:56:55Z,tGSEAW8r,futbol,TURKEY: 1. Lig,Kayserispor,Muglaspor,1793638800,575,1.47,4.49,6.6,1.4651,4.49,6.6
+2026-11-02,2026-11-02T00:56:55Z,tGSEAW8r,futbol,TURKEY: 1. Lig,Kayserispor,Muglaspor,1793638800,925,1.4,4.2,6.5,1.4651,4.49,6.6
+2026-11-02,2026-11-02T00:56:55Z,2FllKQc5,futbol,UKRAINE: Premier League,Karpaty Lviv,Kudrivka,1793635200,1187,1.35,5.0,7.0,1.3623,5.08,7.16
+2026-11-02,2026-11-02T00:56:55Z,2FllKQc5,futbol,UKRAINE: Premier League,Karpaty Lviv,Kudrivka,1793635200,575,1.38,5.08,7.16,1.3623,5.08,7.16
+2026-11-02,2026-11-02T00:56:55Z,2FllKQc5,futbol,UKRAINE: Premier League,Karpaty Lviv,Kudrivka,1793635200,925,1.41,5.14,6.95,1.3623,5.08,7.16
+2026-11-02,2026-11-02T00:56:55Z,2ymT8adc,futbol,USA: MLS,Los Angeles FC,Minnesota United,1793583000,1187,1.73,4.1,4.1,1.7634,4.21,4.28
+2026-11-02,2026-11-02T00:56:55Z,2ymT8adc,futbol,USA: MLS,Los Angeles FC,Minnesota United,1793583000,575,1.79,4.16,4.32,1.7634,4.21,4.28
+2026-11-02,2026-11-02T00:56:55Z,2ymT8adc,futbol,USA: MLS,Los Angeles FC,Minnesota United,1793583000,925,1.77,4.32,4.27,1.7634,4.21,4.28
+2026-11-02,2026-11-02T00:56:55Z,Emp1lVAr,futbol,USA: MLS,Portland Timbers,Houston Dynamo,1793587500,1187,1.71,3.92,4.4,1.7407,4.04,4.58
+2026-11-02,2026-11-02T00:56:55Z,Emp1lVAr,futbol,USA: MLS,Portland Timbers,Houston Dynamo,1793587500,575,1.75,4.11,4.58,1.7407,4.04,4.58
+2026-11-02,2026-11-02T00:56:55Z,Emp1lVAr,futbol,USA: MLS,Portland Timbers,Houston Dynamo,1793587500,925,1.76,4.13,4.52,1.7407,4.04,4.58
+2026-11-02,2026-11-02T00:56:55Z,h6M8DKu1,futbol,USA: USL Championship - Play Offs,Sacramento Republic,FC Tulsa,1793584800,1187,1.63,3.58,5.3,1.6757,3.64,5.61
+2026-11-02,2026-11-02T00:56:55Z,h6M8DKu1,futbol,USA: USL Championship - Play Offs,Sacramento Republic,FC Tulsa,1793584800,575,1.68,3.64,5.79,1.6757,3.64,5.61
+2026-11-02,2026-11-02T00:56:55Z,h6M8DKu1,futbol,USA: USL Championship - Play Offs,Sacramento Republic,FC Tulsa,1793584800,925,1.59,3.48,5.27,1.6757,3.64,5.61
+2026-11-02,2026-11-02T00:56:55Z,YJzFX0lU,futbol,USA: USL League One - Play Offs,Boise,One Knoxville,1793581200,1187,1.65,3.91,4.6,1.6623,3.95,4.6
+2026-11-02,2026-11-02T00:56:55Z,YJzFX0lU,futbol,USA: USL League One - Play Offs,Boise,One Knoxville,1793581200,575,1.76,3.92,4.57,1.6623,3.95,4.6
+2026-11-02,2026-11-02T00:56:55Z,YJzFX0lU,futbol,USA: USL League One - Play Offs,Boise,One Knoxville,1793581200,925,1.74,3.85,4.27,1.6623,3.95,4.6
+2026-11-02,2026-11-02T00:56:55Z,6RFs7Rk1,futbol,SAUDI ARABIA: Saudi Professional League,Al Qadsiah,Al Fayha,1793899800,1187,1.11,8.2,11.0,1.1312,8.97,12.93
+2026-11-02,2026-11-02T00:56:55Z,6RFs7Rk1,futbol,SAUDI ARABIA: Saudi Professional League,Al Qadsiah,Al Fayha,1793899800,575,1.13,9.09,12.93,1.1312,8.97,12.93
+2026-11-02,2026-11-02T00:56:55Z,6RFs7Rk1,futbol,SAUDI ARABIA: Saudi Professional League,Al Qadsiah,Al Fayha,1793899800,925,1.1,9.6,16.5,1.1312,8.97,12.93
+2026-11-02,2026-11-02T00:56:55Z,Q7COc5Sg,futbol,SAUDI ARABIA: Saudi Professional League,Al Ettifaq,Al Hilal,1794061800,1187,8.0,6.4,1.21,8.55,6.86,1.2262
+2026-11-02,2026-11-02T00:56:55Z,Q7COc5Sg,futbol,SAUDI ARABIA: Saudi Professional League,Al Ettifaq,Al Hilal,1794061800,575,9.31,6.86,1.23,8.55,6.86,1.2262
+2026-11-02,2026-11-02T00:56:55Z,Q7COc5Sg,futbol,SAUDI ARABIA: Saudi Professional League,Al Ettifaq,Al Hilal,1794061800,925,10.7,7.0,1.2,8.55,6.86,1.2262
+2026-11-02,2026-11-02T00:56:55Z,b1CZ8mLl,futbol,SAUDI ARABIA: Saudi Professional League,Al Hazem,Al Nassr,1793976900,1187,9.3,6.7,1.17,10.12,7.27,1.1898
+2026-11-02,2026-11-02T00:56:55Z,b1CZ8mLl,futbol,SAUDI ARABIA: Saudi Professional League,Al Hazem,Al Nassr,1793976900,575,10.13,7.27,1.2,10.12,7.27,1.1898
+2026-11-02,2026-11-02T00:56:55Z,b1CZ8mLl,futbol,SAUDI ARABIA: Saudi Professional League,Al Hazem,Al Nassr,1793976900,925,11.9,7.24,1.18,10.12,7.27,1.1898
