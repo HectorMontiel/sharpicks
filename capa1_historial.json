@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-02T18:36:16Z",
+"actualizado": "2026-11-02T20:37:54Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -21496,6 +21496,26 @@
 "dia": "2026-11-02",
 "nivel": "🎯",
 "deporte": "Fútbol",
+"partido": "Al Gharafa (Qat) vs Al Qadsiah (Sau)",
+"apuesta": "Gana Al Qadsiah (Sau)",
+"cuota": 1.5,
+"resultado": "verde",
+"marcador": "0-5"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Al Gharafa (Qat) vs Al Qadsiah (Sau)",
+"apuesta": "Gana Al Qadsiah (Sau)",
+"cuota": 1.54,
+"resultado": "verde",
+"marcador": "0-5"
+},
+{
+"dia": "2026-11-02",
+"nivel": "🎯",
+"deporte": "Fútbol",
 "partido": "Al Jeel vs Al Najma",
 "apuesta": "Gana Al Najma",
 "cuota": 1.5715,
@@ -21534,6 +21554,56 @@
 },
 {
 "dia": "2026-11-02",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Al-Gharafa vs Al Qadsiah",
+"apuesta": "Al Qadsiah o empate",
+"cuota": 1.111,
+"resultado": "verde",
+"marcador": "0-5"
+},
+{
+"dia": "2026-11-02",
+"nivel": "🔷",
+"deporte": "Fútbol",
+"partido": "Al-Gharafa vs Al Qadsiah",
+"apuesta": "Gana Al Qadsiah",
+"cuota": 1.444,
+"resultado": "verde",
+"marcador": "0-5"
+},
+{
+"dia": "2026-11-02",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Argentino de Quilmes vs Brown Adrogue",
+"apuesta": "Gana Brown Adrogue",
+"cuota": 1.55,
+"resultado": "verde",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Atl. Rafaela vs Patronato",
+"apuesta": "Gana Atl. Rafaela",
+"cuota": 2.75,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Atletico Rafaela vs Patronato",
+"apuesta": "Gana Atletico Rafaela",
+"cuota": 2.75,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-02",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Bani Yas U23 vs Al Jazira U23",
@@ -21556,11 +21626,61 @@
 "dia": "2026-11-02",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Cajamarca vs Deportivo Garcilaso",
+"apuesta": "Gana Cajamarca",
+"cuota": 3.1,
+"resultado": "rojo",
+"marcador": "2-3"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Chacarita Juniors vs Nueva Chicago",
+"apuesta": "Empate",
+"cuota": 2.9,
+"resultado": "rojo",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Chacarita Juniors vs Nueva Chicago",
+"apuesta": "Gana Chacarita Juniors",
+"cuota": 2.4,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Chonburi vs Pathum United",
 "apuesta": "Gana Chonburi",
 "cuota": 2.8,
 "resultado": "verde",
 "marcador": "1-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Comunicaciones vs Talleres (R.E)",
+"apuesta": "Gana Comunicaciones",
+"cuota": 2.4,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Defensores Unidos vs Laferrere",
+"apuesta": "Gana Laferrere",
+"cuota": 2.3,
+"resultado": "rojo",
+"marcador": "1-1"
 },
 {
 "dia": "2026-11-02",
@@ -21596,6 +21716,16 @@
 "dia": "2026-11-02",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Jaen vs Algeciras",
+"apuesta": "Gana Algeciras",
+"cuota": 3.25,
+"resultado": "rojo",
+"marcador": "3-2"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Karpaty Lviv vs Kudrivka",
 "apuesta": "Gana Karpaty Lviv",
 "cuota": 1.44,
@@ -21626,9 +21756,29 @@
 "dia": "2026-11-02",
 "nivel": "💰",
 "deporte": "Tenis",
+"partido": "Leolia Jeanjean vs Lucia Bronzetti",
+"apuesta": "Gana Lucia Bronzetti",
+"cuota": 2.15,
+"resultado": "rojo",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Tenis",
 "partido": "Liu C. vs Prozorova T.",
 "apuesta": "Gana Liu C.",
 "cuota": 2.1,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Maccabi Yavne vs Shimshon Tel Aviv",
+"apuesta": "Gana Maccabi Yavne",
+"cuota": 2.7,
 "resultado": "verde",
 "marcador": "2-0"
 },
@@ -21641,6 +21791,16 @@
 "cuota": 2.05,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Nordia Jerusalem vs Kfar Saba 1928",
+"apuesta": "Gana Kfar Saba 1928",
+"cuota": 1.5556,
+"resultado": "rojo",
+"marcador": "1-0"
 },
 {
 "dia": "2026-11-02",
@@ -21666,6 +21826,36 @@
 "dia": "2026-11-02",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Radomiak Radom vs Slask Wroclaw",
+"apuesta": "Gana Radomiak Radom",
+"cuota": 2.2,
+"resultado": "verde",
+"marcador": "3-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "SC Ashdod vs Bnei Yehuda",
+"apuesta": "Gana SC Ashdod",
+"cuota": 2.25,
+"resultado": "verde",
+"marcador": "3-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "San Martin Burzaco vs UAI Urquiza",
+"apuesta": "Gana UAI Urquiza",
+"cuota": 1.41,
+"resultado": "verde",
+"marcador": "2-3"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Sport Huancayo vs FBC Melgar",
 "apuesta": "Gana Sport Huancayo",
 "cuota": 2.15,
@@ -21681,6 +21871,26 @@
 "cuota": 2.15,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Sportivo Barracas vs Leones de Rosario",
+"apuesta": "Gana Leones de Rosario",
+"cuota": 2.6,
+"resultado": "rojo",
+"marcador": "4-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Tallinna Kalev U21 vs Tartu Kalev",
+"apuesta": "Gana Tartu Kalev",
+"cuota": 2.35,
+"resultado": "rojo",
+"marcador": "3-2"
 },
 {
 "dia": "2026-11-02",
@@ -21704,6 +21914,16 @@
 },
 {
 "dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Triglav vs NK Krka",
+"apuesta": "Gana Triglav",
+"cuota": 1.43,
+"resultado": "rojo",
+"marcador": "2-4"
+},
+{
+"dia": "2026-11-02",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Umm Al Hassam vs Bahrain SC",
@@ -21721,6 +21941,16 @@
 "cuota": 1.72,
 "resultado": "verde",
 "marcador": "1-3"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Valladolid vs Leganes",
+"apuesta": "Gana Valladolid",
+"cuota": 2.01,
+"resultado": "verde",
+"marcador": "4-3"
 }
 ]
 }
