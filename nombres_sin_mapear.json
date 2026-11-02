@@ -271,8 +271,8 @@
   },
   "Union St.-Gilloise": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Union Clodiense",
-    "ratio": 0.6875,
+    "candidato": "R. Union",
+    "ratio": 0.4167,
     "visto": "2026-11-02"
   },
   "Universidad Católica (Quito)": {
@@ -517,8 +517,8 @@
   },
   "Cúcuta Deportivo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Maritimo",
-    "ratio": 0.5294,
+    "candidato": "Bullas Deportivo",
+    "ratio": 0.75,
     "visto": "2026-11-02"
   },
   "Mineros de Zacatecas": {
@@ -595,8 +595,8 @@
   },
   "Deportivo Maldonado": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Nacional",
-    "ratio": 0.7568,
+    "candidato": "Deportivo Maritimo",
+    "ratio": 0.7027,
     "visto": "2026-11-02"
   },
   "Deportivo Maipú": {
@@ -1021,8 +1021,8 @@
   },
   "Central Córdoba (Santiago del Estero)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Ind. Valle del Cauca",
-    "ratio": 0.2963,
+    "candidato": "Talleres Cordoba 2",
+    "ratio": 0.4528,
     "visto": "2026-11-02"
   },
   "Raith Rovers": {
@@ -1545,7 +1545,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Brighton U21",
     "ratio": 0.5294,
-    "visto": "2026-10-23"
+    "visto": "2026-11-02"
   },
   "Birmingham Legion FC": {
     "contexto": "cuotas_mx→futbol",
@@ -2539,8 +2539,8 @@
   },
   "Real Unión Irun": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Bedford",
-    "ratio": 0.5185,
+    "candidato": "R. Union",
+    "ratio": 0.6364,
     "visto": "2026-11-02"
   },
   "Real Jaen CF": {
@@ -2661,13 +2661,13 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Deportiva Minera",
     "ratio": 0.64,
-    "visto": "2026-11-01"
+    "visto": "2026-11-02"
   },
   "Reus FC Reddis": {
     "contexto": "cuotas_mx→futbol",
     "candidato": "Reus FCR",
     "ratio": 0.7273,
-    "visto": "2026-11-01"
+    "visto": "2026-11-02"
   },
   "Orlando Pirates": {
     "contexto": "cuotas_mx→futbol",

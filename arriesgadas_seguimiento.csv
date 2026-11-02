@@ -1441,7 +1441,7 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-02,Genclerbirligi vs Alanyaspor,2026-11-02 17:00:00,Tiros Genclerbirligi: Más de 12.5,tiros,equipo,local,12.5,0.6515,1.714,12.0,0.0
 2026-11-02,Genclerbirligi vs Alanyaspor,2026-11-02 17:00:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.5626,1.667,10.0,1.0
 2026-11-02,Atalanta vs Parma,2026-11-02 19:45:00,Goles Atalanta: Más de 1.5,goles,equipo,local,1.5,0.6347,1.5,0.0,0.0
-2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Tiros a puerta: Más de 9.5,a_puerta,total,total,9.5,0.6036,1.462,,
+2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Tiros a puerta: Más de 9.5,a_puerta,total,total,9.5,0.6036,1.462,8.0,0.0
 2026-11-03,Internacional vs Coritiba,2026-11-04 00:30:00,Tiros Internacional: Más de 18.5,tiros,equipo,local,18.5,0.5868,1.76,,
 2026-11-02,Sassuolo vs Fiorentina,2026-11-02 17:30:00,Córners: Más de 8.5,corners,total,total,8.5,0.6509,1.714,8.0,0.0
 2026-11-02,Sassuolo vs Fiorentina,2026-11-02 17:30:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6116,1.455,1.0,1.0
@@ -1451,7 +1451,7 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-02,GAIS vs AIK,2026-11-02 18:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.6125,1.625,3.0,1.0
 2026-11-02,GAIS vs AIK,2026-11-02 18:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6087,1.571,1.0,1.0
 2026-11-02,GAIS vs AIK,2026-11-02 18:00:00,Goles GAIS: Más de 1.5,goles,equipo,local,1.5,0.5689,1.7,2.0,1.0
-2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Tiros Alverca: Más de 6.5,tiros,equipo,visita,6.5,0.6007,1.471,,
+2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Tiros Alverca: Más de 6.5,tiros,equipo,visita,6.5,0.6007,1.471,8.0,1.0
 2026-11-02,Atalanta vs Parma,2026-11-02 19:45:00,Goles Parma: Más de 0.5,goles,equipo,visita,0.5,0.6941,1.526,3.0,1.0
 2026-11-02,Atalanta vs Parma,2026-11-02 19:45:00,Tiros Parma: Más de 9.5,tiros,equipo,visita,9.5,0.6791,1.583,6.0,0.0
 2026-11-02,Atalanta vs Parma,2026-11-02 19:45:00,Córners: Más de 8.5,corners,total,total,8.5,0.662,1.526,12.0,1.0
@@ -1476,10 +1476,10 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-02,Mallorca vs Cadiz,2026-11-02 20:00:00,Goles Mallorca: Más de 1.5,goles,equipo,local,1.5,0.5795,1.6,2.0,1.0
 2026-11-02,Mallorca vs Cadiz,2026-11-02 20:00:00,Tiros: Más de 23.5,tiros,total,total,23.5,0.5793,1.546,33.0,1.0
 2026-11-02,Mallorca vs Cadiz,2026-11-02 20:00:00,Tiros Mallorca: Más de 14.5,tiros,equipo,local,14.5,0.5669,1.52,23.0,1.0
-2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Tiros a puerta Benfica: Más de 6.5,a_puerta,equipo,local,6.5,0.6546,1.48,,
-2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Córners: Más de 8.5,corners,total,total,8.5,0.6534,1.455,,
-2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Tiros Benfica: Más de 19.5,tiros,equipo,local,19.5,0.6127,1.667,,
-2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Tiros: Más de 27.5,tiros,total,total,27.5,0.5793,1.615,,
+2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Tiros a puerta Benfica: Más de 6.5,a_puerta,equipo,local,6.5,0.6546,1.48,4.0,0.0
+2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Córners: Más de 8.5,corners,total,total,8.5,0.6534,1.455,13.0,1.0
+2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Tiros Benfica: Más de 19.5,tiros,equipo,local,19.5,0.6127,1.667,13.0,0.0
+2026-11-02,Benfica vs Alverca,2026-11-02 20:15:00,Tiros: Más de 27.5,tiros,total,total,27.5,0.5793,1.615,21.0,0.0
 2026-11-02,Defensa y Justicia vs Independiente,2026-11-02 22:00:00,Goles Independiente: Más de 0.5,goles,equipo,visita,0.5,0.661,1.455,,
 2026-11-02,Defensa y Justicia vs Independiente,2026-11-02 22:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.6034,1.556,,
 2026-11-02,Defensa y Justicia vs Independiente,2026-11-02 22:00:00,Tiros Defensa y Justicia: Más de 13.5,tiros,equipo,local,13.5,0.5971,1.692,,
