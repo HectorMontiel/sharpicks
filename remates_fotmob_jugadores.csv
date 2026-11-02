@@ -28747,22 +28747,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5934506,2026-08-23,fem_alemania,Bayer Leverkusen,Paulina Tomasiak,1735903,F,0,27,1,1,0,0.0,,3.0,
 5934506,2026-08-23,fem_alemania,Bayer Leverkusen,Paulina Platner,1671124,M,0,10,0,0,0,0.0,,2.0,
 5934506,2026-08-23,fem_alemania,Bayer Leverkusen,Valentina Mädl,1412359,F,0,9,1,1,0,0.0,,3.0,
-5868414,2026-08-23,esp_hypermotion,Tenerife,Dani Martín,882408,G,1,90,0,0,0,0.0,11.0,0.0,353559.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,César Álvarez,1585840,D,1,81,1,0,0,0.03,32.0,1.0,298942.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,Anthony Landázuri,708877,D,1,90,0,0,0,0.0,34.0,1.0,232544.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,José Leon,543315,D,1,90,0,0,0,0.0,36.0,1.0,117247.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,David Rodríguez,1197723,D,1,90,2,0,0,0.03,38.0,1.0,373754.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,Iván Chapela,1130568,F,1,54,1,0,0,0.04,72.0,3.0,445782.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,Juanjo,1292813,M,1,90,1,0,0,0.05,74.0,2.0,253675.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,Jesús Álvarez,1059674,M,1,90,1,0,0,0.01,76.0,2.0,721015.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,Víctor Moreno,1526620,M,1,72,0,0,0,0.0,78.0,2.0,689162.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,Nacho Gil,639136,M,1,81,4,0,0,0.13,104.0,2.0,212835.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,Enric Gallego,639458,F,1,72,3,1,1,0.39,106.0,3.0,197554.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,Noel López,1292869,F,0,36,1,1,0,0.01,,3.0,235282.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,Jesús de Miguel,1199865,F,0,18,0,0,0,0.0,,3.0,364701.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,Martin Pecar,1285858,F,0,18,0,0,0,0.0,,3.0,431239.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,Jorge Moreno,1288206,D,0,9,1,0,0,0.11,,1.0,516406.0
-5868414,2026-08-23,esp_hypermotion,Tenerife,Anes Krdzalic,1403393,M,0,9,0,0,0,0.0,,2.0,256949.0
 5934504,2026-08-23,fem_alemania,TSG 1899 Hoffenheim,Laura-Johanna Dick,1301446,G,1,90,0,0,0,0.0,11.0,0.0,
 5934504,2026-08-23,fem_alemania,TSG 1899 Hoffenheim,Laura Gloning,1351419,M,1,79,0,0,0,0.0,32.0,2.0,
 5934504,2026-08-23,fem_alemania,TSG 1899 Hoffenheim,Jonna van de Velde,1215000,D,1,90,0,0,0,0.0,34.0,1.0,
@@ -31446,22 +31430,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5103595,2026-08-24,brasil,Athletico Paranaense,Kerwin Vargas,1285541,F,0,44,0,0,0,0.0,,3.0,2280040.0
 5103595,2026-08-24,brasil,Athletico Paranaense,Dudu,1509713,M,0,29,0,0,0,0.0,,2.0,
 5103595,2026-08-24,brasil,Athletico Paranaense,Renan,1385140,F,0,5,0,0,0,0.0,,3.0,1178630.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Pau López,532942,G,1,90,0,0,0,0.0,11.0,0.0,1602462.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Thomas Carrique,889102,D,1,90,0,0,0,0.0,32.0,1.0,505219.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Diego Alende,638736,D,1,90,1,0,0,0.06,34.0,1.0,276619.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Bomba,1396376,D,1,90,0,0,0,0.0,36.0,1.0,892813.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Martí Vilà,957211,D,1,90,0,0,0,0.0,38.0,1.0,244381.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Efe Akman,1517798,M,1,90,2,1,0,0.15,73.0,2.0,1414090.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Marc Domènech,1639357,M,1,86,0,0,0,0.0,75.0,2.0,565333.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Hugo Solozábal,1713218,M,1,62,2,1,0,0.21,77.0,2.0,264494.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Jordi Cano,1324041,F,1,62,1,0,0,0.06,103.0,3.0,353899.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Hugo López,1807857,F,1,72,3,2,2,0.22,105.0,3.0,1028960.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Moró Sidibe,1816777,F,1,72,1,0,0,0.02,107.0,3.0,218298.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Nacho Quintana,1254705,M,0,28,2,0,0,0.59,,2.0,296040.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Randy Schneider,1168058,M,0,28,2,0,0,0.18,,2.0,378510.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Alex Calvo,1448033,D,0,18,1,0,0,0.13,,1.0,429512.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Julian Rijkhoff,1336012,M,0,18,2,1,0,0.46,,2.0,949466.0
-5868406,2026-08-24,esp_hypermotion,FC Andorra,Sergio Molina,789544,M,0,4,0,0,0,0.0,,2.0,448981.0
 1000013207,2026-08-24,chi_primera,Everton CD,Ignacio González,164763,G,1,90,0,0,0,0.0,11.0,0.0,163696.0
 1000013207,2026-08-24,chi_primera,Everton CD,Lucas Soto,1311827,D,1,80,0,0,0,0.0,32.0,1.0,364650.0
 1000013207,2026-08-24,chi_primera,Everton CD,Valentín Vidal,1400344,D,1,90,0,0,0,0.0,34.0,1.0,367000.0
@@ -174068,3 +174036,34 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5071484,2026-11-02,mls,Houston Dynamo FC,Matthew Arana,1781979,M,0,24,0,0,0,0.0,,2.0,
 5071484,2026-11-02,mls,Houston Dynamo FC,Duncan McGuire,1439982,F,0,24,0,0,0,0.0,,3.0,1180971.0
 5071484,2026-11-02,mls,Houston Dynamo FC,Nick Markanich,1337963,F,0,7,0,0,0,0.0,,3.0,148667.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Dani Martín,882408,G,1,90,0,0,0,0.0,11.0,0.0,477461.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,David Rodríguez,1197723,D,1,90,0,0,0,0.0,32.0,1.0,547434.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Anthony Landázuri,708877,D,1,90,0,0,0,0.0,34.0,1.0,237251.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Neal Viereck,1426166,D,1,90,0,0,0,0.0,36.0,1.0,320783.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Roko Jureškin,1072743,D,1,90,0,0,0,0.0,38.0,1.0,283618.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Noel López,1292869,M,1,86,1,0,0,0.04,72.0,2.0,324995.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Juanjo,1292813,M,1,59,0,0,0,0.0,74.0,2.0,499827.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Jesús Álvarez,1059674,M,1,59,1,0,0,0.04,76.0,2.0,710301.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Nacho Gil,639136,M,1,90,0,0,0,0.0,78.0,2.0,212835.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Christian Gomis,1204802,F,1,72,1,1,1,0.37,104.0,3.0,900924.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Enric Gallego,639458,F,1,59,2,1,1,0.85,106.0,3.0,281581.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Anes Krdžalić,1403393,M,0,31,0,0,0,0.0,,2.0,247039.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Fabricio,1693583,M,0,31,0,0,0,0.0,,2.0,331934.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Jesús de Miguel,1199865,F,0,31,0,0,0,0.0,,3.0,478567.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Víctor Moreno,1526620,F,0,18,0,0,0,0.0,,3.0,740016.0
+5868523,2026-11-02,esp_hypermotion,Tenerife,Gabriel Lozano,1715710,G,0,4,0,0,0,0.0,,0.0,
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Jesús Owono,1088754,G,1,90,0,0,0,0.0,11.0,0.0,851126.0
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Thomas Carrique,889102,D,1,90,0,0,0,0.0,32.0,1.0,439453.0
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Lautaro Spatz,1132864,D,1,90,1,1,0,0.03,34.0,1.0,193200.0
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Diego Alende,638736,D,1,90,1,1,0,0.03,36.0,1.0,248486.0
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Martí Vilà,957211,D,1,46,0,0,0,0.0,38.0,1.0,249510.0
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Efe Akman,1517798,M,1,46,0,0,0,0.0,73.0,2.0,1485400.0
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Marc Domènech,1639357,M,1,90,0,0,0,0.0,75.0,2.0,688717.0
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Randy Schneider,1168058,M,1,72,1,0,0,0.16,77.0,2.0,431476.0
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Diego Díaz,1693550,F,1,59,1,0,0,0.05,103.0,3.0,
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Lautaro de León,1094493,F,1,90,2,1,1,0.82,105.0,3.0,913881.0
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Moró Sidibe,1816777,F,1,90,1,0,0,0.06,107.0,3.0,325582.0
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Sergio Molina,789544,M,0,44,0,0,0,0.0,,2.0,448981.0
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Stefan Golubovic,2136950,F,0,44,2,1,1,0.5,,3.0,409417.0
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Nacho Quintana,1254705,F,0,31,2,0,0,0.17,,3.0,445444.0
+5868523,2026-11-02,esp_hypermotion,FC Andorra,Hugo López,1807857,F,0,18,0,0,0,0.0,,3.0,1931313.0

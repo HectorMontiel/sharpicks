@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-02T13:54:05Z",
+"actualizado": "2026-11-02T15:27:23Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -21495,12 +21495,52 @@
 {
 "dia": "2026-11-02",
 "nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Al Taraji vs Al Batin",
+"apuesta": "Gana Al Batin",
+"cuota": 3.25,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Bani Yas U23 vs Al Jazira U23",
+"apuesta": "Gana Al Jazira U23",
+"cuota": 2.09,
+"resultado": "verde",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Chonburi vs Pathum United",
+"apuesta": "Gana Chonburi",
+"cuota": 2.8,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
 "deporte": "Tenis",
 "partido": "Golubic V. vs Boulter K.",
 "apuesta": "Gana Golubic V.",
 "cuota": 2.4,
 "resultado": "rojo",
 "marcador": "0-2"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Hatta U23 vs Al Wahda U23",
+"apuesta": "Gana Hatta U23",
+"cuota": 3.05,
+"resultado": "verde",
+"marcador": "4-0"
 },
 {
 "dia": "2026-11-02",
@@ -21541,6 +21581,16 @@
 "cuota": 2.25,
 "resultado": "rojo",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-02",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Teleoptik vs Javor",
+"apuesta": "Gana Javor",
+"cuota": 1.56,
+"resultado": "verde",
+"marcador": "2-3"
 }
 ]
 }
