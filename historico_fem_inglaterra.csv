@@ -708,10 +708,10 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2026-10-25,Everton,Aston Villa,2.0,3.0,"WSL (Inglaterra, femenil)",5981673,20261025_Everton_Aston-Villa,3.0,3.0,0.0,0.0,0.0,0.0,5.0,5.0,9.0,6.0,5.0,6.0,54.9,45.1,0.0,1.0,espn
 2026-10-25,Liverpool,London City Lionesses,2.0,2.0,"WSL (Inglaterra, femenil)",5981674,20261025_Liverpool_London-City-Lionesses,7.0,3.0,1.0,2.0,0.0,0.0,6.0,4.0,9.0,8.0,7.0,9.0,60.9,39.1,1.0,0.0,espn
 2026-10-25,Manchester United,Manchester City,1.0,1.0,"WSL (Inglaterra, femenil)",5981669,20261025_Manchester-United_Manchester-City,3.0,7.0,2.0,2.0,0.0,0.0,5.0,6.0,6.0,11.0,8.0,11.0,50.4,49.6,2.0,2.0,espn
-2026-10-31,Everton,Manchester United,0.0,0.0,"WSL (Inglaterra, femenil)",5981676,20261031_Everton_Manchester-United,,,,,,,,,,,,,,,,,
-2026-11-01,Charlton,Chelsea,0.0,6.0,"WSL (Inglaterra, femenil)",5981680,20261101_Charlton_Chelsea,,,,,,,,,,,,,,,,,
-2026-11-01,West Ham United,Liverpool,4.0,1.0,"WSL (Inglaterra, femenil)",5981682,20261101_West-Ham-United_Liverpool,,,,,,,,,,,,,,,,,
-2026-11-01,Arsenal,Aston Villa,1.0,1.0,"WSL (Inglaterra, femenil)",5981677,20261101_Arsenal_Aston-Villa,,,,,,,,,,,,,,,,,
-2026-11-01,London City Lionesses,Manchester City,1.0,2.0,"WSL (Inglaterra, femenil)",5981681,20261101_London-City-Lionesses_Manchester-City,,,,,,,,,,,,,,,,,
-2026-11-01,Birmingham City,Tottenham Hotspur,1.0,4.0,"WSL (Inglaterra, femenil)",5981678,20261101_Birmingham-City_Tottenham-Hotspur,,,,,,,,,,,,,,,,,
-2026-11-01,Brighton,Crystal Palace,2.0,1.0,"WSL (Inglaterra, femenil)",5981679,20261101_Brighton_Crystal-Palace,,,,,,,,,,,,,,,,,
+2026-10-31,Everton,Manchester United,0.0,0.0,"WSL (Inglaterra, femenil)",5981676,20261031_Everton_Manchester-United,2.0,5.0,1.0,2.0,0.0,0.0,3.0,4.0,3.0,5.0,14.0,8.0,48.9,51.1,1.0,2.0,espn
+2026-11-01,Charlton,Chelsea,0.0,6.0,"WSL (Inglaterra, femenil)",5981680,20261101_Charlton_Chelsea,3.0,7.0,1.0,0.0,0.0,0.0,1.0,11.0,5.0,25.0,6.0,7.0,28.9,71.1,0.0,5.0,espn
+2026-11-01,West Ham United,Liverpool,4.0,1.0,"WSL (Inglaterra, femenil)",5981682,20261101_West-Ham-United_Liverpool,1.0,2.0,1.0,1.0,0.0,0.0,8.0,4.0,8.0,8.0,7.0,13.0,39.5,60.5,4.0,4.0,espn
+2026-11-01,Arsenal,Aston Villa,1.0,1.0,"WSL (Inglaterra, femenil)",5981677,20261101_Arsenal_Aston-Villa,10.0,0.0,0.0,0.0,0.0,0.0,8.0,1.0,20.0,0.0,3.0,5.0,64.9,35.1,0.0,5.0,espn
+2026-11-01,London City Lionesses,Manchester City,1.0,2.0,"WSL (Inglaterra, femenil)",5981681,20261101_London-City-Lionesses_Manchester-City,9.0,1.0,1.0,2.0,0.0,0.0,6.0,3.0,18.0,4.0,12.0,8.0,53.9,46.1,2.0,0.0,espn
+2026-11-01,Birmingham City,Tottenham Hotspur,1.0,4.0,"WSL (Inglaterra, femenil)",5981678,20261101_Birmingham-City_Tottenham-Hotspur,3.0,9.0,2.0,3.0,0.0,0.0,4.0,11.0,10.0,18.0,10.0,21.0,34.7,65.3,2.0,0.0,espn
+2026-11-01,Brighton,Crystal Palace,2.0,1.0,"WSL (Inglaterra, femenil)",5981679,20261101_Brighton_Crystal-Palace,9.0,1.0,1.0,1.0,0.0,0.0,8.0,2.0,12.0,4.0,10.0,8.0,64.6,35.4,2.0,1.0,espn

@@ -174067,3 +174067,35 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5868523,2026-11-02,esp_hypermotion,FC Andorra,Stefan Golubovic,2136950,F,0,44,2,1,1,0.5,,3.0,409417.0
 5868523,2026-11-02,esp_hypermotion,FC Andorra,Nacho Quintana,1254705,F,0,31,2,0,0,0.17,,3.0,445444.0
 5868523,2026-11-02,esp_hypermotion,FC Andorra,Hugo López,1807857,F,0,18,0,0,0,0.0,,3.0,1931313.0
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Vladimir Nazarov,1543221,G,1,90,0,0,0,0.0,11,0,236332
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Mukhammad-Bobur Karimov,1898284,D,1,90,0,0,0,0.0,32,1,
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Mukhammadrasul Abdumazhidov,1544707,D,1,90,2,1,0,0.0,34,1,458664
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Zaid Tahseen,1420369,D,1,90,0,0,0,0.0,36,1,210620
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Sherzod Nasrulloev,1258316,D,1,90,3,1,0,0.0,38,1,685979
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Abdurauf Buriev,1543290,M,1,71,1,0,0,0.0,64,2,215358
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Sardor Sabirkhodjaev,523807,M,1,60,0,0,0,0.0,66,2,
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Flamarion,857911,M,1,89,3,1,1,0.0,83,2,121260
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Akmal Mozgovoy,929168,M,1,90,0,0,0,0.0,85,2,1006945
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Bashar Resan,578764,F,1,60,0,0,0,0.0,87,3,256208
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Stephen Chinedu,1296655,F,1,71,3,1,0,0.0,115,3,144309
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Ibrokhim Ibrokhimov,1554002,M,0,30,1,0,0,0.0,,2,131943
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Dostonbek Khamdamov,619508,F,0,30,3,1,1,0.0,,3,386281
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Oybek Bozorov,1135986,M,0,19,0,0,0,0.0,,2,232162
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Ayman Hussein,674332,F,0,19,0,0,0,0.0,,3,98055
+6050088,2026-11-02,afc_champions,Pakhtakor Tashkent,Kuvanishbek Saydaliev,2233006,M,0,1,0,0,0,0.0,,2,
+6050088,2026-11-02,afc_champions,Al Nassr FC,Bento Krepski,1043761,G,1,90,0,0,0,0.0,11,0,7840173
+6050088,2026-11-02,afc_champions,Al Nassr FC,Nawaf Al-Boushail,1401228,D,1,68,0,0,0,0.0,32,1,774985
+6050088,2026-11-02,afc_champions,Al Nassr FC,Abdulelah Al Amri,848600,D,1,90,2,1,1,0.0,34,1,1030920
+6050088,2026-11-02,afc_champions,Al Nassr FC,Iñigo Martínez,282676,D,1,90,0,0,0,0.0,36,1,1463088
+6050088,2026-11-02,afc_champions,Al Nassr FC,Awad Aman,1608559,D,1,90,0,0,0,0.0,38,1,349378
+6050088,2026-11-02,afc_champions,Al Nassr FC,Ayman Yahya,1095207,D,1,45,1,1,0,0.0,72,1,
+6050088,2026-11-02,afc_champions,Al Nassr FC,Ângelo,1199757,M,1,90,1,1,1,0.0,74,2,15582438
+6050088,2026-11-02,afc_champions,Al Nassr FC,Samú,1130583,M,1,90,0,0,0,0.0,76,2,10101284
+6050088,2026-11-02,afc_champions,Al Nassr FC,Sadio Mané,303339,M,1,76,1,0,0,0.0,78,2,3875803
+6050088,2026-11-02,afc_champions,Al Nassr FC,Joao Félix,794427,F,1,68,3,2,2,0.0,95,3,19938895
+6050088,2026-11-02,afc_champions,Al Nassr FC,Abdullah Al-Hamdan,909198,F,1,87,5,2,1,0.0,115,3,177053
+6050088,2026-11-02,afc_champions,Al Nassr FC,Abdulrahman Ghareeb,911531,F,0,45,1,1,1,0.0,,3,545648
+6050088,2026-11-02,afc_champions,Al Nassr FC,Abdullah Al-Khaibari,823457,M,0,22,0,0,0,0.0,,2,603487
+6050088,2026-11-02,afc_champions,Al Nassr FC,Rakan Al-Ghamdi,1818165,M,0,22,0,0,0,0.0,,2,
+6050088,2026-11-02,afc_champions,Al Nassr FC,Sami Al-Najei,749010,F,0,14,0,0,0,0.0,,3,168010
+6050088,2026-11-02,afc_champions,Al Nassr FC,Abdulrahman Sufyani,1844083,F,0,3,0,0,0,0.0,,3,

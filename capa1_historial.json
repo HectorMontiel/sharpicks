@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-02T15:27:23Z",
+"actualizado": "2026-11-02T17:03:30Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -21491,6 +21491,16 @@
 "cuota": 3.2,
 "resultado": "verde",
 "marcador": "2-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Al Jeel vs Al Najma",
+"apuesta": "Gana Al Najma",
+"cuota": 1.5715,
+"resultado": "verde",
+"marcador": "0-1"
 },
 {
 "dia": "2026-11-02",
