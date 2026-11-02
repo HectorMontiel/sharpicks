@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-02T09:05:53Z",
+"actualizado": "2026-11-02T10:43:27Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -21500,6 +21500,16 @@
 "apuesta": "Gana Golubic V.",
 "cuota": 2.4,
 "resultado": "rojo",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Lee C. Y. vs Sakkari M.",
+"apuesta": "Gana Sakkari M.",
+"cuota": 1.27,
+"resultado": "verde",
 "marcador": "0-2"
 },
 {
