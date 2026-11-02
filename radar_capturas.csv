@@ -29397,3 +29397,43 @@ fecha,deporte,liga,home,away,inicio,pin_home,pin_draw,pin_away,q_home,q_away,mar
 2026-11-02,nba,USA: NCAA,Yale,Howard,1793664000,1.3356,,3.34,0.714347,0.285653,0.048128,0,0.0,
 2026-11-02,tenis,"ATP - SINGLES: Paris (France), hard (indoor)",Buse I.,Medvedev D.,1793782800,5.86,,1.1541,0.16454,0.83546,0.037125,0,0.0,
 2026-11-02,tenis,"ATP - SINGLES: Paris (France), hard (indoor)",Zverev A.,Musetti L.,1793782800,1.3846,,3.2,0.697989,0.302011,0.03473,0,0.0,
+2026-11-02,futbol,ENGLAND: National League Cup,Wealdstone,Derby U21,1793732400,1.5263,4.37,4.97,0.60373,0.185407,0.085219,0,0.0,
+2026-11-02,futbol,ENGLAND: NPL Premier Division,Bury,Avro,1793735100,1.6579,4.33,3.78,0.549003,0.240791,0.09867,0,0.0,
+2026-11-02,futbol,ENGLAND: NPL Premier Division,Guiseley,Leek,1793735100,1.4255,4.69,5.42,0.638182,0.167846,0.09923,0,0.0,
+2026-11-02,futbol,ENGLAND: Southern League Premier Central,Bury Town,Kettering,1793735100,2.66,3.4,2.3,0.340266,0.393525,0.10484,1,0.099,Playdoit
+2026-11-02,futbol,ENGLAND: Southern League Premier South,Bracknell,Chertsey,1793735100,2.73,3.84,2.12,0.333481,0.429435,0.098415,0,0.0,
+2026-11-02,futbol,ENGLAND: Southern League Premier South,Chippenham,Evesham,1793735100,2.18,3.33,2.95,0.417774,0.308728,0.097999,0,0.0,
+2026-11-02,futbol,ENGLAND: Southern League Premier South,Poole,Hanwell Town,1793735100,1.8264,3.6,3.64,0.497737,0.249744,0.100028,0,0.0,
+2026-11-02,futbol,ENGLAND: Isthmian League Premier Division,Brentwood,Leatherhead,1793735100,2.15,3.89,2.65,0.423008,0.343195,0.099544,0,0.0,
+2026-11-02,futbol,ENGLAND: Isthmian League Premier Division,Wingate & Finchley,Burgess Hill,1793735100,2.0,3.8,2.98,0.455072,0.305417,0.098728,1,0.0514,Playdoit
+2026-11-02,futbol,EUROPE: UEFA Youth League - Winners Play Offs,Goztepe U19,AZ Alkmaar U19,1793725200,9.64,7.6,1.157,0.094337,0.786004,0.099618,1,0.0264,Novibet
+2026-11-02,futbol,ENGLAND: Championship,Cardiff,West Ham,1793821500,3.21,4.15,2.02,0.297389,0.472583,0.04754,0,0.0,
+2026-11-02,futbol,ENGLAND: Championship,Bristol City,Wolves,1793822400,3.55,3.54,2.07,0.268976,0.461288,0.047268,0,0.0,
+2026-11-02,futbol,EUROPE: Champions League - League phase,Dortmund,Betis,1793822400,1.7463,4.25,4.45,0.554532,0.217613,0.032653,0,0.0,
+2026-11-02,futbol,EUROPE: Champions League - League phase,FC Porto,Napoli,1793822400,2.0,3.9,3.63,0.484547,0.266968,0.031892,0,0.0,
+2026-11-02,futbol,EUROPE: Champions League - League phase,PSV,Club Brugge KV,1793822400,2.07,4.5,3.06,0.468062,0.31663,0.032111,0,0.0,
+2026-11-02,futbol,EUROPE: Champions League - League phase,Viking,Sabah FC,1793822400,1.4695,5.08,6.33,0.657281,0.152587,0.035332,0,0.0,
+2026-11-02,futbol,PARAGUAY: Copa de Primera - Clausura,Nacional Asuncion,San Lorenzo,1793745000,1.271,5.34,10.5,0.735801,0.089067,0.069286,0,0.0,
+2026-11-02,tenis,"ITF MEN - SINGLES: M15 Fergana 2 (Uzbekistan), hard",Kharlamov R.,Omarkhanov A.,1793691000,4.82,,1.1658,0.194761,0.805239,0.065249,0,0.0,
+2026-11-02,tenis,"ITF MEN - SINGLES: M15 Fergana 2 (Uzbekistan), hard",Mueller C.,Dolzhenkov D.,1793696400,1.0739,,7.87,0.879929,0.120071,0.05825,0,0.0,
+2026-11-02,tenis,"ITF MEN - SINGLES: M15 Monastir 38 (Tunisia), hard",Demanet E.,Rahmani K.,1793705400,1.7874,,1.9709,0.524413,0.475587,0.066854,0,0.0,
+2026-11-02,tenis,"ATP - SINGLES: Paris (France), hard (indoor)",Fils A.,Machac T.,1793782800,1.5155,,2.68,0.63878,0.36122,0.032983,0,0.0,
+2026-11-02,nba,EUROPE: ABA League 2,Podgorica,Sloboda Tuzla,1793732400,2.26,,1.5291,0.403552,0.596448,0.096457,1,0.0689,Novibet
+2026-11-02,nba,MEXICO: LNBP - Play Offs,Panteras,Soles,1793673000,2.75,,1.3984,0.337094,0.662906,0.078739,1,0.0248,Playdoit
+2026-11-02,nba,BAHRAIN: Premier League,Samaheej,Sitra Club,1793804400,3.58,,1.1938,0.250073,0.749927,0.116991,0,0.0,
+2026-11-02,nba,BAHRAIN: Premier League,Al Ahli,Al Hala,1793811600,1.5882,,2.15,0.575143,0.424857,0.09476,0,0.0,
+2026-11-02,nba,BRAZIL: NBB,Bauru,Cruzeiro,1793745000,1.3378,,2.98,0.690166,0.309834,0.083066,0,0.0,
+2026-11-02,nba,BRAZIL: NBB,Franca,Minas,1793745000,1.5464,,2.34,0.6021,0.3979,0.074014,0,0.0,
+2026-11-02,nba,CZECH REPUBLIC: NBL,Slavia Prague ERA NBK,Decin,1793811600,1.0321,,8.53,0.892063,0.107937,0.086132,0,0.0,
+2026-11-02,nba,DENMARK: Basketligaen,Bears Academy,Horsens,1793813400,8.15,,1.0364,0.112819,0.887181,0.087578,0,0.0,
+2026-11-02,nba,DENMARK: Basketligaen,Gladsaxe,Holbaek-Stenhus,1793818800,1.5102,,2.43,0.61672,0.38328,0.073687,1,0.0911,Novibet
+2026-11-02,nba,DENMARK: Kvindebasketligaen Women,Horsholm W,Amager W,1793813400,4.12,,1.1037,0.211287,0.788713,0.148762,0,0.0,
+2026-11-02,nba,EUROPE: Champions League,Legia,Galatasaray,1793811600,3.15,,1.3597,0.301506,0.698494,0.052917,0,0.0,
+2026-11-02,nba,EUROPE: Champions League,Bonn,Bnei Herzliya,1793818800,1.2252,,4.23,0.775407,0.224593,0.0526,0,0.0,
+2026-11-02,futbol,ENGLAND: NPL Premier Division,Emley,Bamber Bridge,1793735100,2.2,3.67,2.7,0.414204,0.337499,0.097395,0,0.0,
+2026-11-02,futbol,ENGLAND: Southern League Premier Central,Anstey Nomads,Real Bedford,1793735100,2.54,3.07,2.6,0.356597,0.348368,0.104049,0,0.0,
+2026-11-02,futbol,ENGLAND: Southern League Premier South,Plymouth Parkway,Uxbridge,1793735100,2.62,3.32,2.41,0.34767,0.377965,0.097822,0,0.0,
+2026-11-02,futbol,ENGLAND: Isthmian League Premier Division,Lewes,Dartford,1793735100,2.96,3.68,2.04,0.307189,0.445725,0.099773,0,0.0,
+2026-11-02,nba,USA: NCAA,San Francisco,Radford,1793674800,1.0879,,7.79,0.87746,0.12254,0.047572,0,0.0,
+2026-11-02,nba,USA: NBA,Los Angeles Lakers,Miami Heat,1793674800,1.7299,,2.24,0.564246,0.435754,0.024497,1,0.0312,Novibet
+2026-11-02,nba,USA: NCAA,Georgia Southern,Ball State,1793664000,2.05,,1.813,0.469324,0.530676,0.039377,1,0.0285,Novibet
