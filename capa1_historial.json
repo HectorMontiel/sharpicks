@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-02T12:17:47Z",
+"actualizado": "2026-11-02T13:54:05Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -21531,6 +21531,16 @@
 "cuota": 2.05,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Posta Rangers vs 3K FC",
+"apuesta": "Gana Posta Rangers",
+"cuota": 2.25,
+"resultado": "rojo",
+"marcador": "1-2"
 }
 ]
 }
