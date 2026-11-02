@@ -9524,59 +9524,59 @@ fecha,partido,clave_liga,equipo,lado,mercado,linea,c_mas,c_menos,p_casa,p_mod,ap
 2026-11-02,Platense vs Central Cordoba,argentina,Central Cordoba,visitante,a_puerta,1.5,1.267,3.143,0.7127,0.8286,,vivo,,2026-11-02T20:37:15Z
 2026-11-02,Platense vs Central Cordoba,argentina,Central Cordoba,visitante,a_puerta,2.5,1.714,1.9,0.5257,0.6272,,vivo,,2026-11-02T20:37:15Z
 2026-11-02,Platense vs Central Cordoba,argentina,Central Cordoba,visitante,a_puerta,3.5,2.546,1.4,0.3548,0.413,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,tiros,10.5,1.53,2.25,0.5952,0.5828,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,tiros,11.5,1.76,1.875,0.5158,0.4886,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,tiros,12.5,2.083,1.615,0.4367,0.3986,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,a_puerta,2.5,1.35,2.714,0.6678,0.6924,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,a_puerta,3.5,1.786,1.818,0.5044,0.4873,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,a_puerta,4.5,2.546,1.4,0.3548,0.3033,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,tiros,10.5,1.52,2.25,0.5968,0.6639,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,tiros,11.5,1.733,1.909,0.5242,0.5753,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,tiros,12.5,2.05,1.636,0.4438,0.4862,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,a_puerta,2.5,1.333,2.8,0.6775,0.8007,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,a_puerta,3.5,1.76,1.846,0.5119,0.6284,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,a_puerta,4.5,2.455,1.417,0.366,0.4445,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,tiros,15.5,1.667,2.0,0.5454,0.6009,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,tiros,16.5,1.889,1.75,0.4809,0.5293,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,tiros,17.5,2.167,1.571,0.4203,0.4589,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,a_puerta,5.5,1.583,2.083,0.5682,0.5246,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,a_puerta,6.5,2.0,1.636,0.4499,0.3742,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,a_puerta,7.5,2.714,1.35,0.3322,0.2477,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,tiros,8.5,1.667,2.0,0.5454,0.722,más,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,tiros,9.5,1.96,1.692,0.4633,0.6277,más,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,tiros,10.5,2.4,1.462,0.3786,0.5299,más,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,a_puerta,2.5,1.5,2.25,0.6,0.7014,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,a_puerta,3.5,2.143,1.556,0.4207,0.4981,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,a_puerta,4.5,3.143,1.267,0.2873,0.3133,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Charlton vs Bolton,eng_championship,Charlton,local,tiros,13.5,1.846,1.818,0.4962,0.5261,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Charlton vs Bolton,eng_championship,Charlton,local,a_puerta,4.5,1.95,1.727,0.4697,0.5167,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Charlton vs Bolton,eng_championship,Bolton,visitante,tiros,12.5,1.76,1.909,0.5203,0.5032,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Charlton vs Bolton,eng_championship,Bolton,visitante,a_puerta,3.5,1.692,2.0,0.5417,0.6307,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Blackburn vs Stoke,eng_championship,Blackburn,local,tiros,13.5,1.778,1.889,0.5151,0.4897,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Blackburn vs Stoke,eng_championship,Blackburn,local,a_puerta,4.5,2.125,1.615,0.4318,0.4438,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Blackburn vs Stoke,eng_championship,Stoke,visitante,tiros,12.5,1.96,1.714,0.4665,0.6364,más,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Blackburn vs Stoke,eng_championship,Stoke,visitante,a_puerta,3.5,1.818,1.846,0.5038,0.6666,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Portsmouth vs Swansea,eng_championship,Portsmouth,local,tiros,12.5,1.8,1.867,0.5091,0.5034,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Portsmouth vs Swansea,eng_championship,Portsmouth,local,a_puerta,3.5,1.636,2.083,0.5601,0.5929,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Portsmouth vs Swansea,eng_championship,Swansea,visitante,tiros,10.5,1.867,1.8,0.4909,0.6123,más,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Portsmouth vs Swansea,eng_championship,Swansea,visitante,a_puerta,3.5,1.909,1.76,0.4797,0.6013,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Derby vs Norwich,eng_championship,Derby,local,tiros,11.5,1.778,1.889,0.5151,0.5463,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Derby vs Norwich,eng_championship,Derby,local,a_puerta,3.5,1.714,1.96,0.5335,0.569,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Derby vs Norwich,eng_championship,Norwich,visitante,tiros,12.5,1.778,1.889,0.5151,0.6088,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Derby vs Norwich,eng_championship,Norwich,visitante,a_puerta,4.5,1.875,1.786,0.4878,0.5807,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Watford vs Lincoln,eng_championship,Watford,local,tiros,14.5,1.867,1.8,0.4909,0.4536,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Watford vs Lincoln,eng_championship,Watford,local,a_puerta,4.5,1.85,1.818,0.4956,0.5139,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Watford vs Lincoln,eng_championship,Lincoln,visitante,tiros,12.5,1.889,1.778,0.4849,0.5107,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Watford vs Lincoln,eng_championship,Lincoln,visitante,a_puerta,3.5,1.692,2.0,0.5417,0.5957,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Birmingham vs Millwall,eng_championship,Birmingham,local,tiros,14.5,1.76,1.909,0.5203,0.5212,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Birmingham vs Millwall,eng_championship,Birmingham,local,a_puerta,4.5,1.714,1.96,0.5335,0.5302,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Birmingham vs Millwall,eng_championship,Millwall,visitante,tiros,10.5,1.846,1.818,0.4962,0.6302,más,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Birmingham vs Millwall,eng_championship,Millwall,visitante,a_puerta,3.5,2.1,1.625,0.4362,0.5614,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Chapecoense-SC vs Mirassol,brasil,Chapecoense-SC,local,tiros,13.5,1.909,1.76,0.4797,0.6235,más,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Chapecoense-SC vs Mirassol,brasil,Chapecoense-SC,local,a_puerta,4.5,1.923,1.75,0.4764,0.4603,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Chapecoense-SC vs Mirassol,brasil,Mirassol,visitante,tiros,14.5,1.733,1.941,0.5283,0.4428,,vivo,,2026-11-02T20:37:15Z
-2026-11-03,Chapecoense-SC vs Mirassol,brasil,Mirassol,visitante,a_puerta,4.5,1.714,1.96,0.5335,0.5664,,vivo,,2026-11-02T20:37:15Z
-2026-11-04,Internacional vs Coritiba,brasil,Internacional,local,tiros,19.5,1.75,1.923,0.5236,0.4146,,vivo,,2026-11-02T20:37:15Z
-2026-11-04,Internacional vs Coritiba,brasil,Internacional,local,a_puerta,5.5,1.68,2.0,0.5435,0.5761,,vivo,,2026-11-02T20:37:15Z
-2026-11-04,Internacional vs Coritiba,brasil,Coritiba,visitante,tiros,9.5,1.733,1.941,0.5283,0.5527,,vivo,,2026-11-02T20:37:15Z
-2026-11-04,Internacional vs Coritiba,brasil,Coritiba,visitante,a_puerta,2.5,1.6,2.143,0.5725,0.6286,,vivo,,2026-11-02T20:37:15Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,tiros,10.5,1.53,2.25,0.5952,0.5828,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,tiros,11.5,1.76,1.875,0.5158,0.4886,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,tiros,12.5,2.083,1.615,0.4367,0.3986,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,a_puerta,2.5,1.35,2.714,0.6678,0.6924,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,a_puerta,3.5,1.786,1.818,0.5044,0.4873,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Atl. Tucuman,local,a_puerta,4.5,2.546,1.4,0.3548,0.3033,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,tiros,10.5,1.52,2.25,0.5968,0.6639,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,tiros,11.5,1.733,1.909,0.5242,0.5753,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,tiros,12.5,2.05,1.636,0.4438,0.4862,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,a_puerta,2.5,1.333,2.8,0.6775,0.8007,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,a_puerta,3.5,1.76,1.846,0.5119,0.6284,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Atl. Tucuman vs Argentinos Jrs,argentina,Argentinos Jrs,visitante,a_puerta,4.5,2.455,1.417,0.366,0.4445,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,tiros,15.5,1.667,2.0,0.5454,0.6009,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,tiros,16.5,1.889,1.75,0.4809,0.5293,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,tiros,17.5,2.167,1.571,0.4203,0.4589,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,a_puerta,5.5,1.583,2.083,0.5682,0.5246,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,a_puerta,6.5,2.0,1.636,0.4499,0.3742,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Ind. Rivadavia,local,a_puerta,7.5,2.714,1.35,0.3322,0.2477,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,tiros,8.5,1.667,2.0,0.5454,0.722,más,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,tiros,9.5,1.96,1.692,0.4633,0.6277,más,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,tiros,10.5,2.4,1.462,0.3786,0.5299,más,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,a_puerta,2.5,1.5,2.25,0.6,0.7014,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,a_puerta,3.5,2.143,1.556,0.4207,0.4981,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Ind. Rivadavia vs Banfield,argentina,Banfield,visitante,a_puerta,4.5,3.143,1.267,0.2873,0.3133,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Charlton vs Bolton,eng_championship,Charlton,local,tiros,13.5,1.846,1.818,0.4962,0.5261,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Charlton vs Bolton,eng_championship,Charlton,local,a_puerta,4.5,1.95,1.727,0.4697,0.5167,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Charlton vs Bolton,eng_championship,Bolton,visitante,tiros,12.5,1.76,1.909,0.5203,0.5032,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Charlton vs Bolton,eng_championship,Bolton,visitante,a_puerta,3.5,1.692,2.0,0.5417,0.6307,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Blackburn vs Stoke,eng_championship,Blackburn,local,tiros,13.5,1.778,1.889,0.5151,0.4897,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Blackburn vs Stoke,eng_championship,Blackburn,local,a_puerta,4.5,2.125,1.615,0.4318,0.4438,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Blackburn vs Stoke,eng_championship,Stoke,visitante,tiros,12.5,1.96,1.714,0.4665,0.6364,más,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Blackburn vs Stoke,eng_championship,Stoke,visitante,a_puerta,3.5,1.818,1.846,0.5038,0.6666,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Portsmouth vs Swansea,eng_championship,Portsmouth,local,tiros,12.5,1.8,1.867,0.5091,0.4603,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Portsmouth vs Swansea,eng_championship,Portsmouth,local,a_puerta,3.5,1.636,2.083,0.5601,0.573,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Portsmouth vs Swansea,eng_championship,Swansea,visitante,tiros,10.5,1.867,1.8,0.4909,0.596,más,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Portsmouth vs Swansea,eng_championship,Swansea,visitante,a_puerta,3.5,1.909,1.76,0.4797,0.5934,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Derby vs Norwich,eng_championship,Derby,local,tiros,11.5,1.778,1.889,0.5151,0.5463,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Derby vs Norwich,eng_championship,Derby,local,a_puerta,3.5,1.714,1.96,0.5335,0.569,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Derby vs Norwich,eng_championship,Norwich,visitante,tiros,12.5,1.778,1.889,0.5151,0.6088,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Derby vs Norwich,eng_championship,Norwich,visitante,a_puerta,4.5,1.875,1.786,0.4878,0.5807,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Watford vs Lincoln,eng_championship,Watford,local,tiros,14.5,1.867,1.8,0.4909,0.4536,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Watford vs Lincoln,eng_championship,Watford,local,a_puerta,4.5,1.85,1.818,0.4956,0.5139,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Watford vs Lincoln,eng_championship,Lincoln,visitante,tiros,12.5,1.889,1.778,0.4849,0.5107,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Watford vs Lincoln,eng_championship,Lincoln,visitante,a_puerta,3.5,1.692,2.0,0.5417,0.5957,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Birmingham vs Millwall,eng_championship,Birmingham,local,tiros,14.5,1.76,1.909,0.5203,0.5212,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Birmingham vs Millwall,eng_championship,Birmingham,local,a_puerta,4.5,1.714,1.96,0.5335,0.5302,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Birmingham vs Millwall,eng_championship,Millwall,visitante,tiros,10.5,1.846,1.818,0.4962,0.6302,más,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Birmingham vs Millwall,eng_championship,Millwall,visitante,a_puerta,3.5,2.1,1.625,0.4362,0.5614,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Chapecoense-SC vs Mirassol,brasil,Chapecoense-SC,local,tiros,13.5,1.909,1.76,0.4797,0.6235,más,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Chapecoense-SC vs Mirassol,brasil,Chapecoense-SC,local,a_puerta,4.5,1.923,1.75,0.4764,0.4603,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Chapecoense-SC vs Mirassol,brasil,Mirassol,visitante,tiros,14.5,1.733,1.941,0.5283,0.4428,,vivo,,2026-11-02T22:07:53Z
+2026-11-03,Chapecoense-SC vs Mirassol,brasil,Mirassol,visitante,a_puerta,4.5,1.714,1.96,0.5335,0.5664,,vivo,,2026-11-02T22:07:53Z
+2026-11-04,Internacional vs Coritiba,brasil,Internacional,local,tiros,19.5,1.75,1.923,0.5236,0.3975,,vivo,,2026-11-02T22:07:53Z
+2026-11-04,Internacional vs Coritiba,brasil,Internacional,local,a_puerta,5.5,1.68,2.0,0.5435,0.5754,,vivo,,2026-11-02T22:07:53Z
+2026-11-04,Internacional vs Coritiba,brasil,Coritiba,visitante,tiros,9.5,1.733,1.941,0.5283,0.5843,,vivo,,2026-11-02T22:07:53Z
+2026-11-04,Internacional vs Coritiba,brasil,Coritiba,visitante,a_puerta,2.5,1.6,2.143,0.5725,0.66,,vivo,,2026-11-02T22:07:53Z

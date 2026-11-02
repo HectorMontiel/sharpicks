@@ -91,8 +91,8 @@
   },
   "Deportivo Recoleta": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Garcilaso",
-    "ratio": 0.7027,
+    "candidato": "Deportivo Maritimo",
+    "ratio": 0.6667,
     "visto": "2026-11-02"
   },
   "Estudiantes de La Plata": {
@@ -517,8 +517,8 @@
   },
   "Cúcuta Deportivo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Garcilaso",
-    "ratio": 0.5143,
+    "candidato": "Deportivo Maritimo",
+    "ratio": 0.5294,
     "visto": "2026-11-02"
   },
   "Mineros de Zacatecas": {
@@ -1261,14 +1261,14 @@
   },
   "Deportivo La Guaira": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Garcilaso",
-    "ratio": 0.6316,
+    "candidato": "Deportivo Maritimo",
+    "ratio": 0.6486,
     "visto": "2026-11-02"
   },
   "Deportivo Táchira": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Garcilaso",
-    "ratio": 0.7778,
+    "candidato": "Deportivo Maritimo",
+    "ratio": 0.6857,
     "visto": "2026-11-02"
   },
   "Al Ittihad": {
@@ -1459,8 +1459,8 @@
   },
   "Sport Boys": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Herk Sport Hasselt W",
-    "ratio": 0.5,
+    "candidato": "Sport Sebaco",
+    "ratio": 0.7273,
     "visto": "2026-11-02"
   },
   "Real Potosí": {
@@ -1765,8 +1765,8 @@
   },
   "Buriram United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Kochi United",
-    "ratio": 0.6154,
+    "candidato": "Muras United",
+    "ratio": 0.7692,
     "visto": "2026-11-02"
   },
   "AFC Bournemouth": {
@@ -2095,9 +2095,9 @@
   },
   "Real Tomayapo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Bamako",
-    "ratio": 0.6667,
-    "visto": "2026-11-01"
+    "candidato": "Real Bedford",
+    "ratio": 0.48,
+    "visto": "2026-11-02"
   },
   "Sekhukhune United FC": {
     "contexto": "cuotas_mx→futbol",
@@ -2107,7 +2107,7 @@
   },
   "Kruger United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Kochi United",
+    "candidato": "Muras United",
     "ratio": 0.64,
     "visto": "2026-11-02"
   },
@@ -2539,8 +2539,8 @@
   },
   "Real Unión Irun": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Union Clodiense",
-    "ratio": 0.5333,
+    "candidato": "Real Bedford",
+    "ratio": 0.5185,
     "visto": "2026-11-02"
   },
   "Real Jaen CF": {
