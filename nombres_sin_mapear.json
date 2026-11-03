@@ -13,9 +13,9 @@
   },
   "Atlético Madrid": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico GO",
+    "candidato": "Real Madrid",
     "ratio": 0.6923,
-    "visto": "2026-11-02"
+    "visto": "2026-11-03"
   },
   "Atlético Tucumán": {
     "contexto": "cuotas_mx→futbol",
@@ -55,8 +55,8 @@
   },
   "Chippa United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "FC United",
-    "ratio": 0.7273,
+    "candidato": "Victoria United",
+    "ratio": 0.7143,
     "visto": "2026-11-03"
   },
   "Cienciano del Cusco": {
@@ -235,8 +235,8 @@
   },
   "Real Sociedad": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Bedford",
-    "ratio": 0.64,
+    "candidato": "Real Madrid",
+    "ratio": 0.5833,
     "visto": "2026-11-03"
   },
   "Real Valladolid": {
@@ -331,8 +331,8 @@
   },
   "Club Atlético La Paz": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Brugge KV",
-    "ratio": 0.4118,
+    "candidato": "Atletico-MG U20",
+    "ratio": 0.5714,
     "visto": "2026-11-03"
   },
   "Sporting JAX": {
@@ -367,9 +367,9 @@
   },
   "Cambridge United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Mandel United",
-    "ratio": 0.6897,
-    "visto": "2026-10-31"
+    "candidato": "Victoria United",
+    "ratio": 0.6452,
+    "visto": "2026-11-03"
   },
   "Peterborough United": {
     "contexto": "cuotas_mx→futbol",
@@ -769,8 +769,8 @@
   },
   "Club Atlético Morelia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Brugge KV",
-    "ratio": 0.4,
+    "candidato": "Atletico-MG U20",
+    "ratio": 0.5556,
     "visto": "2026-11-03"
   },
   "Atlético Junior": {
@@ -949,15 +949,15 @@
   },
   "Oldham Athletic": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Strabane Athletic",
-    "ratio": 0.625,
-    "visto": "2026-10-30"
+    "candidato": "Athletic Palermo",
+    "ratio": 0.5161,
+    "visto": "2026-11-03"
   },
   "Wigan Athletic": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Strabane Athletic",
-    "ratio": 0.7097,
-    "visto": "2026-10-30"
+    "candidato": "Athletic Palermo",
+    "ratio": 0.5333,
+    "visto": "2026-11-03"
   },
   "Unión (Santa Fe)": {
     "contexto": "cuotas_mx→futbol",
@@ -1093,8 +1093,8 @@
   },
   "Atlético Grau": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Petro Atletico",
-    "ratio": 0.5926,
+    "candidato": "Atletico-MG U20",
+    "ratio": 0.7857,
     "visto": "2026-11-03"
   },
   "São Paulo": {
@@ -1135,8 +1135,8 @@
   },
   "Queens Park Rangers": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Queen's Park",
-    "ratio": 0.7097,
+    "candidato": "Rangers U19",
+    "ratio": 0.4667,
     "visto": "2026-11-03"
   },
   "Gamba Osaka": {
@@ -1297,9 +1297,9 @@
   },
   "Sheffield United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Glacis United",
-    "ratio": 0.5517,
-    "visto": "2026-11-01"
+    "candidato": "Muras United",
+    "ratio": 0.5714,
+    "visto": "2026-11-03"
   },
   "Santa Clara": {
     "contexto": "cuotas_mx→futbol",
@@ -1327,15 +1327,15 @@
   },
   "Charlton Athletic": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Strabane Athletic",
-    "ratio": 0.6471,
-    "visto": "2026-10-30"
+    "candidato": "Athletic Palermo",
+    "ratio": 0.4848,
+    "visto": "2026-11-03"
   },
   "Dunfermline Athletic": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Strabane Athletic",
-    "ratio": 0.6486,
-    "visto": "2026-10-30"
+    "candidato": "Athletic Palermo",
+    "ratio": 0.4444,
+    "visto": "2026-11-03"
   },
   "Club Brugge": {
     "contexto": "cuotas_mx→futbol",
@@ -1357,9 +1357,9 @@
   },
   "West Bromwich Albion": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "West Ham W",
+    "candidato": "West Ham",
     "ratio": 0.4286,
-    "visto": "2026-11-01"
+    "visto": "2026-11-03"
   },
   "Cercle Brugge KSV": {
     "contexto": "cuotas_mx→futbol",
@@ -1645,9 +1645,9 @@
   },
   "NorthEast United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Nagaland United",
-    "ratio": 0.5806,
-    "visto": "2026-10-30"
+    "candidato": "Muras United",
+    "ratio": 0.7143,
+    "visto": "2026-11-03"
   },
   "Alianza Atlético": {
     "contexto": "cuotas_mx→futbol",
@@ -1987,9 +1987,9 @@
   },
   "Lincoln Red Imps": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Red Arrows (Zam)",
-    "ratio": 0.3333,
-    "visto": "2026-10-22"
+    "candidato": "Red Arrows",
+    "ratio": 0.3846,
+    "visto": "2026-11-03"
   },
   "LA Galaxy": {
     "contexto": "cuotas_mx→futbol",
@@ -2101,9 +2101,9 @@
   },
   "Sekhukhune United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Pathum United",
-    "ratio": 0.6,
-    "visto": "2026-11-01"
+    "candidato": "Muras United",
+    "ratio": 0.5517,
+    "visto": "2026-11-03"
   },
   "Kruger United": {
     "contexto": "cuotas_mx→futbol",
@@ -2683,8 +2683,8 @@
   },
   "Dinamo Zagreb": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "D. Zagreb U19",
-    "ratio": 0.64,
+    "candidato": "Dinamo Ferizaj",
+    "ratio": 0.6667,
     "visto": "2026-11-03"
   }
 }

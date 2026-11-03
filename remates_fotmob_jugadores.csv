@@ -21342,21 +21342,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5811720,2026-08-15,bel_pro_league,Zulte Waregem,Nikola Mituljikic,1669504,F,0,19,0,0,0,0.0,,3.0,517594.0
 5811720,2026-08-15,bel_pro_league,Zulte Waregem,Tristan Panduro,1830734,M,0,6,0,0,0,0.0,,2.0,
 5811720,2026-08-15,bel_pro_league,Zulte Waregem,Kewan Vemba,1797854,F,0,1,0,0,0,0.0,,3.0,
-5107568,2026-08-15,suecia,Sirius,David Celic,1300097,G,1,90,0,0,0,0.0,11.0,0.0,612463.0
-5107568,2026-08-15,suecia,Sirius,Henrik Castegren,736649,D,1,90,3,1,0,0.14,32.0,1.0,305318.0
-5107568,2026-08-15,suecia,Sirius,Mohamed Soumah,1510152,D,1,90,0,0,0,0.0,34.0,1.0,615202.0
-5107568,2026-08-15,suecia,Sirius,Tobias Anker,1126767,D,1,90,0,0,0,0.0,36.0,1.0,453511.0
-5107568,2026-08-15,suecia,Sirius,Oscar Krusnell,868705,D,1,90,0,0,0,0.0,38.0,1.0,451621.0
-5107568,2026-08-15,suecia,Sirius,Victor Svensson,1368196,M,1,58,2,0,0,0.1,73.0,2.0,981029.0
-5107568,2026-08-15,suecia,Sirius,Melker Heier,1214160,M,1,90,1,0,0,0.02,75.0,2.0,1283417.0
-5107568,2026-08-15,suecia,Sirius,Marcus Lindberg,1088692,M,1,90,0,0,0,0.0,77.0,2.0,609054.0
-5107568,2026-08-15,suecia,Sirius,Noel Milleskog,1127365,F,1,58,0,0,0,0.0,103.0,3.0,768293.0
-5107568,2026-08-15,suecia,Sirius,Otso Liimatta,1247088,F,1,26,2,2,2,1.43,105.0,3.0,740692.0
-5107568,2026-08-15,suecia,Sirius,Isak Bjerkebo,1386078,F,1,83,5,1,1,0.38,107.0,3.0,903170.0
-5107568,2026-08-15,suecia,Sirius,August Ljungberg,1441945,F,0,64,2,1,0,0.07,,3.0,381387.0
-5107568,2026-08-15,suecia,Sirius,Charlie Nildén,1612545,M,0,32,0,0,0,0.0,,2.0,641979.0
-5107568,2026-08-15,suecia,Sirius,Joakim Persson,1104033,F,0,32,2,0,0,0.21,,3.0,1813983.0
-5107568,2026-08-15,suecia,Sirius,Odera Adindu,1735292,F,0,7,0,0,0,0.0,,3.0,
 5847144,2026-08-15,rus_premier,CSKA Moscow,Vladislav Torop,1083848,G,1,90,0,0,0,0.0,11.0,0.0,1587330.0
 5847144,2026-08-15,rus_premier,CSKA Moscow,Milan Gajic,504033,D,1,90,0,0,0,0.0,32.0,1.0,1669595.0
 5847144,2026-08-15,rus_premier,CSKA Moscow,João Victor,1047358,D,1,90,0,0,0,0.0,34.0,1.0,2661691.0
@@ -23404,22 +23389,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5853468,2026-08-17,rumania,Botosani,Lucas De Vega,1112757,M,0,36,0,0,0,0.0,,2.0,160993.0
 5853468,2026-08-17,rumania,Botosani,Mykola Kovtalyuk,593214,F,0,24,2,1,0,0.0,,3.0,147122.0
 5853468,2026-08-17,rumania,Botosani,Rijad Sadiku,749550,D,0,17,0,0,0,0.0,,1.0,180209.0
-5107567,2026-08-17,suecia,Halmstads BK,Tim Rönning,881094,G,1,90,0,0,0,0.0,11.0,0.0,301903.0
-5107567,2026-08-17,suecia,Halmstads BK,Gabriel Wallentin,1005368,D,1,90,0,0,0,0.0,33.0,1.0,377313.0
-5107567,2026-08-17,suecia,Halmstads BK,Pascal Gregor,388581,D,1,90,0,0,0,0.0,35.0,1.0,289426.0
-5107567,2026-08-17,suecia,Halmstads BK,Erko Tõugjas,1269208,D,1,87,0,0,0,0.0,37.0,1.0,396896.0
-5107567,2026-08-17,suecia,Halmstads BK,André Boman,1035047,D,1,90,0,0,0,0.0,72.0,1.0,545766.0
-5107567,2026-08-17,suecia,Halmstads BK,Niilo Mäenpää,631471,F,1,87,0,0,0,0.0,74.0,3.0,171075.0
-5107567,2026-08-17,suecia,Halmstads BK,Joel Allansson,201969,M,1,90,0,0,0,0.0,76.0,2.0,289426.0
-5107567,2026-08-17,suecia,Halmstads BK,Rami Kaib,772083,D,1,90,3,1,0,0.13,78.0,1.0,198279.0
-5107567,2026-08-17,suecia,Halmstads BK,Ludvig Arvidsson,1717488,F,1,70,3,0,0,0.27,103.0,3.0,1098201.0
-5107567,2026-08-17,suecia,Halmstads BK,Omar Faraj,1179348,F,1,70,0,0,0,0.0,105.0,3.0,649742.0
-5107567,2026-08-17,suecia,Halmstads BK,Hussein Carneil,1339134,M,1,81,3,2,0,0.06,107.0,2.0,296344.0
-5107567,2026-08-17,suecia,Halmstads BK,Malte Persson,1760369,F,0,20,1,0,0,0.09,,3.0,515791.0
-5107567,2026-08-17,suecia,Halmstads BK,Oliver Kapsimalis,1755781,F,0,20,1,0,0,0.04,,3.0,641310.0
-5107567,2026-08-17,suecia,Halmstads BK,Marvin Illary,1779576,F,0,9,0,0,0,0.0,,3.0,655272.0
-5107567,2026-08-17,suecia,Halmstads BK,Aleksander Damnjanovic Nilsson,1289176,M,0,3,0,0,0,0.0,,2.0,380415.0
-5107567,2026-08-17,suecia,Halmstads BK,Rocco Ascone,1229267,M,0,3,0,0,0,0.0,,2.0,391804.0
 5853471,2026-08-17,rumania,UTA Arad,Árpád Tordai,770145,G,1,90,0,0,0,0.0,11.0,0.0,58112.0
 5853471,2026-08-17,rumania,UTA Arad,Andrei Dorobantu,1296334,D,1,90,4,1,1,0.0,32.0,1.0,412732.0
 5853471,2026-08-17,rumania,UTA Arad,Peter Ouaneh,957440,D,1,90,1,0,0,0.0,34.0,1.0,231195.0
@@ -174623,214 +174592,339 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000013259,2026-11-02,chi_primera,Palestino,Joe Abrigo,821999,M,0,27,1,0,0,0.0,,2.0,208134.0
 1000013259,2026-11-02,chi_primera,Palestino,Martín Araya,1434501,F,0,24,0,0,0,0.0,,3.0,354409.0
 1000013259,2026-11-02,chi_primera,Palestino,Francisco Montes,1640496,M,0,7,0,0,0,0.0,,2.0,462728.0
-6050000,2026-11-03,afc_champions,Newcastle Jets,James Delianov,1012192,G,1,90,0,0,0,0.0,11,0,180709
-6050000,2026-11-03,afc_champions,Newcastle Jets,Joel Bertolissio,1437063,D,1,90,0,0,0,0.0,32,1,413428
-6050000,2026-11-03,afc_champions,Newcastle Jets,Thomas Aquilina,1220079,D,1,90,0,0,0,0.0,34,1,278924
-6050000,2026-11-03,afc_champions,Newcastle Jets,Alexander Grant,316694,D,1,90,0,0,0,0.0,36,1,118511
-6050000,2026-11-03,afc_champions,Newcastle Jets,Daniel Wilmering,1031032,D,1,90,0,0,0,0.0,38,1,247790
-6050000,2026-11-03,afc_champions,Newcastle Jets,Max Burgess,590367,M,1,90,0,0,0,0.0,65,2,118686
-6050000,2026-11-03,afc_champions,Newcastle Jets,Joe Lolley,471149,F,1,68,4,0,0,0.0,82,3,544120
-6050000,2026-11-03,afc_champions,Newcastle Jets,Zane Schreiber,1543679,M,1,55,0,0,0,0.0,84,2,519551
-6050000,2026-11-03,afc_champions,Newcastle Jets,Julian Recchia,2237422,M,1,68,0,0,0,0.0,86,2,
-6050000,2026-11-03,afc_champions,Newcastle Jets,Xavier Bertoncello,1799002,F,1,88,3,1,1,0.0,88,3,387779
-6050000,2026-11-03,afc_champions,Newcastle Jets,Patrick Wood,1208173,F,1,90,3,2,1,0.0,115,3,355739
-6050000,2026-11-03,afc_champions,Newcastle Jets,Alexander Badolato,1312639,M,0,35,1,0,0,0.0,,2,413338
-6050000,2026-11-03,afc_champions,Newcastle Jets,Nikolaos Vergos,521755,F,0,22,1,0,0,0.0,,3,253291
-6050000,2026-11-03,afc_champions,Newcastle Jets,Zach Clough,568580,F,0,22,0,0,0,0.0,,3,329537
-6050000,2026-11-03,afc_champions,Newcastle Jets,Will Dobson,1688565,M,0,2,0,0,0,0.0,,2,803146
-6050000,2026-11-03,afc_champions,Shanghai Port,Junling Yan,432795,G,1,90,0,0,0,0.0,11,0,437993
-6050000,2026-11-03,afc_champions,Shanghai Port,Zhen Wei,768631,D,1,90,1,0,0,0.0,33,1,440257
-6050000,2026-11-03,afc_champions,Shanghai Port,Tyias Browning,419196,D,1,88,0,0,0,0.0,35,1,264799
-6050000,2026-11-03,afc_champions,Shanghai Port,Umidjan Yusup,1616162,D,1,90,0,0,0,0.0,37,1,724920
-6050000,2026-11-03,afc_champions,Shanghai Port,Jaume Grau,893399,M,1,76,1,0,0,0.0,64,2,553097
-6050000,2026-11-03,afc_champions,Shanghai Port,Mateus Vital,688992,M,1,90,2,1,0,0.0,66,2,1816477
-6050000,2026-11-03,afc_champions,Shanghai Port,Alex Yang,1717071,D,1,90,1,0,0,0.0,82,1,1022420
-6050000,2026-11-03,afc_champions,Shanghai Port,Óscar Melendo,802987,M,1,88,1,0,0,0.0,84,2,354337
-6050000,2026-11-03,afc_champions,Shanghai Port,Shuai Li,854646,D,1,81,1,0,0,0.0,86,1,376139
-6050000,2026-11-03,afc_champions,Shanghai Port,Prince Ampem,1187260,F,1,76,2,1,1,0.0,88,3,388799
-6050000,2026-11-03,afc_champions,Shanghai Port,Leonardo,1025609,F,1,90,3,1,1,0.0,105,3,1899334
-6050000,2026-11-03,afc_champions,Shanghai Port,Xinxiang Li,1710746,F,0,14,1,1,1,0.0,,3,679012
-6050000,2026-11-03,afc_champions,Shanghai Port,Zhurun Liu,1168820,F,0,14,0,0,0,0.0,,3,478226
-6050000,2026-11-03,afc_champions,Shanghai Port,Xin Yue,536581,D,0,9,1,1,0,0.0,,1,263701
-6050000,2026-11-03,afc_champions,Shanghai Port,Miguel Campos,571159,D,0,2,0,0,0,0.0,,1,423936
-6050000,2026-11-03,afc_champions,Shanghai Port,Jean Claude,1324726,M,0,2,0,0,0,0.0,,2,508468
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Bum-Keun Song,848068,G,1,90,0,0,0,0.0,11,0,699530
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Je-Woon Yeon,730745,D,1,18,0,0,0,0.0,32,1,160252
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Ji-Soo Park,468826,D,1,90,0,0,0,0.0,34,1,319533
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Young-Bin Kim,623910,D,1,90,0,0,0,0.0,36,1,213507
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Woo-Jin Choi,1440173,D,1,90,0,0,0,0.0,38,1,449545
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Seong-Ung Maeng,1026783,M,1,90,0,0,0,0.0,64,2,240825
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Jin-Gyu Kim,622980,M,1,90,2,0,0,0.0,66,2,575885
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Dong-Jun Lee,828272,F,1,46,0,0,0,0.0,83,3,271030
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Sang-Yun Kang,1364202,M,1,65,0,0,0,0.0,85,2,641612
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Italo,1669646,F,1,87,1,1,1,0.0,87,3,
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Bruno Mota,1060635,F,1,65,3,1,1,0.0,115,3,
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Tae-Hyun Kim,947492,D,0,72,0,0,0,0.0,,1,
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Seung-Woo Lee,848098,F,0,44,0,0,0,0.0,,3,253926
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Yeong-Jae Lee,622993,M,0,25,2,0,0,0.0,,2,207581
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Tiago Orobó,1173651,F,0,25,3,0,0,0.0,,3,445024
-6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Dodô,1436321,M,0,3,0,0,0,0.0,,2,
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Syihan Hazmi,1285125,G,1,90,0,0,0,0.0,11,0,72455
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Carlos Akapo,477590,D,1,90,0,0,0,0.0,33,1,71435
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Kevin Medina,955800,D,1,90,1,1,0,0.0,35,1,147931
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Antonio Glauder,721542,D,1,87,1,0,0,0.0,37,1,128983
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Óscar Arribas,828711,D,1,86,3,1,0,0.0,62,1,155717
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Dejan Petrovič,646626,M,1,75,0,0,0,0.0,64,2,751104
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Nacho Méndez,876432,M,1,90,2,2,0,0.0,66,2,506866
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Jonathan Cristian Silva,317771,D,1,45,1,0,0,0.0,68,1,115462
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Arif Aiman,1238056,F,1,90,2,0,0,0.0,84,3,673678
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Marcos Guilherme,533344,M,1,90,3,1,0,0.0,86,2,296948
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Shahab Zahedi,863122,F,1,63,3,1,0,0.0,105,3,210167
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,João Figueiredo,753779,M,0,45,3,0,0,0.0,,2,1149818
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Stoichkov,552625,F,0,27,2,0,0,0.0,,3,208198
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Jairo,523907,F,0,15,0,0,0,0.0,,3,254592
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Nahuel Leiva,517941,F,0,4,1,0,0,0.0,,3,
-6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Jon Irazábal,888654,D,0,3,0,0,0,0.0,,1,133627
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Kengo Nagai,431791,G,1,90,0,0,0,0.0,11,0,142910
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Wataru Harada,1267663,D,1,90,1,0,0,0.0,33,1,414807
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Taiyo Koga,758052,D,1,90,0,0,0,0.0,35,1,695573
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Daiki Sugioka,826020,D,1,90,0,0,0,0.0,37,1,222323
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Tojiro Kubo,1299353,M,1,88,1,1,0,0.0,62,2,728722
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Nobuteru Nakagawa,1716158,M,1,90,0,0,0,0.0,64,2,460184
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Riki Harakawa,431525,M,1,90,1,0,0,0.0,66,2,281377
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Keita Endo,727873,M,1,62,4,2,1,0.0,68,2,274508
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Yoshio Koizumi,1012227,M,1,88,1,0,0,0.0,84,2,591595
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Hinata Yamauchi,1611176,M,1,82,2,2,0,0.0,86,2,272974
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Shota Fujio,1134268,F,1,62,3,2,1,0.0,105,3,564552
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Kenshin Yuba,1642583,M,0,28,1,1,0,0.0,,2,277153
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Mao Hosoya,1035013,F,0,28,1,0,0,0.0,,3,1285092
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Yusuke Segawa,728766,M,0,8,0,0,0,0.0,,2,166774
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Hiromu Mitsumaru,727829,D,0,2,0,0,0,0.0,,1,181697
-6050002,2026-11-03,afc_champions,Kashiwa Reysol,Yusei Yamanouchi,1770890,M,0,2,0,0,0,0.0,,2,
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Chang-Geun Lee,433499,G,1,90,0,0,0,0.0,11,0,276540
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Jin-Ya Kim,828204,D,1,90,0,0,0,0.0,32,1,178275
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Min-Deok Kim,1043120,D,1,46,0,0,0,0.0,34,1,232744
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Sung-Kwon Jo,1440163,D,1,90,0,0,0,0.0,36,1,485036
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Kyu-Hyun Park,1146388,D,1,90,1,0,0,0.0,38,1,279856
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,João Victor,1129324,F,1,72,2,1,0,0.0,72,3,210808
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Bong-Soo Kim,1232490,M,1,90,0,0,0,0.0,74,2,581397
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Soon-Min Lee,828048,M,1,90,1,0,0,0.0,76,2,427151
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Jae-Hee Jeong,735011,F,1,82,1,0,0,0.0,78,3,245225
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Diogo,1136605,F,1,65,0,0,0,0.0,104,3,464419
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Jun-Beom Kim,926617,M,1,65,1,0,0,0.0,106,2,219868
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Anton Krivotsyuk,887135,D,0,44,0,0,0,0.0,,1,497865
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Yoon-Sung Kang,735016,D,0,25,0,0,0,0.0,,1,322609
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Jin-Su Seo,1062592,F,0,25,2,0,0,0.0,,3,394492
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Gustav Ludwigson,932282,F,0,18,0,0,0,0.0,,3,418739
-6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Min-Kyu Joo,631626,F,0,8,1,1,0,0.0,,3,346002
-6050003,2026-11-03,afc_champions,Vissel Kobe,Shota Arai,20122,G,1,90,0,0,0,0.0,11,0,
-6050003,2026-11-03,afc_champions,Vissel Kobe,Nanasei Iino,1134847,D,1,90,1,0,0,0.0,32,1,194873
-6050003,2026-11-03,afc_champions,Vissel Kobe,Takuya Iwanami,309482,D,1,90,0,0,0,0.0,34,1,138158
-6050003,2026-11-03,afc_champions,Vissel Kobe,Caetano,970058,D,1,45,1,0,0,0.0,36,1,581299
-6050003,2026-11-03,afc_champions,Vissel Kobe,Katsuya Nagato,825800,D,1,90,1,0,0,0.0,38,1,412637
-6050003,2026-11-03,afc_champions,Vissel Kobe,Kota Watanabe,746040,M,1,45,1,0,0,0.0,73,2,458681
-6050003,2026-11-03,afc_champions,Vissel Kobe,Yuya Kuwasaki,1233557,M,1,90,2,2,0,0.0,75,2,287047
-6050003,2026-11-03,afc_champions,Vissel Kobe,Yuta Goke,922716,M,1,62,2,0,0,0.0,77,2,511063
-6050003,2026-11-03,afc_champions,Vissel Kobe,Kento Hamasaki,1664593,M,1,69,3,1,1,0.0,103,2,721274
-6050003,2026-11-03,afc_champions,Vissel Kobe,Ren Komatsu,747908,F,1,69,3,0,0,0.0,105,3,345613
-6050003,2026-11-03,afc_champions,Vissel Kobe,Jean Patrick,882272,F,1,90,3,2,0,0.0,107,3,192435
-6050003,2026-11-03,afc_champions,Vissel Kobe,Tetsushi Yamakawa,688651,D,0,45,1,1,1,0.0,,1,667206
-6050003,2026-11-03,afc_champions,Vissel Kobe,Yosuke Ideguchi,619662,M,0,45,1,0,0,0.0,,2,509847
-6050003,2026-11-03,afc_champions,Vissel Kobe,Erik,460255,M,0,28,1,1,1,0.0,,2,622776
-6050003,2026-11-03,afc_champions,Vissel Kobe,Yoshinori Muto,459499,F,0,21,1,0,0,0.0,,3,353497
-6050003,2026-11-03,afc_champions,Vissel Kobe,Yuya Osako,166449,F,0,21,0,0,0,0.0,,3,294003
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Kampol Pathomakkakul,533233,G,1,90,0,0,0,0.0,11,0,50468
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Sanchai Nonthasila,1242172,D,1,46,0,0,0,0.0,32,1,89898
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Adisorn Promrak,433083,D,1,46,0,0,0,0.0,34,1,84492
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Pablo Insua,410656,D,1,90,0,0,0,0.0,36,1,105558
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Daniel Sang Ting,1246161,D,1,90,0,0,0,0.0,38,1,50468
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Tossawat Limwanasthien,433091,M,1,72,2,0,0,0.0,64,2,50468
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Scott Allardice,802220,M,1,90,0,0,0,0.0,66,2,91876
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Ekanit Panya,1048019,M,1,90,1,1,1,0.0,83,2,
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Tana,484906,M,1,90,1,0,0,0.0,85,2,50000
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Sidcley,553106,D,1,78,0,0,0,0.0,87,1,89350
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Phongsakorn Sangkasopha,1832847,M,1,90,4,1,1,0.0,115,2,275132
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Sai van Wermeskerken,638612,D,0,45,2,2,0,0.0,,1,106211
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Tarek Aggoun,1308389,D,0,44,0,0,0,0.0,,1,98037
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Thanawat Suengchitthawon,1194305,M,0,18,1,1,0,0.0,,2,133194
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Njiva Rakotoharimalala,642508,F,0,12,1,0,0,0.0,,3,66798
-6050003,2026-11-03,afc_champions,Ratchaburi FC,Jesse Curran,497658,D,0,1,0,0,0,0.0,,1,51487
-6050005,2026-11-03,afc_champions,Port FC,Michael Falkesgaard,187347,G,1,90,0,0,0,0.0,11,0,50000
-6050005,2026-11-03,afc_champions,Port FC,Peerawat Akkratum,1211779,D,1,65,0,0,0,0.0,32,1,97452
-6050005,2026-11-03,afc_champions,Port FC,Erik Sviatchenko,166471,D,1,90,0,0,0,0.0,34,1,106578
-6050005,2026-11-03,afc_champions,Port FC,Marcel,1262918,D,1,90,1,0,0,0.0,36,1,83796
-6050005,2026-11-03,afc_champions,Port FC,Chaiyaphon Otton,1698952,D,1,90,1,0,0,0.0,38,1,202888
-6050005,2026-11-03,afc_champions,Port FC,Seksan Ratree,1544541,F,1,71,1,1,0,0.0,72,3,351828
-6050005,2026-11-03,afc_champions,Port FC,Noboru Shimura,696369,M,1,45,1,1,0,0.0,74,2,50468
-6050005,2026-11-03,afc_champions,Port FC,Sittha Boonlha,1547007,M,1,65,0,0,0,0.0,76,2,452385
-6050005,2026-11-03,afc_champions,Port FC,Bordin Phala,852127,F,1,90,5,5,3,0.0,78,3,108666
-6050005,2026-11-03,afc_champions,Port FC,Jude Soonsup-Bell,1186485,F,1,90,7,5,2,0.0,104,3,279795
-6050005,2026-11-03,afc_champions,Port FC,Worachit Kanitsribumphen,874740,M,1,71,0,0,0,0.0,106,2,83796
-6050005,2026-11-03,afc_champions,Port FC,Peeradol Chamratsamee,731292,M,0,45,2,0,0,0.0,,2,50468
-6050005,2026-11-03,afc_champions,Port FC,Suphanan Bureerat,860307,D,0,25,0,0,0,0.0,,1,50468
-6050005,2026-11-03,afc_champions,Port FC,Jakkraphan Kaewprom,181683,M,0,25,0,0,0,0.0,,2,57515
-6050005,2026-11-03,afc_champions,Port FC,Lucas Tocantins,1198549,F,0,19,0,0,0,0.0,,3,66798
-6050005,2026-11-03,afc_champions,Port FC,Teerasak Poeiphimai,1348000,F,0,19,2,2,2,0.0,,3,361167
-6050005,2026-11-03,afc_champions,Beijing Guoan,Sen Hou,117465,G,1,90,0,0,0,0.0,11,0,382873
-6050005,2026-11-03,afc_champions,Beijing Guoan,Gang Wang,185706,D,1,90,0,0,0,0.0,32,1,256856
-6050005,2026-11-03,afc_champions,Beijing Guoan,Uroš Spajić,435214,D,1,90,0,0,0,0.0,34,1,499486
-6050005,2026-11-03,afc_champions,Beijing Guoan,Guilherme Ramos,711074,D,1,90,0,0,0,0.0,36,1,468568
-6050005,2026-11-03,afc_champions,Beijing Guoan,Yang Bai,1249785,D,1,46,0,0,0,0.0,38,1,304358
-6050005,2026-11-03,afc_champions,Beijing Guoan,Jeremy Dudziak,406267,M,1,63,0,0,0,0.0,72,2,241336
-6050005,2026-11-03,afc_champions,Beijing Guoan,Dawhan,961502,M,1,90,3,2,2,0.0,74,2,921255
-6050005,2026-11-03,afc_champions,Beijing Guoan,Aboubacar Konté,1035199,M,1,90,0,0,0,0.0,76,2,746277
-6050005,2026-11-03,afc_champions,Beijing Guoan,Xizhe Zhang,197461,M,1,63,0,0,0,0.0,78,2,282032
-6050005,2026-11-03,afc_champions,Beijing Guoan,Chadrac Akolo,538336,F,1,63,3,1,1,0.0,104,3,379006
-6050005,2026-11-03,afc_champions,Beijing Guoan,Béni Nkololo,737141,M,1,77,0,0,0,0.0,106,2,707967
-6050005,2026-11-03,afc_champions,Beijing Guoan,Jiefu Deng,1913080,D,0,44,0,0,0,0.0,,1,945806
-6050005,2026-11-03,afc_champions,Beijing Guoan,Tze-Nam Yue,1130091,D,0,27,0,0,0,0.0,,1,282668
-6050005,2026-11-03,afc_champions,Beijing Guoan,Sai Erjini'ao,535906,M,0,27,2,0,0,0.0,,2,1152538
-6050005,2026-11-03,afc_champions,Beijing Guoan,Yuning Zhang,623091,F,0,27,0,0,0,0.0,,3,789132
-6050005,2026-11-03,afc_champions,Beijing Guoan,Yongjing Cao,623080,M,0,13,0,0,0,0.0,,2,396913
-6050004,2026-11-03,afc_champions,Công An Hà Nội,Nguyễn Filip,307515,G,1,90,0,0,0,0.0,11,0,50000
-6050004,2026-11-03,afc_champions,Công An Hà Nội,Leygley Adou,820226,D,1,90,0,0,0,0.0,33,1,50000
-6050004,2026-11-03,afc_champions,Công An Hà Nội,Bùi Hoàng Việt Anh,1138609,D,1,90,0,0,0,0.0,35,1,67908
-6050004,2026-11-03,afc_champions,Công An Hà Nội,Doàn Văn Hậu,848567,D,1,90,0,0,0,0.0,37,1,50000
-6050004,2026-11-03,afc_champions,Công An Hà Nội,Lê Văn Dô,1312554,M,1,90,0,0,0,0.0,72,2,102265
-6050004,2026-11-03,afc_champions,Công An Hà Nội,Frans Putros,320139,M,1,90,0,0,0,0.0,74,2,50000
-6050004,2026-11-03,afc_champions,Công An Hà Nội,Damià Sabater,647905,M,1,66,1,1,0,0.0,76,2,50000
-6050004,2026-11-03,afc_champions,Công An Hà Nội,Jason Pendant,812234,M,1,90,2,0,0,0.0,78,2,159704
-6050004,2026-11-03,afc_champions,Công An Hà Nội,Alan Grafite,1202028,F,1,66,2,1,0,0.0,103,3,104363
-6050004,2026-11-03,afc_champions,Công An Hà Nội,Brayan Perea,281999,F,1,90,2,1,0,0.0,105,3,50000
-6050004,2026-11-03,afc_champions,Công An Hà Nội,Léo Artur,449784,F,1,90,9,2,0,0.0,107,3,64607
-6050004,2026-11-03,afc_champions,Công An Hà Nội,Hoàng Văn Toản,1489965,M,0,24,1,0,0,0.0,,2,105429
-6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Halls,1282076,G,1,90,0,0,0,0.0,11,0,199703
-6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Yusuke Ishida,1238159,D,1,90,0,0,0,0.0,33,1,256926
-6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Weverton,1675021,D,1,90,1,0,0,0.0,35,1,386369
-6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Kodai Nagata,1716199,D,1,90,0,0,0,0.0,37,1,371824
-6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Kyo Sato,1337015,D,1,90,1,0,0,0.0,62,1,337767
-6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Hiroto Morooka,1388022,M,1,90,0,0,0,0.0,64,2,181697
-6050004,2026-11-03,afc_champions,Kyoto Sanga FC,João Pedro,1281588,M,1,90,1,0,0,0.0,66,2,
-6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Takaaki Shichi,747904,M,1,90,1,0,0,0.0,68,2,159653
-6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Ryuma Nakano,1612519,M,1,45,1,0,0,0.0,84,2,241655
-6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Maceió,1617877,F,1,73,3,1,0,0.0,86,3,
-6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Alex Negueba,1288263,F,1,45,2,2,0,0.0,105,3,384337
-6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Sung-Jun Yoon,1793782,M,0,33,1,0,0,0.0,,2,668373
-6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Rafael Elias,931201,F,0,45,3,1,0,0.0,,3,1785208
-6050094,2026-11-03,afc_champions,Esteghlal,Habib Far Abbasi,900740,G,1,90,0,0,0,0.0,11,0,143956
-6050094,2026-11-03,afc_champions,Esteghlal,Saman Fallah,1228981,D,1,90,1,1,0,0.0,33,1,452995
-6050094,2026-11-03,afc_champions,Esteghlal,Roozbeh Cheshmi,505385,M,1,90,0,0,0,0.0,35,2,65859
-6050094,2026-11-03,afc_champions,Esteghlal,Aref Aghasi,848316,M,1,90,0,0,0,0.0,37,2,161603
-6050094,2026-11-03,afc_champions,Esteghlal,Saleh Hardani,1221526,D,1,90,2,0,0,0.0,72,1,314795
-6050094,2026-11-03,afc_champions,Esteghlal,Jaloliddin Masharipov,533382,F,1,90,0,0,0,0.0,74,3,463471
-6050094,2026-11-03,afc_champions,Esteghlal,Amirmohammad Razzaghinia,1583232,M,1,90,2,1,0,0.0,76,2,1340693
-6050094,2026-11-03,afc_champions,Esteghlal,Hossein Goudarzi,1448721,D,1,90,1,0,0,0.0,78,1,
-6050094,2026-11-03,afc_champions,Esteghlal,Jasir Asani,637760,F,1,89,2,2,1,0.0,103,3,834088
-6050094,2026-11-03,afc_champions,Esteghlal,Saeid Saharkhizan,1480706,F,1,74,2,0,0,0.0,105,3,611959
-6050094,2026-11-03,afc_champions,Esteghlal,Esmaeil Gholizadeh,1580560,F,1,74,2,2,0,0.0,107,3,310154
-6050094,2026-11-03,afc_champions,Esteghlal,Mohammadhossein Eslami,1344223,M,0,16,0,0,0,0.0,,2,358491
-6050094,2026-11-03,afc_champions,Esteghlal,Mohammad Reza Azadi,867475,F,0,16,0,0,0,0.0,,3,194400
-6050094,2026-11-03,afc_champions,Esteghlal,Rustamjon Ashurmatov,643624,D,0,1,0,0,0,0.0,,1,285624
-6050094,2026-11-03,afc_champions,Al-Shamal,Babacar Seck,1711238,G,1,90,0,0,0,0.0,11,0,
-6050094,2026-11-03,afc_champions,Al-Shamal,Youssouf Sabaly,467689,D,1,90,1,0,0,0.0,32,1,571378
-6050094,2026-11-03,afc_champions,Al-Shamal,Michel Termanini,737823,D,1,90,0,0,0,0.0,34,1,218811
-6050094,2026-11-03,afc_champions,Al-Shamal,Pablo Marí,299981,D,1,90,0,0,0,0.0,36,1,1135343
-6050094,2026-11-03,afc_champions,Al-Shamal,Nassim Benaïssa,1177167,M,1,84,0,0,0,0.0,38,2,
-6050094,2026-11-03,afc_champions,Al-Shamal,Tiago Silva,422812,M,1,90,1,0,0,0.0,64,2,1159928
-6050094,2026-11-03,afc_champions,Al-Shamal,Federico Bais,1902025,D,1,90,2,0,0,0.0,66,1,652904
-6050094,2026-11-03,afc_champions,Al-Shamal,Riyad Mahrez,278343,F,1,90,2,1,0,0.0,83,3,1646385
-6050094,2026-11-03,afc_champions,Al-Shamal,Mohamed Ali Ben Romdhane,1000876,M,1,90,1,0,0,0.0,85,2,769902
-6050094,2026-11-03,afc_champions,Al-Shamal,Wesley Saïd,445856,M,1,87,1,0,0,0.0,87,2,2464306
-6050094,2026-11-03,afc_champions,Al-Shamal,Baghdad Bounedjah,291214,F,1,90,3,2,0,0.0,115,3,982477
-6050094,2026-11-03,afc_champions,Al-Shamal,Ahmed Suhail,922391,D,0,6,0,0,0,0.0,,1,301637
-6050094,2026-11-03,afc_champions,Al-Shamal,Omar Ali,1104407,M,0,3,1,0,0,0.0,,2,154297
+6050000,2026-11-03,afc_champions,Newcastle Jets,James Delianov,1012192,G,1,90,0,0,0,0.0,11.0,0.0,180709.0
+6050000,2026-11-03,afc_champions,Newcastle Jets,Joel Bertolissio,1437063,D,1,90,0,0,0,0.0,32.0,1.0,413428.0
+6050000,2026-11-03,afc_champions,Newcastle Jets,Thomas Aquilina,1220079,D,1,90,0,0,0,0.0,34.0,1.0,278924.0
+6050000,2026-11-03,afc_champions,Newcastle Jets,Alexander Grant,316694,D,1,90,0,0,0,0.0,36.0,1.0,118511.0
+6050000,2026-11-03,afc_champions,Newcastle Jets,Daniel Wilmering,1031032,D,1,90,0,0,0,0.0,38.0,1.0,247790.0
+6050000,2026-11-03,afc_champions,Newcastle Jets,Max Burgess,590367,M,1,90,0,0,0,0.0,65.0,2.0,118686.0
+6050000,2026-11-03,afc_champions,Newcastle Jets,Joe Lolley,471149,F,1,68,4,0,0,0.0,82.0,3.0,544120.0
+6050000,2026-11-03,afc_champions,Newcastle Jets,Zane Schreiber,1543679,M,1,55,0,0,0,0.0,84.0,2.0,519551.0
+6050000,2026-11-03,afc_champions,Newcastle Jets,Julian Recchia,2237422,M,1,68,0,0,0,0.0,86.0,2.0,
+6050000,2026-11-03,afc_champions,Newcastle Jets,Xavier Bertoncello,1799002,F,1,88,3,1,1,0.0,88.0,3.0,387779.0
+6050000,2026-11-03,afc_champions,Newcastle Jets,Patrick Wood,1208173,F,1,90,3,2,1,0.0,115.0,3.0,355739.0
+6050000,2026-11-03,afc_champions,Newcastle Jets,Alexander Badolato,1312639,M,0,35,1,0,0,0.0,,2.0,413338.0
+6050000,2026-11-03,afc_champions,Newcastle Jets,Nikolaos Vergos,521755,F,0,22,1,0,0,0.0,,3.0,253291.0
+6050000,2026-11-03,afc_champions,Newcastle Jets,Zach Clough,568580,F,0,22,0,0,0,0.0,,3.0,329537.0
+6050000,2026-11-03,afc_champions,Newcastle Jets,Will Dobson,1688565,M,0,2,0,0,0,0.0,,2.0,803146.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Junling Yan,432795,G,1,90,0,0,0,0.0,11.0,0.0,437993.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Zhen Wei,768631,D,1,90,1,0,0,0.0,33.0,1.0,440257.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Tyias Browning,419196,D,1,88,0,0,0,0.0,35.0,1.0,264799.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Umidjan Yusup,1616162,D,1,90,0,0,0,0.0,37.0,1.0,724920.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Jaume Grau,893399,M,1,76,1,0,0,0.0,64.0,2.0,553097.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Mateus Vital,688992,M,1,90,2,1,0,0.0,66.0,2.0,1816477.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Alex Yang,1717071,D,1,90,1,0,0,0.0,82.0,1.0,1022420.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Óscar Melendo,802987,M,1,88,1,0,0,0.0,84.0,2.0,354337.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Shuai Li,854646,D,1,81,1,0,0,0.0,86.0,1.0,376139.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Prince Ampem,1187260,F,1,76,2,1,1,0.0,88.0,3.0,388799.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Leonardo,1025609,F,1,90,3,1,1,0.0,105.0,3.0,1899334.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Xinxiang Li,1710746,F,0,14,1,1,1,0.0,,3.0,679012.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Zhurun Liu,1168820,F,0,14,0,0,0,0.0,,3.0,478226.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Xin Yue,536581,D,0,9,1,1,0,0.0,,1.0,263701.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Miguel Campos,571159,D,0,2,0,0,0,0.0,,1.0,423936.0
+6050000,2026-11-03,afc_champions,Shanghai Port,Jean Claude,1324726,M,0,2,0,0,0,0.0,,2.0,508468.0
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Bum-Keun Song,848068,G,1,90,0,0,0,0.0,11.0,0.0,699530.0
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Je-Woon Yeon,730745,D,1,18,0,0,0,0.0,32.0,1.0,160252.0
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Ji-Soo Park,468826,D,1,90,0,0,0,0.0,34.0,1.0,319533.0
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Young-Bin Kim,623910,D,1,90,0,0,0,0.0,36.0,1.0,213507.0
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Woo-Jin Choi,1440173,D,1,90,0,0,0,0.0,38.0,1.0,449545.0
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Seong-Ung Maeng,1026783,M,1,90,0,0,0,0.0,64.0,2.0,240825.0
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Jin-Gyu Kim,622980,M,1,90,2,0,0,0.0,66.0,2.0,575885.0
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Dong-Jun Lee,828272,F,1,46,0,0,0,0.0,83.0,3.0,271030.0
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Sang-Yun Kang,1364202,M,1,65,0,0,0,0.0,85.0,2.0,641612.0
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Italo,1669646,F,1,87,1,1,1,0.0,87.0,3.0,
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Bruno Mota,1060635,F,1,65,3,1,1,0.0,115.0,3.0,
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Tae-Hyun Kim,947492,D,0,72,0,0,0,0.0,,1.0,
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Seung-Woo Lee,848098,F,0,44,0,0,0,0.0,,3.0,253926.0
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Yeong-Jae Lee,622993,M,0,25,2,0,0,0.0,,2.0,207581.0
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Tiago Orobó,1173651,F,0,25,3,0,0,0.0,,3.0,445024.0
+6050001,2026-11-03,afc_champions,Jeonbuk Hyundai Motors FC,Dodô,1436321,M,0,3,0,0,0,0.0,,2.0,
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Syihan Hazmi,1285125,G,1,90,0,0,0,0.0,11.0,0.0,72455.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Carlos Akapo,477590,D,1,90,0,0,0,0.0,33.0,1.0,71435.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Kevin Medina,955800,D,1,90,1,1,0,0.0,35.0,1.0,147931.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Antonio Glauder,721542,D,1,87,1,0,0,0.0,37.0,1.0,128983.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Óscar Arribas,828711,D,1,86,3,1,0,0.0,62.0,1.0,155717.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Dejan Petrovič,646626,M,1,75,0,0,0,0.0,64.0,2.0,751104.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Nacho Méndez,876432,M,1,90,2,2,0,0.0,66.0,2.0,506866.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Jonathan Cristian Silva,317771,D,1,45,1,0,0,0.0,68.0,1.0,115462.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Arif Aiman,1238056,F,1,90,2,0,0,0.0,84.0,3.0,673678.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Marcos Guilherme,533344,M,1,90,3,1,0,0.0,86.0,2.0,296948.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Shahab Zahedi,863122,F,1,63,3,1,0,0.0,105.0,3.0,210167.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,João Figueiredo,753779,M,0,45,3,0,0,0.0,,2.0,1149818.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Stoichkov,552625,F,0,27,2,0,0,0.0,,3.0,208198.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Jairo,523907,F,0,15,0,0,0,0.0,,3.0,254592.0
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Nahuel Leiva,517941,F,0,4,1,0,0,0.0,,3.0,
+6050001,2026-11-03,afc_champions,Johor Darul Ta'zim,Jon Irazábal,888654,D,0,3,0,0,0,0.0,,1.0,133627.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Kengo Nagai,431791,G,1,90,0,0,0,0.0,11.0,0.0,142910.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Wataru Harada,1267663,D,1,90,1,0,0,0.0,33.0,1.0,414807.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Taiyo Koga,758052,D,1,90,0,0,0,0.0,35.0,1.0,695573.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Daiki Sugioka,826020,D,1,90,0,0,0,0.0,37.0,1.0,222323.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Tojiro Kubo,1299353,M,1,88,1,1,0,0.0,62.0,2.0,728722.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Nobuteru Nakagawa,1716158,M,1,90,0,0,0,0.0,64.0,2.0,460184.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Riki Harakawa,431525,M,1,90,1,0,0,0.0,66.0,2.0,281377.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Keita Endo,727873,M,1,62,4,2,1,0.0,68.0,2.0,274508.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Yoshio Koizumi,1012227,M,1,88,1,0,0,0.0,84.0,2.0,591595.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Hinata Yamauchi,1611176,M,1,82,2,2,0,0.0,86.0,2.0,272974.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Shota Fujio,1134268,F,1,62,3,2,1,0.0,105.0,3.0,564552.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Kenshin Yuba,1642583,M,0,28,1,1,0,0.0,,2.0,277153.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Mao Hosoya,1035013,F,0,28,1,0,0,0.0,,3.0,1285092.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Yusuke Segawa,728766,M,0,8,0,0,0,0.0,,2.0,166774.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Hiromu Mitsumaru,727829,D,0,2,0,0,0,0.0,,1.0,181697.0
+6050002,2026-11-03,afc_champions,Kashiwa Reysol,Yusei Yamanouchi,1770890,M,0,2,0,0,0,0.0,,2.0,
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Chang-Geun Lee,433499,G,1,90,0,0,0,0.0,11.0,0.0,276540.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Jin-Ya Kim,828204,D,1,90,0,0,0,0.0,32.0,1.0,178275.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Min-Deok Kim,1043120,D,1,46,0,0,0,0.0,34.0,1.0,232744.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Sung-Kwon Jo,1440163,D,1,90,0,0,0,0.0,36.0,1.0,485036.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Kyu-Hyun Park,1146388,D,1,90,1,0,0,0.0,38.0,1.0,279856.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,João Victor,1129324,F,1,72,2,1,0,0.0,72.0,3.0,210808.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Bong-Soo Kim,1232490,M,1,90,0,0,0,0.0,74.0,2.0,581397.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Soon-Min Lee,828048,M,1,90,1,0,0,0.0,76.0,2.0,427151.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Jae-Hee Jeong,735011,F,1,82,1,0,0,0.0,78.0,3.0,245225.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Diogo,1136605,F,1,65,0,0,0,0.0,104.0,3.0,464419.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Jun-Beom Kim,926617,M,1,65,1,0,0,0.0,106.0,2.0,219868.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Anton Krivotsyuk,887135,D,0,44,0,0,0,0.0,,1.0,497865.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Yoon-Sung Kang,735016,D,0,25,0,0,0,0.0,,1.0,322609.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Jin-Su Seo,1062592,F,0,25,2,0,0,0.0,,3.0,394492.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Gustav Ludwigson,932282,F,0,18,0,0,0,0.0,,3.0,418739.0
+6050002,2026-11-03,afc_champions,Daejeon Hana Citizen,Min-Kyu Joo,631626,F,0,8,1,1,0,0.0,,3.0,346002.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Shota Arai,20122,G,1,90,0,0,0,0.0,11.0,0.0,
+6050003,2026-11-03,afc_champions,Vissel Kobe,Nanasei Iino,1134847,D,1,90,1,0,0,0.0,32.0,1.0,194873.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Takuya Iwanami,309482,D,1,90,0,0,0,0.0,34.0,1.0,138158.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Caetano,970058,D,1,45,1,0,0,0.0,36.0,1.0,581299.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Katsuya Nagato,825800,D,1,90,1,0,0,0.0,38.0,1.0,412637.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Kota Watanabe,746040,M,1,45,1,0,0,0.0,73.0,2.0,458681.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Yuya Kuwasaki,1233557,M,1,90,2,2,0,0.0,75.0,2.0,287047.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Yuta Goke,922716,M,1,62,2,0,0,0.0,77.0,2.0,511063.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Kento Hamasaki,1664593,M,1,69,3,1,1,0.0,103.0,2.0,721274.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Ren Komatsu,747908,F,1,69,3,0,0,0.0,105.0,3.0,345613.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Jean Patrick,882272,F,1,90,3,2,0,0.0,107.0,3.0,192435.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Tetsushi Yamakawa,688651,D,0,45,1,1,1,0.0,,1.0,667206.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Yosuke Ideguchi,619662,M,0,45,1,0,0,0.0,,2.0,509847.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Erik,460255,M,0,28,1,1,1,0.0,,2.0,622776.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Yoshinori Muto,459499,F,0,21,1,0,0,0.0,,3.0,353497.0
+6050003,2026-11-03,afc_champions,Vissel Kobe,Yuya Osako,166449,F,0,21,0,0,0,0.0,,3.0,294003.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Kampol Pathomakkakul,533233,G,1,90,0,0,0,0.0,11.0,0.0,50468.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Sanchai Nonthasila,1242172,D,1,46,0,0,0,0.0,32.0,1.0,89898.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Adisorn Promrak,433083,D,1,46,0,0,0,0.0,34.0,1.0,84492.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Pablo Insua,410656,D,1,90,0,0,0,0.0,36.0,1.0,105558.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Daniel Sang Ting,1246161,D,1,90,0,0,0,0.0,38.0,1.0,50468.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Tossawat Limwanasthien,433091,M,1,72,2,0,0,0.0,64.0,2.0,50468.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Scott Allardice,802220,M,1,90,0,0,0,0.0,66.0,2.0,91876.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Ekanit Panya,1048019,M,1,90,1,1,1,0.0,83.0,2.0,
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Tana,484906,M,1,90,1,0,0,0.0,85.0,2.0,50000.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Sidcley,553106,D,1,78,0,0,0,0.0,87.0,1.0,89350.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Phongsakorn Sangkasopha,1832847,M,1,90,4,1,1,0.0,115.0,2.0,275132.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Sai van Wermeskerken,638612,D,0,45,2,2,0,0.0,,1.0,106211.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Tarek Aggoun,1308389,D,0,44,0,0,0,0.0,,1.0,98037.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Thanawat Suengchitthawon,1194305,M,0,18,1,1,0,0.0,,2.0,133194.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Njiva Rakotoharimalala,642508,F,0,12,1,0,0,0.0,,3.0,66798.0
+6050003,2026-11-03,afc_champions,Ratchaburi FC,Jesse Curran,497658,D,0,1,0,0,0,0.0,,1.0,51487.0
+6050005,2026-11-03,afc_champions,Port FC,Michael Falkesgaard,187347,G,1,90,0,0,0,0.0,11.0,0.0,50000.0
+6050005,2026-11-03,afc_champions,Port FC,Peerawat Akkratum,1211779,D,1,65,0,0,0,0.0,32.0,1.0,97452.0
+6050005,2026-11-03,afc_champions,Port FC,Erik Sviatchenko,166471,D,1,90,0,0,0,0.0,34.0,1.0,106578.0
+6050005,2026-11-03,afc_champions,Port FC,Marcel,1262918,D,1,90,1,0,0,0.0,36.0,1.0,83796.0
+6050005,2026-11-03,afc_champions,Port FC,Chaiyaphon Otton,1698952,D,1,90,1,0,0,0.0,38.0,1.0,202888.0
+6050005,2026-11-03,afc_champions,Port FC,Seksan Ratree,1544541,F,1,71,1,1,0,0.0,72.0,3.0,351828.0
+6050005,2026-11-03,afc_champions,Port FC,Noboru Shimura,696369,M,1,45,1,1,0,0.0,74.0,2.0,50468.0
+6050005,2026-11-03,afc_champions,Port FC,Sittha Boonlha,1547007,M,1,65,0,0,0,0.0,76.0,2.0,452385.0
+6050005,2026-11-03,afc_champions,Port FC,Bordin Phala,852127,F,1,90,5,5,3,0.0,78.0,3.0,108666.0
+6050005,2026-11-03,afc_champions,Port FC,Jude Soonsup-Bell,1186485,F,1,90,7,5,2,0.0,104.0,3.0,279795.0
+6050005,2026-11-03,afc_champions,Port FC,Worachit Kanitsribumphen,874740,M,1,71,0,0,0,0.0,106.0,2.0,83796.0
+6050005,2026-11-03,afc_champions,Port FC,Peeradol Chamratsamee,731292,M,0,45,2,0,0,0.0,,2.0,50468.0
+6050005,2026-11-03,afc_champions,Port FC,Suphanan Bureerat,860307,D,0,25,0,0,0,0.0,,1.0,50468.0
+6050005,2026-11-03,afc_champions,Port FC,Jakkraphan Kaewprom,181683,M,0,25,0,0,0,0.0,,2.0,57515.0
+6050005,2026-11-03,afc_champions,Port FC,Lucas Tocantins,1198549,F,0,19,0,0,0,0.0,,3.0,66798.0
+6050005,2026-11-03,afc_champions,Port FC,Teerasak Poeiphimai,1348000,F,0,19,2,2,2,0.0,,3.0,361167.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Sen Hou,117465,G,1,90,0,0,0,0.0,11.0,0.0,382873.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Gang Wang,185706,D,1,90,0,0,0,0.0,32.0,1.0,256856.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Uroš Spajić,435214,D,1,90,0,0,0,0.0,34.0,1.0,499486.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Guilherme Ramos,711074,D,1,90,0,0,0,0.0,36.0,1.0,468568.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Yang Bai,1249785,D,1,46,0,0,0,0.0,38.0,1.0,304358.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Jeremy Dudziak,406267,M,1,63,0,0,0,0.0,72.0,2.0,241336.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Dawhan,961502,M,1,90,3,2,2,0.0,74.0,2.0,921255.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Aboubacar Konté,1035199,M,1,90,0,0,0,0.0,76.0,2.0,746277.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Xizhe Zhang,197461,M,1,63,0,0,0,0.0,78.0,2.0,282032.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Chadrac Akolo,538336,F,1,63,3,1,1,0.0,104.0,3.0,379006.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Béni Nkololo,737141,M,1,77,0,0,0,0.0,106.0,2.0,707967.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Jiefu Deng,1913080,D,0,44,0,0,0,0.0,,1.0,945806.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Tze-Nam Yue,1130091,D,0,27,0,0,0,0.0,,1.0,282668.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Sai Erjini'ao,535906,M,0,27,2,0,0,0.0,,2.0,1152538.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Yuning Zhang,623091,F,0,27,0,0,0,0.0,,3.0,789132.0
+6050005,2026-11-03,afc_champions,Beijing Guoan,Yongjing Cao,623080,M,0,13,0,0,0,0.0,,2.0,396913.0
+6050004,2026-11-03,afc_champions,Công An Hà Nội,Nguyễn Filip,307515,G,1,90,0,0,0,0.0,11.0,0.0,50000.0
+6050004,2026-11-03,afc_champions,Công An Hà Nội,Leygley Adou,820226,D,1,90,0,0,0,0.0,33.0,1.0,50000.0
+6050004,2026-11-03,afc_champions,Công An Hà Nội,Bùi Hoàng Việt Anh,1138609,D,1,90,0,0,0,0.0,35.0,1.0,67908.0
+6050004,2026-11-03,afc_champions,Công An Hà Nội,Doàn Văn Hậu,848567,D,1,90,0,0,0,0.0,37.0,1.0,50000.0
+6050004,2026-11-03,afc_champions,Công An Hà Nội,Lê Văn Dô,1312554,M,1,90,0,0,0,0.0,72.0,2.0,102265.0
+6050004,2026-11-03,afc_champions,Công An Hà Nội,Frans Putros,320139,M,1,90,0,0,0,0.0,74.0,2.0,50000.0
+6050004,2026-11-03,afc_champions,Công An Hà Nội,Damià Sabater,647905,M,1,66,1,1,0,0.0,76.0,2.0,50000.0
+6050004,2026-11-03,afc_champions,Công An Hà Nội,Jason Pendant,812234,M,1,90,2,0,0,0.0,78.0,2.0,159704.0
+6050004,2026-11-03,afc_champions,Công An Hà Nội,Alan Grafite,1202028,F,1,66,2,1,0,0.0,103.0,3.0,104363.0
+6050004,2026-11-03,afc_champions,Công An Hà Nội,Brayan Perea,281999,F,1,90,2,1,0,0.0,105.0,3.0,50000.0
+6050004,2026-11-03,afc_champions,Công An Hà Nội,Léo Artur,449784,F,1,90,9,2,0,0.0,107.0,3.0,64607.0
+6050004,2026-11-03,afc_champions,Công An Hà Nội,Hoàng Văn Toản,1489965,M,0,24,1,0,0,0.0,,2.0,105429.0
+6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Halls,1282076,G,1,90,0,0,0,0.0,11.0,0.0,199703.0
+6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Yusuke Ishida,1238159,D,1,90,0,0,0,0.0,33.0,1.0,256926.0
+6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Weverton,1675021,D,1,90,1,0,0,0.0,35.0,1.0,386369.0
+6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Kodai Nagata,1716199,D,1,90,0,0,0,0.0,37.0,1.0,371824.0
+6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Kyo Sato,1337015,D,1,90,1,0,0,0.0,62.0,1.0,337767.0
+6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Hiroto Morooka,1388022,M,1,90,0,0,0,0.0,64.0,2.0,181697.0
+6050004,2026-11-03,afc_champions,Kyoto Sanga FC,João Pedro,1281588,M,1,90,1,0,0,0.0,66.0,2.0,
+6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Takaaki Shichi,747904,M,1,90,1,0,0,0.0,68.0,2.0,159653.0
+6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Ryuma Nakano,1612519,M,1,45,1,0,0,0.0,84.0,2.0,241655.0
+6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Maceió,1617877,F,1,73,3,1,0,0.0,86.0,3.0,
+6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Alex Negueba,1288263,F,1,45,2,2,0,0.0,105.0,3.0,384337.0
+6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Sung-Jun Yoon,1793782,M,0,33,1,0,0,0.0,,2.0,668373.0
+6050004,2026-11-03,afc_champions,Kyoto Sanga FC,Rafael Elias,931201,F,0,45,3,1,0,0.0,,3.0,1785208.0
+6050094,2026-11-03,afc_champions,Esteghlal,Habib Far Abbasi,900740,G,1,90,0,0,0,0.0,11.0,0.0,143956.0
+6050094,2026-11-03,afc_champions,Esteghlal,Saman Fallah,1228981,D,1,90,1,1,0,0.0,33.0,1.0,452995.0
+6050094,2026-11-03,afc_champions,Esteghlal,Roozbeh Cheshmi,505385,M,1,90,0,0,0,0.0,35.0,2.0,65859.0
+6050094,2026-11-03,afc_champions,Esteghlal,Aref Aghasi,848316,M,1,90,0,0,0,0.0,37.0,2.0,161603.0
+6050094,2026-11-03,afc_champions,Esteghlal,Saleh Hardani,1221526,D,1,90,2,0,0,0.0,72.0,1.0,314795.0
+6050094,2026-11-03,afc_champions,Esteghlal,Jaloliddin Masharipov,533382,F,1,90,0,0,0,0.0,74.0,3.0,463471.0
+6050094,2026-11-03,afc_champions,Esteghlal,Amirmohammad Razzaghinia,1583232,M,1,90,2,1,0,0.0,76.0,2.0,1340693.0
+6050094,2026-11-03,afc_champions,Esteghlal,Hossein Goudarzi,1448721,D,1,90,1,0,0,0.0,78.0,1.0,
+6050094,2026-11-03,afc_champions,Esteghlal,Jasir Asani,637760,F,1,89,2,2,1,0.0,103.0,3.0,834088.0
+6050094,2026-11-03,afc_champions,Esteghlal,Saeid Saharkhizan,1480706,F,1,74,2,0,0,0.0,105.0,3.0,611959.0
+6050094,2026-11-03,afc_champions,Esteghlal,Esmaeil Gholizadeh,1580560,F,1,74,2,2,0,0.0,107.0,3.0,310154.0
+6050094,2026-11-03,afc_champions,Esteghlal,Mohammadhossein Eslami,1344223,M,0,16,0,0,0,0.0,,2.0,358491.0
+6050094,2026-11-03,afc_champions,Esteghlal,Mohammad Reza Azadi,867475,F,0,16,0,0,0,0.0,,3.0,194400.0
+6050094,2026-11-03,afc_champions,Esteghlal,Rustamjon Ashurmatov,643624,D,0,1,0,0,0,0.0,,1.0,285624.0
+6050094,2026-11-03,afc_champions,Al-Shamal,Babacar Seck,1711238,G,1,90,0,0,0,0.0,11.0,0.0,
+6050094,2026-11-03,afc_champions,Al-Shamal,Youssouf Sabaly,467689,D,1,90,1,0,0,0.0,32.0,1.0,571378.0
+6050094,2026-11-03,afc_champions,Al-Shamal,Michel Termanini,737823,D,1,90,0,0,0,0.0,34.0,1.0,218811.0
+6050094,2026-11-03,afc_champions,Al-Shamal,Pablo Marí,299981,D,1,90,0,0,0,0.0,36.0,1.0,1135343.0
+6050094,2026-11-03,afc_champions,Al-Shamal,Nassim Benaïssa,1177167,M,1,84,0,0,0,0.0,38.0,2.0,
+6050094,2026-11-03,afc_champions,Al-Shamal,Tiago Silva,422812,M,1,90,1,0,0,0.0,64.0,2.0,1159928.0
+6050094,2026-11-03,afc_champions,Al-Shamal,Federico Bais,1902025,D,1,90,2,0,0,0.0,66.0,1.0,652904.0
+6050094,2026-11-03,afc_champions,Al-Shamal,Riyad Mahrez,278343,F,1,90,2,1,0,0.0,83.0,3.0,1646385.0
+6050094,2026-11-03,afc_champions,Al-Shamal,Mohamed Ali Ben Romdhane,1000876,M,1,90,1,0,0,0.0,85.0,2.0,769902.0
+6050094,2026-11-03,afc_champions,Al-Shamal,Wesley Saïd,445856,M,1,87,1,0,0,0.0,87.0,2.0,2464306.0
+6050094,2026-11-03,afc_champions,Al-Shamal,Baghdad Bounedjah,291214,F,1,90,3,2,0,0.0,115.0,3.0,982477.0
+6050094,2026-11-03,afc_champions,Al-Shamal,Ahmed Suhail,922391,D,0,6,0,0,0,0.0,,1.0,301637.0
+6050094,2026-11-03,afc_champions,Al-Shamal,Omar Ali,1104407,M,0,3,1,0,0,0.0,,2.0,154297.0
+6050095,2026-11-03,afc_champions,Al Hilal,Yassine Bounou,340020,G,1,90,0,0,0,0.0,11.0,0.0,1761603.0
+6050095,2026-11-03,afc_champions,Al Hilal,Ali Lajami,640284,D,1,82,0,0,0,0.0,33.0,1.0,568699.0
+6050095,2026-11-03,afc_champions,Al Hilal,Kalidou Koulibaly,210428,D,1,90,0,0,0,0.0,35.0,1.0,1787845.0
+6050095,2026-11-03,afc_champions,Al Hilal,Yusuf Akçiçek,1561568,D,1,90,0,0,0,0.0,37.0,1.0,16561291.0
+6050095,2026-11-03,afc_champions,Al Hilal,Sabri Dahal,1844115,F,1,28,1,0,0,0.0,62.0,3.0,3547846.0
+6050095,2026-11-03,afc_champions,Al Hilal,Sergej Milinković-Savić,463301,M,1,90,1,0,0,0.0,64.0,2.0,10322338.0
+6050095,2026-11-03,afc_champions,Al Hilal,Mohamed Kanno,866373,M,1,90,0,0,0,0.0,66.0,2.0,327066.0
+6050095,2026-11-03,afc_champions,Al Hilal,Moteb Al-Harbi,1138003,D,1,46,2,0,0,0.0,68.0,1.0,1111556.0
+6050095,2026-11-03,afc_champions,Al Hilal,Saïmon Bouabré,1487959,M,1,35,0,0,0,0.0,84.0,2.0,16987394.0
+6050095,2026-11-03,afc_champions,Al Hilal,Ollie Watkins,540088,F,1,90,4,2,2,0.0,86.0,3.0,19306410.0
+6050095,2026-11-03,afc_champions,Al Hilal,Mohamed Meïté,1693546,F,1,46,0,0,0,0.0,105.0,3.0,17879628.0
+6050095,2026-11-03,afc_champions,Al Hilal,Mohammed Mahzari,1527135,D,0,62,0,0,0,0.0,,1.0,486910.0
+6050095,2026-11-03,afc_champions,Al Hilal,Nasser Al-Dawsari,848612,M,0,55,1,0,0,0.0,,2.0,442475.0
+6050095,2026-11-03,afc_champions,Al Hilal,Theo Hernández,724371,D,0,44,1,1,0,0.0,,1.0,16102069.0
+6050095,2026-11-03,afc_champions,Al Hilal,Sultan Mandash,619824,F,0,44,2,0,0,0.0,,3.0,269527.0
+6050095,2026-11-03,afc_champions,Al Hilal,Hassan Al Tambakti,848607,D,0,8,0,0,0,0.0,,1.0,847342.0
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Matheus Donelli,1173549,G,1,90,0,0,0,0.0,11.0,0.0,964086.0
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Mateus Henrique,1458813,D,1,82,0,0,0,0.0,32.0,1.0,1019857.0
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Igor Gomes,1279037,D,1,90,0,0,0,0.0,34.0,1.0,1065023.0
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Wout Faes,693678,D,1,90,1,1,0,0.0,36.0,1.0,10608429.0
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Jorge Fernandes,668727,D,1,58,0,0,0,0.0,38.0,1.0,842386.0
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Saeid Ezatolahi,505281,M,1,90,0,0,0,0.0,64.0,2.0,1213338.0
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Breno Cascardo,1476485,M,1,90,0,0,0,0.0,66.0,2.0,1307710.0
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Mohammed Juma,1650394,F,1,46,0,0,0,0.0,83.0,3.0,
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Kauan Santos,1560056,D,1,74,0,0,0,0.0,85.0,1.0,1221168.0
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Nemanja Maksimović,495962,M,1,58,1,1,0,0.0,87.0,2.0,2226910.0
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Sardar Azmoun,441309,F,1,90,2,0,0,0.0,115.0,3.0,4170094.0
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Juan Bezerra,1556281,F,0,44,0,0,0,0.0,,3.0,
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Jahnoah Markelo,1334842,M,0,32,0,0,0,0.0,,2.0,3651544.0
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Mateusão,1320954,F,0,32,1,1,0,0.0,,3.0,1038836.0
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Federico Cartabia,474680,F,0,16,1,0,0,0.0,,3.0,
+6050095,2026-11-03,afc_champions,Shabab Al-Ahli Dubai FC,Rikelme,1257049,D,0,8,0,0,0,0.0,,1.0,1523822.0
+6106341,2026-11-03,champions,Galatasaray,Uğurcan Çakir,603669,G,1,90,0,0,0,0.0,11.0,0.0,15043572.0
+6106341,2026-11-03,champions,Galatasaray,Roland Sallai,583601,D,1,68,0,0,0,0.0,32.0,1.0,11436478.0
+6106341,2026-11-03,champions,Galatasaray,Davinson Sánchez,643533,D,1,90,0,0,0,0.0,34.0,1.0,15613124.0
+6106341,2026-11-03,champions,Galatasaray,Abdülkerim Bardakci,291399,D,1,90,0,0,0,0.0,36.0,1.0,3110021.0
+6106341,2026-11-03,champions,Galatasaray,Ismail Jakobs,906945,D,1,77,0,0,0,0.0,38.0,1.0,4824349.0
+6106341,2026-11-03,champions,Galatasaray,Lucas Torreira,592909,M,1,90,1,0,0,0.02,64.0,2.0,6295248.0
+6106341,2026-11-03,champions,Galatasaray,Mario Lemina,421786,M,1,83,0,0,0,0.0,66.0,2.0,2086935.0
+6106341,2026-11-03,champions,Galatasaray,Yunus Akgün,845991,M,1,90,0,0,0,0.0,83.0,2.0,19148055.0
+6106341,2026-11-03,champions,Galatasaray,Aleksey Batrakov,1504343,M,1,77,3,3,2,0.52,85.0,2.0,34750313.0
+6106341,2026-11-03,champions,Galatasaray,Barış Alper Yılmaz,890232,F,1,68,1,0,0,0.02,87.0,3.0,28995795.0
+6106341,2026-11-03,champions,Galatasaray,Victor Osimhen,687681,F,1,90,7,1,0,0.42,115.0,3.0,66738294.0
+6106341,2026-11-03,champions,Galatasaray,Wilfried Singo,1027472,D,0,22,0,0,0,0.0,,1.0,22600176.0
+6106341,2026-11-03,champions,Galatasaray,Rafael Leão,848844,F,0,22,1,0,0,0.03,,3.0,39164315.0
+6106341,2026-11-03,champions,Galatasaray,Eren Elmalı,1041660,D,0,13,0,0,0,0.0,,1.0,4182902.0
+6106341,2026-11-03,champions,Galatasaray,Leroy Sané,530859,F,0,13,0,0,0,0.0,,3.0,11915576.0
+6106341,2026-11-03,champions,Galatasaray,Gabriel Sara,902710,M,0,7,0,0,0,0.0,,2.0,24794748.0
+6106341,2026-11-03,champions,VfB Stuttgart,Fabian Bredlow,522236,G,1,90,0,0,0,0.0,11.0,0.0,628521.0
+6106341,2026-11-03,champions,VfB Stuttgart,Ramon Hendriks,1125187,D,1,90,0,0,0,0.0,33.0,1.0,21552487.0
+6106341,2026-11-03,champions,VfB Stuttgart,Jeff Chabot,867080,D,1,90,0,0,0,0.0,35.0,1.0,13405046.0
+6106341,2026-11-03,champions,VfB Stuttgart,Maximilian Mittelstädt,614384,D,1,90,0,0,0,0.0,37.0,1.0,15163360.0
+6106341,2026-11-03,champions,VfB Stuttgart,Jamie Leweling,1074968,F,1,75,2,0,0,0.57,62.0,3.0,42297846.0
+6106341,2026-11-03,champions,VfB Stuttgart,Grischa Prömel,625175,M,1,75,0,0,0,0.0,64.0,2.0,2355640.0
+6106341,2026-11-03,champions,VfB Stuttgart,Atakan Karazor,684983,M,1,18,0,0,0,0.0,66.0,2.0,3692955.0
+6106341,2026-11-03,champions,VfB Stuttgart,Chris Führich,892679,M,1,82,3,1,0,0.18,68.0,2.0,11132435.0
+6106341,2026-11-03,champions,VfB Stuttgart,Bilal El Khannouss,1340895,M,1,90,2,1,0,0.1,85.0,2.0,42342512.0
+6106341,2026-11-03,champions,VfB Stuttgart,Deniz Undav,661519,F,1,90,2,1,0,0.06,104.0,3.0,20266990.0
+6106341,2026-11-03,champions,VfB Stuttgart,Ermedin Demirović,840241,F,1,75,0,0,0,0.0,106.0,3.0,17319316.0
+6106341,2026-11-03,champions,VfB Stuttgart,Yanik Spalt,1793638,M,0,72,0,0,0,0.0,,2.0,807787.0
+6106341,2026-11-03,champions,VfB Stuttgart,Lorenz Assignon,1192406,D,0,15,1,0,0,0.06,,1.0,10688603.0
+6106341,2026-11-03,champions,VfB Stuttgart,Nikolas Nartey,869298,M,0,15,0,0,0,0.0,,2.0,10363284.0
+6106341,2026-11-03,champions,VfB Stuttgart,Dženan Pejčinović,1366602,F,0,16,1,1,0,0.48,,3.0,25863015.0
+6106341,2026-11-03,champions,VfB Stuttgart,Tiago Tomás,1164506,F,0,8,2,1,0,0.32,,3.0,18427771.0
+5107651,2026-11-03,suecia,Sirius,David Ćelić,1300097,G,1,90,0,0,0,0.0,11.0,0.0,837934.0
+5107651,2026-11-03,suecia,Sirius,Henrik Castegren,736649,D,1,90,2,0,0,0.04,32.0,1.0,381837.0
+5107651,2026-11-03,suecia,Sirius,Simon Sandberg,307889,D,1,90,0,0,0,0.0,34.0,1.0,165433.0
+5107651,2026-11-03,suecia,Sirius,Tobias Anker,1126767,D,1,90,0,0,0,0.0,36.0,1.0,586849.0
+5107651,2026-11-03,suecia,Sirius,Oscar Krusnell,868705,D,1,86,0,0,0,0.0,38.0,1.0,471641.0
+5107651,2026-11-03,suecia,Sirius,Melker Heier,1214160,M,1,67,0,0,0,0.0,64.0,2.0,1288817.0
+5107651,2026-11-03,suecia,Sirius,Marcus Lindberg,1088692,M,1,90,0,0,0,0.0,66.0,2.0,1025148.0
+5107651,2026-11-03,suecia,Sirius,Joakim Persson,1104033,F,1,90,4,1,1,1.03,83.0,3.0,1445056.0
+5107651,2026-11-03,suecia,Sirius,Victor Svensson,1368196,M,1,79,0,0,0,0.0,85.0,2.0,1965390.0
+5107651,2026-11-03,suecia,Sirius,Zalán Vancsa,1211282,F,1,67,2,1,0,0.24,87.0,3.0,523263.0
+5107651,2026-11-03,suecia,Sirius,Isak Bjerkebo,1386078,F,1,79,3,2,1,0.94,115.0,3.0,6915081.0
+5107651,2026-11-03,suecia,Sirius,Charlie Nildén,1612545,M,0,23,0,0,0,0.0,,2.0,765641.0
+5107651,2026-11-03,suecia,Sirius,Neo Jönsson,1654018,F,0,23,0,0,0,0.0,,3.0,7195475.0
+5107651,2026-11-03,suecia,Sirius,Adam Wikman,1233200,M,0,11,1,0,0,0.07,,2.0,686178.0
+5107651,2026-11-03,suecia,Sirius,Jesper Uneken,1448374,F,0,11,0,0,0,0.0,,3.0,1038003.0
+5107651,2026-11-03,suecia,Sirius,Victor Ekström,1457847,D,0,4,0,0,0,0.0,,1.0,374343.0
+5107651,2026-11-03,suecia,Halmstads BK,Tim Rönning,881094,G,1,90,0,0,0,0.0,11.0,0.0,311245.0
+5107651,2026-11-03,suecia,Halmstads BK,André Boman,1035047,D,1,90,0,0,0,0.0,33.0,1.0,514539.0
+5107651,2026-11-03,suecia,Halmstads BK,Pascal Gregor,388581,D,1,90,0,0,0,0.0,35.0,1.0,296601.0
+5107651,2026-11-03,suecia,Halmstads BK,Gabriel Wallentin,1005368,D,1,90,0,0,0,0.0,37.0,1.0,360751.0
+5107651,2026-11-03,suecia,Halmstads BK,Oliver Kapsimalis,1755781,D,1,90,2,0,0,0.06,51.0,1.0,631946.0
+5107651,2026-11-03,suecia,Halmstads BK,Rami Kaib,772083,D,1,73,0,0,0,0.0,59.0,1.0,286262.0
+5107651,2026-11-03,suecia,Halmstads BK,Joel Allansson,201969,M,1,90,1,0,0,0.04,73.0,2.0,289426.0
+5107651,2026-11-03,suecia,Halmstads BK,Tom Trybull,243828,M,1,90,2,0,0,0.05,75.0,2.0,176641.0
+5107651,2026-11-03,suecia,Halmstads BK,Rocco Ascone,1229267,M,1,90,2,1,0,0.05,77.0,2.0,525305.0
+5107651,2026-11-03,suecia,Halmstads BK,Malte Persson,1760369,F,1,58,0,0,0,0.0,104.0,3.0,565936.0
+5107651,2026-11-03,suecia,Halmstads BK,Hussein Carneil,1339134,F,1,84,2,0,0,0.11,106.0,3.0,295293.0
+5107651,2026-11-03,suecia,Halmstads BK,Ajdin Zeljković,835621,F,0,32,0,0,0,0.0,,3.0,272059.0
+5107651,2026-11-03,suecia,Halmstads BK,Marvin Illary,1779576,M,0,17,1,0,0,0.03,,2.0,548538.0
+5107651,2026-11-03,suecia,Halmstads BK,Ludvig Arvidsson,1717488,F,0,6,0,0,0,0.0,,3.0,2166179.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Dmytro Riznyk,976428,G,1,90,0,0,0,0.0,11.0,0.0,7230667.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Vinícius Tobias,1314657,D,1,90,0,0,0,0.0,32.0,1.0,7263593.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Valeriy Bondar,1024427,D,1,90,0,0,0,0.0,34.0,1.0,7215795.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Mykola Matviyenko,656667,D,1,89,1,0,0,0.1,36.0,1.0,9349320.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Pedro Henrique,1259576,D,1,90,2,1,0,0.07,38.0,1.0,9710729.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Yegor Nazaryna,728941,M,1,67,0,0,0,0.0,65.0,2.0,1280101.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Alisson Santana,1503318,F,1,89,3,1,0,0.12,82.0,3.0,17702037.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Oleg Ocheretko,1192419,M,1,90,0,0,0,0.0,84.0,2.0,7724699.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Marlon Gomes,1396465,M,1,83,2,0,0,0.13,86.0,2.0,15069361.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Gleiker Mendoza,1460572,F,1,67,0,0,0,0.0,88.0,3.0,2122737.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Kauã Elias,1483508,F,1,90,5,1,0,1.25,115.0,3.0,19497620.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Isaque,1697412,M,0,23,0,0,0,0.0,,2.0,14268301.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Newerton,1516203,F,0,23,1,1,0,0.29,,3.0,
+6106335,2026-11-03,champions,Shakhtar Donetsk,Lassina Traoré,850858,F,0,7,0,0,0,0.0,,3.0,8344986.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Luca Meirelles,1694887,F,0,1,0,0,0,0.0,,3.0,13680307.0
+6106335,2026-11-03,champions,Shakhtar Donetsk,Lucas Ferreira,1699018,F,0,1,0,0,0,0.0,,3.0,10075570.0
+6106335,2026-11-03,champions,Sporting CP,Rui Silva,361717,G,1,90,0,0,0,0.0,11.0,0.0,2742034.0
+6106335,2026-11-03,champions,Sporting CP,Eduardo Quaresma,1156380,D,1,90,2,1,0,0.1,33.0,1.0,17205192.0
+6106335,2026-11-03,champions,Sporting CP,Eduardo Felicíssimo,1648470,M,1,90,0,0,0,0.0,35.0,2.0,1989031.0
+6106335,2026-11-03,champions,Sporting CP,Gonçalo Inácio,1165710,D,1,90,0,0,0,0.0,37.0,1.0,40302426.0
+6106335,2026-11-03,champions,Sporting CP,Geny Catamo,1088753,F,1,83,0,0,0,0.0,62.0,3.0,37865669.0
+6106335,2026-11-03,champions,Sporting CP,Silas Andersen,1425101,M,1,90,1,0,0,0.04,64.0,2.0,9059400.0
+6106335,2026-11-03,champions,Sporting CP,Sergi Altimira,1310480,M,1,90,0,0,0,0.0,66.0,2.0,25138714.0
+6106335,2026-11-03,champions,Sporting CP,Maxi Araújo,1031656,D,1,88,2,1,0,0.05,68.0,1.0,39449920.0
+6106335,2026-11-03,champions,Sporting CP,Issa Doumbia,1339345,M,1,88,2,1,1,0.33,85.0,2.0,23893745.0
+6106335,2026-11-03,champions,Sporting CP,Luis Suárez,792303,F,1,90,4,0,0,0.79,104.0,3.0,32651771.0
+6106335,2026-11-03,champions,Sporting CP,Fotis Ioannidis,899701,F,1,70,0,0,0,0.0,106.0,3.0,16957658.0
+6106335,2026-11-03,champions,Sporting CP,Rodrigo Zalazar,1070776,F,0,20,0,0,0,0.0,,3.0,33067693.0
+6106335,2026-11-03,champions,Sporting CP,Iván Fresneda,1325998,D,0,7,0,0,0,0.0,,1.0,21054489.0
+6106335,2026-11-03,champions,Sporting CP,Salvador Blopa,1712326,D,0,2,0,0,0,0.0,,1.0,2012412.0
+6106335,2026-11-03,champions,Sporting CP,João Simões,1663855,M,0,2,0,0,0,0.0,,2.0,18745921.0
