@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-03T04:23:20Z",
+"actualizado": "2026-11-03T06:04:19Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -22101,6 +22101,16 @@
 "cuota": 2.25,
 "resultado": "verde",
 "marcador": "3-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "San Jose Sharks vs Calgary Flames",
+"apuesta": "Handicap: San Jose Sharks +2.5",
+"cuota": 1.125,
+"resultado": "verde",
+"marcador": "1-2"
 },
 {
 "dia": "2026-11-02",
