@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-02T23:36:51Z",
+"actualizado": "2026-11-03T01:12:57Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -21754,6 +21754,16 @@
 },
 {
 "dia": "2026-11-02",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Gzira vs Marsaxlokk",
+"apuesta": "Gana Marsaxlokk",
+"cuota": 1.7,
+"resultado": "verde",
+"marcador": "0-5"
+},
+{
+"dia": "2026-11-02",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Hapoel Tel Aviv vs Maccabi Haifa",
@@ -21904,6 +21914,16 @@
 },
 {
 "dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Molynes vs Mount Pleasant",
+"apuesta": "Gana Mount Pleasant",
+"cuota": 1.4616,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-02",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Nordia Jerusalem vs Kfar Saba 1928",
@@ -21941,6 +21961,26 @@
 "cuota": 1.177,
 "resultado": "rojo",
 "marcador": "2-3"
+},
+{
+"dia": "2026-11-02",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Platense vs Central Cordoba",
+"apuesta": "Platense o empate",
+"cuota": 1.133,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Platense vs Central Cordoba",
+"apuesta": "Gana Platense",
+"cuota": 1.5556,
+"resultado": "verde",
+"marcador": "2-0"
 },
 {
 "dia": "2026-11-02",
