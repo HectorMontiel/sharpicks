@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-03T10:48:22Z",
+"actualizado": "2026-11-03T12:26:35Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -22354,6 +22354,16 @@
 },
 {
 "dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Kashiwa Reysol vs Daejeon Hana Citizen FC",
+"apuesta": "Kashiwa Reysol o empate",
+"cuota": 1.154,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-03",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Newcastle Jets (Aus) vs Shanghai Port (Chn)",
@@ -22381,6 +22391,16 @@
 "cuota": 1.75,
 "resultado": "rojo",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Vissel Kobe (Jpn) vs Ratchaburi (Tha)",
+"apuesta": "Gana Vissel Kobe (Jpn)",
+"cuota": 1.23,
+"resultado": "verde",
+"marcador": "3-2"
 }
 ]
 }

@@ -961,8 +961,8 @@
   },
   "Unión (Santa Fe)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "R. Union",
-    "ratio": 0.4762,
+    "candidato": "Santa Cruz",
+    "ratio": 0.5,
     "visto": "2026-11-03"
   },
   "Gimnasia La Plata": {
@@ -1927,9 +1927,9 @@
   },
   "AEK Athens": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Athens Kallithea",
-    "ratio": 0.4615,
-    "visto": "2026-11-01"
+    "candidato": "AEK U19",
+    "ratio": 0.4706,
+    "visto": "2026-11-03"
   },
   "Kyoto Sanga": {
     "contexto": "cuotas_mx→futbol",
@@ -1998,10 +1998,10 @@
     "visto": "2026-10-28"
   },
   "Lens": {
-    "contexto": "oddsapi",
-    "candidato": "RC Lens",
-    "ratio": 0.7273,
-    "visto": "2026-11-01"
+    "contexto": "cuotas_mx→futbol",
+    "candidato": "Lens U19",
+    "ratio": 0.6667,
+    "visto": "2026-11-03"
   },
   "PSV Eindhoven": {
     "contexto": "cuotas_mx→futbol",
@@ -2011,8 +2011,8 @@
   },
   "Al-Shamal": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Shamal (Qat)",
-    "ratio": 0.6316,
+    "candidato": "Shamal 2",
+    "ratio": 0.7059,
     "visto": "2026-11-03"
   },
   "TSG Hoffenheim": {
@@ -2053,9 +2053,9 @@
   },
   "Como": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Como U20",
+    "candidato": "Como U19",
     "ratio": 0.6667,
-    "visto": "2026-10-31"
+    "visto": "2026-11-03"
   },
   "Ararat-Armenia": {
     "contexto": "cuotas_mx→futbol",
@@ -2095,8 +2095,8 @@
   },
   "Real Tomayapo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Bedford",
-    "ratio": 0.48,
+    "candidato": "Real Madrid U19",
+    "ratio": 0.5,
     "visto": "2026-11-03"
   },
   "Sekhukhune United FC": {
@@ -2107,8 +2107,8 @@
   },
   "Kruger United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dewa United",
-    "ratio": 0.6667,
+    "candidato": "Muras United",
+    "ratio": 0.64,
     "visto": "2026-11-03"
   },
   "Central Coast Mariners": {
@@ -2680,5 +2680,11 @@
     "candidato": "Seattle Reign W",
     "ratio": 0.6207,
     "visto": "2026-11-01"
+  },
+  "Dinamo Zagreb": {
+    "contexto": "cuotas_mx→futbol",
+    "candidato": "D. Zagreb U19",
+    "ratio": 0.64,
+    "visto": "2026-11-03"
   }
 }
