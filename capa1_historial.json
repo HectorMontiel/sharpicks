@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-03T17:16:11Z",
+"actualizado": "2026-11-03T18:47:51Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -22354,6 +22354,16 @@
 },
 {
 "dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Al Hussein (Jor) vs Al Shorta (Irq)",
+"apuesta": "Gana Al Shorta (Irq)",
+"cuota": 2.95,
+"resultado": "verde",
+"marcador": "0-3"
+},
+{
+"dia": "2026-11-03",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Al Raed vs Al Wehda",
@@ -22441,6 +22451,16 @@
 "cuota": 1.154,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Maccabi Tel Aviv U19 vs Zurich U19",
+"apuesta": "Gana Maccabi Tel Aviv U19",
+"cuota": 1.69,
+"resultado": "verde",
+"marcador": "1-0"
 },
 {
 "dia": "2026-11-03",
