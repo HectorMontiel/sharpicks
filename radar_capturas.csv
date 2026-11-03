@@ -30074,3 +30074,34 @@ fecha,deporte,liga,home,away,inicio,pin_home,pin_draw,pin_away,q_home,q_away,mar
 2026-11-03,nba,USA: NCAA,San Diego State,CS Fullerton,1793761200,1.0502,,11.59,0.916916,0.083084,0.038481,0,0.0,
 2026-11-03,tenis,"CHALLENGER MEN - SINGLES: Taipei (Taiwan), hard",Delaney Ja.,Jasika O.,1793757600,2.54,,1.5525,0.379352,0.620648,0.037823,0,0.0,
 2026-11-03,tenis,"CHALLENGER MEN - SINGLES: Taipei (Taiwan), hard",Watanuki Y.,Imamura M.,1793757600,1.1692,,5.78,0.83175,0.16825,0.028296,1,0.0833,Novibet
+2026-11-03,futbol,ENGLAND: National League Cup,Gateshead,Stoke City U21,1793732400,1.7299,4.36,3.8,0.539956,0.245808,0.070584,1,0.0496,Novibet
+2026-11-03,futbol,ENGLAND: National League Cup,Hartlepool,Leeds U21,1793732400,1.9009,4.17,3.28,0.491305,0.284732,0.070753,1,0.081,Novibet
+2026-11-03,futbol,EUROPE: Champions League - League phase,Fenerbahce,Liverpool,1793814300,5.76,4.99,1.5128,0.167734,0.638649,0.035038,0,0.0,
+2026-11-03,futbol,SPAIN: Tercera RFEF - Group 6,Roda,Torrellano,1793811600,2.03,3.15,3.45,0.447858,0.263522,0.099926,1,0.08,Novibet
+2026-11-03,futbol,SPAIN: Tercera RFEF - Group 6,Vall de Uxo,Torrent,1793815200,2.37,2.96,2.95,0.384015,0.308514,0.098762,0,0.0,
+2026-11-03,futbol,SPAIN: Tercera RFEF - Group 13,Mazarron,UD Los Garres,1793811600,1.5076,3.95,5.48,0.60358,0.166051,0.098952,0,0.0,
+2026-11-03,tenis,"ATP - SINGLES: Paris (France), hard (indoor)",Fils A.,Machac T.,1793782800,1.565,,2.56,0.620606,0.379394,0.029603,1,0.0474,Novibet
+2026-11-03,tenis,"WTA - SINGLES: Chennai (India), hard",Tjen J.,Garland J.,1793790000,1.4202,,3.03,0.680868,0.319132,0.034159,0,0.0,
+2026-11-03,tenis,"WTA - SINGLES: Hong Kong (Hong Kong), hard",Joint M.,Sakkari M.,1793782800,2.53,,1.565,0.382173,0.617827,0.034235,1,0.0344,Novibet
+2026-11-03,tenis,"ATP - DOUBLES: Paris (France), hard (indoor)",Andreozzi G./Guinard M.,Pavlasek A./Rikl P.,1793782800,1.6897,,2.17,0.56222,0.43778,0.052651,0,0.0,
+2026-11-03,tenis,"ATP - DOUBLES: Paris (France), hard (indoor)",Arribage T./Olivetti A.,Cash J./Glasspool L.,1793782800,2.02,,1.7937,0.470331,0.529669,0.052556,0,0.0,
+2026-11-03,tenis,"ATP - DOUBLES: Paris (France), hard (indoor)",Nys H./Roger-Vasselin E.,Doumbia S./Pel D.,1793782800,1.4762,,2.67,0.643963,0.356037,0.051947,0,0.0,
+2026-11-03,tenis,"WTA - DOUBLES: Chennai (India), hard",Kobori M./Plipuech P.,Christie F./Silva E.,1793784600,1.9009,,1.9009,0.5,0.5,0.052133,0,0.0,
+2026-11-03,tenis,"WTA - DOUBLES: Chennai (India), hard",da Silva Fick G./Kulambayeva Z.,Kuwata H./Raina A.,1793790000,1.5747,,2.4,0.603819,0.396181,0.051708,0,0.0,
+2026-11-03,tenis,"WTA - DOUBLES: Chennai (India), hard",Adkar V./Bhosale R.,Brooks M./Rajecki A.,1793800800,3.93,,1.2532,0.241781,0.758219,0.05241,0,0.0,
+2026-11-03,tenis,"CHALLENGER MEN - SINGLES: Bratislava 2 (Slovakia), hard (indoor)",Sachko V.,Virtanen O.,1793786400,3.0,,1.4167,0.32076,0.67924,0.039199,0,0.0,
+2026-11-03,tenis,"CHALLENGER MEN - SINGLES: Bratislava 2 (Slovakia), hard (indoor)",Damm M.,Gentzsch T.,1793797200,1.2976,,3.73,0.741905,0.258095,0.03875,0,0.0,
+2026-11-03,tenis,"CHALLENGER MEN - SINGLES: Bratislava 2 (Slovakia), hard (indoor)",Dodig M.,Krajci M.,1793802600,1.0983,,7.27,0.868755,0.131245,0.04805,0,0.0,
+2026-11-03,tenis,"CHALLENGER MEN - SINGLES: Bratislava 2 (Slovakia), hard (indoor)",Pokorny L.,Samuel T.,1793808000,5.31,,1.1773,0.181478,0.818522,0.037725,0,0.0,
+2026-11-03,tenis,"CHALLENGER MEN - SINGLES: Bratislava 2 (Slovakia), hard (indoor)",Basavareddy N.,Brunold M.,1793813400,1.4717,,2.79,0.654668,0.345332,0.037909,0,0.0,
+2026-11-03,tenis,"CHALLENGER MEN - SINGLES: Taipei (Taiwan), hard",Shimizu Y.,Holmgren A.,1793784600,2.3,,1.6579,0.418884,0.581116,0.037955,0,0.0,
+2026-11-03,tenis,"CHALLENGER WOMEN - SINGLES: Cali (Colombia), clay",Romero Gormaz L.,Sierra S.,1793808000,1.9434,,1.8772,0.491336,0.508664,0.04727,0,0.0,
+2026-11-03,tenis,"CHALLENGER WOMEN - SINGLES: Luanda (Angola), hard",Lamens S.,Kroitor K.,1793788200,1.0989,,6.81,0.861055,0.138945,0.056844,0,0.0,
+2026-11-03,tenis,"CHALLENGER WOMEN - SINGLES: Luanda (Angola), hard",Mdlulwa W.,Noha Akugue N.,1793788200,13.79,,1.0306,0.069538,0.930462,0.042825,1,0.0206,Novibet
+2026-11-03,tenis,"CHALLENGER WOMEN - SINGLES: Luanda (Angola), hard",Martynov D.,Kabbaj Y.,1793806200,2.67,,1.4854,0.357463,0.642537,0.047751,0,0.0,
+2026-11-03,nba,EUROPE: Champions League,FC Porto,Joventut Badalona,1793734200,3.68,,1.2959,0.260435,0.739565,0.043404,1,0.0276,Novibet
+2026-11-03,mlb,MEXICO: LMP,Yaquis de Obregon,Mayos de Navojoa,1793758200,1.3968,,2.75,0.663162,0.336838,0.079558,0,0.0,
+2026-11-03,mlb,MEXICO: LMP,Hermosillo,Tomateros,1793759400,1.6452,,2.15,0.566505,0.433495,0.072945,1,0.1366,Novibet
+2026-11-03,mlb,MEXICO: LMP,Jaguares de Nayarit,Caneros Mochis,1793759400,1.9346,,1.8065,0.482879,0.517121,0.070459,0,0.0,
+2026-11-03,mlb,MEXICO: LMP,Aguilas de Mexicali,Mazatlan,1793763000,1.625,,2.19,0.57405,0.42595,0.072006,0,0.0,
+2026-11-03,nfl,USA: NFL,New Orleans Saints,Cleveland Browns,1794160800,1.8403,,2.04,0.525733,0.474267,0.033586,1,0.0311,Novibet
