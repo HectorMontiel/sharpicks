@@ -30010,3 +30010,44 @@ fecha,deporte,liga,home,away,inicio,pin_home,pin_draw,pin_away,q_home,q_away,mar
 2026-11-03,nba,HONG KONG: A1,Winling,Fukien,1793882400,1.0155,,8.1,0.888596,0.111404,0.108193,0,0.0,
 2026-11-03,nba,LITHUANIA: NKL,Kretinga,BC Olimpas Palanga,1793898000,3.41,,1.2169,0.263005,0.736995,0.115015,0,0.0,
 2026-11-03,nba,URUGUAY: Liga Uruguaya,Aguada,Goes,1793838600,1.304,,3.15,0.707229,0.292771,0.084331,0,0.0,
+2026-11-03,futbol,EGYPT: Egypt Cup,Ghazl El Mahallah,Al Ittihad,1793804400,2.9,2.64,2.53,0.308192,0.353264,0.118872,1,0.0688,Playdoit
+2026-11-03,futbol,EUROPE: UEFA Youth League - Winners Play Offs,Septemvri Sofia U19,Fiorentina U19,1793788200,7.72,5.87,1.2433,0.11731,0.728409,0.104203,0,0.0,
+2026-11-03,futbol,EUROPE: UEFA Youth League - Winners Play Offs,Super Nova U19,Hammarby U19,1793808000,5.67,4.34,1.4016,0.157435,0.636884,0.120252,0,0.0,
+2026-11-03,futbol,EUROPE: Champions League - League phase,AEK Athens,Real Madrid,1793814300,10.55,7.22,1.2387,0.09109,0.775809,0.040589,0,0.0,
+2026-11-03,futbol,EUROPE: Champions League - League phase,RB Leipzig,Manchester City,1793822400,5.36,4.95,1.5495,0.18044,0.624174,0.033957,0,0.0,
+2026-11-03,futbol,EGYPT: League Cup,Al Masry,Petrojet,1793815200,1.9174,3.11,4.13,0.480587,0.223118,0.085214,0,0.0,
+2026-11-03,futbol,BRAZIL: Serie A,Internacional,Coritiba,1793752200,1.6173,4.16,5.71,0.598081,0.1694,0.03383,0,0.0,
+2026-11-03,futbol,BELGIUM: Challenger Pro League,Francs Borains,Dender,1793818800,3.01,3.71,2.18,0.313278,0.432553,0.060483,0,0.0,
+2026-11-03,futbol,SPAIN: Copa del Rey,Amorebieta,UD Logrones,1793818800,2.82,3.3,2.14,0.315228,0.415395,0.12493,0,0.0,
+2026-11-03,futbol,ENGLAND: League One,Oxford Utd,Reading,1793821500,2.61,3.67,2.52,0.364049,0.37705,0.052447,0,0.0,
+2026-11-03,tenis,"ITF MEN - SINGLES: M25 Guadalajara (Mexico), clay",Flores J.,Karra T.,1793723400,1.1565,,4.99,0.811844,0.188156,0.065079,1,0.0392,Novibet
+2026-11-03,tenis,"ITF MEN - SINGLES: M25 Guadalajara (Mexico), clay",Jauregui Sainz De Rozas R.,Cooper S.,1793723400,2.07,,1.7194,0.453739,0.546261,0.06469,0,0.0,
+2026-11-03,tenis,"ITF MEN - SINGLES: M25 Guadalajara (Mexico), clay",Strode E.,Tunas G.,1793725200,1.0687,,8.22,0.884946,0.115054,0.057371,1,0.0978,Novibet
+2026-11-03,tenis,"ITF MEN - SINGLES: M25 Guadalajara (Mexico), clay",Rubio Fierros A. F.,Bravo E.,1793728800,1.0387,,11.47,0.916962,0.083038,0.049926,1,0.0487,Novibet
+2026-11-03,tenis,"ITF MEN - SINGLES: M25 Guadalajara (Mexico), clay",Baker B.,Reyes Tiraldo O. A.,1793730600,1.106,,6.33,0.851264,0.148736,0.062137,1,0.0562,Novibet
+2026-11-03,tenis,"ITF MEN - SINGLES: M25 Guadalajara (Mexico), clay",De Alba R.,Rico Arias N. E.,1793730600,1.2092,,4.18,0.775625,0.224375,0.066228,0,0.0,
+2026-11-03,tenis,"ITF MEN - SINGLES: M25 Guadalajara (Mexico), clay",Perez B.,Covato M.,1793736000,2.77,,1.4184,0.33865,0.66135,0.066031,1,0.1322,Novibet
+2026-11-03,tenis,"ITF MEN - SINGLES: M25 Guadalajara (Mexico), clay",Soto M.,Rengifo F.,1793736000,1.1429,,5.28,0.822059,0.177941,0.064361,0,0.0,
+2026-11-03,tenis,"CHALLENGER MEN - SINGLES: Costa do Sauipe (Brazil), clay",Miguel L. F.,Marcondes I.,1793743200,2.91,,1.4405,0.331111,0.668889,0.037846,1,0.0286,Novibet
+2026-11-03,tenis,"ITF MEN - SINGLES: M15 Maanshan 9 (China), hard",Xia Y.,Kong W.,1793757600,1.4739,,2.58,0.636424,0.363576,0.066069,0,0.0,
+2026-11-03,tenis,"ITF MEN - SINGLES: M15 Maanshan 9 (China), hard",Zhou X.,Butulija B.,1793757600,2.27,,1.5988,0.413255,0.586745,0.065998,0,0.0,
+2026-11-03,tenis,"ITF MEN - SINGLES: M15 Maanshan 9 (China), hard",Zhukov M.,Storch S.,1793759400,1.057,,9.17,0.896646,0.103354,0.055125,1,0.0556,Novibet
+2026-11-03,tenis,"ITF MEN - SINGLES: M15 Maanshan 9 (China), hard",Chiu J.,Tamm K.,1793763000,3.21,,1.3247,0.292125,0.707875,0.066414,0,0.0,
+2026-11-03,tenis,"ITF MEN - SINGLES: M15 Maanshan 9 (China), hard",Te R.,Kikuchi Y.,1793766600,1.3247,,3.21,0.707875,0.292125,0.066414,1,0.036,Novibet
+2026-11-03,tenis,"ITF MEN - SINGLES: M15 Maanshan 9 (China), hard",Yang X.,Peliwo F.,1793766600,7.09,,1.0879,0.133029,0.866971,0.060246,0,0.0,
+2026-11-03,tenis,"ITF MEN - SINGLES: M15 Maanshan 9 (China), hard",Yang Z.,Zhao Z.,1793766600,3.93,,1.232,0.238667,0.761333,0.066141,0,0.0,
+2026-11-03,tenis,"ITF MEN - SINGLES: M15 Maanshan 9 (China), hard",Hongyu Y.,Han X.,1793772000,2.34,,1.565,0.400768,0.599232,0.066328,0,0.0,
+2026-11-03,tenis,"ITF MEN - SINGLES: M15 Maanshan 9 (China), hard",Zhao L.,Connel J.,1793772000,2.05,,1.7299,0.457658,0.542342,0.065873,0,0.0,
+2026-11-03,nba,EUROPE: Champions League,Strasbourg,Cibona,1793732400,1.2481,,4.13,0.767929,0.232071,0.043349,1,0.0217,Novibet
+2026-11-03,nba,AUSTRALIA: NBL,Brisbane Bullets,Perth,1793782800,2.28,,1.6173,0.41498,0.58502,0.056911,0,0.0,
+2026-11-03,nba,EUROPE: Euroleague,Real Madrid,Panathinaikos,1793821500,2.06,,1.7634,0.461213,0.538787,0.052523,0,0.0,
+2026-11-03,nba,EUROPE: Eurocup,Turk Telekom,Frankfurt,1793809800,1.1835,,4.57,0.794299,0.205701,0.06377,0,0.0,
+2026-11-03,nba,EUROPE: Eurocup,Rigas Zelli,Le Mans,1793811600,2.29,,1.6289,0.415652,0.584348,0.050592,0,0.0,
+2026-11-03,nba,EUROPE: Eurocup,Slask Wroclaw,JL Bourg,1793815200,3.62,,1.2762,0.260651,0.739349,0.059819,0,0.0,
+2026-11-03,nba,EUROPE: Eurocup,KK Bosna,Balkan,1793817000,1.1608,,4.93,0.809417,0.190583,0.064315,0,0.0,
+2026-11-03,nba,EUROPE: Eurocup,Venezia,Siauliai,1793818800,1.1105,,6.09,0.845775,0.154225,0.064699,0,0.0,
+2026-11-03,nba,EUROPE: Eurocup,Maxima Roma,London Lions,1793820600,1.2882,,3.54,0.733192,0.266808,0.058763,0,0.0,
+2026-11-03,nba,EUROPE: Eurocup,San Pablo Burgos,Rostock,1793820600,1.2288,,4.03,0.766335,0.233665,0.061941,0,0.0,
+2026-11-03,nfl,USA: NFL,Carolina Panthers,Denver Broncos,1794160800,2.37,,1.6329,0.407929,0.592071,0.034348,1,0.0229,Playdoit
+2026-11-03,nfl,USA: NFL,Philadelphia Eagles,New York Giants,1794160800,2.6,,1.5348,0.371191,0.628809,0.036166,1,0.0211,Playdoit
+2026-11-03,futbol,EUROPE: Europa League - League phase,Bayer Leverkusen,Marseille,1793908800,1.3846,5.59,7.45,0.697572,0.129645,0.035349,1,0.0249,Novibet
