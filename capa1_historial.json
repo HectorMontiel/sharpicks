@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-03T07:41:26Z",
+"actualizado": "2026-11-03T09:13:47Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -21905,6 +21905,16 @@
 {
 "dia": "2026-11-02",
 "nivel": "💰",
+"deporte": "Tenis",
+"partido": "Jil Teichmann vs Joanna Garland",
+"apuesta": "Gana Jil Teichmann",
+"cuota": 1.83,
+"resultado": "rojo",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Jong Ajax vs Vitesse",
 "apuesta": "Gana Jong Ajax",
@@ -22234,6 +22244,16 @@
 },
 {
 "dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Teichmann J. vs Garland J.",
+"apuesta": "Gana Teichmann J.",
+"cuota": 1.83,
+"resultado": "rojo",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-02",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Teleoptik vs Javor",
@@ -22331,6 +22351,16 @@
 "cuota": 2.07,
 "resultado": "verde",
 "marcador": "1-0"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Ninomiya M./Zhang Y. vs Hozumi E./Klepac A.",
+"apuesta": "Gana Hozumi E./Klepac A.",
+"cuota": 1.75,
+"resultado": "rojo",
+"marcador": "2-0"
 }
 ]
 }
