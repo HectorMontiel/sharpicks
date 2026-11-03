@@ -7410,7 +7410,7 @@ game_id,season,tipo,week,gameday,gametime,home,away,home_score,away_score,overti
 2026_09_ARI_SEA,2026,regular,9,2026-11-08,16:25,SEA,ARI,,,,False,1,outdoors,fieldturf,,,6,7,00-0034869,00-0035289,Sam Darnold,Gardner Minshew,Mike Macdonald,Jonathan Gannon,11.5,44.5,-675.0,490.0,-110.0,-110.0,-110.0,-110.0,,,,,,,,,,,,,,
 2026_09_GB_NE,2026,regular,9,2026-11-08,16:25,NE,GB,,,,False,0,outdoors,fieldturf,,,7,10,00-0039851,00-0036264,Drake Maye,Jordan Love,Mike Vrabel,Matt LaFleur,3.0,46.5,-155.0,130.0,-108.0,-112.0,-115.0,-105.0,,,,,,,,,,,,,,
 2026_09_TB_CHI,2026,regular,9,2026-11-08,20:20,CHI,TB,,,,False,0,outdoors,grass,,,6,7,00-0039918,00-0034855,Caleb Williams,Baker Mayfield,Ben Johnson,Todd Bowles,6.0,46.5,-258.0,210.0,-108.0,-112.0,-112.0,-108.0,,,,,,,,,,,,,,
-2026_09_BUF_MIN,2026,regular,9,2026-11-09,20:15,MIN,BUF,,,,False,0,dome,sportturf,,,8,8,00-0035228,00-0034857,Kyler Murray,Josh Allen,Kevin O'Connell,Sean McDermott,-3.5,46.5,154.0,-185.0,-118.0,-102.0,-105.0,-115.0,,,,,,,,,,,,,,
+2026_09_BUF_MIN,2026,regular,9,2026-11-09,20:15,MIN,BUF,,,,False,0,dome,sportturf,,,8,8,00-0035228,00-0034857,Kyler Murray,Josh Allen,Kevin O'Connell,Sean McDermott,-3.5,45.5,160.0,-192.0,-118.0,-102.0,-115.0,-105.0,,,,,,,,,,,,,,
 2026_10_WAS_NYG,2026,regular,10,2026-11-12,20:15,NYG,WSH,,,,False,1,outdoors,fieldturf,,,4,4,,,,,John Harbaugh,Dan Quinn,,,,,,,,,,,,,,,,,,,,,,
 2026_10_NE_DET,2026,regular,10,2026-11-15,09:30,DET,NE,,,,True,0,dome,fieldturf,,,7,7,,,,,Dan Campbell,Mike Vrabel,,,,,,,,,,,,,,,,,,,,,,
 2026_10_BUF_NYJ,2026,regular,10,2026-11-15,13:00,NYJ,BUF,,,,False,1,outdoors,fieldturf,,,7,6,,,,,Aaron Glenn,Sean McDermott,,,,,,,,,,,,,,,,,,,,,,

@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-03T06:04:19Z",
+"actualizado": "2026-11-03T07:41:26Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -21785,6 +21785,36 @@
 {
 "dia": "2026-11-02",
 "nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Gainare Tottori vs Sagamihara",
+"apuesta": "Gana Sagamihara",
+"cuota": 2.08,
+"resultado": "verde",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Giravanz Kitakyushu vs Reilac Shiga",
+"apuesta": "Gana Reilac Shiga",
+"cuota": 2.95,
+"resultado": "verde",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Giravanz Kitakyushu vs Reilac Shiga",
+"apuesta": "Gana Giravanz Kitakyushu",
+"cuota": 2.5455,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
 "deporte": "Tenis",
 "partido": "Golubic V. vs Boulter K.",
 "apuesta": "Gana Golubic V.",
@@ -21886,11 +21916,41 @@
 "dia": "2026-11-02",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Kamatamare vs Yamaga",
+"apuesta": "Gana Yamaga",
+"cuota": 2.15,
+"resultado": "rojo",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Kanazawa vs Nagano",
+"apuesta": "Gana Kanazawa",
+"cuota": 1.85,
+"resultado": "rojo",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Karpaty Lviv vs Kudrivka",
 "apuesta": "Gana Karpaty Lviv",
 "cuota": 1.44,
 "resultado": "verde",
 "marcador": "5-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Kochi United vs Ehime",
+"apuesta": "Gana Ehime",
+"cuota": 1.89,
+"resultado": "rojo",
+"marcador": "4-0"
 },
 {
 "dia": "2026-11-02",
@@ -22164,6 +22224,16 @@
 },
 {
 "dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Tegevajaro Miyazaki vs Tochigi City",
+"apuesta": "Gana Tegevajaro Miyazaki",
+"cuota": 1.85,
+"resultado": "verde",
+"marcador": "3-0"
+},
+{
+"dia": "2026-11-02",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Teleoptik vs Javor",
@@ -22239,6 +22309,16 @@
 "partido": "Waterhouse vs Cavalier",
 "apuesta": "Gana Waterhouse",
 "cuota": 2.2,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Yokohama FC vs Blaublitz",
+"apuesta": "Gana Yokohama FC",
+"cuota": 1.7778,
 "resultado": "verde",
 "marcador": "2-1"
 },
