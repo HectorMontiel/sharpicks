@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-03T01:12:57Z",
+"actualizado": "2026-11-03T04:23:20Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -21646,6 +21646,16 @@
 "dia": "2026-11-02",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Atlético Bucaramanga vs Atlético Nacional",
+"apuesta": "Gana Atlético Bucaramanga",
+"cuota": 3.2,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Bani Yas U23 vs Al Jazira U23",
 "apuesta": "Gana Al Jazira U23",
 "cuota": 2.09,
@@ -21664,6 +21674,16 @@
 },
 {
 "dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Bragantino vs Santos",
+"apuesta": "Gana Bragantino",
+"cuota": 2.15,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-02",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Brezice vs Beltinci",
@@ -21671,6 +21691,16 @@
 "cuota": 1.52,
 "resultado": "verde",
 "marcador": "0-6"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Bucaramanga vs Atl. Nacional",
+"apuesta": "Gana Bucaramanga",
+"cuota": 3.2,
+"resultado": "rojo",
+"marcador": "1-1"
 },
 {
 "dia": "2026-11-02",
@@ -21711,6 +21741,16 @@
 "cuota": 2.4,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Chicago Blackhawks vs Colorado Avalanche",
+"apuesta": "Handicap: Chicago Blackhawks +3.5",
+"cuota": 1.154,
+"resultado": "verde",
+"marcador": "2-5"
 },
 {
 "dia": "2026-11-02",
@@ -21801,6 +21841,16 @@
 "cuota": 1.21,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-02",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Ind. Rivadavia vs Banfield",
+"apuesta": "Ind. Rivadavia o empate",
+"cuota": 1.111,
+"resultado": "verde",
+"marcador": "3-1"
 },
 {
 "dia": "2026-11-02",
@@ -21914,6 +21964,16 @@
 },
 {
 "dia": "2026-11-02",
+"nivel": "🏆",
+"deporte": "NBA",
+"partido": "Minnesota Timberwolves vs Milwaukee Bucks",
+"apuesta": "Gana Minnesota Timberwolves",
+"cuota": 1.222,
+"resultado": "verde",
+"marcador": "112-100"
+},
+{
+"dia": "2026-11-02",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Molynes vs Mount Pleasant",
@@ -21921,6 +21981,16 @@
 "cuota": 1.4616,
 "resultado": "verde",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-02",
+"nivel": "🏆",
+"deporte": "NBA",
+"partido": "New York Knicks vs Brooklyn Nets",
+"apuesta": "Gana New York Knicks",
+"cuota": 1.11,
+"resultado": "verde",
+"marcador": "103-90"
 },
 {
 "dia": "2026-11-02",
@@ -22151,6 +22221,16 @@
 "cuota": 2.01,
 "resultado": "verde",
 "marcador": "4-3"
+},
+{
+"dia": "2026-11-02",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Waterhouse vs Cavalier",
+"apuesta": "Gana Waterhouse",
+"cuota": 2.2,
+"resultado": "verde",
+"marcador": "2-1"
 },
 {
 "dia": "2026-11-02",

@@ -67,8 +67,8 @@
   },
   "Club Olimpia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Leon W",
-    "ratio": 0.5714,
+    "candidato": "Club Africain",
+    "ratio": 0.56,
     "visto": "2026-11-03"
   },
   "Cruz Azul": {
@@ -109,8 +109,8 @@
   },
   "Fuerte San Francisco": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atl. San Luis W",
-    "ratio": 0.5,
+    "candidato": "San Lorenzo",
+    "ratio": 0.4516,
     "visto": "2026-11-03"
   },
   "Gimnasia y Esgrima (Jujuy)": {
@@ -331,8 +331,8 @@
   },
   "Club Atlético La Paz": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Leon W",
-    "ratio": 0.5517,
+    "candidato": "Club Africain",
+    "ratio": 0.5455,
     "visto": "2026-11-03"
   },
   "Sporting JAX": {
@@ -769,8 +769,8 @@
   },
   "Club Atlético Morelia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Leon W",
-    "ratio": 0.5333,
+    "candidato": "Club Africain",
+    "ratio": 0.5294,
     "visto": "2026-11-03"
   },
   "Atlético Junior": {
@@ -1471,8 +1471,8 @@
   },
   "AD San Carlos": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atl. San Luis W",
-    "ratio": 0.64,
+    "candidato": "San Javier",
+    "ratio": 0.5217,
     "visto": "2026-11-03"
   },
   "Nacional Potosí": {
@@ -1777,9 +1777,9 @@
   },
   "Slavia Prague": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sparta Prague",
-    "ratio": 0.7692,
-    "visto": "2026-11-01"
+    "candidato": "Slavia Sofia 2",
+    "ratio": 0.5926,
+    "visto": "2026-11-03"
   },
   "Mohun Bagan Super Giant": {
     "contexto": "cuotas_mx→futbol",
@@ -1959,7 +1959,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Pohang (Kor)",
     "ratio": 0.64,
-    "visto": "2026-10-28"
+    "visto": "2026-11-03"
   },
   "Johor Darul Ta'zim": {
     "contexto": "cuotas_mx→futbol",
@@ -2025,7 +2025,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Famalicao U23",
     "ratio": 0.72,
-    "visto": "2026-10-12"
+    "visto": "2026-11-03"
   },
   "Botafogo-SP": {
     "contexto": "cuotas_mx→futbol",
@@ -2047,9 +2047,9 @@
   },
   "CSKA Sofia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Septemvri Sofia",
-    "ratio": 0.56,
-    "visto": "2026-11-02"
+    "candidato": "Slavia Sofia 2",
+    "ratio": 0.6667,
+    "visto": "2026-11-03"
   },
   "Como": {
     "contexto": "cuotas_mx→futbol",
@@ -2371,9 +2371,9 @@
   },
   "Levski Sofia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Septemvri Sofia",
-    "ratio": 0.6667,
-    "visto": "2026-11-02"
+    "candidato": "Slavia Sofia 2",
+    "ratio": 0.6923,
+    "visto": "2026-11-03"
   },
   "SHANGHAI SHENHUA FC": {
     "contexto": "cuotas_mx→futbol",
