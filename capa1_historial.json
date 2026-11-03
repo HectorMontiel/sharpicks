@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-03T20:38:19Z",
+"actualizado": "2026-11-03T22:10:43Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -22424,6 +22424,26 @@
 },
 {
 "dia": "2026-11-03",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Annan vs Ayr",
+"apuesta": "Gana Ayr",
+"cuota": 1.5385,
+"resultado": "verde",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Anstey Nomads vs Real Bedford",
+"apuesta": "Gana Anstey Nomads",
+"cuota": 2.65,
+"resultado": "rojo",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-03",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "BUL vs Villa",
@@ -22431,6 +22451,96 @@
 "cuota": 2.8334,
 "resultado": "rojo",
 "marcador": "2-1"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Bracknell vs Chertsey",
+"apuesta": "Gana Bracknell",
+"cuota": 3.2,
+"resultado": "rojo",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Brentwood vs Leatherhead",
+"apuesta": "Gana Leatherhead",
+"cuota": 3.1,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Bury Town vs Kettering",
+"apuesta": "Gana Kettering",
+"cuota": 2.75,
+"resultado": "verde",
+"marcador": "2-3"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Bury vs Avro",
+"apuesta": "Gana Bury",
+"cuota": 1.85,
+"resultado": "rojo",
+"marcador": "2-2"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Cambridge Utd vs Brighton U21",
+"apuesta": "Gana Cambridge Utd",
+"cuota": 1.74,
+"resultado": "verde",
+"marcador": "6-0"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Charlton vs Bolton",
+"apuesta": "Gana Charlton",
+"cuota": 2.35,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Edinburgh City vs Partick Thistle",
+"apuesta": "Gana Partick Thistle",
+"cuota": 1.5295,
+"resultado": "verde",
+"marcador": "0-3"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "FC Halifax vs Nottingham U21",
+"apuesta": "Gana FC Halifax",
+"cuota": 1.61,
+"resultado": "rojo",
+"marcador": "3-4"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Farnborough vs Ebbsfleet",
+"apuesta": "Gana Ebbsfleet",
+"cuota": 1.63,
+"resultado": "verde",
+"marcador": "0-6"
 },
 {
 "dia": "2026-11-03",
@@ -22466,6 +22576,16 @@
 "dia": "2026-11-03",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Gateshead vs Stoke City U21",
+"apuesta": "Gana Gateshead",
+"cuota": 1.89,
+"resultado": "verde",
+"marcador": "3-1"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Gil Vicente U23 vs Felgueiras U23",
 "apuesta": "Gana Felgueiras U23",
 "cuota": 2.9,
@@ -22481,6 +22601,26 @@
 "cuota": 1.22,
 "resultado": "verde",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Hartlepool vs Leeds U21",
+"apuesta": "Gana Leeds U21",
+"cuota": 3.05,
+"resultado": "rojo",
+"marcador": "3-1"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Hartlepool vs Leeds U21",
+"apuesta": "Gana Hartlepool",
+"cuota": 2.15,
+"resultado": "verde",
+"marcador": "3-1"
 },
 {
 "dia": "2026-11-03",
@@ -22585,6 +22725,16 @@
 {
 "dia": "2026-11-03",
 "nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Newport vs Crystal Palace U21",
+"apuesta": "Gana Newport",
+"cuota": 1.89,
+"resultado": "rojo",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
 "deporte": "Tenis",
 "partido": "Ninomiya M./Zhang Y. vs Hozumi E./Klepac A.",
 "apuesta": "Gana Hozumi E./Klepac A.",
@@ -22636,6 +22786,36 @@
 "dia": "2026-11-03",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Spartans vs Livingston",
+"apuesta": "Gana Livingston",
+"cuota": 1.375,
+"resultado": "verde",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "St. Mirren B vs Peterhead",
+"apuesta": "Gana Peterhead",
+"cuota": 1.88,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "St. Mirren B vs Peterhead",
+"apuesta": "Gana Peterhead",
+"cuota": 1.88,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Stade Tunisien vs Club Africain",
 "apuesta": "Gana Club Africain",
 "cuota": 2.65,
@@ -22671,6 +22851,26 @@
 "cuota": 2.1,
 "resultado": "rojo",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Wingate & Finchley vs Burgess Hill",
+"apuesta": "Gana Wingate & Finchley",
+"cuota": 2.4,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Worthing vs Fulham U21",
+"apuesta": "Gana Worthing",
+"cuota": 2.2,
+"resultado": "verde",
+"marcador": "2-1"
 },
 {
 "dia": "2026-11-03",

@@ -271,8 +271,8 @@
   },
   "Union St.-Gilloise": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Union de Santa Fe 2",
-    "ratio": 0.5556,
+    "candidato": "Union La Calera",
+    "ratio": 0.5625,
     "visto": "2026-11-03"
   },
   "Universidad Católica (Quito)": {
@@ -505,9 +505,9 @@
   },
   "Deportivo Pereira": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo San Pedro",
+    "candidato": "Deportivo Riestra 2",
     "ratio": 0.7222,
-    "visto": "2026-11-01"
+    "visto": "2026-11-03"
   },
   "Deportivo Madryn": {
     "contexto": "cuotas_mx→futbol",
@@ -769,8 +769,8 @@
   },
   "Club Atlético Morelia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico-MG U20",
-    "ratio": 0.5556,
+    "candidato": "Atl. Morelia",
+    "ratio": 0.6875,
     "visto": "2026-11-03"
   },
   "Atlético Junior": {
@@ -861,7 +861,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "U. de Deportes",
     "ratio": 0.5714,
-    "visto": "2026-11-01"
+    "visto": "2026-11-03"
   },
   "Tampa Bay Rowdies": {
     "contexto": "cuotas_mx→futbol",
@@ -2047,8 +2047,8 @@
   },
   "CSKA Sofia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Slavia Sofia 2",
-    "ratio": 0.6667,
+    "candidato": "Levski Sofia",
+    "ratio": 0.7273,
     "visto": "2026-11-03"
   },
   "Como": {
@@ -2073,7 +2073,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Univ. Craiova",
     "ratio": 0.7826,
-    "visto": "2026-10-22"
+    "visto": "2026-11-03"
   },
   "Western Sydney Wanderers": {
     "contexto": "cuotas_mx→futbol",
@@ -2101,8 +2101,8 @@
   },
   "Sekhukhune United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Muras United",
-    "ratio": 0.5517,
+    "candidato": "Nico United",
+    "ratio": 0.5714,
     "visto": "2026-11-03"
   },
   "Kruger United": {
