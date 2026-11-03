@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-03T09:13:47Z",
+"actualizado": "2026-11-03T10:48:22Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -22351,6 +22351,26 @@
 "cuota": 2.07,
 "resultado": "verde",
 "marcador": "1-0"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Newcastle Jets (Aus) vs Shanghai Port (Chn)",
+"apuesta": "Gana Shanghai Port (Chn)",
+"cuota": 2.2,
+"resultado": "verde",
+"marcador": "2-4"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Newcastle Jets (Aus) vs Shanghai Port (Chn)",
+"apuesta": "Gana Shanghai Port (Chn)",
+"cuota": 1.85,
+"resultado": "verde",
+"marcador": "2-4"
 },
 {
 "dia": "2026-11-03",
