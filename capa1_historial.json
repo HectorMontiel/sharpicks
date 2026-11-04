@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-04T15:38:41Z",
+"actualizado": "2026-11-04T17:15:37Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23176,6 +23176,16 @@
 "dia": "2026-11-04",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Arkadag (Tkm) vs Gol Gohar (Irn)",
+"apuesta": "Gana Arkadag (Tkm)",
+"cuota": 2.04,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Buriram United vs Kashima Antlers",
 "apuesta": "Gana Kashima Antlers",
 "cuota": 1.9091,
@@ -23191,6 +23201,16 @@
 "cuota": 4.05,
 "resultado": "rojo",
 "marcador": "3-5"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Ghazl El Mahallah vs Al Ittihad",
+"apuesta": "Gana Ghazl El Mahallah",
+"cuota": 3.5,
+"resultado": "rojo",
+"marcador": "1-2"
 },
 {
 "dia": "2026-11-04",
@@ -23261,6 +23281,16 @@
 "cuota": 2.01,
 "resultado": "rojo",
 "marcador": "0-2"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Lucchese vs Sestri Levante",
+"apuesta": "Gana Lucchese",
+"cuota": 1.8,
+"resultado": "verde",
+"marcador": "2-1"
 },
 {
 "dia": "2026-11-04",
