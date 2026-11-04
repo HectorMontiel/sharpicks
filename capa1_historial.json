@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-04T04:34:24Z",
+"actualizado": "2026-11-04T06:11:02Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -22714,6 +22714,16 @@
 },
 {
 "dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "MLB",
+"partido": "Hermosillo vs Tomateros",
+"apuesta": "Gana Hermosillo",
+"cuota": 1.98,
+"resultado": "rojo",
+"marcador": "4-5"
+},
+{
+"dia": "2026-11-03",
 "nivel": "🏆",
 "deporte": "Fútbol",
 "partido": "Internacional vs Coritiba",
@@ -23071,6 +23081,16 @@
 "cuota": 1.133,
 "resultado": "verde",
 "marcador": "2-3"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Vancouver Canucks vs Anaheim Ducks",
+"apuesta": "Handicap: Anaheim Ducks +2.5",
+"cuota": 1.133,
+"resultado": "verde",
+"marcador": "4-5"
 },
 {
 "dia": "2026-11-03",
