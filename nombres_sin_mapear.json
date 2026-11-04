@@ -19,21 +19,21 @@
   },
   "Atlético Tucumán": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico-MG",
-    "ratio": 0.7407,
+    "candidato": "Atl. Tucuman 2",
+    "ratio": 0.7586,
     "visto": "2026-11-04"
   },
   "Atlético de San Luis": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico-MG U20",
+    "candidato": "Atletico La Paz",
     "ratio": 0.6286,
     "visto": "2026-11-04"
   },
   "Barracas Central": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sportivo Barracas",
-    "ratio": 0.4848,
-    "visto": "2026-11-01"
+    "candidato": "Rosario Central 2",
+    "ratio": 0.6061,
+    "visto": "2026-11-04"
   },
   "Belgrano (Córdoba)": {
     "contexto": "cuotas_mx→futbol",
@@ -97,9 +97,9 @@
   },
   "Estudiantes de La Plata": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Estudiantes L.P.",
-    "ratio": 0.7895,
-    "visto": "2026-10-31"
+    "candidato": "Estudiantes Rio Cuarto 2",
+    "ratio": 0.6383,
+    "visto": "2026-11-04"
   },
   "Estudiantes de Río Cuarto": {
     "contexto": "cuotas_mx→futbol",
@@ -217,9 +217,9 @@
   },
   "Real Madrid": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Bedford",
-    "ratio": 0.6957,
-    "visto": "2026-11-02"
+    "candidato": "Real Sociedad",
+    "ratio": 0.5833,
+    "visto": "2026-11-04"
   },
   "Real Oviedo": {
     "contexto": "cuotas_mx→futbol",
@@ -505,8 +505,8 @@
   },
   "Deportivo Pereira": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Riestra 2",
-    "ratio": 0.7222,
+    "candidato": "Deportivo Maritimo",
+    "ratio": 0.6857,
     "visto": "2026-11-04"
   },
   "Deportivo Madryn": {
@@ -637,9 +637,9 @@
   },
   "C.D. Platense": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Platense Municipal",
-    "ratio": 0.5333,
-    "visto": "2026-10-25"
+    "candidato": "Platense 2",
+    "ratio": 0.7273,
+    "visto": "2026-11-04"
   },
   "Colón (Santa Fe)": {
     "contexto": "cuotas_mx→futbol",
@@ -933,7 +933,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "San Carlos",
     "ratio": 0.5714,
-    "visto": "2026-10-31"
+    "visto": "2026-11-04"
   },
   "Red Bull Bragantino": {
     "contexto": "oddsapi",
@@ -1003,21 +1003,21 @@
   },
   "Argentinos Juniors": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Chacarita Juniors",
-    "ratio": 0.6286,
-    "visto": "2026-11-01"
+    "candidato": "Boca Juniors 2",
+    "ratio": 0.5625,
+    "visto": "2026-11-04"
   },
   "Gimnasia (Mendoza)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Gimnasia E.R.",
-    "ratio": 0.7143,
-    "visto": "2026-10-31"
+    "candidato": "Gimnasia L.P.",
+    "ratio": 0.6429,
+    "visto": "2026-11-04"
   },
   "Deportivo Riestra": {
     "contexto": "cuotas_mx→futbol",
     "candidato": "Deportivo Maritimo",
     "ratio": 0.7429,
-    "visto": "2026-11-03"
+    "visto": "2026-11-04"
   },
   "Central Córdoba (Santiago del Estero)": {
     "contexto": "cuotas_mx→futbol",
@@ -1267,8 +1267,8 @@
   },
   "Deportivo Táchira": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Riestra 2",
-    "ratio": 0.7222,
+    "candidato": "Deportivo Maritimo",
+    "ratio": 0.6857,
     "visto": "2026-11-04"
   },
   "Al Ittihad": {
@@ -1345,8 +1345,8 @@
   },
   "Sporting Club Delhi": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Baku Sporting",
-    "ratio": 0.5,
+    "candidato": "Racing Club 2",
+    "ratio": 0.625,
     "visto": "2026-11-04"
   },
   "Shanghai Shenhua": {
@@ -1375,8 +1375,8 @@
   },
   "Real Oruro": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Madrid",
-    "ratio": 0.5714,
+    "candidato": "Real Sociedad",
+    "ratio": 0.5217,
     "visto": "2026-11-04"
   },
   "Leones": {
@@ -1639,7 +1639,7 @@
   },
   "GV San José": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "San Javier",
+    "candidato": "San Carlos",
     "ratio": 0.5714,
     "visto": "2026-11-04"
   },
@@ -1663,8 +1663,8 @@
   },
   "Deportivo Cuenca": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Deportivo Riestra 2",
-    "ratio": 0.6857,
+    "candidato": "Deportivo Maritimo",
+    "ratio": 0.6471,
     "visto": "2026-11-04"
   },
   "Estudiantes de Mérida": {
@@ -1884,10 +1884,10 @@
     "visto": "2026-11-01"
   },
   "Racing Santander": {
-    "contexto": "oddsapi",
-    "candidato": "Real Racing Club de Santander",
-    "ratio": 0.7111,
-    "visto": "2026-11-01"
+    "contexto": "cuotas_mx→futbol",
+    "candidato": "Racing Club 2",
+    "ratio": 0.4828,
+    "visto": "2026-11-04"
   },
   "Richards Bay FC": {
     "contexto": "cuotas_mx→futbol",
@@ -2095,7 +2095,7 @@
   },
   "Real Tomayapo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Madrid",
+    "candidato": "Real Espana",
     "ratio": 0.5833,
     "visto": "2026-11-04"
   },
@@ -2539,9 +2539,9 @@
   },
   "Real Unión Irun": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "R. Union",
-    "ratio": 0.6364,
-    "visto": "2026-11-03"
+    "candidato": "Royale Union SG",
+    "ratio": 0.6667,
+    "visto": "2026-11-04"
   },
   "Real Jaen CF": {
     "contexto": "cuotas_mx→futbol",
