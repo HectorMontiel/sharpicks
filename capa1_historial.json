@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-03T22:10:43Z",
+"actualizado": "2026-11-04T01:22:54Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -22354,6 +22354,16 @@
 },
 {
 "dia": "2026-11-03",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Aberdeen B vs Queen's Park",
+"apuesta": "Gana Queen's Park",
+"cuota": 1.6471,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-03",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Al Hilal (Sau) vs Shabab Al Ahli Dubai (Uae)",
@@ -22451,6 +22461,36 @@
 "cuota": 2.8334,
 "resultado": "rojo",
 "marcador": "2-1"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Bodo/Glimt vs Lille",
+"apuesta": "Bodo/Glimt o empate",
+"cuota": 1.2,
+"resultado": "verde",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🔷",
+"deporte": "Fútbol",
+"partido": "Bodo/Glimt vs Lille",
+"apuesta": "Gana Bodo/Glimt",
+"cuota": 1.7,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Bodo/Glimt vs Lille",
+"apuesta": "Gana Bodo/Glimt",
+"cuota": 1.74,
+"resultado": "rojo",
+"marcador": "0-0"
 },
 {
 "dia": "2026-11-03",
@@ -22606,6 +22646,16 @@
 "dia": "2026-11-03",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Hamilton vs Raith",
+"apuesta": "Gana Raith",
+"cuota": 2.05,
+"resultado": "rojo",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Hartlepool vs Leeds U21",
 "apuesta": "Gana Leeds U21",
 "cuota": 3.05,
@@ -22664,6 +22714,26 @@
 },
 {
 "dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "LASK Linz vs Slovan Bratislava",
+"apuesta": "LASK Linz o empate",
+"cuota": 1.125,
+"resultado": "verde",
+"marcador": "4-0"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🔷",
+"deporte": "Fútbol",
+"partido": "LASK Linz vs Slovan Bratislava",
+"apuesta": "Gana LASK Linz",
+"cuota": 1.444,
+"resultado": "verde",
+"marcador": "4-0"
+},
+{
+"dia": "2026-11-03",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Lyngby vs Randers FC",
@@ -22684,6 +22754,16 @@
 },
 {
 "dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Middlesbrough U21 vs Valencia B",
+"apuesta": "Gana Valencia B",
+"cuota": 2.7,
+"resultado": "rojo",
+"marcador": "3-2"
+},
+{
+"dia": "2026-11-03",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Mladost Zdralovi vs Slaven Belupo",
@@ -22691,6 +22771,26 @@
 "cuota": 1.6924,
 "resultado": "rojo",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Mushuc Runa vs Manta F.C.",
+"apuesta": "Mushuc Runa o empate",
+"cuota": 1.143,
+"resultado": "rojo",
+"marcador": "2-3"
+},
+{
+"dia": "2026-11-03",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Nacional Asuncion vs San Lorenzo",
+"apuesta": "Gana Nacional Asuncion",
+"cuota": 1.3334,
+"resultado": "rojo",
+"marcador": "0-2"
 },
 {
 "dia": "2026-11-03",
@@ -22741,6 +22841,16 @@
 "cuota": 1.75,
 "resultado": "rojo",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Pereira vs Deportes Tolima",
+"apuesta": "Gana Deportes Tolima",
+"cuota": 1.56,
+"resultado": "verde",
+"marcador": "1-3"
 },
 {
 "dia": "2026-11-03",
@@ -22831,6 +22941,16 @@
 "cuota": 1.23,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Villarreal vs Paris Saint-Germain",
+"apuesta": "Paris Saint-Germain o empate",
+"cuota": 1.182,
+"resultado": "verde",
+"marcador": "0-6"
 },
 {
 "dia": "2026-11-03",
