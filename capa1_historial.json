@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-04T01:22:54Z",
+"actualizado": "2026-11-04T02:55:10Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -22554,6 +22554,26 @@
 },
 {
 "dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Columbus Blue Jackets vs Colorado Avalanche",
+"apuesta": "Handicap: Colorado Avalanche +2.5",
+"cuota": 1.133,
+"resultado": "rojo",
+"marcador": "7-2"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Deportivo Pasto vs Jaguares de Córdoba",
+"apuesta": "Deportivo Pasto o empate",
+"cuota": 1.167,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-03",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Edinburgh City vs Partick Thistle",
@@ -22671,6 +22691,16 @@
 "cuota": 2.15,
 "resultado": "verde",
 "marcador": "3-1"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Internacional vs Coritiba",
+"apuesta": "Internacional o empate",
+"cuota": 1.154,
+"resultado": "verde",
+"marcador": "1-0"
 },
 {
 "dia": "2026-11-03",
@@ -22854,6 +22884,16 @@
 },
 {
 "dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Philadelphia Flyers vs Minnesota Wild",
+"apuesta": "Handicap: Minnesota Wild +2.5",
+"cuota": 1.1,
+"resultado": "verde",
+"marcador": "2-4"
+},
+{
+"dia": "2026-11-03",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Salzburg U19 vs Genk U19",
@@ -22934,6 +22974,36 @@
 },
 {
 "dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Tampa Bay Lightning vs Detroit Red Wings",
+"apuesta": "Handicap: Tampa Bay Lightning +2.5",
+"cuota": 1.1,
+"resultado": "verde",
+"marcador": "4-2"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Tampa Bay Lightning vs Detroit Red Wings",
+"apuesta": "Handicap: Detroit Red Wings +3.5",
+"cuota": 1.125,
+"resultado": "verde",
+"marcador": "4-2"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Tampa Bay Lightning vs Detroit Red Wings",
+"apuesta": "Handicap: Tampa Bay Lightning +1.5",
+"cuota": 1.125,
+"resultado": "verde",
+"marcador": "4-2"
+},
+{
+"dia": "2026-11-03",
 "nivel": "💰",
 "deporte": "Tenis",
 "partido": "Tang Q./Ye Q. vs Karunaratne A./Cheuk S. Y.",
@@ -22941,6 +23011,16 @@
 "cuota": 1.23,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-03",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Toronto Maple Leafs vs Utah Mammoth",
+"apuesta": "Handicap: Utah Mammoth +2.5",
+"cuota": 1.133,
+"resultado": "verde",
+"marcador": "2-3"
 },
 {
 "dia": "2026-11-03",

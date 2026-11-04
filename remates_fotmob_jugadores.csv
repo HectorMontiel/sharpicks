@@ -42500,22 +42500,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000013216,2026-08-31,chi_primera,La Serena,Gonzalo Escalante,434404,M,0,23,1,0,0,0.0,,2.0,154250.0
 1000013216,2026-08-31,chi_primera,La Serena,Matías Pérez,1766079,D,0,7,0,0,0,0.0,,1.0,798308.0
 1000013216,2026-08-31,chi_primera,La Serena,Diego Rubio,244377,F,0,6,0,0,0,0.0,,3.0,330642.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Geovanni Banguera,1107655,G,1,90,0,0,0,0.0,11.0,0.0,247613.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Santiago Jiménez,1103949,D,1,71,2,2,1,0.42,32.0,1.0,254149.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Enrique Serje,860916,D,1,90,3,0,0,0.3,34.0,1.0,246419.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Joyce Rios,1308328,D,1,90,3,1,0,0.14,36.0,1.0,259534.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Hervin Goyes,1789709,D,1,46,0,0,0,0.0,38.0,1.0,589718.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Matías Pisano,193928,M,1,90,6,0,0,0.34,72.0,2.0,246830.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Harrinson Mancilla,874664,M,1,90,2,0,0,0.07,74.0,2.0,240412.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Diego Chávez,988175,M,1,78,3,1,0,0.13,76.0,2.0,247613.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Mayer Gil,1377890,M,1,71,2,1,0,0.09,78.0,2.0,448928.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Patrick Preciado,1766572,F,1,30,1,0,0,0.38,104.0,3.0,436200.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Jorge Obregón,830159,F,1,90,8,0,0,0.68,106.0,3.0,316105.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Ederson Cabezas,1513184,G,0,60,0,0,0,0.0,,0.0,276205.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Heiler Moreno,1927679,D,0,44,0,0,0,0.0,,1.0,
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Jonathan Perlaza,1433110,M,0,19,1,0,0,0.14,,2.0,396292.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,Joider Micolta,1348510,M,0,19,0,0,0,0.0,,2.0,360148.0
-1000014125,2026-08-31,col_primera_a,Deportivo Pasto,John Méndez,1393826,F,0,12,0,0,0,0.0,,3.0,552428.0
 1000018890,2026-08-31,ven_primera,Universidad Central,Rafael Romo,116243,G,1,90,0,0,0,0.0,11.0,0.0,162156.0
 1000018890,2026-08-31,ven_primera,Universidad Central,Maicol Ruiz,1687091,D,1,90,0,0,0,0.0,32.0,1.0,
 1000018890,2026-08-31,ven_primera,Universidad Central,Kendrys Silva,1041064,D,1,90,1,1,0,0.0,34.0,1.0,111363.0
@@ -44258,22 +44242,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000018897,2026-09-02,ven_primera,Zamora FC,Santiago Gómez,1287633,D,0,34,1,0,0,0.0,,1.0,
 1000018897,2026-09-02,ven_primera,Zamora FC,Santos Torrealba,1747822,F,0,29,2,0,0,0.0,,3.0,662500.0
 1000018897,2026-09-02,ven_primera,Zamora FC,Héctor Manrique,0,F,0,13,0,0,0,0.0,,3.0,
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Alejandro Araque,935455,G,1,90,0,0,0,0.0,11.0,0.0,140008.0
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Franco Provenzano,1966446,D,1,31,0,0,0,0.0,32.0,1.0,
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Guillermo Fratta,675535,D,1,90,1,1,0,0.0,34.0,1.0,132762.0
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Lautaro Lusnig,1419569,D,1,90,0,0,0,0.0,36.0,1.0,173610.0
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Juan Sánchez,1733321,D,1,83,0,0,0,0.0,38.0,1.0,
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Agustín Peréz,1410052,M,1,90,0,0,0,0.0,64.0,2.0,222265.0
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Jefferson Caraballo,1520715,M,1,90,0,0,0,0.0,66.0,2.0,367507.0
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Delvin Alfonzo,1339698,F,1,71,0,0,0,0.0,83.0,3.0,208244.0
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Gustavo Lozano,1626777,M,1,71,1,1,1,0.0,85.0,2.0,535299.0
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Carlos Sosa,495844,F,1,90,3,1,1,0.0,87.0,3.0,312116.0
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Rodrigo Pollero,832186,F,1,71,1,1,1,0.0,115.0,3.0,252588.0
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Adalberto Peñaranda,495841,F,0,59,1,1,1,0.0,,3.0,285784.0
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Wilder Wilches,2032976,D,0,19,0,0,0,0.0,,1.0,
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Luis Zúñiga,1683618,M,0,19,0,0,0,0.0,,2.0,270640.0
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Valentín Adamo,1353365,F,0,19,1,1,1,0.0,,3.0,317084.0
-1000018897,2026-09-02,ven_primera,Deportivo Táchira,Pablo Camacho,156766,D,0,7,0,0,0,0.0,,1.0,88717.0
 5837134,2026-09-02,eng_league_one,Mansfield Town,Harry Lewis,795510,G,1,90,0,0,0,0.0,11.0,0.0,124416.0
 5837134,2026-09-02,eng_league_one,Mansfield Town,Elliott Hewitt,263674,D,1,90,0,0,0,0.0,33.0,1.0,146030.0
 5837134,2026-09-02,eng_league_one,Mansfield Town,Adedeji Oshilaja,500882,D,1,90,0,0,0,0.0,35.0,1.0,264820.0
@@ -45285,22 +45253,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000019465,2026-09-02,bra_copa,Cruzeiro,Gabriel Rojas,805540,D,0,25,1,0,0,0.0,,1.0,2476804.0
 1000019465,2026-09-02,bra_copa,Cruzeiro,Néiser Villarreal,1680191,M,0,25,0,0,0,0.0,,2.0,
 1000019465,2026-09-02,bra_copa,Cruzeiro,Matheus Henrique,900043,M,0,25,0,0,0,0.0,,2.0,2505124.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Luis Romero,423037,G,1,90,0,0,0,0.0,11.0,0.0,147392.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Jefre Vargas,480103,D,1,90,0,0,0,0.0,32.0,1.0,144691.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Jiovany Ramos,688448,D,1,90,1,0,0,0.0,34.0,1.0,145710.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Gerónimo Bortagaray,1031999,D,1,90,0,0,0,0.0,36.0,1.0,226299.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Roberto Rosales,104382,D,1,67,1,0,0,0.0,38.0,1.0,142849.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Pablo Lima,429997,M,1,58,2,0,0,0.0,73.0,2.0,128475.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Júnior Moreno,439179,M,1,82,0,0,0,0.0,75.0,2.0,144691.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Gustavo González,593211,M,1,90,1,0,0,0.0,77.0,2.0,190480.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Luis Casiani,1186364,F,1,58,2,0,0,0.0,103.0,3.0,215574.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Edwuin Pernía,847527,F,1,82,3,2,0,0.0,105.0,3.0,180587.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Jean Castillo,1102750,F,1,90,1,1,0,0.0,107.0,3.0,
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Jayson Martínez,1483558,M,0,32,0,0,0,0.0,,2.0,188703.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Jhon Marchán,840429,M,0,32,1,1,1,0.0,,2.0,150513.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Andrés Ponce,583846,F,0,23,2,1,0,0.0,,3.0,195905.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Harrison Contreras,422774,M,0,8,0,0,0,0.0,,2.0,122881.0
-1000018901,2026-09-03,ven_primera,Academia Puerto Cabello,Luis Cova,0,M,0,8,0,0,0,0.0,,2.0,
 1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Cristopher Varela,1248975,G,1,90,0,0,0,0.0,11.0,0.0,244931.0
 1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Luis Casimiro Peña,1305416,D,1,90,0,0,0,0.0,32.0,1.0,187919.0
 1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Guillermo Luis Ortiz,298025,D,1,90,1,0,0,0.0,34.0,1.0,146030.0
@@ -56990,22 +56942,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5109930,2026-09-06,usl_championship,Sacramento Republic FC,Tim Leibold,458997,D,0,24,0,0,0,0.0,,1.0,122348.0
 5109930,2026-09-06,usl_championship,Sacramento Republic FC,Mayele Malango,1178821,F,0,24,0,0,0,0.0,,3.0,50000.0
 5109930,2026-09-06,usl_championship,Sacramento Republic FC,Aaron Essel,1320050,D,0,9,1,1,1,0.0,,1.0,203120.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Franklin Mosquera,1433009,G,1,90,0,0,0,0.0,11.0,0.0,326800.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Royscer Colpa,1348856,D,1,90,1,0,0,0.05,33.0,1.0,246419.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Jerson Malagón,978132,D,1,46,0,0,0,0.0,35.0,1.0,220652.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Carlos Henao,280230,D,1,90,3,2,0,0.19,37.0,1.0,221928.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Juan Franco,1356526,M,1,90,0,0,0,0.0,72.0,2.0,355169.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Cristian Álvarez,319884,M,1,69,1,1,1,0.35,74.0,2.0,225398.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Rafael Bustamante,950973,M,1,84,1,1,1,0.01,76.0,2.0,316055.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Juan Arcila,1682220,M,1,90,0,0,0,0.0,78.0,2.0,266450.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Wilfrido De La Rosa,496863,F,1,45,1,0,0,0.02,103.0,3.0,233669.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Andrés Rentería,317122,F,1,90,2,0,0,0.13,105.0,3.0,306485.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Johar Mejía,1331593,F,1,73,0,0,0,0.0,107.0,3.0,326203.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Jonathan Lovera,1888097,M,0,44,0,0,0,0.0,,2.0,468652.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Santiago Cubides,1382532,F,0,45,2,0,0,0.08,,3.0,306797.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Esteban Beltrán,1512740,F,0,21,0,0,0,0.0,,3.0,300609.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Darwin López,310483,F,0,17,1,1,1,0.15,,3.0,279018.0
-1000014133,2026-09-06,col_primera_a,CD Jaguares,Johan Hinestroza,1604063,M,0,6,0,0,0,0.0,,2.0,368131.0
 5103614,2026-09-06,brasil,Fluminense,Fábio,30441,G,1,90,0,0,0,0.0,11.0,0.0,1091168.0
 5103614,2026-09-06,brasil,Fluminense,Guga,941490,D,1,85,0,0,0,0.0,32.0,1.0,1522781.0
 5103614,2026-09-06,brasil,Fluminense,Ignácio,967692,D,1,90,1,0,0,0.03,34.0,1.0,1468389.0
@@ -175145,3 +175081,67 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000014216,2026-11-03,col_primera_a,Tolima,Jan Ángulo,1438665,D,0,11,0,0,0,0.0,,1.0,659896.0
 1000014216,2026-11-03,col_primera_a,Tolima,Kelvin Flórez,1634837,F,0,11,0,0,0,0.0,,3.0,621236.0
 1000014216,2026-11-03,col_primera_a,Tolima,Sergio Aguayo,1603853,F,0,1,1,0,0,0.03,,3.0,
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Alejandro Araque,935455,G,1,90,0,0,0,0.0,11.0,0.0,153231.0
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Franco Provenzano,1966446,D,1,46,0,0,0,0.0,32.0,1.0,
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Wilder Wilches,2032976,D,1,90,1,1,0,0.0,34.0,1.0,
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Juan Sánchez,1733321,D,1,90,0,0,0,0.0,36.0,1.0,
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Edicson Tamiche,1634627,D,1,90,0,0,0,0.0,38.0,1.0,
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Jefferson Caraballo,1520715,M,1,90,0,0,0,0.0,64.0,2.0,500560.0
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Agustín Peréz,1410052,M,1,46,0,0,0,0.0,66.0,2.0,222265.0
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Luis Zúñiga,1683618,F,1,72,1,1,0,0.0,83.0,3.0,304015.0
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Carlos Sosa,495844,M,1,82,1,1,1,0.0,85.0,2.0,356534.0
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Heiderber Ramírez,1251302,F,1,90,2,0,0,0.0,87.0,3.0,455422.0
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Valentín Adamo,1353365,F,1,45,1,1,1,0.0,115.0,3.0,361503.0
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Gustavo Lozano,1626777,M,0,44,0,0,0,0.0,,2.0,571561.0
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Carlos Calzadilla,1273200,M,0,44,0,0,0,0.0,,2.0,352422.0
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Rodrigo Pollero,832186,F,0,45,1,1,1,0.0,,3.0,267190.0
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Pablo Camacho,156766,D,0,18,0,0,0,0.0,,1.0,102723.0
+1000022593,2026-11-03,ven_primera,Deportivo Táchira,Brayan Palmezano,834644,M,0,8,1,1,0,0.0,,2.0,357425.0
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Luis Romero,423037,G,1,90,0,0,0,0.0,11.0,0.0,161258.0
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Roberto Rosales,104382,D,1,90,1,0,0,0.0,32.0,1.0,142849.0
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Jiovany Ramos,688448,D,1,90,1,0,0,0.0,34.0,1.0,145509.0
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Jesús Camacho,2019531,D,1,74,0,0,0,0.0,36.0,1.0,
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Gerónimo Bortagaray,1031999,D,1,90,3,2,1,0.0,38.0,1.0,221045.0
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Pablo Lima,429997,M,1,69,0,0,0,0.0,73.0,2.0,129468.0
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Musa Isah,1370593,M,1,69,1,0,0,0.0,75.0,2.0,241746.0
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Daniel Saggiomo,685183,M,1,81,0,0,0,0.0,77.0,2.0,169246.0
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Robinson Flores,1037543,F,1,90,3,0,0,0.0,103.0,3.0,219138.0
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Diego Osorio,1732761,F,1,69,3,1,1,0.0,105.0,3.0,
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Jayson Martínez,1483558,F,1,80,1,1,0,0.0,107.0,3.0,212275.0
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Harrison Contreras,422774,M,0,21,0,0,0,0.0,,2.0,136747.0
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Jean Castillo,1102750,F,0,21,1,0,0,0.0,,3.0,324156.0
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,José Mendoza,0,M,0,21,0,0,0,0.0,,2.0,
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Edwuin Pernía,847527,F,0,16,1,0,0,0.0,,3.0,166996.0
+1000022593,2026-11-03,ven_primera,Academia Puerto Cabello,Jhon Marchán,840429,M,0,9,0,0,0,0.0,,2.0,180617.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Geovanni Banguera,1107655,G,1,90,0,0,0,0.0,11.0,0.0,264799.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Mateo Garavito,1330783,D,1,90,1,0,0,0.02,32.0,1.0,313326.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Fáiner Torijano,213161,D,1,90,1,0,0,0.02,34.0,1.0,240913.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Nicolás Gil,857745,D,1,90,1,0,0,0.07,36.0,1.0,288344.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Joyce Rios,1308328,D,1,90,1,0,0,0.02,38.0,1.0,279154.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Joider Micolta,1348510,M,1,85,5,1,0,0.1,72.0,2.0,360148.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Enrique Serje,860916,M,1,90,3,2,1,0.67,74.0,2.0,262161.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Franco Leys,497597,M,1,89,1,0,0,0.03,76.0,2.0,268605.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Harrinson Mancilla,874664,M,1,62,0,0,0,0.0,78.0,2.0,263701.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Mayer Gil,1377890,F,1,63,0,0,0,0.0,104.0,3.0,410900.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Patrick Preciado,1766572,F,1,45,3,0,0,0.25,106.0,3.0,411285.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Jorge Obregón,830159,F,0,45,1,1,0,0.06,,3.0,316105.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,John Méndez,1393826,F,0,28,2,1,1,0.08,,3.0,457781.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Matías Pisano,193928,M,0,27,1,0,0,0.03,,2.0,268229.0
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Kevin Santacruz,2180445,M,0,5,1,1,0,0.14,,2.0,
+1000014213,2026-11-03,col_primera_a,Deportivo Pasto,Santiago Jiménez,1103949,D,0,1,0,0,0,0.0,,1.0,255393.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Diego Martínez,857772,G,1,90,0,0,0,0.0,11.0,0.0,240913.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Luis Jiménez,1451963,D,1,90,0,0,0,0.0,32.0,1.0,256259.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Jonathan Lovera,1888097,D,1,90,0,0,0,0.0,34.0,1.0,396759.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Jerson Malagón,978132,D,1,90,0,0,0,0.0,36.0,1.0,248857.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Juan Arcila,1682220,D,1,90,2,0,0,0.04,38.0,1.0,294487.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Jose Yanez,2358537,M,1,62,0,0,0,0.0,64.0,2.0,
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Rafael Bustamante,950973,M,1,90,0,0,0,0.0,66.0,2.0,287767.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Faber Gil,1432983,F,1,74,1,0,0,0.06,83.0,3.0,273099.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Cristian Álvarez,319884,M,1,74,3,3,0,0.05,85.0,2.0,258726.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Wilfrido De La Rosa,496863,F,1,46,0,0,0,0.0,87.0,3.0,283874.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Darwin López,310483,F,1,74,2,1,0,0.04,115.0,3.0,293370.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Johar Mejía,1331593,F,0,44,0,0,0,0.0,,3.0,343305.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Royscer Colpa,1348856,M,0,28,0,0,0,0.0,,2.0,246218.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Diego Zuluaga,1929090,M,0,16,0,0,0,0.0,,2.0,
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Esteban Beltrán,1512740,F,0,16,0,0,0,0.0,,3.0,289895.0
+1000014213,2026-11-03,col_primera_a,CD Jaguares,Duván Rodríguez,1111056,F,0,16,0,0,0,0.0,,3.0,266997.0
