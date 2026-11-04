@@ -43634,52 +43634,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5837127,2026-09-01,eng_league_one,Notts County,Callum Roberts,606492,F,0,27,0,0,0,0.0,,3.0,167400.0
 5837127,2026-09-01,eng_league_one,Notts County,Daniel Kanu,1336743,F,0,27,0,0,0,0.0,,3.0,732117.0
 5837127,2026-09-01,eng_league_one,Notts County,Jack Evans,1166239,M,0,20,0,0,0,0.0,,2.0,311040.0
-5837128,2026-09-01,eng_league_one,Oxford United,Simon Eastwood,25626,G,1,90,0,0,0,0.0,11.0,0.0,180109.0
-5837128,2026-09-01,eng_league_one,Oxford United,Brodie Spencer,1367702,D,1,70,0,0,0,0.0,32.0,1.0,1159892.0
-5837128,2026-09-01,eng_league_one,Oxford United,Sam Long,439691,D,1,90,0,0,0,0.0,34.0,1.0,295967.0
-5837128,2026-09-01,eng_league_one,Oxford United,Ciaron Brown,816368,D,1,90,0,0,0,0.0,36.0,1.0,875645.0
-5837128,2026-09-01,eng_league_one,Oxford United,Jack Currie,1220583,D,1,90,0,0,0,0.0,38.0,1.0,717324.0
-5837128,2026-09-01,eng_league_one,Oxford United,Jamie McDonnell,1358339,M,1,62,0,0,0,0.0,64.0,2.0,865061.0
-5837128,2026-09-01,eng_league_one,Oxford United,Cameron Brannagan,562593,M,1,90,2,0,0,0.1,66.0,2.0,386615.0
-5837128,2026-09-01,eng_league_one,Oxford United,Mo Missanga,1899731,F,1,90,0,0,0,0.0,83.0,3.0,
-5837128,2026-09-01,eng_league_one,Oxford United,Tyler Goodrham,1086653,M,1,63,1,0,0,0.08,85.0,2.0,1168476.0
-5837128,2026-09-01,eng_league_one,Oxford United,Siriki Dembélé,865184,F,1,90,0,0,0,0.0,87.0,3.0,394772.0
-5837128,2026-09-01,eng_league_one,Oxford United,Mark Harris,819872,F,1,90,1,1,0,0.2,115.0,3.0,346242.0
-5837128,2026-09-01,eng_league_one,Oxford United,Kai Andrews,1526413,M,0,28,0,0,0,0.0,,2.0,
-5837128,2026-09-01,eng_league_one,Oxford United,Gatlin O'Donkor,1215525,F,0,27,1,1,1,0.84,,3.0,377609.0
-5837128,2026-09-01,eng_league_one,Oxford United,Leo Snowden,1781854,F,0,27,0,0,0,0.0,,3.0,
-5837128,2026-09-01,eng_league_one,Oxford United,Peter Kioso,952303,D,0,20,0,0,0,0.0,,1.0,368568.0
-5836797,2026-09-01,eng_championship,West Ham United,Mads Hermansen,967941,G,1,90,0,0,0,0.0,11.0,0.0,15299335.0
-5836797,2026-09-01,eng_championship,West Ham United,Kyle Walker-Peters,734042,D,1,56,0,0,0,0.0,32.0,1.0,12057260.0
-5836797,2026-09-01,eng_championship,West Ham United,Konstantinos Mavropanos,719219,D,1,90,4,1,1,0.86,34.0,1.0,14266746.0
-5836797,2026-09-01,eng_championship,West Ham United,Max Kilman,865931,D,1,90,1,1,0,0.25,36.0,1.0,16255119.0
-5836797,2026-09-01,eng_championship,West Ham United,Oliver Scarles,1315319,D,1,90,0,0,0,0.0,38.0,1.0,12287847.0
-5836797,2026-09-01,eng_championship,West Ham United,Jarrod Bowen,523825,F,1,90,3,2,1,0.83,72.0,3.0,28313993.0
-5836797,2026-09-01,eng_championship,West Ham United,Divine Mukasa,1463282,M,1,69,3,2,2,0.1,74.0,2.0,393984.0
-5836797,2026-09-01,eng_championship,West Ham United,Arne Engels,1178443,M,1,90,0,0,0,0.0,76.0,2.0,11639079.0
-5836797,2026-09-01,eng_championship,West Ham United,Manor Solomon,822237,F,1,79,0,0,0,0.0,78.0,3.0,9085761.0
-5836797,2026-09-01,eng_championship,West Ham United,Pablo,1227326,F,1,69,0,0,0,0.0,104.0,3.0,3749508.0
-5836797,2026-09-01,eng_championship,West Ham United,Joël Piroe,792540,F,1,56,0,0,0,0.0,106.0,3.0,11616279.0
-5836797,2026-09-01,eng_championship,West Ham United,Joël Veltman,304455,D,0,34,0,0,0,0.0,,1.0,1159136.0
-5836797,2026-09-01,eng_championship,West Ham United,Valentín Castellanos,823658,F,0,34,1,0,0,0.01,,3.0,27329092.0
-5836797,2026-09-01,eng_championship,West Ham United,Mohamadou Kanté,1529203,M,0,21,0,0,0,0.0,,2.0,1241934.0
-5836797,2026-09-01,eng_championship,West Ham United,Keiber Lamadrid,1354086,F,0,21,0,0,0,0.0,,3.0,803576.0
-5836797,2026-09-01,eng_championship,West Ham United,Edvin Austbø,1367620,F,0,11,0,0,0,0.0,,3.0,6301947.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,José Sá,416175,G,1,90,0,0,0,0.0,11.0,0.0,3083796.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,Jackson Tchatchoua,1210943,M,1,90,1,0,0,0.05,32.0,2.0,13048701.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,Nasser Djiga,1273707,D,1,90,0,0,0,0.0,34.0,1.0,4696976.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,Toti Gomes,1013277,D,1,90,1,0,0,0.05,36.0,1.0,16382062.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,Hugo Bueno,1116391,M,1,90,0,0,0,0.0,38.0,2.0,12769704.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,André,1174296,M,1,90,0,0,0,0.0,64.0,2.0,23040559.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,Marshall Munetsi,786580,M,1,65,1,1,1,0.04,66.0,2.0,10250468.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,Rodrigo Gomes,1192166,F,1,60,1,0,0,0.04,83.0,3.0,15928785.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,Fer López,1573122,M,1,90,4,2,0,0.42,85.0,2.0,13272185.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,Mateus Mané,1609213,M,1,80,5,0,0,0.16,87.0,2.0,11020200.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,Raul Jiménez,292313,F,1,65,3,0,0,0.1,115.0,3.0,2562700.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,Adam Armstrong,519835,F,0,30,0,0,0,0.0,,3.0,8294292.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,Jordan James,1310975,M,0,25,0,0,0,0.0,,2.0,11068825.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,Tommy Doyle,940442,M,0,25,1,0,0,0.07,,2.0,6594787.0
-5836797,2026-09-01,eng_championship,Wolverhampton Wanderers,Tawanda Chirewa,1111392,F,0,10,1,0,0,0.02,,3.0,379489.0
 5837129,2026-09-01,eng_league_one,Leicester City,Jakub Stolarczyk,1096327,G,1,6,0,0,0,0.0,11.0,0.0,1033822.0
 5837129,2026-09-01,eng_league_one,Leicester City,Jayden Joseph,1416727,M,1,81,1,0,0,0.06,32.0,2.0,402484.0
 5837129,2026-09-01,eng_league_one,Leicester City,Harry Souttar,671518,D,1,90,1,0,0,0.01,34.0,1.0,2101408.0
@@ -43710,22 +43664,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5837124,2026-09-01,eng_league_one,Bradford City,Nick Powell,210797,M,0,25,3,0,0,0.42,,2.0,132762.0
 5837124,2026-09-01,eng_league_one,Bradford City,Will Swan,1123945,F,0,16,1,0,0,0.09,,3.0,235762.0
 5837124,2026-09-01,eng_league_one,Bradford City,Kayden Jackson,612180,F,0,15,0,0,0,0.0,,3.0,297535.0
-5836793,2026-09-01,eng_championship,Bristol City,Sam Tickle,1184473,G,1,90,0,0,0,0.0,11.0,0.0,1145410.0
-5836793,2026-09-01,eng_championship,Bristol City,Noah Eile,1231794,D,1,59,0,0,0,0.0,32.0,1.0,2135316.0
-5836793,2026-09-01,eng_championship,Bristol City,Rob Dickie,621182,D,1,90,1,0,0,0.03,34.0,1.0,1121319.0
-5836793,2026-09-01,eng_championship,Bristol City,Lisav Naif Eissat,1413851,D,1,90,1,1,1,0.02,36.0,1.0,1493738.0
-5836793,2026-09-01,eng_championship,Bristol City,Rio Cardines,1422586,M,1,90,0,0,0,0.0,38.0,2.0,633681.0
-5836793,2026-09-01,eng_championship,Bristol City,Jason Knight,1051415,M,1,90,1,0,0,0.02,64.0,2.0,4585189.0
-5836793,2026-09-01,eng_championship,Bristol City,Adam Randell,982599,M,1,59,0,0,0,0.0,66.0,2.0,2227271.0
-5836793,2026-09-01,eng_championship,Bristol City,Yu Hirakawa,1319774,F,1,59,0,0,0,0.0,83.0,3.0,1134916.0
-5836793,2026-09-01,eng_championship,Bristol City,Scott Twine,746406,M,1,90,1,1,1,0.43,85.0,2.0,10064864.0
-5836793,2026-09-01,eng_championship,Bristol City,Sam Greenwood,1049805,M,1,69,2,2,0,0.08,87.0,2.0,1744610.0
-5836793,2026-09-01,eng_championship,Bristol City,Lorent Tolaj,1113899,F,1,84,4,2,0,0.43,115.0,3.0,1408791.0
-5836793,2026-09-01,eng_championship,Bristol City,Cameron Pring,890346,D,0,31,0,0,0,0.0,,1.0,1417421.0
-5836793,2026-09-01,eng_championship,Bristol City,Gibson Yah,1218557,M,0,31,1,0,0,0.05,,2.0,1307586.0
-5836793,2026-09-01,eng_championship,Bristol City,Jed Wallace,287892,F,0,31,0,0,0,0.0,,3.0,875223.0
-5836793,2026-09-01,eng_championship,Bristol City,Dominic Ballard,1254208,F,0,21,1,1,1,0.71,,3.0,
-5836793,2026-09-01,eng_championship,Bristol City,Joe Williams,605260,M,0,6,0,0,0,0.0,,2.0,411846.0
 5837125,2026-09-01,eng_league_one,Bromley,Shamal George,760717,G,1,90,0,0,0,0.0,11.0,0.0,290282.0
 5837125,2026-09-01,eng_league_one,Bromley,Marcus Ifill,1084272,D,1,90,0,0,0,0.0,32.0,1.0,319419.0
 5837125,2026-09-01,eng_league_one,Bromley,Omar Sowunmi,591751,D,1,90,1,1,0,0.07,34.0,1.0,190279.0
@@ -44117,21 +44055,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000013175,2026-09-02,chi_primera,Universidad de Concepción,Yerco Oyanedel,950814,D,0,9,0,0,0,0.0,,1.0,217585.0
 1000013175,2026-09-02,chi_primera,Universidad de Concepción,Harol Salgado,1340660,F,0,9,1,0,0,0.0,,3.0,213327.0
 1000013175,2026-09-02,chi_primera,Universidad de Concepción,Iam González,1609463,F,0,9,0,0,0,0.0,,3.0,
-5836798,2026-09-02,eng_championship,Middlesbrough,Radek Vítek,1360352,G,1,90,0,0,0,0.0,11.0,0.0,3897373.0
-5836798,2026-09-02,eng_championship,Middlesbrough,Callum Brittain,716852,D,1,90,1,0,0,0.02,32.0,1.0,2082659.0
-5836798,2026-09-02,eng_championship,Middlesbrough,Luke Ayling,190666,D,1,90,0,0,0,0.0,34.0,1.0,516964.0
-5836798,2026-09-02,eng_championship,Middlesbrough,Alfie Jones,789598,D,1,74,0,0,0,0.0,36.0,1.0,2712569.0
-5836798,2026-09-02,eng_championship,Middlesbrough,Neto Borges,917628,D,1,90,1,0,0,0.02,38.0,1.0,1336480.0
-5836798,2026-09-02,eng_championship,Middlesbrough,Aidan Morris,1136097,M,1,90,2,1,1,0.06,73.0,2.0,7736343.0
-5836798,2026-09-02,eng_championship,Middlesbrough,Adilson Malanda,1218243,D,1,90,2,1,0,0.08,75.0,1.0,3467124.0
-5836798,2026-09-02,eng_championship,Middlesbrough,Sebastian Berhalter,1136096,M,1,90,2,0,0,0.05,77.0,2.0,2150220.0
-5836798,2026-09-02,eng_championship,Middlesbrough,Riley McGree,733486,M,1,61,1,0,0,0.47,103.0,2.0,2207614.0
-5836798,2026-09-02,eng_championship,Middlesbrough,Will Lankshear,1417094,F,1,87,1,0,0,0.28,105.0,3.0,4815889.0
-5836798,2026-09-02,eng_championship,Middlesbrough,Kyle Joseph,1184465,F,1,61,0,0,0,0.0,107.0,3.0,1440880.0
-5836798,2026-09-02,eng_championship,Middlesbrough,Leo Castledine,1226849,M,0,29,0,0,0,0.0,,2.0,2145388.0
-5836798,2026-09-02,eng_championship,Middlesbrough,Tommy Conway,1127480,F,0,29,0,0,0,0.0,,3.0,10205576.0
-5836798,2026-09-02,eng_championship,Middlesbrough,Ashley Phillips,1290962,D,0,16,0,0,0,0.0,,1.0,7777804.0
-5836798,2026-09-02,eng_championship,Middlesbrough,David Strelec,940594,F,0,3,0,0,0,0.0,,3.0,5417568.0
 1000017394,2026-09-02,par_division,Olimpia,Gastón Olveira,495193,G,1,90,0,0,0,0.0,11.0,0.0,313919.0
 1000017394,2026-09-02,par_division,Olimpia,Raúl Cáceres,207102,D,1,90,1,1,0,0.0,32.0,1.0,340743.0
 1000017394,2026-09-02,par_division,Olimpia,Gustavo Vargas,1458551,D,1,90,0,0,0,0.0,34.0,1.0,1135127.0
@@ -44321,37 +44244,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000009095,2026-09-02,ecu_liga_pro,Manta,Jefferson Troya,1251021,M,0,26,0,0,0,0.0,,2.0,230739.0
 1000009095,2026-09-02,ecu_liga_pro,Manta,Maikel Valencia,1828140,F,0,18,1,0,0,0.0,,3.0,218126.0
 1000009095,2026-09-02,ecu_liga_pro,Manta,Wálter Chalá,209311,F,0,17,1,0,0,0.0,,3.0,136885.0
-5836800,2026-09-02,eng_championship,Cardiff City,Nathan Trott,623366,G,1,90,0,0,0,0.0,11.0,0.0,1130448.0
-5836800,2026-09-02,eng_championship,Cardiff City,Perry Ng,563058,D,1,90,3,2,1,0.07,32.0,1.0,844471.0
-5836800,2026-09-02,eng_championship,Cardiff City,Gabriel Osho,789509,D,1,90,0,0,0,0.0,34.0,1.0,941266.0
-5836800,2026-09-02,eng_championship,Cardiff City,Joel Bagan,1130978,D,1,90,0,0,0,0.0,36.0,1.0,1157515.0
-5836800,2026-09-02,eng_championship,Cardiff City,Calum Scanlon,1355539,D,1,46,0,0,0,0.0,38.0,1.0,607495.0
-5836800,2026-09-02,eng_championship,Cardiff City,Alex Robertson,1118910,M,1,89,1,0,0,0.09,64.0,2.0,1552040.0
-5836800,2026-09-02,eng_championship,Cardiff City,Cian Ashford,1533543,F,1,45,1,0,0,0.23,66.0,3.0,1552677.0
-5836800,2026-09-02,eng_championship,Cardiff City,Ollie Tanner,1086249,F,1,89,0,0,0,0.0,83.0,3.0,1116445.0
-5836800,2026-09-02,eng_championship,Cardiff City,Rubin Colwill,1227324,M,1,90,0,0,0,0.0,85.0,2.0,1641424.0
-5836800,2026-09-02,eng_championship,Cardiff City,Jack Moylan,1196750,M,1,80,2,0,0,0.06,87.0,2.0,727416.0
-5836800,2026-09-02,eng_championship,Cardiff City,Yousef Salech,1183360,F,1,90,1,1,0,0.03,115.0,3.0,2421797.0
-5836800,2026-09-02,eng_championship,Cardiff City,Krystian Bielik,556952,D,0,44,0,0,0,0.0,,1.0,1442058.0
-5836800,2026-09-02,eng_championship,Cardiff City,Chris Willock,674498,F,0,44,0,0,0,0.0,,3.0,623161.0
-5836800,2026-09-02,eng_championship,Cardiff City,Joel Colwill,1405022,M,0,10,1,0,0,0.09,,2.0,1281077.0
-5836800,2026-09-02,eng_championship,Cardiff City,Callum Robinson,504085,F,0,1,0,0,0,0.0,,3.0,388364.0
-5836800,2026-09-02,eng_championship,Cardiff City,Isaak Davies,1226630,F,0,1,0,0,0,0.0,,3.0,1044971.0
-5836799,2026-09-02,eng_championship,Wrexham,Anthony Patterson,968912,G,1,90,0,0,0,0.0,11.0,0.0,9263501.0
-5836799,2026-09-02,eng_championship,Wrexham,Max Cleworth,1112701,D,1,90,2,0,0,0.07,33.0,1.0,4977622.0
-5836799,2026-09-02,eng_championship,Wrexham,Dominic Hyam,694558,D,1,90,0,0,0,0.0,35.0,1.0,1010591.0
-5836799,2026-09-02,eng_championship,Wrexham,Callum Doyle,1207954,D,1,90,0,0,0,0.0,37.0,1.0,9658740.0
-5836799,2026-09-02,eng_championship,Wrexham,Issa Kaboré,1099974,M,1,67,0,0,0,0.0,72.0,2.0,2614539.0
-5836799,2026-09-02,eng_championship,Wrexham,Matthew James,173408,M,1,90,0,0,0,0.0,74.0,2.0,265581.0
-5836799,2026-09-02,eng_championship,Wrexham,Ben Whiteman,600812,M,1,90,0,0,0,0.0,76.0,2.0,1294658.0
-5836799,2026-09-02,eng_championship,Wrexham,Jacques Ekomié,1327156,D,1,76,1,1,1,0.09,78.0,1.0,2062792.0
-5836799,2026-09-02,eng_championship,Wrexham,Josh Windass,465909,M,1,67,1,0,0,0.08,103.0,2.0,843166.0
-5836799,2026-09-02,eng_championship,Wrexham,Kieffer Moore,469202,F,1,73,1,1,1,0.06,105.0,3.0,1107539.0
-5836799,2026-09-02,eng_championship,Wrexham,Lewis O'Brien,914134,M,1,90,2,0,0,0.43,107.0,2.0,3408752.0
-5836799,2026-09-02,eng_championship,Wrexham,Daniel Imray,1132342,D,0,23,1,0,0,0.02,,1.0,
-5836799,2026-09-02,eng_championship,Wrexham,Oliver Rathbone,761834,M,0,23,0,0,0,0.0,,2.0,660560.0
-5836799,2026-09-02,eng_championship,Wrexham,Sam Smith,791416,F,0,17,0,0,0,0.0,,3.0,955369.0
-5836799,2026-09-02,eng_championship,Wrexham,Ryan Longman,886155,M,0,14,1,1,0,0.14,,2.0,1509445.0
 5837126,2026-09-02,eng_league_one,AFC Wimbledon,Joe McDonnell,577611,G,1,90,0,0,0,0.0,11.0,0.0,112006.0
 5837126,2026-09-02,eng_league_one,AFC Wimbledon,Andy Yiadom,212441,D,1,90,0,0,0,0.0,33.0,1.0,161973.0
 5837126,2026-09-02,eng_league_one,AFC Wimbledon,Dan Sweeney,717173,D,1,61,2,1,0,0.15,35.0,1.0,210284.0
@@ -50667,22 +50559,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5837908,2026-09-05,eng_league_two,Rotherham United,Ossama Ashley,906084,M,0,29,0,0,0,0.0,,2.0,148331.0
 5837908,2026-09-05,eng_league_two,Rotherham United,Paul Mullin,480790,F,0,12,1,0,0,0.31,,3.0,174256.0
 5837908,2026-09-05,eng_league_two,Rotherham United,Aaron Nemane,760753,M,0,11,0,0,0,0.0,,2.0,185616.0
-5837144,2026-09-05,eng_league_one,Reading,Joel Pereira,687506,G,1,90,0,0,0,0.0,11.0,0.0,260411.0
-5837144,2026-09-05,eng_league_one,Reading,Udoka Godwin-Malife,979407,D,1,90,0,0,0,0.0,32.0,1.0,475334.0
-5837144,2026-09-05,eng_league_one,Reading,Paudie O'Connor,590619,D,1,90,1,0,0,0.06,34.0,1.0,432660.0
-5837144,2026-09-05,eng_league_one,Reading,Benn Ward,1523842,D,1,90,1,0,0,0.25,36.0,1.0,
-5837144,2026-09-05,eng_league_one,Reading,Haydon Roberts,1086650,D,1,90,1,0,0,0.03,38.0,1.0,980321.0
-5837144,2026-09-05,eng_league_one,Reading,Lewis Wing,874613,M,1,90,2,0,0,0.05,64.0,2.0,477283.0
-5837144,2026-09-05,eng_league_one,Reading,Andy Rinomhota,789510,M,1,85,0,0,0,0.0,66.0,2.0,153006.0
-5837144,2026-09-05,eng_league_one,Reading,Kyreece Lisbie,1566101,F,1,76,2,1,1,0.51,83.0,3.0,429980.0
-5837144,2026-09-05,eng_league_one,Reading,George Earthy,1211806,M,1,70,3,1,1,1.13,85.0,2.0,1344955.0
-5837144,2026-09-05,eng_league_one,Reading,Paddy Lane,1115145,F,1,85,0,0,0,0.0,87.0,3.0,475905.0
-5837144,2026-09-05,eng_league_one,Reading,Jack Marriott,445481,F,1,70,6,3,0,0.88,115.0,3.0,284780.0
-5837144,2026-09-05,eng_league_one,Reading,Jacob Brown,802245,F,0,20,1,1,1,0.65,,3.0,930469.0
-5837144,2026-09-05,eng_league_one,Reading,Randell Williams,719377,F,0,20,1,0,0,0.04,,3.0,154457.0
-5837144,2026-09-05,eng_league_one,Reading,Daniel Kyerewaa,1203511,F,0,14,0,0,0,0.0,,3.0,370722.0
-5837144,2026-09-05,eng_league_one,Reading,Charlie Savage,1211644,M,0,5,0,0,0,0.0,,2.0,715505.0
-5837144,2026-09-05,eng_league_one,Reading,Jamie Reid,406928,F,0,5,0,0,0,0.0,,3.0,227347.0
 5837144,2026-09-05,eng_league_one,Blackpool,Bailey Peacock-Farrell,698500,G,1,90,0,0,0,0.0,11.0,0.0,448476.0
 5837144,2026-09-05,eng_league_one,Blackpool,Jordan Williams,768697,D,1,90,0,0,0,0.0,32.0,1.0,485859.0
 5837144,2026-09-05,eng_league_one,Blackpool,Oliver Casey,1117751,D,1,90,0,0,0,0.0,34.0,1.0,515021.0
@@ -175144,189 +175020,560 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5103700,2026-11-04,brasil,Coritiba,Vini Paulista,1259119,F,0,21,1,0,0,0.22,,3.0,646514.0
 5103700,2026-11-04,brasil,Coritiba,Joaquín Lavega,1354491,F,0,21,0,0,0,0.0,,3.0,8101760.0
 5103700,2026-11-04,brasil,Coritiba,Richard,882625,M,0,6,0,0,0,0.0,,2.0,282408.0
-6050006,2026-11-04,afc_champions,Pohang Steelers,In-Jae Hwang,730778,G,1,90,0,0,0,0.0,11,0,215902
-6050006,2026-11-04,afc_champions,Pohang Steelers,Chan-Yong Park,648405,D,1,90,0,0,0,0.0,33,1,307404
-6050006,2026-11-04,afc_champions,Pohang Steelers,Min-Kwang Jeon,654164,D,1,90,0,0,0,0.0,35,1,208799
-6050006,2026-11-04,afc_champions,Pohang Steelers,Si-Woo Jin,1612401,D,1,88,1,0,0,0.0,37,1,279924
-6050006,2026-11-04,afc_champions,Pohang Steelers,Ye-Sung Kim,930020,D,1,90,0,0,0,0.0,72,1,311799
-6050006,2026-11-04,afc_champions,Pohang Steelers,Seung-Ho Kim,1381040,M,1,90,0,0,0,0.0,74,2,345029
-6050006,2026-11-04,afc_champions,Pohang Steelers,Kento Nishiya,1499949,M,1,63,0,0,0,0.0,76,2,305229
-6050006,2026-11-04,afc_champions,Pohang Steelers,Dong-Jin Kim,1611654,M,1,90,0,0,0,0.0,78,2,437849
-6050006,2026-11-04,afc_champions,Pohang Steelers,Han-Min Jung,1135928,F,1,45,1,0,0,0.0,103,3,394511
-6050006,2026-11-04,afc_champions,Pohang Steelers,Jae-Joon An,1152742,F,1,46,0,0,0,0.0,105,3,380321
-6050006,2026-11-04,afc_champions,Pohang Steelers,Jakob Tranziska,1399589,F,1,72,2,2,0,0.0,107,3,357011
-6050006,2026-11-04,afc_champions,Pohang Steelers,Wanderson,331738,D,0,45,2,1,1,0.0,,1,204599
-6050006,2026-11-04,afc_champions,Pohang Steelers,Sang-Hyeok Cho,1711623,F,0,45,3,0,0,0.0,,3,352972
-6050006,2026-11-04,afc_champions,Pohang Steelers,Sung-Yueng Ki,144996,M,0,27,0,0,0,0.0,,2,183573
-6050006,2026-11-04,afc_champions,Pohang Steelers,Jorge Teixeira,1184786,F,0,18,2,2,1,0.0,,3,275351
-6050006,2026-11-04,afc_champions,Pohang Steelers,Gwang-Won Kim,2118584,M,0,2,1,1,1,0.0,,2,
-6050006,2026-11-04,afc_champions,Gamba Osaka,Jun Ichimori,728441,G,1,90,0,0,0,0.0,11,0,286752
-6050006,2026-11-04,afc_champions,Gamba Osaka,Soya Fujiwara,1134741,D,1,61,0,0,0,0.0,32,1,207880
-6050006,2026-11-04,afc_champions,Gamba Osaka,Ginjiro Ikegaya,1900448,D,1,90,0,0,0,0.0,34,1,380548
-6050006,2026-11-04,afc_champions,Gamba Osaka,Shota Fukuoka,924121,D,1,90,0,0,0,0.0,36,1,210926
-6050006,2026-11-04,afc_champions,Gamba Osaka,Shinya Nakano,1172705,D,1,90,1,0,0,0.0,38,1,253146
-6050006,2026-11-04,afc_champions,Gamba Osaka,Juanpe,714418,M,1,81,1,0,0,0.0,64,2,143927
-6050006,2026-11-04,afc_champions,Gamba Osaka,Tokuma Suzuki,1010266,M,1,90,0,0,0,0.0,66,2,259187
-6050006,2026-11-04,afc_champions,Gamba Osaka,Eli Adams,1261617,F,1,72,2,1,1,0.0,83,3,529865
-6050006,2026-11-04,afc_champions,Gamba Osaka,Shu Kurata,79902,F,1,72,1,0,0,0.0,85,3,170117
-6050006,2026-11-04,afc_champions,Gamba Osaka,Ryotaro Meshino,824619,F,1,90,4,2,1,0.0,87,3,207574
-6050006,2026-11-04,afc_champions,Gamba Osaka,Tsuyoshi Ogashiwa,1055137,M,1,61,0,0,0,0.0,115,2,203395
-6050006,2026-11-04,afc_champions,Gamba Osaka,Takeru Kishimoto,735816,D,0,29,0,0,0,0.0,,1,169011
-6050006,2026-11-04,afc_champions,Gamba Osaka,Koshiro Sumi,1544872,M,0,29,1,1,1,0.0,,2,291135
-6050006,2026-11-04,afc_champions,Gamba Osaka,Issam Jebali,615767,M,0,18,4,1,0,0.0,,2,219638
-6050006,2026-11-04,afc_champions,Gamba Osaka,Ryoya Yamashita,1135557,F,0,18,0,0,0,0.0,,3,491970
-6050006,2026-11-04,afc_champions,Gamba Osaka,Shuto Abe,1061133,M,0,9,1,0,0,0.0,,2,344972
-6050007,2026-11-04,afc_champions,Buriram United,Neil Etheridge,214938,G,1,90,0,0,0,0.0,11,0,87735
-6050007,2026-11-04,afc_champions,Buriram United,Reza Asadi,817233,F,1,90,1,0,0,0.0,33,3,176752
-6050007,2026-11-04,afc_champions,Buriram United,Kenneth Dougall,562884,D,1,90,0,0,0,0.0,35,1,
-6050007,2026-11-04,afc_champions,Buriram United,Eduardo Mancha,946441,D,1,90,0,0,0,0.0,37,1,73772
-6050007,2026-11-04,afc_champions,Buriram United,Kingsley Schindler,630651,M,1,90,0,0,0,0.0,71,2,171925
-6050007,2026-11-04,afc_champions,Buriram United,Darlan Mendes,1050409,M,1,46,0,0,0,0.0,73,2,179871
-6050007,2026-11-04,afc_champions,Buriram United,Toni Moya,822808,M,1,90,1,1,0,0.0,75,2,293495
-6050007,2026-11-04,afc_champions,Buriram United,Goran Čaušić,359697,M,1,90,2,1,0,0.0,77,2,185347
-6050007,2026-11-04,afc_champions,Buriram United,Sasalak Haiprakhon,922597,D,1,46,0,0,0,0.0,79,1,123483
-6050007,2026-11-04,afc_champions,Buriram United,Alexandru Tudorie,462963,F,1,79,1,0,0,0.0,104,3,312167
-6050007,2026-11-04,afc_champions,Buriram United,Bissoli,902692,F,1,90,1,0,0,0.0,106,3,1485368
-6050007,2026-11-04,afc_champions,Buriram United,Caju,583763,D,0,44,0,0,0,0.0,,1,103378
-6050007,2026-11-04,afc_champions,Buriram United,Paulinho,319976,M,0,44,0,0,0,0.0,,2,111553
-6050007,2026-11-04,afc_champions,Buriram United,Sebas Moyano,522577,F,0,11,0,0,0,0.0,,3,187134
-6050007,2026-11-04,afc_champions,Kashima Antlers,Tomoki Hayakawa,1232143,G,1,90,0,0,0,0.0,11,0,1471449
-6050007,2026-11-04,afc_champions,Kashima Antlers,Keisuke Tsukui,1437167,D,1,90,1,0,0,0.0,32,1,443129
-6050007,2026-11-04,afc_champions,Kashima Antlers,Kaito Chida,1218919,D,1,90,1,0,0,0.0,34,1,154970
-6050007,2026-11-04,afc_champions,Kashima Antlers,Anthony Motosuna,1818880,D,1,90,0,0,0,0.0,36,1,
-6050007,2026-11-04,afc_champions,Kashima Antlers,Yugo Okawa,1899992,M,1,71,0,0,0,0.0,38,2,
-6050007,2026-11-04,afc_champions,Kashima Antlers,Haruto Matsumoto,1744439,D,1,46,0,0,0,0.0,72,1,322477
-6050007,2026-11-04,afc_champions,Kashima Antlers,Yuta Higuchi,1011554,M,1,66,1,0,0,0.0,74,2,353819
-6050007,2026-11-04,afc_champions,Kashima Antlers,Kento Misao,648364,M,1,90,0,0,0,0.0,76,2,343071
-6050007,2026-11-04,afc_champions,Kashima Antlers,Haruki Hayashi,1899991,M,1,90,4,2,0,0.0,78,2,
-6050007,2026-11-04,afc_champions,Kashima Antlers,Minato Yoshida,1748953,F,1,56,2,1,0,0.0,104,3,
-6050007,2026-11-04,afc_champions,Kashima Antlers,Homare Tokuda,1652441,F,1,56,2,0,0,0.0,106,3,466324
-6050007,2026-11-04,afc_champions,Kashima Antlers,Yuta Matsumura,1133794,M,0,45,1,0,0,0.0,,2,508767
-6050007,2026-11-04,afc_champions,Kashima Antlers,José Elber,290120,M,0,34,0,0,0,0.0,,2,237605
-6050007,2026-11-04,afc_champions,Kashima Antlers,Léo Ceará,558007,F,0,34,5,1,0,0.0,,3,1456851
-6050007,2026-11-04,afc_champions,Kashima Antlers,Matheus Bueno,1173576,M,0,24,0,0,0,0.0,,2,624787
-6050007,2026-11-04,afc_champions,Kashima Antlers,Ryoya Ogawa,727419,D,0,19,0,0,0,0.0,,1,705202
-6112306,2026-11-04,europa_league,Rennes,Brice Samba,279714,G,1,90,0,0,0,0.0,11,0,5420670
-6112306,2026-11-04,europa_league,Rennes,Anthony Rouault,1079554,D,1,90,1,0,0,0.06,33,1,13789262
-6112306,2026-11-04,europa_league,Rennes,Charlie Cresswell,1186444,D,1,90,1,1,0,0.04,35,1,22415485
-6112306,2026-11-04,europa_league,Rennes,Gonçalo Oliveira,1692872,D,1,90,0,0,0,0.0,37,1,5291468
-6112306,2026-11-04,europa_league,Rennes,Bryan Reynolds,924446,D,1,90,1,0,0,0.02,51,1,3882519
-6112306,2026-11-04,europa_league,Rennes,Mahamadou Nagida,1553514,D,1,90,0,0,0,0.0,59,1,14579817
-6112306,2026-11-04,europa_league,Rennes,Sebastian Szymański,765466,M,1,60,1,0,0,0.04,73,2,16324040
-6112306,2026-11-04,europa_league,Rennes,Adrien Thomasson,317062,M,1,80,0,0,0,0.0,75,2,2566059
-6112306,2026-11-04,europa_league,Rennes,Mahdi Camara,770321,M,1,90,0,0,0,0.0,77,2,12892437
-6112306,2026-11-04,europa_league,Rennes,Mousa Tamari,813055,F,1,80,3,2,0,0.17,104,3,9835486
-6112306,2026-11-04,europa_league,Rennes,Boulaye Dia,972120,F,1,80,0,0,0,0.0,106,3,4157380
-6112306,2026-11-04,europa_league,Rennes,Valentin Rongier,562719,M,0,30,2,1,0,0.15,,2,5633308
-6112306,2026-11-04,europa_league,Rennes,Djaoui Cissé,1553515,M,0,10,0,0,0,0.0,,2,12397420
-6112306,2026-11-04,europa_league,Rennes,Eliezer Mayenda,1391052,F,0,10,0,0,0,0.0,,3,18220268
-6112306,2026-11-04,europa_league,Rennes,Ludovic Blas,693171,F,0,10,0,0,0,0.0,,3,5176568
-6112306,2026-11-04,europa_league,Olympiacos,Stefan Ortega,276729,G,1,90,0,0,0,0.0,11,0,1557968
-6112306,2026-11-04,europa_league,Olympiacos,Manolis Saliakas,530197,D,1,45,1,0,0,0.06,32,1,1125463
-6112306,2026-11-04,europa_league,Olympiacos,Panagiotis Retsos,719055,D,1,90,1,0,0,0.11,34,1,5632119
-6112306,2026-11-04,europa_league,Olympiacos,David Carmo,954962,D,1,90,0,0,0,0.0,36,1,8550340
-6112306,2026-11-04,europa_league,Olympiacos,Bruno Onyemaechi,1287837,D,1,82,0,0,0,0.0,38,1,1477648
-6112306,2026-11-04,europa_league,Olympiacos,Santiago Hezze,1131349,M,1,90,0,0,0,0.0,64,2,13192502
-6112306,2026-11-04,europa_league,Olympiacos,Gustavo Puerta,1331597,M,1,90,2,0,0,0.12,66,2,19747138
-6112306,2026-11-04,europa_league,Olympiacos,Leon Bailey,671331,F,1,59,1,1,0,0.04,83,3,8121003
-6112306,2026-11-04,europa_league,Olympiacos,Gustavo Sá,1395482,M,1,79,1,0,0,0.02,85,2,18949055
-6112306,2026-11-04,europa_league,Olympiacos,Konstantinos Fortounis,209430,F,1,90,2,0,0,0.06,87,3,973124
-6112306,2026-11-04,europa_league,Olympiacos,Armando González,1456983,F,1,59,1,0,0,0.22,115,3,17734530
-6112306,2026-11-04,europa_league,Olympiacos,Marcus Holmgren Pedersen,935622,M,0,44,0,0,0,0.0,,2,4809273
-6112306,2026-11-04,europa_league,Olympiacos,Gelson Martins,575225,F,0,31,2,2,0,0.18,,3,1493113
-6112306,2026-11-04,europa_league,Olympiacos,Roman Yaremchuk,643690,F,0,31,1,0,0,0.07,,3,2037107
-6112306,2026-11-04,europa_league,Olympiacos,Chiquinho,566644,M,0,11,0,0,0,0.0,,2,2310368
-6112306,2026-11-04,europa_league,Olympiacos,Nair Tiknizyan,951976,D,0,8,0,0,0,0.0,,1,3699277
-6106330,2026-11-04,champions,Fenerbahçe,Ederson,363364,G,1,90,0,0,0,0.0,11,0,5724162
-6106330,2026-11-04,champions,Fenerbahçe,Nélson Semedo,470834,D,1,75,1,0,0,0.02,32,1,2068035
-6106330,2026-11-04,champions,Fenerbahçe,Milan Škriniar,309328,D,1,90,0,0,0,0.0,34,1,5365302
-6106330,2026-11-04,champions,Fenerbahçe,Kojo Peprah Oppong,1429607,D,1,90,0,0,0,0.0,36,1,15474987
-6106330,2026-11-04,champions,Fenerbahçe,Archie Brown,1113704,D,1,90,3,2,1,0.4,38,1,17546233
-6106330,2026-11-04,champions,Fenerbahçe,Ismail Yüksek,1183589,M,1,90,1,0,0,0.01,64,2,13717837
-6106330,2026-11-04,champions,Fenerbahçe,N'Golo Kanté,319300,M,1,90,1,0,0,0.09,66,2,2113443
-6106330,2026-11-04,champions,Fenerbahçe,Mason Greenwood,950473,F,1,89,4,2,1,0.13,83,3,42115973
-6106330,2026-11-04,champions,Fenerbahçe,Mattéo Guendouzi,800609,M,1,90,3,0,0,0.13,85,2,25049401
-6106330,2026-11-04,champions,Fenerbahçe,İrfan Kahveci,316544,F,1,75,1,0,0,0.68,87,3,1672566
-6106330,2026-11-04,champions,Fenerbahçe,Romelu Lukaku,181276,F,1,63,1,1,0,0.02,115,3,2328339
-6106330,2026-11-04,champions,Fenerbahçe,Vedat Muriqi,517052,F,0,27,1,1,1,0.16,,3,5308462
-6106330,2026-11-04,champions,Fenerbahçe,Mert Müldür,904098,D,0,15,0,0,0,0.0,,1,3938447
-6106330,2026-11-04,champions,Fenerbahçe,Kerem Aktürkoglu,1117570,F,0,15,1,0,0,0.05,,3,18430431
-6106330,2026-11-04,champions,Fenerbahçe,Oğuz Aydın,1092015,F,0,1,0,0,0,0.0,,3,9637020
-6106330,2026-11-04,champions,Liverpool,Alisson Becker,319784,G,1,90,0,0,0,0.0,11,0,12518404
-6106330,2026-11-04,champions,Liverpool,Joseph Gomez,568571,D,1,66,1,0,0,0.01,32,1,6720249
-6106330,2026-11-04,champions,Liverpool,Jérémy Jacquet,1473534,D,1,90,2,0,0,0.3,34,1,86409865
-6106330,2026-11-04,champions,Liverpool,Virgil van Dijk,209405,D,1,90,3,2,0,0.11,36,1,13271173
-6106330,2026-11-04,champions,Liverpool,Konstantinos Tsimikas,671529,D,1,76,0,0,0,0.0,38,1,2454858
-6106330,2026-11-04,champions,Liverpool,Trey Nyoni,1436258,M,1,85,1,1,1,0.08,64,2,26392249
-6106330,2026-11-04,champions,Liverpool,Alexis Mac Allister,831489,M,1,90,1,1,0,0.05,66,2,66110780
-6106330,2026-11-04,champions,Liverpool,Víctor Muñoz,1553105,F,1,66,3,0,0,0.2,83,3,51012133
-6106330,2026-11-04,champions,Liverpool,Dominik Szoboszlai,846005,M,1,90,2,0,0,0.06,85,2,104503407
-6106330,2026-11-04,champions,Liverpool,Rio Ngumoha,1597668,F,1,66,2,0,0,0.07,87,3,73176178
-6106330,2026-11-04,champions,Liverpool,Bradley Barcola,1297165,F,1,90,3,1,0,0.23,115,3,100394373
-6106330,2026-11-04,champions,Liverpool,Alexander Isak,690107,F,0,24,3,1,1,0.44,,3,106389586
-6106330,2026-11-04,champions,Liverpool,Cody Gakpo,806552,F,0,24,1,0,0,0.02,,3,74912371
-6106330,2026-11-04,champions,Liverpool,Florian Wirtz,1152455,F,0,24,0,0,0,0.0,,3,79305056
-6106330,2026-11-04,champions,Liverpool,Miloš Kerkez,1195281,D,0,14,0,0,0,0.0,,1,48147769
-6106330,2026-11-04,champions,Liverpool,Lewis Koumas,1364042,F,0,5,0,0,0,0.0,,3,13084687
-5943695,2026-11-04,cze_first,Artis Brno,Richard Kasík,1791922,G,1,90,0,0,0,0.0,11,0,
-5943695,2026-11-04,cze_first,Artis Brno,Karel Pojezný,1154896,D,1,90,0,0,0,0.0,32,1,323769
-5943695,2026-11-04,cze_first,Artis Brno,Dominik Plechatý,1020539,D,1,90,0,0,0,0.0,34,1,220457
-5943695,2026-11-04,cze_first,Artis Brno,Neil Glossoa,1709475,D,1,90,0,0,0,0.0,36,1,778291
-5943695,2026-11-04,cze_first,Artis Brno,Sacha Komljenović,1285709,M,1,83,2,0,0,0.0,38,2,298051
-5943695,2026-11-04,cze_first,Artis Brno,Albert Labík,1403349,M,1,90,0,0,0,0.0,64,2,954812
-5943695,2026-11-04,cze_first,Artis Brno,Sebastian Bohác,1366347,D,1,90,1,0,0,0.0,66,1,370039
-5943695,2026-11-04,cze_first,Artis Brno,Alexis Alégué,687572,F,1,46,0,0,0,0.0,83,3,137008
-5943695,2026-11-04,cze_first,Artis Brno,Papalélé,1123697,F,1,72,1,1,0,0.0,85,3,232763
-5943695,2026-11-04,cze_first,Artis Brno,Dominik Sarapata,1681656,M,1,72,2,1,0,0.0,87,2,2322186
-5943695,2026-11-04,cze_first,Artis Brno,El Hadji Ndiaye,1509846,F,1,20,1,1,1,0.0,115,3,265011
-5943695,2026-11-04,cze_first,Artis Brno,Stepán Harazim,1119670,D,0,45,1,0,0,0.0,,1,262084
-5943695,2026-11-04,cze_first,Artis Brno,Adam Carlén,1076684,M,0,18,0,0,0,0.0,,2,142476
-5943695,2026-11-04,cze_first,Artis Brno,Quadri Adediran,1410215,F,0,18,1,0,0,0.0,,3,179305
-5943695,2026-11-04,cze_first,Artis Brno,Vladimir Perišić,1269100,F,0,7,0,0,0,0.0,,3,256270
-5943695,2026-11-04,cze_first,Bohemians 1905,Tomás Frühwald,1287528,G,1,90,0,0,0,0.0,11,0,485782
-5943695,2026-11-04,cze_first,Bohemians 1905,Milan Havel,464020,D,1,85,1,1,0,0.0,33,1,200703
-5943695,2026-11-04,cze_first,Bohemians 1905,David Lischka,748916,D,1,90,2,1,1,0.0,35,1,204887
-5943695,2026-11-04,cze_first,Bohemians 1905,Matěj Kadlec,1611067,D,1,90,0,0,0,0.0,37,1,291903
-5943695,2026-11-04,cze_first,Bohemians 1905,Aleš Cermák,439694,M,1,90,2,1,0,0.0,71,2,203868
-5943695,2026-11-04,cze_first,Bohemians 1905,Dominik Javorček,1176587,M,1,38,0,0,0,0.0,73,2,294886
-5943695,2026-11-04,cze_first,Bohemians 1905,Roman Květ,802213,M,1,70,2,1,0,0.0,75,2,751436
-5943695,2026-11-04,cze_first,Bohemians 1905,Mathews Banda,1792316,D,1,90,3,0,0,0.0,77,1,154263
-5943695,2026-11-04,cze_first,Bohemians 1905,Samuel Obinaiia,1614826,D,1,90,2,1,0,0.0,79,1,209008
-5943695,2026-11-04,cze_first,Bohemians 1905,Jan Matoušek,850016,F,1,69,3,1,1,0.0,104,3,90743
-5943695,2026-11-04,cze_first,Bohemians 1905,Ladislav Almási,728428,F,1,70,1,0,0,0.0,106,3,253504
-5943695,2026-11-04,cze_first,Bohemians 1905,Václav Pilař,207542,F,0,52,4,1,0,0.0,,3,69492
-5943695,2026-11-04,cze_first,Bohemians 1905,Šimon Černý,1698718,F,0,21,0,0,0,0.0,,3,690032
-5943695,2026-11-04,cze_first,Bohemians 1905,Ladislav Krobot,1155184,F,0,20,1,0,0,0.0,,3,171104
-5943695,2026-11-04,cze_first,Bohemians 1905,Vladimír Zeman,1524292,F,0,20,0,0,0,0.0,,3,130896
-5943695,2026-11-04,cze_first,Bohemians 1905,Benson Sakala,686657,M,0,5,0,0,0,0.0,,2,79874
-6106401,2026-11-04,champions,AEK Athens,Alberto Brignoli,299879,G,1,90,0,0,0,0.0,11,0,161306
-6106401,2026-11-04,champions,AEK Athens,Lazaros Rota,949866,D,1,90,0,0,0,0.0,32,1,2342663
-6106401,2026-11-04,champions,AEK Athens,Harold Moukoudi,637737,D,1,90,1,1,0,0.08,34,1,4582960
-6106401,2026-11-04,champions,AEK Athens,Filipe Relvas,1285815,D,1,90,0,0,0,0.0,36,1,2310114
-6106401,2026-11-04,champions,AEK Athens,Stavros Pilios,1015750,D,1,90,1,1,1,0.19,38,1,1859202
-6106401,2026-11-04,champions,AEK Athens,Aboubakary Koïta,725695,M,1,90,3,1,1,0.17,72,2,3844682
-6106401,2026-11-04,champions,AEK Athens,Kervin Arriaga,839750,M,1,90,0,0,0,0.0,74,2,1475732
-6106401,2026-11-04,champions,AEK Athens,Kaan Kairinen,547454,M,1,60,0,0,0,0.0,76,2,4936044
-6106401,2026-11-04,champions,AEK Athens,Lovro Majer,762721,M,1,53,0,0,0,0.0,78,2,6669510
-6106401,2026-11-04,champions,AEK Athens,Mijat Gaćinović,448859,M,1,60,1,1,0,0.15,104,2,973124
-6106401,2026-11-04,champions,AEK Athens,Luka Jović,463291,F,1,88,1,1,0,0.18,106,3,5309189
-6106401,2026-11-04,champions,AEK Athens,Zine,1106943,F,0,37,0,0,0,0.0,,3,1854351
-6106401,2026-11-04,champions,AEK Athens,Răzvan Marin,574844,M,0,30,2,0,0,0.09,,2,2236547
-6106401,2026-11-04,champions,AEK Athens,Barnabás Varga,796504,F,0,30,0,0,0,0.0,,3,2132278
-6106401,2026-11-04,champions,AEK Athens,Oleksandr Zubkov,655636,F,0,2,0,0,0,0.0,,3,3572762
-6106401,2026-11-04,champions,Real Madrid,Thibaut Courtois,170323,G,1,90,0,0,0,0.0,11,0,11693114
-6106401,2026-11-04,champions,Real Madrid,Denzel Dumfries,593118,D,1,90,1,1,0,0.28,32,1,24742174
-6106401,2026-11-04,champions,Real Madrid,Éder Militao,844415,D,1,90,2,1,0,0.12,34,1,15444815
-6106401,2026-11-04,champions,Real Madrid,Antonio Rüdiger,276738,D,1,90,0,0,0,0.0,36,1,1999129
-6106401,2026-11-04,champions,Real Madrid,Marc Cucurella,873289,D,1,81,2,1,0,0.28,38,1,55172481
-6106401,2026-11-04,champions,Real Madrid,Bernardo Silva,488139,M,1,67,1,0,0,0.55,64,2,15735556
-6106401,2026-11-04,champions,Real Madrid,Eduardo Camavinga,1015185,M,1,90,0,0,0,0.0,66,2,60509687
-6106401,2026-11-04,champions,Real Madrid,Yan Diomande,1735453,F,1,67,1,0,0,0.02,83,3,101368575
-6106401,2026-11-04,champions,Real Madrid,Jude Bellingham,1077894,M,1,86,3,1,1,0.3,85,2,147530005
-6106401,2026-11-04,champions,Real Madrid,Vinícius Júnior,846033,F,1,81,3,0,0,0.17,87,3,99728385
-6106401,2026-11-04,champions,Real Madrid,Kylian Mbappé,701154,F,1,90,7,3,1,1.36,115,3,120694930
-6106401,2026-11-04,champions,Real Madrid,Federico Valverde,743533,M,0,23,1,1,1,0.03,,2,96117898
-6106401,2026-11-04,champions,Real Madrid,Endrick,1406729,F,0,23,2,0,0,0.1,,3,49460181
-6106401,2026-11-04,champions,Real Madrid,Brahim Díaz,750027,F,0,9,1,0,0,0.14,,3,23361552
-6106401,2026-11-04,champions,Real Madrid,Alvaro Carreras,1190025,D,0,8,0,0,0,0.0,,1,57236602
-6106401,2026-11-04,champions,Real Madrid,Carlos Espí,1610744,F,0,5,0,0,0,0.0,,3,25672268
+6050006,2026-11-04,afc_champions,Pohang Steelers,In-Jae Hwang,730778,G,1,90,0,0,0,0.0,11.0,0.0,215902.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Chan-Yong Park,648405,D,1,90,0,0,0,0.0,33.0,1.0,307404.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Min-Kwang Jeon,654164,D,1,90,0,0,0,0.0,35.0,1.0,208799.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Si-Woo Jin,1612401,D,1,88,1,0,0,0.0,37.0,1.0,279924.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Ye-Sung Kim,930020,D,1,90,0,0,0,0.0,72.0,1.0,311799.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Seung-Ho Kim,1381040,M,1,90,0,0,0,0.0,74.0,2.0,345029.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Kento Nishiya,1499949,M,1,63,0,0,0,0.0,76.0,2.0,305229.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Dong-Jin Kim,1611654,M,1,90,0,0,0,0.0,78.0,2.0,437849.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Han-Min Jung,1135928,F,1,45,1,0,0,0.0,103.0,3.0,394511.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Jae-Joon An,1152742,F,1,46,0,0,0,0.0,105.0,3.0,380321.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Jakob Tranziska,1399589,F,1,72,2,2,0,0.0,107.0,3.0,357011.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Wanderson,331738,D,0,45,2,1,1,0.0,,1.0,204599.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Sang-Hyeok Cho,1711623,F,0,45,3,0,0,0.0,,3.0,352972.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Sung-Yueng Ki,144996,M,0,27,0,0,0,0.0,,2.0,183573.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Jorge Teixeira,1184786,F,0,18,2,2,1,0.0,,3.0,275351.0
+6050006,2026-11-04,afc_champions,Pohang Steelers,Gwang-Won Kim,2118584,M,0,2,1,1,1,0.0,,2.0,
+6050006,2026-11-04,afc_champions,Gamba Osaka,Jun Ichimori,728441,G,1,90,0,0,0,0.0,11.0,0.0,286752.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Soya Fujiwara,1134741,D,1,61,0,0,0,0.0,32.0,1.0,207880.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Ginjiro Ikegaya,1900448,D,1,90,0,0,0,0.0,34.0,1.0,380548.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Shota Fukuoka,924121,D,1,90,0,0,0,0.0,36.0,1.0,210926.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Shinya Nakano,1172705,D,1,90,1,0,0,0.0,38.0,1.0,253146.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Juanpe,714418,M,1,81,1,0,0,0.0,64.0,2.0,143927.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Tokuma Suzuki,1010266,M,1,90,0,0,0,0.0,66.0,2.0,259187.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Eli Adams,1261617,F,1,72,2,1,1,0.0,83.0,3.0,529865.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Shu Kurata,79902,F,1,72,1,0,0,0.0,85.0,3.0,170117.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Ryotaro Meshino,824619,F,1,90,4,2,1,0.0,87.0,3.0,207574.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Tsuyoshi Ogashiwa,1055137,M,1,61,0,0,0,0.0,115.0,2.0,203395.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Takeru Kishimoto,735816,D,0,29,0,0,0,0.0,,1.0,169011.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Koshiro Sumi,1544872,M,0,29,1,1,1,0.0,,2.0,291135.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Issam Jebali,615767,M,0,18,4,1,0,0.0,,2.0,219638.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Ryoya Yamashita,1135557,F,0,18,0,0,0,0.0,,3.0,491970.0
+6050006,2026-11-04,afc_champions,Gamba Osaka,Shuto Abe,1061133,M,0,9,1,0,0,0.0,,2.0,344972.0
+6050007,2026-11-04,afc_champions,Buriram United,Neil Etheridge,214938,G,1,90,0,0,0,0.0,11.0,0.0,87735.0
+6050007,2026-11-04,afc_champions,Buriram United,Reza Asadi,817233,F,1,90,1,0,0,0.0,33.0,3.0,176752.0
+6050007,2026-11-04,afc_champions,Buriram United,Kenneth Dougall,562884,D,1,90,0,0,0,0.0,35.0,1.0,
+6050007,2026-11-04,afc_champions,Buriram United,Eduardo Mancha,946441,D,1,90,0,0,0,0.0,37.0,1.0,73772.0
+6050007,2026-11-04,afc_champions,Buriram United,Kingsley Schindler,630651,M,1,90,0,0,0,0.0,71.0,2.0,171925.0
+6050007,2026-11-04,afc_champions,Buriram United,Darlan Mendes,1050409,M,1,46,0,0,0,0.0,73.0,2.0,179871.0
+6050007,2026-11-04,afc_champions,Buriram United,Toni Moya,822808,M,1,90,1,1,0,0.0,75.0,2.0,293495.0
+6050007,2026-11-04,afc_champions,Buriram United,Goran Čaušić,359697,M,1,90,2,1,0,0.0,77.0,2.0,185347.0
+6050007,2026-11-04,afc_champions,Buriram United,Sasalak Haiprakhon,922597,D,1,46,0,0,0,0.0,79.0,1.0,123483.0
+6050007,2026-11-04,afc_champions,Buriram United,Alexandru Tudorie,462963,F,1,79,1,0,0,0.0,104.0,3.0,312167.0
+6050007,2026-11-04,afc_champions,Buriram United,Bissoli,902692,F,1,90,1,0,0,0.0,106.0,3.0,1485368.0
+6050007,2026-11-04,afc_champions,Buriram United,Caju,583763,D,0,44,0,0,0,0.0,,1.0,103378.0
+6050007,2026-11-04,afc_champions,Buriram United,Paulinho,319976,M,0,44,0,0,0,0.0,,2.0,111553.0
+6050007,2026-11-04,afc_champions,Buriram United,Sebas Moyano,522577,F,0,11,0,0,0,0.0,,3.0,187134.0
+6050007,2026-11-04,afc_champions,Kashima Antlers,Tomoki Hayakawa,1232143,G,1,90,0,0,0,0.0,11.0,0.0,1471449.0
+6050007,2026-11-04,afc_champions,Kashima Antlers,Keisuke Tsukui,1437167,D,1,90,1,0,0,0.0,32.0,1.0,443129.0
+6050007,2026-11-04,afc_champions,Kashima Antlers,Kaito Chida,1218919,D,1,90,1,0,0,0.0,34.0,1.0,154970.0
+6050007,2026-11-04,afc_champions,Kashima Antlers,Anthony Motosuna,1818880,D,1,90,0,0,0,0.0,36.0,1.0,
+6050007,2026-11-04,afc_champions,Kashima Antlers,Yugo Okawa,1899992,M,1,71,0,0,0,0.0,38.0,2.0,
+6050007,2026-11-04,afc_champions,Kashima Antlers,Haruto Matsumoto,1744439,D,1,46,0,0,0,0.0,72.0,1.0,322477.0
+6050007,2026-11-04,afc_champions,Kashima Antlers,Yuta Higuchi,1011554,M,1,66,1,0,0,0.0,74.0,2.0,353819.0
+6050007,2026-11-04,afc_champions,Kashima Antlers,Kento Misao,648364,M,1,90,0,0,0,0.0,76.0,2.0,343071.0
+6050007,2026-11-04,afc_champions,Kashima Antlers,Haruki Hayashi,1899991,M,1,90,4,2,0,0.0,78.0,2.0,
+6050007,2026-11-04,afc_champions,Kashima Antlers,Minato Yoshida,1748953,F,1,56,2,1,0,0.0,104.0,3.0,
+6050007,2026-11-04,afc_champions,Kashima Antlers,Homare Tokuda,1652441,F,1,56,2,0,0,0.0,106.0,3.0,466324.0
+6050007,2026-11-04,afc_champions,Kashima Antlers,Yuta Matsumura,1133794,M,0,45,1,0,0,0.0,,2.0,508767.0
+6050007,2026-11-04,afc_champions,Kashima Antlers,José Elber,290120,M,0,34,0,0,0,0.0,,2.0,237605.0
+6050007,2026-11-04,afc_champions,Kashima Antlers,Léo Ceará,558007,F,0,34,5,1,0,0.0,,3.0,1456851.0
+6050007,2026-11-04,afc_champions,Kashima Antlers,Matheus Bueno,1173576,M,0,24,0,0,0,0.0,,2.0,624787.0
+6050007,2026-11-04,afc_champions,Kashima Antlers,Ryoya Ogawa,727419,D,0,19,0,0,0,0.0,,1.0,705202.0
+6112306,2026-11-04,europa_league,Rennes,Brice Samba,279714,G,1,90,0,0,0,0.0,11.0,0.0,5420670.0
+6112306,2026-11-04,europa_league,Rennes,Anthony Rouault,1079554,D,1,90,1,0,0,0.06,33.0,1.0,13789262.0
+6112306,2026-11-04,europa_league,Rennes,Charlie Cresswell,1186444,D,1,90,1,1,0,0.04,35.0,1.0,22415485.0
+6112306,2026-11-04,europa_league,Rennes,Gonçalo Oliveira,1692872,D,1,90,0,0,0,0.0,37.0,1.0,5291468.0
+6112306,2026-11-04,europa_league,Rennes,Bryan Reynolds,924446,D,1,90,1,0,0,0.02,51.0,1.0,3882519.0
+6112306,2026-11-04,europa_league,Rennes,Mahamadou Nagida,1553514,D,1,90,0,0,0,0.0,59.0,1.0,14579817.0
+6112306,2026-11-04,europa_league,Rennes,Sebastian Szymański,765466,M,1,60,1,0,0,0.04,73.0,2.0,16324040.0
+6112306,2026-11-04,europa_league,Rennes,Adrien Thomasson,317062,M,1,80,0,0,0,0.0,75.0,2.0,2566059.0
+6112306,2026-11-04,europa_league,Rennes,Mahdi Camara,770321,M,1,90,0,0,0,0.0,77.0,2.0,12892437.0
+6112306,2026-11-04,europa_league,Rennes,Mousa Tamari,813055,F,1,80,3,2,0,0.17,104.0,3.0,9835486.0
+6112306,2026-11-04,europa_league,Rennes,Boulaye Dia,972120,F,1,80,0,0,0,0.0,106.0,3.0,4157380.0
+6112306,2026-11-04,europa_league,Rennes,Valentin Rongier,562719,M,0,30,2,1,0,0.15,,2.0,5633308.0
+6112306,2026-11-04,europa_league,Rennes,Djaoui Cissé,1553515,M,0,10,0,0,0,0.0,,2.0,12397420.0
+6112306,2026-11-04,europa_league,Rennes,Eliezer Mayenda,1391052,F,0,10,0,0,0,0.0,,3.0,18220268.0
+6112306,2026-11-04,europa_league,Rennes,Ludovic Blas,693171,F,0,10,0,0,0,0.0,,3.0,5176568.0
+6112306,2026-11-04,europa_league,Olympiacos,Stefan Ortega,276729,G,1,90,0,0,0,0.0,11.0,0.0,1557968.0
+6112306,2026-11-04,europa_league,Olympiacos,Manolis Saliakas,530197,D,1,45,1,0,0,0.06,32.0,1.0,1125463.0
+6112306,2026-11-04,europa_league,Olympiacos,Panagiotis Retsos,719055,D,1,90,1,0,0,0.11,34.0,1.0,5632119.0
+6112306,2026-11-04,europa_league,Olympiacos,David Carmo,954962,D,1,90,0,0,0,0.0,36.0,1.0,8550340.0
+6112306,2026-11-04,europa_league,Olympiacos,Bruno Onyemaechi,1287837,D,1,82,0,0,0,0.0,38.0,1.0,1477648.0
+6112306,2026-11-04,europa_league,Olympiacos,Santiago Hezze,1131349,M,1,90,0,0,0,0.0,64.0,2.0,13192502.0
+6112306,2026-11-04,europa_league,Olympiacos,Gustavo Puerta,1331597,M,1,90,2,0,0,0.12,66.0,2.0,19747138.0
+6112306,2026-11-04,europa_league,Olympiacos,Leon Bailey,671331,F,1,59,1,1,0,0.04,83.0,3.0,8121003.0
+6112306,2026-11-04,europa_league,Olympiacos,Gustavo Sá,1395482,M,1,79,1,0,0,0.02,85.0,2.0,18949055.0
+6112306,2026-11-04,europa_league,Olympiacos,Konstantinos Fortounis,209430,F,1,90,2,0,0,0.06,87.0,3.0,973124.0
+6112306,2026-11-04,europa_league,Olympiacos,Armando González,1456983,F,1,59,1,0,0,0.22,115.0,3.0,17734530.0
+6112306,2026-11-04,europa_league,Olympiacos,Marcus Holmgren Pedersen,935622,M,0,44,0,0,0,0.0,,2.0,4809273.0
+6112306,2026-11-04,europa_league,Olympiacos,Gelson Martins,575225,F,0,31,2,2,0,0.18,,3.0,1493113.0
+6112306,2026-11-04,europa_league,Olympiacos,Roman Yaremchuk,643690,F,0,31,1,0,0,0.07,,3.0,2037107.0
+6112306,2026-11-04,europa_league,Olympiacos,Chiquinho,566644,M,0,11,0,0,0,0.0,,2.0,2310368.0
+6112306,2026-11-04,europa_league,Olympiacos,Nair Tiknizyan,951976,D,0,8,0,0,0,0.0,,1.0,3699277.0
+6106330,2026-11-04,champions,Fenerbahçe,Ederson,363364,G,1,90,0,0,0,0.0,11.0,0.0,5724162.0
+6106330,2026-11-04,champions,Fenerbahçe,Nélson Semedo,470834,D,1,75,1,0,0,0.02,32.0,1.0,2068035.0
+6106330,2026-11-04,champions,Fenerbahçe,Milan Škriniar,309328,D,1,90,0,0,0,0.0,34.0,1.0,5365302.0
+6106330,2026-11-04,champions,Fenerbahçe,Kojo Peprah Oppong,1429607,D,1,90,0,0,0,0.0,36.0,1.0,15474987.0
+6106330,2026-11-04,champions,Fenerbahçe,Archie Brown,1113704,D,1,90,3,2,1,0.4,38.0,1.0,17546233.0
+6106330,2026-11-04,champions,Fenerbahçe,Ismail Yüksek,1183589,M,1,90,1,0,0,0.01,64.0,2.0,13717837.0
+6106330,2026-11-04,champions,Fenerbahçe,N'Golo Kanté,319300,M,1,90,1,0,0,0.09,66.0,2.0,2113443.0
+6106330,2026-11-04,champions,Fenerbahçe,Mason Greenwood,950473,F,1,89,4,2,1,0.13,83.0,3.0,42115973.0
+6106330,2026-11-04,champions,Fenerbahçe,Mattéo Guendouzi,800609,M,1,90,3,0,0,0.13,85.0,2.0,25049401.0
+6106330,2026-11-04,champions,Fenerbahçe,İrfan Kahveci,316544,F,1,75,1,0,0,0.68,87.0,3.0,1672566.0
+6106330,2026-11-04,champions,Fenerbahçe,Romelu Lukaku,181276,F,1,63,1,1,0,0.02,115.0,3.0,2328339.0
+6106330,2026-11-04,champions,Fenerbahçe,Vedat Muriqi,517052,F,0,27,1,1,1,0.16,,3.0,5308462.0
+6106330,2026-11-04,champions,Fenerbahçe,Mert Müldür,904098,D,0,15,0,0,0,0.0,,1.0,3938447.0
+6106330,2026-11-04,champions,Fenerbahçe,Kerem Aktürkoglu,1117570,F,0,15,1,0,0,0.05,,3.0,18430431.0
+6106330,2026-11-04,champions,Fenerbahçe,Oğuz Aydın,1092015,F,0,1,0,0,0,0.0,,3.0,9637020.0
+6106330,2026-11-04,champions,Liverpool,Alisson Becker,319784,G,1,90,0,0,0,0.0,11.0,0.0,12518404.0
+6106330,2026-11-04,champions,Liverpool,Joseph Gomez,568571,D,1,66,1,0,0,0.01,32.0,1.0,6720249.0
+6106330,2026-11-04,champions,Liverpool,Jérémy Jacquet,1473534,D,1,90,2,0,0,0.3,34.0,1.0,86409865.0
+6106330,2026-11-04,champions,Liverpool,Virgil van Dijk,209405,D,1,90,3,2,0,0.11,36.0,1.0,13271173.0
+6106330,2026-11-04,champions,Liverpool,Konstantinos Tsimikas,671529,D,1,76,0,0,0,0.0,38.0,1.0,2454858.0
+6106330,2026-11-04,champions,Liverpool,Trey Nyoni,1436258,M,1,85,1,1,1,0.08,64.0,2.0,26392249.0
+6106330,2026-11-04,champions,Liverpool,Alexis Mac Allister,831489,M,1,90,1,1,0,0.05,66.0,2.0,66110780.0
+6106330,2026-11-04,champions,Liverpool,Víctor Muñoz,1553105,F,1,66,3,0,0,0.2,83.0,3.0,51012133.0
+6106330,2026-11-04,champions,Liverpool,Dominik Szoboszlai,846005,M,1,90,2,0,0,0.06,85.0,2.0,104503407.0
+6106330,2026-11-04,champions,Liverpool,Rio Ngumoha,1597668,F,1,66,2,0,0,0.07,87.0,3.0,73176178.0
+6106330,2026-11-04,champions,Liverpool,Bradley Barcola,1297165,F,1,90,3,1,0,0.23,115.0,3.0,100394373.0
+6106330,2026-11-04,champions,Liverpool,Alexander Isak,690107,F,0,24,3,1,1,0.44,,3.0,106389586.0
+6106330,2026-11-04,champions,Liverpool,Cody Gakpo,806552,F,0,24,1,0,0,0.02,,3.0,74912371.0
+6106330,2026-11-04,champions,Liverpool,Florian Wirtz,1152455,F,0,24,0,0,0,0.0,,3.0,79305056.0
+6106330,2026-11-04,champions,Liverpool,Miloš Kerkez,1195281,D,0,14,0,0,0,0.0,,1.0,48147769.0
+6106330,2026-11-04,champions,Liverpool,Lewis Koumas,1364042,F,0,5,0,0,0,0.0,,3.0,13084687.0
+5943695,2026-11-04,cze_first,Artis Brno,Richard Kasík,1791922,G,1,90,0,0,0,0.0,11.0,0.0,
+5943695,2026-11-04,cze_first,Artis Brno,Karel Pojezný,1154896,D,1,90,0,0,0,0.0,32.0,1.0,323769.0
+5943695,2026-11-04,cze_first,Artis Brno,Dominik Plechatý,1020539,D,1,90,0,0,0,0.0,34.0,1.0,220457.0
+5943695,2026-11-04,cze_first,Artis Brno,Neil Glossoa,1709475,D,1,90,0,0,0,0.0,36.0,1.0,778291.0
+5943695,2026-11-04,cze_first,Artis Brno,Sacha Komljenović,1285709,M,1,83,2,0,0,0.0,38.0,2.0,298051.0
+5943695,2026-11-04,cze_first,Artis Brno,Albert Labík,1403349,M,1,90,0,0,0,0.0,64.0,2.0,954812.0
+5943695,2026-11-04,cze_first,Artis Brno,Sebastian Bohác,1366347,D,1,90,1,0,0,0.0,66.0,1.0,370039.0
+5943695,2026-11-04,cze_first,Artis Brno,Alexis Alégué,687572,F,1,46,0,0,0,0.0,83.0,3.0,137008.0
+5943695,2026-11-04,cze_first,Artis Brno,Papalélé,1123697,F,1,72,1,1,0,0.0,85.0,3.0,232763.0
+5943695,2026-11-04,cze_first,Artis Brno,Dominik Sarapata,1681656,M,1,72,2,1,0,0.0,87.0,2.0,2322186.0
+5943695,2026-11-04,cze_first,Artis Brno,El Hadji Ndiaye,1509846,F,1,20,1,1,1,0.0,115.0,3.0,265011.0
+5943695,2026-11-04,cze_first,Artis Brno,Stepán Harazim,1119670,D,0,45,1,0,0,0.0,,1.0,262084.0
+5943695,2026-11-04,cze_first,Artis Brno,Adam Carlén,1076684,M,0,18,0,0,0,0.0,,2.0,142476.0
+5943695,2026-11-04,cze_first,Artis Brno,Quadri Adediran,1410215,F,0,18,1,0,0,0.0,,3.0,179305.0
+5943695,2026-11-04,cze_first,Artis Brno,Vladimir Perišić,1269100,F,0,7,0,0,0,0.0,,3.0,256270.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Tomás Frühwald,1287528,G,1,90,0,0,0,0.0,11.0,0.0,485782.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Milan Havel,464020,D,1,85,1,1,0,0.0,33.0,1.0,200703.0
+5943695,2026-11-04,cze_first,Bohemians 1905,David Lischka,748916,D,1,90,2,1,1,0.0,35.0,1.0,204887.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Matěj Kadlec,1611067,D,1,90,0,0,0,0.0,37.0,1.0,291903.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Aleš Cermák,439694,M,1,90,2,1,0,0.0,71.0,2.0,203868.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Dominik Javorček,1176587,M,1,38,0,0,0,0.0,73.0,2.0,294886.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Roman Květ,802213,M,1,70,2,1,0,0.0,75.0,2.0,751436.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Mathews Banda,1792316,D,1,90,3,0,0,0.0,77.0,1.0,154263.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Samuel Obinaiia,1614826,D,1,90,2,1,0,0.0,79.0,1.0,209008.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Jan Matoušek,850016,F,1,69,3,1,1,0.0,104.0,3.0,90743.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Ladislav Almási,728428,F,1,70,1,0,0,0.0,106.0,3.0,253504.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Václav Pilař,207542,F,0,52,4,1,0,0.0,,3.0,69492.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Šimon Černý,1698718,F,0,21,0,0,0,0.0,,3.0,690032.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Ladislav Krobot,1155184,F,0,20,1,0,0,0.0,,3.0,171104.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Vladimír Zeman,1524292,F,0,20,0,0,0,0.0,,3.0,130896.0
+5943695,2026-11-04,cze_first,Bohemians 1905,Benson Sakala,686657,M,0,5,0,0,0,0.0,,2.0,79874.0
+6106401,2026-11-04,champions,AEK Athens,Alberto Brignoli,299879,G,1,90,0,0,0,0.0,11.0,0.0,161306.0
+6106401,2026-11-04,champions,AEK Athens,Lazaros Rota,949866,D,1,90,0,0,0,0.0,32.0,1.0,2342663.0
+6106401,2026-11-04,champions,AEK Athens,Harold Moukoudi,637737,D,1,90,1,1,0,0.08,34.0,1.0,4582960.0
+6106401,2026-11-04,champions,AEK Athens,Filipe Relvas,1285815,D,1,90,0,0,0,0.0,36.0,1.0,2310114.0
+6106401,2026-11-04,champions,AEK Athens,Stavros Pilios,1015750,D,1,90,1,1,1,0.19,38.0,1.0,1859202.0
+6106401,2026-11-04,champions,AEK Athens,Aboubakary Koïta,725695,M,1,90,3,1,1,0.17,72.0,2.0,3844682.0
+6106401,2026-11-04,champions,AEK Athens,Kervin Arriaga,839750,M,1,90,0,0,0,0.0,74.0,2.0,1475732.0
+6106401,2026-11-04,champions,AEK Athens,Kaan Kairinen,547454,M,1,60,0,0,0,0.0,76.0,2.0,4936044.0
+6106401,2026-11-04,champions,AEK Athens,Lovro Majer,762721,M,1,53,0,0,0,0.0,78.0,2.0,6669510.0
+6106401,2026-11-04,champions,AEK Athens,Mijat Gaćinović,448859,M,1,60,1,1,0,0.15,104.0,2.0,973124.0
+6106401,2026-11-04,champions,AEK Athens,Luka Jović,463291,F,1,88,1,1,0,0.18,106.0,3.0,5309189.0
+6106401,2026-11-04,champions,AEK Athens,Zine,1106943,F,0,37,0,0,0,0.0,,3.0,1854351.0
+6106401,2026-11-04,champions,AEK Athens,Răzvan Marin,574844,M,0,30,2,0,0,0.09,,2.0,2236547.0
+6106401,2026-11-04,champions,AEK Athens,Barnabás Varga,796504,F,0,30,0,0,0,0.0,,3.0,2132278.0
+6106401,2026-11-04,champions,AEK Athens,Oleksandr Zubkov,655636,F,0,2,0,0,0,0.0,,3.0,3572762.0
+6106401,2026-11-04,champions,Real Madrid,Thibaut Courtois,170323,G,1,90,0,0,0,0.0,11.0,0.0,11693114.0
+6106401,2026-11-04,champions,Real Madrid,Denzel Dumfries,593118,D,1,90,1,1,0,0.28,32.0,1.0,24742174.0
+6106401,2026-11-04,champions,Real Madrid,Éder Militao,844415,D,1,90,2,1,0,0.12,34.0,1.0,15444815.0
+6106401,2026-11-04,champions,Real Madrid,Antonio Rüdiger,276738,D,1,90,0,0,0,0.0,36.0,1.0,1999129.0
+6106401,2026-11-04,champions,Real Madrid,Marc Cucurella,873289,D,1,81,2,1,0,0.28,38.0,1.0,55172481.0
+6106401,2026-11-04,champions,Real Madrid,Bernardo Silva,488139,M,1,67,1,0,0,0.55,64.0,2.0,15735556.0
+6106401,2026-11-04,champions,Real Madrid,Eduardo Camavinga,1015185,M,1,90,0,0,0,0.0,66.0,2.0,60509687.0
+6106401,2026-11-04,champions,Real Madrid,Yan Diomande,1735453,F,1,67,1,0,0,0.02,83.0,3.0,101368575.0
+6106401,2026-11-04,champions,Real Madrid,Jude Bellingham,1077894,M,1,86,3,1,1,0.3,85.0,2.0,147530005.0
+6106401,2026-11-04,champions,Real Madrid,Vinícius Júnior,846033,F,1,81,3,0,0,0.17,87.0,3.0,99728385.0
+6106401,2026-11-04,champions,Real Madrid,Kylian Mbappé,701154,F,1,90,7,3,1,1.36,115.0,3.0,120694930.0
+6106401,2026-11-04,champions,Real Madrid,Federico Valverde,743533,M,0,23,1,1,1,0.03,,2.0,96117898.0
+6106401,2026-11-04,champions,Real Madrid,Endrick,1406729,F,0,23,2,0,0,0.1,,3.0,49460181.0
+6106401,2026-11-04,champions,Real Madrid,Brahim Díaz,750027,F,0,9,1,0,0,0.14,,3.0,23361552.0
+6106401,2026-11-04,champions,Real Madrid,Alvaro Carreras,1190025,D,0,8,0,0,0,0.0,,1.0,57236602.0
+6106401,2026-11-04,champions,Real Madrid,Carlos Espí,1610744,F,0,5,0,0,0,0.0,,3.0,25672268.0
+6106420,2026-11-04,champions,Viking,Arild Østbø,119598,G,1,90,0,0,0,0.0,11.0,0.0,197157.0
+6106420,2026-11-04,champions,Viking,Henrik Heggheim,1163230,D,1,56,0,0,0,0.0,32.0,1.0,1395263.0
+6106420,2026-11-04,champions,Viking,Gianni Stensness,1029026,D,1,90,2,0,0,0.23,34.0,1.0,1234071.0
+6106420,2026-11-04,champions,Viking,Henrik Falchener,1110550,D,1,90,2,1,1,0.24,36.0,1.0,11920177.0
+6106420,2026-11-04,champions,Viking,Kristoffer Haugen,313128,D,1,66,0,0,0,0.0,38.0,1.0,496402.0
+6106420,2026-11-04,champions,Viking,Tobias Moi,1636182,M,1,86,0,0,0,0.0,64.0,2.0,
+6106420,2026-11-04,champions,Viking,Kristoffer Askildsen,964535,M,1,90,1,0,0,0.04,66.0,2.0,2663879.0
+6106420,2026-11-04,champions,Viking,Henrik Rørvik Bjørdal,440313,M,1,56,0,0,0,0.0,83.0,2.0,1169081.0
+6106420,2026-11-04,champions,Viking,Simen Kvia-Egeskog,1267374,M,1,86,2,1,0,0.09,85.0,2.0,3804058.0
+6106420,2026-11-04,champions,Viking,Zlatko Tripić,279191,F,1,90,5,3,1,1.09,87.0,3.0,965689.0
+6106420,2026-11-04,champions,Viking,Erik Botheim,741561,F,1,90,4,2,2,0.62,115.0,3.0,3373345.0
+6106420,2026-11-04,champions,Viking,Herman Haugen,1019527,D,0,34,0,0,0,0.0,,1.0,483852.0
+6106420,2026-11-04,champions,Viking,Peter Christiansen,955759,F,0,34,3,1,0,0.23,,3.0,5654184.0
+6106420,2026-11-04,champions,Viking,Vetle Auklend,1585827,D,0,24,1,0,0,0.06,,1.0,356847.0
+6106420,2026-11-04,champions,Viking,Jakob Segadal Hansen,1376699,M,0,4,0,0,0,0.0,,2.0,1555549.0
+6106420,2026-11-04,champions,Viking,Niklas Fuglestad,1636186,F,0,4,1,0,0,0.08,,3.0,1920897.0
+6106420,2026-11-04,champions,Sabah FK,Stas Pokatilov,489507,G,1,90,0,0,0,0.0,11.0,0.0,168697.0
+6106420,2026-11-04,champions,Sabah FK,Akim Zedadka,542777,D,1,90,2,0,0,0.03,32.0,1.0,325872.0
+6106420,2026-11-04,champions,Sabah FK,Steve Solvet,764834,D,1,90,1,0,0,0.07,34.0,1.0,551496.0
+6106420,2026-11-04,champions,Sabah FK,Aden McCarthy,1337091,D,1,77,1,0,0,0.04,36.0,1.0,534336.0
+6106420,2026-11-04,champions,Sabah FK,Tymoteusz Puchacz,823121,D,1,90,3,1,0,0.14,38.0,1.0,1572631.0
+6106420,2026-11-04,champions,Sabah FK,Umarali Rakhmonaliev,1429286,M,1,79,2,1,0,0.05,64.0,2.0,1015360.0
+6106420,2026-11-04,champions,Sabah FK,Ivan Lepinjica,906920,M,1,90,1,0,0,0.05,66.0,2.0,1083696.0
+6106420,2026-11-04,champions,Sabah FK,Christian Nwachukwu,1624072,F,1,71,0,0,0,0.0,83.0,3.0,741202.0
+6106420,2026-11-04,champions,Sabah FK,Abdulakh Khaybulaev,1351085,M,1,71,2,0,0,0.22,85.0,2.0,201543.0
+6106420,2026-11-04,champions,Sabah FK,Veljko Simić,458807,F,1,33,0,0,0,0.0,87.0,3.0,577965.0
+6106420,2026-11-04,champions,Sabah FK,Orphé Mbina,1197093,M,1,70,2,1,1,0.62,115.0,2.0,202405.0
+6106420,2026-11-04,champions,Sabah FK,Joy-Lance Mickels,617465,F,0,57,2,1,0,0.27,,3.0,351607.0
+6106420,2026-11-04,champions,Sabah FK,Xayal Əliyev,1661503,M,0,20,0,0,0,0.0,,2.0,528412.0
+6106420,2026-11-04,champions,Sabah FK,Du Queiroz,1271367,M,0,19,0,0,0,0.0,,2.0,1125546.0
+6106420,2026-11-04,champions,Sabah FK,Xander Severina,1239800,F,0,19,0,0,0,0.0,,3.0,459431.0
+6106420,2026-11-04,champions,Sabah FK,Rəhman Daşdəmirov,1441450,D,0,11,0,0,0,0.0,,1.0,212454.0
+6106416,2026-11-04,champions,Lens,Robin Risser,1390336,G,1,90,0,0,0,0.0,11.0,0.0,34514649.0
+6106416,2026-11-04,champions,Lens,Ruben Aguilar,561046,M,1,90,1,1,1,0.06,33.0,2.0,1774838.0
+6106416,2026-11-04,champions,Lens,Samson Baidoo,1276626,D,1,90,0,0,0,0.0,35.0,1.0,26236572.0
+6106416,2026-11-04,champions,Lens,Kyllian Antonio,1685514,D,1,90,0,0,0,0.0,37.0,1.0,13122573.0
+6106416,2026-11-04,champions,Lens,Michał Skóras,954190,M,1,46,0,0,0,0.0,62.0,2.0,6257460.0
+6106416,2026-11-04,champions,Lens,Michaël Cuisance,861445,M,1,90,1,0,0,0.03,64.0,2.0,5959369.0
+6106416,2026-11-04,champions,Lens,Amadou Haidara,688830,M,1,70,1,0,0,0.03,66.0,2.0,4296144.0
+6106416,2026-11-04,champions,Lens,Matthieu Udol,660326,M,1,90,2,0,0,0.09,68.0,2.0,5928994.0
+6106416,2026-11-04,champions,Lens,Florian Thauvin,254308,M,1,70,1,1,0,0.05,84.0,2.0,3583900.0
+6106416,2026-11-04,champions,Lens,Thorgan Hazard,264190,F,1,90,3,0,0,0.31,86.0,3.0,1467073.0
+6106416,2026-11-04,champions,Lens,Franjo Ivanović,1406419,F,1,45,1,1,0,0.13,105.0,3.0,18212511.0
+6106416,2026-11-04,champions,Lens,Mezian Mesloub Soares,1980586,M,0,44,0,0,0,0.0,,2.0,
+6106416,2026-11-04,champions,Lens,Saud Abdulhamid,1002617,M,0,44,0,0,0,0.0,,2.0,10522345.0
+6106416,2026-11-04,champions,Lens,Andrija Bulatović,1634789,M,0,20,0,0,0,0.0,,2.0,10909692.0
+6106416,2026-11-04,champions,Lens,Junior Kadile,1334534,F,0,20,1,0,0,0.06,,3.0,6205706.0
+6106416,2026-11-04,champions,Como,Jean Butez,560939,G,1,90,0,0,0,0.0,11.0,0.0,6690804.0
+6106416,2026-11-04,champions,Como,Yan Couto,1109171,D,1,90,2,0,0,0.13,32.0,1.0,18768237.0
+6106416,2026-11-04,champions,Como,Jacobo Ramón,1413963,D,1,90,0,0,0,0.0,34.0,1.0,48454867.0
+6106416,2026-11-04,champions,Como,Marc-Oliver Kempf,355356,D,1,72,1,1,1,0.13,36.0,1.0,2528076.0
+6106416,2026-11-04,champions,Como,Álex Valle,1384881,D,1,90,0,0,0,0.0,38.0,1.0,17683274.0
+6106416,2026-11-04,champions,Como,Máximo Perrone,1336582,M,1,90,2,1,0,0.38,64.0,2.0,43720212.0
+6106416,2026-11-04,champions,Como,Luis Milla,638090,M,1,58,0,0,0,0.0,66.0,2.0,6018215.0
+6106416,2026-11-04,champions,Como,Lucas Da Cunha,1076647,M,1,58,3,2,1,0.6,83.0,2.0,33338761.0
+6106416,2026-11-04,champions,Como,Nico Paz,1347574,M,1,58,4,2,1,0.31,85.0,2.0,68848998.0
+6106416,2026-11-04,champions,Como,Maxence Caqueret,846000,M,1,90,0,0,0,0.0,87.0,2.0,15216620.0
+6106416,2026-11-04,champions,Como,Anastasios Douvikas,873270,F,1,61,3,3,3,1.7,115.0,3.0,25034293.0
+6106416,2026-11-04,champions,Como,Mattia Liberali,1593861,M,0,32,1,1,1,0.12,,2.0,12599531.0
+6106416,2026-11-04,champions,Como,Samuele Ricci,941656,M,0,32,0,0,0,0.0,,2.0,22650496.0
+6106416,2026-11-04,champions,Como,Martin Baturina,1215064,F,0,32,1,1,1,0.39,,3.0,58095211.0
+6106416,2026-11-04,champions,Como,Matteo Papaccioli,1817857,M,0,29,1,1,1,0.5,,2.0,
+6106416,2026-11-04,champions,Como,Ivan Smolčić,1353289,D,0,18,0,0,0,0.0,,1.0,5065112.0
+6106322,2026-11-04,champions,RB Leipzig,Maarten Vandevoordt,972200,G,1,90,0,0,0,0.0,11.0,0.0,17189587.0
+6106322,2026-11-04,champions,RB Leipzig,Ridle Baku,883087,D,1,74,2,2,1,0.09,32.0,1.0,7187293.0
+6106322,2026-11-04,champions,RB Leipzig,Willi Orbán,278856,D,1,90,0,0,0,0.0,34.0,1.0,2348647.0
+6106322,2026-11-04,champions,RB Leipzig,Castello Lukeba,1253852,D,1,90,0,0,0,0.0,36.0,1.0,58018288.0
+6106322,2026-11-04,champions,RB Leipzig,David Raum,806669,D,1,90,1,0,0,0.1,38.0,1.0,16630483.0
+6106322,2026-11-04,champions,RB Leipzig,Neil El Aynaoui,1274060,M,1,74,0,0,0,0.0,73.0,2.0,31880690.0
+6106322,2026-11-04,champions,RB Leipzig,Christoph Baumgartner,747718,M,1,57,3,1,0,0.1,75.0,2.0,35385418.0
+6106322,2026-11-04,champions,RB Leipzig,Ezechiel Banzuzi,1310001,M,1,90,2,0,0,0.12,77.0,2.0,24212890.0
+6106322,2026-11-04,champions,RB Leipzig,Brajan Gruda,1430151,F,1,90,2,1,0,0.14,103.0,3.0,33356166.0
+6106322,2026-11-04,champions,RB Leipzig,Rômulo,1314412,F,1,67,0,0,0,0.0,105.0,3.0,33209430.0
+6106322,2026-11-04,champions,RB Leipzig,Antonio Nusa,1248482,F,1,73,2,2,1,0.24,107.0,3.0,48737437.0
+6106322,2026-11-04,champions,RB Leipzig,Christopher Nkunku,704523,F,0,33,0,0,0,0.0,,3.0,23912073.0
+6106322,2026-11-04,champions,RB Leipzig,Tidiam Gomis,1482733,F,0,23,1,0,0,0.06,,3.0,19497778.0
+6106322,2026-11-04,champions,RB Leipzig,Benjamin Henrichs,681383,D,0,16,0,0,0,0.0,,1.0,5440392.0
+6106322,2026-11-04,champions,RB Leipzig,Nicolas Seiwald,1024672,M,0,16,0,0,0,0.0,,2.0,21448184.0
+6106322,2026-11-04,champions,RB Leipzig,Rocco Reitz,1174726,M,0,17,1,0,0,0.02,,2.0,23328502.0
+6106322,2026-11-04,champions,Manchester City,Gianluigi Donnarumma,618878,G,1,90,0,0,0,0.0,11.0,0.0,51085513.0
+6106322,2026-11-04,champions,Manchester City,Matheus Nunes,955529,D,1,80,0,0,0,0.0,32.0,1.0,44029028.0
+6106322,2026-11-04,champions,Manchester City,Abdukodir Khusanov,1362998,D,1,90,0,0,0,0.0,34.0,1.0,62584275.0
+6106322,2026-11-04,champions,Manchester City,Marc Guéhi,844425,D,1,90,0,0,0,0.0,36.0,1.0,74659995.0
+6106322,2026-11-04,champions,Manchester City,Nico O'Reilly,1300526,D,1,90,1,0,0,0.21,38.0,1.0,79054889.0
+6106322,2026-11-04,champions,Manchester City,Enzo Fernández,1137705,M,1,83,1,1,1,0.35,64.0,2.0,110787801.0
+6106322,2026-11-04,champions,Manchester City,Elliot Anderson,1089691,M,1,83,1,0,0,0.07,66.0,2.0,101632035.0
+6106322,2026-11-04,champions,Manchester City,Phil Foden,815006,M,1,64,1,0,0,0.07,83.0,2.0,63414204.0
+6106322,2026-11-04,champions,Manchester City,Rayan Cherki,1104053,M,1,90,4,1,0,0.37,85.0,2.0,99250133.0
+6106322,2026-11-04,champions,Manchester City,Iliman Ndiaye,965764,F,1,83,0,0,0,0.0,87.0,3.0,71236064.0
+6106322,2026-11-04,champions,Manchester City,Erling Haaland,737066,F,1,90,3,3,1,1.08,115.0,3.0,159349200.0
+6106322,2026-11-04,champions,Manchester City,Jérémy Doku,942368,F,0,26,1,0,0,0.08,,3.0,79205637.0
+6106322,2026-11-04,champions,Manchester City,Rúben Dias,614006,D,0,10,0,0,0,0.0,,1.0,57716633.0
+6106322,2026-11-04,champions,Manchester City,Ayyoub Bouaddi,1561552,M,0,7,0,0,0,0.0,,2.0,128310574.0
+6106322,2026-11-04,champions,Manchester City,Mateo Kovačić,239219,M,0,7,0,0,0,0.0,,2.0,6074649.0
+6106322,2026-11-04,champions,Manchester City,Allan,1721789,F,0,7,0,0,0,0.0,,3.0,39932789.0
+6106389,2026-11-04,champions,Slavia Prague,Nazar Domchak,1666193,G,1,90,0,0,0,0.0,11.0,0.0,4882271.0
+6106389,2026-11-04,champions,Slavia Prague,Tomás Vlček,979540,D,1,61,0,0,0,0.0,32.0,1.0,2640373.0
+6106389,2026-11-04,champions,Slavia Prague,Tomás Holeš,306168,D,1,90,1,0,0,0.12,34.0,1.0,853206.0
+6106389,2026-11-04,champions,Slavia Prague,David Zima,1085401,D,1,90,2,0,0,0.11,36.0,1.0,6544858.0
+6106389,2026-11-04,champions,Slavia Prague,Oskar Kubiak,1782189,M,1,90,4,2,0,0.31,38.0,2.0,1758369.0
+6106389,2026-11-04,champions,Slavia Prague,David Moses,1509423,M,1,81,0,0,0,0.0,64.0,2.0,11909064.0
+6106389,2026-11-04,champions,Slavia Prague,Michal Sadílek,806551,M,1,90,0,0,0,0.0,66.0,2.0,7014872.0
+6106389,2026-11-04,champions,Slavia Prague,Emmanuel Ayaosi,1327747,F,1,71,2,0,0,0.1,83.0,3.0,6241902.0
+6106389,2026-11-04,champions,Slavia Prague,Mubarak Suleiman,1840847,M,1,46,0,0,0,0.0,85.0,2.0,1678119.0
+6106389,2026-11-04,champions,Slavia Prague,Danijel Šturm,1270718,F,1,46,0,0,0,0.0,87.0,3.0,1857285.0
+6106389,2026-11-04,champions,Slavia Prague,Wiktor Nowak,1395322,M,1,90,2,2,1,0.95,115.0,2.0,6112630.0
+6106389,2026-11-04,champions,Slavia Prague,Ange N'Guessan,1421040,D,0,45,1,0,0,0.23,,1.0,4501668.0
+6106389,2026-11-04,champions,Slavia Prague,Mojmír Chytil,988769,F,0,45,1,1,0,0.18,,3.0,3557218.0
+6106389,2026-11-04,champions,Slavia Prague,Mikulás Konečný,1405567,D,0,29,3,1,0,0.15,,1.0,4411193.0
+6106389,2026-11-04,champions,Slavia Prague,David Jurásek,1247323,M,0,19,1,0,0,0.01,,2.0,4660407.0
+6106389,2026-11-04,champions,Slavia Prague,Stepán Chaloupek,1288146,D,0,9,1,0,0,0.07,,1.0,12177889.0
+6106389,2026-11-04,champions,Arsenal,David Raya,562727,G,1,90,0,0,0,0.0,11.0,0.0,23534518.0
+6106389,2026-11-04,champions,Arsenal,Ben White,776151,D,1,78,0,0,0,0.0,32.0,1.0,39197548.0
+6106389,2026-11-04,champions,Arsenal,Ezri Konsa,710159,D,1,62,0,0,0,0.0,34.0,1.0,57143662.0
+6106389,2026-11-04,champions,Arsenal,Gabriel,795179,D,1,90,1,0,0,0.2,36.0,1.0,77698411.0
+6106389,2026-11-04,champions,Arsenal,Piero Hincapié,1137667,D,1,90,0,0,0,0.0,38.0,1.0,61515652.0
+6106389,2026-11-04,champions,Arsenal,Martín Zubimendi,1031325,M,1,90,0,0,0,0.0,64.0,2.0,69508062.0
+6106389,2026-11-04,champions,Arsenal,Declan Rice,654096,M,1,90,0,0,0,0.0,66.0,2.0,109566248.0
+6106389,2026-11-04,champions,Arsenal,Noni Madueke,1084981,F,1,89,2,2,1,0.2,83.0,3.0,53859252.0
+6106389,2026-11-04,champions,Arsenal,Mikel Merino,574645,M,1,90,3,2,0,0.62,85.0,2.0,20636272.0
+6106389,2026-11-04,champions,Arsenal,Eberechi Eze,818975,M,1,62,1,0,0,0.18,87.0,2.0,58385994.0
+6106389,2026-11-04,champions,Arsenal,Viktor Gyökeres,664500,F,1,78,2,1,1,0.12,115.0,3.0,59665200.0
+6106389,2026-11-04,champions,Arsenal,Cristhian Mosquera,1298907,D,0,28,0,0,0,0.0,,1.0,56764507.0
+6106389,2026-11-04,champions,Arsenal,Christos Tzolis,1157237,F,0,28,1,0,0,0.05,,3.0,48202284.0
+6106389,2026-11-04,champions,Arsenal,Jurriën Timber,942381,D,0,12,1,0,0,0.04,,1.0,68482005.0
+6106389,2026-11-04,champions,Arsenal,Martin Ødegaard,534670,M,0,12,1,0,0,0.08,,2.0,67049446.0
+6106389,2026-11-04,champions,Arsenal,Max Dowman,1635773,F,0,1,0,0,0,0.0,,3.0,63461213.0
+6106303,2026-11-04,champions,PSV Eindhoven,Matěj Kovár,1077903,G,1,90,0,0,0,0.0,11.0,0.0,8951545.0
+6106303,2026-11-04,champions,PSV Eindhoven,Sergiño Dest,892816,D,1,90,5,3,0,0.94,32.0,1.0,23450403.0
+6106303,2026-11-04,champions,PSV Eindhoven,Lutsharel Geertruida,881640,D,1,90,0,0,0,0.0,34.0,1.0,22600176.0
+6106303,2026-11-04,champions,PSV Eindhoven,Armando Obispo,794244,D,1,90,2,0,0,0.06,36.0,1.0,2113144.0
+6106303,2026-11-04,champions,PSV Eindhoven,Filip Kostić,281012,D,1,84,1,0,0,0.02,38.0,1.0,1411965.0
+6106303,2026-11-04,champions,PSV Eindhoven,Kodai Sano,1337282,M,1,90,1,1,1,0.14,64.0,2.0,20792761.0
+6106303,2026-11-04,champions,PSV Eindhoven,Mauro Júnior,873556,D,1,90,2,0,0,0.1,66.0,1.0,19234280.0
+6106303,2026-11-04,champions,PSV Eindhoven,Ivan Perišić,163670,F,1,90,2,0,0,0.06,83.0,3.0,876555.0
+6106303,2026-11-04,champions,PSV Eindhoven,Sven Mijnans,1035643,M,1,89,6,2,0,0.82,85.0,2.0,16355415.0
+6106303,2026-11-04,champions,PSV Eindhoven,Ruben van Bommel,1359970,F,1,69,2,1,0,0.26,87.0,3.0,20762029.0
+6106303,2026-11-04,champions,PSV Eindhoven,Guus Til,774947,M,1,90,2,1,0,0.18,115.0,2.0,13128061.0
+6106303,2026-11-04,champions,PSV Eindhoven,Ricardo Pepi,1036401,F,0,21,2,0,0,0.15,,3.0,32709580.0
+6106303,2026-11-04,champions,PSV Eindhoven,Esmir Bajraktarević,1346860,F,0,6,2,1,0,0.15,,3.0,12694700.0
+6106303,2026-11-04,champions,PSV Eindhoven,Mikkel Bro,1695316,F,0,1,0,0,0,0.0,,3.0,
+6106303,2026-11-04,champions,Club Brugge,Yann Sommer,41618,G,1,90,0,0,0,0.0,11.0,0.0,1893450.0
+6106303,2026-11-04,champions,Club Brugge,Kyriani Sabbe,1227590,D,1,90,1,0,0,0.02,32.0,1.0,18508556.0
+6106303,2026-11-04,champions,Club Brugge,Jorne Spileers,1233418,D,1,90,1,0,0,0.09,34.0,1.0,3685600.0
+6106303,2026-11-04,champions,Club Brugge,Brandon Mechele,445873,D,1,90,1,0,0,0.1,36.0,1.0,2095943.0
+6106303,2026-11-04,champions,Club Brugge,Joaquin Seys,1489449,D,1,90,0,0,0,0.0,38.0,1.0,24301331.0
+6106303,2026-11-04,champions,Club Brugge,Freddie Potts,1206287,M,1,90,0,0,0,0.0,65.0,2.0,12553120.0
+6106303,2026-11-04,champions,Club Brugge,Carlos Forbs,1186529,F,1,87,3,2,1,1.22,82.0,3.0,23928228.0
+6106303,2026-11-04,champions,Club Brugge,Hugo Vetlesen,837064,M,1,82,0,0,0,0.0,84.0,2.0,4730426.0
+6106303,2026-11-04,champions,Club Brugge,Hans Vanaken,203666,M,1,90,0,0,0,0.0,86.0,2.0,3568531.0
+6106303,2026-11-04,champions,Club Brugge,Jan Virgili,1690093,F,1,36,0,0,0,0.0,88.0,3.0,19860000.0
+6106303,2026-11-04,champions,Club Brugge,Nicolò Tresoldi,1334552,F,1,81,2,1,1,0.22,115.0,3.0,41143635.0
+6106303,2026-11-04,champions,Club Brugge,Félix Lemaréchal,1284071,M,0,54,2,0,0,0.08,,2.0,6724162.0
+6106303,2026-11-04,champions,Club Brugge,Mamadou Diakhon,1484998,F,0,8,0,0,0,0.0,,3.0,9977097.0
+6106303,2026-11-04,champions,Club Brugge,Romeo Vermant,1178453,F,0,8,0,0,0,0.0,,3.0,13866397.0
+6106303,2026-11-04,champions,Club Brugge,Hugo Siquet,1202888,D,0,3,0,0,0,0.0,,1.0,3790769.0
+6106288,2026-11-04,champions,FC Porto,Diogo Costa,795630,G,1,90,0,0,0,0.0,11.0,0.0,40369201.0
+6106288,2026-11-04,champions,FC Porto,Alberto Costa,1387439,D,1,90,2,0,0,0.18,32.0,1.0,21030854.0
+6106288,2026-11-04,champions,FC Porto,Jan Bednarek,490868,D,1,90,2,1,1,0.12,34.0,1.0,8608054.0
+6106288,2026-11-04,champions,FC Porto,Jakub Kiwior,1021834,D,1,90,2,1,1,0.2,36.0,1.0,40373486.0
+6106288,2026-11-04,champions,FC Porto,Martim Fernandes,1404949,D,1,67,1,0,0,0.06,38.0,1.0,15984346.0
+6106288,2026-11-04,champions,FC Porto,Victor Froholdt,1436856,M,1,90,1,0,0,0.03,73.0,2.0,71327284.0
+6106288,2026-11-04,champions,FC Porto,Pablo Rosario,664226,M,1,90,1,1,0,0.26,75.0,2.0,10498363.0
+6106288,2026-11-04,champions,FC Porto,Gabriel Veiga,1116734,M,1,78,4,2,1,0.84,77.0,2.0,40273455.0
+6106288,2026-11-04,champions,FC Porto,Pepê,850356,F,1,78,1,0,0,0.04,103.0,3.0,13185470.0
+6106288,2026-11-04,champions,FC Porto,André Silva,388523,F,1,56,0,0,0,0.0,105.0,3.0,2289914.0
+6106288,2026-11-04,champions,FC Porto,Borja Sainz,1083204,F,1,67,2,0,0,0.06,107.0,3.0,22592284.0
+6106288,2026-11-04,champions,FC Porto,Samuel Aghehowa,1414859,F,0,34,2,2,1,0.86,,3.0,44538010.0
+6106288,2026-11-04,champions,FC Porto,Zaidu Sanusi,1079056,D,0,23,0,0,0,0.0,,1.0,1610681.0
+6106288,2026-11-04,champions,FC Porto,Santiago Giménez,954092,F,0,23,1,1,0,0.06,,3.0,19270946.0
+6106288,2026-11-04,champions,FC Porto,In-Beom Hwang,623698,M,0,12,0,0,0,0.0,,2.0,4948388.0
+6106288,2026-11-04,champions,FC Porto,Seko Fofana,602211,M,0,12,0,0,0,0.0,,2.0,5095827.0
+6106288,2026-11-04,champions,Napoli,Alex Meret,577912,G,1,90,0,0,0,0.0,11.0,0.0,3997389.0
+6106288,2026-11-04,champions,Napoli,Sam Beukema,873573,D,1,90,0,0,0,0.0,33.0,1.0,18699256.0
+6106288,2026-11-04,champions,Napoli,Amir Rrahmani,544693,D,1,90,0,0,0,0.0,35.0,1.0,5350680.0
+6106288,2026-11-04,champions,Napoli,Rafa Marín,1313884,D,1,88,1,0,0,0.05,37.0,1.0,17891080.0
+6106288,2026-11-04,champions,Napoli,Matteo Politano,415539,M,1,81,1,1,0,0.09,71.0,2.0,3702231.0
+6106288,2026-11-04,champions,Napoli,Frank Anguissa,612863,M,1,78,0,0,0,0.0,73.0,2.0,11571444.0
+6106288,2026-11-04,champions,Napoli,Billy Gilmour,942549,M,1,90,1,0,0,0.03,75.0,2.0,22331351.0
+6106288,2026-11-04,champions,Napoli,Scott McTominay,843099,M,1,90,3,2,1,0.43,77.0,2.0,34635169.0
+6106288,2026-11-04,champions,Napoli,Antonio Vergara,1320863,M,1,78,1,1,0,0.48,79.0,2.0,24196932.0
+6106288,2026-11-04,champions,Napoli,Kevin De Bruyne,169200,M,1,90,0,0,0,0.0,95.0,2.0,4216062.0
+6106288,2026-11-04,champions,Napoli,Rasmus Højlund,1199272,F,1,90,3,1,0,0.38,115.0,3.0,57380138.0
+6106288,2026-11-04,champions,Napoli,Giovane Nascimento,1355574,F,0,12,0,0,0,0.0,,3.0,15298322.0
+6106288,2026-11-04,champions,Napoli,Noa Lang,837341,F,0,12,1,1,0,0.04,,3.0,22167534.0
+6106288,2026-11-04,champions,Napoli,Lorenzo Lucca,1212630,F,0,9,0,0,0,0.0,,3.0,22296554.0
+6106271,2026-11-04,champions,Borussia Dortmund,Gregor Kobel,764018,G,1,90,0,0,0,0.0,11.0,0.0,34596271.0
+6106271,2026-11-04,champions,Borussia Dortmund,Waldemar Anton,664970,D,1,90,0,0,0,0.0,33.0,1.0,13373511.0
+6106271,2026-11-04,champions,Borussia Dortmund,Nico Schlotterbeck,1002058,D,1,90,1,0,0,0.3,35.0,1.0,54421235.0
+6106271,2026-11-04,champions,Borussia Dortmund,Ramy Bensebaini,559065,D,1,75,0,0,0,0.0,37.0,1.0,3101854.0
+6106271,2026-11-04,champions,Borussia Dortmund,Julian Ryerson,659272,M,1,74,0,0,0,0.0,62.0,2.0,19941942.0
+6106271,2026-11-04,champions,Borussia Dortmund,Joey Veerman,792429,M,1,90,1,0,0,0.02,64.0,2.0,24991328.0
+6106271,2026-11-04,champions,Borussia Dortmund,Felix Nmecha,966019,M,1,75,2,0,0,0.02,66.0,2.0,64192102.0
+6106271,2026-11-04,champions,Borussia Dortmund,Daniel Svensson,1209228,M,1,90,2,1,0,0.75,68.0,2.0,23109471.0
+6106271,2026-11-04,champions,Borussia Dortmund,Jobe Bellingham,1287373,M,1,90,4,2,0,0.69,84.0,2.0,47149230.0
+6106271,2026-11-04,champions,Borussia Dortmund,Fábio Silva,1050158,F,1,89,1,1,1,0.47,86.0,3.0,23838871.0
+6106271,2026-11-04,champions,Borussia Dortmund,Serhou Guirassy,448540,F,1,34,1,0,0,0.33,105.0,3.0,29675505.0
+6106271,2026-11-04,champions,Borussia Dortmund,Konstantinos Karetsas,1536436,F,0,56,3,2,1,0.09,,3.0,44938122.0
+6106271,2026-11-04,champions,Borussia Dortmund,Maximilian Beier,1047667,M,0,16,0,0,0,0.0,,2.0,44509892.0
+6106271,2026-11-04,champions,Borussia Dortmund,Joane Gadou,1479742,D,0,15,0,0,0,0.0,,1.0,34199665.0
+6106271,2026-11-04,champions,Borussia Dortmund,Carney Chukwuemeka,1089685,M,0,15,0,0,0,0.0,,2.0,18156504.0
+6106271,2026-11-04,champions,Borussia Dortmund,Ethan Nwaneri,1254234,M,0,1,0,0,0,0.0,,2.0,45490587.0
+6106271,2026-11-04,champions,Real Betis,Álvaro Vallés,999171,G,1,90,0,0,0,0.0,11.0,0.0,10840547.0
+6106271,2026-11-04,champions,Real Betis,Ángel Ortiz,1580522,D,1,90,1,1,0,0.17,32.0,1.0,7769187.0
+6106271,2026-11-04,champions,Real Betis,Diego Llorente,420568,D,1,90,0,0,0,0.0,34.0,1.0,1862965.0
+6106271,2026-11-04,champions,Real Betis,Natan,1188375,D,1,90,0,0,0,0.0,36.0,1.0,33332484.0
+6106271,2026-11-04,champions,Real Betis,Valentín Gómez,1338016,D,1,70,0,0,0,0.0,38.0,1.0,15955353.0
+6106271,2026-11-04,champions,Real Betis,Facundo Bernal,1436133,M,1,78,1,0,0,0.03,64.0,2.0,12607909.0
+6106271,2026-11-04,champions,Real Betis,Dani Ceballos,531629,M,1,62,0,0,0,0.0,66.0,2.0,4710400.0
+6106271,2026-11-04,champions,Real Betis,Antony,967622,F,1,62,1,0,0,0.02,83.0,3.0,40260906.0
+6106271,2026-11-04,champions,Real Betis,Nelson Deossa,1315711,M,1,90,3,1,0,0.05,85.0,2.0,10034604.0
+6106271,2026-11-04,champions,Real Betis,Abdessamad Ezzalzouli,1209399,F,1,90,2,1,0,0.09,87.0,3.0,41484743.0
+6106271,2026-11-04,champions,Real Betis,Troy Parrott,942365,F,1,78,0,0,0,0.0,115.0,3.0,34560500.0
+6106271,2026-11-04,champions,Real Betis,Aitor Ruibal,676533,D,0,28,2,1,1,0.34,,1.0,2609735.0
+6106271,2026-11-04,champions,Real Betis,Isco,191315,M,0,28,0,0,0,0.0,,2.0,2176294.0
+6106271,2026-11-04,champions,Real Betis,Fran García,750028,D,0,20,0,0,0,0.0,,1.0,8771622.0
+6106271,2026-11-04,champions,Real Betis,Marc Roca,640220,M,0,12,1,0,0,0.13,,2.0,2622687.0
+6106271,2026-11-04,champions,Real Betis,José Antonio Morante,1793845,F,0,12,0,0,0,0.0,,3.0,
+5836918,2026-11-04,eng_championship,Bristol City,Bradley Collins,759811,G,1,90,0,0,0,0.0,11.0,0.0,762140.0
+5836918,2026-11-04,eng_championship,Bristol City,George Tanner,1077922,D,1,90,1,1,0,0.02,32.0,1.0,1703254.0
+5836918,2026-11-04,eng_championship,Bristol City,Luke McNally,10879,D,1,90,0,0,0,0.0,34.0,1.0,1434251.0
+5836918,2026-11-04,eng_championship,Bristol City,Lisav Naif Eissat,1413851,D,1,90,0,0,0,0.0,36.0,1.0,2280237.0
+5836918,2026-11-04,eng_championship,Bristol City,Cameron Pring,890346,D,1,90,0,0,0,0.0,38.0,1.0,1426152.0
+5836918,2026-11-04,eng_championship,Bristol City,Jason Knight,1051415,M,1,90,0,0,0,0.0,64.0,2.0,7306636.0
+5836918,2026-11-04,eng_championship,Bristol City,Joe Williams,605260,M,1,85,0,0,0,0.0,66.0,2.0,366451.0
+5836918,2026-11-04,eng_championship,Bristol City,Rio Cardines,1422586,F,1,67,0,0,0,0.0,83.0,3.0,2225275.0
+5836918,2026-11-04,eng_championship,Bristol City,Sam Bell,1122563,M,1,58,0,0,0,0.0,85.0,2.0,1051957.0
+5836918,2026-11-04,eng_championship,Bristol City,Scott Twine,746406,F,1,67,2,1,1,0.08,87.0,3.0,13076671.0
+5836918,2026-11-04,eng_championship,Bristol City,Lorent Tolaj,1113899,F,1,90,1,0,0,0.51,115.0,3.0,5480382.0
+5836918,2026-11-04,eng_championship,Bristol City,Yu Hirakawa,1319774,M,0,32,0,0,0,0.0,,2.0,1138569.0
+5836918,2026-11-04,eng_championship,Bristol City,Jed Wallace,287892,M,0,23,0,0,0,0.0,,2.0,876467.0
+5836918,2026-11-04,eng_championship,Bristol City,Dominic Ballard,1254208,F,0,23,1,1,0,0.07,,3.0,8879878.0
+5836918,2026-11-04,eng_championship,Bristol City,Adam Randell,982599,M,0,5,0,0,0,0.0,,2.0,2220573.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,José Sá,416175,G,1,90,0,0,0,0.0,11.0,0.0,2430448.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Kieran Trippier,191869,D,1,90,0,0,0,0.0,32.0,1.0,1150024.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Yerson Mosquera,1200657,D,1,90,0,0,0,0.0,34.0,1.0,11739983.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Ladislav Krejcí,798029,D,1,90,2,2,0,0.08,36.0,1.0,22575354.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Hugo Bueno,1116391,D,1,90,0,0,0,0.0,38.0,1.0,13889972.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,André,1174296,M,1,90,1,0,0,0.02,64.0,2.0,24933287.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Marshall Munetsi,786580,M,1,55,1,0,0,0.02,66.0,2.0,8830025.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Fer López,1573122,F,1,73,1,0,0,0.03,83.0,3.0,24212890.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Jean-Ricner Bellegarde,769166,M,1,73,0,0,0,0.0,85.0,2.0,13701572.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Rafiki Saïd,1177313,F,1,73,5,1,0,0.17,87.0,3.0,6503626.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Adam Armstrong,519835,F,1,85,3,3,0,0.2,115.0,3.0,5749410.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Rodrigo Gomes,1192166,F,0,35,1,0,0,0.11,,3.0,18358444.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Tommy Doyle,940442,M,0,17,0,0,0,0.0,,2.0,6627232.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Sean Neave,1443841,F,0,17,3,2,2,1.64,,3.0,1447837.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Mateus Mané,1609213,F,0,17,0,0,0,0.0,,3.0,27685054.0
+5836918,2026-11-04,eng_championship,Wolverhampton Wanderers,Tawanda Chirewa,1111392,F,0,5,0,0,0,0.0,,3.0,387617.0
+5836921,2026-11-04,eng_championship,Wrexham,Anthony Patterson,968912,G,1,90,0,0,0,0.0,11.0,0.0,8951545.0
+5836921,2026-11-04,eng_championship,Wrexham,Max Cleworth,1112701,D,1,90,1,1,0,0.02,33.0,1.0,13039184.0
+5836921,2026-11-04,eng_championship,Wrexham,Joe Worrall,716687,D,1,90,0,0,0,0.0,35.0,1.0,1416160.0
+5836921,2026-11-04,eng_championship,Wrexham,Callum Doyle,1207954,D,1,90,1,0,0,0.08,37.0,1.0,16126143.0
+5836921,2026-11-04,eng_championship,Wrexham,Issa Kaboré,1099974,M,1,90,0,0,0,0.0,71.0,2.0,2636425.0
+5836921,2026-11-04,eng_championship,Wrexham,George Dobson,660170,M,1,83,0,0,0,0.0,73.0,2.0,1066873.0
+5836921,2026-11-04,eng_championship,Wrexham,Ben Whiteman,600812,M,1,90,2,0,0,0.09,75.0,2.0,1963630.0
+5836921,2026-11-04,eng_championship,Wrexham,George Thomason,1124212,M,1,77,3,1,1,0.1,77.0,2.0,1831595.0
+5836921,2026-11-04,eng_championship,Wrexham,Jacques Ekomié,1327156,M,1,90,0,0,0,0.0,79.0,2.0,11829087.0
+5836921,2026-11-04,eng_championship,Wrexham,Lewis O'Brien,914134,M,1,90,1,0,0,0.75,95.0,2.0,4378045.0
+5836921,2026-11-04,eng_championship,Wrexham,Kieffer Moore,469202,F,1,90,5,1,0,0.23,115.0,3.0,1055043.0
+5836921,2026-11-04,eng_championship,Wrexham,Oliver Rathbone,761834,M,0,13,2,1,1,0.13,,2.0,662829.0
+5836921,2026-11-04,eng_championship,Wrexham,Ben Sheaf,689302,M,0,7,0,0,0,0.0,,2.0,5327954.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Radek Vítek,1360352,G,1,90,0,0,0,0.0,11.0,0.0,11829087.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Luke Ayling,190666,D,1,60,0,0,0,0.0,33.0,1.0,489970.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Ashley Phillips,1290962,D,1,90,0,0,0,0.0,35.0,1.0,9910773.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Adilson Malanda,1218243,D,1,90,1,1,0,0.11,37.0,1.0,7620590.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Callum Brittain,716852,M,1,90,2,1,0,0.18,62.0,2.0,5786745.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Aidan Morris,1136097,M,1,90,0,0,0,0.0,64.0,2.0,12194582.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Sebastian Berhalter,1136096,M,1,60,0,0,0,0.0,66.0,2.0,8951545.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Neto Borges,917628,M,1,72,0,0,0,0.0,68.0,2.0,1375445.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Amario Cozier-Duberry,1254170,M,1,90,2,0,0,0.08,84.0,2.0,10003093.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Tommy Conway,1127480,M,1,77,1,0,0,0.05,86.0,2.0,15138122.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Kyle Joseph,1184465,F,1,60,2,0,0,0.24,105.0,3.0,6994206.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Max Arfsten,1348329,D,0,30,1,0,0,0.02,,1.0,4368069.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Myles Peart-Harris,1113813,M,0,30,0,0,0,0.0,,2.0,1296329.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Riley McGree,733486,M,0,30,1,0,0,0.12,,2.0,2243685.0
+5836921,2026-11-04,eng_championship,Middlesbrough,David Strelec,940594,F,0,18,0,0,0,0.0,,3.0,9101504.0
+5836921,2026-11-04,eng_championship,Middlesbrough,Jeremy Sarmiento,1298925,F,0,13,2,0,0,0.12,,3.0,5199596.0
+5837118,2026-11-04,eng_league_one,Oxford United,Simon Eastwood,25626,G,1,90,0,0,0,0.0,11.0,0.0,121132.0
+5837118,2026-11-04,eng_league_one,Oxford United,Peter Kioso,952303,D,1,80,0,0,0,0.0,32.0,1.0,346680.0
+5837118,2026-11-04,eng_league_one,Oxford United,Michał Helik,488960,D,1,67,1,1,0,0.03,34.0,1.0,579829.0
+5837118,2026-11-04,eng_league_one,Oxford United,Ciaron Brown,816368,D,1,90,1,0,0,0.02,36.0,1.0,843351.0
+5837118,2026-11-04,eng_league_one,Oxford United,Jack Currie,1220583,D,1,90,0,0,0,0.0,38.0,1.0,605996.0
+5837118,2026-11-04,eng_league_one,Oxford United,Kai Andrews,1526413,M,1,90,0,0,0,0.0,64.0,2.0,
+5837118,2026-11-04,eng_league_one,Oxford United,Cameron Brannagan,562593,M,1,90,5,2,0,0.19,66.0,2.0,354043.0
+5837118,2026-11-04,eng_league_one,Oxford United,Aidomo Emakhu,1248057,F,1,64,0,0,0,0.0,83.0,3.0,874816.0
+5837118,2026-11-04,eng_league_one,Oxford United,Tyler Goodrham,1086653,M,1,68,2,1,0,0.05,85.0,2.0,1153083.0
+5837118,2026-11-04,eng_league_one,Oxford United,Siriki Dembélé,865184,F,1,90,0,0,0,0.0,87.0,3.0,354990.0
+5837118,2026-11-04,eng_league_one,Oxford United,Mark Harris,819872,F,1,79,0,0,0,0.0,115.0,3.0,335994.0
+5837118,2026-11-04,eng_league_one,Oxford United,Mo Missanga,1899731,F,0,26,2,2,1,0.29,,3.0,
+5837118,2026-11-04,eng_league_one,Oxford United,Sam Long,439691,D,0,23,0,0,0,0.0,,1.0,149236.0
+5837118,2026-11-04,eng_league_one,Oxford United,Gatlin O'Donkor,1215525,F,0,22,1,1,1,0.15,,3.0,346352.0
+5837118,2026-11-04,eng_league_one,Oxford United,Louie Sibley,1081285,M,0,11,0,0,0,0.0,,2.0,623355.0
+5837118,2026-11-04,eng_league_one,Oxford United,Brodie Spencer,1367702,D,0,10,0,0,0,0.0,,1.0,1170761.0
+5837118,2026-11-04,eng_league_one,Reading,Joel Pereira,687506,G,1,90,0,0,0,0.0,11.0,0.0,320911.0
+5837118,2026-11-04,eng_league_one,Reading,Udoka Godwin-Malife,979407,D,1,90,0,0,0,0.0,32.0,1.0,496491.0
+5837118,2026-11-04,eng_league_one,Reading,Paudie O'Connor,590619,D,1,90,2,0,0,0.12,34.0,1.0,478527.0
+5837118,2026-11-04,eng_league_one,Reading,Jeriel Dorsett,1113824,D,1,90,1,1,0,0.44,36.0,1.0,243541.0
+5837118,2026-11-04,eng_league_one,Reading,Haydon Roberts,1086650,D,1,90,0,0,0,0.0,38.0,1.0,965185.0
+5837118,2026-11-04,eng_league_one,Reading,Kyreece Lisbie,1566101,M,1,90,0,0,0,0.0,72.0,2.0,401412.0
+5837118,2026-11-04,eng_league_one,Reading,Lewis Wing,874613,M,1,90,1,0,0,0.02,74.0,2.0,478527.0
+5837118,2026-11-04,eng_league_one,Reading,Andy Rinomhota,789510,M,1,84,1,0,0,0.01,76.0,2.0,170192.0
+5837118,2026-11-04,eng_league_one,Reading,Daniel Kyerewaa,1203511,M,1,80,1,0,0,0.24,78.0,2.0,360309.0
+5837118,2026-11-04,eng_league_one,Reading,Josh Stokes,1520249,M,1,69,2,0,0,0.17,95.0,2.0,410770.0
+5837118,2026-11-04,eng_league_one,Reading,Jack Marriott,445481,F,1,70,4,2,0,0.74,115.0,3.0,292127.0
+5837118,2026-11-04,eng_league_one,Reading,Jacob Brown,802245,F,0,21,1,0,0,0.02,,3.0,927873.0
+5837118,2026-11-04,eng_league_one,Reading,Jamie Reid,406928,F,0,20,0,0,0,0.0,,3.0,318685.0
+5837118,2026-11-04,eng_league_one,Reading,Randell Williams,719377,M,0,10,0,0,0,0.0,,2.0,153231.0
+5837118,2026-11-04,eng_league_one,Reading,Charlie Savage,1211644,M,0,6,0,0,0,0.0,,2.0,625983.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Marko Ilić,750025,G,1,90,0,0,0,0.0,11.0,0.0,668280.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Mohamed Fofana,1735836,D,1,90,1,0,0,0.04,32.0,1.0,479490.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Axel Drouhin,1559204,D,1,90,0,0,0,0.0,34.0,1.0,967978.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,James Ndjeungoue,1417570,D,1,90,0,0,0,0.0,36.0,1.0,987624.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Matthew Anderson,1536055,M,1,90,0,0,0,0.0,38.0,2.0,980205.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Brecht Dejaeghere,208929,M,1,79,0,0,0,0.0,73.0,2.0,147419.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Harrison Murray-Campbell,1359953,D,1,86,2,0,0,0.1,75.0,1.0,1230053.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Anthony Philips,2173251,M,1,90,1,1,0,0.09,77.0,2.0,
+5811786,2026-11-04,bel_pro_league,Kortrijk,Shandre Campbell,1599319,M,1,69,2,0,0,0.07,103.0,2.0,1307581.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Goduine Koyalipou,864154,F,1,79,3,0,0,0.54,105.0,3.0,1508599.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Thierry Ambrose,607120,F,1,78,1,1,1,0.18,107.0,3.0,942826.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Boris Lambert,940654,M,0,21,0,0,0,0.0,,2.0,727415.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Jellert van Landschoot,764813,F,0,12,1,0,0,0.04,,3.0,642982.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Rok Štorman,1685348,M,0,11,0,0,0,0.0,,2.0,781633.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Sixtus Ogbuehi,1670600,F,0,11,0,0,0,0.0,,3.0,410304.0
+5811786,2026-11-04,bel_pro_league,Kortrijk,Nayel Mehssatou,1275688,M,0,4,0,0,0,0.0,,2.0,1037412.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Ortwin de Wolf,836791,G,1,90,0,0,0,0.0,11.0,0.0,167310.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Kobe Corbanie,1432776,D,1,90,0,0,0,0.0,33.0,1.0,888811.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Mike Eerdhuijzen,958023,D,1,82,2,1,0,0.49,35.0,1.0,1297901.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,José Marsà,1300670,D,1,90,0,0,0,0.0,37.0,1.0,1996637.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Simion Michez,1402538,M,1,90,4,2,0,0.27,62.0,2.0,570666.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Fredrik Hammar,883719,M,1,90,1,0,0,0.08,64.0,2.0,2157489.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Marco Decherf,1945735,M,1,59,0,0,0,0.0,66.0,2.0,1082466.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Thérence Koudou,1451226,M,1,90,1,0,0,0.17,68.0,2.0,4787327.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Myron van Brederode,1199124,M,1,90,2,2,1,0.06,85.0,2.0,4637771.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Benito Raman,289248,F,1,59,1,0,0,0.04,104.0,3.0,405619.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Malcolm Lohunanu-Mbasi,2130776,F,1,82,0,0,0,0.0,106.0,3.0,
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Cedric Van Meirvenne,1874164,M,0,31,1,1,0,0.07,,2.0,553300.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Dennis Praet,282012,M,0,31,0,0,0,0.0,,2.0,1042801.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Luc Marijnissen,1199227,D,0,8,0,0,0,0.0,,1.0,1463159.0
+5811786,2026-11-04,bel_pro_league,KV Mechelen,Halil Özdemir,1788571,F,0,8,2,2,0,0.15,,3.0,322310.0
+5836919,2026-11-04,eng_championship,Cardiff City,Nathan Trott,623366,G,1,90,0,0,0,0.0,11.0,0.0,1174428.0
+5836919,2026-11-04,eng_championship,Cardiff City,Perry Ng,563058,D,1,72,1,0,0,0.02,32.0,1.0,877655.0
+5836919,2026-11-04,eng_championship,Cardiff City,William Fish,1098785,D,1,90,1,0,0,0.08,34.0,1.0,1029772.0
+5836919,2026-11-04,eng_championship,Cardiff City,Joel Bagan,1130978,D,1,90,0,0,0,0.0,36.0,1.0,1174692.0
+5836919,2026-11-04,eng_championship,Cardiff City,Calum Scanlon,1355539,D,1,72,0,0,0,0.0,38.0,1.0,656079.0
+5836919,2026-11-04,eng_championship,Cardiff City,Alex Robertson,1118910,M,1,90,0,0,0,0.0,65.0,2.0,1587133.0
+5836919,2026-11-04,eng_championship,Cardiff City,Ollie Tanner,1086249,F,1,90,1,0,0,0.02,82.0,3.0,1126002.0
+5836919,2026-11-04,eng_championship,Cardiff City,Jack Moylan,1196750,M,1,90,3,3,3,1.0,84.0,2.0,2186458.0
+5836919,2026-11-04,eng_championship,Cardiff City,Rubin Colwill,1227324,M,1,55,0,0,0,0.0,86.0,2.0,1641424.0
+5836919,2026-11-04,eng_championship,Cardiff City,Chris Willock,674498,F,1,56,0,0,0,0.0,88.0,3.0,646800.0
+5836919,2026-11-04,eng_championship,Cardiff City,Yousef Salech,1183360,F,1,90,1,1,0,0.03,115.0,3.0,3763693.0
+5836919,2026-11-04,eng_championship,Cardiff City,Joel Colwill,1405022,M,0,35,0,0,0,0.0,,2.0,1582163.0
+5836919,2026-11-04,eng_championship,Cardiff City,Cian Ashford,1533543,F,0,34,0,0,0,0.0,,3.0,1566754.0
+5836919,2026-11-04,eng_championship,Cardiff City,Ronan Kpakio,1668671,D,0,18,0,0,0,0.0,,1.0,1722728.0
+5836919,2026-11-04,eng_championship,Cardiff City,David Turnbull,750845,M,0,18,0,0,0,0.0,,2.0,1089873.0
+5836919,2026-11-04,eng_championship,West Ham United,Mads Hermansen,967941,G,1,90,0,0,0,0.0,11.0,0.0,16775464.0
+5836919,2026-11-04,eng_championship,West Ham United,Joël Veltman,304455,D,1,88,0,0,0,0.0,32.0,1.0,850308.0
+5836919,2026-11-04,eng_championship,West Ham United,Konstantinos Mavropanos,719219,D,1,90,2,0,0,0.26,34.0,1.0,15472559.0
+5836919,2026-11-04,eng_championship,West Ham United,Max Kilman,865931,D,1,90,1,1,1,0.58,36.0,1.0,14762542.0
+5836919,2026-11-04,eng_championship,West Ham United,Morato,1053838,D,1,46,0,0,0,0.0,38.0,1.0,15655334.0
+5836919,2026-11-04,eng_championship,West Ham United,Jarrod Bowen,523825,M,1,90,2,1,0,0.22,72.0,2.0,31728510.0
+5836919,2026-11-04,eng_championship,West Ham United,Arne Engels,1178443,M,1,90,1,1,1,0.31,74.0,2.0,25967748.0
+5836919,2026-11-04,eng_championship,West Ham United,Soungoutou Magassa,1385894,M,1,46,0,0,0,0.0,76.0,2.0,18139132.0
+5836919,2026-11-04,eng_championship,West Ham United,Manor Solomon,822237,M,1,69,2,0,0,0.09,78.0,2.0,11315026.0
+5836919,2026-11-04,eng_championship,West Ham United,Divine Mukasa,1463282,M,1,90,1,1,1,0.31,95.0,2.0,13576423.0
+5836919,2026-11-04,eng_championship,West Ham United,Valentín Castellanos,823658,F,1,45,2,2,0,0.2,115.0,3.0,30464267.0
+5836919,2026-11-04,eng_championship,West Ham United,Ezra Mayers,1624950,D,0,45,1,0,0,0.04,,1.0,2256784.0
+5836919,2026-11-04,eng_championship,West Ham United,Mohamadou Kanté,1529203,M,0,45,1,1,0,0.28,,2.0,9696444.0
+5836919,2026-11-04,eng_championship,West Ham United,Joël Piroe,792540,F,0,45,2,1,0,0.19,,3.0,7454415.0
+5836919,2026-11-04,eng_championship,West Ham United,Edvin Austbø,1367620,F,0,21,2,1,0,0.05,,3.0,14961155.0
+5836919,2026-11-04,eng_championship,West Ham United,Tomás Souček,524437,M,0,2,1,1,0,0.08,,2.0,3911265.0
