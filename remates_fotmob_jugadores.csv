@@ -21762,21 +21762,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000009069,2026-08-15,ecu_liga_pro,Independiente del Valle,Djorkaeff Reasco,809537,F,0,40,5,3,0,0.0,,3.0,610914.0
 1000009069,2026-08-15,ecu_liga_pro,Independiente del Valle,Jhegson Méndez,729088,M,0,27,0,0,0,0.0,,2.0,421995.0
 1000009069,2026-08-15,ecu_liga_pro,Independiente del Valle,Matías Perelló,1607569,F,0,15,0,0,0,0.0,,3.0,1523194.0
-1000017196,2026-08-16,per_liga1,Cienciano,Gonzalo Falcón,921251,G,1,90,0,0,0,0.0,11.0,0.0,196561.0
-1000017196,2026-08-16,per_liga1,Cienciano,Carlos Cabello,951736,D,1,90,0,0,0,0.0,32.0,1.0,302113.0
-1000017196,2026-08-16,per_liga1,Cienciano,Maximiliano Amondarain,427446,D,1,90,2,1,0,0.0,34.0,1.0,170301.0
-1000017196,2026-08-16,per_liga1,Cienciano,Kevin Becerra,1246012,D,1,90,0,0,0,0.0,36.0,1.0,221687.0
-1000017196,2026-08-16,per_liga1,Cienciano,Marcos Martinich,952501,D,1,90,0,0,0,0.0,38.0,1.0,153030.0
-1000017196,2026-08-16,per_liga1,Cienciano,Santiago Arias,921303,M,1,90,4,1,0,0.0,64.0,2.0,154250.0
-1000017196,2026-08-16,per_liga1,Cienciano,Ademar Robles,1605257,M,1,84,1,0,0,0.0,66.0,2.0,197258.0
-1000017196,2026-08-16,per_liga1,Cienciano,Cristian Souza,841483,F,1,46,0,0,0,0.0,83.0,3.0,213102.0
-1000017196,2026-08-16,per_liga1,Cienciano,Alejandro Hohberg,561723,M,1,84,3,1,0,0.0,85.0,2.0,
-1000017196,2026-08-16,per_liga1,Cienciano,Gerson Barreto,547835,F,1,46,0,0,0,0.0,87.0,3.0,168973.0
-1000017196,2026-08-16,per_liga1,Cienciano,Carlos Garcés,424444,F,1,90,3,1,0,0.0,115.0,3.0,301161.0
-1000017196,2026-08-16,per_liga1,Cienciano,Matías Succar,982363,F,0,23,1,0,0,0.0,,3.0,309577.0
-1000017196,2026-08-16,per_liga1,Cienciano,Neri Bandiera,623864,F,0,44,0,0,0,0.0,,3.0,295044.0
-1000017196,2026-08-16,per_liga1,Cienciano,Henry Caparó,1737299,M,0,6,0,0,0,0.0,,2.0,
-1000017196,2026-08-16,per_liga1,Cienciano,Didier La Torre,1198467,F,0,6,0,0,0,0.0,,3.0,239531.0
 1000018879,2026-08-16,ven_primera,Zamora FC,Kevin Armesto,1541394,G,1,90,0,0,0,0.0,11.0,0.0,138121.0
 1000018879,2026-08-16,ven_primera,Zamora FC,Néstor Jiménez,1448025,D,1,45,1,0,0,0.0,32.0,1.0,188771.0
 1000018879,2026-08-16,ven_primera,Zamora FC,Santiago Gómez,1287633,D,1,46,0,0,0,0.0,34.0,1.0,
@@ -23154,22 +23139,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5109889,2026-08-16,usl_championship,Monterey Bay FC,Wesley Leggett,1447989,F,0,27,1,0,0,0.0,,3.0,97153.0
 5109889,2026-08-16,usl_championship,Monterey Bay FC,Stuart Ritchie,1372216,D,0,14,0,0,0,0.0,,1.0,127432.0
 5109889,2026-08-16,usl_championship,Monterey Bay FC,Joel Garcia,1626139,D,0,5,0,0,0,0.0,,1.0,142267.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Alejandro Duarte,930546,G,1,90,0,0,0,0.0,11.0,0.0,240213.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Luis Advíncula,190522,D,1,90,1,0,0,0.0,32.0,1.0,224730.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Renzo Garcés,751527,D,1,80,2,1,0,0.0,34.0,1.0,794022.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Mateo Antoni,1436169,D,1,90,0,0,0,0.0,36.0,1.0,496224.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Nicolás Díaz,841170,D,1,90,0,0,0,0.0,38.0,1.0,1021366.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Esteban Pavez,164767,M,1,90,2,1,0,0.0,65.0,2.0,166072.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Fernando Gaibor,200257,F,1,81,3,2,1,0.0,83.0,3.0,171443.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Jairo Vélez,526949,M,1,77,4,1,0,0.0,85.0,2.0,348967.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Jesús Castillo,964199,F,1,90,3,0,0,0.0,87.0,3.0,154250.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Federico Girotti,994916,F,1,65,4,1,0,0.0,104.0,3.0,929346.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Eryc Castillo,458861,F,1,66,4,1,0,0.0,106.0,3.0,389689.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,José Paolo Guerrero,33101,F,0,25,2,1,0,0.0,,3.0,225696.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Alan Cantero,1098460,F,0,24,1,0,0,0.0,,3.0,441863.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Gaspar Gentile,805678,F,0,13,0,0,0,0.0,,3.0,260870.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Gianfranco Chávez,840182,D,0,10,0,0,0,0.0,,1.0,391429.0
-1000017195,2026-08-16,per_liga1,Alianza Lima,Jean Archimbaud,547854,M,0,9,0,0,0,0.0,,2.0,
 1000009065,2026-08-16,ecu_liga_pro,Barcelona SC,José Contreras,423508,G,1,90,0,0,0,0.0,11.0,0.0,589880.0
 1000009065,2026-08-16,ecu_liga_pro,Barcelona SC,Bryan Carabalí,844122,D,1,90,1,0,0,0.0,32.0,1.0,430950.0
 1000009065,2026-08-16,ecu_liga_pro,Barcelona SC,Javier Báez,68512,D,1,90,0,0,0,0.0,34.0,1.0,203936.0
@@ -25189,22 +25158,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5115955,2026-08-22,argentina,Independiente Rivadavia,Alex Vigo,1017707,D,0,13,0,0,0,0.0,,1.0,435009.0
 5115955,2026-08-22,argentina,Independiente Rivadavia,Leonel Bucca,1201808,M,0,13,0,0,0,0.0,,2.0,317939.0
 5115955,2026-08-22,argentina,Independiente Rivadavia,Luis Sequeira,1110613,M,0,4,1,0,0,0.04,,2.0,566131.0
-5103600,2026-08-22,brasil,Internacional,Matheus Cunha,1320958,G,1,77,0,0,0,0.0,11.0,0.0,1554607.0
-5103600,2026-08-22,brasil,Internacional,Bruno Gomes,1090263,D,1,89,2,0,0,0.05,32.0,1.0,4286286.0
-5103600,2026-08-22,brasil,Internacional,Guillermo Maripán,402830,D,1,90,4,1,0,0.21,34.0,1.0,1706650.0
-5103600,2026-08-22,brasil,Internacional,Gabriel Mercado,113668,D,1,90,1,0,0,0.08,36.0,1.0,383098.0
-5103600,2026-08-22,brasil,Internacional,Braian Aguirre,1200667,D,1,90,4,0,0,0.07,38.0,1.0,1937389.0
-5103600,2026-08-22,brasil,Internacional,Rodrigo Villagra,1028443,M,1,90,0,0,0,0.0,64.0,2.0,2042878.0
-5103600,2026-08-22,brasil,Internacional,Bruno Henrique,535599,M,1,78,1,0,0,0.2,66.0,2.0,324941.0
-5103600,2026-08-22,brasil,Internacional,Vitinho,1046082,F,1,90,2,1,0,0.06,83.0,3.0,4460518.0
-5103600,2026-08-22,brasil,Internacional,Alan Patrick,172185,M,1,89,1,0,0,0.06,85.0,2.0,1477120.0
-5103600,2026-08-22,brasil,Internacional,Alexandro Bernabéi,1104156,F,1,90,3,0,0,0.05,87.0,3.0,6111729.0
-5103600,2026-08-22,brasil,Internacional,Johan Carbonero,1053727,F,1,78,1,0,0,0.18,115.0,3.0,3089387.0
-5103600,2026-08-22,brasil,Internacional,Anthoni,1260081,G,0,13,0,0,0,0.0,,0.0,3455780.0
-5103600,2026-08-22,brasil,Internacional,Paulinho,881609,M,0,12,2,1,0,0.1,,2.0,895734.0
-5103600,2026-08-22,brasil,Internacional,Niclas Eliasson,438825,M,0,12,1,0,0,0.04,,2.0,1756971.0
-5103600,2026-08-22,brasil,Internacional,Juninho,658261,D,0,1,1,0,0,0.08,,1.0,578232.0
-5103600,2026-08-22,brasil,Internacional,Allex,1804462,M,0,1,0,0,0,0.0,,2.0,
 1000009074,2026-08-22,ecu_liga_pro,Técnico Universitario,Ayrton Morales,624768,G,1,90,0,0,0,0.0,11.0,0.0,180000.0
 1000009074,2026-08-22,ecu_liga_pro,Técnico Universitario,Edwin Mesa,1348054,D,1,68,0,0,0,0.0,32.0,1.0,196652.0
 1000009074,2026-08-22,ecu_liga_pro,Técnico Universitario,Yorlin Arce,1905245,D,1,90,0,0,0,0.0,34.0,1.0,302375.0
@@ -27945,22 +27898,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000017207,2026-08-23,per_liga1,Los Chankas,Jarlín Quintero,571225,F,1,90,1,0,0,0.0,106.0,3.0,231872.0
 1000017207,2026-08-23,per_liga1,Los Chankas,Axel Chávez,941883,D,0,21,1,0,0,0.0,,1.0,146125.0
 1000017207,2026-08-23,per_liga1,Los Chankas,Kenyi Barrios,1605042,D,0,11,0,0,0,0.0,,1.0,144691.0
-5103601,2026-08-23,brasil,Coritiba,Pedro Luccas,1509085,G,1,90,0,0,0,0.0,11.0,0.0,
-5103601,2026-08-23,brasil,Coritiba,João Pedro Chermont,1636512,D,1,84,1,0,0,0.04,32.0,1.0,3263215.0
-5103601,2026-08-23,brasil,Coritiba,Tiago,1257285,D,1,90,0,0,0,0.0,34.0,1.0,883322.0
-5103601,2026-08-23,brasil,Coritiba,Jacy,858829,D,1,90,0,0,0,0.0,36.0,1.0,1459837.0
-5103601,2026-08-23,brasil,Coritiba,Bruno Melo,789790,D,1,90,1,0,0,0.03,38.0,1.0,367016.0
-5103601,2026-08-23,brasil,Coritiba,Thiago Santos,655294,M,1,62,1,0,0,0.03,64.0,2.0,301649.0
-5103601,2026-08-23,brasil,Coritiba,Sebastián Gómez,927094,M,1,90,0,0,0,0.0,66.0,2.0,1308475.0
-5103601,2026-08-23,brasil,Coritiba,Joaquín Lavega,1354491,F,1,72,3,0,0,0.11,83.0,3.0,2777232.0
-5103601,2026-08-23,brasil,Coritiba,Josué,163824,M,1,84,2,1,0,0.04,85.0,2.0,348646.0
-5103601,2026-08-23,brasil,Coritiba,Breno Lopes,1053847,F,1,90,1,0,0,0.03,87.0,3.0,2147903.0
-5103601,2026-08-23,brasil,Coritiba,Pedro Rocha,638652,F,1,62,2,1,1,0.05,115.0,3.0,1141575.0
-5103601,2026-08-23,brasil,Coritiba,Tissi,1927900,M,0,28,0,0,0,0.0,,2.0,
-5103601,2026-08-23,brasil,Coritiba,Paulo Roberto,2096660,M,0,28,1,1,1,0.09,,2.0,
-5103601,2026-08-23,brasil,Coritiba,Fabinho,1174682,F,0,18,0,0,0,0.0,,3.0,948467.0
-5103601,2026-08-23,brasil,Coritiba,Lucas Taverna,1764024,D,0,6,0,0,0,0.0,,1.0,
-5103601,2026-08-23,brasil,Coritiba,Fernando Sobral,950835,M,0,6,0,0,0,0.0,,2.0,622762.0
 5103601,2026-08-23,brasil,Corinthians,Kauê Camargo,1511563,G,1,90,0,0,0,0.0,11.0,0.0,
 5103601,2026-08-23,brasil,Corinthians,Pedro Milans,1350024,D,1,45,1,0,0,0.04,32.0,1.0,1245616.0
 5103601,2026-08-23,brasil,Corinthians,Gabriel Paulista,177503,D,1,90,1,0,0,0.08,34.0,1.0,815841.0
@@ -175145,3 +175082,65 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000014213,2026-11-03,col_primera_a,CD Jaguares,Diego Zuluaga,1929090,M,0,16,0,0,0,0.0,,2.0,
 1000014213,2026-11-03,col_primera_a,CD Jaguares,Esteban Beltrán,1512740,F,0,16,0,0,0,0.0,,3.0,289895.0
 1000014213,2026-11-03,col_primera_a,CD Jaguares,Duván Rodríguez,1111056,F,0,16,0,0,0,0.0,,3.0,266997.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Alejandro Duarte,930546,G,1,90,0,0,0,0.0,11.0,0.0,259414.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Luis Advíncula,190522,D,1,90,0,0,0,0.0,32.0,1.0,267781.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Renzo Garcés,751527,D,1,45,1,0,0,0.0,34.0,1.0,848272.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Mateo Antoni,1436169,D,1,90,2,0,0,0.0,36.0,1.0,706713.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Marco Huamán,1248844,D,1,70,0,0,0,0.0,38.0,1.0,997963.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Jairo Vélez,526949,M,1,75,2,0,0,0.0,72.0,2.0,433905.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Esteban Pavez,164767,M,1,90,1,0,0,0.0,74.0,2.0,159689.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Nicolás Díaz,841170,M,1,90,0,0,0,0.0,76.0,2.0,660813.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Alan Cantero,1098460,M,1,54,1,0,0,0.0,78.0,2.0,585351.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Eryc Castillo,458861,F,1,90,4,2,1,0.0,104.0,3.0,387223.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Federico Girotti,994916,F,1,90,3,2,0,0.0,106.0,3.0,927174.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Fernando Gaibor,200257,M,0,44,0,0,0,0.0,,2.0,169173.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Luis Ramos,1432953,F,0,36,1,1,0,0.0,,3.0,664037.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Kevin Quevedo,831684,F,0,20,1,1,0,0.0,,3.0,320656.0
+1000017285,2026-11-04,per_liga1,Alianza Lima,Alessandro Burlamaqui,1284407,M,0,15,0,0,0,0.0,,2.0,324352.0
+1000017285,2026-11-04,per_liga1,Cienciano,Gonzalo Falcón,921251,G,1,90,0,0,0,0.0,11.0,0.0,254678.0
+1000017285,2026-11-04,per_liga1,Cienciano,Claudio Núñez,903076,D,1,90,0,0,0,0.0,32.0,1.0,184136.0
+1000017285,2026-11-04,per_liga1,Cienciano,Maximiliano Amondarain,427446,D,1,90,0,0,0,0.0,34.0,1.0,168973.0
+1000017285,2026-11-04,per_liga1,Cienciano,Kevin Becerra,1246012,D,1,90,0,0,0,0.0,36.0,1.0,216270.0
+1000017285,2026-11-04,per_liga1,Cienciano,Marcos Martinich,952501,D,1,90,1,0,0,0.0,38.0,1.0,153030.0
+1000017285,2026-11-04,per_liga1,Cienciano,Santiago Arias,921303,M,1,90,3,0,0,0.0,64.0,2.0,154250.0
+1000017285,2026-11-04,per_liga1,Cienciano,Ademar Robles,1605257,M,1,60,0,0,0,0.0,66.0,2.0,153030.0
+1000017285,2026-11-04,per_liga1,Cienciano,Cristian Souza,841483,F,1,19,0,0,0,0.0,83.0,3.0,196225.0
+1000017285,2026-11-04,per_liga1,Cienciano,Gerson Barreto,547835,M,1,77,0,0,0,0.0,85.0,2.0,153030.0
+1000017285,2026-11-04,per_liga1,Cienciano,Neri Ricardo Bandiera,623864,F,1,90,1,0,0,0.0,87.0,3.0,183573.0
+1000017285,2026-11-04,per_liga1,Cienciano,Carlos Garcés,424444,F,1,90,0,0,0,0.0,115.0,3.0,250512.0
+1000017285,2026-11-04,per_liga1,Cienciano,Carlos Cabello,951736,D,0,71,0,0,0,0.0,,1.0,350056.0
+1000017285,2026-11-04,per_liga1,Cienciano,Gonzalo Aguirre,1434947,M,0,17,1,0,0,0.0,,2.0,240098.0
+1000017285,2026-11-04,per_liga1,Cienciano,Ray Sandoval,547750,F,0,13,0,0,0,0.0,,3.0,182065.0
+1000017285,2026-11-04,per_liga1,Cienciano,Didier La Torre,1198467,F,0,13,0,0,0,0.0,,3.0,235437.0
+5103700,2026-11-04,brasil,Internacional,Kauan,1659682,G,1,90,0,0,0,0.0,11.0,0.0,568242.0
+5103700,2026-11-04,brasil,Internacional,Bruno Gomes,1090263,D,1,82,2,0,0,0.03,33.0,1.0,6792675.0
+5103700,2026-11-04,brasil,Internacional,Gabriel Mercado,113668,D,1,90,1,0,0,0.06,35.0,1.0,426765.0
+5103700,2026-11-04,brasil,Internacional,Juninho,658261,D,1,90,3,1,0,0.09,37.0,1.0,579477.0
+5103700,2026-11-04,brasil,Internacional,Braian Aguirre,1200667,M,1,76,1,0,0,0.03,62.0,2.0,1878423.0
+5103700,2026-11-04,brasil,Internacional,Rodrigo Villagra,1028443,M,1,90,0,0,0,0.0,64.0,2.0,3857763.0
+5103700,2026-11-04,brasil,Internacional,Thiago Maia,592922,M,1,76,1,0,0,0.12,66.0,2.0,1146789.0
+5103700,2026-11-04,brasil,Internacional,Matheus Bahia,1174662,M,1,67,1,1,0,0.22,68.0,2.0,1821628.0
+5103700,2026-11-04,brasil,Internacional,Vitinho,1046082,M,1,90,4,0,0,0.12,84.0,2.0,3554604.0
+5103700,2026-11-04,brasil,Internacional,Johan Carbonero,1053727,M,1,82,3,2,0,0.07,86.0,2.0,6736199.0
+5103700,2026-11-04,brasil,Internacional,Alerrandro,935036,F,1,90,3,2,1,0.85,105.0,3.0,1951038.0
+5103700,2026-11-04,brasil,Internacional,Alexandro Bernabéi,1104156,D,0,23,0,0,0,0.0,,1.0,8951545.0
+5103700,2026-11-04,brasil,Internacional,Bruno Henrique,535599,M,0,14,0,0,0,0.0,,2.0,352175.0
+5103700,2026-11-04,brasil,Internacional,Calebe,1174300,M,0,14,0,0,0,0.0,,2.0,1340695.0
+5103700,2026-11-04,brasil,Internacional,Ronaldo,690362,M,0,8,0,0,0,0.0,,2.0,1106269.0
+5103700,2026-11-04,brasil,Internacional,João Bezerra,1899001,F,0,8,0,0,0,0.0,,3.0,
+5103700,2026-11-04,brasil,Coritiba,Pedro Morisco,1509085,G,1,90,0,0,0,0.0,11.0,0.0,10808235.0
+5103700,2026-11-04,brasil,Coritiba,Tinga,535801,D,1,90,1,0,0,0.06,32.0,1.0,288118.0
+5103700,2026-11-04,brasil,Coritiba,Tiago,1257285,D,1,90,0,0,0,0.0,34.0,1.0,1616093.0
+5103700,2026-11-04,brasil,Coritiba,Jacy,858829,D,1,57,0,0,0,0.0,36.0,1.0,2033611.0
+5103700,2026-11-04,brasil,Coritiba,Bruno Melo,789790,D,1,90,0,0,0,0.0,38.0,1.0,359730.0
+5103700,2026-11-04,brasil,Coritiba,Thiago Santos,655294,M,1,84,0,0,0,0.0,64.0,2.0,302693.0
+5103700,2026-11-04,brasil,Coritiba,Sebastián Gómez,927094,M,1,90,0,0,0,0.0,66.0,2.0,1286575.0
+5103700,2026-11-04,brasil,Coritiba,Breno Lopes,1053847,F,1,69,0,0,0,0.0,83.0,3.0,2133141.0
+5103700,2026-11-04,brasil,Coritiba,Nicolás Fonseca,950599,M,1,69,1,0,0,0.01,85.0,2.0,1981319.0
+5103700,2026-11-04,brasil,Coritiba,Pedro Rocha,638652,F,1,69,1,1,0,0.24,87.0,3.0,1369763.0
+5103700,2026-11-04,brasil,Coritiba,Josué,163824,F,1,90,2,0,0,0.12,115.0,3.0,342464.0
+5103700,2026-11-04,brasil,Coritiba,Rodrigo Moledo,184500,D,0,33,0,0,0,0.0,,1.0,276272.0
+5103700,2026-11-04,brasil,Coritiba,Fabricio Bustos,798148,D,0,21,0,0,0,0.0,,1.0,914530.0
+5103700,2026-11-04,brasil,Coritiba,Vini Paulista,1259119,F,0,21,1,0,0,0.22,,3.0,646514.0
+5103700,2026-11-04,brasil,Coritiba,Joaquín Lavega,1354491,F,0,21,0,0,0,0.0,,3.0,8101760.0
+5103700,2026-11-04,brasil,Coritiba,Richard,882625,M,0,6,0,0,0,0.0,,2.0,282408.0
