@@ -175237,3 +175237,96 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 6112306,2026-11-04,europa_league,Olympiacos,Roman Yaremchuk,643690,F,0,31,1,0,0,0.07,,3,2037107
 6112306,2026-11-04,europa_league,Olympiacos,Chiquinho,566644,M,0,11,0,0,0,0.0,,2,2310368
 6112306,2026-11-04,europa_league,Olympiacos,Nair Tiknizyan,951976,D,0,8,0,0,0,0.0,,1,3699277
+6106330,2026-11-04,champions,Fenerbahçe,Ederson,363364,G,1,90,0,0,0,0.0,11,0,5724162
+6106330,2026-11-04,champions,Fenerbahçe,Nélson Semedo,470834,D,1,75,1,0,0,0.02,32,1,2068035
+6106330,2026-11-04,champions,Fenerbahçe,Milan Škriniar,309328,D,1,90,0,0,0,0.0,34,1,5365302
+6106330,2026-11-04,champions,Fenerbahçe,Kojo Peprah Oppong,1429607,D,1,90,0,0,0,0.0,36,1,15474987
+6106330,2026-11-04,champions,Fenerbahçe,Archie Brown,1113704,D,1,90,3,2,1,0.4,38,1,17546233
+6106330,2026-11-04,champions,Fenerbahçe,Ismail Yüksek,1183589,M,1,90,1,0,0,0.01,64,2,13717837
+6106330,2026-11-04,champions,Fenerbahçe,N'Golo Kanté,319300,M,1,90,1,0,0,0.09,66,2,2113443
+6106330,2026-11-04,champions,Fenerbahçe,Mason Greenwood,950473,F,1,89,4,2,1,0.13,83,3,42115973
+6106330,2026-11-04,champions,Fenerbahçe,Mattéo Guendouzi,800609,M,1,90,3,0,0,0.13,85,2,25049401
+6106330,2026-11-04,champions,Fenerbahçe,İrfan Kahveci,316544,F,1,75,1,0,0,0.68,87,3,1672566
+6106330,2026-11-04,champions,Fenerbahçe,Romelu Lukaku,181276,F,1,63,1,1,0,0.02,115,3,2328339
+6106330,2026-11-04,champions,Fenerbahçe,Vedat Muriqi,517052,F,0,27,1,1,1,0.16,,3,5308462
+6106330,2026-11-04,champions,Fenerbahçe,Mert Müldür,904098,D,0,15,0,0,0,0.0,,1,3938447
+6106330,2026-11-04,champions,Fenerbahçe,Kerem Aktürkoglu,1117570,F,0,15,1,0,0,0.05,,3,18430431
+6106330,2026-11-04,champions,Fenerbahçe,Oğuz Aydın,1092015,F,0,1,0,0,0,0.0,,3,9637020
+6106330,2026-11-04,champions,Liverpool,Alisson Becker,319784,G,1,90,0,0,0,0.0,11,0,12518404
+6106330,2026-11-04,champions,Liverpool,Joseph Gomez,568571,D,1,66,1,0,0,0.01,32,1,6720249
+6106330,2026-11-04,champions,Liverpool,Jérémy Jacquet,1473534,D,1,90,2,0,0,0.3,34,1,86409865
+6106330,2026-11-04,champions,Liverpool,Virgil van Dijk,209405,D,1,90,3,2,0,0.11,36,1,13271173
+6106330,2026-11-04,champions,Liverpool,Konstantinos Tsimikas,671529,D,1,76,0,0,0,0.0,38,1,2454858
+6106330,2026-11-04,champions,Liverpool,Trey Nyoni,1436258,M,1,85,1,1,1,0.08,64,2,26392249
+6106330,2026-11-04,champions,Liverpool,Alexis Mac Allister,831489,M,1,90,1,1,0,0.05,66,2,66110780
+6106330,2026-11-04,champions,Liverpool,Víctor Muñoz,1553105,F,1,66,3,0,0,0.2,83,3,51012133
+6106330,2026-11-04,champions,Liverpool,Dominik Szoboszlai,846005,M,1,90,2,0,0,0.06,85,2,104503407
+6106330,2026-11-04,champions,Liverpool,Rio Ngumoha,1597668,F,1,66,2,0,0,0.07,87,3,73176178
+6106330,2026-11-04,champions,Liverpool,Bradley Barcola,1297165,F,1,90,3,1,0,0.23,115,3,100394373
+6106330,2026-11-04,champions,Liverpool,Alexander Isak,690107,F,0,24,3,1,1,0.44,,3,106389586
+6106330,2026-11-04,champions,Liverpool,Cody Gakpo,806552,F,0,24,1,0,0,0.02,,3,74912371
+6106330,2026-11-04,champions,Liverpool,Florian Wirtz,1152455,F,0,24,0,0,0,0.0,,3,79305056
+6106330,2026-11-04,champions,Liverpool,Miloš Kerkez,1195281,D,0,14,0,0,0,0.0,,1,48147769
+6106330,2026-11-04,champions,Liverpool,Lewis Koumas,1364042,F,0,5,0,0,0,0.0,,3,13084687
+5943695,2026-11-04,cze_first,Artis Brno,Richard Kasík,1791922,G,1,90,0,0,0,0.0,11,0,
+5943695,2026-11-04,cze_first,Artis Brno,Karel Pojezný,1154896,D,1,90,0,0,0,0.0,32,1,323769
+5943695,2026-11-04,cze_first,Artis Brno,Dominik Plechatý,1020539,D,1,90,0,0,0,0.0,34,1,220457
+5943695,2026-11-04,cze_first,Artis Brno,Neil Glossoa,1709475,D,1,90,0,0,0,0.0,36,1,778291
+5943695,2026-11-04,cze_first,Artis Brno,Sacha Komljenović,1285709,M,1,83,2,0,0,0.0,38,2,298051
+5943695,2026-11-04,cze_first,Artis Brno,Albert Labík,1403349,M,1,90,0,0,0,0.0,64,2,954812
+5943695,2026-11-04,cze_first,Artis Brno,Sebastian Bohác,1366347,D,1,90,1,0,0,0.0,66,1,370039
+5943695,2026-11-04,cze_first,Artis Brno,Alexis Alégué,687572,F,1,46,0,0,0,0.0,83,3,137008
+5943695,2026-11-04,cze_first,Artis Brno,Papalélé,1123697,F,1,72,1,1,0,0.0,85,3,232763
+5943695,2026-11-04,cze_first,Artis Brno,Dominik Sarapata,1681656,M,1,72,2,1,0,0.0,87,2,2322186
+5943695,2026-11-04,cze_first,Artis Brno,El Hadji Ndiaye,1509846,F,1,20,1,1,1,0.0,115,3,265011
+5943695,2026-11-04,cze_first,Artis Brno,Stepán Harazim,1119670,D,0,45,1,0,0,0.0,,1,262084
+5943695,2026-11-04,cze_first,Artis Brno,Adam Carlén,1076684,M,0,18,0,0,0,0.0,,2,142476
+5943695,2026-11-04,cze_first,Artis Brno,Quadri Adediran,1410215,F,0,18,1,0,0,0.0,,3,179305
+5943695,2026-11-04,cze_first,Artis Brno,Vladimir Perišić,1269100,F,0,7,0,0,0,0.0,,3,256270
+5943695,2026-11-04,cze_first,Bohemians 1905,Tomás Frühwald,1287528,G,1,90,0,0,0,0.0,11,0,485782
+5943695,2026-11-04,cze_first,Bohemians 1905,Milan Havel,464020,D,1,85,1,1,0,0.0,33,1,200703
+5943695,2026-11-04,cze_first,Bohemians 1905,David Lischka,748916,D,1,90,2,1,1,0.0,35,1,204887
+5943695,2026-11-04,cze_first,Bohemians 1905,Matěj Kadlec,1611067,D,1,90,0,0,0,0.0,37,1,291903
+5943695,2026-11-04,cze_first,Bohemians 1905,Aleš Cermák,439694,M,1,90,2,1,0,0.0,71,2,203868
+5943695,2026-11-04,cze_first,Bohemians 1905,Dominik Javorček,1176587,M,1,38,0,0,0,0.0,73,2,294886
+5943695,2026-11-04,cze_first,Bohemians 1905,Roman Květ,802213,M,1,70,2,1,0,0.0,75,2,751436
+5943695,2026-11-04,cze_first,Bohemians 1905,Mathews Banda,1792316,D,1,90,3,0,0,0.0,77,1,154263
+5943695,2026-11-04,cze_first,Bohemians 1905,Samuel Obinaiia,1614826,D,1,90,2,1,0,0.0,79,1,209008
+5943695,2026-11-04,cze_first,Bohemians 1905,Jan Matoušek,850016,F,1,69,3,1,1,0.0,104,3,90743
+5943695,2026-11-04,cze_first,Bohemians 1905,Ladislav Almási,728428,F,1,70,1,0,0,0.0,106,3,253504
+5943695,2026-11-04,cze_first,Bohemians 1905,Václav Pilař,207542,F,0,52,4,1,0,0.0,,3,69492
+5943695,2026-11-04,cze_first,Bohemians 1905,Šimon Černý,1698718,F,0,21,0,0,0,0.0,,3,690032
+5943695,2026-11-04,cze_first,Bohemians 1905,Ladislav Krobot,1155184,F,0,20,1,0,0,0.0,,3,171104
+5943695,2026-11-04,cze_first,Bohemians 1905,Vladimír Zeman,1524292,F,0,20,0,0,0,0.0,,3,130896
+5943695,2026-11-04,cze_first,Bohemians 1905,Benson Sakala,686657,M,0,5,0,0,0,0.0,,2,79874
+6106401,2026-11-04,champions,AEK Athens,Alberto Brignoli,299879,G,1,90,0,0,0,0.0,11,0,161306
+6106401,2026-11-04,champions,AEK Athens,Lazaros Rota,949866,D,1,90,0,0,0,0.0,32,1,2342663
+6106401,2026-11-04,champions,AEK Athens,Harold Moukoudi,637737,D,1,90,1,1,0,0.08,34,1,4582960
+6106401,2026-11-04,champions,AEK Athens,Filipe Relvas,1285815,D,1,90,0,0,0,0.0,36,1,2310114
+6106401,2026-11-04,champions,AEK Athens,Stavros Pilios,1015750,D,1,90,1,1,1,0.19,38,1,1859202
+6106401,2026-11-04,champions,AEK Athens,Aboubakary Koïta,725695,M,1,90,3,1,1,0.17,72,2,3844682
+6106401,2026-11-04,champions,AEK Athens,Kervin Arriaga,839750,M,1,90,0,0,0,0.0,74,2,1475732
+6106401,2026-11-04,champions,AEK Athens,Kaan Kairinen,547454,M,1,60,0,0,0,0.0,76,2,4936044
+6106401,2026-11-04,champions,AEK Athens,Lovro Majer,762721,M,1,53,0,0,0,0.0,78,2,6669510
+6106401,2026-11-04,champions,AEK Athens,Mijat Gaćinović,448859,M,1,60,1,1,0,0.15,104,2,973124
+6106401,2026-11-04,champions,AEK Athens,Luka Jović,463291,F,1,88,1,1,0,0.18,106,3,5309189
+6106401,2026-11-04,champions,AEK Athens,Zine,1106943,F,0,37,0,0,0,0.0,,3,1854351
+6106401,2026-11-04,champions,AEK Athens,Răzvan Marin,574844,M,0,30,2,0,0,0.09,,2,2236547
+6106401,2026-11-04,champions,AEK Athens,Barnabás Varga,796504,F,0,30,0,0,0,0.0,,3,2132278
+6106401,2026-11-04,champions,AEK Athens,Oleksandr Zubkov,655636,F,0,2,0,0,0,0.0,,3,3572762
+6106401,2026-11-04,champions,Real Madrid,Thibaut Courtois,170323,G,1,90,0,0,0,0.0,11,0,11693114
+6106401,2026-11-04,champions,Real Madrid,Denzel Dumfries,593118,D,1,90,1,1,0,0.28,32,1,24742174
+6106401,2026-11-04,champions,Real Madrid,Éder Militao,844415,D,1,90,2,1,0,0.12,34,1,15444815
+6106401,2026-11-04,champions,Real Madrid,Antonio Rüdiger,276738,D,1,90,0,0,0,0.0,36,1,1999129
+6106401,2026-11-04,champions,Real Madrid,Marc Cucurella,873289,D,1,81,2,1,0,0.28,38,1,55172481
+6106401,2026-11-04,champions,Real Madrid,Bernardo Silva,488139,M,1,67,1,0,0,0.55,64,2,15735556
+6106401,2026-11-04,champions,Real Madrid,Eduardo Camavinga,1015185,M,1,90,0,0,0,0.0,66,2,60509687
+6106401,2026-11-04,champions,Real Madrid,Yan Diomande,1735453,F,1,67,1,0,0,0.02,83,3,101368575
+6106401,2026-11-04,champions,Real Madrid,Jude Bellingham,1077894,M,1,86,3,1,1,0.3,85,2,147530005
+6106401,2026-11-04,champions,Real Madrid,Vinícius Júnior,846033,F,1,81,3,0,0,0.17,87,3,99728385
+6106401,2026-11-04,champions,Real Madrid,Kylian Mbappé,701154,F,1,90,7,3,1,1.36,115,3,120694930
+6106401,2026-11-04,champions,Real Madrid,Federico Valverde,743533,M,0,23,1,1,1,0.03,,2,96117898
+6106401,2026-11-04,champions,Real Madrid,Endrick,1406729,F,0,23,2,0,0,0.1,,3,49460181
+6106401,2026-11-04,champions,Real Madrid,Brahim Díaz,750027,F,0,9,1,0,0,0.14,,3,23361552
+6106401,2026-11-04,champions,Real Madrid,Alvaro Carreras,1190025,D,0,8,0,0,0,0.0,,1,57236602
+6106401,2026-11-04,champions,Real Madrid,Carlos Espí,1610744,F,0,5,0,0,0,0.0,,3,25672268

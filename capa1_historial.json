@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-04T19:06:20Z",
+"actualizado": "2026-11-04T20:42:03Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23234,6 +23234,16 @@
 },
 {
 "dia": "2026-11-04",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Fenerbahce vs Liverpool",
+"apuesta": "Liverpool o empate",
+"cuota": 1.167,
+"resultado": "rojo",
+"marcador": "3-2"
+},
+{
+"dia": "2026-11-04",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Ghazl El Mahallah vs Al Ittihad",
@@ -23351,6 +23361,16 @@
 "cuota": 2.45,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Penafiel U23 vs Famalicao U23",
+"apuesta": "Gana Penafiel U23",
+"cuota": 3.25,
+"resultado": "verde",
+"marcador": "2-1"
 },
 {
 "dia": "2026-11-04",
