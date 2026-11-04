@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-04T14:06:37Z",
+"actualizado": "2026-11-04T15:38:41Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23164,6 +23164,26 @@
 },
 {
 "dia": "2026-11-04",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "AD Pemba vs Black Bulls",
+"apuesta": "Gana Black Bulls",
+"cuota": 1.71,
+"resultado": "verde",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Buriram United vs Kashima Antlers",
+"apuesta": "Gana Kashima Antlers",
+"cuota": 1.9091,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-04",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Fenerbahce U19 vs Liverpool U19",
@@ -23181,6 +23201,16 @@
 "cuota": 2.75,
 "resultado": "rojo",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-04",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Kataka vs URA SC",
+"apuesta": "Gana URA SC",
+"cuota": 1.62,
+"resultado": "verde",
+"marcador": "3-4"
 },
 {
 "dia": "2026-11-04",
@@ -23211,6 +23241,106 @@
 "cuota": 2.3,
 "resultado": "rojo",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Lens U19 vs Como U19",
+"apuesta": "Gana Lens U19",
+"cuota": 2.15,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Litija vs Tolmin",
+"apuesta": "Gana Litija",
+"cuota": 2.01,
+"resultado": "rojo",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Mladost Lucani U19 vs IMT U19",
+"apuesta": "Gana IMT U19",
+"cuota": 1.73,
+"resultado": "rojo",
+"marcador": "2-2"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Nkana vs Kansanshi",
+"apuesta": "Gana Nkana",
+"cuota": 1.7334,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "OFK Beograd U19 vs TSC U19",
+"apuesta": "Gana OFK Beograd U19",
+"cuota": 2.45,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Persik Kediri vs Persis Solo",
+"apuesta": "Gana Persik Kediri",
+"cuota": 1.4167,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Slavia Prague U19 vs Arsenal U19",
+"apuesta": "Gana Arsenal U19",
+"cuota": 3.8,
+"resultado": "rojo",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Sofala vs ENH Vilankulo",
+"apuesta": "Gana Sofala",
+"cuota": 2.5,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Tjen J. vs Garland J.",
+"apuesta": "Gana Tjen J.",
+"cuota": 1.45,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Viking U19 vs Sabah FC U19",
+"apuesta": "Gana Viking U19",
+"cuota": 1.31,
+"resultado": "verde",
+"marcador": "5-0"
 }
 ]
 }
