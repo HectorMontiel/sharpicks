@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-04T07:43:44Z",
+"actualizado": "2026-11-04T14:06:37Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23161,6 +23161,56 @@
 "cuota": 1.32,
 "resultado": "verde",
 "marcador": "0-2"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Fenerbahce U19 vs Liverpool U19",
+"apuesta": "Gana Fenerbahce U19",
+"cuota": 4.05,
+"resultado": "rojo",
+"marcador": "3-5"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Joint M. vs Sakkari M.",
+"apuesta": "Gana Joint M.",
+"cuota": 2.75,
+"resultado": "rojo",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Kluczevia Stargard vs Lech Poznan II",
+"apuesta": "Gana Lech Poznan II",
+"cuota": 2.8,
+"resultado": "rojo",
+"marcador": "4-3"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Leningradets vs SKA Khabarovsk",
+"apuesta": "Gana SKA Khabarovsk",
+"cuota": 3.1,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Leningradets vs SKA Khabarovsk",
+"apuesta": "Gana Leningradets",
+"cuota": 2.3,
+"resultado": "rojo",
+"marcador": "1-2"
 }
 ]
 }
