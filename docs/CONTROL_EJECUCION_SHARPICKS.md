@@ -43,6 +43,22 @@ Estados permitidos: PENDIENTE, EN EJECUCIÓN, IMPLEMENTADO, EN VALIDACIÓN, VALI
 | F13-01 | 13 | Mantener manual, ADRs, runbooks y criterios alineados a lo implementado | Todas | EN EJECUCIÓN | `docs/` | Índice/documentación previos existen | Continua |
 | GIT-01 | 23 | Mantener rama autorizada, PR draft, cambios pequeños y evidencia | Trabajo local | EN EJECUCIÓN | Rama y PR #1 | `c3141d5` está en la rama y PR draft; tres workflows success; trigger redundante push fue retirado y no altera el trigger PR | Ninguno para este bloque |
 
+## Corte 2026-11-04
+
+- `main` integrado en la rama (181 commits, sin conflictos). 61 pruebas en `tests/` y regresiones v379, v381, v491, v510, v519, v520, v527, v541, v544 y exportador pasan en local (CI: ver el PR).
+- **Corrección a lo anterior:** la allowlist `web_v1` tiraba `fuente` en 5 de 628 tarjetas reales de análisis; la página habría dicho «el modelo ve» en lo que ve la casa. Corregido y con prueba. Sin ese cruce con datos reales, los tests de contrato no lo detectaban.
+- **Cambio de rumbo propuesto:** [ADR-0002](decisiones/ADR-0002-privado-con-runner-propio.md) sustituye a ADR-0001. Si el propietario lo acepta, F4-03, F5-01, F6-01 y F6-03 quedan DESCARTADOS CON JUSTIFICACIÓN: no hace falta mover el motor, porque el repo completo pasa a privado.
+
+| ID | Tarea | Estado | Evidencia | Falta |
+|---|---|---|---|---|
+| F11-01 | Medir minutos reales y simultaneidad | VALIDADO | `tools/medir_actions.py`, `docs/operacion/medicion_actions.json`: ~61,000 min/mes; ~26,000 sin el Relevo | Memoria y CPU en servidor |
+| H-01 | Runner configurable sin cambiar comportamiento | IMPLEMENTADO | `vars.RUNNER_PESADO` en 12 flujos; `tests/test_runner_configurable.py` | Validar en servidor |
+| H-02 | Instalador del servidor | IMPLEMENTADO | `tools/vps_runner/instalar.sh`; sólo revisión de sintaxis | No probado en un servidor real |
+| H-03 | Quitar dependencias de repo público | IMPLEMENTADO | `vigia_limites.yml`, `precalculo_dia.py` | Validar con el repo privado |
+| H-04 | Pasar a privado | REQUIERE AUTORIZACIÓN | `docs/runbooks/pasar_a_privado.md` | Decisión del propietario, servidor y fusión del PR |
+
+La tabla de arriba es del corte 2026-10-30; no se recalculó su porcentaje.
+
 ## Distinción de validación
 
 - **Analizado/documentado:** evidencia registrada, sin cambio funcional.
