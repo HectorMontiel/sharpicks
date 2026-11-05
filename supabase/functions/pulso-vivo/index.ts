@@ -23,7 +23,10 @@ const DESDE: Record<string, number> = { gol: 55, gol2: 55, gol_l: 55, gol_v: 55,
 const MERCADOS = ['gol', 'gol_l', 'gol_v', 'gol2', 'cor1', 'cor2', 'cor3'];
 const NOMBRE: Record<string, string> = { gol: 'Cae otro gol', gol2: 'Caen 2 goles más', gol_l: 'Marca %L', gol_v: 'Marca %V',
   cor1: '1 córner más', cor2: '2 córners más', cor3: '3 córners más' };
-const MODELOS_IA = ['gemini-flash-latest', 'gemini-flash-lite-latest'];
+// v572 — lite primero: el flash dio 0-1 respuestas al día desde octubre, y cada intento era una llamada de más
+const MODELOS_IA = ['gemini-flash-lite-latest', 'gemini-flash-latest'];
+const ESPERA_429_MIN = 30;
+const USO_IA = { llamadas: 0, ok: 0, agotado: false, pausa: false };
 // v521 — ESPN y el sitio rechazan (403) lo que no dice ser un navegador: sin esto la función «no veía» el 2.º tiempo
 const NAV = { 'User-Agent': 'Mozilla/5.0', Accept: 'application/json' };   // ni «Deno/…» ni «compatible; …bot»: ESPN da 403
 const INSTRUCCION = 'Eres el analista en vivo de SharPicks. Te doy un partido de fútbol en el 2.º tiempo: minuto, marcador, ' +
@@ -164,9 +167,25 @@ async function enviar(texto: string, canal: 'vip' | 'gratis' = 'vip') {
     body: JSON.stringify({ chat_id: chat, text: texto, parse_mode: 'HTML', disable_web_page_preview: true }) });
   return r.ok;
 }
+// v572 — el Pulso usa la misma clave que los análisis y nadie contaba sus consultas; y si Gemini decía 429, cada partido en vivo
+// volvía a preguntar a los 2 minutos, sin freno. Ahora se cuenta en ia_uso y tras un 429 se espera.
+const diaCupo = () => new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10);
+const idUso = () => `${diaCupo()}|${MODELOS_IA[0]}|pulso`;
+async function leerPausaIA() {
+  const f = (await sbGet('ia_uso', `select=agotado_a&id=eq.${encodeURIComponent(idUso())}`)) || [];
+  const a = f[0] && f[0].agotado_a;
+  USO_IA.pausa = !!a && Date.now() - new Date(a).getTime() < ESPERA_429_MIN * 60e3;
+}
+async function guardarUsoIA() {
+  if (!USO_IA.llamadas) return;
+  const id = idUso(), antes = ((await sbGet('ia_uso', `select=llamadas,ok,cupo_agotado,agotado_a&id=eq.${encodeURIComponent(id)}`)) || [])[0] || {};
+  await fetch(SB + 'ia_uso', { method: 'POST', headers: { ...H, Prefer: 'resolution=merge-duplicates,return=minimal' }, body: JSON.stringify({
+    id, fecha: diaCupo(), modelo: MODELOS_IA[0], tipo: 'pulso', llamadas: (antes.llamadas || 0) + USO_IA.llamadas, ok: (antes.ok || 0) + USO_IA.ok,
+    cupo_agotado: !!antes.cupo_agotado || USO_IA.agotado, agotado_a: USO_IA.agotado ? new Date().toISOString() : antes.agotado_a || null, actualizado: new Date().toISOString() }) });
+}
 async function preguntarIA(p: Dic, e: Dic, ms: Dic[]) {
   const s = await secretos();
-  if (!s.GEMINI_API_KEY || !ms.length) return null;
+  if (!s.GEMINI_API_KEY || !ms.length || USO_IA.pausa) return null;
   const claves = ms.map((m) => m.k);
   const datos = { partido: p.partido, liga: p.liga, minuto: e.t, marcador: `${e.g[0]}-${e.g[1]}`,
     estadisticas: Object.fromEntries(Object.entries(e.stats).filter(([n]) => ['totalShots', 'shotsOnTarget', 'wonCorners', 'possessionPct', 'redCards', 'saves', 'foulsCommitted'].includes(n))),
@@ -178,7 +197,16 @@ async function preguntarIA(p: Dic, e: Dic, ms: Dic[]) {
     try {
       const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${s.GEMINI_API_KEY}`,
         { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(cuerpo), signal: AbortSignal.timeout(40000) });
+      USO_IA.llamadas++;
+      if (r.status === 429) {                                      // ni el otro modelo ni el siguiente partido, hasta la próxima
+        const txt = (await r.text()).slice(0, 2000);
+        console.warn('[pulso] 429', modelo, (txt.match(/"quotaId":\s*"[^"]+"/g) || []).join(' '));
+        USO_IA.pausa = true;
+        if (txt.includes('PerDay')) USO_IA.agotado = true;
+        return null;
+      }
       if (!r.ok) continue;
+      USO_IA.ok++;
       const d = JSON.parse((await r.json()).candidates[0].content.parts[0].text);
       if (claves.includes(d.mercado)) return { mercado: d.mercado, motivo: String(d.motivo || '').slice(0, 200), modelo_ia: modelo };
     } catch (_) { /* siguiente modelo */ }
@@ -358,7 +386,11 @@ Deno.serve(async (req) => {
       return Response.json({ estado: { t: e.t, g: e.g, c: e.c, periodo: e.periodo }, mercados: mercados(f), mejor: mejor(mercados(f)),
         clave: clavePartido(x.partido), liquidar: x.rec ? liquidar(x.rec, x.gfin, x.cfin) : null });
     }
-    return Response.json(await vuelta(!!body.seco));
+    Object.assign(USO_IA, { llamadas: 0, ok: 0, agotado: false, pausa: false });
+    await leerPausaIA();
+    const salida = await vuelta(!!body.seco);
+    await guardarUsoIA();
+    return Response.json(salida);
   } catch (err) {
     return Response.json({ error: String(err) }, { status: 500 });
   }

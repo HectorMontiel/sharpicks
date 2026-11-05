@@ -30,7 +30,7 @@ import logging
 import os
 import sys
 import time
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 logger = logging.getLogger('ia_gemini')
 DATOS = os.environ.get('WEB_DATOS', os.path.join('web', 'datos', 'hoy.json'))
@@ -52,6 +52,8 @@ UNIDAD = {'Béisbol': 'Carreras',   # v423 — el béisbol de invierno
           'Fútbol': 'Goles', 'NHL': 'Goles', 'NBA': 'Puntos', 'NFL': 'Puntos',
           'MLB': 'Carreras', 'KBO': 'Carreras', 'Tenis': 'Sets'}
 PAUSA_S = 4.5            # ~13 por minuto: debajo del límite del nivel gratis
+TOPE_PASADA_S = 480      # v572 — para guardar la cuenta y dejar tiempo a la medición, antes de los 12 min del paso
+MAX_SIN_RESPUESTA = 3    # v572 — Gemini saturado: en vez de gastar la pasada en 503, se sigue en la próxima
 
 ESQUEMA = {
     'type': 'OBJECT',
@@ -522,6 +524,27 @@ def noticias_web(lista: List[Dict], tipo: str = 'busqueda') -> Dict:
     return {}
 
 
+def razon_429(r) -> Tuple[bool, float, str]:
+    """v572 — no todo 429 es «sin cupo hoy»: Google también lo da por minuto. Devuelve (es del día, segundos que pide esperar, qué límite).
+    El mensaje nunca lleva la clave. Si no se entiende, se toma como del día, como hasta ahora."""
+    try:
+        det = (r.json().get('error') or {}).get('details') or []
+    except Exception:
+        return True, 0.0, 'sin detalle'
+    limites, espera = [], 0.0
+    for d in det:
+        for v in d.get('violations') or []:
+            limites.append('%s=%s' % (v.get('quotaId'), v.get('quotaValue')))
+        if d.get('retryDelay'):
+            try:
+                espera = float(str(d['retryDelay']).rstrip('s'))
+            except ValueError:
+                pass
+    if not limites:
+        return True, espera, 'sin detalle'
+    return any('PerDay' in x for x in limites), espera, ', '.join(limites)[:300]
+
+
 def preguntar(lista: List[Dict], deporte: str = 'Fútbol', tipo: str = 'analisis', modelos: Optional[List[str]] = None) -> Optional[Dict]:
     """{partido: análisis} de un lote; {'_limite': True} si TODOS los modelos
     agotaron su cupo del día. Cada modelo tiene su propio cupo: si uno dice 429
@@ -538,16 +561,26 @@ def preguntar(lista: List[Dict], deporte: str = 'Fútbol', tipo: str = 'analisis
         if modelo in _AGOTADOS:
             continue
         try:
+            del_dia, limite = True, ''
             for intento in range(3):          # 503 = Gemini saturado: se espera y se reintenta
                 r = requests.post('https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent' % modelo,
                                   params={'key': k}, json=cuerpo, timeout=60)
+                if r.status_code == 429:      # v572 — si es por minuto, se espera lo que pide y sigue
+                    del_dia, espera, limite = razon_429(r)
+                    if del_dia or intento == 2 or espera > 65:
+                        break
+                    time.sleep(espera + 1)
+                    continue
                 if r.status_code != 503:
                     break
                 time.sleep(6 * (intento + 1))
-            _contar(modelo, tipo, r.ok, r.status_code == 429)
+            _contar(modelo, tipo, r.ok, r.status_code == 429 and del_dia)
+            if r.status_code == 429 and not del_dia:
+                logger.warning('[ia] %s: límite por minuto (%s); este lote queda para otra pasada', modelo, limite)
+                continue
             if r.status_code in (404, 429):   # v449 — 404: el modelo ya no existe (Google retiró los 2.5)
                 logger.warning('[ia] %s: %s; se prueba el siguiente modelo', modelo,
-                               'límite del nivel gratis' if r.status_code == 429 else 'ya no existe')
+                               'límite del día (%s)' % limite if r.status_code == 429 else 'ya no existe')
                 _AGOTADOS.add(modelo)
                 continue
             if not r.ok:
@@ -898,11 +931,16 @@ def analizar(sb, lista: List[Dict], mercado: Dict, ventana: Optional[str] = None
     guarda. Devuelve (cuántos, si se acabó el cupo de todos los modelos)."""
     hechos = 0
     lotes = []
+    inicio, sin_respuesta = time.monotonic(), 0
     for nv in (0, 1, 2):                      # v451 — principales, luego con pick, luego sólo análisis
         for dep in dict.fromkeys(m.get('deporte', 'Fútbol') for m in lista):
             del_dep = [m for m in lista if m.get('deporte', 'Fútbol') == dep and nivel(m, mercado) == nv]
             lotes += [(dep, nv < 2, del_dep[i:i + LOTE]) for i in range(0, len(del_dep), LOTE)]
     for dep, con_pick, lote in lotes:
+        # v572 — parar a tiempo: el paso tiene 12 min, y al cortarlo GitHub se perdía la cuenta de lo gastado (4 pasadas del 5-nov)
+        if time.monotonic() - inicio > TOPE_PASADA_S or sin_respuesta >= MAX_SIN_RESPUESTA:
+            print('ia: se para esta pasada (%.0f s, %d lotes seguidos sin respuesta); sigue en la próxima' % (time.monotonic() - inicio, sin_respuesta))
+            break
         tipo = 'ventana' if ventana else 'analisis' if con_pick else 'solo_analisis'
         # v533 — SÓLO Google News, en todos los deportes. Barrido del 29-oct: la búsqueda de Gemini no respondió NI UNA
         # vez desde el 22-oct (0 de 10-19 diarias) y gastaba llamadas; todas las noticias venían de Google News.
@@ -920,6 +958,7 @@ def analizar(sb, lista: List[Dict], mercado: Dict, ventana: Optional[str] = None
             print('ia: todos los modelos agotaron su cupo de hoy')
             return hechos, True
         filas = [fila(m, res[m['partido']], mercado) for m in lote if res and m['partido'] in res]
+        sin_respuesta = 0 if filas else sin_respuesta + 1
         for f in filas:                     # v446 — para medir si con noticias acierta más
             w = web.get(f['partido'])
             f['con_noticias'] = bool(w and w['noticias'])
