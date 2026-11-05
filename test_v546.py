@@ -30,3 +30,11 @@ def test_partidos_que_sigo_y_morado_en_la_lista():
     assert "al.has(claveNombre(p))" in a                                  # la campana 🔔 también cuenta en Mis picks
     assert "const ia = Math.max(0, ...ps.map((x) => iaSegura(x)));" in a and '.partido-fila.ia-2 .pf {' in css
     assert css.rstrip().count(':root { --platino: #f472b6; }') == 1        # Platino en rosa, no violeta como la IA
+
+
+if __name__ == '__main__':
+    # la suite corre cada prueba como script: sin esto, estas funciones no se ejecutan y siempre sale «sin fallos»
+    for _n, _f in sorted(globals().copy().items()):
+        if _n.startswith('test_') and callable(_f):
+            _f()
+    print('OK')

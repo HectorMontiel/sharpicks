@@ -115,6 +115,18 @@ def test_la_pagina():
     assert '.met-pata {' in leer('web', 'estilo.css')
 
 
+def test_ninguna_prueba_se_queda_dormida():
+    """La suite corre cada test_*.py como script: un archivo que sólo define funciones siempre sale sin fallos."""
+    import glob
+    import re
+    dormidas = []
+    for f in glob.glob(os.path.join(RAIZ, 'test_*.py')):
+        s = io.open(f, encoding='utf-8', errors='replace').read()
+        if re.search(r'^def test_', s, re.M) and '__main__' not in s and not re.search(r'^(?:for |[a-z_]+\()', s, re.M):
+            dormidas.append(os.path.basename(f))
+    assert not dormidas, dormidas
+
+
 if __name__ == '__main__':
     # la suite corre cada prueba como script: sin esto, estas funciones no se ejecutan y siempre sale «sin fallos»
     for _n, _f in sorted(globals().copy().items()):

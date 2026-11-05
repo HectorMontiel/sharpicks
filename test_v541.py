@@ -54,3 +54,11 @@ def test_huella_evita_bajar_todo():
     assert "setInterval(() => { if (!document.hidden) cargar(); }, 3 * 60 * 1000);" in a
     assert 'Date.now() - yo._pesadoEn > 10 * 60e3' in c
     assert 'grant execute on function public.huella_publica(date, date) to anon, authenticated;' in s
+
+
+if __name__ == '__main__':
+    # la suite corre cada prueba como script: sin esto, estas funciones no se ejecutan y siempre sale «sin fallos»
+    for _n, _f in sorted(globals().copy().items()):
+        if _n.startswith('test_') and callable(_f):
+            _f()
+    print('OK')

@@ -30,7 +30,7 @@ def test_la_pagina_lo_dice():
 
 def test_v551_pata_del_armador_abre_el_partido():
     a = leer('web', 'app.js')
-    assert "'<button type=\"button\" class=\"arm-pata' + (ia ? ' ia-' + ia : '') + '\" data-ficha=\"' + esc(p.id) + '\"" in a
+    assert "<button type=\"button\" class=\"arm-pata' + (ia ? ' ia-' + ia : '') + '\" data-ficha=\"' + esc(p.id) + '\"" in a
 
 
 def test_v552_sin_repetidas_y_se_puede_borrar():
@@ -45,3 +45,11 @@ def test_v553_quitar_tambien_apaga_la_campana():
     assert "' data-dejar-al=\"' + esc(claveNombre(p)) + '\"'" in a
     assert "sb.from('alertas_tg').delete().match({ usuario: yo.user.id, tipo: 'partido', valor: alPartido })" in c
     assert "quitarSeguidos(q.dataset.dejar.split(','), false, q.dataset.dejarAl || null)" in c
+
+
+if __name__ == '__main__':
+    # la suite corre cada prueba como script: sin esto, estas funciones no se ejecutan y siempre sale «sin fallos»
+    for _n, _f in sorted(globals().copy().items()):
+        if _n.startswith('test_') and callable(_f):
+            _f()
+    print('OK')

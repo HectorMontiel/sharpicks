@@ -13,7 +13,7 @@ def leer(*p):
 def test_cabecera_no_se_encima():
     css = leer('web', 'estilo.css')
     assert '.marca { flex: 1 1 0; min-width: 40px; overflow: hidden; container-type: inline-size; }' in css
-    assert '@container (max-width: 108px) { .marca #nombre { display: none; } }' in css
+    assert '@container (max-width: 98px) { .marca #nombre { display: none; } }' in css
 
 
 def test_guia_atras_y_recompensas():
@@ -44,3 +44,11 @@ def test_mismo_partido_dos_nombres():
     a = leer('web', 'app.js')
     assert "const clavePartido = (p) => (p && typeof p === 'object' && canonicas().get(p)) || claveNombre(p);" in a
     assert "let k = p.espn ? porEspn.get(p.deporte + '|' + p.espn) : null;" in a
+
+
+if __name__ == '__main__':
+    # la suite corre cada prueba como script: sin esto, estas funciones no se ejecutan y siempre sale «sin fallos»
+    for _n, _f in sorted(globals().copy().items()):
+        if _n.startswith('test_') and callable(_f):
+            _f()
+    print('OK')

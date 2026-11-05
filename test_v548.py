@@ -50,3 +50,11 @@ def test_v549_errores_con_imagen_ia_primero_y_rojas():
     r1 = dict(a, estado='verde', marcador='2-0'); r2 = dict(b, estado='roja', marcador='0-2')
     res = [x for x in tc.armar_vip([r1, r2], set(), ahora) if 'Resultados VIP' in x[0]][0][0]
     assert '✅ Gana A' in res and '❌ Gana C' in res                              # las rojas también, con nombre
+
+
+if __name__ == '__main__':
+    # la suite corre cada prueba como script: sin esto, estas funciones no se ejecutan y siempre sale «sin fallos»
+    for _n, _f in sorted(globals().copy().items()):
+        if _n.startswith('test_') and callable(_f):
+            _f()
+    print('OK')

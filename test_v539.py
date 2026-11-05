@@ -19,3 +19,11 @@ def test_sigue_cobrando_y_sin_anon():
     assert 'public.precio_pick(p)' in s
     assert "if p.inicio <= now() then return 'ya empezó'" in s
     assert 'revoke execute on function public.desbloquear(text) from public, anon' in s
+
+
+if __name__ == '__main__':
+    # la suite corre cada prueba como script: sin esto, estas funciones no se ejecutan y siempre sale «sin fallos»
+    for _n, _f in sorted(globals().copy().items()):
+        if _n.startswith('test_') and callable(_f):
+            _f()
+    print('OK')
