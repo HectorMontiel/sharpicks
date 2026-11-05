@@ -1,7 +1,8 @@
 // v573 — LAS CANCHAS DE LOS DEMÁS DEPORTES. El usuario, con la de fútbol lista: «armemos las demás con la misma lógica y un buen
 // diseño». Misma lógica que v570: la cancha sobrevive al repintado, cada cuadro se calcula con el tiempo real, todos con inercia y
-// tope de velocidad, y el balón vuela de verdad. El movimiento entre jugadas es animación; tiros, goles, puntos y carreras sólo
-// salen si de verdad pasaron, en su lugar real cuando la fuente lo da:
+// tope de velocidad, y el balón vuela de verdad. El usuario: «los pases pueden ser falsos, pero si hay alguien en primera, sí está en
+// primera». Es animación sólo el movimiento entre jugadas. Es REAL: quién está en juego, los corredores en su base, la línea de golpeo,
+// el lugar de tiros y batazos, quién hace cada jugada y todo lo que cuenta. La fuente:
 //   NHL y NBA  ESPN `plays[].coordinate`.        NFL  ESPN `drives`: yarda, intento y distancia.
 //   Béisbol    statsapi.mlb.com (también invierno): bateador, cuenta, corredores y lugar del batazo.
 //   Tenis      nadie da posiciones: peloteo animado con el marcador real.
@@ -17,8 +18,8 @@
   const familia = (d) => (d === 'MLB' || d === 'KBO' || d === 'Béisbol' ? 'BEIS' : d);
   const TIENE = (d) => !!ALTO[familia(d)];
   const SIM = {
-    NHL: { v: 17, vP: 14, vE: 26, vPase: 72, rig: 4.4, T: [0.3, 1], robo: 0.13, pase: 0.74, sep: 3.2, corto: 5, largo: 30, muyLargo: 55, seguir: 0.72, seguirG: 0.05 },
-    NBA: { v: 13, vP: 10, vE: 20, vPase: 55, rig: 4, T: [0.4, 1.2], robo: 0, pase: 0.72, sep: 3, corto: 6, largo: 26, muyLargo: 42 },
+    NHL: { v: 17, vP: 14, vE: 32, vPase: 72, rig: 4.4, T: [0.3, 1], robo: 0.13, pase: 0.74, sep: 3.2, corto: 5, largo: 30, muyLargo: 55, seguir: 0.72, seguirG: 0.05 },
+    NBA: { v: 13, vP: 10, vE: 28, vPase: 55, rig: 4, T: [0.4, 1.2], robo: 0, pase: 0.72, sep: 3, corto: 6, largo: 26, muyLargo: 42 },
   };
 
   // ---------------------------------------------------------------- color
@@ -49,12 +50,15 @@
     [/Downs/i, 'Perdió el balón'], [/End of Game/i, 'Fin del partido'], [/End of Half|Half/i, 'Fin de la mitad'], [/Safety/i, 'Safety']];
   const traduce = (tabla, t) => { const x = tabla.find(([r]) => r.test(String(t || ''))); return x ? x[1] : null; };
   const ICONO = { NHL: '🏒', NBA: '🏀', NFL: '🏈', BEIS: '⚾' };
+  // «P.Mahomes pass short left to T.Kelce for 8 yards»: [el que la juega, el que la recibe]
+  const nombresNfl = (t) => { const m = String(t || '').match(/\b[A-Z][a-zA-Z]{0,2}\.[A-Z][a-zA-Z'-]+/g) || []; const i = /\bpass\b/i.test(String(t)) && m[1] ? m[1] : null; return [m[0] ? m[0].replace('.', '. ') : '', i ? i.replace('.', '. ') : '']; };
   function etiqueta(fam, q, nombres) {
     const tabla = { NHL: ES_NHL, NBA: ES_NBA, NFL: ES_NFL, BEIS: ES_MLB }[fam];
     let t = traduce(tabla, q.t) || (fam === 'NHL' ? 'Falta' : fam === 'NBA' ? 'Jugada' : fam === 'NFL' ? 'Jugada' : 'Jugada');
     if (fam === 'NBA' && /Shot|Layup|Dunk|Jumper|Hook|Tip|Free Throw/.test(q.t) && !/Rebound/.test(q.t)) t = (q.anota ? 'Encesta: ' : 'Falla: ') + t.toLowerCase();
     const quien = q.part && q.part.length && nombres ? nombres[q.part[0]] : '';
-    return ICONO[fam] + ' <b>' + esc(t) + '</b>' + (quien ? ' · ' + esc(quien) : '') + (q.clk ? ' · ' + esc(q.clk) : '');
+    const delTexto = fam === 'NFL' ? (nombresNfl(q.txt)[1] || nombresNfl(q.txt)[0] || '') : '';
+    return ICONO[fam] + ' <b>' + esc(t) + '</b>' + (quien || delTexto ? ' · ' + esc(quien || delTexto) : '') + (q.clk ? ' · ' + esc(q.clk) : '');
   }
   const bajaEs = (x) => String(x || '').replace(/(\d)(st|nd|rd|th) & Goal/, '$1.º y gol').replace(/(\d)(st|nd|rd|th) & (\d+)/, '$1.º y $3');
 
@@ -135,13 +139,39 @@
     }
     return { jugadas: out, series, lideres };
   }
+  // NHL: ESPN dice quién está en el hielo ahora mismo
+  function enHielo(d, n1) {
+    const out = [[], []];
+    for (const t of d.onIce || []) {
+      const L = String(t.teamId) === String(n1) ? 0 : 1;
+      out[L] = (t.entries || []).map((x) => String(x.athleteid || '')).filter(Boolean);
+    }
+    return out;
+  }
+  // NBA: no lo dice; se lee de la última jugada hacia atrás (quien sale en un cambio ya no cuenta) y se completa con los titulares
+  function enCancha(js, pl) {
+    const out = [[], []], fuera = [new Set(), new Set()];
+    for (let i = js.length - 1; i >= 0 && (out[0].length < 5 || out[1].length < 5); i--) {
+      const q = js[i]; if (q.lado == null) continue;
+      const L = q.lado, a = q.part || [];
+      if (/Substitution/.test(q.t)) {
+        if (a[0] && out[L].length < 5 && !fuera[L].has(a[0]) && !out[L].includes(a[0])) out[L].push(a[0]);
+        if (a[1] && !out[L].includes(a[1])) fuera[L].add(a[1]);
+        continue;
+      }
+      a.forEach((id) => { if (id && out[L].length < 5 && !fuera[L].has(id) && !out[L].includes(id) && pl[L].some((x) => String(x.id) === id)) out[L].push(id); });
+    }
+    [0, 1].forEach((L) => pl[L].filter((a) => a.titular).concat(pl[L]).forEach((a) => { const id = String(a.id); if (out[L].length < 5 && !fuera[L].has(id) && !out[L].includes(id)) out[L].push(id); }));
+    return out;
+  }
   // lo que app.js guarda en el «en vivo» de cada partido (nos1 = el primero de NUESTRO «A vs B»)
   function leer(dep, d, n1) {
     try {
       if (dep === 'NHL' || dep === 'NBA') {
-        const pl = plantilla(d, n1), nombres = {};
-        pl.flat().forEach((a) => { nombres[String(a.id)] = a.nombre; });
-        return { jugadas: jugadasPista(d, dep, n1), plantilla: pl, nombres };
+        const pl = plantilla(d, n1), nombres = {}, numeros = {};
+        pl.flat().forEach((a) => { nombres[String(a.id)] = a.nombre; numeros[String(a.id)] = a.n; });
+        const jugadas = jugadasPista(d, dep, n1);
+        return { jugadas, plantilla: pl, nombres, numeros, enJuego: dep === 'NHL' ? enHielo(d, n1) : enCancha(jugadas, pl) };
       }
       if (dep === 'NFL') return jugadasNfl(d, n1);
     } catch (e) { /* una respuesta rara no tumba la página */ }
@@ -200,7 +230,8 @@
     // en el orden de NUESTRO «A vs B»: `home` y `away` de la fuente pueden venir al revés
     const fila = (e, l) => (e[l] || {});      // arriba de la entrada batea el visitante
     return { jugadas, entrada: ls.currentInning, arriba: !!ls.isTopInning, bolas: ls.balls || 0, strikes: ls.strikes || 0, outs: ls.outs || 0, bateador: corto(of.batter), lanzador: corto(de.pitcher),
-      en1: !!of.first, en2: !!of.second, en3: !!of.third, nombres: { c1b: corto(de.first), c2b: corto(de.second), c3b: corto(de.third), ss: corto(de.shortstop), lf: corto(de.left), cf: corto(de.center), rf: corto(de.right), ca: corto(de.catcher) },
+      en1: !!of.first, en2: !!of.second, en3: !!of.third, ids: [(of.first || {}).id || null, (of.second || {}).id || null, (of.third || {}).id || null],
+      nombres: { r1: corto(of.first), r2: corto(of.second), r3: corto(of.third),  c1b: corto(de.first), c2b: corto(de.second), c3b: corto(de.third), ss: corto(de.shortstop), lf: corto(de.left), cf: corto(de.center), rf: corto(de.right), ca: corto(de.catcher) },
       entradas: (ls.innings || []).map((e) => { const a = fila(e, 'away'), h = fila(e, 'home'); return girado ? [a.runs, h.runs] : [h.runs, a.runs]; }),
       tot: (() => { const t = ls.teams || {}, a = t.away || {}, h = t.home || {}; const x = [a.runs, a.hits, a.errors], y = [h.runs, h.hits, h.errors]; return girado ? [x, y] : [y, x]; })(),
       batea: girado ? (ls.isTopInning ? 0 : 1) : (ls.isTopInning ? 1 : 0), girado: !!girado };
@@ -261,17 +292,21 @@
   function equipos(dep, v, datos) {
     const lista = [];
     const pla = (datos && datos.plantilla) || [[], []];
-    const pon = (lado, i, x, y, n, nombre, rol) => lista.push({ key: lado + '|' + i, lado, n: n || '', nombre: nombre || '', rol, x, y });
+    const pon = (lado, i, x, y, n, nombre, rol, id) => lista.push({ key: lado + '|' + i, lado, n: n || '', nombre: nombre || '', rol, x, y, id: id || '' });
+    const enJ = (datos && datos.enJuego) || [[], []], por = (L, id) => pla[L].find((a) => String(a.id) === String(id));
     if (dep === 'NHL') {
       [0, 1].forEach((L) => {
         const g = pla[L].filter((a) => /goal/i.test(a.grupo) || a.pos === 'G'), de = pla[L].filter((a) => /defen/i.test(a.grupo) || a.pos === 'D'), fw = pla[L].filter((a) => /forward/i.test(a.grupo) || /^(C|LW|RW|F)$/.test(a.pos));
-        const q = [g[0], de[0], de[1], fw[0], fw[1], fw[2]];
-        fHockey.forEach(([rol, x, y], i) => pon(L, i, L === 0 ? x : 105 - x, y, q[i] && q[i].n, q[i] && q[i].nombre, rol));
+        // los que están en el hielo ahora; si ESPN no lo trae, los que más juegan
+        const hielo = enJ[L].map((id) => por(L, id)).filter(Boolean), es = (r) => (a) => r.test(a.grupo) || r.test(a.pos);
+        const hG = hielo.filter(es(/goal|^G$/i)), hD = hielo.filter(es(/defen|^D$/i)), hF = hielo.filter((a) => !hG.includes(a) && !hD.includes(a));
+        const q = hielo.length >= 5 ? [hG[0] || g[0], hD[0] || hF[3], hD[1] || hF[4], hF[0], hF[1], hF[2]] : [g[0], de[0], de[1], fw[0], fw[1], fw[2]];
+        fHockey.forEach(([rol, x, y], i) => pon(L, i, L === 0 ? x : 105 - x, y, q[i] && q[i].n, q[i] && q[i].nombre, rol, q[i] && q[i].id));
       });
     } else if (dep === 'NBA') {
       [0, 1].forEach((L) => {
-        const tit = pla[L].filter((a) => a.titular).concat(pla[L].filter((a) => !a.titular));
-        fBasket.forEach(([rol, x, y], i) => pon(L, i, L === 0 ? x : 105 - x, y, tit[i] && tit[i].n, tit[i] && tit[i].nombre, rol));
+        const cinco = enJ[L].map((id) => por(L, id)).filter(Boolean), tit = cinco.length >= 5 ? cinco : pla[L].filter((a) => a.titular).concat(pla[L].filter((a) => !a.titular));
+        fBasket.forEach(([rol, x, y], i) => pon(L, i, L === 0 ? x : 105 - x, y, tit[i] && tit[i].n, tit[i] && tit[i].nombre, rol, tit[i] && tit[i].id));
       });
     } else if (dep === 'NFL') {
       const ld = (datos && datos.lideres) || [{}, {}];
@@ -365,7 +400,7 @@
     let s = '<svg class="cancha-svg pista-svg" viewBox="0 0 105 ' + alto + '" role="img" aria-label="Cancha en vivo" data-pista="' + esc(k) + '" data-firma="' + esc(firma) + '">' + FONDO[fam](c) + '<g class="marcas">' + marcasDe(dep, datos, c, ahora) + '</g>';
     if (dep === 'NFL') s += '<line class="p-los" x1="-5" y1="0" x2="-5" y2="46.7"/><line class="p-fd" x1="-5" y1="0" x2="-5" y2="46.7"/>';
     js.forEach((j) => {
-      s += '<g class="jug" data-key="' + esc(j.key) + '" data-lado="' + j.lado + '" data-rol="' + esc(j.rol) + '" data-bx="' + j.x.toFixed(2) + '" data-by="' + j.y.toFixed(2) + '" style="transform:translate(' + j.x.toFixed(2) + 'px,' + j.y.toFixed(2) + 'px)">' +
+      s += '<g class="jug" data-key="' + esc(j.key) + '" data-lado="' + j.lado + '" data-rol="' + esc(j.rol) + '" data-id="' + esc(j.id) + '" data-bx="' + j.x.toFixed(2) + '" data-by="' + j.y.toFixed(2) + '" style="transform:translate(' + j.x.toFixed(2) + 'px,' + j.y.toFixed(2) + 'px)">' +
         '<circle class="aro" r="2.4" fill="' + c[j.lado] + '"/><circle class="pto" r="1.05" fill="' + c[j.lado] + '"/><text y=".75" class="num">' + esc(j.n) + '</text><text y="5" class="nom">' + esc(j.nombre) + '</text></g>';
     });
     const bola = fam === 'NHL' ? '<ellipse rx="1" ry=".75" class="disco"/><ellipse rx="1.9" ry="1.5" class="halo"/>'
@@ -376,7 +411,8 @@
     s += '<g class="gol-aviso"><text x="52.5" y="' + (altoL + 3).toFixed(1) + '"></text></g>';
     if (letrero) s += '<g class="letrero"><rect x="32.5" y="' + (altoL - 7).toFixed(1) + '" width="40" height="14" rx="3"/><text x="52.5" y="' + (altoL + 2.2).toFixed(1) + '">' + letrero + '</text></g>';
     s += '</svg>';
-    const chip = ult && ICONO[fam] ? etiqueta(fam, ult, datos.nombres) : (fam === 'Tenis' ? '🎾 <b>En vivo</b>' : (ICONO[fam] || '') + ' <b>En vivo</b>');
+    const setsTxt = fam === 'Tenis' && v && v.g && (v.g[0] || v.g[1]) ? ' · sets ' + v.g[0] + '-' + v.g[1] : '';
+    const chip = ult && ICONO[fam] ? etiqueta(fam, ult, datos.nombres) : (fam === 'Tenis' ? '🎾 <b>' + esc((v && v.detalle) || 'En vivo') + '</b>' + setsTxt : (ICONO[fam] || '') + ' <b>En vivo</b>');
     const ley = LEY[fam] ? '<div class="cancha-ley" title="El movimiento es una animación; lo que anotan sale de lo que de verdad pasó.">' + LEY[fam] + '</div>' : '';
     return '<div class="cancha cancha-' + fam.toLowerCase() + '"><div class="cancha-ult"><span class="chip-ult">' + chip + '</span></div>' + s + ley + tira(dep, v, datos, c, L, V, k) + '</div>';
   }
@@ -407,7 +443,7 @@
     const antes = {}; (m.js || []).forEach((q) => { antes[q.key] = q; });
     m.js = [...svg.querySelectorAll('.jug[data-key]')].map((j) => {
       const key = j.dataset.key, a = antes[key], lado = Number(j.dataset.lado), x0 = Number(j.dataset.bx), y0 = Number(j.dataset.by);
-      return { key, lado, rol: j.dataset.rol, dir: lado === 0 ? 1 : -1, x0, y0, cx: a ? a.cx : x0, cy: a ? a.cy : y0, vx: a ? a.vx : 0, vy: a ? a.vy : 0, tx: a ? a.tx : x0, ty: a ? a.ty : y0, rx: lado === 0 ? 1 : -1, ry: 0, fase: Math.random() * 6.283 };
+      return { key, lado, id: j.dataset.id || '', rol: j.dataset.rol, dir: lado === 0 ? 1 : -1, x0, y0, cx: a ? a.cx : x0, cy: a ? a.cy : y0, vx: a ? a.vx : 0, vy: a ? a.vy : 0, tx: a ? a.tx : x0, ty: a ? a.ty : y0, rx: lado === 0 ? 1 : -1, ry: 0, fase: Math.random() * 6.283 };
     });
     m.firma = svg.dataset.firma;
     m.t = m.t || 0; m.prox = m.t; m.proxA = m.t; m.proxJ = m.t;
@@ -430,6 +466,8 @@
     m.port = null; m.portador = null;
     if (conLinea) { m.pase = [x0, y0, x1, y1]; m.paseN = (m.paseN || 0) + 1; }
   }
+  // el del dibujo pasa a ser quien de verdad hizo la jugada (ESPN no siempre trae a todos en la lista)
+  function nombrar(m, q, nombre, n) { (m.nombres = m.nombres || {})[q.key] = { nombre: nombre || '', n: n == null ? '' : n }; m.nombresN = (m.nombresN || 0) + 1; }
   function dar(m, q) { m.port = q; m.portador = q ? q.key : null; m.vuelo = null; if (q) m.bt = null; }
 
   // ------------- el flujo: NHL y NBA (como el fútbol)
@@ -493,7 +531,15 @@
   // una jugada real: `pasos` son [segundos, función] que se van cumpliendo
   function pasosDe(m, q) {
     const fam = m.fam, atk = q.lado, x = q.x, y = q.y, tiene = x != null, redX = atk === 0 ? (fam === 'NHL' ? 99.2 : 98.4) : (fam === 'NHL' ? 5.8 : 6.6), redY = fam === 'NHL' ? 22.3 : 27.95, t = q.t;
-    const tirador = () => (atk == null ? null : cerca(m.js.filter((j) => j.lado === atk && j.rol !== 'G'), x == null ? m.bx : x, y == null ? m.by : y)[0]);
+    const tirador = () => {
+      if (atk == null) return null;
+      const id = q.part && q.part[0], real = id && m.js.find((j) => j.id === id);
+      if (real) return real;
+      const j = cerca(m.js.filter((z) => z.lado === atk && z.rol !== 'G'), x == null ? m.bx : x, y == null ? m.by : y)[0];
+      const d = m.datos || {};
+      if (j && id && d.nombres && d.nombres[id]) { j.id = id; nombrar(m, j, d.nombres[id], (d.numeros || {})[id]); }
+      return j;
+    };
     const enLugar = (j) => { if (j && tiene) { j.tx = x; j.ty = y; } };
     const rebote = (lado, gx, gy) => { const r = cerca(m.js.filter((j) => j.lado === lado), gx, gy)[0]; if (r) lanzar(m, r, false); };
     const otro = atk === 0 ? 1 : 0;
@@ -505,12 +551,12 @@
       }
       if (/Goal/.test(t)) {
         const j = tirador();
-        return [[0, () => { m.fijo = true; enLugar(j); dar(m, j); }], [0.7, () => { lanzar(m, null, true, [redX, redY + azar(-1, 1)], 95); aviso(m, '¡GOL!', 3.5); }], [3.6, () => { dar(m, null); m.bt = [52.5, 22.3]; }], [4.6, () => { m.fijo = false; m.bt = null; }]];
+        return [[0, () => { m.fijo = true; enLugar(j); dar(m, j); }], [0.9, () => { lanzar(m, null, true, [redX, redY + azar(-1, 1)], 95); aviso(m, '¡GOL!', 3.5); }], [3.6, () => { dar(m, null); m.bt = [52.5, 22.3]; }], [4.6, () => { m.fijo = false; m.bt = null; }]];
       }
       if (/^Shot|Missed|Blocked/.test(t)) {
         const j = tirador(), def = m.js.find((g) => g.lado === otro && g.rol === 'G');
         const dest = /Missed/.test(t) ? [redX, redY + (Math.random() < 0.5 ? -8 : 8)] : /Blocked/.test(t) && tiene ? [x + (atk === 0 ? 5 : -5), y] : [def ? def.cx : redX, redY + azar(-1.5, 1.5)];
-        return [[0, () => { m.fijo = true; enLugar(j); dar(m, j); }], [0.6, () => { lanzar(m, null, true, dest, 90); }], [1.4, () => { m.fijo = false; rebote(otro, dest[0], dest[1]); }]];
+        return [[0, () => { m.fijo = true; enLugar(j); dar(m, j); }], [0.9, () => { lanzar(m, null, true, dest, 90); }], [1.7, () => { m.fijo = false; rebote(otro, dest[0], dest[1]); }]];
       }
       if (/Hit/.test(t)) { const j = tirador(); return [[0, () => { enLugar(j); if (tiene) m.bt = [x, y]; }], [0.9, () => { m.bt = null; }]]; }
       if (/Giveaway|Takeaway/.test(t)) {
@@ -529,7 +575,7 @@
     }
     if (/Shot|Layup|Dunk|Jumper|Hook|Tip/.test(t)) {
       const j = tirador(), val = q.val || 2;
-      return [[0, () => { m.fijo = true; enLugar(j); dar(m, j); }], [0.7, () => { lanzar(m, null, true, [redX, q.anota ? redY : redY + azar(-3, 3)], 42); if (q.anota) aviso(m, '+' + val, 1.3); }], [1.6, () => { m.fijo = false; if (q.anota) rebote(otro, redX, redY); }]];
+      return [[0, () => { m.fijo = true; enLugar(j); dar(m, j); }], [1, () => { lanzar(m, null, true, [redX, q.anota ? redY : redY + azar(-3, 3)], 42); if (q.anota) aviso(m, '+' + val, 1.3); }], [1.9, () => { m.fijo = false; if (q.anota) rebote(otro, redX, redY); }]];
     }
     if (/Rebound/.test(t)) {
       const j = tirador();
@@ -546,6 +592,8 @@
     const js = (m.datos && m.datos.jugadas) || [];
     if (!m.guion && m.t >= m.proxJ) {
       m.proxJ = m.t + 0.25;
+      const pend = js.filter((q) => !m.vistas.has(q.id));
+      if (pend.length > 8) pend.slice(0, -8).filter((q) => !q.anota).forEach((q) => m.vistas.add(q.id));
       const nueva = js.find((q) => !m.vistas.has(q.id));
       if (nueva) {
         m.vistas.add(nueva.id);
@@ -604,6 +652,11 @@
     const rutas = () => wrs.forEach((w, i) => { w.tx = m.losX + dir * azar(8, 19); w.ty = entre(4, w.cy + (i % 2 ? 1 : -1) * azar(2, 12), 42.7); });
     const presion = () => de.forEach((d, i) => { if (i < 4 && qb) { d.tx = qb.cx + dir * 1.5; d.ty = qb.cy + (i - 1.5) * 2; } else { const w = wrs[i % wrs.length]; if (w) { d.tx = w.tx + dir * 1.5; d.ty = w.ty + azar(-1, 1); } } });
     const fin = real ? yardaAx(entre(0, real.ydF == null ? 50 : real.ydF, 100), real.lado) : null;
+    if (real) {
+      const [juega, recibe] = nombresNfl(real.txt);
+      if (pases) { if (juega && qb) nombrar(m, qb, juega, ''); } else if (juega && rb) nombrar(m, rb, juega, '');
+      if (recibe && wrs[0]) m.receptor = recibe;
+    }
     const guion = [[0, () => { dar(m, qb); m.bt = null; }]];
     if (real && /Punt|Kickoff|Field Goal/i.test(real.t)) {
       const larga = /Field Goal/i.test(real.t);
@@ -614,6 +667,7 @@
       if (real && /Sack/i.test(real.t)) guion.push([1.9, () => { const c = de[0]; if (c && qb) { c.tx = qb.cx; c.ty = qb.cy; } }]);
       else {
         const w = wrs[Math.floor(Math.random() * wrs.length)];
+        if (real && m.receptor && w) { nombrar(m, w, m.receptor, ''); m.receptor = null; }
         guion.push([1.8, () => { if (w) lanzar(m, w, true, null, 30); }]);
         if (!real || !/Incompletion/i.test(real.t)) guion.push([3, () => { if (w && m.port === w) { const meta = fin == null ? w.cx + dir * azar(2, 5) : fin; w.rx = dir; w.ry = 0; w.tx = meta; m.corre = meta; } }]);
       }
@@ -653,18 +707,25 @@
   function beisRoles(m) {
     const b = (BEIS[m.clave] || {}).d;
     const por = (r) => m.js.find((q) => q.rol === r);
+    const ids = b ? b.ids : [null, null, null], ant = m.idsB;
     ['r1', 'r2', 'r3'].forEach((r, i) => {
-      const q = por(r), hay = b ? b['en' + (i + 1)] : false;
+      const q = por(r), id = ids[i];
       if (!q) return;
-      q.oculto = !hay;
-      if (hay) { q.tx = BASES[i][0] - (i === 0 ? 1.3 : 0); q.ty = BASES[i][1] + 1.5; if (q.cx < 0) { q.cx = HOME[0]; q.cy = HOME[1]; } } else { q.cx = q.tx = -5; q.cy = q.ty = -5; q.vx = q.vy = 0; }
+      q.oculto = !id;
+      if (!id) { q.cx = q.tx = -5; q.cy = q.ty = -5; q.vx = q.vy = 0; return; }
+      const sitio = [BASES[i][0], BASES[i][1] - 0.2];
+      // recién abierta la tarjeta ya está en su base; si cambió, corre desde la base donde estaba o desde home (si acaba de batear)
+      if (!ant) { q.cx = sitio[0]; q.cy = sitio[1]; q.vx = q.vy = 0; }
+      else if (ant[i] !== id) { const j = ant.indexOf(id), o = j >= 0 ? BASES[j] : HOME; q.cx = o[0]; q.cy = o[1]; q.vx = q.vy = 0; }
+      q.tx = sitio[0]; q.ty = sitio[1];
     });
+    if (b) m.idsB = ids;
     return b;
   }
   function beis(m) {
     const b = beisRoles(m);
     const pit = m.js.find((q) => q.rol === 'p'), ca = m.js.find((q) => q.rol === 'ca'), bat = m.js.find((q) => q.rol === 'bat');
-    if (bat) { bat.tx = 49.8; bat.ty = 72.5; }
+    if (bat && !m.guion) { bat.tx = 49.8; bat.ty = 72.5; }
     if (m.guion) {
       while (m.guion.length && m.t >= m.guion[0].en) m.guion.shift().f();
       if (!m.guion.length) m.guion = null;
@@ -790,6 +851,15 @@
       if (b) b.classList.add('portador');
       svg._port = m.portador;
     }
+    if (svg._nombresN !== m.nombresN) {
+      svg._nombresN = m.nombresN;
+      Object.entries(m.nombres || {}).forEach(([k, x]) => {
+        const el = svg._els[k]; if (!el) return;
+        const a = el.querySelector('.nom'), b = el.querySelector('.num');
+        if (a) a.textContent = x.nombre;
+        if (b) b.textContent = x.n;
+      });
+    }
     if (svg._balon) svg._balon.style.transform = 'translate(' + m.bx.toFixed(2) + 'px,' + m.by.toFixed(2) + 'px)';
     const ln = svg._pase;
     if (ln && svg._paseN !== m.paseN) {
@@ -830,7 +900,9 @@
     if (svg._b !== chip) {
       svg._b = chip;
       const nom = (r, n) => { const q = m.js.find((z) => z.rol === r); const el = q && svg._els[q.key]; const t = el && el.querySelector('.nom'); if (t) t.textContent = n || ''; };
-      nom('bat', b.bateador); nom('p', b.lanzador); ['ca', 'c1b', 'c2b', 'c3b', 'ss', 'lf', 'cf', 'rf'].forEach((r) => nom(r, (b.nombres || {})[r]));
+      nom('bat', b.bateador); nom('p', b.lanzador); ['ca', 'c1b', 'c2b', 'c3b', 'ss', 'lf', 'cf', 'rf', 'r1', 'r2', 'r3'].forEach((r) => nom(r, (b.nombres || {})[r]));
+      // bateador, lanzador y corredores siempre con su nombre: es lo que de verdad se sabe
+      ['bat', 'p', 'r1', 'r2', 'r3'].forEach((r) => { const q = m.js.find((z) => z.rol === r), el = q && svg._els[q.key]; if (el) el.classList.add('nombrado'); });
       svg.querySelectorAll('.base').forEach((el) => { el.classList.toggle('ocupada', !!b['en' + el.dataset.base]); });
       // el que batea va de su color; el fildeo, del otro
       const c = (m.v && m.v.colores) || null;

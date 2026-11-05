@@ -1285,3 +1285,4 @@ button.arm-pata:active { background: rgba(255,255,255,.04); }
 .p-linea tr + tr th:first-child { text-align: left; color: var(--texto); font-weight: 700; max-width: 92px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .p-linea td { color: var(--texto); }
 .p-linea .t { font-weight: 800; background: rgba(255,255,255,.05); }
+.cancha-svg .jug.nombrado .nom { opacity: 1; }

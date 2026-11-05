@@ -48,6 +48,17 @@ def test_no_se_inventa_lo_que_cuenta():
     assert P.count("aviso(m, '¡GOL!'") == 1 and "aviso(m, '¡JONRÓN!'" in P and 'if (real && real.anota)' in P
 
 
+def test_lo_que_tiene_que_ser_real():
+    # el usuario: «si hay alguien en primera, sí está en primera»
+    assert "ids: [(of.first || {}).id || null, (of.second || {}).id || null, (of.third || {}).id || null]," in P
+    assert 'if (!ant) { q.cx = sitio[0]; q.cy = sitio[1];' in P and 'const j = ant.indexOf(id), o = j >= 0 ? BASES[j] : HOME;' in P
+    assert "classList.toggle('ocupada', !!b['en' + el.dataset.base])" in P and "el.classList.add('nombrado')" in P
+    # los que están en juego y quien hace cada jugada
+    assert 'function enHielo(d, n1)' in P and 'function enCancha(js, pl)' in P and 'real = id && m.js.find((j) => j.id === id);' in P
+    # la línea de golpeo y el primer intento salen de la jugada real
+    assert 'm.losX = yardaAx(entre(0, u.ydF, 100), m.of);' in P and 'Number(u.dist) * 0.875' in P
+
+
 def test_todo_en_espanol():
     for t in ('Saque de centro', 'Tiro a puerta', 'Pérdida', 'Tiempo muerto', 'Pase completo', 'Captura', 'Jonrón', 'Ponche', 'Gol de campo fallado'):
         assert t in P
