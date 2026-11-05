@@ -9685,10 +9685,7 @@ fecha,partido,clave_liga,equipo,lado,mercado,linea,c_mas,c_menos,p_casa,p_mod,ap
 2026-11-04,Bristol City vs Wolves,eng_championship,Wolves,visitante,a_puerta,4.5,2.05,1.647,0.4455,0.4811,,vivo,,2026-11-04T19:05:33Z
 2026-11-04,Bristol City vs Wolves,eng_championship,Wolves,visitante,a_puerta,5.5,2.857,1.333,0.3181,0.3172,,vivo,,2026-11-04T19:05:33Z
 2026-11-05,Aldosivi vs River Plate,argentina,Aldosivi,local,tiros,11.5,1.889,1.727,0.4776,0.3935,,vivo,,2026-11-04T19:05:33Z
-2026-11-05,Aldosivi vs River Plate,argentina,Aldosivi,local,a_puerta,3.5,2.05,1.615,0.4407,0.3733,,vivo,,2026-11-04T19:05:33Z
 2026-11-04,Athletico-PR vs Vasco,brasil,Athletico-PR,local,a_puerta,6.5,2.857,1.333,0.3181,0.2854,,vivo,,2026-11-04T20:41:31Z
-2026-11-05,Aldosivi vs River Plate,argentina,Aldosivi,local,tiros,10.5,1.692,1.923,0.532,0.4888,,vivo,,2026-11-04T20:41:31Z
-2026-11-05,Aldosivi vs River Plate,argentina,River Plate,visitante,tiros,16.5,1.714,1.9,0.5257,0.4661,,vivo,,2026-11-04T20:41:31Z
 2026-11-04,Flamengo RJ vs Gremio,brasil,Flamengo RJ,local,tiros,20.5,1.615,2.083,0.5633,0.6046,,vivo,,2026-11-04T22:22:03Z
 2026-11-04,Flamengo RJ vs Gremio,brasil,Flamengo RJ,local,tiros,21.5,1.818,1.846,0.5038,0.5465,,vivo,,2026-11-04T22:22:03Z
 2026-11-04,Flamengo RJ vs Gremio,brasil,Flamengo RJ,local,tiros,22.5,2.05,1.636,0.4438,0.4888,,vivo,,2026-11-04T22:22:03Z
@@ -9737,25 +9734,45 @@ fecha,partido,clave_liga,equipo,lado,mercado,linea,c_mas,c_menos,p_casa,p_mod,ap
 2026-11-05,Sao Paulo vs Corinthians,brasil,Corinthians,visitante,a_puerta,2.5,1.455,2.429,0.6254,0.7899,,vivo,,2026-11-04T23:55:17Z
 2026-11-05,Sao Paulo vs Corinthians,brasil,Corinthians,visitante,a_puerta,3.5,2.0,1.68,0.4565,0.613,,vivo,,2026-11-04T23:55:17Z
 2026-11-05,Sao Paulo vs Corinthians,brasil,Corinthians,visitante,a_puerta,4.5,3.0,1.308,0.3036,0.4276,,vivo,,2026-11-04T23:55:17Z
-2026-11-05,Aldosivi vs River Plate,argentina,Aldosivi,local,tiros,9.5,1.786,1.818,0.5044,0.6046,más,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Aldosivi vs River Plate,argentina,Aldosivi,local,a_puerta,2.5,1.538,2.167,0.5849,0.632,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Aldosivi vs River Plate,argentina,River Plate,visitante,tiros,15.5,1.818,1.786,0.4956,0.5673,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Aldosivi vs River Plate,argentina,River Plate,visitante,a_puerta,5.5,1.6,2.05,0.5616,0.5745,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Palmeiras vs Remo,brasil,Palmeiras,local,tiros,19.5,1.583,2.143,0.5751,0.4855,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Palmeiras vs Remo,brasil,Palmeiras,local,tiros,20.5,1.778,1.889,0.5151,0.4231,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Palmeiras vs Remo,brasil,Palmeiras,local,tiros,21.5,2.0,1.667,0.4546,0.364,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Palmeiras vs Remo,brasil,Palmeiras,local,a_puerta,6.5,1.546,2.2,0.5873,0.5858,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Palmeiras vs Remo,brasil,Palmeiras,local,a_puerta,7.5,1.95,1.727,0.4697,0.4482,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Palmeiras vs Remo,brasil,Palmeiras,local,a_puerta,8.5,2.5,1.429,0.3637,0.3227,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Palmeiras vs Remo,brasil,Remo,visitante,tiros,8.5,1.583,2.143,0.5751,0.5995,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Palmeiras vs Remo,brasil,Remo,visitante,tiros,9.5,1.889,1.778,0.4849,0.4928,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Palmeiras vs Remo,brasil,Remo,visitante,tiros,10.5,2.25,1.53,0.4048,0.3912,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Palmeiras vs Remo,brasil,Remo,visitante,a_puerta,1.5,1.308,3.0,0.6964,0.8119,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Palmeiras vs Remo,brasil,Remo,visitante,a_puerta,2.5,1.846,1.818,0.4962,0.6007,,vivo,,2026-11-05T04:44:30Z
-2026-11-05,Palmeiras vs Remo,brasil,Remo,visitante,a_puerta,3.5,2.8,1.35,0.3253,0.3845,,vivo,,2026-11-05T04:44:30Z
-2026-11-06,Cruzeiro vs Bahia,brasil,Cruzeiro,local,tiros,17.5,1.867,1.8,0.4909,0.5102,,vivo,,2026-11-05T04:44:30Z
-2026-11-06,Cruzeiro vs Bahia,brasil,Cruzeiro,local,a_puerta,6.5,2.0,1.692,0.4583,0.5719,,vivo,,2026-11-05T04:44:30Z
-2026-11-06,Cruzeiro vs Bahia,brasil,Bahia,visitante,tiros,12.5,1.818,1.846,0.5038,0.4783,,vivo,,2026-11-05T04:44:30Z
-2026-11-06,Cruzeiro vs Bahia,brasil,Bahia,visitante,a_puerta,3.5,1.6,2.143,0.5725,0.5602,,vivo,,2026-11-05T04:44:30Z
-2026-11-07,Pisa vs Sudtirol,ita_serie_b,Sudtirol,visitante,tiros,0.5,1.6,2.2,0.5789,0.9999,más,vivo,,2026-11-05T04:44:30Z
-2026-11-07,Pisa vs Sudtirol,ita_serie_b,Sudtirol,visitante,tiros,1.5,3.75,1.222,0.2458,0.9989,,vivo,,2026-11-05T04:44:30Z
+2026-11-05,Aldosivi vs River Plate,argentina,Aldosivi,local,tiros,8.5,1.538,2.222,0.591,0.6881,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Aldosivi vs River Plate,argentina,Aldosivi,local,tiros,9.5,1.818,1.818,0.5,0.5894,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Aldosivi vs River Plate,argentina,Aldosivi,local,tiros,10.5,2.167,1.571,0.4203,0.4893,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Aldosivi vs River Plate,argentina,Aldosivi,local,a_puerta,1.5,1.182,3.75,0.7603,0.8097,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Aldosivi vs River Plate,argentina,Aldosivi,local,a_puerta,2.5,1.538,2.167,0.5849,0.5974,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Aldosivi vs River Plate,argentina,Aldosivi,local,a_puerta,3.5,2.167,1.538,0.4151,0.381,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Aldosivi vs River Plate,argentina,River Plate,visitante,tiros,14.5,1.6,2.1,0.5676,0.6336,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Aldosivi vs River Plate,argentina,River Plate,visitante,tiros,15.5,1.818,1.818,0.5,0.5606,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Aldosivi vs River Plate,argentina,River Plate,visitante,tiros,16.5,2.1,1.6,0.4324,0.4878,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Aldosivi vs River Plate,argentina,River Plate,visitante,a_puerta,4.5,1.32,2.833,0.6822,0.7011,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Aldosivi vs River Plate,argentina,River Plate,visitante,a_puerta,5.5,1.6,2.05,0.5616,0.5477,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Aldosivi vs River Plate,argentina,River Plate,visitante,a_puerta,6.5,2.083,1.583,0.4318,0.3968,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Palmeiras vs Remo,brasil,Palmeiras,local,tiros,19.5,1.583,2.143,0.5751,0.4855,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Palmeiras vs Remo,brasil,Palmeiras,local,tiros,20.5,1.778,1.889,0.5151,0.4231,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Palmeiras vs Remo,brasil,Palmeiras,local,tiros,21.5,2.0,1.667,0.4546,0.364,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Palmeiras vs Remo,brasil,Palmeiras,local,a_puerta,6.5,1.546,2.2,0.5873,0.5858,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Palmeiras vs Remo,brasil,Palmeiras,local,a_puerta,7.5,1.95,1.727,0.4697,0.4482,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Palmeiras vs Remo,brasil,Palmeiras,local,a_puerta,8.5,2.5,1.429,0.3637,0.3227,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Palmeiras vs Remo,brasil,Remo,visitante,tiros,8.5,1.583,2.143,0.5751,0.5995,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Palmeiras vs Remo,brasil,Remo,visitante,tiros,9.5,1.889,1.778,0.4849,0.4928,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Palmeiras vs Remo,brasil,Remo,visitante,tiros,10.5,2.25,1.53,0.4048,0.3912,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Palmeiras vs Remo,brasil,Remo,visitante,a_puerta,1.5,1.308,3.0,0.6964,0.8119,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Palmeiras vs Remo,brasil,Remo,visitante,a_puerta,2.5,1.846,1.818,0.4962,0.6007,,vivo,,2026-11-05T06:20:28Z
+2026-11-05,Palmeiras vs Remo,brasil,Remo,visitante,a_puerta,3.5,2.8,1.35,0.3253,0.3845,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Cruzeiro vs Bahia,brasil,Cruzeiro,local,tiros,16.5,1.636,2.05,0.5562,0.5793,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Cruzeiro vs Bahia,brasil,Cruzeiro,local,tiros,17.5,1.85,1.818,0.4956,0.5102,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Cruzeiro vs Bahia,brasil,Cruzeiro,local,tiros,18.5,2.1,1.6,0.4324,0.4427,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Cruzeiro vs Bahia,brasil,Cruzeiro,local,a_puerta,5.5,1.571,2.167,0.5797,0.7088,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Cruzeiro vs Bahia,brasil,Cruzeiro,local,a_puerta,6.5,2.0,1.692,0.4583,0.5719,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Cruzeiro vs Bahia,brasil,Cruzeiro,local,a_puerta,7.5,2.667,1.385,0.3418,0.4338,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Cruzeiro vs Bahia,brasil,Bahia,visitante,tiros,11.5,1.583,2.143,0.5751,0.5674,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Cruzeiro vs Bahia,brasil,Bahia,visitante,tiros,12.5,1.846,1.818,0.4962,0.4783,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Cruzeiro vs Bahia,brasil,Bahia,visitante,tiros,13.5,2.143,1.583,0.4249,0.3934,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Cruzeiro vs Bahia,brasil,Bahia,visitante,a_puerta,2.5,1.25,3.333,0.7273,0.7508,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Cruzeiro vs Bahia,brasil,Bahia,visitante,a_puerta,3.5,1.6,2.143,0.5725,0.5602,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Cruzeiro vs Bahia,brasil,Bahia,visitante,a_puerta,4.5,2.167,1.571,0.4203,0.3729,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Barracas Central vs Racing Club,argentina,Barracas Central,local,tiros,12.5,1.923,1.692,0.468,0.6312,más,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Barracas Central vs Racing Club,argentina,Barracas Central,local,a_puerta,3.5,1.583,2.083,0.5682,0.6715,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Barracas Central vs Racing Club,argentina,Racing Club,visitante,tiros,11.5,1.875,1.733,0.4803,0.3758,,vivo,,2026-11-05T06:20:28Z
+2026-11-06,Barracas Central vs Racing Club,argentina,Racing Club,visitante,a_puerta,3.5,1.833,1.778,0.4924,0.5071,,vivo,,2026-11-05T06:20:28Z
+2026-11-07,Pisa vs Sudtirol,ita_serie_b,Sudtirol,visitante,tiros,0.5,1.6,2.2,0.5789,0.9999,más,vivo,,2026-11-05T06:20:28Z
+2026-11-07,Pisa vs Sudtirol,ita_serie_b,Sudtirol,visitante,tiros,1.5,3.75,1.222,0.2458,0.9989,,vivo,,2026-11-05T06:20:28Z

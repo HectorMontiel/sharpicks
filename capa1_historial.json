@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-05T04:45:38Z",
+"actualizado": "2026-11-05T06:21:36Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23591,6 +23591,26 @@
 "cuota": 2.65,
 "resultado": "rojo",
 "marcador": "0-3"
+},
+{
+"dia": "2026-11-04",
+"nivel": "🏆",
+"deporte": "NBA",
+"partido": "San Antonio Spurs vs Dallas Mavericks",
+"apuesta": "Gana San Antonio Spurs",
+"cuota": 1.14,
+"resultado": "verde",
+"marcador": "112-111"
+},
+{
+"dia": "2026-11-04",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Seattle Kraken vs Calgary Flames",
+"apuesta": "Handicap: Seattle Kraken +2.5",
+"cuota": 1.133,
+"resultado": "verde",
+"marcador": "2-1"
 },
 {
 "dia": "2026-11-04",
