@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-05T08:01:43Z",
+"actualizado": "2026-11-05T09:35:37Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23701,6 +23701,16 @@
 "cuota": 1.31,
 "resultado": "verde",
 "marcador": "5-0"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Pridankina E. vs Shubladze A.",
+"apuesta": "Gana Shubladze A.",
+"cuota": 1.55,
+"resultado": "verde",
+"marcador": "1-2"
 }
 ]
 }
