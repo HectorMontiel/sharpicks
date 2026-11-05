@@ -1211,3 +1211,12 @@ button.arm-pata:active { background: rgba(255,255,255,.04); }
 .ficha-caja.previa::after { display: none; }
 .ficha-caja.previa .cerrar { top: 0; right: 4px; color: #fff; }
 .ficha-caja.previa .tarjeta { margin: 0; }
+/* v557 - cambiar una sola pata de la combinada */
+.arm-pata-fila { display: flex; align-items: stretch; gap: 6px; }
+.arm-pata-fila button.arm-pata { flex: 1; width: auto; min-width: 0; }
+.arm-cambiar { flex: 0 0 42px; margin: 4px 0; border-radius: 10px; border: 1px solid var(--borde); background: rgba(255,255,255,.06); color: var(--texto); font-size: 20px; line-height: 1; cursor: pointer; }
+.arm-cambiar:active { background: rgba(255,255,255,.14); }
+.arm-cambiar { display: flex; align-items: center; justify-content: center; padding: 0; }
+.arm-cambiar .ic { width: 18px; height: 18px; }
+.arm-ayuda .ic { width: 13px; height: 13px; vertical-align: -2px; }
+.arm-ayuda { margin: 8px 0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }

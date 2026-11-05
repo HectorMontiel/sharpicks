@@ -2150,7 +2150,7 @@
   //   2. la IA: la pata que ve «en contra» se descarta y entra la siguiente más probable; la que ve
   //      «a favor» lo dice. Sin análisis de la IA (o sin VIP) la pata queda «sin revisar».
   // La probabilidad de la combinada es el producto (partidos distintos): baja con cada pata y se dice.
-  estado.arm = { niv: new Set(['Diamante', 'Platino']), n: 3, res: null, dias: null, deps: null, partidos: new Set(), busca: '', verPar: false };
+  estado.arm = { niv: new Set(['Diamante', 'Platino']), n: 3, res: null, dias: null, deps: null, partidos: new Set(), busca: '', verPar: false, quitadas: new Set() };
   // v540 — el usuario: «la combinada debe poder escoger partidos y deportes de hoy, mañana y pasado». Días (varios a la
   // vez), deportes y, si quiere, partidos concretos: los que marque entran sí o sí y el modelo completa el resto.
   const ARM_DIAS = [['hoy', 'Hoy'], ['manana', 'Mañana'], ['pasado', 'Pasado']];
@@ -2191,7 +2191,7 @@
   // v540 — el gratis ya puede mezclar niveles: 🥇 Oro sin costo; las patas de los demás se desbloquean con monedas por su cuota
   const armNiveles = () => (armVip() || estado.arm.nivGratis ? estado.arm.niv : new Set(['Oro']));
   function armarCombinada() {
-    const sel = armNiveles(), A = estado.arm, base = armBase();
+    const sel = armNiveles(), A = estado.arm, base = armBase().filter((p) => !A.quitadas.has(p.id));
     const mejor = new Map(), elegidos = new Map();
     base.forEach((p) => {
       const k = clavePartido(p);
@@ -2214,6 +2214,29 @@
       patas.push({ p, v });
     }
     return { patas, fuera, disponibles: cands.length };
+  }
+  // v557 — el usuario: «si no quiero alguna pata, que pueda refrescar sólo esa y salga otra sugerida con mucha
+  // probabilidad; y si ya no hay, que vaya poniendo la que sugiera». Las demás patas no se mueven. Orden: el mismo de
+  // armar (morado y probabilidad), primero otros partidos de los niveles elegidos, luego otra apuesta del mismo
+  // partido y, si ya no hay, los otros niveles. Un partido marcado «sí o sí» busca primero otra apuesta de ese partido.
+  function cambiarPata(id) {
+    const A = estado.arm, r = A.res; if (!r) return;
+    const i = r.patas.findIndex((x) => x.p.id === id); if (i < 0) return;
+    const kv = clavePartido(r.patas[i].p), marcado = A.partidos.has(kv), sel = armNiveles();
+    const quedan = new Set(r.patas.filter((x, j) => j !== i).map((x) => clavePartido(x.p)));
+    const tanda = (p) => {
+      const misma = clavePartido(p) === kv;
+      if (misma && marcado) return 0;
+      const libre = !armVip() && !p.premium && nivel(p).n !== 'Diamante';
+      return (sel.has(nivel(p).n) || libre ? 1 : 3) + (misma ? 1 : 0);
+    };
+    const orden = (a, b) => (tanda(a) - tanda(b)) || (iaSegura(b) - iaSegura(a)) || (Number(b.prob) - Number(a.prob));
+    const nueva = armBase().filter((p) => p.id !== id && !A.quitadas.has(p.id) && !quedan.has(clavePartido(p)) &&
+      veredictoIA(p) !== 'contra' && (!A.soloIA || iaSegura(p))).sort(orden)[0];
+    r.sinMas = !nueva;
+    if (!nueva) return;                     // no hay otra: la pata se queda y se avisa
+    A.quitadas.add(id);
+    r.patas[i] = { p: nueva, v: veredictoIA(nueva) };
   }
   function pintarArmador() {
     const caja = $('armador'); if (!caja) return;
@@ -2248,10 +2271,15 @@
           const [L, V] = lados(p), nv = nivel(p);
           const ia = iaSegura(p);              // v531 — sin morado no se pone nada («“más difícil” les quita credibilidad»)
           // v551 — el usuario: «que al picar el pick me lleve al partido para analizarlo»: cada pata abre su partido
-          return '<button type="button" class="arm-pata' + (ia ? ' ia-' + ia : '') + '" data-ficha="' + esc(p.id) + '" aria-label="Ver el partido"><span class="arm-niv">' + nv.i + '</span><span class="arm-txt"><b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b><small>' +
+          return '<div class="arm-pata-fila"><button type="button" class="arm-pata' + (ia ? ' ia-' + ia : '') + '" data-ficha="' + esc(p.id) + '" aria-label="Ver el partido"><span class="arm-niv">' + nv.i + '</span><span class="arm-txt"><b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b><small>' +
             esc(L) + ' vs ' + esc(V) + ' · ' + esc(horaCdmx(aFecha(p.inicio))) + '</small></span><span class="arm-num"><b>' + Number(p.cuota).toFixed(2) + '</b><small>' + pct(p.prob) + '</small></span>' +
-            (ia ? '<span class="arm-ia ia-' + ia + '">' + ico('sparkles') + (ia === 2 ? ' Modelo + IA: mayor probabilidad' : ' Modelo + IA: a favor') + '</span>' : '') + '<span class="arm-ir">›</span></button>';
+            (ia ? '<span class="arm-ia ia-' + ia + '">' + ico('sparkles') + (ia === 2 ? ' Modelo + IA: mayor probabilidad' : ' Modelo + IA: a favor') + '</span>' : '') + '<span class="arm-ir">›</span></button>' +
+            '<button type="button" class="arm-cambiar" data-arm-cambiar="' + esc(p.id) + '" aria-label="Cambiar sólo esta pata" title="Cambiar sólo esta pata">' + ico('refresh-cw') + '</button></div>';
         }).join('') +
+          // v557 — cómo se usa, si ya no hay otra y cómo devolver las que se quitaron
+          '<p class="tenue chico arm-ayuda"><span>Toca ' + ico('refresh-cw') + ' para cambiar sólo esa pata por la siguiente más probable.</span>' +
+          (A.quitadas.size ? ' <button type="button" class="chip" data-arm-restaurar="1">Devolver ' + A.quitadas.size + (A.quitadas.size === 1 ? ' quitada' : ' quitadas') + '</button>' : '') + '</p>' +
+          (r.sinMas ? '<p class="aviso">Ya no hay otra pata para cambiar con estos filtros. Prueba con otros días o deportes.</p>' : '') +
           (r.fuera.length ? '<div class="arm-fuera">' + MAL() + ' La IA descartó: ' + r.fuera.map((p) => '<b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b> (' + esc(lados(p).join(' vs ')) + ')').join(', ') + ' · entró la siguiente más probable</div>' : '') +
           (r.patas.length < A.n ? '<p class="aviso">Sólo hay ' + r.patas.length + ' patas que cumplan (de partidos distintos y que aún no empiezan).</p>' : '') +
           // v531 — cuántas ve seguras la IA, y armarla sólo con ésas (VIP)
@@ -2514,7 +2542,7 @@
   });
 
   document.addEventListener('click', (e) => {
-    const t = e.target.closest('[data-vista-ir],[data-dia],[data-dep],[data-niv],[data-fase],[data-abrir],[data-liga],[data-ficha],[data-ver-fin],[data-ver-sinpick],[data-ord],[data-fav],[data-arm-niv],[data-arm-n],[data-arm-ir],[data-arm-boleto],[data-arm-soloia],[data-par-k],[data-arm-dia],[data-arm-dep],[data-arm-par],[data-arm-pagar]');
+    const t = e.target.closest('[data-vista-ir],[data-dia],[data-dep],[data-niv],[data-fase],[data-abrir],[data-liga],[data-ficha],[data-ver-fin],[data-ver-sinpick],[data-ord],[data-fav],[data-arm-niv],[data-arm-n],[data-arm-ir],[data-arm-boleto],[data-arm-soloia],[data-arm-cambiar],[data-arm-restaurar],[data-par-k],[data-arm-dia],[data-arm-dep],[data-arm-par],[data-arm-pagar]');
     if (!t) return;
     if (t.hasAttribute('data-ver-fin')) { estado.verFinales = !estado.verFinales; pintar(); return; }
     if (t.hasAttribute('data-ver-sinpick')) { estado.verSinPick = !estado.verSinPick; pintar(); return; }
@@ -2553,6 +2581,8 @@
       estado.arm.soloIA = !estado.arm.soloIA;
       estado.arm.res = armarCombinada(); pintar(); return;
     }
+    if (t.dataset.armCambiar) { cambiarPata(t.dataset.armCambiar); pintar(); return; }   // v557
+    if (t.dataset.armRestaurar) { estado.arm.quitadas.clear(); estado.arm.res = armarCombinada(); pintar(); return; }
     if (t.dataset.armIr) { estado.arm.res = armarCombinada(); pintar(); return; }
     if (t.dataset.armBoleto) {
       if (!(window.SPX && SPX.yo.user)) { if (window.SPX && SPX.avisoApp) SPX.avisoApp('Entra con tu correo para guardar tus combinadas.', 'aviso', 'Hace falta entrar'); return; }
