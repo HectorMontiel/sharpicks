@@ -35,6 +35,9 @@ FS_DIA = 'https://global.flashscore.ninja/2/x/feed/f_%d_%d_3_es-mx_1'
 FS_DEP = {'Fútbol': 1, 'Tenis': 2}
 NO_SE_JUGO = {'STATUS_POSTPONED', 'STATUS_CANCELED', 'STATUS_CANCELLED', 'STATUS_ABANDONED', 'STATUS_SUSPENDED', 'STATUS_DELAYED', 'STATUS_FORFEIT'}
 DIAS = 15                  # v478 — de 10 a 15: el 27-oct quedaban abiertos picks del 15-oct
+# v565 — el usuario: «si se pospusieron, los picks se quedan abiertos hasta que se juegue el partido en la fecha pospuesta; una
+# vez terminados, ya se liquida». Unión La Calera vs Coquimbo se jugó 15 días después: hay que seguir mirándolos más tiempo.
+DIAS_POSPUESTO = 60
 ABIERTOS = 'in.(pendiente,vivo)'   # v478 — el exportador deja «vivo» al que empezó; 395 de 462 se quedaban así
 # horas desde el inicio para darlo por terminado (si la fuente no dice lo contrario)
 DURA = {'Fútbol': 2.5, 'NHL': 3.5, 'NBA': 3.0, 'NFL': 4.0, 'MLB': 4.0, 'Tenis': 4.0}
@@ -382,7 +385,7 @@ def cerrar(locales: List[Dict], url: Optional[str] = None, key: Optional[str] = 
         for pag in range(20):          # v478 — por páginas: Supabase entrega 1000 como máximo (v466)
             r = sesion.get(url.rstrip('/') + '/rest/v1/picks', headers=H, timeout=30, params={
                 'select': 'id,partido,apuesta,deporte,inicio,fecha,espn,tipo', 'estado': ABIERTOS,
-                'inicio': 'gte.' + (ahora - dt.timedelta(days=DIAS)).isoformat(),
+                'inicio': 'gte.' + (ahora - dt.timedelta(days=DIAS_POSPUESTO)).isoformat(),
                 'order': 'id', 'limit': 1000, 'offset': 1000 * pag})
             lote = r.json() if r.ok else []
             pend += lote if isinstance(lote, list) else []

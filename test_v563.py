@@ -278,6 +278,40 @@ def test_liquidar_no_cierra_lo_pospuesto():
     assert lq._espn('soccer/all:1', 'Benfica', 'Lech', S(_espn('STATUS_FULL_TIME')))['g'] == (2, 1)
 
 
+def test_pospuesto_abierto_hasta_que_se_juegue():
+    """v565 — el mismo pick: mientras esté pospuesto no se toca; jugado, se liquida con su marcador real, aunque pasen semanas."""
+    import liquidar_pendientes as lq
+    ini = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=20)).isoformat()
+    fila = {'id': 'x1', 'partido': 'Benfica vs Lech', 'apuesta': 'Gana Lech', 'deporte': 'Fútbol', 'inicio': ini, 'fecha': ini[:10], 'espn': 'soccer/all:1', 'tipo': 'pick'}
+
+    class S:
+        def __init__(self, espn):
+            self.espn, self.parches, self.params = espn, [], None
+
+        def get(self, url, **k):
+            if url.endswith('/picks'):
+                self.params = k.get('params')
+                return type('R', (), {'ok': True, 'json': lambda s: [dict(fila)]})()
+            if url.endswith('/picks_premium'):
+                return type('R', (), {'ok': True, 'json': lambda s: []})()
+            if 'espn' in url:
+                return _Resp(self.espn)
+            raise RuntimeError('sin feed en la prueba')
+
+        def patch(self, url, **k):
+            self.parches.append(k['json'])
+            return type('R', (), {'ok': True})()
+    s = S(_espn('STATUS_POSTPONED', False, 'post', gl=0, gv=0))
+    assert lq.cerrar([], 'http://x', 'k', s) == 0 and s.parches == []
+    # 20 días después sigue en la lista que se revisa (antes eran 15)
+    corte = dt.datetime.fromisoformat(s.params['inicio'].replace('gte.', ''))
+    assert (dt.datetime.now(dt.timezone.utc) - corte).days >= lq.DIAS_POSPUESTO - 1 and lq.DIAS_POSPUESTO >= 45
+    s = S(_espn('STATUS_FULL_TIME', gl=0, gv=2))
+    locales = [dict(fila, estado='pendiente')]
+    assert lq.cerrar(locales, 'http://x', 'k', s) == 1
+    assert s.parches[0]['estado'] == 'verde' and s.parches[0]['marcador'] == '0-2' and locales[0]['estado'] == 'verde'
+
+
 def test_cumplio_pata():
     f = {'corners': (5, 3), 'goals': (2, 0)}
     assert tc.cumplio_pata({'fam': 'corners', 'lado': 'h', 'dir': 'mas', 'linea': 4.5}, f) is True
