@@ -1420,7 +1420,7 @@
       (sim.length ? '<p class="tenue chico">Las de 2 patas del ' + esc(estado.combSim.desde.slice(8)) + ' al ' + esc(estado.combSim.hasta.slice(8)) +
         ' de oct. y las de 3 patas hasta el 29 son el método nuevo con esos partidos reales; después, las publicadas.</p>' : '');
   }
-  function tarjeta(ps) {
+  function tarjeta(ps, previa) {
     const p = ps[0];
     const v = vivoDe(ps);
     const nv = nivel(p);
@@ -1443,7 +1443,7 @@
       penalesHtml(v, L, V) + (v && (v.fase === 'in' || v.fase === 'post') ? cancha(v, p) : '') + pulsoChip(p, v) +   // v460: también al terminar
       seccionStats(compensacion(p, v) + miniStats(v, p)) +
       ps.map((x) => filaPick(x, v, ps.length > 1)).join('') +
-      (ps.some((x) => x.espn) ? '<button class="ver" data-ficha="' + esc((ps.find((x) => x.espn) || p).id) + '">Ver partido →</button>' : '') +
+      (!previa && ps.some((x) => x.espn) ? '<button class="ver" data-ficha="' + esc((ps.find((x) => x.espn) || p).id) + '">Ver partido →</button>' : '') +
       '</article>';
   }
   // v513 — en la tarjeta en vivo, el Pulso gratis: «otro gol» en su tramo medido (lo demás, en «Ver partido»)
@@ -1755,6 +1755,7 @@
 
   // ---------- FICHA DEL PARTIDO (tipo SofaScore) ----------
   let fichaId = null;
+  let fichaPrevia = false;              // v556 — la tarjeta de antes del partido, abierta desde una pata
   // v380 — el usuario: «en los terminados, al picarle en Ver partido no se
   // ven las estadísticas». Lo en vivo sólo pide los partidos en juego; uno
   // terminado se pide a ESPN al abrir su ficha (una vez) y se pinta igual.
@@ -1872,8 +1873,8 @@
     // los picks; las tarjetas de «sólo análisis» viven aparte. Ahora busca en las dos.
     const todos = estado.picks.concat(estado.analisis || []);
     const p = todos.find((x) => x.id === id); if (!p) return;
-    fichaId = id;
-    if (p.espn && !estado.vivo[p.espn]) { pedirResumen(p).then(() => { if (fichaId === id) ficha(id); pintar(); }); }
+    fichaId = id; fichaPrevia = false; $('ficha-cuerpo').classList.remove('previa');
+    if (p.espn && !estado.vivo[p.espn]) { pedirResumen(p).then(() => { if (fichaId === id && !fichaPrevia) ficha(id); pintar(); }); }
     const v = estado.vivo[p.espn];
     const [L, V] = lados(p);
     const otras = (agrupar(todos.filter((x) => clavePartido(x) === clavePartido(p) && !x.solo_analisis))[0]) || [];
@@ -1924,7 +1925,26 @@
     $('ficha-cuerpo').setAttribute('style', varsColor(v));
     $('ficha').hidden = false;
   }
-  function refrescarFicha() { if (fichaId && !$('ficha').hidden) ficha(fichaId); }
+  // v556 — el usuario, sobre la pata de una combinada: «yo no quiero que se abra esta tarjeta; la que se debe abrir es
+  // para ver las estadísticas previas al partido y el análisis con IA». Antes de empezar, la tarjeta completa de Picks
+  // (📋 Antes del partido y 🤖 Análisis IA) encima de Combinadas; ya empezado o terminado, la ficha de siempre.
+  function abrirPata(id) {
+    const todos = estado.picks.concat(estado.analisis || []);
+    const p = todos.find((x) => x.id === id); if (!p) return;
+    const ps = agrupar(todos.filter((x) => clavePartido(x) === clavePartido(p) && !x.solo_analisis))[0] || [p];
+    if (faseDe(ps) !== 'proximo') { ficha(id); return; }
+    let html;
+    try { html = '<button class="cerrar" data-cerrar>✕</button>' + tarjeta(ps, true); }
+    catch (e) { console.warn('[sharpicks] tarjeta de la pata', e); ficha(id); return; }
+    const c = $('ficha-cuerpo');
+    // al repintarse (desbloquear, sesión, marcadores) las secciones se quedan como el usuario las dejó
+    const abiertas = fichaPrevia && fichaId === id ? [...c.querySelectorAll('details')].map((d) => d.open) : [];
+    fichaId = id; fichaPrevia = true;
+    c.innerHTML = html; c.classList.add('previa'); c.removeAttribute('style');
+    c.querySelectorAll('details').forEach((d, i) => { if (abiertas[i]) d.open = true; });
+    $('ficha').hidden = false;
+  }
+  function refrescarFicha() { if (fichaId && !$('ficha').hidden) { if (fichaPrevia) abrirPata(fichaId); else ficha(fichaId); } }
 
   // ---------- PINTAR ----------
   // ---------- v380: LA PÁGINA COMO APP ----------
@@ -2460,7 +2480,7 @@
       (n === 1 ? ' partido hoy' : ' partidos hoy') + ', pero ninguno llegó a nuestro mínimo de probabilidad. Preferimos no darte un pick flojo.</div>').join(''));
   }
 
-  window.SP = { pulsoIA: () => { if (estado.vista === 'vivo') pintar(); refrescarFicha(); }, nivel, pintar, estado, estadoVisto: (p) => estadoVisto(p), realDe: (p) => realDe(p), ico, icoDep, pedirResumen: (p) => pedirResumen(p) };   // v452: «Mis combinadas» usa lo mismo
+  window.SP = { pulsoIA: () => { if (estado.vista === 'vivo') pintar(); refrescarFicha(); }, nivel, pintar: () => { pintar(); if (fichaPrevia) refrescarFicha(); }, estado, estadoVisto: (p) => estadoVisto(p), realDe: (p) => realDe(p), ico, icoDep, pedirResumen: (p) => pedirResumen(p) };   // v452: «Mis combinadas» usa lo mismo
 
   // v440 — DESLIZAR PARA QUITAR (sólo en «Mis picks», con el dedo): la fila se
   // corre a la izquierda y deja ver «Quitar»; si el gesto es vertical, es scroll.
@@ -2499,6 +2519,7 @@
     if (t.hasAttribute('data-ver-fin')) { estado.verFinales = !estado.verFinales; pintar(); return; }
     if (t.hasAttribute('data-ver-sinpick')) { estado.verSinPick = !estado.verSinPick; pintar(); return; }
     if (t.dataset.vistaIr) {
+      if (t.closest('#ficha')) { $('ficha').hidden = true; fichaId = null; }   // v556 — «🔒 VIP» dentro de la tarjeta: lleva a Planes sin dejarla encima
       estado.vista = t.dataset.vistaIr; window.scrollTo({ top: 0 }); pintar();
       const foco = t.dataset.foco && document.getElementById(t.dataset.foco);   // v417 — directo al plan VIP
       if (foco) setTimeout(() => { foco.scrollIntoView({ behavior: 'smooth', block: 'start' }); foco.classList.add('resalta'); setTimeout(() => foco.classList.remove('resalta'), 2000); }, 80);
@@ -2510,7 +2531,7 @@
     if (t.dataset.dep) { estado.depTocado = true; alterna(estado.deportes, t.dataset.dep); pintar(); return; }
     if (t.dataset.niv) { alterna(estado.niveles, t.dataset.niv); pintar(); return; }
     if (t.dataset.fase) { estado.fase = t.dataset.fase; pintar(); return; }
-    if (t.dataset.ficha) { ficha(t.dataset.ficha); return; }
+    if (t.dataset.ficha) { if (t.matches('.arm-pata,.comb-pata,.tg-pata')) abrirPata(t.dataset.ficha); else ficha(t.dataset.ficha); return; }
     if (t.dataset.parK) { estado.parley[t.dataset.parK] = Number(t.dataset.parN) || 3; pintar(); return; }
     if (t.dataset.armNiv) {
       const n = t.dataset.armNiv;
