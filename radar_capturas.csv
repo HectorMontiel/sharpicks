@@ -31454,3 +31454,47 @@ fecha,deporte,liga,home,away,inicio,pin_home,pin_draw,pin_away,q_home,q_away,mar
 2026-11-05,nba,CHILE: LNB - Clausura - Play Offs,U. De Concepcion,Ancud,1793921400,1.0416,,5.32,0.836268,0.163732,0.148031,1,0.0226,Playdoit
 2026-11-05,futbol,EUROPE: Conference League - League phase,Mjallby,Borac Banja Luka,1793900700,2.45,3.38,3.02,0.394305,0.319883,0.035147,1,0.0379,Novibet
 2026-11-05,futbol,BRAZIL: Serie A,Palmeiras,Remo,1793917800,1.2227,7.17,13.4,0.792534,0.072316,0.031959,1,0.03,Playdoit
+2026-11-05,futbol,DENMARK: 3rd Division,Holbaek,Bronshoj,1793988000,2.05,3.43,3.13,0.443928,0.290751,0.098839,0,0.0,
+2026-11-05,futbol,GERMANY: Regionalliga North,Emden,VfB Lubeck,1793988000,1.9901,3.72,3.19,0.463214,0.288979,0.084784,0,0.0,
+2026-11-05,futbol,SPAIN: Primera RFEF - Group 1,Cacereno,Lugo,1793988000,2.27,3.28,2.95,0.406246,0.312603,0.08439,0,0.0,
+2026-11-05,futbol,TURKEY: Super Lig,Gaziantep,Kasimpasa,1793984400,2.63,3.43,2.75,0.367225,0.3512,0.03541,0,0.0,
+2026-11-05,futbol,QATAR: QSL,Al Wakrah,Al Shahaniya,1793982600,1.7692,4.18,4.03,0.536982,0.235739,0.052601,0,0.0,
+2026-11-05,futbol,PORTUGAL: Liga 3,Santarem,Mafra,1793991600,3.18,3.08,2.31,0.293333,0.40381,0.072041,0,0.0,
+2026-11-05,futbol,UKRAINE: Premier League,Polissya Zhytomyr,Veres-Rivne,1793962800,1.2079,6.21,11.81,0.771137,0.07887,0.073588,0,0.0,
+2026-11-05,futbol,PORTUGAL: Liga Portugal,Famalicao,Arouca,1793997900,2.14,3.38,3.51,0.445867,0.271839,0.048048,0,0.0,
+2026-11-05,futbol,RUSSIA: Premier League,Lokomotiv Moscow,Rubin Kazan,1793982600,2.18,3.59,3.34,0.44249,0.288811,0.036668,0,0.0,
+2026-11-05,futbol,UNITED ARAB EMIRATES: Division 1,Dibba Al Fujairah,Al Hamriyah,1793969100,1.8621,3.54,3.59,0.489067,0.253675,0.098065,0,0.0,
+2026-11-05,futbol,UNITED ARAB EMIRATES: Division 1,Dubai City,Forte Virtus,1793969400,5.75,4.19,1.4566,0.158231,0.624626,0.099107,0,0.0,
+2026-11-05,futbol,UKRAINE: Premier League,Obolon,Livyi Bereg,1793962800,3.35,2.99,2.28,0.278575,0.40931,0.071552,0,0.0,
+2026-11-05,futbol,JAMAICA: Premier League,Arnett Gardens,Mount Pleasant,1793923200,4.15,4.11,1.6061,0.217693,0.562496,0.106899,1,0.0254,Novibet
+2026-11-05,futbol,NORTHERN IRELAND: NIFL Premiership,Cliftonville,Larne,1793994300,5.02,3.7,1.6757,0.186828,0.559692,0.066239,0,0.0,
+2026-11-05,futbol,VIETNAM: V.League 1,Hong Linh Ha Tinh,Nam Dinh,1793962800,3.84,2.66,2.23,0.240062,0.413381,0.084787,0,0.0,
+2026-11-05,tenis,"CHALLENGER WOMEN - DOUBLES: Cali (Colombia), clay",Carle M. L./Pigossi L.,Costoulas S./Papamichail D.,1793910900,1.813,,1.9091,0.512909,0.487091,0.075379,0,0.0,
+2026-11-05,tenis,"ATP - SINGLES: Paris (France), hard (indoor)",Shelton B.,Paul T.,1793970000,2.13,,1.7874,0.456272,0.543728,0.028955,0,0.0,
+2026-11-05,tenis,"WTA - SINGLES: Chennai (India), hard",Hontama M.,Linette M.,1793968200,3.24,,1.3788,0.298519,0.701481,0.03391,0,0.0,
+2026-11-05,tenis,"WTA - SINGLES: Chennai (India), hard",Zakharova A.,Stefanini L.,1793973600,2.08,,1.8065,0.464814,0.535186,0.034326,0,0.0,
+2026-11-05,tenis,"WTA - SINGLES: Hong Kong (Hong Kong), hard",Sonmez Z.,Liu C.,1793944800,1.9901,,1.8772,0.485403,0.514597,0.035196,1,0.0204,Novibet
+2026-11-05,tenis,"WTA - SINGLES: Hong Kong (Hong Kong), hard",Cirstea S.,Shubladze A.,1793953800,1.3534,,3.39,0.714677,0.285323,0.033865,0,0.0,
+2026-11-05,tenis,"WTA - SINGLES: Hong Kong (Hong Kong), hard",Ruzic A.,Eala A.,1793966400,4.15,,1.2611,0.233058,0.766942,0.033922,1,0.0307,Novibet
+2026-11-05,tenis,"ATP - DOUBLES: Paris (France), hard (indoor)",Cash R./Nakashima B.,Harrison C./Skupski N.,1793970000,2.92,,1.4082,0.325355,0.674645,0.052592,0,0.0,
+2026-11-05,tenis,"WTA - DOUBLES: Chennai (India), hard",da Silva Fick G./Kulambayeva Z.,Falkowska W./Smith A.,1793939400,1.9259,,1.8772,0.493597,0.506403,0.051946,0,0.0,
+2026-11-05,tenis,"WTA - DOUBLES: Hong Kong (Hong Kong), hard",Gibson T./Inglis M.,Maleckova J./Skoch M.,1793959200,1.9009,,1.9009,0.5,0.5,0.052133,0,0.0,
+2026-11-05,tenis,"CHALLENGER MEN - SINGLES: Bratislava 2 (Slovakia), hard (indoor)",Basavareddy N.,Kym J.,1793973600,2.01,,1.8621,0.480902,0.519098,0.034541,0,0.0,
+2026-11-05,tenis,"CHALLENGER MEN - SINGLES: Charlottesville (USA), hard (indoor)",Giron M.,Chidekh C.,1793977200,2.61,,1.5236,0.368589,0.631411,0.039482,1,0.0611,Novibet
+2026-11-05,tenis,"CHALLENGER MEN - SINGLES: Charlottesville (USA), hard (indoor)",Kozlov S.,Shick B.,1793977200,1.5435,,2.56,0.623858,0.376142,0.038503,1,0.1169,Novibet
+2026-11-05,tenis,"CHALLENGER MEN - SINGLES: Costa do Sauipe (Brazil), clay",Bueno G.,Midon L.,1793977200,2.78,,1.4831,0.347892,0.652108,0.033976,0,0.0,
+2026-11-05,tenis,"CHALLENGER MEN - SINGLES: Costa do Sauipe (Brazil), clay",Prado Angelo J. C.,Ugo Carabelli C.,1793977200,2.37,,1.6369,0.40852,0.59148,0.032852,0,0.0,
+2026-11-05,tenis,"CHALLENGER MEN - SINGLES: Villa Maria (Argentina), clay",La Serna J. M.,Zarate C. M.,1793970000,1.5848,,2.46,0.608188,0.391812,0.037499,0,0.0,
+2026-11-05,tenis,"CHALLENGER MEN - SINGLES: Villa Maria (Argentina), clay",Roca Batalla O.,Kicker N.,1793970000,1.5263,,2.61,0.630999,0.369001,0.038321,0,0.0,
+2026-11-05,tenis,"CHALLENGER WOMEN - SINGLES: Luanda (Angola), hard",Lansere S.,Kubka M.,1793961000,2.73,,1.4673,0.349582,0.650418,0.047824,0,0.0,
+2026-11-05,tenis,"CHALLENGER WOMEN - SINGLES: Luanda (Angola), hard",Zaytseva K.,Feistel G.,1793962800,1.8065,,2.02,0.527898,0.472102,0.048606,0,0.0,
+2026-11-05,tenis,"CHALLENGER WOMEN - SINGLES: Luanda (Angola), hard",Mikulskyte J.,Noha Akugue N.,1793966400,5.5,,1.1504,0.172982,0.827018,0.051081,1,0.11,Novibet
+2026-11-05,tenis,"CHALLENGER WOMEN - SINGLES: Luanda (Angola), hard",Blinkova A.,Kabbaj Y.,1793979000,1.0974,,6.87,0.862264,0.137736,0.056805,0,0.0,
+2026-11-05,tenis,"ITF MEN - SINGLES: M15 Maanshan 9 (China), hard",Te R.,Zhang T.,1793941200,1.4016,,2.84,0.669559,0.330441,0.065583,1,0.0303,Novibet
+2026-11-05,nba,DENMARK: Basketligaen,Vejen,Holbaek-Stenhus,1793988000,1.5747,,2.28,0.591486,0.408514,0.073638,1,0.0234,Novibet
+2026-11-05,nba,DENMARK: Kvindebasketligaen Women,Falcon W,Aabyhoj W,1793988000,3.91,,1.1212,0.222849,0.777151,0.147656,1,0.0223,Novibet
+2026-11-05,nba,JAPAN: B.League Premier,Sendai,Alvark,1793959500,1.9524,,1.8403,0.485222,0.514778,0.05558,1,0.0647,Novibet
+2026-11-05,futbol,DENMARK: 3rd Division,Sundby,Helsingor,1793988000,3.23,3.58,1.9615,0.281775,0.463998,0.098741,1,0.074,Novibet
+2026-11-05,futbol,HONDURAS: Liga Nacional - Apertura,Choloma,Atletico Independiente,1793920500,1.7143,3.22,3.96,0.508829,0.220274,0.146413,1,0.0573,Novibet
+2026-11-05,nba,JAPAN: B.League One,Tachikawa Dice,Kagawa Five Arrows,1794031500,1.2801,,3.04,0.703687,0.296313,0.110136,1,0.0594,Novibet
+2026-11-05,nfl,CANADA: CFL - Play Offs,Edmonton Elks,BC Lions,1794094200,2.09,,1.8,0.462725,0.537275,0.034024,1,0.046,Novibet
