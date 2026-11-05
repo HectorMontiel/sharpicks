@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-05T09:35:37Z",
+"actualizado": "2026-11-05T11:14:14Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23711,6 +23711,26 @@
 "cuota": 1.55,
 "resultado": "verde",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Stojsavljevic M. vs Sonmez Z.",
+"apuesta": "Gana Sonmez Z.",
+"cuota": 1.33,
+"resultado": "verde",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Sydney Olympic vs Oakleigh Cannons",
+"apuesta": "Gana Sydney Olympic",
+"cuota": 3.4,
+"resultado": "rojo",
+"marcador": "0-2"
 }
 ]
 }

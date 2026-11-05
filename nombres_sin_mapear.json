@@ -211,14 +211,14 @@
   },
   "Real Betis": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Espana",
+    "candidato": "Real Potosi",
     "ratio": 0.6667,
     "visto": "2026-11-05"
   },
   "Real Madrid": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Sociedad",
-    "ratio": 0.5833,
+    "candidato": "Real Aviles",
+    "ratio": 0.6364,
     "visto": "2026-11-05"
   },
   "Real Oviedo": {
@@ -241,7 +241,7 @@
   },
   "Real Valladolid": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Espana",
+    "candidato": "Real Potosi",
     "ratio": 0.5385,
     "visto": "2026-11-05"
   },
@@ -397,8 +397,8 @@
   },
   "Carlisle United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Adelaide United (Aus)",
-    "ratio": 0.6471,
+    "candidato": "Madura United",
+    "ratio": 0.6429,
     "visto": "2026-11-05"
   },
   "Rotherham United": {
@@ -1117,8 +1117,8 @@
   },
   "West Ham United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dewa United",
-    "ratio": 0.6923,
+    "candidato": "West Ham U21",
+    "ratio": 0.7407,
     "visto": "2026-11-05"
   },
   "San Antonio Bulo Bulo": {
@@ -1129,9 +1129,9 @@
   },
   "Stade Laval": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Stade Tunisien",
-    "ratio": 0.48,
-    "visto": "2026-10-29"
+    "candidato": "Stade Nyonnais",
+    "ratio": 0.56,
+    "visto": "2026-11-05"
   },
   "Queens Park Rangers": {
     "contexto": "cuotas_mx→futbol",
@@ -1213,8 +1213,8 @@
   },
   "Blackburn Rovers": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Bristol Rovers",
-    "ratio": 0.6,
+    "candidato": "Blackburn U21",
+    "ratio": 0.6897,
     "visto": "2026-11-05"
   },
   "Derby County": {
@@ -1357,8 +1357,8 @@
   },
   "West Bromwich Albion": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Qingdao West Coast W",
-    "ratio": 0.3684,
+    "candidato": "West Ham U21",
+    "ratio": 0.4375,
     "visto": "2026-11-05"
   },
   "Cercle Brugge KSV": {
@@ -1557,7 +1557,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Nottingham U21",
     "ratio": 0.7097,
-    "visto": "2026-10-30"
+    "visto": "2026-11-05"
   },
   "Hull City": {
     "contexto": "cuotas_mx→futbol",
@@ -1617,7 +1617,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Zenit U19",
     "ratio": 0.5,
-    "visto": "2026-10-30"
+    "visto": "2026-11-05"
   },
   "Las Vegas Lights FC": {
     "contexto": "cuotas_mx→futbol",
@@ -1633,8 +1633,8 @@
   },
   "Newcastle United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dewa United",
-    "ratio": 0.7407,
+    "candidato": "Newcastle Utd U21",
+    "ratio": 0.7879,
     "visto": "2026-11-05"
   },
   "GV San José": {
@@ -2037,7 +2037,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Newcastle Utd U21",
     "ratio": 0.7097,
-    "visto": "2026-11-03"
+    "visto": "2026-11-05"
   },
   "Jagiellonia Bialystok": {
     "contexto": "cuotas_mx→futbol",
@@ -2095,7 +2095,7 @@
   },
   "Real Tomayapo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Espana",
+    "candidato": "Real Potosi",
     "ratio": 0.5833,
     "visto": "2026-11-05"
   },
