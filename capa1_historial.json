@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-05T11:14:14Z",
+"actualizado": "2026-11-05T12:41:02Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23701,6 +23701,16 @@
 "cuota": 1.31,
 "resultado": "verde",
 "marcador": "5-0"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Pakistan vs India",
+"apuesta": "Gana India",
+"cuota": 1.5,
+"resultado": "verde",
+"marcador": "2-3"
 },
 {
 "dia": "2026-11-05",
