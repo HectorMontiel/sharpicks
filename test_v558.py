@@ -50,7 +50,7 @@ def test_cuenta_al_equipo_y_al_rival():
     assert x[:6] == ['corners', 'h', 'mas', 4.5, 1.6, .6]
     assert x[7:11] == [20, 20, 10, 10]
     assert x[6] == round(31 / 32, 3)
-    assert x[11:] == [5, 6]
+    assert x[11:] == [5, 6, 1]
 
 
 def test_totales_con_los_partidos_de_cada_uno():
@@ -58,14 +58,21 @@ def test_totales_con_los_partidos_de_cada_uno():
     r = pm.pozo(historia(), 'A', 'B', ANTES, m)
     x = [y for y in r if y[2] == 'mas'][0]
     # los partidos de A suman 10 (> 8,5) y los de B suman 8 (no): cumplió la mitad
-    assert x[1] == 't' and x[7:] == [10, 20, 5, 10, 8, 10]
+    assert x[1] == 't' and x[7:] == [10, 20, 5, 10, 8, 10, 1]
 
 
 def test_sin_fuga_ni_poca_historia():
     h = historia()
     corte = pd.Timestamp('2026-09-04')          # sólo 3 partidos antes de esa fecha
     m = {'corners_home': {'4.5': {'p': .6, 'mas': 1.6, 'menos': 2.2}}}
-    assert pm.pozo(h, 'A', 'B', corte, m) is None
+    # v559 — con poca historia se arma igual y lo dice: cumplimiento encogido hacia la casa (Egnatia tiene 2 partidos)
+    x = pm.pozo(h, 'A', 'B', corte, m)[0]
+    assert x[13] == 0 and x[7:9] == [6, 6] and x[6] == round((6 + 5 * .6) / 11, 3)
+    # y si no hay nada de historia, también: va por la probabilidad de la casa
+    for sin in (None, h.iloc[0:0]):
+        y = pm.pozo(sin, 'A', 'B', ANTES, m)[0]
+        assert y[8] == 0 and y[11] is None and y[13] == 0 and y[6] == .6
+    assert pm.pozo(h, 'A', 'B', ANTES, m)[0][13] == 1
     # un partido del mismo día o posterior no cuenta
     fut = h.iloc[[0]].assign(date=ANTES, home_corners=0)
     otro = pd.concat([h, fut], ignore_index=True)
@@ -97,7 +104,9 @@ def test_los_totales_no_tapan_a_los_equipos():
 
 def test_llega_solo_al_vip():
     e = leer('errores_web.py')
-    assert "lin['met'] = met" in e and 'parley_metodo.pozo(h, home, away, antes, casa)' in e
+    assert "ctx['lin']['met'] = met" in e and 'parley_metodo.pozo(h_met, home, away, antes, casa)' in e
+    # la tarjeta sin liga asignada busca la historia por la liga de la casa y la de cada equipo
+    assert "_con_sus_ligas(pe._historico(cl) if cl else None, cl, (home, away))" in e
     ex = leer('exportar_web.py')
     assert "f['ctx'] = {k: x for k, x in ctx.items() if k != 'lin'}" in ex    # lo público no lleva `lin`
 
@@ -107,7 +116,11 @@ def test_la_pagina():
     assert 'metodoBloque(ps, L, V) +' in a and 'function metPatas(s, q)' in a
     assert 'MET_FACTOR = { 2: 1.01, 3: 1.05, 4: 1.09 }' in a
     assert "p.deporte !== 'Fútbol' || faseDe(ps) !== 'proximo'" in a
-    assert 'puede pagar menos' in a and 'no una ganancia asegurada' in a
+    # v559 — sin explicaciones de cuotas ni de Playdoit en la app
+    for txt in ('puede pagar menos', 'ganancia asegurada', 'Líneas y cuotas de Playdoit', 'Cada pata de más baja', 'Las líneas que ofrece Playdoit',
+                'Es información para que analices', 'para cambiar sólo esa pata', 'Este partido no alcanza'):
+        assert txt not in a, txt
+    assert 'function metCumple(x)' in a and "y.x[13] === 0" in a and "'Poca historia'" in a
     assert 'if (lin.met && lin.met.length >= 2) return' in a
     assert '[data-met-k]' in a
     assert "['equipo', 'Por equipo']" in a and "x[1] === 't'" in a and 'data-met-modo' in a

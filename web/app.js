@@ -1520,9 +1520,7 @@
     // v474 — sincronizado con lo que se puede meter: con Playdoit, sólo SUS líneas (y su cuota)
     // v475 — también dice que el favorito (el precio de la casa) ya está metido
     // v476 — medido: en las líneas de la casa, su probabilidad (sin margen) es la más certera
-    return html ? html + '<p class="tenue chico">' + (lin.casa ? 'Las líneas que ofrece Playdoit, con su cuota y su probabilidad sin margen (medido: es la más certera). '
-      : 'Playdoit no cotiza estas estadísticas en este partido: líneas de referencia de nuestro modelo (promedios, rival y favorito). ') +
-      'Información, no un pick.</p>' : '';
+    return html || '';
   }
   // v472 — «ARMA TU PARLEY DE ESTE PARTIDO»: con las líneas que Playdoit SÍ ofrece, la más alta de cada
   // estadística con nuestra probabilidad >= 75 %. Las patas del mismo partido van juntas: el producto se
@@ -1536,13 +1534,12 @@
     if (!lin) return '';
     if (lin.met && lin.met.length >= 2) return '';      // v558 — con el método, el parley va en su propio botón de la tarjeta
     const k = L + '|' + V, n = estado.parley[k];
-    if (!lin.casa) return '<p class="tenue">Playdoit no tiene este partido en su catálogo ahorita: no hay líneas que se puedan meter.</p>';
+    if (!lin.casa) return '';
     const par = lin.par || [];
     if (!n) return '<button class="vip-btn par-ir" data-par-k="' + esc(k) + '" data-par-n="3">' + ico('target') + ' Armar parley</button>';
     const chips = '<div class="par-chips">' + [2, 3, 4].map((x) => '<button class="chip' + (x === n ? ' activa' : '') + '" data-par-k="' + esc(k) + '" data-par-n="' + x + '">' + x + ' patas</button>').join('') + '</div>';
-    if (par.length < 2) return chips + '<p class="aviso">Playdoit no ofrece líneas con buena probabilidad para armar un parley en este partido.</p>';
-    return chips + parleyDe(par, Math.min(n, par.length), L, V) + (par.length < n ? '<p class="tenue chico">Sólo hay ' + par.length + ' líneas de la casa que valgan.</p>' : '') +
-      '<p class="tenue chico">Líneas y cuotas de Playdoit. En combinadas del mismo partido la casa puede ajustar la cuota.</p>';
+    if (par.length < 2) return chips + '<p class="aviso">Sin líneas para armar parley.</p>';
+    return chips + parleyDe(par, Math.min(n, par.length), L, V);
   }
   function parleyDe(par, n, L, V) {
     const nom = (lado) => (lado === 'h' ? L : lado === 'a' ? V : 'Total');
@@ -1588,6 +1585,13 @@
     });
     return pat;
   }
+  // v559 — el usuario: «me agrada el cumplimiento, pero más simple o visual y que no quite mucho espacio»
+  function metCumple(x) {
+    if (!x[8]) return '<small class="met-cumple">Sin historial</small>';
+    const barra = (t, c, n) => { const p = n ? Math.round(100 * c / n) : 0;
+      return '<span class="met-b">' + t + '<i class="met-barra"><u class="' + (p >= 80 ? 'v' : p >= 60 ? 'a' : 'r') + '" style="width:' + p + '%"></u></i>' + p + '</span>'; };
+    return '<small class="met-cumple">' + barra('U10', x[7], x[8]) + barra('U5', x[9], x[10]) + '<span class="met-rango">' + x[11] + '-' + x[12] + '</span></small>';
+  }
   function metCuerpo(k) {
     const s = estado.met.get(k); if (!s) return '';
     const pat = metPatas(s);
@@ -1595,16 +1599,16 @@
       '<div class="par-chips">' + [['todas', 'Todas'], ['equipo', 'Por equipo'], ['partido', 'Del partido']].map(([m, t]) => '<button type="button" class="chip' + (m === s.modo ? ' activa' : '') + '" data-met-modo="' + m + '" data-met-k="' + esc(k) + '">' + t + '</button>').join('') + '</div>';
     const quien = (lado) => (lado === 'h' ? ' de ' + s.L : lado === 'a' ? ' de ' + s.V : ' del partido');
     let h = chips + pat.map(({ x, i }) => '<div class="met-pata"><span class="met-txt">' + esc(MET_FAM[x[0]] || x[0]) + esc(quien(x[1])) + ': <b>' + (x[2] === 'mas' ? 'más de ' : 'menos de ') + x[3] + '</b>' +
-      '<small>Cumplió ' + x[7] + ' de ' + x[8] + ' en los últimos 10 y ' + x[9] + ' de ' + x[10] + ' en los últimos 5 · mín. ' + x[11] + ' · máx. ' + x[12] + '</small></span>' +
-      '<span class="par-n"><b>' + Number(x[4]).toFixed(2) + '</b><small>prob. ' + Math.round(100 * x[5]) + ' %</small></span>' +
+      metCumple(x) + '</span>' +
+      '<span class="par-n"><b>' + Number(x[4]).toFixed(2) + '</b><small>' + Math.round(100 * x[5]) + ' %</small></span>' +
       '<button type="button" class="arm-cambiar" data-met-cambiar="' + i + '" data-met-k="' + esc(k) + '" aria-label="Cambiar esta pata" title="Cambiar esta pata">' + ico('refresh-cw') + '</button></div>').join('');
-    if (pat.length < s.n) h += '<p class="aviso">Sólo hay ' + pat.length + (s.modo === 'equipo' ? ' líneas por equipo' : ' estadísticas distintas') + ' de Playdoit para este partido' + (s.q.size ? ', sin contar las que quitaste' : '') + '.</p>';
+    if (pat.length < s.n) h += '<p class="aviso">Sólo hay ' + pat.length + (pat.length === 1 ? ' pata.' : ' patas.') + '</p>';
     if (pat.length >= 2) {
       const n = pat.length, cuota = pat.reduce((a, y) => a * Number(y.x[4]), 1), peor = Math.min(...pat.map((y) => Number(y.x[6])));
-      const prob = Math.min(0.99, pat.reduce((a, y) => a * Number(y.x[5]), 1) * (MET_FACTOR[n] || 1));
-      const fuerza = peor >= 0.8 ? 'fuerte' : peor >= 0.7 ? 'media' : 'débil';
-      h += '<div class="met-pie"><span>Cuota ~<b>' + cuota.toFixed(2) + '</b> · se cumplen todas ~<b>' + Math.round(100 * prob) + ' %</b></span><span class="met-fuerza f-' + (peor >= 0.8 ? 3 : peor >= 0.7 ? 2 : 1) + '">Cumplimiento ' + fuerza + '</span></div>' +
-        '<p class="tenue chico">La cuota es multiplicando las patas: en el Constructor de Playdoit puede pagar menos. Es la estadística reciente, no una ganancia asegurada.' + (n === 4 ? ' Con 4 patas el resultado medido no es estable.' : '') + '</p>';
+      const poca = pat.some((y) => y.x[13] === 0);       // v559 — a un equipo le faltan partidos: no es el método medido
+      const prob = Math.min(0.99, pat.reduce((a, y) => a * Number(y.x[5]), 1) * (poca ? 1 : MET_FACTOR[n] || 1));
+      const fuerza = poca ? 'Poca historia' : peor >= 0.8 ? 'Cumplimiento fuerte' : peor >= 0.7 ? 'Cumplimiento medio' : 'Cumplimiento débil';
+      h += '<div class="met-pie"><span>Cuota ~<b>' + cuota.toFixed(2) + '</b> · ~<b>' + Math.round(100 * prob) + ' %</b></span><span class="met-fuerza f-' + (poca ? 2 : peor >= 0.8 ? 3 : peor >= 0.7 ? 2 : 1) + '">' + fuerza + '</span></div>';
     }
     if (s.q.size) h += '<button type="button" class="chip" data-met-restaurar="1" data-met-k="' + esc(k) + '">Devolver ' + s.q.size + (s.q.size === 1 ? ' quitada' : ' quitadas') + '</button>';
     return h;
@@ -1618,7 +1622,7 @@
     const c = conVip(ps).ctx, datos = (c && c.lin && c.lin.met) || [];
     const k = claveNombre(p);
     const tit = '<summary>' + ico('puzzle') + ' Armar parley</summary>';
-    if (datos.length < 2) return '<details class="ctx met">' + tit + '<p class="tenue">Este partido no alcanza: hacen falta líneas de Playdoit y al menos 5 partidos de cada equipo.</p></details>';
+    if (datos.length < 2) return '<details class="ctx met">' + tit + '<p class="tenue">Sin líneas suficientes.</p></details>';
     const s = estado.met.get(k) || { n: 3, q: new Set(), modo: 'todas' };
     Object.assign(s, { datos, L, V });
     estado.met.set(k, s);
@@ -1721,7 +1725,7 @@
       // v446 — lo que encontró en la web (bajas, alineaciones) y «¿te sirvió?» (sólo se mide)
       (a.noticias ? sub('Noticias', '<div class="ia-noti">' + String(a.noticias).split(' | ').map((n) => '<div>· ' + esc(n) + '</div>').join('') + '</div>') : '') +
       (window.SPX && SPX.votoIA ? SPX.votoIA(a.id) : '') +
-      '<p class="tenue chico">Experimental: la medimos aparte en Historial y nuestros picks no dependen de ella.</p></details>';
+      '</details>';
   }
   function formaHtml(f) {
     return String(f || '').split('').map((c) => '<i class="fr ' + ({ G: 'g', E: 'e', P: 'p' }[c] || '') + '">' + c + '</i>').join('');
@@ -1809,7 +1813,7 @@
       h += sub('Bajas', (ctx.bl ? '<div class="ctx-b"><b>' + esc(L) + ':</b> ' + ctx.bl.map(esc).join(', ') + '</div>' : '') +
         (ctx.bv ? '<div class="ctx-b"><b>' + esc(V) + ':</b> ' + ctx.bv.map(esc).join(', ') + '</div>' : ''));
     }
-    return h + '<p class="tenue chico">Es información para que analices; el pick ya la toma en cuenta a través del mercado.</p></details>';
+    return h + '</details>';
   }
 
   // ---------- FICHA DEL PARTIDO (tipo SofaScore) ----------
@@ -2336,8 +2340,7 @@
             '<button type="button" class="arm-cambiar" data-arm-cambiar="' + esc(p.id) + '" aria-label="Cambiar sólo esta pata" title="Cambiar sólo esta pata">' + ico('refresh-cw') + '</button></div>';
         }).join('') +
           // v557 — cómo se usa, si ya no hay otra y cómo devolver las que se quitaron
-          '<p class="tenue chico arm-ayuda"><span>Toca ' + ico('refresh-cw') + ' para cambiar sólo esa pata por la siguiente más probable.</span>' +
-          (A.quitadas.size ? ' <button type="button" class="chip" data-arm-restaurar="1">Devolver ' + A.quitadas.size + (A.quitadas.size === 1 ? ' quitada' : ' quitadas') + '</button>' : '') + '</p>' +
+          (A.quitadas.size ? '<p class="arm-ayuda"><button type="button" class="chip" data-arm-restaurar="1">Devolver ' + A.quitadas.size + (A.quitadas.size === 1 ? ' quitada' : ' quitadas') + '</button></p>' : '') +
           (r.sinMas ? '<p class="aviso">Ya no hay otra pata para cambiar con estos filtros. Prueba con otros días o deportes.</p>' : '') +
           (r.fuera.length ? '<div class="arm-fuera">' + MAL() + ' La IA descartó: ' + r.fuera.map((p) => '<b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b> (' + esc(lados(p).join(' vs ')) + ')').join(', ') + ' · entró la siguiente más probable</div>' : '') +
           (r.patas.length < A.n ? '<p class="aviso">Sólo hay ' + r.patas.length + ' patas que cumplan (de partidos distintos y que aún no empiezan).</p>' : '') +
@@ -2352,7 +2355,7 @@
             (window.SPX && SPX.yo.user ? '<small>Si una sale roja, te regresamos sus monedas.</small></span><button class="vip-btn" data-arm-pagar="' + esc(cerradas.map((p) => p.id).join(',')) + '">Desbloquear por ' +
               cerradas.reduce((s, p) => s + (SPX.precio ? SPX.precio(p) : 0), 0) + ' 🪙</button>'
               : '<small>Entra gratis para desbloquearlas.</small></span><button class="vip-btn" data-entrar>Entrar</button>') + '</div>' : '') +
-          '<p class="tenue chico">Cada pata de más baja la probabilidad de la combinada: con 3 patas de 85 % queda en ~61 %.</p></div>';
+          '</div>';
       }
     }
     caja.innerHTML = h;

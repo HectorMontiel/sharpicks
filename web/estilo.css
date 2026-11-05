@@ -1225,7 +1225,12 @@ button.arm-pata:active { background: rgba(255,255,255,.04); }
 .ctx.met summary .ic { width: 16px; height: 16px; }
 .met-pata { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid rgba(255,255,255,.07); font-size: 14px; }
 .met-txt { flex: 1; min-width: 0; }
-.met-txt small { display: block; margin-top: 2px; color: var(--tenue); font-size: 11px; line-height: 1.25; }
+.met-cumple { display: flex; align-items: center; flex-wrap: wrap; gap: 2px 8px; margin-top: 3px; color: var(--tenue); font-size: 11px; line-height: 1.2; }
+.met-b { display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; }
+.met-barra { display: inline-block; width: 26px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.12); overflow: hidden; }
+.met-barra u { display: block; height: 100%; border-radius: 3px; text-decoration: none; }
+.met-barra u.v { background: #4ade80; } .met-barra u.a { background: #fcd34d; } .met-barra u.r { background: #f87171; }
+.met-rango { white-space: nowrap; }
 .met-pata .arm-cambiar { flex: 0 0 36px; height: 36px; margin: 0; }
 .met-pie { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 10px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--borde); font-size: 14px; }
 .met-fuerza { padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }

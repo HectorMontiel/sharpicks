@@ -471,6 +471,7 @@ def contexto(p: Dict) -> Optional[Dict]:
         import pandas as pd
         antes = pd.Timestamp(str(p.get('inicio') or '')[:10] or dt.date.today().isoformat())
         ctx = {}
+        h_met = None
         # v391 — 1.º el histórico de la LIGA (mismos nombres que el pick, y con
         # córners, tiros, tarjetas, posesión); 2.º Flashscore con nombres parecidos
         clave = p.get('clave_liga')
@@ -481,6 +482,7 @@ def contexto(p: Dict) -> Optional[Dict]:
                 if h is not None and len(h):
                     h = h.copy()
                     h['date'] = pd.to_datetime(h['date'], errors='coerce', utc=True).dt.tz_localize(None)
+                    h_met = h
                     pl, pv = _promedios(h, home, antes), _promedios(h, away, antes)
                     if pl:
                         ctx['sl'], ctx['fl'] = pl, pl['forma']
@@ -499,11 +501,6 @@ def contexto(p: Dict) -> Optional[Dict]:
                         lin = lineas_stats.calcular(h, home, away, antes, casa)
                         if lin:
                             ctx['lin'] = lin
-                            # v558 — las patas del método del usuario (botón «Armar parley» de cada partido; sólo VIP)
-                            import parley_metodo
-                            met = parley_metodo.pozo(h, home, away, antes, casa)
-                            if met:
-                                lin['met'] = met
                     except Exception as ex:
                         logger.debug('[errores] líneas %s: %s', p.get('partido'), ex)
                     c = h[(((h.home_team == home) & (h.away_team == away)) | ((h.home_team == away) & (h.away_team == home))) & (h['date'] < antes)]
@@ -540,6 +537,24 @@ def contexto(p: Dict) -> Optional[Dict]:
                     ctx['lin'] = sc
             except Exception as ex:
                 logger.debug('[errores] casa sola %s: %s', p.get('partido'), ex)
+        # v558/v559 — las patas del método del usuario (botón «Armar parley»; sólo VIP), en TODO partido que la casa cotice:
+        # si la tarjeta no trae su liga, la historia sale de la liga que dice la casa y de la de cada equipo
+        if (ctx.get('lin') or {}).get('casa'):
+            try:
+                import parley_metodo
+                casa = casa_del_partido(home, away, clave, p.get('inicio'), p.get('liga') or '')
+                if h_met is None:
+                    import panel_equipos as pe
+                    cl = (casa or {}).get('clave_liga')
+                    h_met = _con_sus_ligas(pe._historico(cl) if cl else None, cl, (home, away))
+                    if h_met is not None and len(h_met):
+                        h_met = h_met.copy()
+                        h_met['date'] = pd.to_datetime(h_met['date'], errors='coerce', utc=True).dt.tz_localize(None)
+                met = parley_metodo.pozo(h_met, home, away, antes, casa)
+                if met:
+                    ctx['lin']['met'] = met
+            except Exception as ex:
+                logger.debug('[errores] parley %s: %s', p.get('partido'), ex)
         b = _bajas()
         if b.get(home):
             ctx['bl'] = b[home][:6]

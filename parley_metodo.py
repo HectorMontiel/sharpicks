@@ -26,7 +26,8 @@ MIN_LINEA = {'corners': 5.5, 'corners_home': 1.5, 'corners_away': 1.5, 'tarjetas
              'remates': 12.5, 'remates_home': 5.5, 'remates_away': 4.5, 'remates_on': 4.5, 'remates_on_home': 1.5, 'remates_on_away': 1.5,
              'goles': 0.5, 'goles_home': 0.5, 'goles_away': 0.5}
 CUOTA_MIN, CUOTA_MAX = 1.10, 2.20       # el rango medido por pata
-MIN_PARTIDOS = 5                        # de cada equipo
+MIN_PARTIDOS = 5                        # de cada equipo, para que sea el método medido; con menos, el cumplimiento se
+                                        # encoge hacia la probabilidad de la casa y la página avisa «poca historia»
 POR_LADO = 2                            # candidatas por estadística y lado (equipo A, equipo B, partido): así los totales no
                                         # tapan a las de equipo; la 2.ª es la de repuesto del botón de cambiar
 
@@ -58,8 +59,7 @@ def escalera_limpia(clave: str, tabla) -> List[tuple]:
 def _partidos(h):
     """El histórico con las columnas del método; sólo estadísticas observadas."""
     import pandas as pd
-    import rendimiento_equipos as re_
-    d = re_._solo_reales(h, 'home_corners')
+    d = h
     extra = {}
     for s in ('home', 'away'):
         num = lambda c: pd.to_numeric(d[c], errors='coerce') if c in d.columns else None
@@ -69,6 +69,16 @@ def _partidos(h):
         if on is not None and off is not None:
             extra[s + '_tiros'] = on + off
     return d.assign(**extra) if extra else d
+
+
+def _reales(d):
+    """Sólo filas con estadística observada. Los goles NO pasan por aquí: siempre son reales, y filtrarlos por los córners
+    dejaba sin historia a equipos como Mechelen, cuyos córners no llegan de ESPN."""
+    import rendimiento_equipos as re_
+    try:
+        return re_._solo_reales(d, 'home_corners')
+    except Exception:
+        return d
 
 
 def _ventana(d, eq: str, st: str, tipo: str, n: int = 10):
@@ -90,23 +100,27 @@ def _cumple(vals: List[float], dire: str, lin: float) -> List[bool]:
 
 def pozo(h, home: str, away: str, antes, mercado: Optional[Dict]) -> Optional[List[list]]:
     """Las patas candidatas, de más a menos cumplimiento:
-    [familia, lado (h|a|t), más|menos, línea, cuota, prob. casa, score, c10, n10, c5, n5, mínimo, máximo].
-    c10/n10 y c5/n5 cuentan los dos equipos juntos; mínimo y máximo, de esos últimos 10."""
+    [familia, lado (h|a|t), más|menos, línea, cuota, prob. casa, score, c10, n10, c5, n5, mínimo, máximo, completa].
+    c10/n10 y c5/n5 cuentan los dos equipos juntos; mínimo y máximo, de esos últimos 10. completa = 0 si a algún equipo le
+    faltan partidos (rivales de ligas que no tenemos, como Egnatia): el usuario lo pidió en TODO partido que cotice la casa."""
     if not mercado:
         return None
-    d = _partidos(h[h['date'] < antes].sort_values('date'))
+    todo = _partidos(h[h['date'] < antes].sort_values('date')) if h is not None and len(h) else None
+    obs = _reales(todo) if todo is not None else None
     filas: Dict[str, List[list]] = {}
     for clave, (fam, lado, st) in MERCADOS.items():
         lineas = escalera_limpia(clave, mercado.get(clave))
         if not lineas:
             continue
-        if lado == 't':
+        d = todo if st == 'goals' else obs
+        if d is None:
+            a, b = [], []
+        elif lado == 't':
             a, b = _ventana(d, home, st, 't'), _ventana(d, away, st, 't')
         else:
             eq, riv = (home, away) if lado == 'h' else (away, home)
             a, b = _ventana(d, eq, st, 'f'), _ventana(d, riv, st, 'c')
-        if len(a) < MIN_PARTIDOS or len(b) < MIN_PARTIDOS:
-            continue
+        completa = len(a) >= MIN_PARTIDOS and len(b) >= MIN_PARTIDOS
         for lin, p, x in lineas:
             for dire, cu, pc in (('mas', x.get('mas'), p), ('menos', x.get('menos'), 1 - p)):
                 try:
@@ -116,10 +130,14 @@ def pozo(h, home: str, away: str, antes, mercado: Optional[Dict]) -> Optional[Li
                 if not CUOTA_MIN <= cu <= CUOTA_MAX:
                     continue
                 ca, cb, ca5, cb5 = _cumple(a, dire, lin), _cumple(b, dire, lin), _cumple(a[-5:], dire, lin), _cumple(b[-5:], dire, lin)
-                # el score medido: cada ventana pesa igual a su tamaño nominal, con 1 acierto y 1 fallo de suavizado
-                score = (10 * (sum(ca) / len(ca) + sum(cb) / len(cb)) + 5 * (sum(ca5) / len(ca5) + sum(cb5) / len(cb5)) + 1) / 32
+                if completa:
+                    # el score medido: cada ventana pesa igual a su tamaño nominal, con 1 acierto y 1 fallo de suavizado
+                    score = (10 * (sum(ca) / len(ca) + sum(cb) / len(cb)) + 5 * (sum(ca5) / len(ca5) + sum(cb5) / len(cb5)) + 1) / 32
+                else:
+                    score = (sum(ca) + sum(cb) + 5 * pc) / (len(ca) + len(cb) + 5)
                 filas.setdefault(fam + '|' + lado, []).append([fam, lado, dire, lin, round(cu, 3), round(pc, 3), round(score, 3), sum(ca) + sum(cb), len(ca) + len(cb),
-                                                  sum(ca5) + sum(cb5), len(ca5) + len(cb5), int(min(a + b)), int(max(a + b))])
+                                                  sum(ca5) + sum(cb5), len(ca5) + len(cb5), int(min(a + b)) if a + b else None,
+                                                  int(max(a + b)) if a + b else None, int(completa)])
     out = []
     for xs in filas.values():
         out += sorted(xs, key=lambda z: (-z[6], -z[5]))[:POR_LADO]
