@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-05T21:02:57Z",
+"actualizado": "2026-11-05T22:40:03Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23724,6 +23724,36 @@
 },
 {
 "dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "AS Monaco vs FC Nordsjælland",
+"apuesta": "AS Monaco o empate",
+"cuota": 1.111,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🔷",
+"deporte": "Fútbol",
+"partido": "AS Monaco vs FC Nordsjælland",
+"apuesta": "Gana AS Monaco",
+"cuota": 1.429,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "AZ Alkmaar vs Juventus",
+"apuesta": "Gana Juventus",
+"cuota": 1.99,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-05",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Al Mosul vs Duhok",
@@ -23741,6 +23771,56 @@
 "cuota": 1.2,
 "resultado": "rojo",
 "marcador": "1-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Bayer Leverkusen vs Marseille",
+"apuesta": "Bayer Leverkusen o empate",
+"cuota": 1.1,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🔷",
+"deporte": "Fútbol",
+"partido": "Bayer Leverkusen vs Marseille",
+"apuesta": "Gana Bayer Leverkusen",
+"cuota": 1.4,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Bayer Leverkusen vs Marseille",
+"apuesta": "Gana Bayer Leverkusen",
+"cuota": 1.44,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Benfica vs Lech Poznan",
+"apuesta": "Gana Benfica",
+"cuota": 1.1667,
+"resultado": "verde",
+"marcador": "3-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "CSU Craiova vs Egnatia",
+"apuesta": "CSU Craiova o empate",
+"cuota": 1.125,
+"resultado": "verde",
+"marcador": "2-0"
 },
 {
 "dia": "2026-11-05",
@@ -23791,6 +23871,16 @@
 "cuota": 2.35,
 "resultado": "verde",
 "marcador": "1-6"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Getafe vs Brighton",
+"apuesta": "Gana Brighton",
+"cuota": 1.58,
+"resultado": "verde",
+"marcador": "0-1"
 },
 {
 "dia": "2026-11-05",
@@ -23856,6 +23946,16 @@
 "dia": "2026-11-05",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Lugano vs Kauno Zalgiris",
+"apuesta": "Gana Lugano",
+"cuota": 1.19,
+"resultado": "verde",
+"marcador": "3-0"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Midtjylland vs Ajax",
 "apuesta": "Gana Ajax",
 "cuota": 2.35,
@@ -23914,6 +24014,36 @@
 },
 {
 "dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Panathinaikos vs CSKA Sofia",
+"apuesta": "Panathinaikos o empate",
+"cuota": 1.143,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🔷",
+"deporte": "Fútbol",
+"partido": "Panathinaikos vs CSKA Sofia",
+"apuesta": "Gana Panathinaikos",
+"cuota": 1.462,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Panathinaikos vs CSKA Sofia",
+"apuesta": "Gana Panathinaikos",
+"cuota": 1.43,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-05",
 "nivel": "💰",
 "deporte": "Tenis",
 "partido": "Pridankina E. vs Shubladze A.",
@@ -23941,6 +24071,26 @@
 "cuota": 1.67,
 "resultado": "rojo",
 "marcador": "1-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "SK Sturm Graz vs NK Celje",
+"apuesta": "SK Sturm Graz o empate",
+"cuota": 1.143,
+"resultado": "rojo",
+"marcador": "2-3"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "SK Sturm Graz vs NK Celje",
+"apuesta": "Gana SK Sturm Graz",
+"cuota": 1.58,
+"resultado": "rojo",
+"marcador": "2-3"
 },
 {
 "dia": "2026-11-05",
@@ -23976,6 +24126,16 @@
 "dia": "2026-11-05",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Sturm Graz vs Celje",
+"apuesta": "Gana Sturm Graz",
+"cuota": 1.58,
+"resultado": "rojo",
+"marcador": "2-3"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Sydney Olympic vs Oakleigh Cannons",
 "apuesta": "Gana Sydney Olympic",
 "cuota": 3.4,
@@ -23991,6 +24151,16 @@
 "cuota": 2.35,
 "resultado": "verde",
 "marcador": "3-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Torreense vs Ararat-Armenia",
+"apuesta": "Torreense o empate",
+"cuota": 1.182,
+"resultado": "verde",
+"marcador": "3-2"
 },
 {
 "dia": "2026-11-05",

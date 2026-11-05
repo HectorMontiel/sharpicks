@@ -45,7 +45,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Casa de Portugal",
     "ratio": 0.5833,
-    "visto": "2026-10-24"
+    "visto": "2026-11-05"
   },
   "Central Español Fútbol Club": {
     "contexto": "cuotas_mx→futbol",
@@ -97,15 +97,15 @@
   },
   "Estudiantes de La Plata": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Estudiantes Rio Cuarto 2",
-    "ratio": 0.6383,
+    "candidato": "Estudiantes L.P.",
+    "ratio": 0.7895,
     "visto": "2026-11-05"
   },
   "Estudiantes de Río Cuarto": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Estudiantes L.P. 2",
-    "ratio": 0.6667,
-    "visto": "2026-10-28"
+    "candidato": "Estudiantes L.P.",
+    "ratio": 0.65,
+    "visto": "2026-11-05"
   },
   "Fuerte San Francisco": {
     "contexto": "cuotas_mx→futbol",
@@ -157,7 +157,7 @@
   },
   "Jaguares de Córdoba": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Talleres Cordoba W",
+    "candidato": "Talleres Cordoba",
     "ratio": 0.6857,
     "visto": "2026-11-05"
   },
@@ -229,8 +229,8 @@
   },
   "Real Salt Lake": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Espana",
-    "ratio": 0.64,
+    "candidato": "Real Potosi",
+    "ratio": 0.48,
     "visto": "2026-11-05"
   },
   "Real Sociedad": {
@@ -285,7 +285,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "WS Wanderers",
     "ratio": 0.6286,
-    "visto": "2026-10-31"
+    "visto": "2026-11-05"
   },
   "Deportivo Cali": {
     "contexto": "cuotas_mx→futbol",
@@ -801,7 +801,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "WS Wanderers",
     "ratio": 0.7586,
-    "visto": "2026-10-31"
+    "visto": "2026-11-05"
   },
   "Internacional de Bogotá": {
     "contexto": "cuotas_mx→futbol",
@@ -919,8 +919,8 @@
   },
   "Instituto (Córdoba)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Instituto 2",
-    "ratio": 0.7143,
+    "candidato": "Talleres Cordoba",
+    "ratio": 0.5455,
     "visto": "2026-11-05"
   },
   "Universidad de Concepción": {
@@ -1021,7 +1021,7 @@
   },
   "Central Córdoba (Santiago del Estero)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Central Coast Mariners",
+    "candidato": "Central Coast Mariners W",
     "ratio": 0.5263,
     "visto": "2026-11-05"
   },
@@ -1345,8 +1345,8 @@
   },
   "Sporting Club Delhi": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Tijuana W",
-    "ratio": 0.3871,
+    "candidato": "Racing Club Aruba",
+    "ratio": 0.5556,
     "visto": "2026-11-05"
   },
   "Shanghai Shenhua": {
@@ -2383,8 +2383,8 @@
   },
   "Western Sydney Wanderers FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sydney Utd",
-    "ratio": 0.4706,
+    "candidato": "WS Wanderers",
+    "ratio": 0.6667,
     "visto": "2026-11-05"
   },
   "MELBOURNE VICTORY": {
@@ -2721,6 +2721,18 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Iberia 2010",
     "ratio": 0.7273,
+    "visto": "2026-11-05"
+  },
+  "Inca Aruba": {
+    "contexto": "cuotas_mx→futbol",
+    "candidato": "Racing Club Aruba",
+    "ratio": 0.6667,
+    "visto": "2026-11-05"
+  },
+  "Cray Wanderers": {
+    "contexto": "cuotas_mx→futbol",
+    "candidato": "WS Wanderers",
+    "ratio": 0.7692,
     "visto": "2026-11-05"
   }
 }
