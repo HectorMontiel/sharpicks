@@ -3,8 +3,8 @@
   "liga_mx": {
    "id": 230,
    "nombre": "Liga MX",
-   "solape": 1.0,
-   "equipos": 18,
+   "solape": 0.692,
+   "equipos": 26,
    "origen": "conocido",
    "slug": "liga-mx"
   },
@@ -35,7 +35,7 @@
   "noruega": {
    "id": 59,
    "nombre": "Eliteserien",
-   "solape": 0.938,
+   "solape": 0.875,
    "equipos": 16,
    "origen": "conocido",
    "slug": "eliteserien"
@@ -227,7 +227,7 @@
   "eng_championship": {
    "id": 48,
    "nombre": "Championship",
-   "solape": 1.0,
+   "solape": 0.958,
    "equipos": 24,
    "origen": "conocido",
    "slug": "championship"
@@ -419,8 +419,8 @@
   "mex_expansion": {
    "id": 8976,
    "nombre": "Liga de Expansión MX",
-   "solape": 0.938,
-   "equipos": 16,
+   "solape": 0.75,
+   "equipos": 20,
    "origen": "conocido",
    "slug": "liga-de-expansion-mx"
   },
@@ -467,7 +467,7 @@
   "sudamericana": {
    "id": 299,
    "nombre": "Copa Sudamericana",
-   "solape": 0.982,
+   "solape": 0.927,
    "equipos": 55,
    "origen": "conocido",
    "slug": "copa-sudamericana"
@@ -475,7 +475,7 @@
   "eng_fa_cup": {
    "id": 132,
    "nombre": "FA Cup",
-   "solape": 0.8,
+   "solape": 0.787,
    "equipos": 80,
    "origen": "conocido",
    "slug": "fa-cup"
@@ -491,7 +491,7 @@
   "esp_copa_rey": {
    "id": 138,
    "nombre": "Copa del Rey",
-   "solape": 0.812,
+   "solape": 0.83,
    "equipos": 112,
    "origen": "conocido",
    "slug": "copa-del-rey"
@@ -507,7 +507,7 @@
   "bra_copa": {
    "id": 9067,
    "nombre": "Copa do Brasil",
-   "solape": 0.961,
+   "solape": 0.898,
    "equipos": 128,
    "origen": "conocido",
    "slug": "copa-do-brasil"

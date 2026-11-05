@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-26",
+ "generado": "2026-11-02",
  "n_apuestas": 5579,
  "banda_adoptada": [
   0.04,
@@ -7,44 +7,44 @@
  ],
  "roi_banda_global": -3.28,
  "ventanas_oos_banda": [
-  -2.92,
-  -4.72,
-  -4.92,
-  -4.42
+  -4.31,
+  -5.26,
+  -3.76,
+  -5.03
  ],
- "piso_prob_adoptado": 0.5,
- "conviccion_adoptada": 0.025,
+ "piso_prob_adoptado": 0.55,
+ "conviccion_adoptada": 0.03,
  "ci_bootstrap_seleccion": {
-  "n": 626,
-  "roi_medio": -3.5,
-  "roi_p5": -9.22,
-  "roi_p95": 2.22
+  "n": 450,
+  "roi_medio": -3.18,
+  "roi_p5": -9.28,
+  "roi_p95": 2.78
  },
  "escaneo_prob": [
-  {
-   "piso": 0.5,
-   "n": 654,
-   "roi_global": -4.34,
-   "ventanas_oos": [
-    -8.92,
-    -6.75,
-    -11.94,
-    -5.82
-   ],
-   "peor_ventana": -11.94,
-   "ventanas_positivas": 0
-  },
   {
    "piso": 0.55,
    "n": 490,
    "roi_global": -3.58,
    "ventanas_oos": [
-    -7.94,
+    -9.8,
     -5.17,
     -11.57,
     -13.41
    ],
    "peor_ventana": -13.41,
+   "ventanas_positivas": 0
+  },
+  {
+   "piso": 0.5,
+   "n": 654,
+   "roi_global": -4.34,
+   "ventanas_oos": [
+    -10.16,
+    -4.65,
+    -13.84,
+    -5.82
+   ],
+   "peor_ventana": -13.84,
    "ventanas_positivas": 0
   },
   {
@@ -89,34 +89,34 @@
  ],
  "escaneo_conviccion": [
   {
-   "conviccion": 0.025,
-   "n": 626,
-   "roi_global": -3.5,
-   "roi_p5_bootstrap": -9.04
-  },
-  {
    "conviccion": 0.03,
-   "n": 576,
-   "roi_global": -3.62,
-   "roi_p5_bootstrap": -9.4
-  },
-  {
-   "conviccion": 0.015,
-   "n": 654,
-   "roi_global": -4.34,
-   "roi_p5_bootstrap": -9.86
-  },
-  {
-   "conviccion": 0.02,
-   "n": 654,
-   "roi_global": -4.34,
-   "roi_p5_bootstrap": -9.99
+   "n": 450,
+   "roi_global": -3.11,
+   "roi_p5_bootstrap": -8.99
   },
   {
    "conviccion": 0.0,
-   "n": 654,
-   "roi_global": -4.34,
-   "roi_p5_bootstrap": -10.02
+   "n": 490,
+   "roi_global": -3.58,
+   "roi_p5_bootstrap": -9.18
+  },
+  {
+   "conviccion": 0.025,
+   "n": 485,
+   "roi_global": -3.34,
+   "roi_p5_bootstrap": -9.45
+  },
+  {
+   "conviccion": 0.02,
+   "n": 490,
+   "roi_global": -3.58,
+   "roi_p5_bootstrap": -9.64
+  },
+  {
+   "conviccion": 0.015,
+   "n": 490,
+   "roi_global": -3.58,
+   "roi_p5_bootstrap": -9.66
   }
  ],
  "escaneo_bandas": [
@@ -128,47 +128,13 @@
    "roi_global": -3.28,
    "n": 1605,
    "ventanas_oos": [
-    -2.92,
-    -4.72,
-    -4.92,
-    -4.42
+    -4.31,
+    -5.26,
+    -3.76,
+    -5.03
    ],
-   "peor_ventana": -4.92,
+   "peor_ventana": -5.26,
    "ventanas_positivas": 0,
-   "valida": true
-  },
-  {
-   "banda": [
-    0.03,
-    0.13
-   ],
-   "roi_global": -2.25,
-   "n": 1976,
-   "ventanas_oos": [
-    -3.91,
-    -6.11,
-    -1.3,
-    -4.8
-   ],
-   "peor_ventana": -6.11,
-   "ventanas_positivas": 0,
-   "valida": false
-  },
-  {
-   "banda": [
-    0.03,
-    0.12
-   ],
-   "roi_global": -1.99,
-   "n": 1841,
-   "ventanas_oos": [
-    -1.92,
-    -6.52,
-    0.23,
-    -3.7
-   ],
-   "peor_ventana": -6.52,
-   "ventanas_positivas": 1,
    "valida": true
   },
   {
@@ -179,12 +145,63 @@
    "roi_global": -1.85,
    "n": 1496,
    "ventanas_oos": [
-    -2.82,
-    -6.8,
-    3.26,
-    -0.85
+    -4.4,
+    -7.26,
+    4.4,
+    -1.48
    ],
-   "peor_ventana": -6.8,
+   "peor_ventana": -7.26,
+   "ventanas_positivas": 1,
+   "valida": true
+  },
+  {
+   "banda": [
+    0.03,
+    0.13
+   ],
+   "roi_global": -2.25,
+   "n": 1976,
+   "ventanas_oos": [
+    -5.08,
+    -7.37,
+    0.48,
+    -5.28
+   ],
+   "peor_ventana": -7.37,
+   "ventanas_positivas": 1,
+   "valida": false
+  },
+  {
+   "banda": [
+    0.03,
+    0.12
+   ],
+   "roi_global": -1.99,
+   "n": 1841,
+   "ventanas_oos": [
+    -3.17,
+    -7.4,
+    1.69,
+    -4.22
+   ],
+   "peor_ventana": -7.4,
+   "ventanas_positivas": 1,
+   "valida": true
+  },
+  {
+   "banda": [
+    0.02,
+    0.1
+   ],
+   "roi_global": -4.08,
+   "n": 1757,
+   "ventanas_oos": [
+    -4.28,
+    -8.12,
+    0.79,
+    -4.47
+   ],
+   "peor_ventana": -8.12,
    "ventanas_positivas": 1,
    "valida": true
   },
@@ -196,29 +213,12 @@
    "roi_global": -3.83,
    "n": 2102,
    "ventanas_oos": [
-    -2.95,
-    -7.34,
-    -2.19,
-    -5.43
+    -3.26,
+    -8.12,
+    -0.93,
+    -6.46
    ],
-   "peor_ventana": -7.34,
-   "ventanas_positivas": 0,
-   "valida": true
-  },
-  {
-   "banda": [
-    0.02,
-    0.1
-   ],
-   "roi_global": -4.08,
-   "n": 1757,
-   "ventanas_oos": [
-    -3.91,
-    -7.71,
-    -0.17,
-    -3.29
-   ],
-   "peor_ventana": -7.71,
+   "peor_ventana": -8.12,
    "ventanas_positivas": 0,
    "valida": true
   },
@@ -230,13 +230,13 @@
    "roi_global": -2.44,
    "n": 2125,
    "ventanas_oos": [
-    -3.94,
-    -8.16,
-    -1.6,
-    -3.8
+    -5.04,
+    -9.77,
+    0.82,
+    -4.57
    ],
-   "peor_ventana": -8.16,
-   "ventanas_positivas": 0,
+   "peor_ventana": -9.77,
+   "ventanas_positivas": 1,
    "valida": false
   },
   {
@@ -247,12 +247,12 @@
    "roi_global": -3.74,
    "n": 1800,
    "ventanas_oos": [
-    -3.7,
-    -12.83,
-    -5.72,
-    -3.71
+    -5.01,
+    -13.26,
+    -4.76,
+    -4.9
    ],
-   "peor_ventana": -12.83,
+   "peor_ventana": -13.26,
    "ventanas_positivas": 0,
    "valida": true
   }

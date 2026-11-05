@@ -122,7 +122,7 @@ def probar():
     check('function agrupar(' in app and 'function filaPartido(' in app and '.sort().join' in app,
           'una tarjeta por partido (también «B vs A»), con sus apuestas dentro')
     ex = open('exportar_web.py', encoding='utf-8').read()
-    check("'id': 'not.in.(%s)' % vivos" in ex and "'estado': 'eq.pendiente'" in ex and "'inicio': 'gt.'" in ex,
+    check("'id': 'in.(%s)' % ','.join(sobra[i:i + 100])" in ex and "'estado': 'eq.pendiente'" in ex and "'inicio': 'gt.'" in ex,
           'lo que el modelo retira antes de empezar se borra de la base (no se queda repetido)')
     # v380 — «muy larga de scrollear»: pantallas con barra abajo, destacados,
     # lista compacta por liga que se abre, y lo terminado plegado al final

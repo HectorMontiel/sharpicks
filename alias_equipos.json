@@ -1,7 +1,7 @@
 {
- "generado": "2026-10-30T15:56:36Z",
- "fixtures_revisados": 368,
- "ya_casaban": 322,
+ "generado": "2026-11-05T02:59:59Z",
+ "fixtures_revisados": 281,
+ "ya_casaban": 229,
  "min_parecido": 0.82,
  "alias": {
   "sint truiden": {
@@ -129,6 +129,15 @@
    "lado_ancla": "kv kortrijk",
    "ultima_vez": "2026-10-29T01:30:38Z",
    "primera_vez": "2026-10-29T01:30:38Z"
+  },
+  "dundee utd": {
+   "canonico": "dundee united",
+   "parecido": 0.8696,
+   "visto_en": "Dundee United vs Motherwell",
+   "liga": "sco_premiership",
+   "lado_ancla": "motherwell",
+   "ultima_vez": "2026-11-05T00:36:03Z",
+   "primera_vez": "2026-11-05T00:36:03Z"
   }
  }
 }
