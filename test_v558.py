@@ -50,7 +50,7 @@ def test_cuenta_al_equipo_y_al_rival():
     assert x[:6] == ['corners', 'h', 'mas', 4.5, 1.6, .6]
     assert x[7:11] == [20, 20, 10, 10]
     assert x[6] == round(31 / 32, 3)
-    assert x[11:] == [5, 6, 1]
+    assert x[11:] == [5, 6, 1, 5.5]
 
 
 def test_totales_con_los_partidos_de_cada_uno():
@@ -58,7 +58,7 @@ def test_totales_con_los_partidos_de_cada_uno():
     r = pm.pozo(historia(), 'A', 'B', ANTES, m)
     x = [y for y in r if y[2] == 'mas'][0]
     # los partidos de A suman 10 (> 8,5) y los de B suman 8 (no): cumplió la mitad
-    assert x[1] == 't' and x[7:] == [10, 20, 5, 10, 8, 10, 1]
+    assert x[1] == 't' and x[7:] == [10, 20, 5, 10, 8, 10, 1, 9.0]
 
 
 def test_sin_fuga_ni_poca_historia():
@@ -71,7 +71,7 @@ def test_sin_fuga_ni_poca_historia():
     # y si no hay nada de historia, también: va por la probabilidad de la casa
     for sin in (None, h.iloc[0:0]):
         y = pm.pozo(sin, 'A', 'B', ANTES, m)[0]
-        assert y[8] == 0 and y[11] is None and y[13] == 0 and y[6] == .6
+        assert y[8] == 0 and y[11] is None and y[13] == 0 and y[6] == .6 and y[14] is None
     assert pm.pozo(h, 'A', 'B', ANTES, m)[0][13] == 1
     # un partido del mismo día o posterior no cuenta
     fut = h.iloc[[0]].assign(date=ANTES, home_corners=0)
@@ -121,7 +121,7 @@ def test_la_pagina():
                 'Es información para que analices', 'para cambiar sólo esa pata', 'Este partido no alcanza'):
         assert txt not in a, txt
     assert 'function metCumple(x)' in a and "y.x[13] === 0" in a and "'Poca historia'" in a
-    assert "'Últimos 10 partidos'" in a and "'Últimos 5 partidos'" in a and "'U10'" not in a and "': entre '" in a and "'Mín '" not in a
+    assert "'Últimos 10 partidos'" in a and "'Últimos 5 partidos'" in a and "'U10'" not in a and "': entre '" not in a and "'Mín '" not in a and 'Promedio: ' in a
     assert 'if (lin.met && lin.met.length >= 2) return' in a
     assert '[data-met-k]' in a
     assert "['equipo', 'Por equipo']" in a and "x[1] === 't'" in a and 'data-met-modo' in a

@@ -1589,10 +1589,12 @@
   function metCumple(x) {
     if (!x[8]) return '<small class="met-cumple">Sin historial</small>';
     // v560 — «eso de U10 y U5 no se entiende… la mínima de 0 no entiendo»: dicho con todas las letras
+    // v561 — «tarjetas entre 0 y 10 con menos de 5.5 no se entiende»: el promedio, que es lo que se compara con la línea
+    const uni = { goles: 'goles', corners: 'córners', tarjetas: 'tarjetas', a_puerta: 'remates a puerta', remates: 'remates' }[x[0]] || '';
     const fila = (t, c, n) => { const p = n ? Math.round(100 * c / n) : 0;
       return '<span>' + t + '</span><i class="met-barra"><u class="' + (p >= 80 ? 'v' : p >= 60 ? 'a' : 'r') + '" style="width:' + p + '%"></u></i><span>' + p + ' %</span>'; };
     return '<small class="met-cumple">' + fila('Últimos 10 partidos', x[7], x[8]) + fila('Últimos 5 partidos', x[9], x[10]) +
-      '<span class="met-rango">' + esc(MET_FAM[x[0]] || x[0]) + ': entre ' + x[11] + ' y ' + x[12] + '</span></small>';
+      (x[14] != null ? '<span class="met-rango">Promedio: ' + x[14] + ' ' + uni + '</span>' : '') + '</small>';
   }
   function metCuerpo(k) {
     const s = estado.met.get(k); if (!s) return '';

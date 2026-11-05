@@ -100,8 +100,10 @@ def _cumple(vals: List[float], dire: str, lin: float) -> List[bool]:
 
 def pozo(h, home: str, away: str, antes, mercado: Optional[Dict]) -> Optional[List[list]]:
     """Las patas candidatas, de más a menos cumplimiento:
-    [familia, lado (h|a|t), más|menos, línea, cuota, prob. casa, score, c10, n10, c5, n5, mínimo, máximo, completa].
-    c10/n10 y c5/n5 cuentan los dos equipos juntos; mínimo y máximo, de esos últimos 10. completa = 0 si a algún equipo le
+    [familia, lado (h|a|t), más|menos, línea, cuota, prob. casa, score, c10, n10, c5, n5, mínimo, máximo, completa, promedio].
+    c10/n10 y c5/n5 cuentan los dos equipos juntos; mínimo, máximo y promedio, de esos últimos 10. La página enseña el promedio:
+    predice mejor que la mediana (medir_media_mediana.py, 98 mil equipo-partido: 14 de 15 líneas, p5>0 en las dos mitades).
+    completa = 0 si a algún equipo le
     faltan partidos (rivales de ligas que no tenemos, como Egnatia): el usuario lo pidió en TODO partido que cotice la casa."""
     if not mercado:
         return None
@@ -137,7 +139,8 @@ def pozo(h, home: str, away: str, antes, mercado: Optional[Dict]) -> Optional[Li
                     score = (sum(ca) + sum(cb) + 5 * pc) / (len(ca) + len(cb) + 5)
                 filas.setdefault(fam + '|' + lado, []).append([fam, lado, dire, lin, round(cu, 3), round(pc, 3), round(score, 3), sum(ca) + sum(cb), len(ca) + len(cb),
                                                   sum(ca5) + sum(cb5), len(ca5) + len(cb5), int(min(a + b)) if a + b else None,
-                                                  int(max(a + b)) if a + b else None, int(completa)])
+                                                  int(max(a + b)) if a + b else None, int(completa),
+                                                  round(sum(a + b) / len(a + b), 1) if a + b else None])
     out = []
     for xs in filas.values():
         out += sorted(xs, key=lambda z: (-z[6], -z[5]))[:POR_LADO]
