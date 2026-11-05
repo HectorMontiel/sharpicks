@@ -20,14 +20,14 @@ PUBLIC_PICK_FIELDS = frozenset({
     "partido", "inicio", "fecha", "deporte", "liga", "apuesta", "cuota", "prob",
     "elige", "porque", "resultado_c1", "marcador", "espn", "logo_h", "logo_a",
     "girado", "premium", "tipo", "casa", "ventaja", "gratis", "ctx", "vip_hay",
-    "estado", "id", "solo_analisis",
+    "estado", "id", "solo_analisis", "fuente",
 })
 
 _CONTEXT_FIELDS = frozenset({"fl", "fv", "ul", "uv", "sl", "sv", "h2h", "bl", "bv"})
 _STAT_FIELDS = frozenset({"n", "gf", "gc", "o25", "btts", "tir", "cor", "tap", "tar", "pos"})
 _TEXT_FIELDS = frozenset({
     "partido", "inicio", "fecha", "deporte", "liga", "apuesta", "porque", "resultado_c1",
-    "marcador", "espn", "logo_h", "logo_a", "tipo", "casa", "id",
+    "marcador", "espn", "logo_h", "logo_a", "tipo", "casa", "id", "fuente",
 })
 _BOOL_FIELDS = frozenset({"elige", "girado", "premium", "gratis", "vip_hay", "solo_analisis"})
 _NUMBER_FIELDS = frozenset({"cuota", "prob", "ventaja"})
