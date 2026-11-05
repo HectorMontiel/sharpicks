@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-05T03:06:55Z",
+"actualizado": "2026-11-05T04:45:38Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23235,6 +23235,16 @@
 {
 "dia": "2026-11-04",
 "nivel": "🏆",
+"deporte": "NBA",
+"partido": "Boston Celtics vs Milwaukee Bucks",
+"apuesta": "Gana Boston Celtics",
+"cuota": 1.18,
+"resultado": "verde",
+"marcador": "109-102"
+},
+{
+"dia": "2026-11-04",
+"nivel": "🏆",
 "deporte": "Fútbol",
 "partido": "Botafogo RJ vs Atletico-MG",
 "apuesta": "Botafogo RJ o empate",
@@ -23264,6 +23274,16 @@
 },
 {
 "dia": "2026-11-04",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "CD Municipal Limeño vs Fuerte San Francisco",
+"apuesta": "CD Municipal Limeño o empate",
+"cuota": 1.154,
+"resultado": "verde",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-04",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Dortmund vs Betis",
@@ -23271,6 +23291,16 @@
 "cuota": 1.77,
 "resultado": "verde",
 "marcador": "2-1"
+},
+{
+"dia": "2026-11-04",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Escorpiones vs Alajuelense",
+"apuesta": "Gana Alajuelense",
+"cuota": 1.56,
+"resultado": "verde",
+"marcador": "1-4"
 },
 {
 "dia": "2026-11-04",
@@ -23321,6 +23351,16 @@
 "cuota": 1.18,
 "resultado": "verde",
 "marcador": "3-1"
+},
+{
+"dia": "2026-11-04",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Florida Panthers vs Chicago Blackhawks",
+"apuesta": "Handicap: Chicago Blackhawks +3.5",
+"cuota": 1.125,
+"resultado": "verde",
+"marcador": "5-3"
 },
 {
 "dia": "2026-11-04",
@@ -23444,6 +23484,16 @@
 },
 {
 "dia": "2026-11-04",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Luis Ángel Firpo vs Alianza FC",
+"apuesta": "Luis Ángel Firpo o empate",
+"cuota": 1.167,
+"resultado": "verde",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-04",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Metropolitanos vs Carabobo",
@@ -23456,11 +23506,31 @@
 "dia": "2026-11-04",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Millonarios vs America De Cali",
+"apuesta": "Gana Millonarios",
+"cuota": 2.0,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Mladost Lucani U19 vs IMT U19",
 "apuesta": "Gana IMT U19",
 "cuota": 1.73,
 "resultado": "rojo",
 "marcador": "2-2"
+},
+{
+"dia": "2026-11-04",
+"nivel": "🏆",
+"deporte": "NBA",
+"partido": "New York Knicks vs Chicago Bulls",
+"apuesta": "Gana New York Knicks",
+"cuota": 1.143,
+"resultado": "verde",
+"marcador": "135-105"
 },
 {
 "dia": "2026-11-04",
@@ -23551,6 +23621,36 @@
 "cuota": 1.45,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "U. de Deportes vs Sport Boys",
+"apuesta": "Gana U. de Deportes",
+"cuota": 1.46,
+"resultado": "rojo",
+"marcador": "2-2"
+},
+{
+"dia": "2026-11-04",
+"nivel": "🔷",
+"deporte": "Fútbol",
+"partido": "Universitario vs Sport Boys",
+"apuesta": "Gana Universitario",
+"cuota": 1.48,
+"resultado": "rojo",
+"marcador": "2-2"
+},
+{
+"dia": "2026-11-04",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Universitario vs Sport Boys",
+"apuesta": "Universitario o empate",
+"cuota": 1.111,
+"resultado": "verde",
+"marcador": "2-2"
 },
 {
 "dia": "2026-11-04",
