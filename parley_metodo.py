@@ -27,7 +27,8 @@ MIN_LINEA = {'corners': 5.5, 'corners_home': 1.5, 'corners_away': 1.5, 'tarjetas
              'goles': 0.5, 'goles_home': 0.5, 'goles_away': 0.5}
 CUOTA_MIN, CUOTA_MAX = 1.10, 2.20       # el rango medido por pata
 MIN_PARTIDOS = 5                        # de cada equipo
-POR_FAMILIA = 3                         # candidatas por estadística: las de repuesto del botón de cambiar
+POR_LADO = 2                            # candidatas por estadística y lado (equipo A, equipo B, partido): así los totales no
+                                        # tapan a las de equipo; la 2.ª es la de repuesto del botón de cambiar
 
 
 def escalera_limpia(clave: str, tabla) -> List[tuple]:
@@ -117,9 +118,9 @@ def pozo(h, home: str, away: str, antes, mercado: Optional[Dict]) -> Optional[Li
                 ca, cb, ca5, cb5 = _cumple(a, dire, lin), _cumple(b, dire, lin), _cumple(a[-5:], dire, lin), _cumple(b[-5:], dire, lin)
                 # el score medido: cada ventana pesa igual a su tamaño nominal, con 1 acierto y 1 fallo de suavizado
                 score = (10 * (sum(ca) / len(ca) + sum(cb) / len(cb)) + 5 * (sum(ca5) / len(ca5) + sum(cb5) / len(cb5)) + 1) / 32
-                filas.setdefault(fam, []).append([fam, lado, dire, lin, round(cu, 3), round(pc, 3), round(score, 3), sum(ca) + sum(cb), len(ca) + len(cb),
+                filas.setdefault(fam + '|' + lado, []).append([fam, lado, dire, lin, round(cu, 3), round(pc, 3), round(score, 3), sum(ca) + sum(cb), len(ca) + len(cb),
                                                   sum(ca5) + sum(cb5), len(ca5) + len(cb5), int(min(a + b)), int(max(a + b))])
     out = []
     for xs in filas.values():
-        out += sorted(xs, key=lambda z: (-z[6], -z[5]))[:POR_FAMILIA]
+        out += sorted(xs, key=lambda z: (-z[6], -z[5]))[:POR_LADO]
     return sorted(out, key=lambda z: (-z[6], -z[5])) or None

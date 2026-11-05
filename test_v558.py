@@ -81,9 +81,18 @@ def test_cuota_fuera_de_rango_no_entra():
 def test_ordena_y_limita_por_estadistica():
     m = {'corners_home': {'%d.5' % k: {'p': .9 - k / 20, 'mas': 1.2 + k / 10, 'menos': 1.5} for k in range(2, 8)}}
     r = pm.pozo(historia(), 'A', 'B', ANTES, m)
-    assert len(r) == pm.POR_FAMILIA
+    assert len(r) == pm.POR_LADO
     assert [x[6] for x in r] == sorted((x[6] for x in r), reverse=True)
     json.dumps(r)                                # va a la base tal cual
+
+
+def test_los_totales_no_tapan_a_los_equipos():
+    # muchas líneas de total con cumplimiento perfecto y una de equipo: la de equipo sigue entre las candidatas
+    m = {'corners': {'%d.5' % k: {'p': .95 - k / 40, 'mas': 1.2 + k / 20, 'menos': 2.1} for k in range(5, 8)},
+         'corners_home': {'3.5': {'p': .7, 'mas': 1.4, 'menos': 2.2}}, 'corners_away': {'3.5': {'p': .5, 'mas': 1.9, 'menos': 1.8}}}
+    r = pm.pozo(historia(), 'A', 'B', ANTES, m)
+    assert {x[1] for x in r} == {'t', 'h', 'a'}
+    assert sum(x[1] == 't' for x in r) <= pm.POR_LADO
 
 
 def test_llega_solo_al_vip():
@@ -101,4 +110,6 @@ def test_la_pagina():
     assert 'puede pagar menos' in a and 'no una ganancia asegurada' in a
     assert 'if (lin.met && lin.met.length >= 2) return' in a
     assert '[data-met-k]' in a
+    assert "['equipo', 'Por equipo']" in a and "x[1] === 't'" in a and 'data-met-modo' in a
+    assert "s.modo === 'equipo' ? x[0] + x[1] : x[0]" in a
     assert '.met-pata {' in leer('web', 'estilo.css')

@@ -1574,24 +1574,31 @@
   const MET_FACTOR = { 2: 1.01, 3: 1.05, 4: 1.09 };
   const MET_FAM = { goles: 'Goles', corners: 'Córners', tarjetas: 'Tarjetas', a_puerta: 'Remates a puerta', remates: 'Remates' };
   estado.met = new Map();                    // partido → { n, q: patas quitadas, datos, L, V }
-  function metPatas(s) {
-    const pat = [], fams = new Set();
+  // El usuario: «no sólo las globales; también córners del equipo A, remates a puerta del equipo B». Por equipo (medido:
+  // 74 / 56 / 56 % de los partidos con 2 / 3 / 4 patas, más cuota, menos acierto, rendimiento parecido) puede juntar la
+  // misma estadística de los dos equipos: el producto de la casa casi no se desvía (córners 36,0 → 34,8 %).
+  function metPatas(s, q) {
+    const pat = [], usadas = new Set(), quitadas = q || s.q;
     s.datos.forEach((x, i) => {
-      if (pat.length >= s.n || s.q.has(i) || fams.has(x[0])) return;
-      fams.add(x[0]); pat.push({ x, i });
+      if (pat.length >= s.n || quitadas.has(i)) return;
+      if (s.modo === 'equipo' ? x[1] === 't' : s.modo === 'partido' && x[1] !== 't') return;
+      const llave = s.modo === 'equipo' ? x[0] + x[1] : x[0];
+      if (usadas.has(llave)) return;
+      usadas.add(llave); pat.push({ x, i });
     });
     return pat;
   }
   function metCuerpo(k) {
     const s = estado.met.get(k); if (!s) return '';
     const pat = metPatas(s);
-    const chips = '<div class="par-chips">' + [2, 3, 4].map((x) => '<button type="button" class="chip' + (x === s.n ? ' activa' : '') + '" data-met-n="' + x + '" data-met-k="' + esc(k) + '">' + x + ' patas</button>').join('') + '</div>';
+    const chips = '<div class="par-chips">' + [2, 3, 4].map((x) => '<button type="button" class="chip' + (x === s.n ? ' activa' : '') + '" data-met-n="' + x + '" data-met-k="' + esc(k) + '">' + x + ' patas</button>').join('') + '</div>' +
+      '<div class="par-chips">' + [['todas', 'Todas'], ['equipo', 'Por equipo'], ['partido', 'Del partido']].map(([m, t]) => '<button type="button" class="chip' + (m === s.modo ? ' activa' : '') + '" data-met-modo="' + m + '" data-met-k="' + esc(k) + '">' + t + '</button>').join('') + '</div>';
     const quien = (lado) => (lado === 'h' ? ' de ' + s.L : lado === 'a' ? ' de ' + s.V : ' del partido');
     let h = chips + pat.map(({ x, i }) => '<div class="met-pata"><span class="met-txt">' + esc(MET_FAM[x[0]] || x[0]) + esc(quien(x[1])) + ': <b>' + (x[2] === 'mas' ? 'más de ' : 'menos de ') + x[3] + '</b>' +
       '<small>Cumplió ' + x[7] + ' de ' + x[8] + ' en los últimos 10 y ' + x[9] + ' de ' + x[10] + ' en los últimos 5 · mín. ' + x[11] + ' · máx. ' + x[12] + '</small></span>' +
-      '<span class="par-n"><b>' + Number(x[4]).toFixed(2) + '</b><small>casa ' + Math.round(100 * x[5]) + ' %</small></span>' +
+      '<span class="par-n"><b>' + Number(x[4]).toFixed(2) + '</b><small>prob. ' + Math.round(100 * x[5]) + ' %</small></span>' +
       '<button type="button" class="arm-cambiar" data-met-cambiar="' + i + '" data-met-k="' + esc(k) + '" aria-label="Cambiar esta pata" title="Cambiar esta pata">' + ico('refresh-cw') + '</button></div>').join('');
-    if (pat.length < s.n) h += '<p class="aviso">Sólo hay ' + pat.length + ' estadísticas distintas con línea de Playdoit' + (s.q.size ? ' sin contar las que quitaste' : '') + '.</p>';
+    if (pat.length < s.n) h += '<p class="aviso">Sólo hay ' + pat.length + (s.modo === 'equipo' ? ' líneas por equipo' : ' estadísticas distintas') + ' de Playdoit para este partido' + (s.q.size ? ', sin contar las que quitaste' : '') + '.</p>';
     if (pat.length >= 2) {
       const n = pat.length, cuota = pat.reduce((a, y) => a * Number(y.x[4]), 1), peor = Math.min(...pat.map((y) => Number(y.x[6])));
       const prob = Math.min(0.99, pat.reduce((a, y) => a * Number(y.x[5]), 1) * (MET_FACTOR[n] || 1));
@@ -1612,7 +1619,7 @@
     const k = claveNombre(p);
     const tit = '<summary>' + ico('puzzle') + ' Armar parley</summary>';
     if (datos.length < 2) return '<details class="ctx met">' + tit + '<p class="tenue">Este partido no alcanza: hacen falta líneas de Playdoit y al menos 5 partidos de cada equipo.</p></details>';
-    const s = estado.met.get(k) || { n: 3, q: new Set() };
+    const s = estado.met.get(k) || { n: 3, q: new Set(), modo: 'todas' };
     Object.assign(s, { datos, L, V });
     estado.met.set(k, s);
     return '<details class="ctx met">' + tit + '<div class="met-caja" data-met="' + esc(k) + '">' + metCuerpo(k) + '</div></details>';
@@ -2636,12 +2643,12 @@
     if (t.dataset.metK) {                                            // v558 — el parley del partido, sin repintar la lista
       const k = t.dataset.metK, s = estado.met.get(k); if (!s) return;
       if (t.dataset.metN) s.n = Number(t.dataset.metN);
+      else if (t.dataset.metModo) s.modo = t.dataset.metModo;
       else if (t.dataset.metRestaurar) s.q.clear();
       else if (t.dataset.metCambiar != null) {
-        const pat = metPatas(s), i = Number(t.dataset.metCambiar);
-        // sólo si hay con qué reemplazarla: otra línea de esa estadística o una estadística que no esté en el parley
-        const fams = new Set(pat.filter((y) => y.i !== i).map((y) => y.x[0]));
-        if (s.datos.some((x, j) => j !== i && !s.q.has(j) && !fams.has(x[0]))) s.q.add(i);
+        // sólo si hay con qué reemplazarla: el parley no debe quedar con menos patas
+        const q2 = new Set(s.q).add(Number(t.dataset.metCambiar));
+        if (metPatas(s, q2).length >= metPatas(s).length) s.q = q2;
       }
       document.querySelectorAll('.met-caja').forEach((c) => { if (c.dataset.met === k) c.innerHTML = metCuerpo(k); });
       return;
