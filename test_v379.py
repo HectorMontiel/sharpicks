@@ -74,10 +74,14 @@ def probar():
     m = tc.armar(ps, set(), ahora)          # 12:00 UTC = 6:00 CDMX: aún no toca el gratis
     vip = '\n'.join(t for t, *_ in m['vip'])
     # v400 — los 💎 se mandan al abrir su ventana para apostar (4 h antes), no al aparecer
+    # v564 — los resultados, de lo que sí se le mandó al VIP
+    enviados_vip = {(p['id'], 'vip', 'pick') for p in ps[3:]}
+    vip = '\n'.join(t for t, *_ in tc.armar(ps, enviados_vip, ahora)['vip'])
     check('Gana A1' not in vip and 'Gana A4' in vip, 'a 8 h del partido el VIP aún no lo manda; sí los resultados')
-    vip4 = '\n'.join(t for t, *_ in tc.armar(ps, set(), dt.datetime(2026, 10, 17, 16, 30, tzinfo=dt.timezone.utc))['vip'])
-    check('Gana A1' in vip4 and 'Ya es hora de apostar' in vip4 and 'Gana A2' not in vip4 and 'Gana A3' not in vip4,
-          'el VIP: sus 💎 al abrir la ventana para apostar, y sus resultados')
+    vip4 = '\n'.join(t for t, *_ in tc.armar(ps, enviados_vip, dt.datetime(2026, 10, 17, 16, 30, tzinfo=dt.timezone.utc))['vip'])
+    # v564 — el VIP ya recibe cualquier nivel (A2 es 🥇 Oro); A3 es de otro día
+    check('Gana A1' in vip4 and 'Ya es hora de apostar' in vip4 and 'Gana A2' in vip4 and 'Gana A3' not in vip4,
+          'el VIP: lo de cualquier nivel al abrir la ventana para apostar, y sus resultados')
     check(not [t for t, *_ in m['gratis'] if t], 'el gratis no publica fuera de sus horarios')
     # el usuario: «en el gratis, combinadas de máximo 1,5 o una individual cada cierto tiempo»
     a9 = dt.datetime(2026, 10, 17, 15, 5, tzinfo=dt.timezone.utc)      # 9:05 CDMX

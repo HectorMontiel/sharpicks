@@ -48,7 +48,7 @@ def test_v549_errores_con_imagen_ia_primero_y_rojas():
     assert h.index('Gana C') < h.index('Gana A') and '✨ Modelo + IA: mayor probabilidad' in h   # la IA primero, con su sello
     assert '✨' not in tc._apuesta(b)                                            # fuera del VIP no se pone
     r1 = dict(a, estado='verde', marcador='2-0'); r2 = dict(b, estado='roja', marcador='0-2')
-    res = [x for x in tc.armar_vip([r1, r2], set(), ahora) if 'Resultados VIP' in x[0]][0][0]
+    res = [x for x in tc.armar_vip([r1, r2], {(r1['id'], 'vip', 'pick'), (r2['id'], 'vip', 'pick')}, ahora) if 'Resultados VIP' in x[0]][0][0]
     assert '✅ Gana A' in res and '❌ Gana C' in res                              # las rojas también, con nombre
 
 

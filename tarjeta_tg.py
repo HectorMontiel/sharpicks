@@ -164,9 +164,11 @@ def ticket(titulo: str, patas: List[Dict], etiqueta: str = 'VIP', pie: Optional[
     return out.getvalue()
 
 
-def ganado(titulo: str, patas: List[Dict], apuesta: int, cuota_total: float, etiqueta: str = 'VIP') -> bytes:
+def ganado(titulo: str, patas: List[Dict], apuesta: int, cuota_total: float, etiqueta: str = 'VIP', aprox: bool = False) -> bytes:
     """v563 — «cuando se cumplan esas apuestas, mandar que se cumplió y la ganancia; llamativo, que se note que ganaste».
-    patas: [{'partido', 'apuesta', 'marcador'}] (hasta 6)."""
+    patas: [{'partido', 'apuesta', 'marcador'}] (hasta 6). `aprox`: el parley del mismo partido se calcula multiplicando
+    cuotas y el Constructor puede pagar menos: las cifras llevan «~»."""
+    ap = '~' if aprox else ''
     patas = patas[:6]
     fila_h, cab_h = 118, 330
     alto = cab_h + fila_h * len(patas) + 340
@@ -209,12 +211,12 @@ def ganado(titulo: str, patas: List[Dict], apuesta: int, cuota_total: float, eti
         y += fila_h
     d.line([(70, y), (ANCHO - 70, y)], fill=BORDE, width=2)
     d.text((70, y + 20), 'Cuota', font=_fuente(28, False), fill=TENUE)
-    d.text((70, y + 54), '%.2f' % cuota_total, font=_fuente(56), fill=VERDE)
+    d.text((70, y + 54), ap + '%.2f' % cuota_total, font=_fuente(56), fill=VERDE)
     tx = 'Apostando %s' % _pesos(apuesta)
     d.text((ANCHO - 70 - d.textlength(tx, font=_fuente(30, False)), y + 26), tx, font=_fuente(30, False), fill=TENUE)
-    tc = 'cobras %s' % _pesos(apuesta * cuota_total)
+    tc = 'cobras %s%s' % (ap, _pesos(apuesta * cuota_total))
     d.text((ANCHO - 70 - d.textlength(tc, font=_fuente(40)), y + 62), tc, font=_fuente(40), fill=BLANCO)
-    tg2, fg2 = '+%s de ganancia' % _pesos(apuesta * (cuota_total - 1)), _fuente(60)
+    tg2, fg2 = '%s+%s de ganancia' % (ap, _pesos(apuesta * (cuota_total - 1))), _fuente(60)
     d.rounded_rectangle([70, y + 132, ANCHO - 70, y + 228], radius=24, fill=ORO)
     d.text(((ANCHO - d.textlength(tg2, font=fg2)) / 2, y + 146), tg2, font=fg2, fill=FONDO)
     d.text((70, alto - 78), 'sharpicksapp.com  ·  +18  ·  juega con responsabilidad', font=_fuente(24, False), fill=TENUE)

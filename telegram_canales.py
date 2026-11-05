@@ -73,7 +73,21 @@ MAX_VIP_MSG = 6                   # VIP: lo mejor, no la lista entera (el resto,
 # parleys posibles». La foto es UN parley que se puede ganar: partidos distintos y 3 patas (medido en v528: 35-63 %); antes
 # juntaba hasta 6 picks, a veces dos del mismo partido.
 PATAS_PARLEY = 3
+# v564 — el usuario: «sólo parleys con alta probabilidad». Medido (3.814 picks, 15-oct a 5-nov, por franja de 4 h): con conjunta
+# de 65 %+, 3 patas salieron 72 y 70 % (dice 71 y 70), 2 patas 80 y 77 %, cuota ~1,30. Se agrega pata mientras no baje de ahí.
+PROB_PARLEY = 0.65
 MAX_GANADOS = 3                   # fotos de «¡ganamos!» por canal y pasada: lo demás, en la siguiente
+# v564 — el usuario: «con la nueva función de Armar parley, ¿podemos hacer algo así para el VIP?» y «sólo alta probabilidad».
+# El parley del mismo partido con la regla MEDIDA (3.452 partidos, medir_parley_alta_prob.py): 2 patas de estadísticas distintas,
+# cada una con 80 %+ de cumplimiento e historia completa, conjunta 65 %+ y cuota 1,25+: salieron 70,7 y 70,3 % (dice 70,3 y 70,7),
+# cuota ~1,35, unos 7 al día. Con 3 patas no llega: dice 62-68 % y salen 57-59 %.
+# Sin «remates» totales: ESPN y Playdoit pueden contarlos distinto (v344) y no se podría decir si se cumplió.
+METODO_SCORE, METODO_CUOTA, METODO_PROB = 0.80, (1.25, 3.2), 0.65
+METODO_MAX_DIA = 3
+METODO_FACTOR = 1.01                 # lo que el producto de la casa se queda corto con 2 patas (medido)
+METODO_NOMBRE = {'goles': 'Goles', 'corners': 'Córners', 'tarjetas': 'Tarjetas', 'a_puerta': 'Remates a puerta'}
+METODO_STAT = {'goles': 'goals', 'corners': 'corners', 'tarjetas': 'tarjetas', 'a_puerta': 'shots_on'}
+METODO_ESPN_MAX = 15                 # partidos que se consultan por pasada
 VENTANA_APUESTA_H = 4             # v351: la hora para apostar
 GANCHOS_VIP = ('🔥 El pick del momento', '💰 Se viene un partidazo con buenas ganancias', '🎯 Lo mejor para apostar ahora',
                '🚀 Llegó la hora: picks con buena probabilidad')   # v549 — el encabezado del VIP, como marketing
@@ -204,15 +218,20 @@ def _monto(ps: List[Dict]) -> int:
     return tarjeta_tg.monto([{'partido': p.get('partido'), 'apuesta': p.get('apuesta')} for p in ps])
 
 
-def parley_de(ps: List[Dict], n: int = PATAS_PARLEY) -> List[Dict]:
-    """Las primeras `n` patas de partidos distintos (`ps` ya viene de mejor a peor)."""
-    out, vistos = [], set()
+def parley_de(ps: List[Dict], n: int = PATAS_PARLEY, pmin: float = PROB_PARLEY) -> List[Dict]:
+    """Hasta `n` patas de partidos distintos (`ps` ya viene de mejor a peor) mientras la probabilidad conjunta no baje de
+    `pmin`. Una sola pata también vale (individual). Vacío si ni la mejor llega: entonces no hay foto."""
+    out, vistos, prob = [], set(), 1.0
     for p in ps:
         k = clave_partido(p)
         if k in vistos:
             continue
+        pr = float(p.get('prob') or 0)
+        if prob * pr < pmin:
+            break
         vistos.add(k)
         out.append(p)
+        prob *= pr
         if len(out) == n:
             break
     return out
@@ -229,7 +248,204 @@ def _cubre_ticket(ps: List[Dict], canal: str, titulo: str, vip: bool) -> Tuple:
     return (_clave_ticket([p['id'] for p in ps]), canal, 'ticket', json.dumps(datos, ensure_ascii=False), ps[0].get('partido'), ps[0].get('inicio'))
 
 
-def armar_ganados(picks: List[Dict], enviados: Set) -> Dict[str, List]:
+def _lineas_vip() -> Dict:
+    """{id de pick: lin} del fichero privado que deja el exportador en esta misma pasada."""
+    try:
+        d = json.load(open(os.path.join(os.path.dirname(PRIVADO) or '.', 'vip.json'), encoding='utf-8'))
+        return {k: (v or {}).get('lin') or {} for k, v in d.items()}
+    except Exception:
+        return {}
+
+
+def _txt_pata(x: List, L: str, V: str) -> str:
+    quien = ' de ' + L if x[1] == 'h' else ' de ' + V if x[1] == 'a' else ' del partido'
+    return '%s%s: %s %s' % (METODO_NOMBRE.get(x[0], x[0]), quien, 'más de' if x[2] == 'mas' else 'menos de', x[3])
+
+
+def elegir_patas_metodo(met: List) -> Optional[List]:
+    """Las 2 patas del parley con la regla medida; None si este partido no da para uno."""
+    buenas = [x for x in met or [] if len(x) > 13 and x[13] and x[0] in METODO_NOMBRE and float(x[6]) >= METODO_SCORE and x[8]]
+    pat, fams = [], set()
+    for x in sorted(buenas, key=lambda z: (-float(z[6]), -float(z[5]))):
+        if x[0] in fams:
+            continue
+        fams.add(x[0])
+        pat.append(x)
+        if len(pat) == 2:
+            break
+    if len(pat) < 2:
+        return None
+    cuota, prob = float(pat[0][4]) * float(pat[1][4]), float(pat[0][5]) * float(pat[1][5]) * METODO_FACTOR
+    return pat if METODO_CUOTA[0] <= cuota <= METODO_CUOTA[1] and prob >= METODO_PROB else None
+
+
+def armar_metodo(picks: List[Dict], enviados: Set, ahora: dt.datetime, lineas: Dict) -> List[Tuple]:
+    """⏰ El parley del método al abrir la ventana para apostar: el de mejor cumplimiento, uno por pasada y METODO_MAX_DIA al día."""
+    enviados = _tres(enviados)
+    hoy = ahora.astimezone(CDMX).strftime('%Y-%m-%d')
+    if sum(1 for k, c, t in enviados if t == 'metodo' and c == 'vip' and k.endswith(hoy)) >= METODO_MAX_DIA:
+        return []
+    candidatos = {}
+    for p in picks:
+        ini = _utc(p.get('inicio'))
+        if p.get('deporte') != 'Fútbol' or not p.get('espn') or ' vs ' not in str(p.get('partido')) or p.get('estado') != 'pendiente' or ini is None:
+            continue
+        if not (ahora + dt.timedelta(minutes=20) < ini <= ahora + dt.timedelta(hours=VENTANA_APUESTA_H)):
+            continue
+        k = clave_partido(p)
+        met = ((lineas.get(p.get('id')) or {}).get('met'))
+        if k in candidatos or not met or ('metodo:' + k, 'vip', 'metodo') in enviados:
+            continue
+        pat = elegir_patas_metodo(met)
+        if pat:
+            candidatos[k] = (p, pat)
+    if not candidatos:
+        return []
+    k, (p, pat) = max(candidatos.items(), key=lambda z: float(z[1][1][0][5]) * float(z[1][1][1][5]))       # la de mayor probabilidad
+    L, _, V = str(p['partido']).partition(' vs ')
+    cuota, prob = 1.0, 1.0
+    patas = []
+    for x in pat:
+        cuota *= float(x[4])
+        prob *= float(x[5])
+        patas.append({'apuesta': _txt_pata(x, L, V), 'partido': p['partido'], 'cuota': float(x[4]), 'fam': x[0], 'lado': x[1], 'dir': x[2], 'linea': float(x[3])})
+    prob = min(0.99, prob * METODO_FACTOR)
+    monto = _monto([{'partido': p['partido'], 'apuesta': y['apuesta']} for y in patas])
+    t = ('🧩💎 <b>VIP · Parley del partido</b>\n%s\n\n' % _cab_partido(p, ahora) +
+         '\n'.join('✅ <b>%s</b> · 💸 %.2f' % (_e(y['apuesta']), y['cuota']) for y in patas) +
+         '\n\n🔗 Cuota <b>~%.2f</b> · 🎯 ~%d %%' % (cuota, round(100 * prob)) + PIE)
+    foto = None
+    try:
+        import tarjeta_tg
+        foto = tarjeta_tg.ticket('Parley del partido', [{'partido': p['partido'], 'cuando': _cuando(p, ahora).upper(), 'apuesta': y['apuesta'],
+                                                         'cuota': y['cuota'], 'prob': float(x[5])} for x, y in zip(pat, patas)], 'VIP', apuesta=monto)
+    except Exception as e:
+        logger.warning('[telegram] sin ticket del método: %s', e)
+    datos = {'titulo': 'Parley del partido', 'vip': True, 'metodo': True, 'monto': monto, 'espn': p['espn'], 'partido': p['partido'],
+             'inicio': p.get('inicio'), 'patas': patas}
+    return [(t, [('metodo:' + k, 'vip', 'metodo'), ('ticket:metodo:' + k, 'vip', 'ticket', json.dumps(datos, ensure_ascii=False), p['partido'], p.get('inicio'))], foto)]
+
+
+def teaser_metodo(lote: List[Tuple], ahora: dt.datetime) -> List[Tuple]:
+    """🔒 La publicidad en el gratis: «se viene un parley al VIP», con el partido, la cuota y la ganancia; la jugada, borrosa."""
+    out = []
+    for item in lote:
+        k = item[1][0][0]
+        d = json.loads(item[1][1][3])
+        cuota = 1.0
+        for y in d['patas']:
+            cuota *= float(y['cuota'])
+        cuando = _cuando({'inicio': d.get('inicio')}, ahora)
+        t = ('🔒🧩 <b>Se viene un parley al VIP</b>\n⚽ %s · 🕒 %s\n💰 Cuota <b>~%.2f</b>: la jugada, sólo para VIP 👀\n\n👉 Desbloquéala: hazte VIP en %s' %
+             (_e(d.get('partido')), _e(cuando), cuota, SITIO) + PIE)
+        foto = None
+        try:
+            import tarjeta_tg
+            foto = tarjeta_tg.ticket('Parley del partido · VIP', [{'partido': y['partido'], 'cuando': cuando.upper(), 'apuesta': '', 'cuota': y['cuota'], 'prob': None}
+                                                                 for y in d['patas']], 'VIP', censurado=True, apuesta=d.get('monto'))
+        except Exception as e:
+            logger.warning('[telegram] sin teaser del método: %s', e)
+        out.append((t, [(k, 'gratis', 'teaser')], foto))
+    return out
+
+
+def _final_espn(ruta_id: str, a: str, b: str) -> Optional[Dict]:
+    """{estadística: (de A, de B)} del partido terminado; None si no ha terminado, si hubo prórroga (el boxscore la incluye y
+    la casa paga a los 90') o si no se sabe quién es quién."""
+    try:
+        import requests
+        import liquidar_pendientes as lq
+        ruta, eid = str(ruta_id).split(':', 1)
+        d = requests.get(lq.ESPN % ruta, params={'event': eid}, timeout=20).json()
+        comp = ((d.get('header') or {}).get('competitions') or [{}])[0]
+        tipo = (comp.get('status') or {}).get('type') or {}
+        if not tipo.get('completed') or tipo.get('name') in lq.NO_SE_JUGO:   # pospuesto: viene con state «post» y 0-0
+            return None
+        if tipo.get('name') in ('STATUS_FINAL_AET', 'STATUS_FINAL_PEN', 'STATUS_FINAL_ET', 'STATUS_END_OF_EXTRATIME'):
+            return None
+        cs = comp.get('competitors') or []
+        h = next((c for c in cs if c.get('homeAway') == 'home'), None)
+        w = next((c for c in cs if c.get('homeAway') == 'away'), None)
+        if not h or not w:
+            return None
+        nh, nw = h['team'].get('displayName'), w['team'].get('displayName')
+        if lq._orden(nh, nw, a, b, 0, 1) is None:
+            return None
+        por_id = {}
+        for t in ((d.get('boxscore') or {}).get('teams') or []):
+            por_id[str((t.get('team') or {}).get('id'))] = {s.get('name'): s.get('displayValue') for s in t.get('statistics') or []}
+        sh, sw = por_id.get(str(h['team'].get('id'))) or {}, por_id.get(str(w['team'].get('id'))) or {}
+
+        def num(st, *nombres):
+            try:
+                return sum(int(float(st[n] or 0)) for n in nombres)
+            except Exception:
+                return None
+        out = {'goals': lq._orden(nh, nw, a, b, int(float(h.get('score') or 0)), int(float(w.get('score') or 0)))}
+        for clave, nombres in (('corners', ('wonCorners',)), ('tarjetas', ('yellowCards', 'redCards')), ('shots_on', ('shotsOnTarget',))):
+            x, y = num(sh, *nombres), num(sw, *nombres)
+            if x is not None and y is not None:
+                out[clave] = lq._orden(nh, nw, a, b, x, y)
+        return out
+    except Exception as e:
+        logger.debug('[telegram] espn %s: %s', ruta_id, e)
+        return None
+
+
+def cumplio_pata(y: Dict, final: Dict) -> Optional[bool]:
+    v = final.get(METODO_STAT.get(y.get('fam')))
+    if not v:
+        return None
+    real = v[0] if y.get('lado') == 'h' else v[1] if y.get('lado') == 'a' else v[0] + v[1]
+    return real > float(y['linea']) if y.get('dir') == 'mas' else real < float(y['linea'])
+
+
+def _ganados_metodo(enviados: Set, ahora: dt.datetime, out: Dict, final_de=None) -> None:
+    """Los parleys del método que ya terminaron. Una pata sin dato no se da por buena: sin foto. Lo que no se cumple sólo se apunta."""
+    consultas = 0
+    for (clave, _c), texto in sorted(_TICKETS.items()):
+        if not clave.startswith('ticket:metodo:') or (clave, 'vip', 'ganado') in enviados:
+            continue
+        try:
+            d = json.loads(texto)
+            ini = _utc(d.get('inicio'))
+        except Exception:
+            continue
+        if ini is None or ahora < ini + dt.timedelta(hours=2, minutes=30) or consultas >= METODO_ESPN_MAX:
+            continue
+        cierra = [(clave, 'vip', 'ganado'), (clave, 'gratis', 'ganado')]
+        consultas += 1
+        L, _, V = str(d.get('partido')).partition(' vs ')
+        final = (final_de or _final_espn)(d.get('espn'), L.strip(), V.strip())
+        res = [cumplio_pata(y, final) for y in d.get('patas') or []] if final else [None]
+        if False in res:
+            out['vip'].append(('', cierra))         # no se cumplió: el resumen de la noche cuenta verdes y rojas
+            continue
+        if None in res or not res:
+            if ahora > ini + dt.timedelta(hours=48):
+                out['vip'].append(('', cierra))     # sin datos a los 2 días: no se inventa
+            continue
+        cuota = 1.0
+        for y in d['patas']:
+            cuota *= float(y.get('cuota') or 1)
+        apuesta = int(d.get('monto') or 10000)
+        marc = '%d-%d' % tuple(final['goals']) if final.get('goals') else ''
+        patas = [{'partido': y.get('partido'), 'apuesta': y.get('apuesta'), 'marcador': marc} for y in d['patas']]
+        for canal in ('vip', 'gratis'):
+            t = ('🏆💰 <b>¡PARLEY DEL PARTIDO CUMPLIDO!</b> · cuota <b>~%.2f</b>\n⚽ %s %s\n' % (cuota, _e(d.get('partido')), _e(marc)) +
+                 '\n'.join('✅ %s' % _e(y.get('apuesta')) for y in d['patas']) +
+                 '\n\n🔥 Apostando %s ganaste <b>~+%s</b>' % (_pesos(apuesta), _pesos(apuesta * (cuota - 1))) +
+                 ('\n\n💎 Esto les llegó a los VIP antes del partido 👉 ' + SITIO if canal == 'gratis' else '') + PIE)
+            foto = None
+            try:
+                import tarjeta_tg
+                foto = tarjeta_tg.ganado('Parley del partido', patas, apuesta, cuota, 'VIP', aprox=True)
+            except Exception as e:
+                logger.warning('[telegram] sin foto de ganado: %s', e)
+            out[canal].append((t, [(clave, canal, 'ganado')], foto))
+
+
+def armar_ganados(picks: List[Dict], enviados: Set, ahora: Optional[dt.datetime] = None, final_de=None) -> Dict[str, List]:
     """v563 — los parleys con foto que ya se cumplieron: la foto de «¡ganamos!». Lo del VIP (y su censurado) va a los dos
     canales; lo gratis, al gratis. Un parley con una pata roja no lleva foto: va en los resultados y en el resumen de la noche.
     Una pata nula no cuenta: se paga con las demás."""
@@ -238,7 +454,7 @@ def armar_ganados(picks: List[Dict], enviados: Set) -> Dict[str, List]:
     out: Dict[str, List] = {'vip': [], 'gratis': []}
     vistos = set()
     for (clave, _canal), texto in sorted(_TICKETS.items()):
-        if clave in vistos:
+        if clave in vistos or clave.startswith('ticket:metodo:'):
             continue
         vistos.add(clave)
         try:
@@ -272,6 +488,7 @@ def armar_ganados(picks: List[Dict], enviados: Set) -> Dict[str, List]:
             except Exception as e:
                 logger.warning('[telegram] sin foto de ganado: %s', e)
             out[canal].append((t, [(clave, canal, 'ganado')], foto))
+    _ganados_metodo(enviados, ahora or dt.datetime.now(dt.timezone.utc), out, final_de)
     return out
 
 
@@ -360,10 +577,10 @@ def _tres(enviados) -> Set:
 
 def armar_vip(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[Tuple[str, List]]:
     enviados = _tres(enviados)
-    vip = niveles_vip()
     out = []
     loc = ahora.astimezone(CDMX)
-    pend = [p for p in picks if nivel(p) in vip and p.get('estado') == 'pendiente'
+    # v564 — el usuario: «en el VIP deben ser de cualquier nivel, parley o individuales». Se manda lo mejor de todos los niveles
+    pend = [p for p in picks if p.get('estado') == 'pendiente'
             and _utc(p.get('inicio')) is not None and _utc(p.get('inicio')) > ahora
             and (p['id'], 'vip', 'pick') not in enviados]
     # 💰 errores de cuota: AL MOMENTO (se corrigen pronto)
@@ -394,10 +611,14 @@ def armar_vip(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[Tupl
         t = ('💎 <b>VIP · %s</b>\n⏰ Ya es hora de apostar\n\n' % gancho + '\n\n'.join(_por_partido(top, ahora, ia=True)) +
              ('\n\n➕ <b>%d más</b> en la app 👉 %s' % (mas, SITIO) if mas > 0 else '') + PIE)
         par = parley_de(top)
-        out.append((t, [_cubre_pick(p, 'vip') for p in ya] + [_cubre_ticket(par, 'vip', 'Parley VIP', True)],
-                    _ticket('Parley VIP · hora de apostar', par, ahora, 'VIP')))
+        # sólo lo que se enseñó lleva texto: de lo demás (ya son todos los niveles) no se avisa si luego se retira
+        ids_top = {p['id'] for p in top}
+        # sin parley de alta probabilidad, el mensaje sale sin foto y sin aviso de «¡ganamos!»
+        out.append((t, [_cubre_pick(p, 'vip') if p['id'] in ids_top else (p['id'], 'vip', 'pick') for p in ya] +
+                    ([_cubre_ticket(par, 'vip', 'Parley VIP', True)] if par else []),
+                    _ticket('Parley VIP · hora de apostar', par, ahora, 'VIP') if par else None))
     out += _avisos_retiro(picks, enviados, 'vip', ahora)
-    res = [p for p in picks if nivel(p) in vip and p.get('estado') in ('verde', 'roja')
+    res = [p for p in picks if p.get('estado') in ('verde', 'roja') and (p['id'], 'vip', 'pick') in enviados
            and _utc(p.get('inicio')) is not None and _utc(p.get('inicio')) >= ahora - dt.timedelta(hours=8)
            and (p['id'], 'vip', 'resultado') not in enviados]
     if res:
@@ -416,7 +637,7 @@ def armar_vip(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[Tupl
     # 🌙 el resumen de la noche
     hoy = loc.strftime('%Y-%m-%d')
     if loc.hour >= HORA_NOCHE and ('noche:' + hoy, 'vip', 'resumen') not in enviados:
-        dia = [p for p in picks if nivel(p) in vip and _dia_cdmx(p) == hoy]
+        dia = [p for p in picks if _dia_cdmx(p) == hoy]
         t = _resumen_noche('💎 <b>Hoy en el VIP</b>', dia)
         if t:
             out.append((t, [('noche:' + hoy, 'vip', 'resumen')]))
@@ -440,14 +661,14 @@ def _resumen_noche(titulo: str, ps: List[Dict]) -> Optional[str]:
 # ---------- el canal gratis: poco y bueno ----------
 def candidatas_gratis(picks: List[Dict], ahora: dt.datetime) -> List[Dict]:
     """v381 — sin los niveles del VIP (💎/🔷): si el gratis los diera, el VIP
-    no tendría nada propio. Tampoco nada premium (su texto no es público)."""
+    no tendría nada propio. Tampoco nada premium (su texto no es público).
+    v564 — el usuario: «en el gratis, apuestas de nivel Oro, en parley o individuales»."""
     fin = ahora + dt.timedelta(hours=VENTANA_GRATIS_H)
-    vip = niveles_vip()
     out = []
     for p in picks:
         ini = _utc(p.get('inicio'))
         if (p.get('estado') == 'pendiente' and p.get('cuota') and ini is not None
-                and nivel(p) not in vip and not p.get('premium')
+                and nivel(p) == 'Oro' and not p.get('premium')
                 and float(p.get('prob') or 0) >= PROB_MIN_GRATIS
                 and ahora + dt.timedelta(minutes=20) < ini <= fin):
             out.append(p)
@@ -547,12 +768,11 @@ def armar_gratis(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[T
     # y la ganancia, borrosos). Uno cada 4 horas como mucho, entre las 8 y las 23, y nunca dos veces los mismos picks.
     if 8 <= loc.hour < 23:
         franja = 'teaser:%s:%02d' % (hoy, loc.hour // 4 * 4)
-        vip = niveles_vip()
-        listos = [p for p in picks if nivel(p) in vip and p.get('tipo') != 'error' and p.get('estado') == 'pendiente'
+        listos = [p for p in picks if p.get('tipo') != 'error' and p.get('estado') == 'pendiente'
                   and _utc(p.get('inicio')) is not None and ahora < _utc(p.get('inicio')) <= ahora + dt.timedelta(hours=VENTANA_APUESTA_H)
                   and (p['id'], 'gratis', 'teaser') not in enviados]
-        if listos and (franja, 'gratis', 'teaser') not in enviados:
-            top = parley_de(sorted(listos, key=lambda p: (not p.get('elige'), -float(p.get('prob') or 0))))
+        top = parley_de(sorted(listos, key=lambda p: (not p.get('elige'), -float(p.get('prob') or 0))))
+        if top and (franja, 'gratis', 'teaser') not in enviados:
             t = ('🔒💎 <b>Acaban de llegar %d picks al VIP</b>\n' % len(listos) +
                  'Ya es hora de apostar: la jugada, sólo para VIP 👀\n\n' +
                  '\n'.join('%s %s · 🕒 %s' % (DEP_EMO.get(p.get('deporte'), '🎯'), _e(p.get('partido')), _cuando(p, ahora)) for p in top) +
@@ -821,7 +1041,10 @@ def armar(picks: List[Dict], enviados: Set, ahora: Optional[dt.datetime] = None)
     """{canal: [(texto, [(pick, canal, tipo) que cubre])]} con sólo lo nuevo."""
     ahora = ahora or dt.datetime.now(dt.timezone.utc)
     lotes = {'vip': armar_vip(picks, enviados, ahora), 'gratis': armar_gratis(picks, enviados, ahora)}
-    ganados = armar_ganados(picks, enviados)              # v563
+    metodo = armar_metodo(picks, enviados, ahora, _lineas_vip())   # v564
+    lotes['vip'] += metodo
+    lotes['gratis'] += teaser_metodo(metodo, ahora)
+    ganados = armar_ganados(picks, enviados, ahora)       # v563
     for canal, msgs in ganados.items():
         lotes[canal] += msgs
     return lotes

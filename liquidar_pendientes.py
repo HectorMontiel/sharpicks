@@ -33,6 +33,7 @@ logger = logging.getLogger('liquidar_pendientes')
 ESPN = 'https://site.api.espn.com/apis/site/v2/sports/%s/summary'
 FS_DIA = 'https://global.flashscore.ninja/2/x/feed/f_%d_%d_3_es-mx_1'
 FS_DEP = {'Fútbol': 1, 'Tenis': 2}
+NO_SE_JUGO = {'STATUS_POSTPONED', 'STATUS_CANCELED', 'STATUS_CANCELLED', 'STATUS_ABANDONED', 'STATUS_SUSPENDED', 'STATUS_DELAYED', 'STATUS_FORFEIT'}
 DIAS = 15                  # v478 — de 10 a 15: el 27-oct quedaban abiertos picks del 15-oct
 ABIERTOS = 'in.(pendiente,vivo)'   # v478 — el exportador deja «vivo» al que empezó; 395 de 462 se quedaban así
 # horas desde el inicio para darlo por terminado (si la fuente no dice lo contrario)
@@ -65,6 +66,10 @@ def _espn(ruta_id: str, a: str, b: str, sesion) -> Optional[Dict]:
         comp = ((d.get('header') or {}).get('competitions') or [{}])[0]
         tipo = (comp.get('status') or {}).get('type') or {}
         if not (tipo.get('completed') or tipo.get('state') == 'post'):
+            return None
+        # v564 — pospuesto o cancelado también viene con state «post» y 0-0: Unión La Calera vs Coquimbo (20-oct) se liquidó
+        # 0-0 y roja, y se jugó el 4-nov (0-2). No terminó: no se califica.
+        if not tipo.get('completed') and tipo.get('name') in NO_SE_JUGO:
             return None
         cs = comp.get('competitors') or []
         h = next((c for c in cs if c.get('homeAway') == 'home'), None)
