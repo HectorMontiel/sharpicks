@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-05T06:21:36Z",
+"actualizado": "2026-11-05T08:01:43Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23171,6 +23171,16 @@
 "cuota": 1.71,
 "resultado": "verde",
 "marcador": "0-1"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "MLB",
+"partido": "Aguilas de Mexicali vs Mazatlan",
+"apuesta": "Gana Aguilas de Mexicali",
+"cuota": 1.6,
+"resultado": "rojo",
+"marcador": "1-5"
 },
 {
 "dia": "2026-11-04",
