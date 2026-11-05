@@ -14,7 +14,8 @@
 - Hay vistas con `security_invoker=true` (por ejemplo `historial_deportes`, `historial_niveles` en una revisión anterior, `historial`, `calibracion_picks` y `ia_medicion` tras v508), y otras con `security_invoker=false` explícito o sin opción en el SQL mostrado. Las últimas operan con privilegios del dueño según el comportamiento de PostgreSQL; sus grants, definición final y contenido requieren inspección de catálogo y pruebas por rol.
 - Migraciones contienen muchas funciones `SECURITY DEFINER`, varias con `search_path` fijado. Los grants/revokes varían por función; el nombre de la función no basta para decidir si su acceso es indebido. Deben verificarse definición efectiva, propietario, ACL y contexto de identidad.
 - `v508_seguridad.sql` crea `codigos_intentos`, habilita RLS, no define policy para esa tabla y revoca acceso de `anon`/`authenticated`, concediendo acceso a `service_role`. Esto es una decisión explícita en SQL, no evidencia del estado aplicado.
-- `v546_indices_search_path.sql` agrega seis índices y ajusta `search_path` de `public.nivel_pick`; es transaccional. `v547_optimizacion_rls.sql` modifica 11 políticas mediante `ALTER POLICY` envolviendo `auth.uid()` como initplan y sin cambiar deliberadamente los predicados. No fueron ejecutadas ni comparadas en staging.
+- `v546_indices_search_path.sql` agrega seis índices; es transaccional. `v547_optimizacion_rls.sql` modifica 11 políticas mediante `ALTER POLICY` envolviendo `auth.uid()` como initplan y sin cambiar los predicados; `v555_rls_reportes.sql` añade la política 12, que faltaba. Comparadas contra el catálogo de producción el 2026-11-04 (nombres, tablas, predicados, comando y roles coinciden; los índices son las 6 claves foráneas que marca el asesor). No fueron ejecutadas en ninguna base.
+- Se quitó de v546 el `set search_path` de `public.nivel_pick`: una función SQL con `SET` deja de insertarse en la consulta y `historial_niveles` la evalúa por fila. No es `SECURITY DEFINER` y no toca tablas, así que el aviso `function_search_path_mutable` se acepta a propósito. Efecto en tiempo no medido.
 - Una búsqueda estática de las migraciones versionadas no encuentra uso de `ltree`, `pgcrypto`, `btree_gist`, `pgp_*` ni creación de operadores propios; sí encuentra `pg_cron` y `pg_net`. Esto limita el riesgo evidenciado por el código versionado, pero no sustituye el catálogo de extensiones desplegado. El changelog oficial publica cambios recientes de PostgreSQL 15/17 que pueden requerir revisar ciertos datos/índices si las extensiones afectadas están instaladas; verificar la versión y extensiones de staging antes de upgrades: [Supabase PostgreSQL 15.19 / 17.11 changelog](https://supabase.com/changelog/postgres-15-19-17-11-breaking-changes).
 
 ## Revisión de hallazgos históricos
@@ -27,7 +28,7 @@
 | 10 Edge Functions con `verify_jwt=false` | Sólo hay una asignación falsa explícita en el config versionado; el resto usa el default salvo que GitHub tree/version desplegada difiera | OBSERVADO localmente; verificar config desplegada |
 | Webhook Mercado Pago | Consulta estado autoritativo con API, sin verificación local de firma visible en fuente | PENDIENTE confirmar panel/protocolo y hacer prueba aislada |
 | Tabla `codigos_intentos` | SQL habilita RLS, sin policy, revoca roles cliente y concede service role | OBSERVADO en v508; pendiente estado efectivo |
-| Migraciones v546/v547 | SQL presente en rama, con transacción; no aplicada | PENDIENTE staging |
+| Migraciones v546/v547/v555 | Revisadas contra el catálogo el 2026-11-04; con transacción; no aplicadas | PENDIENTE autorización para aplicar |
 
 ## No comprobado
 

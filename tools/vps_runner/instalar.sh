@@ -2,8 +2,9 @@
 # Prepara un servidor Ubuntu 24.04 (x64) con runners propios de GitHub Actions para SharPicks (ADR-0002).
 # Se corre UNA vez, como root, en el servidor:
 #
-#   RUNNER_REG_TOKEN=<token de registro> REPO=HectorMontiel/sharpicks N=4 bash instalar.sh
+#   RUNNER_REG_TOKEN=<token de registro> REPO=HectorMontiel/sharpicks N=3 bash instalar.sh
 #
+# despertador.sh tiene que estar junto a este archivo.
 # El token de registro dura 1 hora y sólo sirve para registrar runners. Se saca con:
 #   gh api -X POST repos/HectorMontiel/sharpicks/actions/runners/registration-token -q .token
 # No se guarda en ningún archivo ni se imprime. Seguro de repetir: lo ya registrado se salta.
@@ -11,10 +12,12 @@ set -euo pipefail
 
 : "${RUNNER_REG_TOKEN:?falta RUNNER_REG_TOKEN}"
 REPO="${REPO:-HectorMontiel/sharpicks}"
-N="${N:-4}"            # 1 se queda con el Relevo (dormido, no gasta) y 3 trabajan; medido: 98 % del tiempo corren ≤ 2
+N="${N:-3}"            # 1 se queda con el Relevo (dormido, no gasta) y 2 trabajan; medido: 98 % del tiempo corren ≤ 2
 ETIQUETA="sharpicks-vps"
 BASE=/opt/runners
 USUARIO=runner
+AQUI="$(cd "$(dirname "$0")" && pwd)"
+[ -f "$AQUI/despertador.sh" ] || { echo "falta despertador.sh junto a este archivo" >&2; exit 1; }
 
 [ "$(id -u)" = 0 ] || { echo "corre esto como root" >&2; exit 1; }
 [ "$(uname -m)" = x86_64 ] || { echo "sólo x64: setup-python no siempre tiene versiones ARM" >&2; exit 1; }
@@ -52,6 +55,9 @@ cat > "$BASE/antes_del_trabajo.sh" <<'EOF'
 if [ -d "${GITHUB_WORKSPACE:-}/.git" ]; then
   git -C "$GITHUB_WORKSPACE" config --unset-all core.sparseCheckout 2>/dev/null || true
   rm -f "$GITHUB_WORKSPACE/.git/info/sparse-checkout" "$GITHUB_WORKSPACE"/.git/index.lock 2>/dev/null || true
+  # actions/checkout apaga gc.auto, y aquí la carpeta se reusa: el .git sólo crece. Pasados 3 GB se borra y checkout lo recrea.
+  TAM=$(du -sm "$GITHUB_WORKSPACE/.git" 2>/dev/null | cut -f1)
+  if [ "${TAM:-0}" -gt 3072 ]; then rm -rf "${GITHUB_WORKSPACE:?}/.git"; fi
 fi
 # si el disco va a más de 85 %, se limpian espacios de trabajo viejos (más de 7 días sin usar)
 USO=$(df --output=pcent / | tail -1 | tr -dc 0-9)
@@ -81,4 +87,44 @@ EOF
   echo "r$i listo"
 done
 rm -f "$TGZ"
+
+# El despertador, con su propio usuario: el token no lo puede leer un trabajo que corra en los runners.
+# No hace nada hasta que exista su archivo con el token, y sólo anota hasta que DESPERTADOR=activo.
+id despertador >/dev/null 2>&1 || useradd --system --no-create-home --shell /usr/sbin/nologin despertador
+install -m 755 "$AQUI/despertador.sh" /usr/local/bin/sharpicks-despertador
+install -d -m 700 -o despertador -g despertador /etc/sharpicks
+cat > /etc/systemd/system/sharpicks-despertador.service <<EOF
+[Unit]
+Description=Despertador de SharPicks (ADR-0002)
+ConditionPathExists=/etc/sharpicks/despertador.env
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=despertador
+Environment=REPO=$REPO
+EnvironmentFile=/etc/sharpicks/despertador.env
+ExecStart=/usr/local/bin/sharpicks-despertador
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+EOF
+cat > /etc/systemd/system/sharpicks-despertador.timer <<'EOF'
+[Unit]
+Description=Despertador de SharPicks cada 15 minutos
+
+[Timer]
+OnCalendar=*:02/15
+AccuracySec=1min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOF
+systemctl daemon-reload
+systemctl enable --now sharpicks-despertador.timer >/dev/null
+
 echo "Listo: $N runners con la etiqueta $ETIQUETA. Para usarlos: gh variable set RUNNER_PESADO --body $ETIQUETA --repo $REPO"
+echo "Falta el token del despertador: docs/runbooks/pasar_a_privado.md"

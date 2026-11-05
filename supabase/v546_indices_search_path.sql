@@ -1,6 +1,10 @@
--- v546 — índices de claves foráneas y search_path explícito.
+-- v546 — índices de claves foráneas.
 -- Cambios aditivos: no alteran filas, permisos ni reglas de negocio.
--- Ejecutar primero en entorno de pruebas y comparar el plan de consultas.
+-- Comparado contra el catálogo el 2026-11-04: son las 6 claves que marca el asesor; tablas de ≤ 72 kB.
+--
+-- Se quitó `alter function nivel_pick set search_path`: una función SQL con SET ya no se puede insertar en la
+-- consulta, y historial_niveles la evalúa fila por fila. No da seguridad real: no es SECURITY DEFINER y no toca
+-- tablas. El aviso function_search_path_mutable del asesor se acepta a propósito.
 
 begin;
 
@@ -21,10 +25,5 @@ create index if not exists seguidos_pick_idx
 
 create index if not exists suscripciones_usuario_idx
   on public.suscripciones (usuario);
-
--- Función IMMUTABLE y sin SQL dinámico; fijar el path evita depender
--- del search_path mutable de la sesión que la invoque.
-alter function public.nivel_pick(text, boolean, numeric, numeric)
-  set search_path = pg_catalog, public;
 
 commit;

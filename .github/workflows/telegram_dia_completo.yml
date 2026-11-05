@@ -31,6 +31,8 @@ env:
 
 jobs:
   enviar_dia_completo:
+    # ADR-0002: con el despertador activo sólo envía él; un cron atrasado mandaría el mensaje otra vez
+    if: ${{ github.event_name != 'schedule' || vars.DESPERTADOR != 'activo' }}
     runs-on: ${{ vars.RUNNER_PESADO || 'ubuntu-latest' }}   # ADR-0002: sin la variable, runners de GitHub
     timeout-minutes: 60
 

@@ -1,6 +1,6 @@
 # ADR-0002: repo completo privado con runner propio en la nube
 
-- **Estado:** ACEPTADO por el propietario el 2026-11-04 (servidor propio). Sin ejecutar: falta confirmar y contratar el servidor, portar el despertador, fusionar el PR y cambiar la visibilidad.
+- **Estado:** ACEPTADO por el propietario el 2026-11-04 (servidor propio). Sin ejecutar: falta confirmar y contratar el servidor, fusionar el PR y cambiar la visibilidad.
 - **Fecha:** 2026-11-04.
 - **Sustituye a:** ADR-0001 (separar el motor en `sharpicks-core`), si se acepta.
 
@@ -58,7 +58,7 @@ El propietario quitó el tope de ~150 pesos: la prioridad es que no sea más len
 
 OVH VPS-4 queda como siguiente escalón por relación de capacidad, precio y disponibilidad publicada (99.9 %). Faltan por confirmar en su compra: región en EUA, impuestos y permanencia, porque esos datos no aparecieron en la parte legible de la página.
 
-**Trabajo pendiente antes de privatizar:** el 29-oct, con el repo privado, GitHub no disparó los `schedule` (0 corridas en 5 h) y los lanzaba un despertador en la PC. Hay que portar ese despertador a un temporizador del servidor. Sin eso, los flujos programados pueden no correr.
+**Despertador:** el 29-oct, con el repo privado, GitHub no disparó los `schedule` (0 corridas en 5 h) y los lanzaba un despertador en la PC. Ya está portado a `tools/vps_runner/despertador.sh`, con temporizador de systemd cada 15 min. Se activa con la variable `DESPERTADOR=activo`; sin ella sólo anota. Activo, `telegram_bot` y `telegram_dia_completo` se saltan su cron para no mandar dos veces. Probado con un `curl` falso, no en un servidor real.
 
 **Disponibilidad:** ningún proveedor garantiza 100 %. El servidor no guarda nada único: se reconstruye con `instalar.sh`. Si cae, borrar `RUNNER_PESADO` regresa los flujos a GitHub, con menos potencia y cobro por minuto.
 
