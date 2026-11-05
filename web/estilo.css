@@ -1220,3 +1220,15 @@ button.arm-pata:active { background: rgba(255,255,255,.04); }
 .arm-cambiar .ic { width: 18px; height: 18px; }
 .arm-ayuda .ic { width: 13px; height: 13px; vertical-align: -2px; }
 .arm-ayuda { margin: 8px 0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+/* v558 - Armar parley de cualquier partido con el metodo de cumplimiento */
+.ctx.met { border-color: rgba(167,139,250,.45); background: rgba(139,92,246,.07); }
+.ctx.met summary .ic { width: 16px; height: 16px; }
+.met-pata { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid rgba(255,255,255,.07); font-size: 14px; }
+.met-txt { flex: 1; min-width: 0; }
+.met-txt small { display: block; margin-top: 2px; color: var(--tenue); font-size: 11px; line-height: 1.25; }
+.met-pata .arm-cambiar { flex: 0 0 36px; height: 36px; margin: 0; }
+.met-pie { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 10px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--borde); font-size: 14px; }
+.met-fuerza { padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+.met-fuerza.f-3 { color: #4ade80; background: rgba(74,222,128,.12); }
+.met-fuerza.f-2 { color: #fcd34d; background: rgba(252,211,77,.12); }
+.met-fuerza.f-1 { color: #fca5a5; background: rgba(252,165,165,.12); }

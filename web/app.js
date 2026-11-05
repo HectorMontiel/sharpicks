@@ -1439,6 +1439,7 @@
       '<div class="liga">' + esc(p.liga || '') + ' · ' + esc(horaCdmx(aFecha(p.inicio))) + '</div>' +
       contextoHtml((ps.find((x) => x.ctx) || {}).ctx, L, V, p.liga) +
       iaBloque(p, L, V, conVip(ps).ctx, conVip(ps).jug, ps.some((x) => x.vip_hay)) +
+      metodoBloque(ps, L, V) +             // v558
       // v517 — «la tarjeta principal ya se hizo larga»: a la vista la cancha y el Pulso; las estadísticas, plegadas
       penalesHtml(v, L, V) + (v && (v.fase === 'in' || v.fase === 'post') ? cancha(v, p) : '') + pulsoChip(p, v) +   // v460: también al terminar
       seccionStats(compensacion(p, v) + miniStats(v, p)) +
@@ -1533,6 +1534,7 @@
   function parleyHtml(ctx, L, V) {
     const lin = ctx && ctx.lin;
     if (!lin) return '';
+    if (lin.met && lin.met.length >= 2) return '';      // v558 — con el método, el parley va en su propio botón de la tarjeta
     const k = L + '|' + V, n = estado.parley[k];
     if (!lin.casa) return '<p class="tenue">Playdoit no tiene este partido en su catálogo ahorita: no hay líneas que se puedan meter.</p>';
     const par = lin.par || [];
@@ -1564,6 +1566,56 @@
     const p = ps[0], ctx = (ps.find((x) => x.ctx) || {}).ctx;
     const v = window.SPX && SPX.yo.vip ? SPX.yo.vip[p.fecha + '|' + p.partido] : null;
     return { ctx: v && v.lin ? Object.assign({}, ctx, { lin: v.lin }) : ctx, jug: (v && v.jug) || (ps.find((x) => x.jug) || {}).jug };
+  }
+  // v558 — EL MÉTODO DEL USUARIO, EN EL PARTIDO QUE ÉL ELIJA. «Lo que quiero es que ese método lo pueda aplicar en
+  // cualquier partido.» Patas de más cumplimiento en sus últimos 10 y 5, una por estadística (parley_metodo.py). Medido
+  // en 3.452 partidos: se armó en 89 % con 2 patas, 55 % con 3 y 46 % con 4; acierta 57 / 41 / 26 %. Probabilidad =
+  // producto de la casa × lo que quedó corto (medido, fuera de muestra: 58,6→59,0 y 44,4→42,9). No hay ganancia probada.
+  const MET_FACTOR = { 2: 1.01, 3: 1.05, 4: 1.09 };
+  const MET_FAM = { goles: 'Goles', corners: 'Córners', tarjetas: 'Tarjetas', a_puerta: 'Remates a puerta', remates: 'Remates' };
+  estado.met = new Map();                    // partido → { n, q: patas quitadas, datos, L, V }
+  function metPatas(s) {
+    const pat = [], fams = new Set();
+    s.datos.forEach((x, i) => {
+      if (pat.length >= s.n || s.q.has(i) || fams.has(x[0])) return;
+      fams.add(x[0]); pat.push({ x, i });
+    });
+    return pat;
+  }
+  function metCuerpo(k) {
+    const s = estado.met.get(k); if (!s) return '';
+    const pat = metPatas(s);
+    const chips = '<div class="par-chips">' + [2, 3, 4].map((x) => '<button type="button" class="chip' + (x === s.n ? ' activa' : '') + '" data-met-n="' + x + '" data-met-k="' + esc(k) + '">' + x + ' patas</button>').join('') + '</div>';
+    const quien = (lado) => (lado === 'h' ? ' de ' + s.L : lado === 'a' ? ' de ' + s.V : ' del partido');
+    let h = chips + pat.map(({ x, i }) => '<div class="met-pata"><span class="met-txt">' + esc(MET_FAM[x[0]] || x[0]) + esc(quien(x[1])) + ': <b>' + (x[2] === 'mas' ? 'más de ' : 'menos de ') + x[3] + '</b>' +
+      '<small>Cumplió ' + x[7] + ' de ' + x[8] + ' en los últimos 10 y ' + x[9] + ' de ' + x[10] + ' en los últimos 5 · mín. ' + x[11] + ' · máx. ' + x[12] + '</small></span>' +
+      '<span class="par-n"><b>' + Number(x[4]).toFixed(2) + '</b><small>casa ' + Math.round(100 * x[5]) + ' %</small></span>' +
+      '<button type="button" class="arm-cambiar" data-met-cambiar="' + i + '" data-met-k="' + esc(k) + '" aria-label="Cambiar esta pata" title="Cambiar esta pata">' + ico('refresh-cw') + '</button></div>').join('');
+    if (pat.length < s.n) h += '<p class="aviso">Sólo hay ' + pat.length + ' estadísticas distintas con línea de Playdoit' + (s.q.size ? ' sin contar las que quitaste' : '') + '.</p>';
+    if (pat.length >= 2) {
+      const n = pat.length, cuota = pat.reduce((a, y) => a * Number(y.x[4]), 1), peor = Math.min(...pat.map((y) => Number(y.x[6])));
+      const prob = Math.min(0.99, pat.reduce((a, y) => a * Number(y.x[5]), 1) * (MET_FACTOR[n] || 1));
+      const fuerza = peor >= 0.8 ? 'fuerte' : peor >= 0.7 ? 'media' : 'débil';
+      h += '<div class="met-pie"><span>Cuota ~<b>' + cuota.toFixed(2) + '</b> · se cumplen todas ~<b>' + Math.round(100 * prob) + ' %</b></span><span class="met-fuerza f-' + (peor >= 0.8 ? 3 : peor >= 0.7 ? 2 : 1) + '">Cumplimiento ' + fuerza + '</span></div>' +
+        '<p class="tenue chico">La cuota es multiplicando las patas: en el Constructor de Playdoit puede pagar menos. Es la estadística reciente, no una ganancia asegurada.' + (n === 4 ? ' Con 4 patas el resultado medido no es estable.' : '') + '</p>';
+    }
+    if (s.q.size) h += '<button type="button" class="chip" data-met-restaurar="1" data-met-k="' + esc(k) + '">Devolver ' + s.q.size + (s.q.size === 1 ? ' quitada' : ' quitadas') + '</button>';
+    return h;
+  }
+  function metodoBloque(ps, L, V) {
+    const p = ps[0];
+    if (p.deporte !== 'Fútbol' || faseDe(ps) !== 'proximo') return '';
+    if (!(window.SPX && SPX.esVip && SPX.esVip())) {
+      return ps.some((x) => x.vip_hay) ? '<button class="ctx ia ia-bloq" data-vista-ir="planes" data-foco="plan-vip">' + ico('puzzle') + ' Armar parley <span class="candado">🔒 VIP</span></button>' : '';
+    }
+    const c = conVip(ps).ctx, datos = (c && c.lin && c.lin.met) || [];
+    const k = claveNombre(p);
+    const tit = '<summary>' + ico('puzzle') + ' Armar parley</summary>';
+    if (datos.length < 2) return '<details class="ctx met">' + tit + '<p class="tenue">Este partido no alcanza: hacen falta líneas de Playdoit y al menos 5 partidos de cada equipo.</p></details>';
+    const s = estado.met.get(k) || { n: 3, q: new Set() };
+    Object.assign(s, { datos, L, V });
+    estado.met.set(k, s);
+    return '<details class="ctx met">' + tit + '<div class="met-caja" data-met="' + esc(k) + '">' + metCuerpo(k) + '</div></details>';
   }
   function iaBloque(p, L, V, ctx, jug, vipHay) {
     const a = window.SPX && SPX.yo.ia ? SPX.yo.ia[p.partido] : null;
@@ -2542,7 +2594,7 @@
   });
 
   document.addEventListener('click', (e) => {
-    const t = e.target.closest('[data-vista-ir],[data-dia],[data-dep],[data-niv],[data-fase],[data-abrir],[data-liga],[data-ficha],[data-ver-fin],[data-ver-sinpick],[data-ord],[data-fav],[data-arm-niv],[data-arm-n],[data-arm-ir],[data-arm-boleto],[data-arm-soloia],[data-arm-cambiar],[data-arm-restaurar],[data-par-k],[data-arm-dia],[data-arm-dep],[data-arm-par],[data-arm-pagar]');
+    const t = e.target.closest('[data-vista-ir],[data-dia],[data-dep],[data-niv],[data-fase],[data-abrir],[data-liga],[data-ficha],[data-ver-fin],[data-ver-sinpick],[data-ord],[data-fav],[data-arm-niv],[data-arm-n],[data-arm-ir],[data-arm-boleto],[data-arm-soloia],[data-arm-cambiar],[data-arm-restaurar],[data-met-k],[data-par-k],[data-arm-dia],[data-arm-dep],[data-arm-par],[data-arm-pagar]');
     if (!t) return;
     if (t.hasAttribute('data-ver-fin')) { estado.verFinales = !estado.verFinales; pintar(); return; }
     if (t.hasAttribute('data-ver-sinpick')) { estado.verSinPick = !estado.verSinPick; pintar(); return; }
@@ -2580,6 +2632,19 @@
     if (t.dataset.armSoloia) {                                       // v531 — sólo las patas que la IA ve seguras (VIP)
       estado.arm.soloIA = !estado.arm.soloIA;
       estado.arm.res = armarCombinada(); pintar(); return;
+    }
+    if (t.dataset.metK) {                                            // v558 — el parley del partido, sin repintar la lista
+      const k = t.dataset.metK, s = estado.met.get(k); if (!s) return;
+      if (t.dataset.metN) s.n = Number(t.dataset.metN);
+      else if (t.dataset.metRestaurar) s.q.clear();
+      else if (t.dataset.metCambiar != null) {
+        const pat = metPatas(s), i = Number(t.dataset.metCambiar);
+        // sólo si hay con qué reemplazarla: otra línea de esa estadística o una estadística que no esté en el parley
+        const fams = new Set(pat.filter((y) => y.i !== i).map((y) => y.x[0]));
+        if (s.datos.some((x, j) => j !== i && !s.q.has(j) && !fams.has(x[0]))) s.q.add(i);
+      }
+      document.querySelectorAll('.met-caja').forEach((c) => { if (c.dataset.met === k) c.innerHTML = metCuerpo(k); });
+      return;
     }
     if (t.dataset.armCambiar) { cambiarPata(t.dataset.armCambiar); pintar(); return; }   // v557
     if (t.dataset.armRestaurar) { estado.arm.quitadas.clear(); estado.arm.res = armarCombinada(); pintar(); return; }

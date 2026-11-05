@@ -499,6 +499,11 @@ def contexto(p: Dict) -> Optional[Dict]:
                         lin = lineas_stats.calcular(h, home, away, antes, casa)
                         if lin:
                             ctx['lin'] = lin
+                            # v558 — las patas del método del usuario (botón «Armar parley» de cada partido; sólo VIP)
+                            import parley_metodo
+                            met = parley_metodo.pozo(h, home, away, antes, casa)
+                            if met:
+                                lin['met'] = met
                     except Exception as ex:
                         logger.debug('[errores] líneas %s: %s', p.get('partido'), ex)
                     c = h[(((h.home_team == home) & (h.away_team == away)) | ((h.home_team == away) & (h.away_team == home))) & (h['date'] < antes)]
