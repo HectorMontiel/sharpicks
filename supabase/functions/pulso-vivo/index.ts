@@ -3,7 +3,7 @@
 // En cada llamada, UNA vuelta:
 //   1. los partidos de fútbol de hoy del sitio publicado (picks y sólo análisis) que van en el 2.º tiempo (ESPN),
 //      con el Pulso calculado con el MISMO modelo y la MISMA cuenta que la página (web/pulso.js, pulso_historial.py);
-//   2. aviso al canal VIP de Telegram de lo mejor si da 75 %+ (una vez por partido y mercado, telegram_enviados);
+//   2. señales medibles y avisos privados de Telegram a quien los pidió (a los grupos ya no: AVISOS_A_GRUPOS, v562);
 //   3. «IA + modelo»: Gemini elige SÓLO entre los mercados del Pulso (medible), una vez por partido y marcador
 //      (pulso_ia), y se liquida al pitido.
 // Las claves de Telegram y Gemini viven cifradas en Vault (las copia de GitHub el workflow «Claves a Supabase»).
@@ -13,6 +13,9 @@ const SITIO = 'https://sharpicksapp.com/';
 const ESPN = 'https://site.api.espn.com/apis/site/v2/sports/';
 // v522 — UMBRAL: 70 % (lo pidió el usuario; medido: 70-80 % salió 72-76 %) y que aún pague (justa ≥ 1,15). Es el aviso, la señal que se mide y lo que ve la IA
 const AVISO_MIN = 0.70, SENAL_MIN = 0.70, CANDIDATO_MIN = 0.70, JUSTA_MIN = 1.15;
+// v562 — el usuario: «se mandan un chorro de alertas, no quiero que salgan las de Pulso en Telegram» (hasta 166 al día en el
+// grupo VIP y 30 en el gratis). Se apagan los grupos. Siguen las señales, la IA y los avisos PRIVADOS de quien los pidió.
+const AVISOS_A_GRUPOS = false;
 const TOPE: Record<string, number> = { gol: 0.85, gol2: 0.5, gol_l: 0.75, gol_v: 0.65 };
 const TOPE_SF: Record<string, number> = { gol: 0.8, gol2: 0.45, gol_l: 0.7 };
 const HASTA: Record<string, number> = { gol: 80, gol2: 80, gol_l: 80, gol_v: 80, cor1: 85, cor2: 85, cor3: 85 };
@@ -321,6 +324,7 @@ async function vuelta(seco: boolean) {
         recs.set(clave + '#' + marc, rec); res.ia++;
       } else res.sin_ia++;
     }
+    if (!AVISOS_A_GRUPOS) continue;                                // v562 — lo medible ya quedó apuntado; a los grupos, nada
     // v526 — el gratis: el gancho (sin decir la jugada), uno por partido y a lo mucho uno cada 20 minutos
     const gancho = `pulso-gratis|${clave}`;
     if (m.p >= AVISO_MIN && !avisados.has(gancho) && ahora - ultimoGancho > 20 * 60e3) {
