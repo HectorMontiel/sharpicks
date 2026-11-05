@@ -19,8 +19,8 @@
   },
   "Atlético Tucumán": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atl. Tucuman 2",
-    "ratio": 0.7586,
+    "candidato": "Atletico Independiente",
+    "ratio": 0.5263,
     "visto": "2026-11-05"
   },
   "Atlético de San Luis": {
@@ -145,8 +145,8 @@
   },
   "Inter Miami CF": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Inter Escaldes",
-    "ratio": 0.56,
+    "candidato": "Inter San Carlos",
+    "ratio": 0.5185,
     "visto": "2026-11-05"
   },
   "Inter de San Carlos": {
@@ -223,8 +223,8 @@
   },
   "Real Oviedo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Sociedad",
-    "ratio": 0.75,
+    "candidato": "Real Aviles",
+    "ratio": 0.7273,
     "visto": "2026-11-05"
   },
   "Real Salt Lake": {
@@ -235,9 +235,9 @@
   },
   "Real Sociedad": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Madrid",
+    "candidato": "Real Potosi",
     "ratio": 0.5833,
-    "visto": "2026-11-03"
+    "visto": "2026-11-05"
   },
   "Real Valladolid": {
     "contexto": "cuotas_mx→futbol",
@@ -271,8 +271,8 @@
   },
   "Union St.-Gilloise": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Union de Santa Fe W",
-    "ratio": 0.5882,
+    "candidato": "Union Touarga",
+    "ratio": 0.5333,
     "visto": "2026-11-05"
   },
   "Universidad Católica (Quito)": {
@@ -961,9 +961,9 @@
   },
   "Unión (Santa Fe)": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Santa Cruz",
-    "ratio": 0.5,
-    "visto": "2026-11-03"
+    "candidato": "Union Touarga",
+    "ratio": 0.5926,
+    "visto": "2026-11-05"
   },
   "Gimnasia La Plata": {
     "contexto": "cuotas_mx→futbol",
@@ -1063,9 +1063,9 @@
   },
   "Rosario Central": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Barracas Central 2",
-    "ratio": 0.6061,
-    "visto": "2026-11-04"
+    "candidato": "Barracas Central",
+    "ratio": 0.6452,
+    "visto": "2026-11-05"
   },
   "Vancouver Whitecaps": {
     "contexto": "cuotas_mx→futbol",
@@ -1207,9 +1207,9 @@
   },
   "Virtus Entella": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Virtus Francavilla",
-    "ratio": 0.6875,
-    "visto": "2026-10-27"
+    "candidato": "Forte Virtus",
+    "ratio": 0.4615,
+    "visto": "2026-11-05"
   },
   "Blackburn Rovers": {
     "contexto": "cuotas_mx→futbol",
@@ -1315,8 +1315,8 @@
   },
   "Urawa Red Diamonds": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Lincoln Red Imps",
-    "ratio": 0.4706,
+    "candidato": "Red Star",
+    "ratio": 0.3846,
     "visto": "2026-11-05"
   },
   "Aston Villa": {
@@ -1345,8 +1345,8 @@
   },
   "Sporting Club Delhi": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Racing Club 2",
-    "ratio": 0.625,
+    "candidato": "Club Tijuana W",
+    "ratio": 0.3871,
     "visto": "2026-11-05"
   },
   "Shanghai Shenhua": {
@@ -1489,8 +1489,8 @@
   },
   "Inter Kashi": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Inter Escaldes",
-    "ratio": 0.64,
+    "candidato": "Inter San Carlos",
+    "ratio": 0.5926,
     "visto": "2026-11-05"
   },
   "Al Shabab": {
@@ -1587,7 +1587,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Jong Ajax",
     "ratio": 0.3478,
-    "visto": "2026-11-02"
+    "visto": "2026-11-05"
   },
   "Jong FC Utrecht": {
     "contexto": "cuotas_mx→futbol",
@@ -1945,15 +1945,15 @@
   },
   "Omonia Nicosia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Ol. Nicosia",
-    "ratio": 0.75,
-    "visto": "2026-11-03"
+    "candidato": "Omonia Aradippou",
+    "ratio": 0.6,
+    "visto": "2026-11-05"
   },
   "Sparta Prague": {
     "contexto": "cuotas_mx→futbol",
     "candidato": "Dukla Prague",
     "ratio": 0.64,
-    "visto": "2026-10-22"
+    "visto": "2026-11-05"
   },
   "Pohang Steelers": {
     "contexto": "cuotas_mx→futbol",
@@ -1987,9 +1987,9 @@
   },
   "Lincoln Red Imps": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Red Arrows",
-    "ratio": 0.3846,
-    "visto": "2026-11-04"
+    "candidato": "Red Star",
+    "ratio": 0.4167,
+    "visto": "2026-11-05"
   },
   "LA Galaxy": {
     "contexto": "cuotas_mx→futbol",
@@ -2065,9 +2065,9 @@
   },
   "Inter D'Escaldes": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Inter Kashi",
-    "ratio": 0.5185,
-    "visto": "2026-10-22"
+    "candidato": "Inter San Carlos",
+    "ratio": 0.6875,
+    "visto": "2026-11-05"
   },
   "CSU Craiova": {
     "contexto": "cuotas_mx→futbol",
@@ -2371,9 +2371,9 @@
   },
   "Levski Sofia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Slavia Sofia 2",
-    "ratio": 0.6923,
-    "visto": "2026-11-03"
+    "candidato": "Lok. Sofia",
+    "ratio": 0.7619,
+    "visto": "2026-11-05"
   },
   "SHANGHAI SHENHUA FC": {
     "contexto": "cuotas_mx→futbol",
@@ -2443,9 +2443,9 @@
   },
   "KAA Gent": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "KRC Gent",
-    "ratio": 0.75,
-    "visto": "2026-10-31"
+    "candidato": "Gent U23",
+    "ratio": 0.5,
+    "visto": "2026-11-05"
   },
   "Portland Timbers": {
     "contexto": "cuotas_mx→futbol",
