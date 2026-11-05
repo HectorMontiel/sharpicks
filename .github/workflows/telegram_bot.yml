@@ -20,7 +20,7 @@ env:
 
 jobs:
   enviar_alertas_push:
-    runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
+    runs-on: ${{ vars.RUNNER_PESADO || 'ubuntu-latest' }}   # ADR-0002: sin la variable, runners de GitHub
 
     steps:
       - name: Clonar repositorio

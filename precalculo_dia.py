@@ -278,7 +278,9 @@ def descargar(url: Optional[str] = None,
     url = url or URL_PRECALCULO
     try:
         import requests
-        r = requests.get(url, timeout=TIMEOUT_DESCARGA_S)
+        # ADR-0002 — con el repo privado, raw.githubusercontent pide token (sin él da 404 y se sirve lo local)
+        _tok = os.environ.get('GH_TOKEN') or os.environ.get('GITHUB_TOKEN') or ''
+        r = requests.get(url, timeout=TIMEOUT_DESCARGA_S, headers={'Authorization': 'Bearer ' + _tok} if _tok else None)
         r.raise_for_status()
         doc = r.json()
     except Exception as e:

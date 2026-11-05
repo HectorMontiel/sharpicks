@@ -121,7 +121,7 @@ concurrency:
 
 jobs:
   cuotas:
-    runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
+    runs-on: ${{ vars.RUNNER_PESADO || 'ubuntu-latest' }}   # ADR-0002: sin la variable, runners de GitHub
     timeout-minutes: 45
     permissions:
       contents: write
@@ -359,7 +359,7 @@ jobs:
   disparar:
     needs: cuotas
     if: always()
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.RUNNER_PESADO || 'ubuntu-latest' }}   # ADR-0002: sin la variable, runners de GitHub
     timeout-minutes: 5
     permissions:
       actions: write
