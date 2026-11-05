@@ -150,19 +150,31 @@ def ya_enviados() -> Optional[Set[Tuple[str, str, str]]]:
         return None
     import requests
     desde = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=4)).isoformat()
-    r = requests.get(sb[0], headers=sb[1], timeout=30,
-                     params={'select': '*', 'enviado': 'gte.' + desde, 'limit': 20000})
-    if not r.ok:
-        logger.warning('[telegram] no se pudo leer lo enviado: %s', r.status_code)
+    # v566 — POR PÁGINAS, DE LO MÁS NUEVO A LO MÁS VIEJO. Supabase entrega 1000 filas como máximo (v466) aunque se pidan 20,000. Con
+    # más de 1000 en 4 días, lo recién mandado no se veía y se volvía a mandar. Si falla a media lectura, no se manda nada.
+    filas: List[Dict] = []
+    for pagina in range(100):
+        r = requests.get(sb[0], headers=sb[1], timeout=30,
+                         params={'select': '*', 'enviado': 'gte.' + desde, 'order': 'enviado.desc,pick.asc,canal.asc,tipo.asc',
+                                 'limit': 1000, 'offset': 1000 * pagina})
+        if not r.ok:
+            logger.warning('[telegram] no se pudo leer lo enviado: %s', r.status_code)
+            return None
+        lote = r.json()
+        filas += lote
+        if len(lote) < 1000:
+            break
+    else:
+        logger.warning('[telegram] demasiadas filas de lo enviado: no se manda nada')
         return None
     _DETALLES.clear()
     _TICKETS.clear()
-    for x in r.json():
+    for x in filas:
         if x.get('tipo') == 'pick' and x.get('texto'):
             _DETALLES[(x['pick'], x['canal'])] = x
         if x.get('tipo') == 'ticket' and x.get('texto'):
             _TICKETS[(x['pick'], x['canal'])] = x['texto']
-    return {(x['pick'], x['canal'], x['tipo']) for x in r.json()}
+    return {(x['pick'], x['canal'], x['tipo']) for x in filas}
 
 
 def apuntar(filas: List[Tuple]) -> None:

@@ -312,6 +312,32 @@ def test_pospuesto_abierto_hasta_que_se_juegue():
     assert s.parches[0]['estado'] == 'verde' and s.parches[0]['marcador'] == '0-2' and locales[0]['estado'] == 'verde'
 
 
+def test_lo_enviado_se_lee_completo():
+    """v566 — Supabase da 1000 filas por vez: lo recién mandado debe verse aunque haya miles, o se manda otra vez."""
+    import requests
+    filas = [{'pick': 'p%d' % i, 'canal': 'vip', 'tipo': 'pick', 'texto': 't'} for i in range(2500)]
+    pedidos = []
+
+    def falso(url, headers=None, timeout=None, params=None):
+        pedidos.append(params)
+        o, n = params['offset'], min(params['limit'], 1000)
+        return type('R', (), {'ok': True, 'status_code': 200, 'json': lambda s: filas[o:o + n]})()
+    antes, env = requests.get, dict(os.environ)
+    requests.get = falso
+    os.environ.update({'SUPABASE_URL': 'http://x', 'SUPABASE_SERVICE_KEY': 'k'})
+    try:
+        vistos = tc.ya_enviados()
+        assert len(vistos) == 2500 and ('p2499', 'vip', 'pick') in vistos and len(pedidos) == 3
+        assert 'enviado.desc' in pedidos[0]['order']
+        # si falla a media lectura no se sabe qué se mandó: no se manda nada
+        requests.get = lambda *a, **k: type('R', (), {'ok': False, 'status_code': 500})()
+        assert tc.ya_enviados() is None
+    finally:
+        requests.get = antes
+        os.environ.clear()
+        os.environ.update(env)
+
+
 def test_cumplio_pata():
     f = {'corners': (5, 3), 'goals': (2, 0)}
     assert tc.cumplio_pata({'fam': 'corners', 'lado': 'h', 'dir': 'mas', 'linea': 4.5}, f) is True
