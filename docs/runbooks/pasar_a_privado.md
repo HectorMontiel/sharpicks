@@ -3,7 +3,7 @@
 **Estado:** preparado, sin ejecutar. Requiere autorización del propietario.
 
 1. **Fusionar el PR #1** a `main`. Sin la variable nada cambia de comportamiento.
-2. **Contratar un servidor** Ubuntu 24.04 x64, 4 vCPU, 8 GB o más, 80 GB de disco o más.
+2. **Contratar Contabo Cloud VPS 4** con Ubuntu 24.04, **un mes primero**. No comprometer 24 meses hasta pasar la semana de prueba del paso 4.
 3. **Registrar los runners**, en tu PC y luego en el servidor:
 
    ```bash

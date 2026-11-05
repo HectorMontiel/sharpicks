@@ -1,6 +1,6 @@
 # ADR-0002: repo completo privado con runner propio en la nube
 
-- **Estado:** PROPUESTO; requiere decisión del propietario (cambiar la visibilidad y contratar el servidor).
+- **Estado:** ACEPTADO por el propietario el 2026-11-04, con tope de ~150 pesos al mes. Sin ejecutar: falta contratar el servidor, fusionar el PR y cambiar la visibilidad, cada paso con su autorización.
 - **Fecha:** 2026-11-04.
 - **Sustituye a:** ADR-0001 (separar el motor en `sharpicks-core`), si se acepta.
 
@@ -37,6 +37,12 @@ Es lo mismo que ya operó del 29 de octubre (v510-v519) con runners en la PC, as
 3. **Salidas públicas.** Los flujos publican cuotas y precálculo con commits al repo. Habría que mover todo a otro almacén con un token de escritura.
 4. **Riesgo de regresión.** 773 archivos, 1,925 dependencias y 11 ciclos: mover el motor por partes arriesga cambiar predicciones sin ganar protección adicional sobre A.
 5. **Términos de GitHub.** Prohíben usar Actions «as part of a serverless application» y limitan los runners de GitHub a actividad del proyecto del repo. Un repo público que sólo existe para correr gratis código privado aumenta el riesgo de que restrinjan la cuenta, y con ella toda la operación. Esa restricción de «serverless» aplica también con runner propio; el uso actual de Actions como programador de producción ya está en esa zona.
+
+## Servidor elegido por presupuesto
+
+**Contabo Cloud VPS 4** (4 vCPU, 8 GB, 100 GB SSD, tráfico con uso justo), según su página al 2026-11-04: €5.50 al mes con contrato mensual y cuota inicial de monto no mostrado, o desde €4.40 al mes con contrato de 24 meses. Hetzner queda fuera: su plan equivalente cuesta €35.99 al mes.
+
+**HIPÓTESIS sin medir:** que 8 GB y 100 GB alcancen y que su rendimiento sostenga las duraciones actuales. Por eso se contrata primero un mes y se hace la semana de prueba antes de comprometer 24 meses.
 
 ## Qué ya está hecho en la rama (IMPLEMENTADO)
 
