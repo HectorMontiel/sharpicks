@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-04T23:55:47Z",
+"actualizado": "2026-11-05T00:43:29Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23304,6 +23304,16 @@
 },
 {
 "dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Julia Grabher vs Julia Riera",
+"apuesta": "Gana Julia Riera",
+"cuota": 2.25,
+"resultado": "verde",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-04",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Kataka vs URA SC",
@@ -23441,6 +23451,16 @@
 "cuota": 1.4167,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Porreres vs Alcudia",
+"apuesta": "Gana Porreres",
+"cuota": 1.61,
+"resultado": "verde",
+"marcador": "1-0"
 },
 {
 "dia": "2026-11-04",

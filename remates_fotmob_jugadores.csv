@@ -28222,22 +28222,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5103597,2026-08-23,brasil,Palmeiras,Emiliano Martínez,1137909,M,0,19,0,0,0,0.0,,2.0,6487815.0
 5103597,2026-08-23,brasil,Palmeiras,Felipe Anderson,230190,M,0,19,1,0,0,0.02,,2.0,1319990.0
 5103597,2026-08-23,brasil,Palmeiras,Khellven,1043763,D,0,7,0,0,0,0.0,,1.0,4952835.0
-5103597,2026-08-23,brasil,Vasco da Gama,Léo,577950,G,1,90,0,0,0,0.0,11.0,0.0,3712668.0
-5103597,2026-08-23,brasil,Vasco da Gama,Paulo Henrique,1200802,D,1,90,0,0,0,0.0,32.0,1.0,2201816.0
-5103597,2026-08-23,brasil,Vasco da Gama,Carlos Cuesta,834032,D,1,90,0,0,0,0.0,34.0,1.0,4977501.0
-5103597,2026-08-23,brasil,Vasco da Gama,Robert Renan,1360308,D,1,90,1,0,0,0.01,36.0,1.0,10663371.0
-5103597,2026-08-23,brasil,Vasco da Gama,Cuiabano,1476545,D,1,58,0,0,0,0.0,38.0,1.0,6643843.0
-5103597,2026-08-23,brasil,Vasco da Gama,Santiago Sosa,958860,M,1,90,1,0,0,0.24,65.0,2.0,5556427.0
-5103597,2026-08-23,brasil,Vasco da Gama,Adson,1255479,F,1,65,0,0,0,0.0,82.0,3.0,1895859.0
-5103597,2026-08-23,brasil,Vasco da Gama,Tchê Tchê,637718,M,1,90,2,0,0,0.05,84.0,2.0,583810.0
-5103597,2026-08-23,brasil,Vasco da Gama,Thiago Mendes,339032,M,1,58,1,1,0,0.07,86.0,2.0,979793.0
-5103597,2026-08-23,brasil,Vasco da Gama,Andrés Gómez,1353421,F,1,72,0,0,0,0.0,88.0,3.0,6609188.0
-5103597,2026-08-23,brasil,Vasco da Gama,David,656526,F,1,65,0,0,0,0.0,115.0,3.0,1162457.0
-5103597,2026-08-23,brasil,Vasco da Gama,Riquelme Avellar,1748487,D,0,32,2,1,0,0.05,,1.0,
-5103597,2026-08-23,brasil,Vasco da Gama,Ramon Rique,1950789,M,0,32,0,0,0,0.0,,2.0,1465927.0
-5103597,2026-08-23,brasil,Vasco da Gama,Nuno Moreira,1188608,M,0,25,2,1,0,0.66,,2.0,3347625.0
-5103597,2026-08-23,brasil,Vasco da Gama,Facundo Colidio,949735,F,0,25,3,1,1,1.08,,3.0,3416660.0
-5103597,2026-08-23,brasil,Vasco da Gama,Marino Hinestroza,1205222,F,0,18,0,0,0,0.0,,3.0,4495192.0
 5967045,2026-08-23,ita_serie_b,Palermo,Mattia Fortin,1289946,G,1,90,0,0,0,0.0,11.0,0.0,2058182.0
 5967045,2026-08-23,ita_serie_b,Palermo,Tommaso Cassandro,1070046,D,1,72,1,0,0,0.1,32.0,1.0,1535428.0
 5967045,2026-08-23,ita_serie_b,Palermo,Mattia Bani,415017,D,1,90,0,0,0,0.0,34.0,1.0,1241301.0
@@ -30348,21 +30332,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000013205,2026-08-23,chi_primera,Ñublense,Christian Mansilla,1988968,M,0,14,1,0,0,0.0,,2.0,
 1000013205,2026-08-23,chi_primera,Ñublense,Fernando Ovelar,978389,F,0,14,0,0,0,0.0,,3.0,328773.0
 1000013205,2026-08-23,chi_primera,Ñublense,Felipe Campos,304363,D,0,9,0,0,0,0.0,,1.0,150793.0
-5103595,2026-08-24,brasil,Athletico Paranaense,Santos,265435,G,1,90,0,0,0,0.0,11.0,0.0,430636.0
-5103595,2026-08-24,brasil,Athletico Paranaense,Dantas,1638937,D,1,90,0,0,0,0.0,33.0,1.0,
-5103595,2026-08-24,brasil,Athletico Paranaense,Juan Aguirre,923698,D,1,90,1,1,0,0.03,35.0,1.0,
-5103595,2026-08-24,brasil,Athletico Paranaense,Arthur Dias,1681911,D,1,90,0,0,0,0.0,37.0,1.0,2709466.0
-5103595,2026-08-24,brasil,Athletico Paranaense,Gastón Benavídez,929338,M,1,90,0,0,0,0.0,62.0,2.0,2236888.0
-5103595,2026-08-24,brasil,Athletico Paranaense,Jádson,319591,M,1,90,1,1,0,0.1,64.0,2.0,663207.0
-5103595,2026-08-24,brasil,Athletico Paranaense,Luiz Gustavo,147729,M,1,46,0,0,0,0.0,66.0,2.0,308281.0
-5103595,2026-08-24,brasil,Athletico Paranaense,Stiven Mendoza,280758,M,1,90,0,0,0,0.0,68.0,2.0,700042.0
-5103595,2026-08-24,brasil,Athletico Paranaense,Leozinho,1636609,M,1,45,1,0,0,0.03,84.0,2.0,513927.0
-5103595,2026-08-24,brasil,Athletico Paranaense,João Cruz,1590303,M,1,61,2,2,1,0.33,86.0,2.0,1851342.0
-5103595,2026-08-24,brasil,Athletico Paranaense,Kevin Viveros,941671,F,1,85,2,2,2,0.72,105.0,3.0,3514220.0
-5103595,2026-08-24,brasil,Athletico Paranaense,Juan Portilla,1281230,M,0,44,0,0,0,0.0,,2.0,2721646.0
-5103595,2026-08-24,brasil,Athletico Paranaense,Kerwin Vargas,1285541,F,0,44,0,0,0,0.0,,3.0,2280040.0
-5103595,2026-08-24,brasil,Athletico Paranaense,Dudu,1509713,M,0,29,0,0,0,0.0,,2.0,
-5103595,2026-08-24,brasil,Athletico Paranaense,Renan,1385140,F,0,5,0,0,0,0.0,,3.0,1178630.0
 1000013207,2026-08-24,chi_primera,Everton CD,Ignacio González,164763,G,1,90,0,0,0,0.0,11.0,0.0,163696.0
 1000013207,2026-08-24,chi_primera,Everton CD,Lucas Soto,1311827,D,1,80,0,0,0,0.0,32.0,1.0,364650.0
 1000013207,2026-08-24,chi_primera,Everton CD,Valentín Vidal,1400344,D,1,90,0,0,0,0.0,34.0,1.0,367000.0
@@ -43993,22 +43962,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000013213,2026-09-01,chi_primera,O'Higgins,Rodrigo Godoy,1717419,F,0,15,0,0,0,0.0,,3.0,451595.0
 1000013213,2026-09-01,chi_primera,O'Higgins,Tomás Avilés,1437200,D,0,2,0,0,0,0.0,,1.0,2113309.0
 1000013213,2026-09-01,chi_primera,O'Higgins,Martín Maturana,1457406,M,0,2,2,1,0,0.0,,2.0,367501.0
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Juan Reyes,861795,G,1,90,0,0,0,0.0,11.0,0.0,137570.0
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Keiver Zúñiga,1664008,D,1,90,0,0,0,0.0,32.0,1.0,168193.0
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Luis Quero,2035361,D,1,90,2,1,0,0.0,34.0,1.0,
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Germán Aguirre,0,D,1,90,0,0,0,0.0,36.0,1.0,
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Anthony Trujillo,922216,D,1,73,0,0,0,0.0,38.0,1.0,178646.0
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Víctor Navas,1280898,M,1,90,2,0,0,0.0,72.0,2.0,241156.0
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Christopher Montaña,942265,M,1,90,0,0,0,0.0,74.0,2.0,
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Alejandro Yepez,2035373,M,1,66,1,1,0,0.0,76.0,2.0,
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Álbaro Polo,1911022,M,1,61,0,0,0,0.0,78.0,2.0,
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Héber García,679061,M,1,45,2,0,0,0.0,95.0,2.0,147799.0
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Joel Martínez,1439624,F,1,61,1,0,0,0.0,115.0,3.0,217403.0
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Ovidio López,1520716,M,0,45,1,1,0,0.0,,2.0,343218.0
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Rubén Rojas,435986,F,0,29,1,0,0,0.0,,3.0,135838.0
-1000018900,2026-09-02,ven_primera,Portuguesa FC,José Pérez,1717467,F,0,29,1,1,1,0.0,,3.0,
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Lautaro Lovazzano,1445271,M,0,24,0,0,0,0.0,,2.0,264630.0
-1000018900,2026-09-02,ven_primera,Portuguesa FC,Guillermo Benítez,1017513,D,0,17,0,0,0,0.0,,1.0,176175.0
 5109923,2026-09-02,usl_championship,Charleston Battery,John Berner,525646,G,1,90,0,0,0,0.0,11.0,0.0,50000.0
 5109923,2026-09-02,usl_championship,Charleston Battery,Douglas Martínez,844926,D,1,78,0,0,0,0.0,32.0,1.0,50000.0
 5109923,2026-09-02,usl_championship,Charleston Battery,Graham Smith,924435,D,1,90,0,0,0,0.0,34.0,1.0,82944.0
@@ -44071,22 +44024,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000017394,2026-09-02,par_division,Olimpia,Richard Ortiz,292481,M,0,27,3,2,1,0.0,,2.0,255516.0
 1000017394,2026-09-02,par_division,Olimpia,Hugo Sandoval,971595,F,0,27,0,0,0,0.0,,3.0,358452.0
 1000017394,2026-09-02,par_division,Olimpia,Pedro Zarza,1736984,F,0,19,1,0,0,0.0,,3.0,1930201.0
-1000017394,2026-09-02,par_division,Guaraní,Miguel Martínez,950979,G,1,90,0,0,0,0.0,11.0,0.0,318872.0
-1000017394,2026-09-02,par_division,Guaraní,Armando Méndez,1093699,D,1,90,1,0,0,0.0,32.0,1.0,860497.0
-1000017394,2026-09-02,par_division,Guaraní,Imanol Segovia,1206630,D,1,90,0,0,0,0.0,34.0,1.0,223084.0
-1000017394,2026-09-02,par_division,Guaraní,Thiago Servín,1458552,D,1,90,0,0,0,0.0,36.0,1.0,675551.0
-1000017394,2026-09-02,par_division,Guaraní,Leandro Allende,1000016,D,1,90,0,0,0,0.0,38.0,1.0,158417.0
-1000017394,2026-09-02,par_division,Guaraní,Luis Martínez,1417441,M,1,90,1,1,0,0.0,64.0,2.0,667407.0
-1000017394,2026-09-02,par_division,Guaraní,Patricio Tanda,1208443,M,1,86,0,0,0,0.0,66.0,2.0,437399.0
-1000017394,2026-09-02,par_division,Guaraní,Matías López,1727066,F,1,81,1,0,0,0.0,83.0,3.0,774628.0
-1000017394,2026-09-02,par_division,Guaraní,Carlos Arrúa,1130765,M,1,76,3,2,0,0.0,85.0,2.0,248857.0
-1000017394,2026-09-02,par_division,Guaraní,Diego Fernández,1130944,F,1,77,0,0,0,0.0,87.0,3.0,604872.0
-1000017394,2026-09-02,par_division,Guaraní,Juan Manuel García,626154,F,1,76,2,1,1,0.0,115.0,3.0,221667.0
-1000017394,2026-09-02,par_division,Guaraní,Jorge Recalde,466692,M,0,14,0,0,0,0.0,,2.0,200084.0
-1000017394,2026-09-02,par_division,Guaraní,Victor Céspedes,1486269,F,0,14,0,0,0,0.0,,3.0,387627.0
-1000017394,2026-09-02,par_division,Guaraní,Patricio Coronel,1746276,F,0,13,1,0,0,0.0,,3.0,
-1000017394,2026-09-02,par_division,Guaraní,Giovanni Gómez,1785005,M,0,9,1,1,0,0.0,,2.0,988817.0
-1000017394,2026-09-02,par_division,Guaraní,Maximiliano Añasco,1357734,M,0,4,0,0,0,0.0,,2.0,376018.0
 1000018897,2026-09-02,ven_primera,Zamora FC,Beycker Velásquez,859276,G,1,90,0,0,0,0.0,11.0,0.0,
 1000018897,2026-09-02,ven_primera,Zamora FC,Isaí Valladares,1689109,D,1,90,1,0,0,0.0,32.0,1.0,486034.0
 1000018897,2026-09-02,ven_primera,Zamora FC,Brayan Rodríguez,1407149,D,1,56,0,0,0,0.0,34.0,1.0,140008.0
@@ -44180,38 +44117,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5793924,2026-09-02,sco_premiership,Rangers,Bojan Miovski,846970,F,0,10,1,0,0,0.12,,3.0,1833653.0
 5793924,2026-09-02,sco_premiership,Rangers,Daisuke Yokota,1244356,F,0,10,1,0,0,0.04,,3.0,1023952.0
 5793924,2026-09-02,sco_premiership,Rangers,Ben Godfrey,662936,D,0,1,0,0,0,0.0,,1.0,2001305.0
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Ángel Sánchez,1458550,G,1,90,0,0,0,0.0,11.0,0.0,324306.0
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Pablo Aranda,1200666,D,1,60,0,0,0,0.0,32.0,1.0,
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Julio González,497328,D,1,90,0,0,0,0.0,34.0,1.0,276828.0
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Luca Falabella,1435223,D,1,90,2,1,0,0.0,36.0,1.0,415611.0
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Abel Paredes,860957,D,1,90,4,1,0,0.0,38.0,1.0,269524.0
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Jonathan Benítez,1644207,M,1,90,1,0,0,0.0,65.0,2.0,392271.0
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Alberto Contrera,207105,F,1,60,0,0,0,0.0,82.0,3.0,227791.0
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Valentín Larralde,1186691,M,1,60,1,0,0,0.0,84.0,2.0,351766.0
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Marcelo Camargo,2174992,M,1,54,1,1,0,0.0,86.0,2.0,
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Luis Ortiz,1042092,F,1,67,1,0,0,0.0,88.0,3.0,
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Richard Torales,1453346,F,1,79,2,1,0,0.0,115.0,3.0,374206.0
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Luis Ayala,1782148,M,0,30,1,1,0,0.0,,2.0,
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Ronald Peralta,1795619,M,0,30,0,0,0,0.0,,2.0,373050.0
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Estivel Moreira,951493,M,0,30,1,0,0,0.0,,2.0,295290.0
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Cristhian Ocampos,1033282,F,0,23,0,0,0,0.0,,3.0,357290.0
-1000017395,2026-09-02,par_division,Sportivo Ameliano,Edgar Páez,1645373,F,0,11,0,0,0,0.0,,3.0,
-1000017398,2026-09-02,par_division,Libertad,Rodrigo Morínigo,940259,G,1,90,0,0,0,0.0,11.0,0.0,574193.0
-1000017398,2026-09-02,par_division,Libertad,Alan Benítez,497395,D,1,68,1,0,0,0.0,32.0,1.0,247613.0
-1000017398,2026-09-02,par_division,Libertad,Robert Rojas,846980,D,1,90,0,0,0,0.0,34.0,1.0,638638.0
-1000017398,2026-09-02,par_division,Libertad,Nicolás Freire,427046,D,1,45,1,0,0,0.0,36.0,1.0,240317.0
-1000017398,2026-09-02,par_division,Libertad,Néstor Giménez,834633,D,1,90,2,0,0,0.0,38.0,1.0,689988.0
-1000017398,2026-09-02,par_division,Libertad,Álvaro Campuzano,834604,M,1,90,0,0,0,0.0,65.0,2.0,305991.0
-1000017398,2026-09-02,par_division,Libertad,Rodrigo Villalba,1613171,F,1,46,0,0,0,0.0,82.0,3.0,
-1000017398,2026-09-02,par_division,Libertad,Federico Carrizo,202202,M,1,59,1,0,0,0.0,84.0,2.0,248857.0
-1000017398,2026-09-02,par_division,Libertad,Lucas Sanabria,1073739,M,1,59,2,2,0,0.0,86.0,2.0,465039.0
-1000017398,2026-09-02,par_division,Libertad,Elvio Vera,1359268,F,1,90,5,1,0,0.0,88.0,3.0,556434.0
-1000017398,2026-09-02,par_division,Libertad,Gustavo Aguilar,1354560,F,1,90,0,0,0,0.0,115.0,3.0,423272.0
-1000017398,2026-09-02,par_division,Libertad,Gilberto Flores,1354562,D,0,45,1,0,0,0.0,,1.0,1301541.0
-1000017398,2026-09-02,par_division,Libertad,Luciano Nequecaur,492610,F,0,44,0,0,0,0.0,,3.0,204677.0
-1000017398,2026-09-02,par_division,Libertad,Estiven Villalba,1910592,D,0,31,0,0,0,0.0,,1.0,1409271.0
-1000017398,2026-09-02,par_division,Libertad,Iván Franco,929167,M,0,31,1,0,0,0.0,,2.0,748640.0
-1000017398,2026-09-02,par_division,Libertad,Ivan Ramírez,1758627,F,0,22,0,0,0,0.0,,3.0,
 1000009095,2026-09-02,ecu_liga_pro,CSD Macará,Rodrigo Rodríguez,839919,G,1,90,0,0,0,0.0,11.0,0.0,214132.0
 1000009095,2026-09-02,ecu_liga_pro,CSD Macará,Juan Espinoza,1911204,D,1,90,0,0,0,0.0,32.0,1.0,249209.0
 1000009095,2026-09-02,ecu_liga_pro,CSD Macará,Santiago Etchebarne,921791,D,1,90,2,2,2,0.0,34.0,1.0,199937.0
@@ -45082,22 +44987,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000019465,2026-09-02,bra_copa,Cruzeiro,Gabriel Rojas,805540,D,0,25,1,0,0,0.0,,1.0,2476804.0
 1000019465,2026-09-02,bra_copa,Cruzeiro,Néiser Villarreal,1680191,M,0,25,0,0,0,0.0,,2.0,
 1000019465,2026-09-02,bra_copa,Cruzeiro,Matheus Henrique,900043,M,0,25,0,0,0,0.0,,2.0,2505124.0
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Cristopher Varela,1248975,G,1,90,0,0,0,0.0,11.0,0.0,244931.0
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Luis Casimiro Peña,1305416,D,1,90,0,0,0,0.0,32.0,1.0,187919.0
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Guillermo Luis Ortiz,298025,D,1,90,1,0,0,0.0,34.0,1.0,146030.0
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Carlos Rojas,1249285,D,1,90,0,0,0,0.0,36.0,1.0,247971.0
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Matías Orihuela,577674,D,1,90,0,0,0,0.0,38.0,1.0,139460.0
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,César Da Silva,1469906,M,1,45,0,0,0,0.0,73.0,2.0,269122.0
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Miguel González,1524298,M,1,75,1,0,0,0.0,75.0,2.0,
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Juan Castellanos,115340,M,1,63,2,2,1,0.0,77.0,2.0,132487.0
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Juan Herrera,1457974,F,1,90,2,1,0,0.0,103.0,3.0,177354.0
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Flabián Londoño,1354125,F,1,63,1,1,0,0.0,105.0,3.0,317710.0
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Manuel Sulbarán,1288349,F,1,63,0,0,0,0.0,107.0,3.0,240950.0
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Rommell Ibarra,1051033,M,0,45,0,0,0,0.0,,2.0,333411.0
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,José Correa,1899846,M,0,27,0,0,0,0.0,,2.0,
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Anthony Uribe,211147,F,0,27,2,0,0,0.0,,3.0,127799.0
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,José Meza,243948,F,0,27,1,0,0,0.0,,3.0,
-1000018901,2026-09-03,ven_primera,Deportivo La Guaira,Juan Perdomo,1081843,M,0,15,0,0,0,0.0,,2.0,284402.0
 1000019460,2026-09-03,bra_copa,Grêmio,Weverton,267826,G,1,90,0,0,0,0.0,11.0,0.0,949960.0
 1000019460,2026-09-03,bra_copa,Grêmio,Diego Caito,1636443,D,1,90,0,0,0,0.0,32.0,1.0,
 1000019460,2026-09-03,bra_copa,Grêmio,Wallace,1652392,D,1,90,1,0,0,0.0,34.0,1.0,408868.0
@@ -45304,22 +45193,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000017393,2026-09-03,par_division,Recoleta,Alexander Franco,1350581,M,0,30,1,0,0,0.0,,2.0,
 1000017393,2026-09-03,par_division,Recoleta,Blas Medina,1795626,D,0,26,0,0,0,0.0,,1.0,250197.0
 1000017393,2026-09-03,par_division,Recoleta,Richart Ortiz,1350594,F,0,23,1,0,0,0.0,,3.0,307824.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Manuel Roffo,847982,G,1,90,0,0,0,0.0,11.0,0.0,2321865.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Lucas Quintana,1458735,D,1,90,1,1,0,0.0,33.0,1.0,
-1000017393,2026-09-03,par_division,Cerro Porteño,Gustavo Velázquez,497352,D,1,46,0,0,0,0.0,35.0,1.0,348702.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Lucas Merolla,729085,D,1,90,0,0,0,0.0,37.0,1.0,1147796.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Iván Ramírez,497399,M,1,90,2,1,1,0.0,71.0,2.0,476128.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Ariel Gamarra,1613475,M,1,63,0,0,0,0.0,73.0,2.0,692526.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Jorge Morel,688291,M,1,90,1,0,0,0.0,75.0,2.0,1031266.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Carlos Chena,1958023,M,1,90,1,1,0,0.0,77.0,2.0,
-1000017393,2026-09-03,par_division,Cerro Porteño,Guillermo Benítez,571609,M,1,75,0,0,0,0.0,79.0,2.0,247613.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Pablo Vegetti,466164,F,1,88,3,2,2,0.0,104.0,3.0,590586.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Ignacio Aliseda,952526,F,1,64,1,1,0,0.0,106.0,3.0,1375531.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Gastón Giménez,362238,M,0,45,1,0,0,0.0,,2.0,248857.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Cristhian Paredes,689061,M,0,27,0,0,0,0.0,,2.0,652852.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Derlis Rodríguez,900003,M,0,26,1,0,0,0.0,,2.0,449771.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Blás Riveros,729090,D,0,15,0,0,0,0.0,,1.0,644966.0
-1000017393,2026-09-03,par_division,Cerro Porteño,Jonathan Torres,662089,F,0,2,1,0,0,0.0,,3.0,761689.0
 5802926,2026-09-03,ligue_1,Toulouse,Guillaume Restes,1524210,G,1,71,0,0,0,0.0,11.0,0.0,16648146.0
 5802926,2026-09-03,ligue_1,Toulouse,Rafik Messali,1640973,M,1,66,0,0,0,0.0,32.0,2.0,1634171.0
 5802926,2026-09-03,ligue_1,Toulouse,Mark McKenzie,924485,D,1,90,0,0,0,0.0,34.0,1.0,3731820.0
@@ -175577,3 +175450,132 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5836919,2026-11-04,eng_championship,West Ham United,Joël Piroe,792540,F,0,45,2,1,0,0.19,,3.0,7454415.0
 5836919,2026-11-04,eng_championship,West Ham United,Edvin Austbø,1367620,F,0,21,2,1,0,0.05,,3.0,14961155.0
 5836919,2026-11-04,eng_championship,West Ham United,Tomás Souček,524437,M,0,2,1,1,0,0.08,,2.0,3911265.0
+5103701,2026-11-04,brasil,Athletico Paranaense,Mycael,1400078,G,1,90,0,0,0,0.0,11.0,0.0,
+5103701,2026-11-04,brasil,Athletico Paranaense,Dantas,1638937,D,1,90,1,0,0,0.03,33.0,1.0,
+5103701,2026-11-04,brasil,Athletico Paranaense,Juan Aguirre,923698,D,1,69,0,0,0,0.0,35.0,1.0,1286650.0
+5103701,2026-11-04,brasil,Athletico Paranaense,Arthur Dias,1681911,D,1,90,0,0,0,0.0,37.0,1.0,20306089.0
+5103701,2026-11-04,brasil,Athletico Paranaense,Gastón Benavídez,929338,M,1,87,0,0,0,0.0,62.0,2.0,2309743.0
+5103701,2026-11-04,brasil,Athletico Paranaense,Jádson,319591,M,1,69,0,0,0,0.0,64.0,2.0,714996.0
+5103701,2026-11-04,brasil,Athletico Paranaense,Luiz Gustavo,147729,M,1,90,1,0,0,0.03,66.0,2.0,409882.0
+5103701,2026-11-04,brasil,Athletico Paranaense,Lucas Esquivel,1201038,M,1,90,3,1,0,0.07,68.0,2.0,9213315.0
+5103701,2026-11-04,brasil,Athletico Paranaense,Stiven Mendoza,280758,M,1,45,4,3,1,0.1,84.0,2.0,657280.0
+5103701,2026-11-04,brasil,Athletico Paranaense,Kerwin Vargas,1285541,M,1,86,4,0,0,0.11,86.0,2.0,3801976.0
+5103701,2026-11-04,brasil,Athletico Paranaense,Kevin Viveros,941671,F,1,90,0,0,0,0.0,105.0,3.0,18682774.0
+5103701,2026-11-04,brasil,Athletico Paranaense,João Cruz,1590303,M,0,44,0,0,0,0.0,,2.0,10953530.0
+5103701,2026-11-04,brasil,Athletico Paranaense,Juan Portilla,1281230,M,0,21,0,0,0,0.0,,2.0,4476685.0
+5103701,2026-11-04,brasil,Athletico Paranaense,Leozinho,1636609,F,0,21,1,0,0,0.02,,3.0,2030665.0
+5103701,2026-11-04,brasil,Athletico Paranaense,Jorge Rivaldo,1604114,F,0,4,1,0,0,0.04,,3.0,1860928.0
+5103701,2026-11-04,brasil,Athletico Paranaense,Gilberto,387499,D,0,3,0,0,0,0.0,,1.0,1501675.0
+5103701,2026-11-04,brasil,Vasco da Gama,Léo,577950,G,1,90,0,0,0,0.0,11.0,0.0,5048301.0
+5103701,2026-11-04,brasil,Vasco da Gama,Gabriel Pereira,1288187,D,1,90,1,1,1,0.05,33.0,1.0,5969307.0
+5103701,2026-11-04,brasil,Vasco da Gama,Alan Saldivia,1381731,D,1,90,0,0,0,0.0,35.0,1.0,1184441.0
+5103701,2026-11-04,brasil,Vasco da Gama,Robert Renan,1360308,D,1,90,0,0,0,0.0,37.0,1.0,14030648.0
+5103701,2026-11-04,brasil,Vasco da Gama,José Rodriguez,816753,M,1,89,1,1,0,0.02,71.0,2.0,1466172.0
+5103701,2026-11-04,brasil,Vasco da Gama,Alan Lescano,1342579,M,1,75,0,0,0,0.0,73.0,2.0,8914636.0
+5103701,2026-11-04,brasil,Vasco da Gama,Santiago Sosa,958860,M,1,46,0,0,0,0.0,75.0,2.0,8858676.0
+5103701,2026-11-04,brasil,Vasco da Gama,Thiago Mendes,339032,M,1,90,0,0,0,0.0,77.0,2.0,964796.0
+5103701,2026-11-04,brasil,Vasco da Gama,Cuiabano,1476545,M,1,90,2,0,0,0.11,79.0,2.0,15392975.0
+5103701,2026-11-04,brasil,Vasco da Gama,Andrés Gómez,1353421,F,1,75,1,0,0,0.34,104.0,3.0,18118778.0
+5103701,2026-11-04,brasil,Vasco da Gama,Brenner,856464,F,1,46,0,0,0,0.0,106.0,3.0,3883004.0
+5103701,2026-11-04,brasil,Vasco da Gama,Bruno Duarte,951043,F,0,45,2,1,1,0.2,,3.0,2418089.0
+5103701,2026-11-04,brasil,Vasco da Gama,Facundo Colidio,949735,F,0,44,0,0,0,0.0,,3.0,7014284.0
+5103701,2026-11-04,brasil,Vasco da Gama,Ramon Rique,1950789,M,0,15,0,0,0,0.0,,2.0,9386140.0
+5103701,2026-11-04,brasil,Vasco da Gama,Jair,543804,M,0,15,0,0,0,0.0,,2.0,296583.0
+5103701,2026-11-04,brasil,Vasco da Gama,Paulo Henrique,1200802,D,0,1,0,0,0,0.0,,1.0,4077874.0
+1000017453,2026-11-04,par_division,Libertad,Rodrigo Morínigo,940259,G,1,90,0,0,0,0.0,11.0,0.0,553638.0
+1000017453,2026-11-04,par_division,Libertad,Alan Benítez,497395,D,1,90,0,0,0,0.0,32.0,1.0,248857.0
+1000017453,2026-11-04,par_division,Libertad,Robert Rojas,846980,D,1,90,0,0,0,0.0,34.0,1.0,639682.0
+1000017453,2026-11-04,par_division,Libertad,Nicolás Freire,427046,D,1,90,2,0,0,0.0,36.0,1.0,240317.0
+1000017453,2026-11-04,par_division,Libertad,Alexis Fretes,1671342,D,1,62,2,0,0,0.0,38.0,1.0,844834.0
+1000017453,2026-11-04,par_division,Libertad,Elvio Vera,1359268,M,1,90,4,1,0,0.0,72.0,2.0,814466.0
+1000017453,2026-11-04,par_division,Libertad,Federico Carrizo,202202,M,1,73,2,0,0,0.0,74.0,2.0,162156.0
+1000017453,2026-11-04,par_division,Libertad,Álvaro Campuzano,834604,M,1,90,0,0,0,0.0,76.0,2.0,305991.0
+1000017453,2026-11-04,par_division,Libertad,Agustín Manzur,918114,M,1,46,0,0,0,0.0,78.0,2.0,1304793.0
+1000017453,2026-11-04,par_division,Libertad,Gustavo Aguilar,1354560,F,1,46,0,0,0,0.0,104.0,3.0,397132.0
+1000017453,2026-11-04,par_division,Libertad,Lorenzo Melgarejo,172446,F,1,90,3,1,0,0.0,106.0,3.0,266254.0
+1000017453,2026-11-04,par_division,Libertad,Hugo Fernández,1037294,M,0,16,0,0,0,0.0,,2.0,343615.0
+1000017453,2026-11-04,par_division,Libertad,Lucas Sanabria,1073739,M,0,45,2,0,0,0.0,,2.0,438786.0
+1000017453,2026-11-04,par_division,Libertad,Iván Franco,929167,M,0,28,1,1,0,0.0,,2.0,747395.0
+1000017453,2026-11-04,par_division,Libertad,José Estigarribia,0,D,0,28,0,0,0,0.0,,1.0,
+1000017453,2026-11-04,par_division,Libertad,Marcelo Fernández,1274403,F,0,17,0,0,0,0.0,,3.0,
+1000017453,2026-11-04,par_division,Cerro Porteño,Manuel Roffo,847982,G,1,90,0,0,0,0.0,11.0,0.0,1887050.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Josué Servín,1840870,D,1,74,0,0,0,0.0,33.0,1.0,368482.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Jorge Morel,688291,D,1,90,1,0,0,0.0,35.0,1.0,998145.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Alexis Cañete,1636611,D,1,90,1,0,0,0.0,37.0,1.0,601825.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Fabricio Domínguez,955333,D,1,89,2,0,0,0.0,51.0,1.0,931054.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Blás Riveros,729090,D,1,90,1,0,0,0.0,59.0,1.0,650543.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Cesar Bobadilla,1940091,M,1,79,1,1,0,0.0,73.0,2.0,886429.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Gastón Giménez,362238,M,1,90,0,0,0,0.0,75.0,2.0,246419.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Carlos Chena,1958023,M,1,74,0,0,0,0.0,77.0,2.0,
+1000017453,2026-11-04,par_division,Cerro Porteño,Pablo Vegetti,466164,F,1,90,2,0,0,0.0,104.0,3.0,511023.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Sergio Araújo,190669,F,1,74,2,1,1,0.0,106.0,3.0,306390.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Gustavo Velázquez,497352,D,0,16,0,0,0,0.0,,1.0,354257.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Iván Ramírez,497399,D,0,16,0,0,0,0.0,,1.0,420381.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Mateo Klimowicz,889620,M,0,16,0,0,0,0.0,,2.0,1321421.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Ariel Gamarra,1613475,M,0,11,0,0,0,0.0,,2.0,963403.0
+1000017453,2026-11-04,par_division,Cerro Porteño,Guillermo Benítez,571609,D,0,1,0,0,0,0.0,,1.0,267266.0
+1000022582,2026-11-04,ven_primera,Portuguesa FC,Juan Reyes,861795,G,1,90,0,0,0,0.0,11.0,0.0,252240.0
+1000022582,2026-11-04,ven_primera,Portuguesa FC,César Urpin,435169,D,1,90,1,1,0,0.0,32.0,1.0,164439.0
+1000022582,2026-11-04,ven_primera,Portuguesa FC,Moisés Acuña,850820,D,1,90,0,0,0,0.0,34.0,1.0,146614.0
+1000022582,2026-11-04,ven_primera,Portuguesa FC,German Aguirre,1458308,D,1,90,1,0,0,0.0,36.0,1.0,
+1000022582,2026-11-04,ven_primera,Portuguesa FC,Guillermo Benítez,1017513,D,1,90,0,0,0,0.0,38.0,1.0,167273.0
+1000022582,2026-11-04,ven_primera,Portuguesa FC,Víctor Navas,1280898,M,1,51,0,0,0,0.0,72.0,2.0,264032.0
+1000022582,2026-11-04,ven_primera,Portuguesa FC,Lautaro Lovazzano,1445271,M,1,45,1,0,0,0.0,74.0,2.0,281296.0
+1000022582,2026-11-04,ven_primera,Portuguesa FC,José Soto,824087,M,1,62,0,0,0,0.0,76.0,2.0,126527.0
+1000022582,2026-11-04,ven_primera,Portuguesa FC,Ovidio López,1520716,M,1,70,1,1,0,0.0,78.0,2.0,360164.0
+1000022582,2026-11-04,ven_primera,Portuguesa FC,Jonathan Cañete,875136,F,1,70,4,1,0,0.0,104.0,3.0,286025.0
+1000022582,2026-11-04,ven_primera,Portuguesa FC,Ridenson Morillo,2035457,F,1,46,0,0,0,0.0,106.0,3.0,193359.0
+1000022582,2026-11-04,ven_primera,Portuguesa FC,Ricardo Toussaint,0,M,0,44,0,0,0,0.0,,2.0,
+1000022582,2026-11-04,ven_primera,Portuguesa FC,Wilfredo Peña,1299468,M,0,39,1,0,0,0.0,,2.0,
+1000022582,2026-11-04,ven_primera,Portuguesa FC,Héber García,679061,M,0,28,1,1,0,0.0,,2.0,171371.0
+1000022582,2026-11-04,ven_primera,Portuguesa FC,Joel Martínez,1439624,F,0,20,0,0,0,0.0,,3.0,240975.0
+1000022582,2026-11-04,ven_primera,Portuguesa FC,Álbaro Polo,1911022,F,0,20,1,0,0,0.0,,3.0,
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Cristopher Varela,1248975,G,1,90,0,0,0,0.0,11.0,0.0,234016.0
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Luis Casimiro Peña,1305416,D,1,90,0,0,0,0.0,32.0,1.0,186945.0
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,José Correa,1899846,D,1,90,0,0,0,0.0,34.0,1.0,
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Maike Villero,1203610,D,1,90,0,0,0,0.0,36.0,1.0,227081.0
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Nelson Hernández,423497,D,1,90,0,0,0,0.0,38.0,1.0,111363.0
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Miguel González,1524298,M,1,78,1,0,0,0.0,73.0,2.0,
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Juan Castellanos,115340,M,1,89,4,2,1,0.0,75.0,2.0,145710.0
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Juan Perdomo,1081843,M,1,90,2,1,0,0.0,77.0,2.0,316953.0
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Sebastián Zeballos,1608139,F,1,46,0,0,0,0.0,103.0,3.0,228922.0
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Anthony Uribe,211147,F,1,59,3,3,1,0.0,105.0,3.0,152014.0
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Jesús González,1911029,F,1,78,1,1,1,0.0,107.0,3.0,
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,José Meza,243948,F,0,44,0,0,0,0.0,,3.0,
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Flabián Londoño,1354125,F,0,12,0,0,0,0.0,,3.0,299988.0
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Manuel Sulbarán,1288349,F,0,12,0,0,0,0.0,,3.0,264522.0
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Diego Sánchez,2036038,D,0,1,0,0,0,0.0,,1.0,
+1000022582,2026-11-04,ven_primera,Deportivo La Guaira,Helzon Pomozy,2035464,M,0,1,1,0,0,0.0,,2.0,
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Ángel Sánchez,1458550,G,1,90,0,0,0,0.0,11.0,0.0,345777.0
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Fabián Franco,881539,D,1,90,1,0,0,0.0,32.0,1.0,263501.0
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Hugo Javier Benítez,1336658,D,1,90,0,0,0,0.0,34.0,1.0,248555.0
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Luca Falabella,1435223,D,1,90,0,0,0,0.0,36.0,1.0,497873.0
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Abel Paredes,860957,D,1,90,1,1,0,0.0,38.0,1.0,263342.0
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Jonathan Benítez,1644207,M,1,83,0,0,0,0.0,65.0,2.0,348704.0
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Luis Ayala,1782148,F,1,65,0,0,0,0.0,82.0,3.0,
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Valentín Larralde,1186691,M,1,74,1,0,0,0.0,84.0,2.0,326208.0
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Raúl Cabral,1709065,M,1,90,1,0,0,0.0,86.0,2.0,859648.0
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Fredy Vera,1042113,F,1,74,2,1,0,0.0,88.0,3.0,
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Richard Torales,1453346,F,1,84,1,0,0,0.0,115.0,3.0,365297.0
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Luis Ortiz,1042092,M,0,25,0,0,0,0.0,,2.0,
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Estivel Moreira,951493,M,0,16,1,0,0,0.0,,2.0,272821.0
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Carlos Favero,1732696,F,0,16,1,0,0,0.0,,3.0,412322.0
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Walter Rodríguez,860889,M,0,7,0,0,0,0.0,,2.0,272321.0
+1000017457,2026-11-04,par_division,Sportivo Ameliano,Alcides Ávalos,1736530,F,0,6,0,0,0,0.0,,3.0,
+1000017457,2026-11-04,par_division,Guaraní,Miguel Martínez,950979,G,1,90,0,0,0,0.0,11.0,0.0,288325.0
+1000017457,2026-11-04,par_division,Guaraní,Armando Méndez,1093699,D,1,71,1,0,0,0.0,32.0,1.0,612750.0
+1000017457,2026-11-04,par_division,Guaraní,Imanol Segovia,1206630,D,1,90,1,0,0,0.0,34.0,1.0,373041.0
+1000017457,2026-11-04,par_division,Guaraní,Thiago Servín,1458552,D,1,90,0,0,0,0.0,36.0,1.0,640448.0
+1000017457,2026-11-04,par_division,Guaraní,Pedro González,0,D,1,90,0,0,0,0.0,38.0,1.0,
+1000017457,2026-11-04,par_division,Guaraní,Martín Maldonado,1910611,M,1,45,1,0,0,0.0,72.0,2.0,
+1000017457,2026-11-04,par_division,Guaraní,Jesús Llano,1198485,M,1,65,1,0,0,0.0,74.0,2.0,352629.0
+1000017457,2026-11-04,par_division,Guaraní,Giovanni Gómez,1785005,M,1,90,1,0,0,0.0,76.0,2.0,967207.0
+1000017457,2026-11-04,par_division,Guaraní,Victor Céspedes,1486269,M,1,21,0,0,0,0.0,78.0,2.0,361488.0
+1000017457,2026-11-04,par_division,Guaraní,Maximiliano Añasco,1357734,F,1,45,2,0,0,0.0,104.0,3.0,349878.0
+1000017457,2026-11-04,par_division,Guaraní,Jorge Recalde,466692,F,1,46,0,0,0,0.0,106.0,3.0,295710.0
+1000017457,2026-11-04,par_division,Guaraní,Diego Fernández,1130944,F,0,69,3,0,0,0.0,,3.0,607867.0
+1000017457,2026-11-04,par_division,Guaraní,Juan Manuel García,626154,F,0,45,1,0,0,0.0,,3.0,306405.0
+1000017457,2026-11-04,par_division,Guaraní,Patricio Coronel,1746276,F,0,45,1,1,0,0.0,,3.0,
+1000017457,2026-11-04,par_division,Guaraní,Fernando Fernández,507770,F,0,45,3,1,0,0.0,,3.0,316105.0
+1000017457,2026-11-04,par_division,Guaraní,Luis Martínez,1417441,M,0,25,0,0,0,0.0,,2.0,628215.0
+1000017457,2026-11-04,par_division,Guaraní,René Rodríguez,1787336,D,0,19,0,0,0,0.0,,1.0,394768.0
