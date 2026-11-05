@@ -370,6 +370,7 @@
       });
     }
     return {
+      pista: window.Pistas && p.deporte !== 'Fútbol' ? Pistas.leer(p.deporte, d, (nos1.team || {}).id) : null,
       jugadas, once, formacion: [0, 1].map((l) => ((d.rosters || []).find((r) => (String((r.team || {}).id) === String((nos1.team || {}).id) ? 0 : 1) === l) || {}).formation || ''),
       fase: st.state || 'pre', terminado: !!st.completed, est: st.name || '', pen: penalesDe(d, comp, nos1),
       detalle: ESTADO_ESPN[st.name] || ({ FT: 'Final', HT: 'Medio tiempo', AET: 'Final (prórroga)', 'FT-Pens': 'Final (penales)', Final: 'Final' })[st.shortDetail] || st.shortDetail || st.detail || '',
@@ -756,6 +757,8 @@
   const BASE_442 = [[0, 50], [24, 10], [20, 36], [20, 64], [24, 90], [58, 10], [50, 38], [50, 62], [58, 90], [90, 38], [90, 62]];
   const minuto = (s) => { const m = String(s || '').match(/(\d+)(?:'\s*\+\s*(\d+))?/); return m ? Number(m[1]) + (m[2] ? Number(m[2]) / 10 : 0) : 0; };
   function cancha(v, p) {
+    // v573 — cada deporte con su cancha (pistas.js); la de fútbol sigue aquí
+    if (p && p.deporte !== 'Fútbol') return window.Pistas && Pistas.TIENE(p.deporte) ? Pistas.html(v, p, clavePartido(p)) : '';
     const k = p ? clavePartido(p) : '';
     const d = p ? estado.d365[estado.p365[k]] : null;
     // v436 — UNA FUENTE POR COSA, SIN MEZCLAR (el usuario: «cuando uno no funciona,
@@ -1610,7 +1613,8 @@
       iaBloque(p, L, V, conVip(ps).ctx, conVip(ps).jug, ps.some((x) => x.vip_hay)) +
       metodoBloque(ps, L, V) +             // v558
       // v517 — «la tarjeta principal ya se hizo larga»: a la vista la cancha y el Pulso; las estadísticas, plegadas
-      penalesHtml(v, L, V) + (v && (v.fase === 'in' || v.fase === 'post') ? cancha(v, p) : '') + pulsoChip(p, v) +   // v460: también al terminar
+      penalesHtml(v, L, V) + (v && (v.fase === 'in' || v.fase === 'post') ? cancha(v, p) : '') +
+      (!v && /^(Tenis|Béisbol|KBO)$/.test(p.deporte) && faseDe(ps) === 'vivo' ? cancha({ fase: 'in', nombres: [L, V], g: [0, 0], colores: null }, p) : '') + pulsoChip(p, v) +   // v460: también al terminar
       seccionStats(compensacion(p, v) + miniStats(v, p)) +
       ps.map((x) => filaPick(x, v, ps.length > 1)).join('') +
       (!previa && ps.some((x) => x.espn) ? '<button class="ver" data-ficha="' + esc((ps.find((x) => x.espn) || p).id) + '">Ver partido →</button>' : '') +

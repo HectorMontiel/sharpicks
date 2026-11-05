@@ -82,11 +82,27 @@ def test_la_pasada_para_a_tiempo():
     assert a.index('time.monotonic() - inicio > TOPE_PASADA_S') < a.index('web = noticias_rss(lote)')
 
 
+def test_el_presupuesto_del_dia():
+    a = leer('ia_gemini.py')
+    assert 'CUPO_SOLO = 250' in a and 'CUPO_PICKS = 460' in a and "if gastado >= (CUPO_PICKS if con_pick and not ventana else CUPO_SOLO):" in a
+    assert a.index('gastado = USADAS_HOY') < a.index('web = noticias_rss(lote)')
+    import datetime as dt
+    import requests
+    antes = requests.get
+    requests.get = lambda *x, **k: R(200, [{'modelo': ia.MODELO_CUPO, 'llamadas': 100}, {'modelo': ia.MODELO_CUPO, 'llamadas': 40}, {'modelo': 'gemini-flash-latest', 'llamadas': 20}])
+    try:
+        assert ia.leer_uso_de_hoy(('https://x/ia_analisis', {}), dt.datetime(2026, 11, 5, tzinfo=dt.timezone.utc)) == 140
+    finally:
+        requests.get = antes
+        ia.USADAS_HOY['lite'] = 0
+
+
 def test_el_pulso_cuenta_y_frena():
     p = leer('supabase', 'functions', 'pulso-vivo', 'index.ts')
     assert "const MODELOS_IA = ['gemini-flash-lite-latest', 'gemini-flash-latest'];" in p and "tipo: 'pulso'" in p and 'USO_IA.llamadas++;' in p
     assert '!ms.length || USO_IA.pausa) return null;' in p and 'await leerPausaIA();' in p and 'await guardarUsoIA();' in p
     assert p.index('if (r.status === 429) {') < p.index('if (!r.ok) continue;')
+    assert 'if (r.status >= 500) { USO_IA.pausa = true; return null; }' in p and 'const TOPE_PULSO_DIA = 240;' in p
 
 
 if __name__ == '__main__':

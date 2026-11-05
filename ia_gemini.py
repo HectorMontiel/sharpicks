@@ -52,6 +52,12 @@ UNIDAD = {'Béisbol': 'Carreras',   # v423 — el béisbol de invierno
           'Fútbol': 'Goles', 'NHL': 'Goles', 'NBA': 'Puntos', 'NFL': 'Puntos',
           'MLB': 'Carreras', 'KBO': 'Carreras', 'Tenis': 'Sets'}
 PAUSA_S = 4.5            # ~13 por minuto: debajo del límite del nivel gratis
+# v572 — EL PRESUPUESTO DEL DÍA. Google, leído de su propio 429 el 5-nov: gemini-flash-lite 500 consultas al día, gemini-flash 20, por modelo y
+# proyecto; se reinician a medianoche del Pacífico. El Pulso y los análisis usan la misma clave. Las 500 se reparten: lo de sólo análisis
+# (sobre todo el tenis ITF: hasta 363 de 500 filas al día) para al llegar a CUPO_SOLO y los picks al llegar a CUPO_PICKS, para no dejar al Pulso sin nada.
+CUPO_SOLO = 250
+CUPO_PICKS = 460
+MODELO_CUPO = 'gemini-flash-lite-latest'
 TOPE_PASADA_S = 480      # v572 — para guardar la cuenta y dejar tiempo a la medición, antes de los 12 min del paso
 MAX_SIN_RESPUESTA = 3    # v572 — Gemini saturado: en vez de gastar la pasada en 503, se sigue en la próxima
 
@@ -524,6 +530,21 @@ def noticias_web(lista: List[Dict], tipo: str = 'busqueda') -> Dict:
     return {}
 
 
+USADAS_HOY = {'lite': 0}
+
+
+def leer_uso_de_hoy(sb, ahora: dt.datetime) -> int:
+    """Las consultas de hoy al modelo lite, de todos los que usan la clave (el Pulso también lo apunta en ia_uso)."""
+    import requests
+    dia = (ahora - dt.timedelta(hours=8)).strftime('%Y-%m-%d')
+    try:
+        r = requests.get(sb[0].replace('/ia_analisis', '/ia_uso'), headers=sb[1], params={'select': 'modelo,llamadas', 'fecha': 'eq.' + dia}, timeout=20)
+        USADAS_HOY['lite'] = sum(int(x.get('llamadas') or 0) for x in r.json() if x.get('modelo') == MODELO_CUPO) if r.ok else 0
+    except Exception as e:
+        logger.warning('[ia] no se leyó el uso de hoy: %s', type(e).__name__)
+    return USADAS_HOY['lite']
+
+
 def razon_429(r) -> Tuple[bool, float, str]:
     """v572 — no todo 429 es «sin cupo hoy»: Google también lo da por minuto. Devuelve (es del día, segundos que pide esperar, qué límite).
     El mensaje nunca lleva la clave. Si no se entiende, se toma como del día, como hasta ahora."""
@@ -942,6 +963,10 @@ def analizar(sb, lista: List[Dict], mercado: Dict, ventana: Optional[str] = None
             print('ia: se para esta pasada (%.0f s, %d lotes seguidos sin respuesta); sigue en la próxima' % (time.monotonic() - inicio, sin_respuesta))
             break
         tipo = 'ventana' if ventana else 'analisis' if con_pick else 'solo_analisis'
+        gastado = USADAS_HOY['lite'] + sum(u['llamadas'] for (mo, _), u in USO.items() if mo == MODELO_CUPO)
+        if gastado >= (CUPO_PICKS if con_pick and not ventana else CUPO_SOLO):
+            print('ia: presupuesto del día (%d consultas): se omite %s' % (gastado, tipo))
+            continue
         # v533 — SÓLO Google News, en todos los deportes. Barrido del 29-oct: la búsqueda de Gemini no respondió NI UNA
         # vez desde el 22-oct (0 de 10-19 diarias) y gastaba llamadas; todas las noticias venían de Google News.
         web = noticias_rss(lote)
@@ -1112,6 +1137,8 @@ def main() -> int:
         pass
     ahora = dt.datetime.now(dt.timezone.utc)
     evaluados = 0 if seco else evaluar(sb, picks)
+    if not seco:
+        print('ia: consultas de hoy al modelo lite: %d de 500' % leer_uso_de_hoy(sb, ahora))
     hechos = set() if seco else (ya_hechos(sb) or set())
     mercado = _mercado()
     lista = partidos(picks, ahora)

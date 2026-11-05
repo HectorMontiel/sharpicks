@@ -26,6 +26,7 @@ const NOMBRE: Record<string, string> = { gol: 'Cae otro gol', gol2: 'Caen 2 gole
 // v572 — lite primero: el flash dio 0-1 respuestas al día desde octubre, y cada intento era una llamada de más
 const MODELOS_IA = ['gemini-flash-lite-latest', 'gemini-flash-latest'];
 const ESPERA_429_MIN = 30;
+const TOPE_PULSO_DIA = 240;       // de las 500 del día de gemini-flash-lite (el 429 de Google lo dice): el resto es de los análisis
 const USO_IA = { llamadas: 0, ok: 0, agotado: false, pausa: false };
 // v521 — ESPN y el sitio rechazan (403) lo que no dice ser un navegador: sin esto la función «no veía» el 2.º tiempo
 const NAV = { 'User-Agent': 'Mozilla/5.0', Accept: 'application/json' };   // ni «Deno/…» ni «compatible; …bot»: ESPN da 403
@@ -172,9 +173,9 @@ async function enviar(texto: string, canal: 'vip' | 'gratis' = 'vip') {
 const diaCupo = () => new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10);
 const idUso = () => `${diaCupo()}|${MODELOS_IA[0]}|pulso`;
 async function leerPausaIA() {
-  const f = (await sbGet('ia_uso', `select=agotado_a&id=eq.${encodeURIComponent(idUso())}`)) || [];
+  const f = (await sbGet('ia_uso', `select=agotado_a,llamadas&id=eq.${encodeURIComponent(idUso())}`)) || [];
   const a = f[0] && f[0].agotado_a;
-  USO_IA.pausa = !!a && Date.now() - new Date(a).getTime() < ESPERA_429_MIN * 60e3;
+  USO_IA.pausa = (!!a && Date.now() - new Date(a).getTime() < ESPERA_429_MIN * 60e3) || ((f[0] && f[0].llamadas) || 0) >= TOPE_PULSO_DIA;
 }
 async function guardarUsoIA() {
   if (!USO_IA.llamadas) return;
@@ -198,6 +199,7 @@ async function preguntarIA(p: Dic, e: Dic, ms: Dic[]) {
       const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${s.GEMINI_API_KEY}`,
         { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(cuerpo), signal: AbortSignal.timeout(40000) });
       USO_IA.llamadas++;
+      if (r.status >= 500) { USO_IA.pausa = true; return null; }    // Gemini saturado: una por pasada, no una por partido
       if (r.status === 429) {                                      // ni el otro modelo ni el siguiente partido, hasta la próxima
         const txt = (await r.text()).slice(0, 2000);
         console.warn('[pulso] 429', modelo, (txt.match(/"quotaId":\s*"[^"]+"/g) || []).join(' '));
