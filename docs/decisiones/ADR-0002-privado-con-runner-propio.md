@@ -1,6 +1,6 @@
 # ADR-0002: repo completo privado con runner propio en la nube
 
-- **Estado:** ACEPTADO por el propietario el 2026-11-04, con tope de ~150 pesos al mes. Sin ejecutar: falta contratar el servidor, fusionar el PR y cambiar la visibilidad, cada paso con su autorización.
+- **Estado:** ACEPTADO por el propietario el 2026-11-04 (servidor propio). Sin ejecutar: falta confirmar y contratar el servidor, portar el despertador, fusionar el PR y cambiar la visibilidad.
 - **Fecha:** 2026-11-04.
 - **Sustituye a:** ADR-0001 (separar el motor en `sharpicks-core`), si se acepta.
 
@@ -38,11 +38,29 @@ Es lo mismo que ya operó del 29 de octubre (v510-v519) con runners en la PC, as
 4. **Riesgo de regresión.** 773 archivos, 1,925 dependencias y 11 ciclos: mover el motor por partes arriesga cambiar predicciones sin ganar protección adicional sobre A.
 5. **Términos de GitHub.** Prohíben usar Actions «as part of a serverless application» y limitan los runners de GitHub a actividad del proyecto del repo. Un repo público que sólo existe para correr gratis código privado aumenta el riesgo de que restrinjan la cuenta, y con ella toda la operación. Esa restricción de «serverless» aplica también con runner propio; el uso actual de Actions como programador de producción ya está en esa zona.
 
-## Servidor elegido por presupuesto
+## Servidor recomendado (revisado 2026-11-04)
 
-**Contabo Cloud VPS 4** (4 vCPU, 8 GB, 100 GB SSD, tráfico con uso justo), según su página al 2026-11-04: €5.50 al mes con contrato mensual y cuota inicial de monto no mostrado, o desde €4.40 al mes con contrato de 24 meses. Hetzner queda fuera: su plan equivalente cuesta €35.99 al mes.
+El propietario quitó el tope de ~150 pesos: la prioridad es que no sea más lento ni falle. Sigue pendiente su confirmación.
 
-**HIPÓTESIS sin medir:** que 8 GB y 100 GB alcancen y que su rendimiento sostenga las duraciones actuales. Por eso se contrata primero un mes y se hace la semana de prueba antes de comprometer 24 meses.
+**Referencia actual (CONFIRMADO, docs de GitHub):** cada trabajo tiene 4 CPU y 16 GB en repo público. En privado, los runners de GitHub bajan a 2 CPU y 8 GB, así que pagar por ellos además sería más lento. Sin el Relevo corren 2 trabajos o menos el 98 % del tiempo; igualar eso pide unos 8 núcleos.
+
+**Evidencia de carga (OBSERVADO, octubre):** los 4 runners operaron en la PC con 6 procesadores y 6 GB; el precálculo rápido tardó 2.7 min contra ~10 en GitHub. Otra máquina puede rendir distinto.
+
+| Plan | Núcleos | Memoria | Disco | Precio en su página |
+|---|---:|---:|---:|---:|
+| **OVH VPS-4 (recomendado)** | 8 | 24 GB | 200 GB NVMe | desde US$23.37/mes |
+| Contabo Cloud VPS 8 | 8 | 24 GB | 150 GB NVMe | ~€14/mes (cifra reconstruida) |
+| Contabo VDS M (núcleos dedicados) | 8 | 32 GB | 240 GB NVMe | €68/mes (sin confirmar) |
+| Hetzner CCX33 (dedicados) | 8 | 32 GB | 240 GB NVMe | €138.99/mes, no disponible |
+| DigitalOcean dedicado | 8 | 32 GB | 100 GB SSD | US$252/mes |
+
+Se elige OVH VPS-4 por relación de capacidad, precio y disponibilidad publicada (99.9 %). Faltan por confirmar en su compra: región en EUA, impuestos y permanencia, porque esos datos no aparecieron en la parte legible de la página.
+
+**Trabajo pendiente antes de privatizar:** el 29-oct, con el repo privado, GitHub no disparó los `schedule` (0 corridas en 5 h) y los lanzaba un despertador en la PC. Hay que portar ese despertador a un temporizador del servidor. Sin eso, los flujos programados pueden no correr.
+
+**Disponibilidad:** ningún proveedor garantiza 100 %. El servidor no guarda nada único: se reconstruye con `instalar.sh`. Si cae, borrar `RUNNER_PESADO` regresa los flujos a GitHub, con menos potencia y cobro por minuto.
+
+**Apps de iOS y Android:** los usuarios llegan a Supabase y Cloudflare, no a este servidor. Más usuarios no cargan los runners; el límite a vigilar es Supabase (`vigia_limites.py`).
 
 ## Qué ya está hecho en la rama (IMPLEMENTADO)
 

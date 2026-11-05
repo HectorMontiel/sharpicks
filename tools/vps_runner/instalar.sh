@@ -68,7 +68,9 @@ for i in $(seq 1 "$N"); do
   mkdir -p "$D" && tar xzf "$TGZ" -C "$D" && chown -R "$USUARIO":"$USUARIO" "$D"
   "$D/bin/installdependencies.sh" >/dev/null
   cat > "$D/.env" <<EOF
+TZ=UTC
 LANG=C.UTF-8
+PYTHONIOENCODING=utf-8
 AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
 RUNNER_TOOL_CACHE=/opt/hostedtoolcache
 ACTIONS_RUNNER_HOOK_JOB_STARTED=$BASE/antes_del_trabajo.sh
