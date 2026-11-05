@@ -147,7 +147,10 @@ def test_la_ia_recibe_el_contexto_y_guarda_los_mercados():
 
 
 def test_el_exportador_y_la_pagina():
-    assert 'contexto_deportes.contexto(f)' in leer('exportar_web.py')
+    e = leer('exportar_web.py')
+    assert 'contexto_deportes.contexto(f)' in e
+    # v569 — sin `espn` el contexto sale vacío: en producción fueron 0 de 37 picks con este orden al revés
+    assert e.index('espn_vivo.emparejar(') < e.index('contexto_deportes.contexto(f)')
     w = leer('web', 'app.js')
     assert 'const CTX_DEP = {' in w and "contextoHtml((ps.find((x) => x.ctx) || {}).ctx, L, V, p.liga, p.deporte)" in w
     assert "a.mercados.map((m) => [m.t, m.v, null, m.p])" in w and "(fut || dep === 'NHL')" in w

@@ -431,17 +431,11 @@ def construir() -> Dict:
         errores_web.RED_CASA = True       # v477 — lo que no esté en mercado_dia.json se pide a Playdoit en vivo
         memo = {}
         claves = {p.get('partido'): p.get('clave_liga') for p in prons if p.get('clave_liga')}
-        import contexto_deportes
         for f in picks + analisis:
             k = f.get('partido')
             if f.get('deporte') == 'Fútbol':
                 if k not in memo:
                     memo[k] = errores_web.contexto(dict(f, clave_liga=f.get('clave_liga') or claves.get(k)))
-                if memo[k]:
-                    f['ctx'] = memo[k]
-            elif f.get('deporte') in contexto_deportes.DEPORTES:      # v568 — NHL, NBA, NFL y MLB, con lo que se apuesta en cada uno
-                if k not in memo:
-                    memo[k] = contexto_deportes.contexto(f)
                 if memo[k]:
                     f['ctx'] = memo[k]
         print('web: líneas de la casa conservadas al empezar: %d' % conservar_lin_casa(picks + analisis, _lin_publicadas()))
@@ -465,6 +459,21 @@ def construir() -> Dict:
             f['girado'] = bool(f.get('girado'))
     except Exception as e:
         logger.warning('[web] sin ESPN: %s', e)
+    # v568 — NHL, NBA, NFL y MLB, con lo que se apuesta en cada uno. v569 — DESPUÉS de emparejar: necesita
+    # `espn`, y antes de este orden ningún partido recibía contexto en producción.
+    try:
+        import contexto_deportes
+        memo_dep = {}
+        for f in picks + analisis:
+            if f.get('deporte') in contexto_deportes.DEPORTES:
+                k = f.get('partido')
+                if k not in memo_dep:
+                    memo_dep[k] = contexto_deportes.contexto(f)
+                if memo_dep[k]:
+                    f['ctx'] = memo_dep[k]
+        print('web: contexto de otros deportes: %d de %d partidos' % (sum(1 for v in memo_dep.values() if v), len(memo_dep)))
+    except Exception as e:
+        logger.warning('[web] sin contexto de otros deportes: %s', e)
     # v467 — cada escudo validado uno por uno; los que faltan, de FotMob/Flashscore (fútbol) y
     # 365Scores (la foto del tenista)
     try:
