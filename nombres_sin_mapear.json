@@ -361,8 +361,8 @@
   },
   "Red Bull New York": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "AS New Soger",
-    "ratio": 0.4828,
+    "candidato": "Red Star",
+    "ratio": 0.4,
     "visto": "2026-11-05"
   },
   "Cambridge United": {
@@ -373,7 +373,7 @@
   },
   "Peterborough United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Nico United",
+    "candidato": "Dewa United",
     "ratio": 0.5333,
     "visto": "2026-11-05"
   },
@@ -409,14 +409,14 @@
   },
   "Colchester United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Nico United",
-    "ratio": 0.6429,
+    "candidato": "Dewa United",
+    "ratio": 0.5714,
     "visto": "2026-11-05"
   },
   "Scunthorpe United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Nico United",
-    "ratio": 0.6429,
+    "candidato": "Madura United",
+    "ratio": 0.6,
     "visto": "2026-11-05"
   },
   "Hartlepool United": {
@@ -433,8 +433,8 @@
   },
   "Sutton United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Nico United",
-    "ratio": 0.6667,
+    "candidato": "Madura United",
+    "ratio": 0.6154,
     "visto": "2026-11-05"
   },
   "Helmond Sport": {
@@ -547,7 +547,7 @@
   },
   "Minnesota United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Nico United",
+    "candidato": "Dewa United",
     "ratio": 0.6667,
     "visto": "2026-11-05"
   },
@@ -565,7 +565,7 @@
   },
   "D.C. United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Nico United",
+    "candidato": "Dewa United",
     "ratio": 0.7619,
     "visto": "2026-11-05"
   },
@@ -619,8 +619,8 @@
   },
   "New Mexico United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Nico United",
-    "ratio": 0.7857,
+    "candidato": "Dewa United",
+    "ratio": 0.6429,
     "visto": "2026-11-05"
   },
   "Sacramento Republic FC": {
@@ -1297,7 +1297,7 @@
   },
   "Sheffield United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Nico United",
+    "candidato": "Dewa United",
     "ratio": 0.5926,
     "visto": "2026-11-05"
   },
@@ -2209,8 +2209,8 @@
   },
   "Paris Saint-Germain": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Saint Louis",
-    "ratio": 0.4667,
+    "candidato": null,
+    "ratio": 0.0,
     "visto": "2026-11-05"
   },
   "Lyon": {
@@ -2709,6 +2709,12 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "West Coast Rangers W",
     "ratio": 0.6471,
+    "visto": "2026-11-05"
+  },
+  "Crewe Alexandra": {
+    "contexto": "cuotas_mx→futbol",
+    "candidato": "Mold Alexandra",
+    "ratio": 0.6897,
     "visto": "2026-11-05"
   }
 }
