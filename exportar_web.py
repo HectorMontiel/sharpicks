@@ -431,11 +431,17 @@ def construir() -> Dict:
         errores_web.RED_CASA = True       # v477 — lo que no esté en mercado_dia.json se pide a Playdoit en vivo
         memo = {}
         claves = {p.get('partido'): p.get('clave_liga') for p in prons if p.get('clave_liga')}
+        import contexto_deportes
         for f in picks + analisis:
+            k = f.get('partido')
             if f.get('deporte') == 'Fútbol':
-                k = f.get('partido')
                 if k not in memo:
                     memo[k] = errores_web.contexto(dict(f, clave_liga=f.get('clave_liga') or claves.get(k)))
+                if memo[k]:
+                    f['ctx'] = memo[k]
+            elif f.get('deporte') in contexto_deportes.DEPORTES:      # v568 — NHL, NBA, NFL y MLB, con lo que se apuesta en cada uno
+                if k not in memo:
+                    memo[k] = contexto_deportes.contexto(f)
                 if memo[k]:
                     f['ctx'] = memo[k]
         print('web: líneas de la casa conservadas al empezar: %d' % conservar_lin_casa(picks + analisis, _lin_publicadas()))

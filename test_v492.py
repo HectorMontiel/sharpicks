@@ -83,12 +83,12 @@ def probar_tablas():
 
 def probar_web():
     app, css = leer('web', 'app.js'), leer('web', 'estilo.css')
-    check('function formaEquipo(nombre, f, u)' in app and "formaEquipo(L, ctx.fl, ctx.ul) + formaEquipo(V, ctx.fv, ctx.uv)" in app,
+    check('function formaEquipo(nombre, f, u, dep)' in app and "formaEquipo(L, ctx.fl, ctx.ul, dep) + formaEquipo(V, ctx.fv, ctx.uv, dep)" in app,
           'v492: cada equipo de «Forma» despliega sus 5 partidos')
     check("const par = (x) => (Array.isArray(x) ? x[0] + '-' + x[1] : '—');" in app, 'v492: sin dato real, «—»')
     check("if (tb) h += sub('Clasificación', tb);" in app and "f === yoL || f === yoV ? ' yo' : ''" in app
           and "fetch('datos/tablas.json?x='" in app, 'v492: pestaña «Clasificación» con la tabla entera y los dos resaltados')
-    check("contextoHtml((ps.find((x) => x.ctx) || {}).ctx, L, V, p.liga)" in app, 'v492: la tarjeta pasa la liga')
+    check("contextoHtml((ps.find((x) => x.ctx) || {}).ctx, L, V, p.liga, p.deporte)" in app, 'v492: la tarjeta pasa la liga')
     check('.u5-f { display: grid;' in css and '.tl-f.yo {' in css, 'v492: estilos compactos')
     check("gt: g.statusGroup === 3 && Number(g.gameTime) > 0 ? Number(g.gameTime) : null" in app
           and 'async function minutos365()' in app and 'setInterval(minutos365, 60 * 1000);' in app,

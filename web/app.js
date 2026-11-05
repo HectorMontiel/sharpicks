@@ -1437,7 +1437,7 @@
       '<div class="marc">' + (marc ? esc(marc) : 'vs') + '</div>' +
       '<div class="eq der"><span>' + esc(V) + '</span>' + escudo(p.logo_a, V, p.deporte) + '</div></div>' +
       '<div class="liga">' + esc(p.liga || '') + ' · ' + esc(horaCdmx(aFecha(p.inicio))) + '</div>' +
-      contextoHtml((ps.find((x) => x.ctx) || {}).ctx, L, V, p.liga) +
+      contextoHtml((ps.find((x) => x.ctx) || {}).ctx, L, V, p.liga, p.deporte) +
       iaBloque(p, L, V, conVip(ps).ctx, conVip(ps).jug, ps.some((x) => x.vip_hay)) +
       metodoBloque(ps, L, V) +             // v558
       // v517 — «la tarjeta principal ya se hizo larga»: a la vista la cancha y el Pulso; las estadísticas, plegadas
@@ -1699,9 +1699,13 @@
       : a.mejor_apuesta ? '<div class="ia-meter">🧠 Lo que metería la IA: <b>' + esc(a.mejor_apuesta) + '</b>' +
         (a.prob_mejor_apuesta != null ? ' · ' + Math.round(100 * a.prob_mejor_apuesta) + ' %' : '') + '</div>' : '') +
       // v392 — más precisa: marcador, goles esperados, ambos anotan, córners, tarjetas (con ✅/❌ al terminar)
-      sub('Predicciones', '<div class="ia-grid">' + [
+      sub('Predicciones', '<div class="ia-grid">' + (Array.isArray(a.mercados) && a.mercados.length
+        // v568 — la plantilla de cada deporte: los mercados que Playdoit sí ofrece (plantillas_deporte.py)
+        ? a.mercados.map((m) => [m.t, m.v, null, m.p])
+        : [
         // v396 — con la probabilidad que le da la IA a cada predicción
-        a.marcador_ia ? ['⚽ Marcador', a.marcador_ia, a.ok_marcador, a.prob_marcador] : null,
+        // v568 — el marcador exacto y los goles sólo donde se apuestan así: en NBA, NFL y béisbol no dice nada
+        a.marcador_ia && (fut || dep === 'NHL') ? [fut ? '⚽ Marcador' : 'Marcador', a.marcador_ia, a.ok_marcador, a.prob_marcador] : null,
         a.goles_esperados != null ? ['🥅 Goles esperados', String(a.goles_esperados), null, null] : null,
         // v407 — el total y el hándicap, en todos los deportes
         a.linea_total != null && a.pred_total ? ['📊 Total de ' + U, (a.pred_total === 'mas' ? 'Más' : 'Menos') + ' de ' + a.linea_total +
@@ -1710,10 +1714,10 @@
         a.btts ? ['🎯 Ambos anotan', a.btts === 'si' ? 'Sí' : 'No', a.ok_btts, a.prob_ambos == null ? null : (a.btts === 'si' ? a.prob_ambos : 1 - a.prob_ambos)] : null,
         a.linea_corners != null ? ['🚩 Córners', (a.pred_corners === 'mas' ? 'Más' : 'Menos') + ' de ' + a.linea_corners + (a.corners_esperados != null ? ' (~' + a.corners_esperados + ')' : ''), a.ok_corners, a.prob_corners] : null,
         a.linea_tarjetas != null ? ['🟨 Tarjetas', (a.pred_tarjetas === 'mas' ? 'Más' : 'Menos') + ' de ' + a.linea_tarjetas + (a.tarjetas_esperadas != null ? ' (~' + a.tarjetas_esperadas + ')' : ''), a.ok_tarjetas, a.prob_tarjetas] : null,
-      ].filter(Boolean).map(([t, v, ok, pr]) => '<div><small>' + t + '</small><b>' + esc(v) + (ok === true ? ' ✅' : ok === false ? ' ❌' : '') + '</b>' +
+      ]).filter(Boolean).map(([t, v, ok, pr]) => '<div><small>' + t + '</small><b>' + esc(v) + (ok === true ? ' ✅' : ok === false ? ' ❌' : '') + '</b>' +
         (pr != null ? '<span class="ia-prob">probabilidad ' + Math.round(100 * pr) + ' %</span>' : '') + '</div>').join('') + '</div>' +
         // v394 — los goles de cada equipo
-        (a.goles_local_esperados != null && a.goles_visita_esperados != null
+        (a.goles_local_esperados != null && a.goles_visita_esperados != null && dep !== 'Tenis'
           ? filaStat(U.charAt(0).toUpperCase() + U.slice(1) + ' esperados', a.goles_local_esperados, a.goles_visita_esperados, true) : '')) +
       // v468 — el bloque de promedios de la IA se quitó: eran los MISMOS de «Antes del partido» (redundante)
       // v448 — primer gol y PA1 de cada equipo (sólo fútbol: es lo que se midió)
@@ -1742,16 +1746,33 @@
   // y despliega sus 5 partidos (el más reciente arriba): marcador y, a favor-en contra, córners, tiros a
   // puerta y amarillas; «—» si ese partido no tiene la estadística real.
   const par = (x) => (Array.isArray(x) ? x[0] + '-' + x[1] : '—');
-  function ultimosHtml(u) {
+  // v568 — el usuario: «en la NHL no veo el análisis previo como en fútbol; no serán córners, pero sí lo que hay en su mercado».
+  // Cada estadística responde a lo que Playdoit ofrece en ese deporte (contexto_deportes.py). pc = porcentaje.
+  const pc100 = (x) => (x == null ? '-' : Math.round(100 * x) + ' %');
+  const CTX_DEP = {
+    NHL: { u: ['Tiros', '1.er per.', 'Pwr play'], res: 'En cada partido, a favor-en contra. Prórroga incluida.', filas: [['gf', 'Goles a favor'], ['gc', 'Goles en contra'], ['tot', 'Goles del partido'],
+      ['o55', 'Partidos con +5.5 goles', pc100], ['ambos', 'Ambos marcan', pc100], ['p1', 'Goles en el 1.er periodo'], ['pa', 'Anota primero', pc100], ['pro', 'Partidos con prórroga', pc100],
+      ['tir', 'Tiros'], ['tirc', 'Tiros recibidos'], ['pp', 'Power play', pc100], ['hit', 'Golpes']] },
+    NBA: { u: ['1.er cuarto', 'Triples', 'Rebotes'], res: 'En cada partido, a favor-en contra.', filas: [['gf', 'Puntos a favor'], ['gc', 'Puntos en contra'], ['tot', 'Puntos del partido'],
+      ['h1', 'Puntos en la 1.ª mitad'], ['q1', 'Puntos en el 1.er cuarto'], ['t3', 'Triples'], ['t3c', 'Triples recibidos'], ['ast', 'Asistencias'], ['reb', 'Rebotes'], ['rob', 'Robos'],
+      ['blq', 'Bloqueos'], ['per', 'Pérdidas'], ['pro', 'Partidos con prórroga', pc100]] },
+    NFL: { u: ['1.ª mitad', 'Yardas', 'Pérdidas'], res: 'En cada partido, a favor-en contra.', filas: [['gf', 'Puntos a favor'], ['gc', 'Puntos en contra'], ['tot', 'Puntos del partido'],
+      ['h1', 'Puntos en la 1.ª mitad'], ['q1', 'Puntos en el 1.er cuarto'], ['yds', 'Yardas'], ['ydc', 'Yardas recibidas'], ['ypa', 'Yardas por pase'], ['yru', 'Yardas por tierra'],
+      ['fd', 'Primeros intentos'], ['per', 'Pérdidas de balón'], ['sac', 'Sacks recibidos'], ['pro', 'Partidos con prórroga', pc100]] },
+    MLB: { u: ['Hits', 'Errores', '5 entradas'], res: 'En cada partido, a favor-en contra.', filas: [['gf', 'Carreras a favor'], ['gc', 'Carreras en contra'], ['tot', 'Carreras del partido'],
+      ['f5', 'Carreras en 5 entradas'], ['hit', 'Hits'], ['hr', 'Jonrones'], ['err', 'Errores'], ['pro', 'Partidos con extra innings', pc100]] },
+  };
+  function ultimosHtml(u, dep) {
     if (!u || !u.length) return '';
-    return '<div class="u5"><div class="u5-f u5-cab"><span></span><span>Rival</span><span>Res.</span><span>Córn.</span><span>A puerta</span><span>Amar.</span></div>' +
+    const col = (CTX_DEP[dep] || {}).u || ['Córn.', 'A puerta', 'Amar.'];
+    return '<div class="u5"><div class="u5-f u5-cab"><span></span><span>Rival</span><span>Res.</span>' + col.map((c) => '<span>' + c + '</span>').join('') + '</div>' +
       u.map((x) => { const r = x[3] > x[4] ? 'G' : x[3] === x[4] ? 'E' : 'P';
         return '<div class="u5-f"><i class="fr ' + r.toLowerCase() + '">' + r + '</i><span class="u5-r" title="' + esc(x[0] + ' · ' + x[1]) + '">' +
           (x[2] ? 'vs ' : '@ ') + esc(x[1]) + '</span><b>' + x[3] + '-' + x[4] + '</b><span>' + par(x[5]) + '</span><span>' + par(x[6]) + '</span><span>' + par(x[7]) + '</span></div>'; }).join('') + '</div>';
   }
-  function formaEquipo(nombre, f, u) {
+  function formaEquipo(nombre, f, u, dep) {
     if (!u || !u.length) return '<div class="ctx-f"><span>' + esc(nombre) + '</span><span>' + formaHtml(f) + '</span></div>';
-    return '<details class="ctx-eq"><summary class="ctx-f"><span>' + esc(nombre) + '</span><span>' + formaHtml(f) + '<i class="ctx-mas">▾</i></span></summary>' + ultimosHtml(u) + '</details>';
+    return '<details class="ctx-eq"><summary class="ctx-f"><span>' + esc(nombre) + '</span><span>' + formaHtml(f) + '<i class="ctx-mas">▾</i></span></summary>' + ultimosHtml(u, dep) + '</details>';
   }
   // la tabla (web/datos/tablas.json, del exportador): se pide una vez, al primer partido que la necesita
   estado.tablas = null;
@@ -1784,21 +1805,22 @@
         '<span>' + f[0] + '</span><span class="tl-n">' + esc(f[1]) + '</span><span>' + v(f[2]) + '</span><span>' + dg(f[6]) + '</span><b>' + v(f[7]) + '</b></div>').join('') + '</div>').join('') +
       '<p class="tenue chico">Resaltados ' + esc(L) + ' y ' + esc(V) + '. Fuente: ESPN.</p>';
   }
-  function contextoHtml(ctx, L, V, liga) {
+  function contextoHtml(ctx, L, V, liga, dep) {
     if (!ctx) return '';
+    const propio = CTX_DEP[dep];
     // v470 — el usuario: «está muy grande; que tenga secciones que yo pueda abrir». Cada parte es
     // una pestaña plegada dentro de la general (se recuerdan abiertas al repintar: memoriaVista).
     let h = '<details class="ctx"><summary>📋 Antes del partido</summary>';
     if (ctx.fl || ctx.fv) {
       h += sub('Forma · últimos 5', '<div class="ctx-tit">El más reciente a la derecha' + (ctx.ul || ctx.uv ? ' · toca un equipo para ver sus partidos' : '') + '</div>' +
-        formaEquipo(L, ctx.fl, ctx.ul) + formaEquipo(V, ctx.fv, ctx.uv) +
-        '<p class="tenue chico">G = ganó · E = empató · P = perdió.' + (ctx.ul || ctx.uv ? ' En cada partido, a favor-en contra.' : '') + '</p>');
+        formaEquipo(L, ctx.fl, ctx.ul, dep) + formaEquipo(V, ctx.fv, ctx.uv, dep) +
+        '<p class="tenue chico">' + (propio ? 'G = ganó · P = perdió. ' + propio.res : 'G = ganó · E = empató · P = perdió.' + (ctx.ul || ctx.uv ? ' En cada partido, a favor-en contra.' : '')) + '</p>');
     }
     // v391 — promedios de los últimos 10 de cada uno, con barras (como SofaScore)
     if (ctx.sl && ctx.sv) {
       const pc = (x) => (x == null ? '-' : Math.round(100 * x) + ' %');
-      const filas = [['gf', 'Goles a favor', (x) => x], ['gc', 'Goles en contra', (x) => x], ['o25', 'Partidos con +2.5 goles', pc],
-        ['btts', 'Ambos anotan', pc], ['tir', 'Tiros', (x) => x], ['cor', 'Córners', (x) => x], ['tap', 'Tiros a puerta', (x) => x], ['tar', 'Amarillas', (x) => x], ['pos', 'Posesión %', (x) => x]]
+      const filas = (propio ? propio.filas.map(([k, et, f]) => [k, et, f || ((x) => x)]) : [['gf', 'Goles a favor', (x) => x], ['gc', 'Goles en contra', (x) => x], ['o25', 'Partidos con +2.5 goles', pc],
+        ['btts', 'Ambos anotan', pc], ['tir', 'Tiros', (x) => x], ['cor', 'Córners', (x) => x], ['tap', 'Tiros a puerta', (x) => x], ['tar', 'Amarillas', (x) => x], ['pos', 'Posesión %', (x) => x]])
         .filter(([k]) => ctx.sl[k] != null && ctx.sv[k] != null);
       h += sub('Promedios · últimos ' + Math.min(ctx.sl.n, ctx.sv.n), '<div class="leyenda"><span class="l">' + esc(L) + '</span><span class="r">' + esc(V) + '</span></div>' +
         filas.map(([k, et, f]) => filaStat(et, f(ctx.sl[k]), f(ctx.sv[k]), true)).join(''));

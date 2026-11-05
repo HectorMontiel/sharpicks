@@ -103,7 +103,10 @@ _COMUNES = ['analisis', 'p_local', 'p_empate', 'p_visita', 'confianza', 'pick_ia
             'linea_handicap', 'pred_handicap', 'prob_handicap']
 ESQUEMA_GEN = {'type': 'OBJECT',
                'properties': {k: ESQUEMA['properties'][k] for k in _COMUNES + ['ambos_anotan', 'prob_ambos_anotan', 'primero_anota', 'prob_primero']},
-               'required': list(_COMUNES)}
+               'required': list(_COMUNES) + ['mercados']}
+# v568 — los mercados de cada deporte (plantillas_deporte.py)
+ESQUEMA_GEN['properties']['mercados'] = {'type': 'ARRAY', 'items': {'type': 'OBJECT', 'properties': {
+    'clave': {'type': 'STRING'}, 'seleccion': {'type': 'STRING'}, 'linea': {'type': 'NUMBER'}, 'prob': {'type': 'NUMBER'}}, 'required': ['clave', 'seleccion', 'prob']}}
 ESQUEMA['properties']['partido'] = {'type': 'STRING'}
 ESQUEMA['required'] = ['partido'] + ESQUEMA['required']
 ESQUEMA_GEN['properties']['partido'] = {'type': 'STRING'}
@@ -153,6 +156,7 @@ def instruccion(deporte: str) -> str:
     if deporte == 'Fútbol':
         return INSTRUCCION
     u = UNIDAD.get(deporte, 'Puntos')
+    import plantillas_deporte
     return (
         'Eres el analista de %s de SharPicks, una app mexicana de pronósticos. Recibes una LISTA de partidos en '
         'JSON: responde uno por cada uno, en "partidos", copiando el campo "partido" tal cual. Reglas: 1) Usa SÓLO '
@@ -177,7 +181,7 @@ def instruccion(deporte: str) -> str:
            '1.5' if u in ('Goles', 'Carreras', 'Sets') else '5.5', u, u,
            ', "Ambos anotan: Sí", "Ambos anotan: No"' if deporte == 'NHL' else '',
            ' 12) Di si AMBOS equipos anotan (ambos_anotan, prob_ambos_anotan). 13) Di qué equipo anota PRIMERO '
-           '(primero_anota: "local" o "visita") y su probabilidad (prob_primero).' if deporte == 'NHL' else ''))
+           '(primero_anota: "local" o "visita") y su probabilidad (prob_primero).' if deporte == 'NHL' else '')) + plantillas_deporte.texto_para_ia(deporte)
 
 
 def _id(fecha, partido) -> str:
@@ -248,6 +252,10 @@ def datos_del_partido(m: Dict, mercado: Dict) -> Dict:
             'cuotas_de_la_casa': mk.get('cuotas_casa'), 'totales_de_la_casa': mk.get('totales_casa'),
             'nuestros_picks': [{'apuesta': x.get('apuesta'), 'cuota': x.get('cuota'),
                                 'probabilidad_estimada': x.get('prob')} for x in m['picks']],
+            # v568 — lo real de sus últimos partidos, del «Antes del partido» de cada deporte
+            'forma_local_ultimos_5': ctx.get('fl'), 'forma_visitante_ultimos_5': ctx.get('fv'),
+            'promedios_local': ctx.get('sl'), 'promedios_visita': ctx.get('sv'), 'bajas_local': ctx.get('bl'), 'bajas_visita': ctx.get('bv'),
+            'h2h_ultimos': [{'fecha': h[0], 'local': h[1], 'marcador': h[2], 'visitante': h[3]} for h in ctx.get('h2h') or []],
         }
     return {
         'partido': m['partido'], 'local': home, 'visitante': away, 'liga': m.get('liga'),
@@ -564,7 +572,10 @@ def fila(m: Dict, d: Dict, mercado: Dict) -> Dict:
     s = (pl + pe + pv) or 1.0
     pl, pe, pv = pl / s, pe / s, pv / s
     mk = (mercado.get(m['partido']) or {}).get('1x2') or {}
+    import plantillas_deporte
+    _l, _, _v = str(m['partido']).partition(' vs ')
     return {'id': m['id'], 'fecha': m['fecha'], 'inicio': str(m['inicio']), 'deporte': m.get('deporte', 'Fútbol'),
+            'mercados': plantillas_deporte.normaliza(m.get('deporte', 'Fútbol'), d.get('mercados'), _l.strip(), _v.strip()),   # v568
             'liga': m.get('liga'),
             # v407 — el template común: total y hándicap con su probabilidad
             'total_esperado': _num(d.get('total_esperado')), 'linea_total': _linea(d.get('linea_total')),
