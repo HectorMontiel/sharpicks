@@ -3,7 +3,7 @@
 **Estado:** preparado, sin ejecutar. Requiere autorización del propietario.
 
 1. **Fusionar el PR #1** a `main`. Sin la variable nada cambia de comportamiento.
-2. **Contratar OVH VPS-4** (8 núcleos, 24 GB, 200 GB) con Ubuntu 24.04, de preferencia en EUA y sin permanencia larga hasta pasar la semana de prueba del paso 4. **Portar antes el despertador** (ver ADR-0002).
+2. **Contratar OVH VPS-3** (6 núcleos, 12 GB, 100 GB) con Ubuntu 24.04, de preferencia en EUA y sin permanencia larga hasta pasar la semana de prueba del paso 4. **Portar antes el despertador** (ver ADR-0002).
 3. **Registrar los runners**, en tu PC y luego en el servidor:
 
    ```bash
@@ -11,7 +11,7 @@
    ```
 
    ```bash
-   RUNNER_REG_TOKEN=<token> REPO=HectorMontiel/sharpicks N=4 bash instalar.sh
+   RUNNER_REG_TOKEN=<token> REPO=HectorMontiel/sharpicks N=3 bash instalar.sh
    ```
 
 4. **Prueba con el repo aún público:** en un repo público, un runner propio puede ejecutar código de pull requests de terceros. Antes de este paso, exige aprobación para todos los colaboradores externos en Settings → Actions, o saca `pull_request` de los flujos con runner propio. Luego:

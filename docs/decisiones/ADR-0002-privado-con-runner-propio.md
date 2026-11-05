@@ -48,13 +48,15 @@ El propietario quitó el tope de ~150 pesos: la prioridad es que no sea más len
 
 | Plan | Núcleos | Memoria | Disco | Precio en su página |
 |---|---:|---:|---:|---:|
-| **OVH VPS-4 (recomendado)** | 8 | 24 GB | 200 GB NVMe | desde US$23.37/mes |
+| OVH VPS-4 (siguiente escalón) | 8 | 24 GB | 200 GB NVMe | desde US$23.37/mes |
 | Contabo Cloud VPS 8 | 8 | 24 GB | 150 GB NVMe | ~€14/mes (cifra reconstruida) |
 | Contabo VDS M (núcleos dedicados) | 8 | 32 GB | 240 GB NVMe | €68/mes (sin confirmar) |
 | Hetzner CCX33 (dedicados) | 8 | 32 GB | 240 GB NVMe | €138.99/mes, no disponible |
 | DigitalOcean dedicado | 8 | 32 GB | 100 GB SSD | US$252/mes |
 
-Se elige OVH VPS-4 por relación de capacidad, precio y disponibilidad publicada (99.9 %). Faltan por confirmar en su compra: región en EUA, impuestos y permanencia, porque esos datos no aparecieron en la parte legible de la página.
+**Actualización:** el propietario prefiere empezar más chico y barato. Punto de partida recomendado: **OVH VPS-3** (6 núcleos, 12 GB, 100 GB NVMe, desde US$12.32/mes en su página), con 3 runners; similar a los 6 procesadores con los que operó en la PC. Con 2 trabajos a la vez cada uno tendría menos núcleos que hoy (8.5 % del tiempo).
+
+OVH VPS-4 queda como siguiente escalón por relación de capacidad, precio y disponibilidad publicada (99.9 %). Faltan por confirmar en su compra: región en EUA, impuestos y permanencia, porque esos datos no aparecieron en la parte legible de la página.
 
 **Trabajo pendiente antes de privatizar:** el 29-oct, con el repo privado, GitHub no disparó los `schedule` (0 corridas en 5 h) y los lanzaba un despertador en la PC. Hay que portar ese despertador a un temporizador del servidor. Sin eso, los flujos programados pueden no correr.
 
