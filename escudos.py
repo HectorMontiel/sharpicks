@@ -216,18 +216,18 @@ def _jugador(nuestro: str, suyo: str) -> bool:
 # 365SCORES: la foto de los tenistas. Un tercio no tiene y la imagen que da entonces es un cuadro
 # en blanco (~700 bytes): `valida` lo descarta (mejor la silueta que un cuadro vacío).
 API365 = ('https://webws.365scores.com/web/games/allscores/?appTypeId=5&langId=1&timezoneName=UTC'
-          '&userCountryId=31&sports=3&showOdds=false&startDate={d}&endDate={d}')
+          '&userCountryId=31&sports={s}&showOdds=false&startDate={d}&endDate={d}')
 IMG365 = ('https://imagecache.365scores.com/image/upload/f_png,w_68,h_68,c_limit,q_auto:eco,'
           'd_Competitors:default1.png/v{v}/Competitors/{id}')
 
 
-def _365(fecha: dt.date, cache: Dict) -> List[Dict]:
-    k = ('365', fecha)
+def _365(fecha: dt.date, cache: Dict, sport: int = 3) -> List[Dict]:
+    k = ('365', fecha, sport)
     if k not in cache:
         import requests
         out = []
         try:
-            r = requests.get(API365.format(d=fecha.strftime('%d/%m/%Y')), timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
+            r = requests.get(API365.format(s=sport, d=fecha.strftime('%d/%m/%Y')), timeout=20, headers={'User-Agent': 'Mozilla/5.0'})
             for g in (r.json().get('games') or []) if r.ok else []:
                 h, a = g.get('homeCompetitor') or {}, g.get('awayCompetitor') or {}
                 ini = _utc(g.get('startTime'))
@@ -241,20 +241,23 @@ def _365(fecha: dt.date, cache: Dict) -> List[Dict]:
     return cache[k]
 
 
-def buscar_365(partido: str, inicio, cache: Dict) -> Optional[tuple]:
+def buscar_365(partido: str, inicio, cache: Dict, deporte: str = 'Tenis') -> Optional[tuple]:
     import espn_vivo as ev
+    import contexto_365 as c365
+    igual = _jugador if deporte == 'Tenis' else c365.mismo_equipo     # v571 — los escudos del béisbol de invierno
+    horas = c365.TOLERANCIA_H[deporte]
     lados, ini = ev._lados(partido), _utc(inicio)
     if not lados or ini is None:
         return None
     h, a = lados
     for d in (ini.date(), ini.date() - dt.timedelta(days=1), ini.date() + dt.timedelta(days=1)):
-        for m in _365(d, cache):
+        for m in _365(d, cache, c365.DEPORTES[deporte]):
             # el orden de juego mueve la hora: los DOS jugadores casando el mismo día bastan
-            if abs((m['ini'] - ini).total_seconds()) > 18 * 3600:
+            if abs((m['ini'] - ini).total_seconds()) > horas * 3600:
                 continue
-            if _jugador(h, m['home']) and _jugador(a, m['away']):
+            if igual(h, m['home']) and igual(a, m['away']):
                 return (m['lh'], m['la'])
-            if _jugador(h, m['away']) and _jugador(a, m['home']):
+            if igual(h, m['away']) and igual(a, m['home']):
                 return (m['la'], m['lh'])
     return None
 
@@ -315,7 +318,7 @@ def poner(filas: List[Dict]) -> Dict[str, int]:
                 st['quitados'] += 1
     for f in filas:
         dep = f.get('deporte')
-        if dep not in ('Fútbol', 'Tenis') or (f.get('logo_h') and f.get('logo_a')):
+        if dep not in ('Fútbol', 'Tenis', 'Béisbol') or (f.get('logo_h') and f.get('logo_a')):
             continue
         k = (f.get('partido'), str(f.get('inicio')))
         if k not in hecho:
@@ -323,7 +326,7 @@ def poner(filas: List[Dict]) -> Dict[str, int]:
             try:
                 fuentes = ((lambda: buscar(f.get('partido'), f.get('inicio'), cache, f.get('liga') or '')),
                            (lambda: buscar_fs(f.get('partido'), f.get('inicio'), cache, f.get('liga') or ''))) \
-                    if dep == 'Fútbol' else ((lambda: buscar_365(f.get('partido'), f.get('inicio'), cache)),)
+                    if dep == 'Fútbol' else ((lambda: buscar_365(f.get('partido'), f.get('inicio'), cache, dep)),)
                 for fuente in fuentes:
                     cand = fuente() or (None, None)
                     _validar_todas(cand, cache)

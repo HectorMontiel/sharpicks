@@ -24,7 +24,7 @@ def test_promedios_nhl_responden_al_mercado():
           _p(1, 3, {'tir': 20, 'ppg': 0, 'ppo': 2, 'hit': 10}, {'tir': 30}, (0, 1, 0, 0), (1, 1, 0, 1), '2')]
     x = cd.promedios(ps, 'NHL')
     assert x['n'] == 2 and x['gf'] == 2.5 and x['gc'] == 2.5 and x['tot'] == 5.0
-    assert x['o55'] == 0.5 and x['ambos'] == 1.0 and x['p1'] == 1.0                    # 1.er periodo de los dos equipos: 1 y 1
+    assert x['o55'] == 0.5 and 'ambos' not in x and x['p1'] == 1.0                    # 1.er periodo de los dos equipos: 1 y 1
     assert x['pa'] == 0.5 and x['pro'] == 0.5 and x['tir'] == 25 and x['tirc'] == 25   # el 2.º tuvo prórroga (4 periodos)
     assert x['pp'] == round(1 / 6, 2) and x['hit'] == 15
 
@@ -108,7 +108,7 @@ def test_contexto_sin_datos_o_ya_jugado():
 
 def test_plantillas_con_lo_que_ofrece_playdoit():
     claves = lambda d: {m[0] for m in pl.PLANTILLAS[d]['mercados']}
-    assert {'total', 'hand', 'ambos', 'primero', 'prorroga', 'p1total', 'r60'} <= claves('NHL')
+    assert {'total', 'hand', 'primero', 'prorroga', 'p1total', 'r60'} <= claves('NHL') and 'ambos' not in claves('NHL')
     assert {'hand', 'total', 'h1', 'h1total', 'q1total', 'triples', 'asist'} <= claves('NBA') and 'ambos' not in claves('NBA')
     assert {'hand', 'total', 'td', 'fg', 'primero', 'h1total'} <= claves('NFL')
     assert claves('Béisbol') == {'hand', 'total'}                                     # en invierno Playdoit sólo da ganador, hándicap y total
@@ -123,10 +123,10 @@ def test_normaliza_convierte_y_descarta():
     r = pl.normaliza('NHL', crudo, 'Buffalo', 'Columbus')
     por = {x['k']: x for x in r}
     assert por['total']['v'] == 'Más de 5.5' and por['total']['p'] == .61
-    assert por['hand']['v'] == 'Columbus +1.5' and por['ambos']['v'] == 'Sí' and por['r60']['v'] == 'Empate'
+    assert por['hand']['v'] == 'Columbus +1.5' and 'ambos' not in por and por['r60']['v'] == 'Empate'
     assert por['gl']['t'] == 'Goles de Buffalo' and por['gl']['p'] is None             # probabilidad imposible: fuera
     assert 'corners' not in por and 'primero' not in por and 'p1total' not in por      # otro deporte, selección imposible, sin línea
-    assert [x['k'] for x in r] == ['total', 'hand', 'r60', 'gl', 'ambos']              # en el orden de la plantilla
+    assert [x['k'] for x in r] == ['total', 'hand', 'r60', 'gl']              # en el orden de la plantilla
     assert pl.normaliza('Fútbol', crudo, 'a', 'b') is None and pl.normaliza('NHL', None, 'a', 'b') is None
 
 

@@ -563,7 +563,7 @@
   // ---------- TARJETAS ----------
   // v467 — sin escudo (o si la imagen no carga) va una silueta neutra, nunca una letra suelta:
   // el usuario veía «A» y «L» en el Atlético-Deportivo. El tenista sin foto lleva la persona.
-  const SILUETA = (dep) => '<span class="escudo silueta">' + ico(dep === 'Tenis' ? 'user' : 'ball-football') + '</span>';
+  const SILUETA = (dep) => '<span class="escudo silueta">' + ico(dep === 'Tenis' ? 'user' : DEP_ICO[dep] || 'ball-football') + '</span>';
   function escudo(url, nombre, dep) {
     return url ? '<img class="escudo" loading="lazy" src="' + esc(url) + '" alt="" data-silueta="' + esc(dep || '') + '">' : SILUETA(dep);   // v490: no `data-dep` (es el del filtro de deportes)
   }
@@ -1880,7 +1880,8 @@
         a.linea_total != null && a.pred_total ? ['📊 Total de ' + U, (a.pred_total === 'mas' ? 'Más' : 'Menos') + ' de ' + a.linea_total +
           (a.total_esperado != null ? ' (~' + a.total_esperado + ')' : ''), a.ok_total, a.prob_total] : null,
         hand ? ['⚖️ Hándicap', hand, a.ok_handicap, a.prob_handicap] : null,
-        a.btts ? ['🎯 Ambos anotan', a.btts === 'si' ? 'Sí' : 'No', a.ok_btts, a.prob_ambos == null ? null : (a.btts === 'si' ? a.prob_ambos : 1 - a.prob_ambos)] : null,
+        // v571 — «ambos anotan» sólo en fútbol: en la NHL no se apuesta a 1.06 y en básquetbol salía 99 %
+        a.btts && fut ? ['🎯 Ambos anotan', a.btts === 'si' ? 'Sí' : 'No', a.ok_btts, a.prob_ambos == null ? null : (a.btts === 'si' ? a.prob_ambos : 1 - a.prob_ambos)] : null,
         a.linea_corners != null ? ['🚩 Córners', (a.pred_corners === 'mas' ? 'Más' : 'Menos') + ' de ' + a.linea_corners + (a.corners_esperados != null ? ' (~' + a.corners_esperados + ')' : ''), a.ok_corners, a.prob_corners] : null,
         a.linea_tarjetas != null ? ['🟨 Tarjetas', (a.pred_tarjetas === 'mas' ? 'Más' : 'Menos') + ' de ' + a.linea_tarjetas + (a.tarjetas_esperadas != null ? ' (~' + a.tarjetas_esperadas + ')' : ''), a.ok_tarjetas, a.prob_tarjetas] : null,
       ]).filter(Boolean).map(([t, v, ok, pr]) => '<div><small>' + t + '</small><b>' + esc(v) + (ok === true ? ' ✅' : ok === false ? ' ❌' : '') + '</b>' +
@@ -1920,7 +1921,7 @@
   const pc100 = (x) => (x == null ? '-' : Math.round(100 * x) + ' %');
   const CTX_DEP = {
     NHL: { u: ['Tiros', '1.er per.', 'Pwr play'], res: 'En cada partido, a favor-en contra. Prórroga incluida.', filas: [['gf', 'Goles a favor'], ['gc', 'Goles en contra'], ['tot', 'Goles del partido'],
-      ['o55', 'Partidos con +5.5 goles', pc100], ['ambos', 'Ambos marcan', pc100], ['p1', 'Goles en el 1.er periodo'], ['pa', 'Anota primero', pc100], ['pro', 'Partidos con prórroga', pc100],
+      ['o55', 'Partidos con +5.5 goles', pc100], ['p1', 'Goles en el 1.er periodo'], ['pa', 'Anota primero', pc100], ['pro', 'Partidos con prórroga', pc100],
       ['tir', 'Tiros'], ['tirc', 'Tiros recibidos'], ['pp', 'Power play', pc100], ['hit', 'Golpes']] },
     NBA: { u: ['1.er cuarto', 'Triples', 'Rebotes'], res: 'En cada partido, a favor-en contra.', filas: [['gf', 'Puntos a favor'], ['gc', 'Puntos en contra'], ['tot', 'Puntos del partido'],
       ['h1', 'Puntos en la 1.ª mitad'], ['q1', 'Puntos en el 1.er cuarto'], ['t3', 'Triples'], ['t3c', 'Triples recibidos'], ['ast', 'Asistencias'], ['reb', 'Rebotes'], ['rob', 'Robos'],
@@ -1930,6 +1931,12 @@
       ['fd', 'Primeros intentos'], ['per', 'Pérdidas de balón'], ['sac', 'Sacks recibidos'], ['pro', 'Partidos con prórroga', pc100]] },
     MLB: { u: ['Hits', 'Errores', '5 entradas'], res: 'En cada partido, a favor-en contra.', filas: [['gf', 'Carreras a favor'], ['gc', 'Carreras en contra'], ['tot', 'Carreras del partido'],
       ['f5', 'Carreras en 5 entradas'], ['hit', 'Hits'], ['hr', 'Jonrones'], ['err', 'Errores'], ['pro', 'Partidos con extra innings', pc100]] },
+    // v571 — el usuario: «en estos partidos de béisbol no tienes nada» y «en tenis ningún dato previo». De 365Scores, con lo que se apuesta en cada uno.
+    'Béisbol': { u: ['1.ª entr.', '3 entr.', '5 entr.'], res: 'En cada partido, carreras a favor-en contra.', filas: [['gf', 'Carreras a favor'], ['gc', 'Carreras en contra'], ['tot', 'Carreras del partido'],
+      ['pg', 'Partidos ganados', pc100], ['h15', 'Gana por 2 o más', pc100], ['o95', 'Partidos con +9.5 carreras', pc100], ['f5', 'Carreras en 5 entradas'], ['hit', 'Hits'], ['err', 'Errores'], ['pro', 'Partidos con extra innings', pc100]] },
+    Tenis: { u: ['Juegos', '1.er set', 'Aces'], res: 'Sets a favor-en contra y, en cada partido, los juegos, el 1.er set y los aces de cada uno.', filas: [['pg', 'Partidos ganados', pc100], ['sf', 'Sets ganados'], ['sc', 'Sets perdidos'],
+      ['jt', 'Juegos por partido'], ['jf', 'Juegos ganados'], ['jc', 'Juegos perdidos'], ['s1', 'Gana el 1.er set', pc100], ['s1j', 'Juegos en el 1.er set'], ['s3', 'Partidos a 3 sets', pc100],
+      ['ace', 'Aces'], ['df', 'Dobles faltas'], ['qb', 'Quiebres'], ['pts', 'Puntos ganados', pc100]] },
   };
   function ultimosHtml(u, dep) {
     if (!u || !u.length) return '';

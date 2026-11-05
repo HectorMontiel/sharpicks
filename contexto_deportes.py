@@ -5,7 +5,7 @@
 El usuario: «en la NHL no veo lo mismo del análisis previo con el histórico y estadística que en fútbol; no serán córners,
 pero sí puntos, etc.: correlaciónalo con lo que hay en el mercado». Cada estadística responde a un mercado que Playdoit ofrece:
 
-  NHL  total y goles por equipo, ambos marcan, primer gol, ¿habrá prórroga?, 1.er periodo; tiros y power play para leerlos.
+  NHL  total y goles por equipo, primer gol, ¿habrá prórroga?, 1.er periodo; tiros y power play para leerlos.
   NBA  total y puntos por equipo, 1.ª mitad, 1.er cuarto, triples, asistencias, rebotes, robos, bloqueos.
   NFL  total y puntos por equipo, 1.ª mitad, 1.er cuarto, yardas (totales, por pase, por tierra), pérdidas y sacks.
   MLB  total y carreras por equipo, primeras 5 entradas, hits, jonrones y errores.
@@ -169,7 +169,7 @@ def promedios(ps: List[Dict], dep: str) -> Dict:
     st = lambda k, fuente='s': _media([x[fuente].get(k) for x in ps])
     if dep == 'NHL':
         ppg, ppo = sum(x['s'].get('ppg') or 0 for x in ps), sum(x['s'].get('ppo') or 0 for x in ps)
-        out.update(o55=_pct([t > 5.5 for t in tot]), ambos=_pct([x['gf'] > 0 and x['gc'] > 0 for x in ps]), p1=_media([_periodos(x, 1) for x in ps]),
+        out.update(o55=_pct([t > 5.5 for t in tot]), p1=_media([_periodos(x, 1) for x in ps]),
                    pa=_pct([(x['primero'] == x['tid']) if x.get('primero') else None for x in ps]), tir=st('tir'), tirc=st('tir', 'c'),
                    pp=round(ppg / ppo, 2) if ppo else None, hit=st('hit'))
     elif dep == 'NBA':

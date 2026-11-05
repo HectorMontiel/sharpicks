@@ -13,7 +13,7 @@ from typing import Dict, List, Optional
 PLANTILLAS: Dict[str, Dict] = {
     'NHL': {'mercados': [
         ('total', 'Total de goles', 'ou'), ('hand', 'Hándicap', 'hand'), ('r60', 'Resultado a 60 minutos', 'lado3'),
-        ('gl', 'Goles de %L', 'ou'), ('gv', 'Goles de %V', 'ou'), ('ambos', 'Ambos marcan', 'sino'), ('primero', 'Primer gol', 'lado'),
+        ('gl', 'Goles de %L', 'ou'), ('gv', 'Goles de %V', 'ou'), ('primero', 'Primer gol', 'lado'),
         ('prorroga', '¿Habrá prórroga?', 'sino'), ('p1total', '1.er periodo: total de goles', 'ou'), ('p1', '1.er periodo: resultado', 'lado3')],
         'guia': 'En la NHL un partido empatado a 60 minutos va a prórroga y penales: «Resultado a 60 minutos» sí admite empate (suele rondar 20-25 %). '
                 'El hándicap normal es ±1.5 y un equipo que gana por 1 no lo cubre. El total suele estar entre 5.5 y 6.5; en el 1.er periodo, entre 0.5 y 1.5. '
@@ -34,14 +34,16 @@ PLANTILLAS: Dict[str, Dict] = {
         ('hand', 'Hándicap (run line)', 'hand'), ('total', 'Total de carreras', 'ou'), ('gl', 'Carreras de %L', 'ou'), ('gv', 'Carreras de %V', 'ou')],
         'guia': 'En el béisbol no hay empate y el hándicap normal es ±1.5 carreras. Los totales rondan 7.5-10.5. Fíjate en carreras a favor y en contra, hits y errores.'},
     'Tenis': {'mercados': [
-        ('hand', 'Hándicap de sets', 'hand'), ('juegos', 'Total de juegos', 'ou'), ('s1', '1.er set: ganador', 'lado'), ('s1juegos', '1.er set: total de juegos', 'ou'),
-        ('ambos', 'Ambos ganan un set', 'sino')],
-        'guia': 'En el tenis no hay empate. El hándicap de sets es ±1.5 y el total de juegos a 3 sets suele estar entre 20.5 y 23.5. Sólo hay datos de cuotas y del modelo: si no hay '
-                'historial, apóyate en ellos y baja la confianza.'},
+        ('hand', 'Hándicap de sets', 'hand'), ('hjuegos', 'Hándicap de juegos', 'hand'), ('juegos', 'Total de juegos', 'ou'), ('jl', 'Juegos de %L', 'ou'), ('jv', 'Juegos de %V', 'ou'),
+        ('s1', '1.er set: ganador', 'lado'), ('s1juegos', '1.er set: total de juegos', 'ou'), ('ambos', 'Ambos ganan un set', 'sino'),
+        ('aces', 'Total de aces', 'ou'), ('breaks', 'Total de quiebres', 'ou'), ('df', 'Total de dobles faltas', 'ou')],
+        'guia': 'En el tenis no hay empate. El hándicap de sets es ±1.5 y el total de juegos a 3 sets suele estar entre 20.5 y 23.5. En promedios_*: pg=partidos ganados, sf y sc=sets a favor y en contra, jt=juegos por partido, '
+                'jf y jc=juegos a favor y en contra, s1=gana el 1.er set, s1j=juegos del 1.er set, s3=partidos a 3 sets, ace, df=dobles faltas, qb=quiebres, pts=puntos ganados.'},
 }
 PLANTILLAS['KBO'] = PLANTILLAS['MLB']
 # v568 — el béisbol de invierno: Playdoit sólo da ganador, hándicap y total
-PLANTILLAS['Béisbol'] = {'mercados': PLANTILLAS['MLB']['mercados'][:2], 'guia': PLANTILLAS['MLB']['guia']}
+PLANTILLAS['Béisbol'] = {'mercados': PLANTILLAS['MLB']['mercados'][:2], 'guia': PLANTILLAS['MLB']['guia'] + ' En promedios_*: gf y gc=carreras a favor y en contra, tot=carreras del partido, '
+                           'pg=partidos ganados, h15=gana por 2 o más (cubre -1.5), o95=partidos con +9.5 carreras, f5=carreras en 5 entradas.'}
 
 
 def texto_para_ia(deporte: str) -> str:

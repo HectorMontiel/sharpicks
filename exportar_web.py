@@ -474,6 +474,20 @@ def construir() -> Dict:
         print('web: contexto de otros deportes: %d de %d partidos' % (sum(1 for v in memo_dep.values() if v), len(memo_dep)))
     except Exception as e:
         logger.warning('[web] sin contexto de otros deportes: %s', e)
+    # v571 — tenis y béisbol de invierno, desde 365Scores: primero el béisbol (son pocos), luego lo que tiene pick y lo más cercano
+    try:
+        import contexto_365
+        previo, memo_365 = contexto_365.publicados(), {}
+        for f in sorted((x for x in picks + analisis if x.get('deporte') in contexto_365.DEPORTES),
+                        key=lambda x: (x.get('deporte') != 'Béisbol', bool(x.get('solo_analisis')), str(x.get('inicio')))):
+            k = f.get('partido')
+            if k not in memo_365:
+                memo_365[k] = contexto_365.contexto(f, previo.get(k))
+            if memo_365[k]:
+                f['ctx'] = memo_365[k]
+        print('web: contexto de tenis y béisbol: %d de %d partidos' % (sum(1 for v in memo_365.values() if v), len(memo_365)))
+    except Exception as e:
+        logger.warning('[web] sin contexto de 365Scores: %s', e)
     # v467 — cada escudo validado uno por uno; los que faltan, de FotMob/Flashscore (fútbol) y
     # 365Scores (la foto del tenista)
     try:

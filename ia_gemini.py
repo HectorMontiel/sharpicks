@@ -179,9 +179,8 @@ def instruccion(deporte: str) -> str:
         % ('la ' + deporte if deporte in ('NHL', 'NBA', 'NFL', 'MLB', 'KBO') else 'tenis', '2-1' if deporte == 'Tenis' else '3-2',
            u.lower(), u.lower(), u.lower(), '1.5' if u in ('Goles', 'Carreras', 'Sets') else '5.5',
            '1.5' if u in ('Goles', 'Carreras', 'Sets') else '5.5', u, u,
-           ', "Ambos anotan: Sí", "Ambos anotan: No"' if deporte == 'NHL' else '',
-           ' 12) Di si AMBOS equipos anotan (ambos_anotan, prob_ambos_anotan). 13) Di qué equipo anota PRIMERO '
-           '(primero_anota: "local" o "visita") y su probabilidad (prob_primero).' if deporte == 'NHL' else '')) + plantillas_deporte.texto_para_ia(deporte)
+           '',
+           ' 12) Di qué equipo anota PRIMERO (primero_anota: "local" o "visita") y su probabilidad (prob_primero).' if deporte == 'NHL' else '')) + plantillas_deporte.texto_para_ia(deporte)
 
 
 def _id(fecha, partido) -> str:
@@ -654,21 +653,40 @@ def _sb():
                                                       'Content-Type': 'application/json'}
 
 
+CON_MERCADOS: set = set()     # v571 — los que ya tienen la plantilla de su deporte
+
+
 def ya_hechos(sb) -> Optional[set]:
     import requests
     desde = (dt.date.today() - dt.timedelta(days=3)).isoformat()
-    r = requests.get(sb[0], headers=sb[1], params={'select': 'id,veredictos,mejor_apuesta,prob_total', 'fecha': 'gte.' + desde,
-                                                   'limit': 5000}, timeout=30)
+    # v571 — por páginas (v466): Supabase corta en 1000 aunque se pida más. Con 1.129 filas en 3 días, lo que quedaba
+    # fuera se volvía a pedir en cada pasada, gastando el cupo y pisando análisis ya hechos.
+    filas = []
+    for i in range(50):
+        r = requests.get(sb[0], headers=sb[1], params={'select': 'id,veredictos,mejor_apuesta,prob_total,mercados', 'fecha': 'gte.' + desde,
+                                                       'order': 'id', 'limit': 1000, 'offset': i * 1000}, timeout=30)
+        if not r.ok:
+            return None
+        lote = r.json()
+        filas += lote
+        if len(lote) < 1000:
+            break
+    CON_MERCADOS.clear()
+    CON_MERCADOS.update(x['id'] for x in filas if x.get('mercados'))
     # v394-v407 — lo analizado con un esquema viejo (sin «qué meter», sin probabilidades o sin el
     # template común de total y hándicap) se vuelve a pedir
-    if not r.ok:
-        # sin la migración v407 la columna no existe: se usa el criterio anterior
-        # (si no, se volvería a pedir TODO en cada pasada y se gastaría el cupo)
-        r = requests.get(sb[0], headers=sb[1], params={'select': 'id,veredictos,mejor_apuesta', 'fecha': 'gte.' + desde,
-                                                       'limit': 5000}, timeout=30)
-        return {x['id'] for x in r.json() if x.get('veredictos') is not None and x.get('mejor_apuesta')} if r.ok else None
-    return {x['id'] for x in r.json() if x.get('veredictos') is not None and x.get('mejor_apuesta')
+    return {x['id'] for x in filas if x.get('veredictos') is not None and x.get('mejor_apuesta')
             and x.get('prob_total') is not None}
+
+
+# v571 — el usuario: «dejaste el ambos anotan en la NHL y en básquetbol». Lo analizado con la plantilla vieja se rehace, sólo si
+# aún no empieza, juega en 24 h y ya hay historial que darle; y después de lo nuevo, para que no le quite cupo.
+REHACER = {'NHL', 'NBA', 'NFL', 'MLB', 'KBO', 'Béisbol', 'Tenis'}
+
+
+def por_rehacer(lista: List[Dict], hechos: set, ahora: dt.datetime) -> List[Dict]:
+    tope = (ahora + dt.timedelta(hours=24)).strftime('%Y-%m-%d %H:%M')
+    return [m for m in lista if m['id'] in hechos and m['id'] not in CON_MERCADOS and m.get('deporte') in REHACER and m.get('ctx') and str(m.get('inicio'))[:16] <= tope]
 
 
 def _final(partido: str, fecha: str, picks: List[Dict]):
@@ -1057,8 +1075,10 @@ def main() -> int:
     evaluados = 0 if seco else evaluar(sb, picks)
     hechos = set() if seco else (ya_hechos(sb) or set())
     mercado = _mercado()
-    todos = [m for m in partidos(picks, ahora) if m['id'] not in hechos]
+    lista = partidos(picks, ahora)
+    todos = [m for m in lista if m['id'] not in hechos]
     nuevos = sorted(todos, key=lambda m: nivel(m, mercado))[:MAX_POR_PASADA]   # v451 — el orden estable deja lo demás igual
+    nuevos += sorted(por_rehacer(lista, hechos, ahora), key=lambda m: nivel(m, mercado))[:max(0, MAX_POR_PASADA - len(nuevos))]
     if seco:
         for m in nuevos[:2]:
             print(json.dumps(datos_del_partido(m, mercado), ensure_ascii=False, indent=1))

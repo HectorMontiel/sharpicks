@@ -53,7 +53,7 @@ def probar_ia():
     check({m['partido'] for m in ms} == {'A vs B', 'C vs D', 'E vs F'} and all(m.get('deporte') for m in ms),
           'la IA analiza todos los deportes de las próximas 72 h (hoy, mañana y pasado)')
     check('p_empate = 0' in ia.instruccion('NBA') and 'Puntos: Más de N.5' in ia.instruccion('NBA')
-          and 'Ambos anotan' in ia.instruccion('NHL') and 'Sets' in ia.instruccion('Tenis'),
+          and 'Ambos anotan' not in ia.instruccion('NHL') and 'Sets' in ia.instruccion('Tenis'),   # v571: en la NHL no se ofrece
           'cada deporte con su unidad (goles, puntos, carreras, sets) y sin empate')
     req = set(ia.ESQUEMA_GEN['required'])
     check({'total_esperado', 'linea_total', 'pred_total', 'prob_total', 'linea_handicap', 'pred_handicap',
