@@ -1493,8 +1493,6 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-03,Internacional vs Coritiba,2026-11-04 00:30:00,Tiros a puerta Internacional: Más de 5.5,a_puerta,equipo,local,5.5,0.5883,1.714,6.0,1.0
 2026-11-03,Internacional vs Coritiba,2026-11-04 00:30:00,Goles Internacional: Más de 1.5,goles,equipo,local,1.5,0.5845,1.667,1.0,0.0
 2026-11-03,Internacional vs Coritiba,2026-11-04 00:30:00,Goles Coritiba: Más de 0.5,goles,equipo,visita,0.5,0.5714,1.571,0.0,0.0
-2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros a puerta: Más de 9.5,a_puerta,total,total,9.5,0.5835,1.692,,
-2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros a puerta Palmeiras: Más de 6.5,a_puerta,equipo,local,6.5,0.571,1.68,,
 2026-11-04,Wrexham vs Middlesbrough,2026-11-04 19:45:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.5679,1.6,6.0,0.0
 2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Goles Remo: Más de 0.5,goles,equipo,visita,0.5,0.5765,1.952,,
 2026-11-06,Boulogne vs Annecy,2026-11-06 19:00:00,Ambos marcan: No,btts,btts,total,0.0,0.5567,1.8,,
@@ -1525,6 +1523,9 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Tiros River Plate: Más de 15.5,tiros,equipo,visita,15.5,0.5673,1.818,,
 2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.6654,1.53,,
 2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros a puerta Remo: Más de 2.5,a_puerta,equipo,visita,2.5,0.6007,1.846,,
+2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros Remo: Más de 8.5,tiros,equipo,visita,8.5,0.5995,1.583,,
+2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros a puerta: Más de 9.5,a_puerta,total,total,9.5,0.5906,1.6,,
+2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros a puerta Palmeiras: Más de 6.5,a_puerta,equipo,local,6.5,0.5858,1.546,,
 2026-11-05,Cruzeiro vs Bahia,2026-11-06 00:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.7129,1.546,,
 2026-11-05,Cruzeiro vs Bahia,2026-11-06 00:30:00,Goles Cruzeiro: Más de 1.5,goles,equipo,local,1.5,0.7005,1.556,,
 2026-11-05,Cruzeiro vs Bahia,2026-11-06 00:30:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6503,1.571,,

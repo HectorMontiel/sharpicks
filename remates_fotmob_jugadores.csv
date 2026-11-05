@@ -21873,22 +21873,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5887596,2026-08-16,primeira,Maritimo,Tomás Tavares,976003,M,0,10,0,0,0,0.0,,2.0,283878.0
 5887596,2026-08-16,primeira,Maritimo,Gábor Szalai,1289171,D,0,2,0,0,0,0.0,,1.0,853900.0
 5887596,2026-08-16,primeira,Maritimo,Israel Isaac Ayuma,1670286,M,0,2,0,0,0,0.0,,2.0,550724.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Diego Romero,1133039,G,1,90,0,0,0,0.0,11.0,0.0,720961.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Caín Fara,834676,D,1,90,0,0,0,0.0,33.0,1.0,166614.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Anderson Santamaría,253956,D,1,86,1,0,0,0.0,35.0,1.0,349506.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Matías Di Benedetto,725300,D,1,90,1,0,0,0.0,37.0,1.0,259234.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Juan Requena,993748,M,1,72,0,0,0,0.0,65.0,2.0,194156.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Adrián Quiróz,1353347,F,1,89,1,1,0,0.0,82.0,3.0,292902.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Jairo Concha,988208,M,1,72,0,0,0,0.0,84.0,2.0,804800.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Andy Polo,263619,M,1,90,0,0,0,0.0,86.0,2.0,412904.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,César Inga,1415328,F,1,90,1,1,1,0.0,88.0,3.0,1028686.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Gianluca Lapadula,231521,F,1,80,1,1,1,0.0,104.0,3.0,303238.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Álex Valera,1133998,F,1,89,2,2,1,0.0,106.0,3.0,732266.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Jorge Murrugarra,921734,M,0,18,0,0,0,0.0,,2.0,192918.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Piero Quispe,1251269,M,0,18,1,1,0,0.0,,2.0,
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,José Rivera,847129,F,0,10,0,0,0,0.0,,3.0,410587.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Williams Riveros,807783,D,0,1,0,0,0,0.0,,1.0,245961.0
-1000017198,2026-08-16,per_liga1,Universitario de Deportes,Héctor Fértoli,725782,M,0,1,0,0,0,0.0,,2.0,217116.0
 6000048,2026-08-16,bol_division,Always Ready,Alain Baroja,116339,G,1,90,0,0,0,0.0,11.0,0.0,75186.0
 6000048,2026-08-16,bol_division,Always Ready,Carlitos Rodriguez,1666612,D,1,90,1,1,0,0.0,32.0,1.0,492357.0
 6000048,2026-08-16,bol_division,Always Ready,Richet Gómez,929518,D,1,90,3,0,0,0.0,34.0,1.0,168730.0
@@ -22078,21 +22062,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803942,2026-08-16,polonia,Wisła Kraków,Maciej Kuziemka,1736973,M,0,18,0,0,0,0.0,,2.0,1619219.0
 5803942,2026-08-16,polonia,Wisła Kraków,Thody Élie Youan,989959,F,0,4,0,0,0,0.0,,3.0,928008.0
 5803942,2026-08-16,polonia,Wisła Kraków,Rafal Mikulec,942798,D,0,1,0,0,0,0.0,,1.0,60000.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Diego Melián,1366174,G,1,90,0,0,0,0.0,11.0,0.0,259414.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Emilio Saba,1201075,D,1,90,1,0,0,0.0,32.0,1.0,236327.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Carlos Zambrano,106309,D,1,90,0,0,0,0.0,34.0,1.0,145287.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Hansell Riojas,253799,D,1,90,0,0,0,0.0,36.0,1.0,256743.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Mathías Llontop,1437868,D,1,90,1,0,0,0.0,38.0,1.0,319513.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Hernán Da Campo,601379,M,1,90,1,1,0,0.0,64.0,2.0,260112.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Oslimg Mora,1048042,M,1,89,3,0,0,0.0,66.0,2.0,319983.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Pablo Erustes,1432930,F,1,89,3,1,0,0.0,83.0,3.0,247615.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Jostin Alarcón,1254284,M,1,70,3,3,0,0.0,85.0,2.0,491625.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Luis Urruti,494957,F,1,70,2,0,0,0.0,87.0,3.0,153231.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Percy Liza,1053398,F,1,78,3,2,1,0.0,115.0,3.0,325842.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Christian Cueva,138183,M,0,20,1,0,0,0.0,,2.0,247366.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Yuriel Celi,1109170,M,0,20,1,0,0,0.0,,2.0,242320.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Rolando Díaz,1339290,F,0,1,0,0,0,0.0,,3.0,217193.0
-1000017199,2026-08-16,per_liga1,Sport Boys,Erick Gonzáles,1195807,M,0,1,0,0,0,0.0,,2.0,131468.0
 5811727,2026-08-16,bel_pro_league,Lommel,Matthias Pieklak,1535449,G,1,90,0,0,0,0.0,11.0,0.0,1201488.0
 5811727,2026-08-16,bel_pro_league,Lommel,Jason van Duiven,1366621,D,1,90,0,0,0,0.0,32.0,1.0,1044277.0
 5811727,2026-08-16,bel_pro_league,Lommel,Timothy Eyoma,873012,D,1,90,0,0,0,0.0,34.0,1.0,228931.0
@@ -34959,22 +34928,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000013217,2026-08-29,chi_primera,Everton CD,Gustavo Charrupí,1515584,F,0,18,0,0,0,0.0,,3.0,723032.0
 1000013217,2026-08-29,chi_primera,Everton CD,Vicente Fernández,1023314,D,0,5,0,0,0,0.0,,1.0,184741.0
 1000013217,2026-08-29,chi_primera,Everton CD,Cristian Palacios,205942,F,0,5,1,0,0,0.0,,3.0,186038.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Jean,643686,G,1,90,0,0,0,0.0,11.0,0.0,309797.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Yhorman Hurtado,727084,D,1,90,0,0,0,0.0,32.0,1.0,298324.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Marlon Torres,879810,D,1,90,0,0,0,0.0,34.0,1.0,339011.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Cristian Tovar,851057,D,1,90,2,1,0,0.14,36.0,1.0,286041.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Omar Bertel,950570,D,1,63,2,1,0,0.04,38.0,1.0,510217.0
-1000014123,2026-08-29,col_primera_a,América de Cali,José Cavadía,1709861,M,1,46,0,0,0,0.0,64.0,2.0,1051288.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Josen Escobar,1532240,M,1,90,2,1,1,0.14,66.0,2.0,2127398.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Jan Lucumí,1386697,F,1,46,0,0,0,0.0,83.0,3.0,996207.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Tomás Ángel,1236377,M,1,90,2,0,0,0.15,85.0,2.0,920482.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Jhon Murillo,423024,F,1,74,1,1,0,0.36,87.0,3.0,483687.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Jorge Valencia,1042106,F,1,45,3,2,0,0.26,115.0,3.0,801235.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Rafael Carrascal,425781,M,0,45,1,0,0,0.02,,2.0,512672.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Yeison Guzmán,924269,M,0,45,5,2,1,0.93,,2.0,1506848.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Luis Quiñones,425810,F,0,45,1,0,0,0.04,,3.0,348768.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Marcos Mina,1249636,D,0,27,0,0,0,0.0,,1.0,264922.0
-1000014123,2026-08-29,col_primera_a,América de Cali,Kevin Angulo,1744375,F,0,16,1,0,0,0.08,,3.0,
 1000009082,2026-08-29,ecu_liga_pro,Guayaquil City,Gilmar Napa,1421388,G,1,90,0,0,0,0.0,11.0,0.0,330254.0
 1000009082,2026-08-29,ecu_liga_pro,Guayaquil City,Junior Ayoví,1627747,D,1,90,0,0,0,0.0,32.0,1.0,348748.0
 1000009082,2026-08-29,ecu_liga_pro,Guayaquil City,Janvier Rodríguez,1910742,D,1,90,0,0,0,0.0,34.0,1.0,
@@ -45548,22 +45501,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 6028442,2026-09-03,leagues_cup,Monterrey,Hugo Cuypers,737974,F,1,90,2,0,0,0.0,115.0,3.0,3867341.0
 6028442,2026-09-03,leagues_cup,Monterrey,Luca Orellano,988833,F,0,9,1,0,0,0.0,,3.0,3017841.0
 6028442,2026-09-03,leagues_cup,Monterrey,Fidel Ambríz,1110661,M,0,2,0,0,0,0.0,,2.0,2968988.0
-1000014202,2026-09-03,col_primera_a,Millonarios,Javier Burrai,262597,G,1,90,0,0,0,0.0,11.0,0.0,261698.0
-1000014202,2026-09-03,col_primera_a,Millonarios,Andrés Llinás,1130853,D,1,90,2,0,0,0.07,33.0,1.0,
-1000014202,2026-09-03,col_primera_a,Millonarios,Sergio Mosquera,496937,D,1,57,1,0,0,0.09,35.0,1.0,
-1000014202,2026-09-03,col_primera_a,Millonarios,Stiven Barreiro,282254,D,1,90,1,0,0,0.07,37.0,1.0,1216520.0
-1000014202,2026-09-03,col_primera_a,Millonarios,Jhomier Guerrero,1353655,D,1,57,0,0,0,0.0,51.0,1.0,883146.0
-1000014202,2026-09-03,col_primera_a,Millonarios,Sebastián Valencia,1772540,D,1,57,0,0,0,0.0,59.0,1.0,634360.0
-1000014202,2026-09-03,col_primera_a,Millonarios,Francisco Chaverra,1310086,M,1,75,1,1,0,0.12,73.0,2.0,697858.0
-1000014202,2026-09-03,col_primera_a,Millonarios,Leonai,1136606,M,1,33,0,0,0,0.0,75.0,2.0,600321.0
-1000014202,2026-09-03,col_primera_a,Millonarios,Rodrigo Ureña,304875,M,1,90,0,0,0,0.0,77.0,2.0,484925.0
-1000014202,2026-09-03,col_primera_a,Millonarios,Daniel Ruiz,1266136,F,1,90,5,2,1,0.24,104.0,3.0,647677.0
-1000014202,2026-09-03,col_primera_a,Millonarios,Leonardo Castro,731805,F,1,90,5,3,0,0.37,106.0,3.0,584241.0
-1000014202,2026-09-03,col_primera_a,Millonarios,Mateo García,1403320,M,0,57,2,1,0,0.04,,2.0,946261.0
-1000014202,2026-09-03,col_primera_a,Millonarios,Danovis Banguero,113984,D,0,33,1,0,0,0.08,,1.0,239669.0
-1000014202,2026-09-03,col_primera_a,Millonarios,Samuel Martín,1797280,D,0,33,0,0,0,0.0,,1.0,
-1000014202,2026-09-03,col_primera_a,Millonarios,Andrey Estupiñán,977773,F,0,33,2,2,1,0.26,,3.0,486536.0
-1000014202,2026-09-03,col_primera_a,Millonarios,Carlos Darwin Quintero,51334,M,0,15,1,0,0,0.06,,2.0,239669.0
 6028441,2026-09-03,leagues_cup,Toluca,Hugo González,188123,G,1,90,0,0,0,0.0,11.0,0.0,343138.0
 6028441,2026-09-03,leagues_cup,Toluca,Bruno Méndez,933574,D,1,90,0,0,0,0.0,33.0,1.0,2273863.0
 6028441,2026-09-03,leagues_cup,Toluca,Federico Pereira,1053836,D,1,90,1,1,1,0.0,35.0,1.0,5463319.0
@@ -175610,3 +175547,63 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000022583,2026-11-04,ven_primera,Carabobo FC,Matías Núñez,1211302,M,0,28,0,0,0,0.0,,2.0,266985.0
 1000022583,2026-11-04,ven_primera,Carabobo FC,Exon Arzú,1447391,F,0,19,1,1,0,0.0,,3.0,385181.0
 1000022583,2026-11-04,ven_primera,Carabobo FC,Dimas Meza,845942,M,0,17,1,0,0,0.0,,2.0,138043.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Miguel Vargas,622026,G,1,90,0,0,0,0.0,11.0,0.0,154250.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Caín Fara,834676,D,1,90,2,2,1,0.0,33.0,1.0,162899.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Williams Riveros,807783,D,1,90,0,0,0,0.0,35.0,1.0,256598.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Anderson Santamaría,253956,D,1,61,1,0,0,0.0,37.0,1.0,261167.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Andy Polo,263619,M,1,90,2,0,0,0.0,71.0,2.0,227182.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Édison Flores,315926,M,1,60,0,0,0,0.0,73.0,2.0,414149.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Horacio Calcaterra,146810,M,1,90,0,0,0,0.0,75.0,2.0,141510.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Jairo Concha,988208,M,1,65,2,1,0,0.0,77.0,2.0,796900.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,César Inga,1415328,M,1,46,0,0,0,0.0,79.0,2.0,982591.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Gianluca Lapadula,231521,F,1,90,2,2,0,0.0,104.0,3.0,303238.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Álex Valera,1133998,F,1,90,7,3,1,0.0,106.0,3.0,970343.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Bryan Reyna,1104977,F,0,45,1,0,0,0.0,,3.0,388018.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Lisandro Alzugaray,651387,F,0,5,1,0,0,0.0,,3.0,262682.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Jorge Gutiérrez,924235,D,0,29,0,0,0,0.0,,1.0,344002.0
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Piero Quispe,1251269,M,0,25,0,0,0,0.0,,2.0,
+1000017279,2026-11-05,per_liga1,Universitario de Deportes,Héctor Fértoli,725782,M,0,25,0,0,0,0.0,,2.0,269527.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Diego Melián,1366174,G,1,90,0,0,0,0.0,11.0,0.0,259414.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Emilio Saba,1201075,D,1,90,0,0,0,0.0,32.0,1.0,220882.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Carlos Zambrano,106309,D,1,74,0,0,0,0.0,34.0,1.0,167211.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Hansell Riojas,253799,D,1,90,1,0,0,0.0,36.0,1.0,263918.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Mathías Llontop,1437868,D,1,90,0,0,0,0.0,38.0,1.0,287925.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Oslimg Mora,1048042,M,1,90,2,1,0,0.0,64.0,2.0,288457.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Federico Illanes,616536,M,1,74,1,0,0,0.0,66.0,2.0,150793.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Luis Urruti,494957,F,1,90,2,0,0,0.0,83.0,3.0,168973.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Jostin Alarcón,1254284,M,1,90,0,0,0,0.0,85.0,2.0,491085.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Christian Cueva,138183,F,1,60,1,1,1,0.0,87.0,3.0,256743.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Pablo Erustes,1432930,F,1,82,1,1,0,0.0,115.0,3.0,231173.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Carlos Liza,1053398,F,0,30,1,1,1,0.0,,3.0,339100.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Renzo Alfani,813622,D,0,16,0,0,0,0.0,,1.0,150793.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Miguel Trauco,248704,D,0,16,0,0,0,0.0,,1.0,153231.0
+1000017279,2026-11-05,per_liga1,Sport Boys,Rolando Díaz,1339290,F,0,8,1,0,0,0.0,,3.0,260327.0
+1000014210,2026-11-05,col_primera_a,Millonarios,Javier Burrai,262597,G,1,90,0,0,0,0.0,11.0,0.0,267712.0
+1000014210,2026-11-05,col_primera_a,Millonarios,Samuel Martín,1797280,D,1,90,2,0,0,0.11,32.0,1.0,
+1000014210,2026-11-05,col_primera_a,Millonarios,Stiven Barreiro,282254,D,1,90,2,0,0,0.2,34.0,1.0,1149216.0
+1000014210,2026-11-05,col_primera_a,Millonarios,Sergio Mosquera,496937,D,1,90,0,0,0,0.0,36.0,1.0,
+1000014210,2026-11-05,col_primera_a,Millonarios,Sebastián Valencia,1772540,D,1,90,2,1,0,0.06,38.0,1.0,699050.0
+1000014210,2026-11-05,col_primera_a,Millonarios,Rodrigo Ureña,304875,M,1,90,2,0,0,0.05,64.0,2.0,398543.0
+1000014210,2026-11-05,col_primera_a,Millonarios,Mateo García,1403320,M,1,90,3,1,0,0.07,66.0,2.0,943473.0
+1000014210,2026-11-05,col_primera_a,Millonarios,Daniel Ruiz,1266136,F,1,90,2,0,0,0.09,83.0,3.0,690842.0
+1000014210,2026-11-05,col_primera_a,Millonarios,David Silva,95546,M,1,74,4,3,0,0.31,85.0,2.0,256856.0
+1000014210,2026-11-05,col_primera_a,Millonarios,Juan Cuadrado,155066,F,1,64,4,1,0,0.14,87.0,3.0,498280.0
+1000014210,2026-11-05,col_primera_a,Millonarios,Rodrigo Contreras,410434,F,1,64,1,1,0,0.02,115.0,3.0,757246.0
+1000014210,2026-11-05,col_primera_a,Millonarios,Andrey Estupiñán,977773,F,0,26,2,1,0,0.24,,3.0,497614.0
+1000014210,2026-11-05,col_primera_a,Millonarios,Leonardo Castro,731805,F,0,26,1,0,0,0.15,,3.0,572691.0
+1000014210,2026-11-05,col_primera_a,Millonarios,Francisco Chaverra,1310086,M,0,16,1,0,0,0.03,,2.0,637848.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Jean,643686,G,1,90,0,0,0,0.0,11.0,0.0,309797.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Mateo Castillo,1648059,D,1,90,0,0,0,0.0,32.0,1.0,1549483.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Cristian Tovar,851057,D,1,90,0,0,0,0.0,34.0,1.0,278134.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Brayan Córdoba,1130737,D,1,46,0,0,0,0.0,36.0,1.0,393105.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Nicolás Hernández,1054270,D,1,90,0,0,0,0.0,38.0,1.0,386859.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Luis Quiñones,425810,M,1,90,1,0,0,0.04,72.0,2.0,286232.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Rafael Carrascal,425781,M,1,90,0,0,0,0.0,74.0,2.0,489014.0
+1000014210,2026-11-05,col_primera_a,América de Cali,José Cavadía,1709861,M,1,46,0,0,0,0.0,76.0,2.0,785969.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Jhon Palacios,1732963,M,1,74,0,0,0,0.0,78.0,2.0,1317490.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Tomás Ángel,1236377,F,1,62,2,2,0,0.54,104.0,3.0,938858.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Yeison Guzmán,924269,F,1,90,0,0,0,0.0,106.0,3.0,1807716.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Omar Bertel,950570,D,0,44,0,0,0,0.0,,1.0,471512.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Yani Quintero,1513180,M,0,45,1,0,0,0.08,,2.0,609364.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Jorge Valencia,1042106,F,0,28,0,0,0,0.0,,3.0,566135.0
+1000014210,2026-11-05,col_primera_a,América de Cali,Jhon Murillo,423024,F,0,16,0,0,0,0.0,,3.0,318269.0
