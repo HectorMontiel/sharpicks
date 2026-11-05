@@ -236,14 +236,14 @@ def probar_v428():
 
 def probar_v431():
     app, css = leer('web', 'app.js'), leer('web', 'estilo.css')
-    check('function moverCanchas()' in app and 'function dominio(k)' in app and 'async function stats365(gid)' in app
-          and 'setInterval(moverCanchas, 1000)' in app, 'v431: el balón y los 22 se mueven con quién ataca ahora (365Scores, ESPN, posesión)')
+    check('function moverCanchas(ts)' in app and 'function dominio(k)' in app and 'async function stats365(gid)' in app
+          and 'requestAnimationFrame(moverCanchas)' in app, 'v431: el balón y los 22 se mueven con quién ataca ahora (365Scores, ESPN, posesión)')
     check("'MEDIO TIEMPO'" in app and "'FINAL'" in app and 'const quieto = m.pausa;' in app,
           'v431: en el medio tiempo y al final todo se detiene y la cancha lo dice')
     check('Animación aproximada según el juego' in app and 'peligro (xG)' in app and 't.gol || minuto(t.min) >= ahora - 15' in app,
           'v431: leyenda clara, sólo los tiros recientes y dice que la animación es aproximada')
     check("if (v && v.fase === 'pre' && !fin) return 'proximo';" in app, 'v431: si ESPN dice que aún no empieza, no se toma como en vivo (la hora rara de la MLS)')
-    check('.cancha-svg .jug { transition: transform' in css and '.cancha-svg .letrero text' in css, 'v431: el movimiento es suave')
+    check('.cancha-svg .jug, .cancha-svg .balon { transition: none;' in css and '.cancha-svg .letrero text' in css, 'v431: el movimiento es suave')
 
 
 def probar_v433():
@@ -260,11 +260,11 @@ def probar_v433():
 
 def probar_v434():
     app, css = leer('web', 'app.js'), leer('web', 'estilo.css')
-    check('m.portador = port ? port.key : null;' in app and "classList.toggle('portador', q === port)" in app and '.cancha-svg .jug.portador .aro' in css,
+    check('m.portador = port ? port.key : null;' in app and "b.classList.add('portador')" in app and '.cancha-svg .jug.portador .aro' in css,
           'v434: el balón siempre lo tiene alguien; sólo él sale grande con número y nombre')
-    check('<line class="pase"' in app and "ln.classList.add('ve')" in app and 'dd < 6 || dd > 28' in app,
-          'v434: pases de 6 a 28 m, de preferencia hacia adelante, con su línea')
-    check('const f = q === port ? 1 : quieto ? 0.5 : m.escena ? 0.6 : 0.38;' in app and 'm.pos[q.key] = [q.cx, q.cy];' in app,
+    check('<line class="pase"' in app and "ln.classList.add('ve')" in app and 'dd < 6 || dd > mx' in app and '? 48 : 28' in app,
+          'v434: pases de 6 a 28 m (v570: a veces largos), de preferencia hacia adelante, con su línea')
+    check('q.vx += (w * w * (tx - q.cx) - 2 * w * q.vx) * dt;' in app and 'm.pos[q.key] = [q.cx, q.cy];' in app,
           'v434: cada quien va a su lugar con inercia; el lugar sobrevive a los repintados')
     check('barras = suave.map((x, i) => barra(' in app and '<polygon points="0,12' not in app, 'v434: la presión en barras por minuto, como Sofascore')
     check('if (!m.ini && reales.length) {' in app and 'reales.forEach((q) => m.vistas.add(q.id));' in app and 'q.m < (m.minuto || 0) - 2' in app
