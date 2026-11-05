@@ -1483,7 +1483,7 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-02,Defensa y Justicia vs Independiente,2026-11-02 22:00:00,Tiros Defensa y Justicia: Más de 13.5,tiros,equipo,local,13.5,0.5971,1.692,16.0,1.0
 2026-11-02,Defensa y Justicia vs Independiente,2026-11-02 22:00:00,Tiros a puerta Independiente: Más de 3.5,a_puerta,equipo,visita,3.5,0.5939,1.556,6.0,1.0
 2026-11-02,Defensa y Justicia vs Independiente,2026-11-02 22:00:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.5538,1.667,14.0,1.0
-2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Ambos marcan: No,btts,btts,total,0.0,0.6164,1.69,,
+2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Ambos marcan: No,btts,btts,total,0.0,0.6164,1.69,0.0,1.0
 2026-11-03,Internacional vs Coritiba,2026-11-04 00:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.5671,1.8,1.0,0.0
 2026-11-03,Internacional vs Coritiba,2026-11-04 00:30:00,Tiros Internacional: Más de 18.5,tiros,equipo,local,18.5,0.5663,1.546,19.0,1.0
 2026-11-03,Internacional vs Coritiba,2026-11-04 00:30:00,Córners: Más de 9.5,corners,total,total,9.5,0.6023,1.526,17.0,1.0
@@ -1518,8 +1518,7 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-05,Cruzeiro vs Bahia,2026-11-06 00:30:00,Tiros Bahia: Más de 11.5,tiros,equipo,visita,11.5,0.5674,1.667,,
 2026-11-07,Mainz vs Bayern Munich,2026-11-07 14:30:00,Goles Bayern Munich: Más de 2.5,goles,equipo,visita,2.5,0.5801,1.69,,
 2026-11-07,Mainz vs Bayern Munich,2026-11-07 14:30:00,Córners: Más de 9.5,corners,total,total,9.5,0.5667,1.6,,
-2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Tiros River Plate: Más de 15.5,tiros,equipo,visita,15.5,0.5658,1.615,,
-2026-11-06,Ascoli vs Palermo,2026-11-06 19:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.5752,1.647,,
+2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Tiros River Plate: Más de 15.5,tiros,equipo,visita,15.5,0.5658,1.615,23.0,1.0
 2026-11-06,Venezia vs Udinese,2026-11-06 19:45:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6086,1.647,,
 2026-11-06,Venezia vs Udinese,2026-11-06 19:45:00,Goles: Más de 2.5,goles,total,total,2.5,0.5839,1.769,,
 2026-11-06,Venezia vs Udinese,2026-11-06 19:45:00,Tiros a puerta Venezia: Más de 4.5,a_puerta,equipo,local,4.5,0.5782,1.8,,
@@ -1532,22 +1531,24 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-07,Dundee United vs Motherwell,2026-11-07 15:00:00,Goles Dundee United: Más de 1.5,goles,equipo,local,1.5,0.5514,1.75,,
 2026-11-07,Boca Juniors vs Defensa y Justicia,2026-11-07 20:30:00,Goles Defensa y Justicia: Más de 0.5,goles,equipo,visita,0.5,0.5597,1.9,,
 2026-11-07,FC Cincinnati vs Nashville SC,2026-11-07 21:00:00,Goles FC Cincinnati: Más de 1.5,goles,equipo,local,1.5,0.556,1.8,,
-2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Tiros Aldosivi: Más de 8.5,tiros,equipo,local,8.5,0.7225,1.538,,
-2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Goles River Plate: Más de 1.5,goles,equipo,visita,1.5,0.6537,1.556,,
-2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Tiros a puerta Aldosivi: Más de 2.5,a_puerta,equipo,local,2.5,0.6404,1.538,,
-2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.6074,1.833,,
-2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.6049,1.538,,
-2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Goles Aldosivi: Más de 0.5,goles,equipo,local,0.5,0.5943,1.8,,
-2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5931,1.5,,
-2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Tiros a puerta River Plate: Más de 5.5,a_puerta,equipo,visita,5.5,0.5753,1.6,,
-2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Tiros: Más de 26.5,tiros,total,total,26.5,0.5595,1.538,,
+2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Tiros Aldosivi: Más de 8.5,tiros,equipo,local,8.5,0.7225,1.538,2.0,0.0
+2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Goles River Plate: Más de 1.5,goles,equipo,visita,1.5,0.6537,1.556,2.0,1.0
+2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Tiros a puerta Aldosivi: Más de 2.5,a_puerta,equipo,local,2.5,0.6404,1.538,0.0,0.0
+2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.6074,1.833,2.0,0.0
+2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.6049,1.538,9.0,1.0
+2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Goles Aldosivi: Más de 0.5,goles,equipo,local,0.5,0.5943,1.8,0.0,0.0
+2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5931,1.5,9.0,1.0
+2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Tiros a puerta River Plate: Más de 5.5,a_puerta,equipo,visita,5.5,0.5753,1.6,9.0,1.0
+2026-11-05,Aldosivi vs River Plate,2026-11-05 18:00:00,Tiros: Más de 26.5,tiros,total,total,26.5,0.5595,1.538,25.0,0.0
 2026-11-06,Barracas Central vs Racing Club,2026-11-06 18:00:00,Córners: Más de 7.5,corners,total,total,7.5,0.6501,1.5,,
-2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.6601,1.556,,
-2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros a puerta Remo: Más de 2.5,a_puerta,equipo,visita,2.5,0.6197,1.846,,
-2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros Remo: Más de 8.5,tiros,equipo,visita,8.5,0.6176,1.538,,
-2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros a puerta: Más de 9.5,a_puerta,total,total,9.5,0.6073,1.6,,
-2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros a puerta Palmeiras: Más de 6.5,a_puerta,equipo,local,6.5,0.5932,1.546,,
-2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Goles Remo: Más de 0.5,goles,equipo,visita,0.5,0.5544,1.833,,
+2026-11-06,Ascoli vs Palermo,2026-11-06 19:30:00,Córners: Más de 8.5,corners,total,total,8.5,0.6298,1.5,,
+2026-11-07,Granada vs Tenerife,2026-11-07 20:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5759,1.75,,
+2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.6726,1.556,,
+2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros a puerta Remo: Más de 2.5,a_puerta,equipo,visita,2.5,0.6199,1.846,,
+2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros a puerta: Más de 9.5,a_puerta,total,total,9.5,0.6076,1.6,,
+2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros Remo: Más de 8.5,tiros,equipo,visita,8.5,0.6021,1.538,,
+2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Tiros a puerta Palmeiras: Más de 6.5,a_puerta,equipo,local,6.5,0.5934,1.546,,
+2026-11-05,Palmeiras vs Remo,2026-11-05 22:30:00,Goles Remo: Más de 0.5,goles,equipo,visita,0.5,0.5557,1.952,,
 2026-11-05,Cruzeiro vs Bahia,2026-11-06 00:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.6762,1.556,,
 2026-11-05,Cruzeiro vs Bahia,2026-11-06 00:30:00,Goles Cruzeiro: Más de 1.5,goles,equipo,local,1.5,0.6484,1.625,,
 2026-11-05,Cruzeiro vs Bahia,2026-11-06 00:30:00,Tiros a puerta Cruzeiro: Más de 5.5,a_puerta,equipo,local,5.5,0.6471,1.615,,
@@ -1559,25 +1560,29 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-06,Barracas Central vs Racing Club,2026-11-06 18:00:00,Goles: Más de 1.5,goles,total,total,1.5,0.6929,1.455,,
 2026-11-06,Barracas Central vs Racing Club,2026-11-06 18:00:00,Goles Racing Club: Más de 0.5,goles,equipo,visita,0.5,0.65,1.5,,
 2026-11-06,Barracas Central vs Racing Club,2026-11-06 18:00:00,Tiros Barracas Central: Más de 12.5,tiros,equipo,local,12.5,0.6499,1.923,,
-2026-11-06,Montpellier vs Metz,2026-11-06 19:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5932,1.5,,
-2026-11-06,Dunkerque vs Guingamp,2026-11-06 19:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5837,1.667,,
+2026-11-06,Montpellier vs Metz,2026-11-06 19:00:00,Tiros a puerta Metz: Más de 3.5,a_puerta,equipo,visita,3.5,0.6525,1.667,,
+2026-11-06,Boulogne vs Annecy,2026-11-06 19:00:00,Tiros Boulogne: Más de 11.5,tiros,equipo,local,11.5,0.6063,1.818,,
+2026-11-06,Boulogne vs Annecy,2026-11-06 19:00:00,Tiros a puerta Boulogne: Más de 3.5,a_puerta,equipo,local,3.5,0.6045,1.667,,
+2026-11-06,Montpellier vs Metz,2026-11-06 19:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5932,1.455,,
+2026-11-06,Dunkerque vs Guingamp,2026-11-06 19:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5837,1.556,,
 2026-11-06,Dunkerque vs Guingamp,2026-11-06 19:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5828,1.556,,
-2026-11-06,Boulogne vs Annecy,2026-11-06 19:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5773,1.556,,
+2026-11-06,Boulogne vs Annecy,2026-11-06 19:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5773,1.7,,
 2026-11-06,Montpellier vs Metz,2026-11-06 19:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5743,1.6,,
 2026-11-06,Boulogne vs Annecy,2026-11-06 19:00:00,Ambos marcan: No,btts,btts,total,0.0,0.5692,1.8,,
+2026-11-06,Dunkerque vs Guingamp,2026-11-06 19:00:00,Tiros Guingamp: Más de 12.5,tiros,equipo,visita,12.5,0.5646,1.786,,
 2026-11-06,Montpellier vs Metz,2026-11-06 19:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.5508,1.692,,
 2026-11-06,Dunkerque vs Guingamp,2026-11-06 19:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.5506,1.667,,
 2026-11-06,Castellon vs Eibar,2026-11-06 19:30:00,Goles Eibar: Más de 0.5,goles,equipo,visita,0.5,0.6677,1.455,,
 2026-11-06,Castellon vs Eibar,2026-11-06 19:30:00,Córners: Más de 8.5,corners,total,total,8.5,0.6306,1.5,,
-2026-11-06,Ascoli vs Palermo,2026-11-06 19:30:00,Córners: Más de 8.5,corners,total,total,8.5,0.6298,1.5,,
 2026-11-06,Castellon vs Eibar,2026-11-06 19:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.6186,1.6,,
 2026-11-06,Castellon vs Eibar,2026-11-06 19:30:00,Goles Castellon: Más de 1.5,goles,equipo,local,1.5,0.6172,1.556,,
+2026-11-06,Ascoli vs Palermo,2026-11-06 19:30:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6159,1.526,,
+2026-11-06,Ascoli vs Palermo,2026-11-06 19:30:00,Goles: Más de 2.5,goles,total,total,2.5,0.5936,1.647,,
 2026-11-06,Castellon vs Eibar,2026-11-06 19:30:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5855,1.645,,
-2026-11-06,Ascoli vs Palermo,2026-11-06 19:30:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5794,1.526,,
 2026-11-06,Venezia vs Udinese,2026-11-06 19:45:00,Tiros a puerta Udinese: Más de 3.5,a_puerta,equipo,visita,3.5,0.685,1.625,,
-2026-11-06,Venezia vs Udinese,2026-11-06 19:45:00,Córners: Más de 8.5,corners,total,total,8.5,0.6616,1.546,,
+2026-11-06,Venezia vs Udinese,2026-11-06 19:45:00,Córners: Más de 8.5,corners,total,total,8.5,0.6616,1.526,,
 2026-11-06,Venezia vs Udinese,2026-11-06 19:45:00,Tiros a puerta: Más de 8.5,a_puerta,total,total,8.5,0.6059,1.692,,
-2026-11-06,Toulouse vs Strasbourg,2026-11-06 19:45:00,Goles: Más de 2.5,goles,total,total,2.5,0.6036,1.571,,
+2026-11-06,Toulouse vs Strasbourg,2026-11-06 19:45:00,Goles: Más de 2.5,goles,total,total,2.5,0.6036,1.625,,
 2026-11-06,Toulouse vs Strasbourg,2026-11-06 19:45:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6027,1.526,,
 2026-11-06,Venezia vs Udinese,2026-11-06 19:45:00,Tiros Udinese: Más de 12.5,tiros,equipo,visita,12.5,0.5864,1.867,,
 2026-11-06,Toulouse vs Strasbourg,2026-11-06 19:45:00,Tiros a puerta Strasbourg: Más de 3.5,a_puerta,equipo,visita,3.5,0.5752,1.625,,
@@ -1589,6 +1594,7 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-06,San Lorenzo vs Platense,2026-11-06 22:15:00,Goles Platense: Más de 0.5,goles,equipo,visita,0.5,0.6756,1.5,,
 2026-11-06,San Lorenzo vs Platense,2026-11-06 22:15:00,Goles: Más de 1.5,goles,total,total,1.5,0.6673,1.571,,
 2026-11-06,San Lorenzo vs Platense,2026-11-06 22:15:00,Córners: Más de 8.5,corners,total,total,8.5,0.556,1.667,,
+2026-11-06,Vitoria vs Fluminense,2026-11-06 23:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5778,1.5,,
 2026-11-07,Avispa Fukuoka vs V-Varen Nagasaki,2026-11-07 06:00:00,Goles V-Varen Nagasaki: Más de 0.5,goles,equipo,visita,0.5,0.6415,1.455,,
 2026-11-07,FC Tokyo vs Kashima Antlers,2026-11-07 06:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5809,1.625,,
 2026-11-07,FC Tokyo vs Kashima Antlers,2026-11-07 06:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5668,1.556,,
@@ -1630,9 +1636,8 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-07,Alverca vs Casa Pia,2026-11-07 18:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5948,1.5,,
 2026-11-07,Granada vs Tenerife,2026-11-07 20:00:00,Goles Tenerife: Más de 0.5,goles,equipo,visita,0.5,0.6394,1.6,,
 2026-11-07,St Mirren vs Rangers,2026-11-07 20:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.6329,1.52,,
-2026-11-07,Excelsior vs Go Ahead Eagles,2026-11-07 20:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.6255,1.48,,
+2026-11-07,Excelsior vs Go Ahead Eagles,2026-11-07 20:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.6165,1.48,,
 2026-11-07,St Mirren vs Rangers,2026-11-07 20:00:00,Goles St Mirren: Más de 0.5,goles,equipo,local,0.5,0.6102,1.556,,
-2026-11-07,Granada vs Tenerife,2026-11-07 20:00:00,Córners: Más de 8.5,corners,total,total,8.5,0.5759,1.75,,
 2026-11-07,Valencia vs Real Madrid,2026-11-07 20:00:00,Córners: Más de 9.5,corners,total,total,9.5,0.5551,1.7,,
 2026-11-07,St Mirren vs Rangers,2026-11-07 20:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5505,1.741,,
 2026-11-07,Boca Juniors vs Defensa y Justicia,2026-11-07 20:30:00,Goles Boca Juniors: Más de 1.5,goles,equipo,local,1.5,0.6603,1.5,,
@@ -1641,6 +1646,7 @@ dia,partido,inicio,apuesta,obj,tipo,lado,linea,prob,cuota,real,cumple
 2026-11-07,CF Montreal vs Vancouver Whitecaps,2026-11-07 21:00:00,Goles Vancouver Whitecaps: Más de 1.5,goles,equipo,visita,1.5,0.606,1.5,,
 2026-11-07,CF Montreal vs Vancouver Whitecaps,2026-11-07 21:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5801,1.476,,
 2026-11-07,Philadelphia Union vs Toronto FC,2026-11-07 21:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.5737,1.526,,
+2026-11-07,Philadelphia Union vs Toronto FC,2026-11-07 21:00:00,Tiros: Más de 26.5,tiros,total,total,26.5,0.561,1.778,,
 2026-11-07,Atlas vs Pachuca,2026-11-07 23:00:00,Ambos marcan: Sí,btts,btts,total,1.0,0.6005,1.571,,
 2026-11-07,Atlas vs Pachuca,2026-11-07 23:00:00,Córners: Más de 9.5,corners,total,total,9.5,0.5955,1.556,,
 2026-11-07,Atlas vs Pachuca,2026-11-07 23:00:00,Goles: Más de 2.5,goles,total,total,2.5,0.5782,1.667,,

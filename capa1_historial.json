@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-05T19:05:26Z",
+"actualizado": "2026-11-05T21:02:57Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23704,6 +23704,26 @@
 },
 {
 "dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "AC Milan vs Ferencvaros",
+"apuesta": "AC Milan o empate",
+"cuota": 1.1,
+"resultado": "rojo",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "AC Milan vs Ferencvaros",
+"apuesta": "Gana AC Milan",
+"cuota": 1.36,
+"resultado": "rojo",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-05",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Al Mosul vs Duhok",
@@ -23711,6 +23731,36 @@
 "cuota": 3.05,
 "resultado": "rojo",
 "marcador": "0-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Atalanta vs Kairat Almaty",
+"apuesta": "Gana Atalanta",
+"cuota": 1.2,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Crystal Palace vs Hoffenheim",
+"apuesta": "Gana Crystal Palace",
+"cuota": 1.86,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Crystal Palace vs TSG Hoffenheim",
+"apuesta": "Gana Crystal Palace",
+"cuota": 1.86,
+"resultado": "rojo",
+"marcador": "1-1"
 },
 {
 "dia": "2026-11-05",
@@ -23729,6 +23779,26 @@
 "partido": "Diyala vs Al Minaa",
 "apuesta": "Gana Al Minaa",
 "cuota": 3.0,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "FC Midtjylland vs Ajax Amsterdam",
+"apuesta": "Gana Ajax Amsterdam",
+"cuota": 2.35,
+"resultado": "verde",
+"marcador": "1-6"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "KuPS vs Gent",
+"apuesta": "Gana Gent",
+"cuota": 1.69,
 "resultado": "rojo",
 "marcador": "0-0"
 },
@@ -23756,11 +23826,61 @@
 "dia": "2026-11-05",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Lillestrom vs Plzen",
+"apuesta": "Gana Plzen",
+"cuota": 2.25,
+"resultado": "verde",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Lillestrom vs Viktoria Plzen",
+"apuesta": "Gana Viktoria Plzen",
+"cuota": 2.25,
+"resultado": "verde",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Lincoln Red Imps vs Hajduk Split",
+"apuesta": "Gana Hajduk Split",
+"cuota": 1.38,
+"resultado": "rojo",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Midtjylland vs Ajax",
+"apuesta": "Gana Ajax",
+"cuota": 2.35,
+"resultado": "verde",
+"marcador": "1-6"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Mohun Bagan vs Odisha FC",
 "apuesta": "Gana Mohun Bagan",
 "cuota": 1.4445,
 "resultado": "verde",
 "marcador": "3-2"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "NEC Nijmegen vs Omonia Nicosia",
+"apuesta": "NEC Nijmegen o empate",
+"cuota": 1.182,
+"resultado": "verde",
+"marcador": "3-1"
 },
 {
 "dia": "2026-11-05",
@@ -23814,6 +23934,16 @@
 },
 {
 "dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Real Sociedad vs Lyon",
+"apuesta": "Gana Real Sociedad",
+"cuota": 1.67,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-05",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Samaleswari SC vs Dempo",
@@ -23821,6 +23951,16 @@
 "cuota": 1.6364,
 "resultado": "verde",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Sparta Prague vs Bournemouth",
+"apuesta": "Gana Bournemouth",
+"cuota": 1.52,
+"resultado": "verde",
+"marcador": "1-3"
 },
 {
 "dia": "2026-11-05",
@@ -23841,6 +23981,36 @@
 "cuota": 3.4,
 "resultado": "rojo",
 "marcador": "0-2"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Thun vs Hearts",
+"apuesta": "Gana Thun",
+"cuota": 2.35,
+"resultado": "verde",
+"marcador": "3-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Trabzonspor vs Freiburg",
+"apuesta": "Gana Trabzonspor",
+"cuota": 2.45,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Trabzonspor vs SC Freiburg",
+"apuesta": "Gana Trabzonspor",
+"cuota": 2.45,
+"resultado": "rojo",
+"marcador": "0-1"
 },
 {
 "dia": "2026-11-05",

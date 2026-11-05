@@ -355,8 +355,8 @@
   },
   "Philadelphia Union": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Royale Union SG",
-    "ratio": 0.4848,
+    "candidato": "Union Touarga",
+    "ratio": 0.3226,
     "visto": "2026-11-05"
   },
   "Red Bull New York": {
@@ -1369,8 +1369,8 @@
   },
   "Sport Huancayo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sport Belem U20",
-    "ratio": 0.4828,
+    "candidato": "Wiener Sport-Club",
+    "ratio": 0.3846,
     "visto": "2026-11-05"
   },
   "Real Oruro": {
@@ -2047,9 +2047,9 @@
   },
   "CSKA Sofia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Levski Sofia",
-    "ratio": 0.7273,
-    "visto": "2026-11-04"
+    "candidato": "Lok. Sofia",
+    "ratio": 0.7368,
+    "visto": "2026-11-05"
   },
   "Como": {
     "contexto": "cuotas_mx→futbol",
@@ -2383,8 +2383,8 @@
   },
   "Western Sydney Wanderers FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Wanderers",
-    "ratio": 0.5455,
+    "candidato": "Sydney Utd",
+    "ratio": 0.4706,
     "visto": "2026-11-05"
   },
   "MELBOURNE VICTORY": {
@@ -2715,6 +2715,12 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Mold Alexandra",
     "ratio": 0.6897,
+    "visto": "2026-11-05"
+  },
+  "Iberia 1999": {
+    "contexto": "cuotas_mx→futbol",
+    "candidato": "Iberia 2010",
+    "ratio": 0.7273,
     "visto": "2026-11-05"
   }
 }
