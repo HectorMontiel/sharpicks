@@ -121,6 +121,7 @@ def test_la_pagina():
                 'Es información para que analices', 'para cambiar sólo esa pata', 'Este partido no alcanza'):
         assert txt not in a, txt
     assert 'function metCumple(x)' in a and "y.x[13] === 0" in a and "'Poca historia'" in a
+    assert "'Últimos 10 partidos'" in a and "'Últimos 5 partidos'" in a and "'U10'" not in a and "': entre '" in a and "'Mín '" not in a
     assert 'if (lin.met && lin.met.length >= 2) return' in a
     assert '[data-met-k]' in a
     assert "['equipo', 'Por equipo']" in a and "x[1] === 't'" in a and 'data-met-modo' in a
