@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-05T01:32:27Z",
+"actualizado": "2026-11-05T03:06:55Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23234,6 +23234,26 @@
 },
 {
 "dia": "2026-11-04",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Botafogo RJ vs Atletico-MG",
+"apuesta": "Botafogo RJ o empate",
+"cuota": 1.177,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Botafogo RJ vs Atletico-MG",
+"apuesta": "Gana Botafogo RJ",
+"cuota": 1.7334,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-04",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Buriram United vs Kashima Antlers",
@@ -23421,6 +23441,16 @@
 "cuota": 1.8,
 "resultado": "verde",
 "marcador": "2-1"
+},
+{
+"dia": "2026-11-04",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Metropolitanos vs Carabobo",
+"apuesta": "Gana Metropolitanos",
+"cuota": 3.3,
+"resultado": "rojo",
+"marcador": "0-2"
 },
 {
 "dia": "2026-11-04",

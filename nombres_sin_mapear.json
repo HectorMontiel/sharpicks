@@ -67,9 +67,9 @@
   },
   "Club Olimpia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Brugge KV",
-    "ratio": 0.3846,
-    "visto": "2026-11-03"
+    "candidato": "Club Tijuana W",
+    "ratio": 0.5833,
+    "visto": "2026-11-05"
   },
   "Cruz Azul": {
     "contexto": "cuotas_mx→futbol",
@@ -1107,7 +1107,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Qingdao West Coast W",
     "ratio": 0.5625,
-    "visto": "2026-10-16"
+    "visto": "2026-11-05"
   },
   "BEIJING GUOAN": {
     "contexto": "cuotas_mx→futbol",
@@ -1369,8 +1369,8 @@
   },
   "Sport Huancayo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sport Boys",
-    "ratio": 0.5833,
+    "candidato": "Sport Belem U20",
+    "ratio": 0.4828,
     "visto": "2026-11-05"
   },
   "Real Oruro": {
@@ -1459,9 +1459,9 @@
   },
   "Sport Boys": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sport Sebaco",
-    "ratio": 0.7273,
-    "visto": "2026-11-03"
+    "candidato": "Sport Belem U20",
+    "ratio": 0.56,
+    "visto": "2026-11-05"
   },
   "Real Potosí": {
     "contexto": "cuotas_mx→futbol",
@@ -1515,7 +1515,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Kortrijk U21",
     "ratio": 0.6957,
-    "visto": "2026-10-09"
+    "visto": "2026-11-05"
   },
   "Standard Liege": {
     "contexto": "cuotas_mx→futbol",
@@ -1735,9 +1735,9 @@
   },
   "Wuhan Three Towns": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Wuhan Jiangda W",
-    "ratio": 0.4667,
-    "visto": "2026-10-17"
+    "candidato": "Wuhan Sports University W",
+    "ratio": 0.45,
+    "visto": "2026-11-05"
   },
   "Deportes Limache": {
     "contexto": "cuotas_mx→futbol",
@@ -2145,7 +2145,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Chongqing Yongchuan W",
     "ratio": 0.7143,
-    "visto": "2026-10-16"
+    "visto": "2026-11-05"
   },
   "Lech Poznan": {
     "contexto": "cuotas_mx→futbol",
@@ -2337,7 +2337,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Westerlo U21",
     "ratio": 0.6667,
-    "visto": "2026-10-30"
+    "visto": "2026-11-05"
   },
   "Zhejiang Professional FC": {
     "contexto": "cuotas_mx→futbol",
@@ -2479,8 +2479,8 @@
   },
   "Shanghai Port FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Shanghai Shenhua (Chn)",
-    "ratio": 0.5455,
+    "candidato": "Shanghai RCB B W",
+    "ratio": 0.7407,
     "visto": "2026-11-05"
   },
   "Heart of Midlothian": {
