@@ -28,8 +28,14 @@ MIN_LINEA = {'corners': 5.5, 'corners_home': 1.5, 'corners_away': 1.5, 'tarjetas
 CUOTA_MIN, CUOTA_MAX = 1.10, 2.20       # el rango medido por pata
 MIN_PARTIDOS = 5                        # de cada equipo, para que sea el método medido; con menos, el cumplimiento se
                                         # encoge hacia la probabilidad de la casa y la página avisa «poca historia»
-POR_LADO = 2                            # candidatas por estadística y lado (equipo A, equipo B, partido): así los totales no
-                                        # tapan a las de equipo; la 2.ª es la de repuesto del botón de cambiar
+REPUESTOS = 1                           # por estadística y lado (equipo A, equipo B, partido), además de las elegidas: así los
+                                        # totales no tapan a las de equipo, y hay con qué cambiar
+# v567 — el usuario: «en córners la media está en 12.3 y elegiste más de 8.5; yo subiría porque todavía lo cubre la media; evalúalo
+# en cada pata». De cada estadística, lado y dirección, la línea MÁS CERCA del promedio que conserve 80 %+ de cumplimiento y un
+# margen de 0,75·√promedio. Medido (medir_linea_promedio.py, 82.902 líneas): cuota 1,22→1,24, acierto −1,3 pts, rendimiento igual
+# (−2,1 vs −2,4 y −4,1 vs −4,3 por $100; p5 de la diferencia ≈ 0). Más cerca aún (margen 0,5 y 70 %): cuota 1,32, acierto 74 % y en
+# parleys rinde peor. La casa lo cobra: subir la línea no regala dinero, cambia acierto por cuota.
+K_MARGEN, CUMPLE_MIN = 0.75, 0.80
 
 
 def escalera_limpia(clave: str, tabla) -> List[tuple]:
@@ -98,8 +104,20 @@ def _cumple(vals: List[float], dire: str, lin: float) -> List[bool]:
     return [a > lin if dire == 'mas' else a < lin for a in vals]
 
 
+def elegida(xs: List[list]) -> list:
+    """La línea de una misma estadística, lado y dirección (v567). Si ninguna conserva el margen y el cumplimiento, la de más cumplimiento."""
+    def margen(x):
+        if x[14] is None or not x[13]:
+            return None
+        return ((x[14] - x[3]) if x[2] == 'mas' else (x[3] - x[14])) / max(x[14], 0.25) ** 0.5
+    ok = [x for x in xs if margen(x) is not None and margen(x) >= K_MARGEN and x[6] >= CUMPLE_MIN]
+    if ok:
+        return min(ok, key=lambda x: (margen(x), -x[4]))
+    return max(xs, key=lambda x: (x[6], x[5]))
+
+
 def pozo(h, home: str, away: str, antes, mercado: Optional[Dict]) -> Optional[List[list]]:
-    """Las patas candidatas, de más a menos cumplimiento:
+    """Las patas candidatas: primero las elegidas de cada estadística, lado y dirección, de más a menos cumplimiento; luego las de repuesto.
     [familia, lado (h|a|t), más|menos, línea, cuota, prob. casa, score, c10, n10, c5, n5, mínimo, máximo, completa, promedio].
     c10/n10 y c5/n5 cuentan los dos equipos juntos; mínimo, máximo y promedio, de esos últimos 10. La página enseña el promedio:
     predice mejor que la mediana (medir_media_mediana.py, 98 mil equipo-partido: 14 de 15 líneas, p5>0 en las dos mitades).
@@ -141,7 +159,10 @@ def pozo(h, home: str, away: str, antes, mercado: Optional[Dict]) -> Optional[Li
                                                   sum(ca5) + sum(cb5), len(ca5) + len(cb5), int(min(a + b)) if a + b else None,
                                                   int(max(a + b)) if a + b else None, int(completa),
                                                   round(sum(a + b) / len(a + b), 1) if a + b else None])
-    out = []
+    orden = lambda z: (-z[6], -z[5])
+    elegidas, repuestos = [], []
     for xs in filas.values():
-        out += sorted(xs, key=lambda z: (-z[6], -z[5]))[:POR_LADO]
-    return sorted(out, key=lambda z: (-z[6], -z[5])) or None
+        estas = [elegida([x for x in xs if x[2] == d]) for d in ('mas', 'menos') if any(x[2] == d for x in xs)]
+        elegidas += estas
+        repuestos += sorted([x for x in xs if not any(x is y for y in estas)], key=orden)[:REPUESTOS]
+    return sorted(elegidas, key=orden) + sorted(repuestos, key=orden) or None

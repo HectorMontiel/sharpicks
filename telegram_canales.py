@@ -278,7 +278,7 @@ def elegir_patas_metodo(met: List) -> Optional[List]:
     """Las 2 patas del parley con la regla medida; None si este partido no da para uno."""
     buenas = [x for x in met or [] if len(x) > 13 and x[13] and x[0] in METODO_NOMBRE and float(x[6]) >= METODO_SCORE and x[8]]
     pat, fams = [], set()
-    for x in sorted(buenas, key=lambda z: (-float(z[6]), -float(z[5]))):
+    for x in buenas:                   # v567 — en el orden del pozo: la línea elegida de cada estadística va primero
         if x[0] in fams:
             continue
         fams.add(x[0])

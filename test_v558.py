@@ -50,6 +50,7 @@ def test_cuenta_al_equipo_y_al_rival():
     assert x[:6] == ['corners', 'h', 'mas', 4.5, 1.6, .6]
     assert x[7:11] == [20, 20, 10, 10]
     assert x[6] == round(31 / 32, 3)
+    assert len(x) == 15
     assert x[11:] == [5, 6, 1, 5.5]
 
 
@@ -88,8 +89,9 @@ def test_cuota_fuera_de_rango_no_entra():
 def test_ordena_y_limita_por_estadistica():
     m = {'corners_home': {'%d.5' % k: {'p': .9 - k / 20, 'mas': 1.2 + k / 10, 'menos': 1.5} for k in range(2, 8)}}
     r = pm.pozo(historia(), 'A', 'B', ANTES, m)
-    assert len(r) == pm.POR_LADO
-    assert [x[6] for x in r] == sorted((x[6] for x in r), reverse=True)
+    assert len([x for x in r if x[2] == 'mas']) <= 2 and len(r) <= 2 + pm.REPUESTOS   # la elegida de cada dirección y un repuesto
+    elegidas = r[:-pm.REPUESTOS]
+    assert [x[6] for x in elegidas] == sorted((x[6] for x in elegidas), reverse=True)
     json.dumps(r)                                # va a la base tal cual
 
 
@@ -99,7 +101,42 @@ def test_los_totales_no_tapan_a_los_equipos():
          'corners_home': {'3.5': {'p': .7, 'mas': 1.4, 'menos': 2.2}}, 'corners_away': {'3.5': {'p': .5, 'mas': 1.9, 'menos': 1.8}}}
     r = pm.pozo(historia(), 'A', 'B', ANTES, m)
     assert {x[1] for x in r} == {'t', 'h', 'a'}
-    assert sum(x[1] == 't' for x in r) <= pm.POR_LADO
+    assert sum(x[1] == 't' for x in r) <= 2 + pm.REPUESTOS
+
+
+def _totales(n):
+    filas = []
+    for i in range(12):
+        d = pd.Timestamp('2026-09-01') + pd.Timedelta(days=i)
+        filas.append({'date': d, 'home_team': 'A', 'away_team': 'X%d' % i, 'home_corners': n - 5, 'away_corners': 5, 'home_goals': 1, 'away_goals': 1,
+                      'home_yellow': 2, 'away_yellow': 2, 'home_red': 0, 'away_red': 0})
+        filas.append({'date': d, 'home_team': 'Y%d' % i, 'away_team': 'B', 'home_corners': 5, 'away_corners': n - 5, 'home_goals': 1, 'away_goals': 1,
+                      'home_yellow': 2, 'away_yellow': 2, 'home_red': 0, 'away_red': 0})
+    return pd.DataFrame(filas)
+
+
+ESCALERA = {'8.5': {'p': .83, 'mas': 1.17, 'menos': 4.0}, '9.5': {'p': .74, 'mas': 1.30, 'menos': 2.9}, '10.5': {'p': .62, 'mas': 1.50, 'menos': 2.2}, '11.5': {'p': .50, 'mas': 1.85, 'menos': 1.8}}
+
+
+def test_sube_la_linea_si_el_promedio_la_cubre():
+    # el caso del usuario: con promedio 13 no se queda en «más de 8.5»: sube a 9.5 (margen 3,5 ≥ 0,75·√13 = 2,7) y no a 10.5 (2,5)
+    r = pm.pozo(_totales(13), 'A', 'B', ANTES, {'corners': ESCALERA})
+    x = r[0]
+    assert (x[2], x[3], x[14]) == ('mas', 9.5, 13.0)
+    # con promedio 11 el margen no alcanza para 9.5 (1,5 < 2,5): se queda en la que da
+    assert pm.pozo(_totales(11), 'A', 'B', ANTES, {'corners': ESCALERA})[0][3] == 8.5
+
+
+def test_la_linea_no_sube_sin_cumplimiento():
+    filas = [[ 'corners', 't', 'mas', 8.5, 1.17, .83, .95, 19, 20, 10, 10, 6, 18, 1, 13.0],
+             ['corners', 't', 'mas', 9.5, 1.30, .74, .70, 14, 20, 7, 10, 6, 18, 1, 13.0]]
+    assert pm.elegida(filas)[3] == 8.5                                     # 9.5 tiene margen, pero sólo 70 % de cumplimiento
+    # «menos»: baja hacia el promedio igual
+    menos = [['goles', 't', 'menos', 4.5, 1.14, .85, .97, 20, 20, 10, 10, 0, 4, 1, 2.0], ['goles', 't', 'menos', 3.5, 1.40, .68, .9, 18, 20, 9, 10, 0, 4, 1, 2.0]]
+    assert pm.elegida(menos)[3] == 3.5
+    # sin historia completa no se mueve
+    poca = [dict(enumerate(x)) and x[:13] + [0, 13.0] for x in filas]
+    assert pm.elegida(poca)[3] == 8.5
 
 
 def test_llega_solo_al_vip():
