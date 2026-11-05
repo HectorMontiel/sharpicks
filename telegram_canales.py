@@ -69,6 +69,11 @@ PROB_MIN_GRATIS = 0.70            # cada pata (y la sencilla) con al menos esto 
 PIE = '\n\n🔞 <i>Juega con responsabilidad</i>'
 DEP_EMO = {'Fútbol': '⚽', 'Tenis': '🎾', 'NBA': '🏀', 'NFL': '🏈', 'NHL': '🏒', 'MLB': '⚾', 'KBO': '⚾', 'Béisbol': '⚾'}
 MAX_VIP_MSG = 6                   # VIP: lo mejor, no la lista entera (el resto, en la app)
+# v563 — el usuario: «cuando se cumplan esas apuestas, foto de que se cumplió y la ganancia… por eso debes formarlas con
+# parleys posibles». La foto es UN parley que se puede ganar: partidos distintos y 3 patas (medido en v528: 35-63 %); antes
+# juntaba hasta 6 picks, a veces dos del mismo partido.
+PATAS_PARLEY = 3
+MAX_GANADOS = 3                   # fotos de «¡ganamos!» por canal y pasada: lo demás, en la siguiente
 VENTANA_APUESTA_H = 4             # v351: la hora para apostar
 GANCHOS_VIP = ('🔥 El pick del momento', '💰 Se viene un partidazo con buenas ganancias', '🎯 Lo mejor para apostar ahora',
                '🚀 Llegó la hora: picks con buena probabilidad')   # v549 — el encabezado del VIP, como marketing
@@ -76,6 +81,7 @@ HORA_NOCHE = 22                   # 🌙 resumen del día (hora de CDMX)
 META_MIEMBROS = int(os.environ.get('TG_META_MIEMBROS', '100'))
 META_CODIGOS = 5
 META_DIAS = int(os.environ.get('TG_META_DIAS', '7'))
+_TICKETS: Dict[Tuple[str, str], str] = {}     # v563 — los parleys con foto mandados, para avisar cuando se cumplan
 # lo ya mandado con su texto (para poder avisar si se retira): {(pick, canal): fila}
 _DETALLES: Dict[Tuple[str, str], Dict] = {}
 
@@ -136,9 +142,12 @@ def ya_enviados() -> Optional[Set[Tuple[str, str, str]]]:
         logger.warning('[telegram] no se pudo leer lo enviado: %s', r.status_code)
         return None
     _DETALLES.clear()
+    _TICKETS.clear()
     for x in r.json():
         if x.get('tipo') == 'pick' and x.get('texto'):
             _DETALLES[(x['pick'], x['canal'])] = x
+        if x.get('tipo') == 'ticket' and x.get('texto'):
+            _TICKETS[(x['pick'], x['canal'])] = x['texto']
     return {(x['pick'], x['canal'], x['tipo']) for x in r.json()}
 
 
@@ -178,15 +187,96 @@ def _apuesta(p: Dict, ia: bool = False) -> str:
 
 def _ticket(titulo: str, ps: List[Dict], ahora: dt.datetime, etiqueta: str, censurado: bool = False) -> Optional[bytes]:
     """v526 — el ticket en imagen (si algo falla, el mensaje sale sólo con texto).
-    v548 — `censurado`: para el canal gratis (el pick, la cuota y la ganancia, borrosos; nunca se dibujan los reales)."""
+    v548 — `censurado`: para el canal gratis (la jugada borrosa; nunca se dibuja la real). v563 — la cuota y la ganancia, a la vista."""
     try:
         import tarjeta_tg
         return tarjeta_tg.ticket(titulo, [{'partido': p.get('partido'), 'apuesta': '' if censurado else p.get('apuesta'),
-                                            'cuota': None if censurado else p.get('cuota'), 'prob': None if censurado else p.get('prob'),
-                                            'cuando': _cuando(p, ahora).upper()} for p in ps], etiqueta, censurado=censurado)
+                                            'cuota': p.get('cuota'), 'prob': None if censurado else p.get('prob'),
+                                            'cuando': _cuando(p, ahora).upper()} for p in ps], etiqueta, censurado=censurado, apuesta=_monto(ps))
     except Exception as e:
         logger.warning('[telegram] sin ticket: %s', e)
         return None
+
+
+def _monto(ps: List[Dict]) -> int:
+    """La apuesta del ejemplo: la misma en la foto del VIP, en la censurada y en la de «¡ganamos!»."""
+    import tarjeta_tg
+    return tarjeta_tg.monto([{'partido': p.get('partido'), 'apuesta': p.get('apuesta')} for p in ps])
+
+
+def parley_de(ps: List[Dict], n: int = PATAS_PARLEY) -> List[Dict]:
+    """Las primeras `n` patas de partidos distintos (`ps` ya viene de mejor a peor)."""
+    out, vistos = [], set()
+    for p in ps:
+        k = clave_partido(p)
+        if k in vistos:
+            continue
+        vistos.add(k)
+        out.append(p)
+        if len(out) == n:
+            break
+    return out
+
+
+def _clave_ticket(ids: List[str]) -> str:
+    return 'ticket:' + '+'.join(sorted(str(i) for i in ids))
+
+
+def _cubre_ticket(ps: List[Dict], canal: str, titulo: str, vip: bool) -> Tuple:
+    """Lo que hace falta para avisar después, con la cuota y la apuesta de CUANDO SE MANDÓ."""
+    datos = {'titulo': titulo, 'vip': vip, 'monto': _monto(ps), 'patas': [
+        {'id': p['id'], 'apuesta': p.get('apuesta'), 'partido': p.get('partido'), 'cuota': float(p.get('cuota') or 0)} for p in ps]}
+    return (_clave_ticket([p['id'] for p in ps]), canal, 'ticket', json.dumps(datos, ensure_ascii=False), ps[0].get('partido'), ps[0].get('inicio'))
+
+
+def armar_ganados(picks: List[Dict], enviados: Set) -> Dict[str, List]:
+    """v563 — los parleys con foto que ya se cumplieron: la foto de «¡ganamos!». Lo del VIP (y su censurado) va a los dos
+    canales; lo gratis, al gratis. Un parley con una pata roja no lleva foto: va en los resultados y en el resumen de la noche.
+    Una pata nula no cuenta: se paga con las demás."""
+    enviados = _tres(enviados)
+    por_id = {p['id']: p for p in picks}
+    out: Dict[str, List] = {'vip': [], 'gratis': []}
+    vistos = set()
+    for (clave, _canal), texto in sorted(_TICKETS.items()):
+        if clave in vistos:
+            continue
+        vistos.add(clave)
+        try:
+            d = json.loads(texto)
+            ps = [(x, por_id.get(x['id'])) for x in d['patas']]
+        except Exception:
+            continue
+        if not ps or not all(p for _, p in ps):
+            continue
+        est = [p.get('estado') for _, p in ps]
+        if not all(e in ('verde', 'nula') for e in est) or 'verde' not in est:
+            continue
+        verdes = [(x, p) for x, p in ps if p.get('estado') == 'verde']
+        cuota = 1.0
+        for x, _ in verdes:
+            cuota *= float(x.get('cuota') or 1)
+        apuesta = int(d.get('monto') or 10000)
+        patas = [{'partido': x.get('partido'), 'apuesta': x.get('apuesta'), 'marcador': p.get('marcador')} for x, p in verdes]
+        for canal in (('vip', 'gratis') if d.get('vip') else ('gratis',)):
+            if (clave, canal, 'ganado') in enviados or len(out[canal]) >= MAX_GANADOS:
+                continue
+            que = 'PARLEY CUMPLIDO' if len(verdes) > 1 else 'PICK CUMPLIDO'
+            t = ('🏆💰 <b>¡%s!</b> · cuota <b>%.2f</b>\n' % (que, cuota) +
+                 '\n'.join('✅ %s · %s %s' % (_e(x.get('apuesta')), _e(x.get('partido')), _e(p.get('marcador') or '')) for x, p in verdes) +
+                 '\n\n🔥 Apostando %s ganaste <b>+%s</b>' % (_pesos(apuesta), _pesos(apuesta * (cuota - 1))) +
+                 ('\n\n💎 Esto les llegó a los VIP antes del partido 👉 ' + SITIO if canal == 'gratis' and d.get('vip') else '') + PIE)
+            foto = None
+            try:
+                import tarjeta_tg
+                foto = tarjeta_tg.ganado(str(d.get('titulo') or 'Parley'), patas, apuesta, cuota, 'VIP' if d.get('vip') else 'GRATIS')
+            except Exception as e:
+                logger.warning('[telegram] sin foto de ganado: %s', e)
+            out[canal].append((t, [(clave, canal, 'ganado')], foto))
+    return out
+
+
+def _pesos(n: float) -> str:
+    return '$' + format(int(round(n)), ',')
 
 
 def _cab_partido(p: Dict, ahora: dt.datetime, icono: str = '') -> str:
@@ -285,7 +375,8 @@ def armar_vip(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[Tupl
         # v549 — el usuario: «para los errores de cuota también la imagen con la cuota, lo que apuestas y lo que se gana».
         # Va en el mismo mensaje (no uno más): el ticket con los más probables.
         top_e = sorted(errs, key=lambda p: -float(p.get('prob') or 0))[:MAX_VIP_MSG]
-        out += [(t, []) for t in trozos[:-1]] + [(trozos[-1], [_cubre_pick(p, 'vip') for p in errs],
+        out += [(t, []) for t in trozos[:-1]] + [(trozos[-1], [_cubre_pick(p, 'vip') for p in errs] +
+                                                  [_cubre_ticket([p], 'vip', 'Error de cuota', True) for p in errs],
                                                   _ticket('Error de cuota · al momento', top_e, ahora, 'VIP'))]
     # ⏰ los demás, al abrir su ventana para apostar (4 h antes)
     ya = [p for p in pend if p.get('tipo') != 'error'
@@ -302,7 +393,9 @@ def armar_vip(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[Tupl
         gancho = GANCHOS_VIP[sum(ord(ch) for ch in ''.join(p['id'] for p in top)) % len(GANCHOS_VIP)]
         t = ('💎 <b>VIP · %s</b>\n⏰ Ya es hora de apostar\n\n' % gancho + '\n\n'.join(_por_partido(top, ahora, ia=True)) +
              ('\n\n➕ <b>%d más</b> en la app 👉 %s' % (mas, SITIO) if mas > 0 else '') + PIE)
-        out.append((t, [_cubre_pick(p, 'vip') for p in ya], _ticket('Picks VIP · hora de apostar', top, ahora, 'VIP')))
+        par = parley_de(top)
+        out.append((t, [_cubre_pick(p, 'vip') for p in ya] + [_cubre_ticket(par, 'vip', 'Parley VIP', True)],
+                    _ticket('Parley VIP · hora de apostar', par, ahora, 'VIP')))
     out += _avisos_retiro(picks, enviados, 'vip', ahora)
     res = [p for p in picks if nivel(p) in vip and p.get('estado') in ('verde', 'roja')
            and _utc(p.get('inicio')) is not None and _utc(p.get('inicio')) >= ahora - dt.timedelta(hours=8)
@@ -406,12 +499,14 @@ def armar_gratis(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[T
                 out.append((t, [(clave, 'gratis', 'horario'),
                                 ('comb:' + '+'.join(p['id'] for p in comb), 'gratis', 'pick',
                                  ' + '.join(str(p.get('apuesta')) for p in comb),
-                                 ' / '.join(str(p.get('partido')) for p in comb), comb[0].get('inicio'))],
+                                 ' / '.join(str(p.get('partido')) for p in comb), comb[0].get('inicio')),
+                                _cubre_ticket(comb, 'gratis', 'Combinada del día', False)],
                             _ticket('Combinada del día', comb, ahora, 'GRATIS')))
             elif sen:
                 t = ('🎯🆓 <b>Pick del día</b>\n\n' + _cab_partido(sen, ahora) + '\n' + _apuesta(sen) +
                      '\n\n💎 En el VIP hay más todos los días 👉 ' + SITIO + PIE)
-                out.append((t, [(clave, 'gratis', 'horario'), _cubre_pick(sen, 'gratis')], _ticket('Pick del día', [sen], ahora, 'GRATIS')))
+                out.append((t, [(clave, 'gratis', 'horario'), _cubre_pick(sen, 'gratis'), _cubre_ticket([sen], 'gratis', 'Pick del día', False)],
+                            _ticket('Pick del día', [sen], ahora, 'GRATIS')))
             else:
                 out.append(('', [(clave, 'gratis', 'horario')]))     # nada que valga: no se publica
     # el resultado de lo que se publicó
@@ -426,6 +521,10 @@ def armar_gratis(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[T
         if r is None:
             continue
         que = 'Combinada' if len(ps) > 1 else 'Pick'
+        # v563 — si se cumplió y llevaba foto, el aviso es la foto de «¡ganamos!»: un solo mensaje
+        if r == 'verde' and (_clave_ticket([p['id'] for p in ps]), 'gratis') in _TICKETS:
+            out.append(('', [(k, 'gratis', 'resultado')]))
+            continue
         t = ('%s <b>%s %s</b>%s\n' % ('✅' if r == 'verde' else '❌', que, 'cumplida' if r == 'verde' else 'fallada',
                                       ' 🎉💰' if r == 'verde' else '') +
              '\n'.join('%s %s · %s %s' % ('✅' if p.get('estado') == 'verde' else ('❌' if p.get('estado') == 'roja' else '➖'),
@@ -453,13 +552,13 @@ def armar_gratis(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[T
                   and _utc(p.get('inicio')) is not None and ahora < _utc(p.get('inicio')) <= ahora + dt.timedelta(hours=VENTANA_APUESTA_H)
                   and (p['id'], 'gratis', 'teaser') not in enviados]
         if listos and (franja, 'gratis', 'teaser') not in enviados:
-            top = sorted(listos, key=lambda p: (not p.get('elige'), -float(p.get('prob') or 0)))[:MAX_VIP_MSG]
+            top = parley_de(sorted(listos, key=lambda p: (not p.get('elige'), -float(p.get('prob') or 0))))
             t = ('🔒💎 <b>Acaban de llegar %d picks al VIP</b>\n' % len(listos) +
-                 'Ya es hora de apostar: cuota, probabilidad y cuánto puedes ganar, sólo para VIP 👀\n\n' +
+                 'Ya es hora de apostar: la jugada, sólo para VIP 👀\n\n' +
                  '\n'.join('%s %s · 🕒 %s' % (DEP_EMO.get(p.get('deporte'), '🎯'), _e(p.get('partido')), _cuando(p, ahora)) for p in top) +
                  '\n\n👉 Desbloquéalos: hazte VIP en ' + SITIO + PIE)
-            out.append((t, [(franja, 'gratis', 'teaser')] + [(p['id'], 'gratis', 'teaser') for p in listos],
-                        _ticket('Picks VIP · ya es hora', top, ahora, 'VIP', censurado=True)))
+            out.append((t, [(franja, 'gratis', 'teaser')] + [(p['id'], 'gratis', 'teaser') for p in listos] + [_cubre_ticket(top, 'gratis', 'Parley VIP', True)],
+                        _ticket('Parley VIP · ya es hora', top, ahora, 'VIP', censurado=True)))
     # una vez al día: cómo le fue ayer al VIP (la prueba de que vale la pena)
     ayer = (loc - dt.timedelta(days=1)).strftime('%Y-%m-%d')
     clave = 'resumen-vip:' + ayer
@@ -721,7 +820,11 @@ def revisar_vip(chat_vip: Optional[str]) -> int:
 def armar(picks: List[Dict], enviados: Set, ahora: Optional[dt.datetime] = None) -> Dict[str, List]:
     """{canal: [(texto, [(pick, canal, tipo) que cubre])]} con sólo lo nuevo."""
     ahora = ahora or dt.datetime.now(dt.timezone.utc)
-    return {'vip': armar_vip(picks, enviados, ahora), 'gratis': armar_gratis(picks, enviados, ahora)}
+    lotes = {'vip': armar_vip(picks, enviados, ahora), 'gratis': armar_gratis(picks, enviados, ahora)}
+    ganados = armar_ganados(picks, enviados)              # v563
+    for canal, msgs in ganados.items():
+        lotes[canal] += msgs
+    return lotes
 
 
 def enviar_a(chat: str, texto: str, foto: Optional[bytes] = None) -> bool:
