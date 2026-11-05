@@ -104,7 +104,7 @@ def test_llega_solo_al_vip():
 
 def test_la_pagina():
     a = leer('web', 'app.js')
-    assert 'metodoBloque(ps, L, V) +' in a and 'function metPatas(s)' in a
+    assert 'metodoBloque(ps, L, V) +' in a and 'function metPatas(s, q)' in a
     assert 'MET_FACTOR = { 2: 1.01, 3: 1.05, 4: 1.09 }' in a
     assert "p.deporte !== 'Fútbol' || faseDe(ps) !== 'proximo'" in a
     assert 'puede pagar menos' in a and 'no una ganancia asegurada' in a
@@ -113,3 +113,11 @@ def test_la_pagina():
     assert "['equipo', 'Por equipo']" in a and "x[1] === 't'" in a and 'data-met-modo' in a
     assert "s.modo === 'equipo' ? x[0] + x[1] : x[0]" in a
     assert '.met-pata {' in leer('web', 'estilo.css')
+
+
+if __name__ == '__main__':
+    # la suite corre cada prueba como script: sin esto, estas funciones no se ejecutan y siempre sale «sin fallos»
+    for _n, _f in sorted(globals().copy().items()):
+        if _n.startswith('test_') and callable(_f):
+            _f()
+    print('OK')

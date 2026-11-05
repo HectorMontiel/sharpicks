@@ -53,3 +53,11 @@ def test_el_boton_va_fuera_de_la_pata():
     assert 'class="arm-cambiar" data-arm-cambiar="' in a
     assert '[data-arm-cambiar],[data-arm-restaurar]' in a
     assert '.arm-pata-fila {' in leer('web', 'estilo.css')
+
+
+if __name__ == '__main__':
+    # la suite corre cada prueba como script: sin esto, estas funciones no se ejecutan y siempre sale «sin fallos»
+    for _n, _f in sorted(globals().copy().items()):
+        if _n.startswith('test_') and callable(_f):
+            _f()
+    print('OK')

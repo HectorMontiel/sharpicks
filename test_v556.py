@@ -43,3 +43,11 @@ def test_el_candado_vip_no_deja_la_tarjeta_encima():
 
 def test_sin_marco_doble():
     assert '.ficha-caja.previa {' in leer('web', 'estilo.css')
+
+
+if __name__ == '__main__':
+    # la suite corre cada prueba como script: sin esto, estas funciones no se ejecutan y siempre sale «sin fallos»
+    for _n, _f in sorted(globals().copy().items()):
+        if _n.startswith('test_') and callable(_f):
+            _f()
+    print('OK')
