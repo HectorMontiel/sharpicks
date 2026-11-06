@@ -1,27 +1,27 @@
 {
   "América de Cali": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "America MG",
-    "ratio": 0.64,
-    "visto": "2026-10-26"
+    "candidato": "America PE",
+    "ratio": 0.72,
+    "visto": "2026-11-06"
   },
   "Atletico Balboa": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Independiente",
-    "ratio": 0.4865,
-    "visto": "2026-11-05"
+    "candidato": "Atletico-MG",
+    "ratio": 0.6923,
+    "visto": "2026-11-06"
   },
   "Atlético Madrid": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Independiente",
-    "ratio": 0.5946,
-    "visto": "2026-11-05"
+    "candidato": "Atletico-MG",
+    "ratio": 0.7692,
+    "visto": "2026-11-06"
   },
   "Atlético Tucumán": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Independiente",
-    "ratio": 0.5263,
-    "visto": "2026-11-05"
+    "candidato": "Atletico-MG",
+    "ratio": 0.7407,
+    "visto": "2026-11-06"
   },
   "Atlético de San Luis": {
     "contexto": "cuotas_mx→futbol",
@@ -67,8 +67,8 @@
   },
   "Club Olimpia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Tijuana U21",
-    "ratio": 0.5,
+    "candidato": "Club Brugge W",
+    "ratio": 0.4348,
     "visto": "2026-11-06"
   },
   "Cruz Azul": {
@@ -301,9 +301,9 @@
   },
   "Atlético Nacional": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Independiente",
-    "ratio": 0.6154,
-    "visto": "2026-11-05"
+    "candidato": "Atletico-MG",
+    "ratio": 0.6429,
+    "visto": "2026-11-06"
   },
   "Loudoun United FC": {
     "contexto": "cuotas_mx→futbol",
@@ -319,20 +319,20 @@
   },
   "São Bernardo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sao Paulo U20",
-    "ratio": 0.48,
-    "visto": "2026-11-05"
+    "candidato": "Sao Joao del Rei",
+    "ratio": 0.4286,
+    "visto": "2026-11-06"
   },
   "Nacional Asunción": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atl. Nacional",
-    "ratio": 0.5517,
-    "visto": "2026-11-02"
+    "candidato": "Nacional de Muriae",
+    "ratio": 0.5714,
+    "visto": "2026-11-06"
   },
   "Club Atlético La Paz": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Tijuana U21",
-    "ratio": 0.5,
+    "candidato": "Atletico-MG",
+    "ratio": 0.5806,
     "visto": "2026-11-06"
   },
   "Sporting JAX": {
@@ -757,27 +757,27 @@
   },
   "Atlético Bucaramanga": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Independiente",
-    "ratio": 0.4762,
-    "visto": "2026-11-05"
+    "candidato": "Atletico-MG",
+    "ratio": 0.7097,
+    "visto": "2026-11-06"
   },
   "Atlético Goianiense": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Independiente",
-    "ratio": 0.7317,
-    "visto": "2026-11-05"
+    "candidato": "Atletico-MG",
+    "ratio": 0.6667,
+    "visto": "2026-11-06"
   },
   "Club Atlético Morelia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Tijuana U21",
-    "ratio": 0.4324,
+    "candidato": "Atletico-MG",
+    "ratio": 0.625,
     "visto": "2026-11-06"
   },
   "Atlético Junior": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Independiente",
-    "ratio": 0.5946,
-    "visto": "2026-11-05"
+    "candidato": "Atletico-MG",
+    "ratio": 0.6923,
+    "visto": "2026-11-06"
   },
   "Atletico Rafaela": {
     "contexto": "cuotas_mx→futbol",
@@ -819,13 +819,13 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Bristol Rovers",
     "ratio": 0.6061,
-    "visto": "2026-11-05"
+    "visto": "2026-11-06"
   },
   "Tranmere Rovers": {
     "contexto": "cuotas_mx→futbol",
     "candidato": "Bristol Rovers",
     "ratio": 0.5517,
-    "visto": "2026-11-05"
+    "visto": "2026-11-06"
   },
   "Orange County SC": {
     "contexto": "cuotas_mx→futbol",
@@ -835,9 +835,9 @@
   },
   "Vila Nova": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Super Nova U19",
-    "ratio": 0.4348,
-    "visto": "2026-11-04"
+    "candidato": "Nova Cidade",
+    "ratio": 0.4,
+    "visto": "2026-11-06"
   },
   "AFC Wimbledon": {
     "contexto": "cuotas_mx→futbol",
@@ -889,9 +889,9 @@
   },
   "América Mineiro": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "America De Cali",
-    "ratio": 0.6,
-    "visto": "2026-11-05"
+    "candidato": "America PE",
+    "ratio": 0.72,
+    "visto": "2026-11-06"
   },
   "Los Chankas": {
     "contexto": "cuotas_mx→futbol",
@@ -1035,7 +1035,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Bristol Rovers",
     "ratio": 0.6,
-    "visto": "2026-11-05"
+    "visto": "2026-11-06"
   },
   "Milton Keynes Dons": {
     "contexto": "cuotas_mx→futbol",
@@ -1215,7 +1215,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Blackburn U21",
     "ratio": 0.6897,
-    "visto": "2026-11-05"
+    "visto": "2026-11-06"
   },
   "Derby County": {
     "contexto": "cuotas_mx→futbol",
@@ -1369,8 +1369,8 @@
   },
   "Sport Huancayo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Herk Sport Hasselt W",
-    "ratio": 0.5,
+    "candidato": "Sport Recife",
+    "ratio": 0.5385,
     "visto": "2026-11-06"
   },
   "Real Oruro": {
@@ -1447,9 +1447,9 @@
   },
   "C.D. Nacional": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Nacional Potosi",
-    "ratio": 0.5926,
-    "visto": "2026-10-31"
+    "candidato": "Nacional de Muriae",
+    "ratio": 0.5333,
+    "visto": "2026-11-06"
   },
   "Hertha Berlin": {
     "contexto": "cuotas_mx→futbol",
@@ -1477,9 +1477,9 @@
   },
   "Nacional Potosí": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Potosi",
-    "ratio": 0.6923,
-    "visto": "2026-11-05"
+    "candidato": "Nacional de Muriae",
+    "ratio": 0.6061,
+    "visto": "2026-11-06"
   },
   "Unión La Calera": {
     "contexto": "cuotas_mx→futbol",
@@ -1651,9 +1651,9 @@
   },
   "Alianza Atlético": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Atletico Independiente",
-    "ratio": 0.4211,
-    "visto": "2026-11-05"
+    "candidato": "Atletico-MG",
+    "ratio": 0.5926,
+    "visto": "2026-11-06"
   },
   "Comerciantes Unidos": {
     "contexto": "cuotas_mx→futbol",
@@ -1725,7 +1725,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Audax RJ",
     "ratio": 0.5455,
-    "visto": "2026-10-31"
+    "visto": "2026-11-06"
   },
   "Shandong Taishan": {
     "contexto": "cuotas_mx→futbol",
