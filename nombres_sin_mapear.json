@@ -145,9 +145,9 @@
   },
   "Inter Miami CF": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Inter San Carlos",
-    "ratio": 0.5185,
-    "visto": "2026-11-05"
+    "candidato": "Lac Inter",
+    "ratio": 0.5,
+    "visto": "2026-11-06"
   },
   "Inter de San Carlos": {
     "contexto": "cuotas_mx→futbol",
@@ -373,8 +373,8 @@
   },
   "Peterborough United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dewa United",
-    "ratio": 0.5333,
+    "candidato": "Madura United",
+    "ratio": 0.5,
     "visto": "2026-11-06"
   },
   "Sheffield Wednesday": {
@@ -403,14 +403,14 @@
   },
   "Rotherham United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dewa United",
-    "ratio": 0.6667,
+    "candidato": "Madura United",
+    "ratio": 0.6207,
     "visto": "2026-11-06"
   },
   "Colchester United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dewa United",
-    "ratio": 0.5714,
+    "candidato": "Cambrian United",
+    "ratio": 0.5625,
     "visto": "2026-11-06"
   },
   "Scunthorpe United": {
@@ -547,8 +547,8 @@
   },
   "Minnesota United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dewa United",
-    "ratio": 0.6667,
+    "candidato": "Cambrian United",
+    "ratio": 0.6452,
     "visto": "2026-11-06"
   },
   "New England Revolution": {
@@ -565,8 +565,8 @@
   },
   "D.C. United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dewa United",
-    "ratio": 0.7619,
+    "candidato": "Madura United",
+    "ratio": 0.6957,
     "visto": "2026-11-06"
   },
   "Deportivo Morón": {
@@ -619,8 +619,8 @@
   },
   "New Mexico United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dewa United",
-    "ratio": 0.6429,
+    "candidato": "Madura United",
+    "ratio": 0.5333,
     "visto": "2026-11-06"
   },
   "Sacramento Republic FC": {
@@ -1279,8 +1279,8 @@
   },
   "Leeds United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dewa United",
-    "ratio": 0.6957,
+    "candidato": "Madura United",
+    "ratio": 0.64,
     "visto": "2026-11-06"
   },
   "Oxford United": {
@@ -1291,14 +1291,14 @@
   },
   "Dundee United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dewa United",
-    "ratio": 0.75,
+    "candidato": "Madura United",
+    "ratio": 0.6923,
     "visto": "2026-11-06"
   },
   "Sheffield United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dewa United",
-    "ratio": 0.5926,
+    "candidato": "Madura United",
+    "ratio": 0.5517,
     "visto": "2026-11-06"
   },
   "Santa Clara": {
@@ -1489,9 +1489,9 @@
   },
   "Inter Kashi": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Inter San Carlos",
-    "ratio": 0.5926,
-    "visto": "2026-11-05"
+    "candidato": "Lac Inter",
+    "ratio": 0.5,
+    "visto": "2026-11-06"
   },
   "Al Shabab": {
     "contexto": "cuotas_mx→futbol",
@@ -1603,8 +1603,8 @@
   },
   "JEF United Ichihara-Chiba": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dewa United",
-    "ratio": 0.4444,
+    "candidato": "Madura United",
+    "ratio": 0.3684,
     "visto": "2026-11-06"
   },
   "Sporting Cristal": {
@@ -2413,9 +2413,9 @@
   },
   "Adelaide United FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Glacis United",
+    "candidato": "Madura United",
     "ratio": 0.7143,
-    "visto": "2026-11-01"
+    "visto": "2026-11-06"
   },
   "Shabab Al Ahli": {
     "contexto": "cuotas_mx→futbol",

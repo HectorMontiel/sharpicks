@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-06T06:38:10Z",
+"actualizado": "2026-11-06T09:53:07Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -24411,6 +24411,16 @@
 "cuota": 1.15,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Tenis",
+"partido": "Sonmez Z. vs Liu C.",
+"apuesta": "Gana Liu C.",
+"cuota": 1.98,
+"resultado": "verde",
+"marcador": "0-2"
 }
 ]
 }
