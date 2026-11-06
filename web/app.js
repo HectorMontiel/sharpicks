@@ -2335,7 +2335,7 @@
       '<span class="pf-pick"><span class="pf-niv">' + nv.i + '</span><span class="pf-ap">' + ap + '</span>' +
       '<span class="pf-cu">' + (p.cuota ? Number(p.cuota).toFixed(2) : '') + '</span>' +
       (ps.length > 1 ? '<span class="pf-mas">+' + (ps.length - 1) + '</span>' : '') + resumenPicks(ps) +
-      (ia ? '<span class="pf-ia s' + ia + '">' + ico('sparkles') + (ia === 2 ? ' Modelo + IA: mayor probabilidad' : ' Modelo + IA: a favor') + '</span>' : '') + '</span>' +
+      (ia ? '<span class="pf-ia s' + ia + '">' + ico('sparkles') + (ia === 2 ? ' IA: confianza máxima' : ' IA: confianza alta') + '</span>' : '') + '</span>' +
       '</button>' + (abierto ? '<div class="pf-detalle">' + tarjeta(ps) +
         // v468 — «hace falta algo para cerrar la tarjeta sin subir hasta arriba»: va pegado abajo mientras se lee
         '<div class="pf-cerrar"><button data-abrir="' + esc(k) + '" data-cerrar-pf="1">' + ico('chevron-down', 'arriba') + ' Cerrar</button></div></div>' : '') + '</div>';
@@ -2479,9 +2479,9 @@
     return c >= 5 ? 2 : c >= 4 ? 1 : 0;
   }
   // lo que de verdad salió en cada tono (💎/🔷/🥇, 17-30 oct): con eso «la IA le da más probabilidad» al modelo, medido
-  const IA_SALIO = { 2: 0.91, 1: 0.86 };
-  const selloIA = (n) => (n ? '<span class="ia-sello s' + n + '">' + ico('sparkles') + (n === 2 ? ' Modelo + IA: mayor probabilidad' : ' Modelo + IA: a favor') +
-    ' · salió ' + Math.round(100 * IA_SALIO[n]) + ' %</span>' : '');
+  // v590 — sin el porcentaje que prometía: medido el 6-nov ya no se sostiene en fútbol. El sello dice lo que es, la confianza de la IA, sin prometer acierto.
+  const selloIA = (n) => (n ? '<span class="ia-sello s' + n + '">' + ico('sparkles') + (n === 2 ? ' IA: confianza máxima' : ' IA: confianza alta') +
+    '</span>' : '');
   function veredictoIA(p) {
     const a = window.SPX && SPX.yo.ia ? SPX.yo.ia[p.partido] : null;
     if (!a || !(a.veredictos || []).length) return null;
@@ -2577,7 +2577,7 @@
           // v551 — el usuario: «que al picar el pick me lleve al partido para analizarlo»: cada pata abre su partido
           return '<div class="arm-pata-fila"><button type="button" class="arm-pata' + (ia ? ' ia-' + ia : '') + '" data-ficha="' + esc(p.id) + '" aria-label="Ver el partido"><span class="arm-niv">' + nv.i + '</span><span class="arm-txt"><b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b><small>' +
             esc(L) + ' vs ' + esc(V) + ' · ' + esc(horaCdmx(aFecha(p.inicio))) + '</small></span><span class="arm-num"><b>' + Number(p.cuota).toFixed(2) + '</b><small>' + pct(p.prob) + '</small></span>' +
-            (ia ? '<span class="arm-ia ia-' + ia + '">' + ico('sparkles') + (ia === 2 ? ' Modelo + IA: mayor probabilidad' : ' Modelo + IA: a favor') + '</span>' : '') + '<span class="arm-ir">›</span></button>' +
+            (ia ? '<span class="arm-ia ia-' + ia + '">' + ico('sparkles') + (ia === 2 ? ' IA: confianza máxima' : ' IA: confianza alta') + '</span>' : '') + '<span class="arm-ir">›</span></button>' +
             '<button type="button" class="arm-cambiar" data-arm-cambiar="' + esc(p.id) + '" aria-label="Cambiar sólo esta pata" title="Cambiar sólo esta pata">' + ico('refresh-cw') + '</button></div>';
         }).join('') +
           // v557 — cómo se usa, si ya no hay otra y cómo devolver las que se quitaron
@@ -2589,7 +2589,7 @@
           (vip ? '<div class="arm-ia-res">' + ico('sparkles') + ' La IA ve <b>' + r.patas.filter((x) => iaSegura(x.p)).length + ' de ' + r.patas.length +
             '</b> patas seguras <button class="chip' + (A.soloIA ? ' activa' : '') + '" data-arm-soloia="1">' + (A.soloIA ? 'Todas las patas' : 'Sólo las seguras') + '</button></div>' : '') +
           '<div class="arm-pie"><span>Cuota <b>' + cuota.toFixed(2) + '</b> · se cumplen todas ~<b>' + Math.round(100 * prob) + ' %</b>' +
-          (vip && r.patas.some((x) => iaSegura(x.p)) ? ' · con la IA ~<b>' + Math.round(100 * r.patas.reduce((a, x) => a * (IA_SALIO[iaSegura(x.p)] || Number(x.p.prob || 0)), 1)) + ' %</b>' : '') + '</span>' +
+          '</span>' +
           (r.patas.length >= 2 && !cerradas.length ? '<button class="vip-btn" data-arm-boleto="' + esc(r.patas.map((x) => x.p.id).join(',')) + '">Pasar a mi combinada</button>' : '') + '</div>' +
           // v540 — patas de pago (gratis con otros niveles): se desbloquean todas juntas, cada una a su precio por cuota
           (cerradas.length ? '<div class="arm-pago">' + ico('lock') + ' <span><b>' + cerradas.length + (cerradas.length === 1 ? ' pata' : ' patas') + ' de pago</b>' +

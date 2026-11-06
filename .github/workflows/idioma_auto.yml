@@ -1,0 +1,48 @@
+name: Traducir textos nuevos
+
+# v590 — la app se escribe en español. Al subir un texto nuevo de la página, se traduce y se agrega a web/idioma_en.js, y se vuelve a publicar la página.
+on:
+  push:
+    branches: [main]
+    paths: ['web/**.js', 'web/index.html', '!web/idioma_en.js']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: idioma-auto
+  cancel-in-progress: false
+
+jobs:
+  traducir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - name: Traducir lo que falte
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python idioma_auto.py
+      - name: Revisar que no quede nada sin inglés
+        env:
+          IDIOMA_ESTRICTO: '1'
+        run: |
+          node --check web/idioma_en.js
+          python -c "import test_v582 as t; t.test_todo_texto_visible_tiene_traduccion(); t.test_diccionario_coherente()"
+      - name: Guardar y volver a publicar la página
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet web/idioma_en.js; then echo "Nada que traducir."; exit 0; fi
+          git config user.name "idioma-bot"
+          git config user.email "actions@github.com"
+          git add web/idioma_en.js
+          git commit -m "chore(idioma): traducción automática de textos nuevos"
+          python git_sin_conflictos.py publicar
+          gh workflow run web_rapido.yml --repo "${{ github.repository }}" --ref main

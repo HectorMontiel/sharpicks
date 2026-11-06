@@ -1520,8 +1520,8 @@
     const m = hist.morado || [], suma = (f) => m.filter(f).reduce((a, x) => [a[0] + Number(x.aciertos), a[1] + Number(x.n)], [0, 0]);
     const [v2, n2] = suma((x) => x.tono === 2), [v1, n1] = suma((x) => x.tono >= 1), [v0, n0] = suma((x) => x.tono === 0);
     if (!n2) return '';
-    return '<div class="sub ia-morado-h">✨ Modelo + IA, mayor probabilidad: ✅ ' + v2 + ' ❌ ' + (n2 - v2) + ' · <b>' + Math.round(100 * v2 / n2) + ' %</b>' +
-      ' · con la IA a favor ' + Math.round(100 * v1 / n1) + ' %' + (n0 ? ' · sin marca ' + Math.round(100 * v0 / n0) + ' %' : '') + ' <small>(💎 🔷 🥇, todo el histórico)</small></div>';
+    return '<div class="sub ia-morado-h">✨ IA con confianza máxima: ✅ ' + v2 + ' ❌ ' + (n2 - v2) + ' · <b>' + Math.round(100 * v2 / n2) + ' %</b>' +
+      ' · con confianza alta ' + Math.round(100 * v1 / n1) + ' %' + (n0 ? ' · sin marca ' + Math.round(100 * v0 / n0) + ' %' : '') + ' <small>(💎 🔷 🥇, todo el histórico)</small></div>';
   }
   function pintarPeriodo() {
     const caja = $('historial'); if (!caja || !hist.filas.length) return;

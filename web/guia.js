@@ -19,7 +19,7 @@
   const PASOS = [
     { v: 'picks', sel: null, t: 'Bienvenido a SharPicks', d: 'Te enseñamos la app en un minuto. Toca «Siguiente» para avanzar.' },
     { v: 'picks', sel: '#destacados:not([hidden])', t: 'Los mejores del día', d: 'Los 💎 Diamante: nuestros picks más probables. Toca uno para verlo.' },
-    { v: 'picks', sel: '#destacados .dest.ia-2, #destacados .dest.guia-demo', t: '✨ El morado de la IA', d: 'Los que la IA ve con mayor probabilidad brillan en morado: aciertan 91 % (medido).' },
+    { v: 'picks', sel: '#destacados .dest.ia-2, #destacados .dest.guia-demo', t: '✨ El morado de la IA', d: 'Los picks con confianza alta de la IA brillan en morado. Aún no está medido que acierten más.' },
     { v: 'picks', sel: '.busca-caja', t: 'Busca tu equipo', d: 'Elige el día arriba o escribe cualquier equipo: te salen sus partidos.' },
     { v: 'vivo', sel: null, t: '⚽ Mira el partido', d: 'La cancha en vivo: tiros, goles, presión y el minuto exacto.' },
     { v: 'vivo', sel: null, t: '⚡ Pulso en vivo', d: 'En el 2.º tiempo: lo más probable que pase ahora y lo que salió en el historial.' },
@@ -35,7 +35,7 @@
   ];
   // lo que cambia para quien NO es VIP: se le enseña qué tendría (con candado) y qué sí tiene gratis
   const D_GRATIS = {
-    '✨ El morado de la IA': '🔒 VIP: la IA ilumina en morado los de mayor probabilidad (91 % medido).',
+    '✨ El morado de la IA': '🔒 VIP: la IA ilumina en morado los picks en los que tiene confianza alta.',
     '⚡ Pulso en vivo': 'Gratis: «otro gol» y «2 córners». Con VIP o 🪙 monedas, todo el Pulso al minuto.',
     'Arma tu combinada': 'Elige días, deportes y partidos. 🥇 Oro gratis; otros niveles, con 🪙 según su cuota.',
     '🔔 Avisos por Telegram': 'Entra y conecta tu Telegram: te avisamos de tus partidos (lo VIP, con candado).',
@@ -72,7 +72,7 @@
     const d = document.querySelector('#destacados .dest'); if (!d) return;
     d.classList.add('ia-2', 'guia-demo');
     const f = d.querySelector('.fila');
-    if (f && !d.querySelector('.ia-sello')) f.insertAdjacentHTML('afterend', '<span class="ia-sello s2 guia-demo-sello">🔒 Modelo + IA: mayor probabilidad · VIP</span>');
+    if (f && !d.querySelector('.ia-sello')) f.insertAdjacentHTML('afterend', '<span class="ia-sello s2 guia-demo-sello">🔒 IA: confianza máxima · VIP</span>');
   }
   function quitarDemo() {
     document.querySelectorAll('.guia-demo').forEach((d) => d.classList.remove('ia-2', 'guia-demo'));

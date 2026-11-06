@@ -208,7 +208,7 @@ def _apuesta(p: Dict, ia: bool = False) -> str:
             round(100 * float(p.get('ventaja') or 0)), (' en ' + _e(p.get('casa'))) if p.get('casa') else '')
     return '✅ <b>%s</b> · 💸 %.2f · 🎯 %d %%%s' % (
         _e(p.get('apuesta')), float(p.get('cuota') or 0), round(100 * float(p.get('prob') or 0)),
-        ' · ✨ Modelo + IA: mayor probabilidad' if ia and int(p.get('_ia') or 0) >= 5 else '')
+        ' · ✨ IA: confianza máxima' if ia and int(p.get('_ia') or 0) >= 5 else '')
 
 
 def _ticket(titulo: str, ps: List[Dict], ahora: dt.datetime, etiqueta: str, censurado: bool = False) -> Optional[bytes]:

@@ -22,12 +22,12 @@ def probar():
           'v531: el morado es sólo para el VIP')
     check("if (!['diamante', 'platino', 'oro'].includes(nivel(p).c)) return 0;" in app and 'return c >= 5 ? 2 : c >= 4 ? 1 : 0;' in app,
           'v531: sólo 💎/🔷/🥇 (en Plata la IA no separa), con la confianza 5 y 4 medidas')
-    check("const IA_SALIO = { 2: 0.91, 1: 0.86 };" in app and "' Modelo + IA: mayor probabilidad'" in app,
-          'v531: el sello dice lo que de verdad salió («mayor probabilidad · salió 91 %»)')
+    check("IA_SALIO" not in app and "' IA: confianza máxima'" in app,
+          'v590: el sello dice la confianza de la IA, sin prometer un acierto que ya no se sostiene')
     check("(ia ? ' ia-' + ia : '')" in app and "porIA(dest, (g) => g[0])" in app and "porIA(pt, (g) => g[0])" in app,
           'v531: Destacados y Para ti en morado, primero los que la IA ve mejor')
-    check("if (estado.arm.soloIA && !iaSegura(p)) continue;" in app and 'data-arm-soloia' in app and "' · con la IA ~<b>'" in app,
-          'v531: el armador marca cada pata, cuenta las seguras, arma sólo con ellas y da la probabilidad con la IA')
+    check("if (estado.arm.soloIA && !iaSegura(p)) continue;" in app and 'data-arm-soloia' in app and "' · con la IA ~<b>'" not in app,
+          'v531: el armador marca cada pata, cuenta las seguras, arma sólo con ellas; v590: sin prometer una probabilidad por la IA')
     css = io.open(os.path.join(AQUI, 'web', 'estilo.css'), encoding='utf-8').read()
     check('.dest.ia-2, .arm-pata.ia-2' in css and '.ia-sello' in css, 'v531: el morado en el estilo')
     cu = io.open(os.path.join(AQUI, 'web', 'cuenta.js'), encoding='utf-8').read()
