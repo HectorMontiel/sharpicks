@@ -1,0 +1,33 @@
+name: Experimento de la IA a ciegas
+
+# v588 — sólo a mano. La IA lee las noticias de picks ya jugados, sin cuota ni probabilidad, y lo guarda aparte para medirlo.
+on:
+  workflow_dispatch:
+    inputs:
+      max:
+        description: Tope de consultas de esta corrida
+        default: '150'
+
+permissions:
+  contents: read
+
+jobs:
+  leer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            ia_experimento.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - name: Leer las noticias a ciegas
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          EXP_MAX: ${{ inputs.max }}
+        run: python ia_experimento.py
