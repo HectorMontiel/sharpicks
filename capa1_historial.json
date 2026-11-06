@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-06T17:47:13Z",
+"actualizado": "2026-11-06T19:26:32Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -24424,6 +24424,26 @@
 },
 {
 "dia": "2026-11-06",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Antalyaspor vs Bursaspor",
+"apuesta": "Gana Bursaspor",
+"cuota": 1.74,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Artis Brno B vs Unicov",
+"apuesta": "Gana Artis Brno B",
+"cuota": 1.98,
+"resultado": "rojo",
+"marcador": "4-4"
+},
+{
+"dia": "2026-11-06",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Azazga vs MSP Batna",
@@ -24461,6 +24481,16 @@
 "cuota": 3.1,
 "resultado": "verde",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Hassania Agadir vs Berkane",
+"apuesta": "Gana Berkane",
+"cuota": 1.99,
+"resultado": "rojo",
+"marcador": "2-2"
 },
 {
 "dia": "2026-11-06",
@@ -24546,6 +24576,16 @@
 "dia": "2026-11-06",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Opava vs Vlasim",
+"apuesta": "Gana Opava",
+"cuota": 2.2,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "PSIM Yogyakarta vs Dewa United",
 "apuesta": "Gana Dewa United",
 "cuota": 1.79,
@@ -24571,6 +24611,16 @@
 "cuota": 1.26,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "R. Rzeszow vs Leczna",
+"apuesta": "Gana Leczna",
+"cuota": 2.1429,
+"resultado": "verde",
+"marcador": "0-2"
 },
 {
 "dia": "2026-11-06",
