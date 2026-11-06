@@ -459,7 +459,8 @@
         '<p class="sub">Todos los 💎 y 🔷 sin gastar monedas y el grupo VIP de Telegram con avisos al momento. Cancelas cuando quieras.</p>' +
         metodoPago() +
         ((yo.metodo || 'stripe') === 'mp' ? '<label class="campo">Correo de tu cuenta de Mercado Pago<input type="email" id="mp-correo" value="' + esc(yo.user.email || '') + '"></label>' : '') +
-        '<label class="renovar"><input type="checkbox" id="vip-renovar" checked> <span>🔁 <b>Renovar automáticamente</b> cada periodo. ' +
+        // v584 — sin marcar de inicio: LFPC 76 bis (reforma dic-2025) pide consentimiento expreso para los cobros recurrentes
+        '<label class="renovar"><input type="checkbox" id="vip-renovar"> <span>🔁 <b>Renovar automáticamente</b> con el mismo monto cada mes o cada 6 meses, según tu plan, en la fecha de renovación. ' +
         'Te avisamos ' + DIAS_AVISO + ' días antes de cada cobro y cancelas cuando quieras. Sin marcar: pagas sólo este periodo.</span></label>' +
         '<button class="vip-btn" data-vip="mensual">' + (lugares > 0 ? '⭐ Fundador: $' + pf + ' al mes <small>quedan ' + lugares + ' de 50 · después $' + pm + '</small>' : 'Mensual: $' + pm + ' al mes') + '</button>' +
         '<button class="vip-btn sec" data-vip="semestral">Semestral: $' + ps + ' cada 6 meses <small>≈ $' + Math.round(ps / 6) + ' al mes</small></button>' +
@@ -485,7 +486,8 @@
     h += '<div class="caja"><div class="tit">🎁 Canjear código</div><div class="fila-form"><input id="codigo" placeholder="SHARP-XXXX-XXXX" autocomplete="off"><button class="ver" data-canjear>Canjear</button></div></div>' +
       '<div class="caja"><div class="tit">🔑 ' + (yo.user.app_metadata && yo.user.app_metadata.provider === 'google' ? 'Crear contraseña (para entrar con tu usuario)' : 'Cambiar contraseña') + '</div>' +
       '<div class="fila-form"><input type="password" id="nueva-contra" placeholder="8+ caracteres, letras y números" autocomplete="new-password"><button class="ver" data-contra>Guardar</button></div></div>' +
-      '<button class="salir" data-salir>Cerrar sesión</button>';
+      '<button class="salir" data-salir>Cerrar sesión</button>' +
+      (esAdmin() ? '' : '<button class="salir borrar-cuenta" data-borrar-cuenta>Borrar mi cuenta</button>');
     $('micuenta-cuerpo').innerHTML = h;
     $('micuenta').hidden = false;
     pintarReportes();
@@ -663,7 +665,7 @@
   });
 
   document.addEventListener('click', async (e) => {
-    const t = e.target.closest('[data-entrar],[data-salir],[data-seguir],[data-desbloquear],[data-cerrar-acceso],[data-google],[data-ir-modo],[data-mi-cuenta],[data-cerrar-cuenta],[data-canjear],[data-contra],[data-vip],[data-enlace],[data-ayuda],[data-cerrar-ayuda],[data-mi-usuario],[data-comprar],[data-metodo],[data-sus],[data-portal],[data-cerrar-aviso],[data-desb-comb],[data-pulso-abrir]');
+    const t = e.target.closest('[data-entrar],[data-salir],[data-seguir],[data-desbloquear],[data-cerrar-acceso],[data-google],[data-ir-modo],[data-mi-cuenta],[data-cerrar-cuenta],[data-canjear],[data-contra],[data-vip],[data-enlace],[data-ayuda],[data-cerrar-ayuda],[data-mi-usuario],[data-comprar],[data-metodo],[data-sus],[data-portal],[data-cerrar-aviso],[data-desb-comb],[data-pulso-abrir],[data-borrar-cuenta]');
     if (!t) return;
     if (t.hasAttribute('data-ayuda')) { $('ayuda').hidden = false; return; }
     if (t.hasAttribute('data-cerrar-ayuda')) { $('ayuda').hidden = true; return; }
@@ -717,6 +719,21 @@
     }
     if (!yo.user) { abrirAcceso('Inicia sesión para seguir y desbloquear picks.'); return; }
     if (t.dataset.metodo) { yo.metodo = t.dataset.metodo; abrirMiCuenta(); return; }
+    // v584 — el usuario borra su cuenta solo (derecho de cancelación). Primero se cancela lo que cobre; eso lo hace el servidor.
+    if (t.hasAttribute('data-borrar-cuenta')) {
+      if (!(await confirmarApp('¿Borrar tu cuenta para siempre?', 'Se cancela tu renovación, sales del grupo VIP y pierdes tus monedas y picks guardados. Lo ya pagado no se reembolsa y esto no se puede deshacer.', 'Sí, borrar mi cuenta', 'No, conservarla'))) return;
+      t.disabled = true;
+      const { data: s } = await sb.auth.getSession();
+      const r = await fetch(FN + 'borrar-cuenta', { method: 'POST', headers: { 'Content-Type': 'application/json',
+        apikey: C.SUPABASE_ANON_KEY, Authorization: 'Bearer ' + (s.session ? s.session.access_token : '') },
+        body: JSON.stringify({ confirmar: true }) }).catch(() => null);
+      const d = r ? await r.json().catch(() => ({})) : {};
+      if (!d.ok) { t.disabled = false; abrirMiCuenta(d.error || 'No se pudo borrar tu cuenta. Revisa tu conexión e intenta de nuevo.'); return; }
+      const salir = document.querySelector('[data-salir]');
+      if (salir) salir.click();
+      avisoApp('Gracias por haber usado SharPicks.', 'aviso', 'Tu cuenta se borró');
+      return;
+    }
     if (t.dataset.sus || t.hasAttribute('data-portal')) {
       if (t.dataset.sus === 'cancelar' && !(await confirmarApp('¿Cancelar la renovación automática?', 'Sigues siendo VIP hasta el final de lo ya pagado.', 'Sí, cancelar'))) return;
       t.disabled = true;

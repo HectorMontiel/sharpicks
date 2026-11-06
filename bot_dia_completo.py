@@ -33,6 +33,7 @@ Uso:
 """
 
 import logging
+import os
 import sys
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s %(message)s')
@@ -41,7 +42,11 @@ logger = logging.getLogger(__name__)
 
 def _imprimir(texto: str) -> None:
     """La consola de Windows usa cp1252 y los emojis del resumen la revientan
-    ANTES de intentar el envío. Se imprime de forma tolerante."""
+    ANTES de intentar el envío. Se imprime de forma tolerante.
+    v584 — en GitHub el registro es público y este texto lleva picks de pago: ahí no se imprime."""
+    if os.environ.get('GITHUB_ACTIONS'):
+        print('(resumen de %d caracteres, oculto en el registro público)' % len(texto))
+        return
     try:
         print(texto)
     except UnicodeEncodeError:

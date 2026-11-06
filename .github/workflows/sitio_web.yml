@@ -51,6 +51,12 @@ jobs:
       url: ${{ steps.pages.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+
+      # v584 — los picks de pago van cifrados en cajon/ (el repositorio es público)
+      - name: Abrir los datos cifrados
+        env:
+          DATOS_CLAVE: ${{ secrets.DATOS_CLAVE }}
+        run: python3 cajon.py abrir --estricto
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -67,6 +73,7 @@ jobs:
           node --check web/pistas.js
           node --check web/idioma.js
           node --check web/idioma_en.js
+          node --check web/legal.js
           node --check web/cuenta.js
           node --check web/guia.js
           node test_web_v402.cjs

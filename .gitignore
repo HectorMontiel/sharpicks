@@ -245,3 +245,8 @@ _v315_rojos.csv
 # v377: el sitio web genera sus datos en el workflow (sitio_web.yml)
 web/datos/
 datos_privados/
+
+# v584: en claro sólo en disco; en git van cifrados en cajon/
+pronostico_dia.json
+anunciadas_dia.json
+arriesgadas_seguimiento.csv

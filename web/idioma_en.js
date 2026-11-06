@@ -1094,5 +1094,19 @@ window.I18N_EN = {
 "Últimos 30 días, verdes y rojas reales": "Last 30 days, real wins and losses",
 "Últimos 30 días. «🧠 IA»: lo que metería la IA en ese deporte (con 20+ partidos": "Last 30 days. «🧠 AI»: what the AI would bet in that sport (with 20+ games",
 "Últimos 5 partidos": "Last 5 games",
-"últimos 30 días, verdes y rojas reales": "last 30 days, real wins and losses"
+"últimos 30 días, verdes y rojas reales": "last 30 days, real wins and losses",
+"Borrar mi cuenta": "Delete my account",
+"Borrar tu cuenta para siempre": "Delete your account forever",
+"Se cancela tu renovación, sales del grupo VIP y pierdes tus monedas y picks guardados. Lo ya pagado no se reembolsa y esto no se puede deshacer": "Your renewal is canceled, you leave the VIP group and you lose your coins and saved picks. What you already paid isn't refunded and this can't be undone",
+"Sí, borrar mi cuenta": "Yes, delete my account",
+"No, conservarla": "No, keep it",
+"No se pudo borrar tu cuenta. Revisa tu conexión e intenta de nuevo": "Your account couldn't be deleted. Check your connection and try again",
+"Tu cuenta se borró": "Your account was deleted",
+"Gracias por haber usado SharPicks": "Thanks for using SharPicks",
+"con el mismo monto cada mes o cada # meses, según tu plan, en la fecha de renovación. Te avisamos # días antes de cada cobro y cancelas cuando quieras. Sin marcar: pagas sólo este periodo": "with the same amount every month or every # months, depending on your plan, on the renewal date. We alert you # days before each charge and you can cancel anytime. Unchecked: you pay only this period",
+"con el mismo monto cada mes o cada # meses, según tu plan, en la fecha de renovación": "with the same amount every month or every # months, depending on your plan, on the renewal date",
+"No se pudo cancelar tu renovación, así que no se borró nada. Intenta de nuevo en un momento": "Your renewal couldn't be canceled, so nothing was deleted. Try again in a moment",
+"Una cuenta de administrador no se borra desde aquí": "An admin account can't be deleted from here",
+"No se pudo borrar tu cuenta. Intenta de nuevo o escríbenos a sharpicks.bet@gmail.com": "Your account couldn't be deleted. Try again or write to us at sharpicks.bet@gmail.com",
+"Falta confirmar": "Confirmation is missing"
 };

@@ -276,6 +276,7 @@ body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
 .fila-form { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-top: 8px; }
 #micuenta .caja { margin-top: 10px; }
 .tg.bloque { display: block; text-align: center; margin: 8px 0; }
+.salir.borrar-cuenta { color: #f87171; border-color: rgba(248, 113, 113, .35); margin-top: 8px; }
 .salir { width: 100%; margin-top: 12px; background: none; border: 1px solid var(--borde); color: var(--tenue); border-radius: 10px; padding: 10px; font: inherit; cursor: pointer; }
 .plan .precio small { font-size: 14px; color: var(--tenue); font-weight: 600; }
 .plan .vip-btn { margin-top: 10px; }

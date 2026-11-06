@@ -59,7 +59,7 @@ def probar_avisos():
 def probar_pagina_y_funciones():
     cu = open(os.path.join('web', 'cuenta.js'), encoding='utf-8').read()
     check('data-sus="cancelar"' in cu and "FN + (t.dataset.sus ? 'suscripcion' : 'stripe')" in cu, 'hay botón de cancelar la renovación')
-    check('id="vip-renovar" checked' in cu and 'renovar }' in cu, 'al contratar se elige renovar automáticamente o pagar sólo el periodo')
+    check('id="vip-renovar">' in cu and 'renovar }' in cu, 'al contratar se elige renovar automáticamente o pagar sólo el periodo')
     check('data-metodo="stripe"' in cu and 'data-metodo="mp"' in cu, 'se elige pagar con Stripe (Apple Pay) o Mercado Pago')
     check('function avisoRenovacion()' in cu and 'DIAS_AVISO = 7' in cu, 'aviso dentro de la app 7 días antes')
     t = open(os.path.join('web', 'terminos.html'), encoding='utf-8').read()

@@ -312,10 +312,14 @@ if __name__ == '__main__':
     # v35 (§4): la consola de Windows usa cp1252 y los emojis del resumen
     # reventaban el print ANTES de intentar el envío (el mensaje sí es UTF-8
     # válido y Telegram lo acepta). Se imprime de forma tolerante.
-    try:
-        print(mensaje)
-    except UnicodeEncodeError:
-        sys.stdout.buffer.write(mensaje.encode('utf-8', 'replace') + b'\n')
+    # v584 — en GitHub el registro es público y el resumen lleva picks de pago: ahí no se imprime.
+    if os.environ.get('GITHUB_ACTIONS'):
+        print('(resumen de %d caracteres, oculto en el registro público)' % len(mensaje))
+    else:
+        try:
+            print(mensaje)
+        except UnicodeEncodeError:
+            sys.stdout.buffer.write(mensaje.encode('utf-8', 'replace') + b'\n')
     if '--dry-run' not in sys.argv:
         # v374 — si había credenciales y no llegó, el workflow sale en ROJO
         # (antes salía verde los días que Telegram lo rechazaba)

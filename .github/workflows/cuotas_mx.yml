@@ -134,6 +134,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      # v584 — los picks de pago van cifrados en cajon/ (el repositorio es público)
+      - name: Abrir los datos cifrados
+        env:
+          DATOS_CLAVE: ${{ secrets.DATOS_CLAVE }}
+        run: python3 cajon.py abrir
 
       # v300 — LA GUARDA DE FRESCURA: aqui muere el 95 % de las pasadas.
       #
