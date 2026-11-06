@@ -176785,3 +176785,35 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5103699,2026-11-06,brasil,Bahia,Michel Araújo,902826,M,0,25,0,0,0,0.0,,2.0,1665624.0
 5103699,2026-11-06,brasil,Bahia,Erick Pulga,1340527,F,0,25,2,0,0,0.16,,3.0,15405290.0
 5103699,2026-11-06,brasil,Bahia,Román Gómez,1617809,D,0,7,0,0,0,0.0,,1.0,1711764.0
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Jared Muñoz,1432342,G,1,90,0,0,0,0.0,11,0,113930
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,David Oteo,1662067,D,1,90,0,0,0,0.0,32,1,
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Eduardo González,1010154,D,1,90,0,0,0,0.0,34,1,
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Sergio Flores,643748,D,1,90,0,0,0,0.0,36,1,359923
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Jan Ontiveros,1380836,D,1,66,1,0,0,0.02,38,1,
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Éric Cantú,926588,M,1,90,2,1,1,0.17,65,2,129289
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Alonso Escoboza,277141,F,1,90,2,1,0,0.04,82,3,122649
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Luis Gutiérrez,1432216,M,1,31,1,0,0,0.04,84,2,
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Juan Angulo,1203625,M,1,76,1,0,0,0.14,86,2,
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Jair González,1174785,F,1,45,1,0,0,0.08,88,3,379017
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,José Reyes,1431169,F,1,76,3,1,0,0.14,115,3,
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Jared Torres,1688256,F,0,59,2,0,0,0.1,,3,
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Cesar Vega,2117616,M,0,45,1,1,0,0.09,,2,
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Andy Garcia,824319,M,0,24,0,0,0,0.0,,2,90952
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Rubén Domínguez,1309334,M,0,14,0,0,0,0.0,,2,86964
+1000022934,2026-11-06,mex_expansion,Alacranes de Durango,Luis Loroña,396182,F,0,14,0,0,0,0.0,,3,103781
+1000022934,2026-11-06,mex_expansion,Leones Negros,Oziel Cantú,1551136,G,1,90,0,0,0,0.0,11,0,
+1000022934,2026-11-06,mex_expansion,Leones Negros,Jared Escalante,1826102,D,1,90,0,0,0,0.0,32,1,
+1000022934,2026-11-06,mex_expansion,Leones Negros,Olaf González,1217099,D,1,90,1,1,0,0.07,34,1,
+1000022934,2026-11-06,mex_expansion,Leones Negros,Juan Agüayo,848042,D,1,90,2,0,0,0.41,36,1,164803
+1000022934,2026-11-06,mex_expansion,Leones Negros,Ulises Torres,848048,D,1,40,0,0,0,0.0,38,1,171626
+1000022934,2026-11-06,mex_expansion,Leones Negros,Jesús Brígido,1405566,M,1,65,2,0,0,0.04,72,2,207581
+1000022934,2026-11-06,mex_expansion,Leones Negros,Alejandro Bravo,1433687,M,1,84,2,0,0,0.14,74,2,
+1000022934,2026-11-06,mex_expansion,Leones Negros,Jahaziel Marchand,1222815,M,1,90,0,0,0,0.0,76,2,194202
+1000022934,2026-11-06,mex_expansion,Leones Negros,Sergio Hernández,1432289,M,1,90,0,0,0,0.0,78,2,206927
+1000022934,2026-11-06,mex_expansion,Leones Negros,Luis Razo,1182112,F,1,65,0,0,0,0.0,104,3,
+1000022934,2026-11-06,mex_expansion,Leones Negros,Óscar Gil,1744074,F,1,65,0,0,0,0.0,106,3,
+1000022934,2026-11-06,mex_expansion,Leones Negros,Miguel Alvarado,1781102,D,0,50,0,0,0,0.0,,1,
+1000022934,2026-11-06,mex_expansion,Leones Negros,Mauro Valenzuela,1688758,M,0,25,0,0,0,0.0,,2,
+1000022934,2026-11-06,mex_expansion,Leones Negros,Joel Pérez,863036,F,0,25,2,1,0,0.38,,3,214022
+1000022934,2026-11-06,mex_expansion,Leones Negros,Kevin Loera,1206965,F,0,25,1,0,0,0.06,,3,142166
+1000022934,2026-11-06,mex_expansion,Leones Negros,Juan Cázares,1895026,M,0,6,0,0,0,0.0,,2,288456

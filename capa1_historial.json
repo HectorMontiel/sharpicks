@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-06T05:02:34Z",
+"actualizado": "2026-11-06T06:38:10Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23766,6 +23766,16 @@
 "dia": "2026-11-05",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Alacranes de Durango vs Leones Negros",
+"apuesta": "Gana Alacranes de Durango",
+"cuota": 2.2,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Arnett Gardens vs Mount Pleasant",
 "apuesta": "Gana Mount Pleasant",
 "cuota": 1.74,
@@ -23894,6 +23904,16 @@
 },
 {
 "dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Colorado Avalanche vs Nashville Predators",
+"apuesta": "Handicap: Nashville Predators +3.5",
+"cuota": 1.125,
+"resultado": "verde",
+"marcador": "2-3"
+},
+{
+"dia": "2026-11-05",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Crystal Palace vs Hoffenheim",
@@ -23941,6 +23961,16 @@
 "cuota": 3.0,
 "resultado": "rojo",
 "marcador": "0-0"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Durango vs Leones Negros",
+"apuesta": "Gana Durango",
+"cuota": 2.2,
+"resultado": "verde",
+"marcador": "1-0"
 },
 {
 "dia": "2026-11-05",
