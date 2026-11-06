@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-06T21:00:34Z",
+"actualizado": "2026-11-06T22:33:27Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -24416,11 +24416,41 @@
 "dia": "2026-11-06",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Admira vs St. Polten",
+"apuesta": "Gana St. Polten",
+"cuota": 2.45,
+"resultado": "rojo",
+"marcador": "2-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Al Jazeera Amman vs Al Ramtha",
 "apuesta": "Gana Al Ramtha",
 "cuota": 2.25,
 "resultado": "verde",
 "marcador": "0-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Alcione Milano vs Lumezzane",
+"apuesta": "Gana Alcione Milano",
+"cuota": 2.15,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Ammanford vs Briton Ferry",
+"apuesta": "Gana Briton Ferry",
+"cuota": 1.52,
+"resultado": "rojo",
+"marcador": "3-1"
 },
 {
 "dia": "2026-11-06",
@@ -24441,6 +24471,36 @@
 "cuota": 1.98,
 "resultado": "rojo",
 "marcador": "4-4"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Ascoli vs Palermo",
+"apuesta": "Gana Ascoli",
+"cuota": 3.1,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Ascoli vs Palermo",
+"apuesta": "Empate",
+"cuota": 3.45,
+"resultado": "verde",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Atlético Grau vs Cusco FC",
+"apuesta": "Gana Atlético Grau",
+"cuota": 2.95,
+"resultado": "verde",
+"marcador": "3-0"
 },
 {
 "dia": "2026-11-06",
@@ -24484,6 +24544,56 @@
 },
 {
 "dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Boulogne vs Annecy",
+"apuesta": "Empate",
+"cuota": 3.05,
+"resultado": "rojo",
+"marcador": "3-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Brescia vs Arzignano",
+"apuesta": "Gana Brescia",
+"cuota": 1.59,
+"resultado": "verde",
+"marcador": "3-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Cliftonville vs Larne",
+"apuesta": "Gana Larne",
+"cuota": 1.6667,
+"resultado": "rojo",
+"marcador": "4-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Dordrecht vs NAC Breda",
+"apuesta": "Gana NAC Breda",
+"cuota": 1.63,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Dordrecht vs NAC Breda",
+"apuesta": "Gana NAC Breda",
+"cuota": 1.63,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-06",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Dubai City vs Forte Virtus",
@@ -24524,6 +24634,26 @@
 },
 {
 "dia": "2026-11-06",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "FC Dordrecht vs NAC Breda",
+"apuesta": "NAC Breda o empate",
+"cuota": 1.167,
+"resultado": "verde",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "FC Dordrecht vs NAC Breda",
+"apuesta": "Gana NAC Breda",
+"cuota": 1.58,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-06",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "FC GOA vs Bengaluru FC",
@@ -24546,6 +24676,16 @@
 "dia": "2026-11-06",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Grau vs Cusco",
+"apuesta": "Gana Grau",
+"cuota": 2.9,
+"resultado": "verde",
+"marcador": "3-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Hammarby vs Elfsborg",
 "apuesta": "Gana Hammarby",
 "cuota": 1.42,
@@ -24561,6 +24701,16 @@
 "cuota": 1.99,
 "resultado": "rojo",
 "marcador": "2-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Haverfordwest vs Cardiff Metropolitan",
+"apuesta": "Gana Haverfordwest",
+"cuota": 2.45,
+"resultado": "rojo",
+"marcador": "0-3"
 },
 {
 "dia": "2026-11-06",
@@ -24626,6 +24776,26 @@
 "dia": "2026-11-06",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Montpellier vs Metz",
+"apuesta": "Gana Montpellier",
+"cuota": 2.06,
+"resultado": "rojo",
+"marcador": "2-3"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Nancy vs Sochaux",
+"apuesta": "Gana Nancy",
+"cuota": 1.7,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Necaxa U21 vs Club Tijuana U21",
 "apuesta": "Gana Club Tijuana U21",
 "cuota": 3.35,
@@ -24651,6 +24821,16 @@
 "cuota": 2.2,
 "resultado": "verde",
 "marcador": "1-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Os Belenenses vs Lusitano GC",
+"apuesta": "Gana Os Belenenses",
+"cuota": 1.61,
+"resultado": "rojo",
+"marcador": "0-0"
 },
 {
 "dia": "2026-11-06",
@@ -24725,6 +24905,16 @@
 {
 "dia": "2026-11-06",
 "nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Sevilla vs Alaves",
+"apuesta": "Gana Sevilla",
+"cuota": 1.96,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
 "deporte": "Tenis",
 "partido": "Sonmez Z. vs Liu C.",
 "apuesta": "Gana Liu C.",
@@ -24756,11 +24946,41 @@
 "dia": "2026-11-06",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Toulouse vs Strasbourg",
+"apuesta": "Gana Strasbourg",
+"cuota": 3.35,
+"resultado": "rojo",
+"marcador": "3-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Truong Tuoi Dong Nai vs Da Nang",
 "apuesta": "Gana Truong Tuoi Dong Nai",
 "cuota": 2.65,
 "resultado": "verde",
 "marcador": "1-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Union Touarga vs Amal Tiznit",
+"apuesta": "Gana Amal Tiznit",
+"cuota": 3.0,
+"resultado": "verde",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "VVV-Venlo vs Jong PSV",
+"apuesta": "VVV-Venlo o empate",
+"cuota": 1.182,
+"resultado": "verde",
+"marcador": "1-1"
 }
 ]
 }
