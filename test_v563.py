@@ -51,7 +51,7 @@ def test_ganado_a_los_dos_canales_una_vez():
     assert len(g['vip']) == 1 and len(g['gratis']) == 1
     assert g['vip'][0][1] == [(k, 'vip', 'ganado')] and g['vip'][0][2][:4] == b'\x89PNG'
     assert '1.44' in g['vip'][0][0] and 'ganaste' in g['vip'][0][0]
-    assert 'VIP antes del partido' in g['gratis'][0][0] and 'VIP antes del partido' not in g['vip'][0][0]
+    assert 'Únete al VIP' in g['gratis'][0][0] and 'Únete al VIP' not in g['vip'][0][0]   # v579 — en el gratis, invitación
     # no se repite
     assert tc.armar_ganados(fin, {(k, 'vip', 'ganado'), (k, 'gratis', 'ganado')}) == {'vip': [], 'gratis': []}
 
@@ -202,7 +202,7 @@ def test_ganado_del_metodo_con_datos_reales():
     bueno = {'goals': (2, 0), 'corners': (5, 3), 'tarjetas': (1, 1)}       # 2 goles < 4,5 · Lech 3 córners > 2,5
     g = tc.armar_ganados([], set(), despues, lambda *a: bueno)
     assert len(g['vip']) == 1 and len(g['gratis']) == 1 and g['vip'][0][2][:4] == b'\x89PNG'
-    assert '~1.38' in g['vip'][0][0] and '~+' in g['vip'][0][0] and 'VIP antes del partido' in g['gratis'][0][0]
+    assert '~1.38' in g['vip'][0][0] and '~+' in g['vip'][0][0] and 'Únete al VIP' in g['gratis'][0][0]
     # no se pregunta antes de tiempo
     llamadas = []
     assert tc.armar_ganados([], set(), AHORA, lambda *a: llamadas.append(a))['vip'] == [] and not llamadas

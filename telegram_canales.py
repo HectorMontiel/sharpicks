@@ -444,17 +444,64 @@ def _ganados_metodo(enviados: Set, ahora: dt.datetime, out: Dict, final_de=None)
         marc = '%d-%d' % tuple(final['goals']) if final.get('goals') else ''
         patas = [{'partido': y.get('partido'), 'apuesta': y.get('apuesta'), 'marcador': marc} for y in d['patas']]
         for canal in ('vip', 'gratis'):
-            t = ('🏆💰 <b>¡PARLEY DEL PARTIDO CUMPLIDO!</b> · cuota <b>~%.2f</b>\n⚽ %s %s\n' % (cuota, _e(d.get('partido')), _e(marc)) +
-                 '\n'.join('✅ %s' % _e(y.get('apuesta')) for y in d['patas']) +
-                 '\n\n🔥 Apostando %s ganaste <b>~+%s</b>' % (_pesos(apuesta), _pesos(apuesta * (cuota - 1))) +
-                 ('\n\n💎 Esto les llegó a los VIP antes del partido 👉 ' + SITIO if canal == 'gratis' else '') + PIE)
+            # v579 — el parley del partido es del VIP: en el gratis se cuenta desde afuera, para invitar a unirse
+            t = (texto_invita([(y, {'marcador': marc}) for y in d['patas']], apuesta, cuota, True, aprox=True) if canal == 'gratis' else
+                 ('🏆💰 <b>¡PARLEY DEL PARTIDO CUMPLIDO!</b> · cuota <b>~%.2f</b>\n⚽ %s %s\n' % (cuota, _e(d.get('partido')), _e(marc)) +
+                  '\n'.join('✅ %s' % _e(y.get('apuesta')) for y in d['patas']) +
+                  '\n\n🔥 Apostando %s ganaste <b>~+%s</b>' % (_pesos(apuesta), _pesos(apuesta * (cuota - 1))) + PIE))
             foto = None
             try:
                 import tarjeta_tg
-                foto = tarjeta_tg.ganado('Parley del partido', patas, apuesta, cuota, 'VIP', aprox=True)
+                foto = (tarjeta_tg.invita_vip('Parley del partido', patas, apuesta, cuota, numeros_vip(), aprox=True) if canal == 'gratis'
+                        else tarjeta_tg.ganado('Parley del partido', patas, apuesta, cuota, 'VIP', aprox=True))
             except Exception as e:
                 logger.warning('[telegram] sin foto de ganado: %s', e)
             out[canal].append((t, [(clave, canal, 'ganado')], foto))
+
+
+_NUMEROS_VIP: Dict = {}
+
+
+def numeros_vip() -> Optional[Dict]:
+    """v579 — lo que de verdad salió en el VIP los últimos 7 días, verdes y rojas (lo enseñado, ya calificado). None si no se puede leer."""
+    if 'd' in _NUMEROS_VIP:
+        return _NUMEROS_VIP['d']
+    sb, out = _sb(), None
+    try:
+        if sb:
+            import requests
+            desde = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=7)).strftime('%Y-%m-%dT%H:%M:%S')
+            ids = []
+            for pag in range(10):
+                r = requests.get(sb[0], headers=sb[1], timeout=20, params={'select': 'pick', 'tipo': 'eq.pick', 'canal': 'eq.vip', 'texto': 'not.is.null',
+                                                                          'enviado': 'gte.' + desde, 'order': 'pick', 'limit': 1000, 'offset': pag * 1000})
+                lote = r.json() if r.ok else []
+                ids += [x['pick'] for x in lote if not str(x.get('pick')).startswith(('comb:', 'ticket:'))]
+                if len(lote) < 1000:
+                    break
+            url = sb[0].replace('/telegram_enviados', '/picks')
+            v = n = 0
+            for i in range(0, len(ids), 150):
+                r = requests.get(url, headers=sb[1], timeout=20, params={'select': 'estado', 'id': 'in.(%s)' % ','.join(ids[i:i + 150]), 'estado': 'in.(verde,roja)'})
+                for x in (r.json() if r.ok else []):
+                    n += 1
+                    v += x.get('estado') == 'verde'
+            out = {'v': v, 'r': n - v} if n >= 30 else None     # con muy pocos no dice nada
+    except Exception as e:
+        logger.warning('[telegram] sin números del VIP: %s', type(e).__name__)
+    _NUMEROS_VIP['d'] = out
+    return out
+
+
+def texto_invita(verdes: List, apuesta: int, cuota: float, parley: bool, aprox: bool = False) -> str:
+    """v579 — el texto del canal gratis cuando cobró el VIP."""
+    ap = '~' if aprox else ''
+    n = numeros_vip()
+    return ('🔒 <b>Esto no lo vieron aquí</b>\n\n💎 Los VIP recibieron este %s antes del partido y se cumplió:\n' % ('parley' if parley else 'pick') +
+            '\n'.join('✅ %s · %s %s' % (_e(x.get('apuesta')), _e(x.get('partido')), _e(p.get('marcador') or '')) for x, p in verdes) +
+            '\n\n💰 Cuota <b>%s%.2f</b>: con %s, <b>%s+%s</b> de ganancia' % (ap, cuota, _pesos(apuesta), ap, _pesos(apuesta * (cuota - 1))) +
+            ('\n📊 VIP, últimos 7 días: %d ✅ · %d ❌' % (n['v'], n['r']) if n else '') +
+            '\n\n👉 <b>Únete al VIP</b> y recibe el próximo a tiempo: ' + SITIO + PIE)
 
 
 def armar_ganados(picks: List[Dict], enviados: Set, ahora: Optional[dt.datetime] = None, final_de=None) -> Dict[str, List]:
@@ -489,14 +536,16 @@ def armar_ganados(picks: List[Dict], enviados: Set, ahora: Optional[dt.datetime]
             if (clave, canal, 'ganado') in enviados or len(out[canal]) >= MAX_GANADOS:
                 continue
             que = 'PARLEY CUMPLIDO' if len(verdes) > 1 else 'PICK CUMPLIDO'
-            t = ('🏆💰 <b>¡%s!</b> · cuota <b>%.2f</b>\n' % (que, cuota) +
-                 '\n'.join('✅ %s · %s %s' % (_e(x.get('apuesta')), _e(x.get('partido')), _e(p.get('marcador') or '')) for x, p in verdes) +
-                 '\n\n🔥 Apostando %s ganaste <b>+%s</b>' % (_pesos(apuesta), _pesos(apuesta * (cuota - 1))) +
-                 ('\n\n💎 Esto les llegó a los VIP antes del partido 👉 ' + SITIO if canal == 'gratis' and d.get('vip') else '') + PIE)
+            invita = canal == 'gratis' and d.get('vip')       # v579 — no se mandó en este canal: se cuenta desde afuera
+            t = (texto_invita(verdes, apuesta, cuota, len(verdes) > 1) if invita else
+                 ('🏆💰 <b>¡%s!</b> · cuota <b>%.2f</b>\n' % (que, cuota) +
+                  '\n'.join('✅ %s · %s %s' % (_e(x.get('apuesta')), _e(x.get('partido')), _e(p.get('marcador') or '')) for x, p in verdes) +
+                  '\n\n🔥 Apostando %s ganaste <b>+%s</b>' % (_pesos(apuesta), _pesos(apuesta * (cuota - 1))) + PIE))
             foto = None
             try:
                 import tarjeta_tg
-                foto = tarjeta_tg.ganado(str(d.get('titulo') or 'Parley'), patas, apuesta, cuota, 'VIP' if d.get('vip') else 'GRATIS')
+                foto = (tarjeta_tg.invita_vip(str(d.get('titulo') or 'Parley'), patas, apuesta, cuota, numeros_vip()) if invita
+                        else tarjeta_tg.ganado(str(d.get('titulo') or 'Parley'), patas, apuesta, cuota, 'VIP' if d.get('vip') else 'GRATIS'))
             except Exception as e:
                 logger.warning('[telegram] sin foto de ganado: %s', e)
             out[canal].append((t, [(clave, canal, 'ganado')], foto))

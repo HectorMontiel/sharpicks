@@ -898,6 +898,11 @@
       const h365 = estado.s365[estado.motor[k].gid] || [], u365 = h365.length ? h365[h365.length - 1].v : null;
       if (u365) { const t365 = (i) => Object.entries(STATS_ATAQUE).reduce((n, [id, w]) => n + w * ((u365[id] || [0, 0])[i] || 0), 0); if (t365(0) + t365(1) > 0) tramos = [{ a: 0, b: fin, t: [t365(0) / 2, t365(1) / 2] }]; }
     }
+    if (!tramos.length && v && v.stats) {                                      // ni eso: las estadísticas del partido (ESPN o Flashscore)
+      const st = (n, i) => Number(((v.stats[n] || {}).v || [])[i]) || 0;
+      const tEsp = (i) => st('totalShots', i) + st('shotsOnTarget', i) + st('wonCorners', i);
+      if (tEsp(0) + tEsp(1) > 0) tramos = [{ a: 0, b: fin, t: [tEsp(0), tEsp(1)] }];
+    }
     const modo = mom ? 'momentum' : !pocasJugadas ? 'jugadas' : tramos.some((x) => x.t[0] + x.t[1] > 0) ? 'mitades' : 'linea';
     const barra = (x0, x1, valor, tope) => { const h = 11 * Math.abs(valor) / tope; return h < 0.2 ? '' : '<rect x="' + x0.toFixed(2) + '" y="' + (valor > 0 ? 12 - h : 12).toFixed(2) +
       '" width="' + Math.max(0.3, x1 - x0).toFixed(2) + '" height="' + h.toFixed(2) + '" fill="' + (valor > 0 ? c.l : c.r) + '"/>'; };

@@ -470,7 +470,7 @@
       const apellido = (x) => { const s = String(x || '').trim().split(/\s+/); return (s.length > 1 && /\.$/.test(s[s.length - 1]) ? s[0] : s[s.length - 1]).slice(0, 9); };
       const lista = (i) => (sets && sets.length ? sets.map((x, j) => '<i' + (j === sets.length - 1 && !final ? ' class="va"' : '') + '>' + x[i] + '</i>').join('') : '<i>' + tot[i] + '</i>');
       const sa = (i) => (t && t.saca === i && !final ? '<u></u>' : '');
-      const pt = t && t.pts && !final ? esc(t.pts[0]) + '-' + esc(t.pts[1]) : final ? 'FINAL' : esc((t && t.det) || v.detalle || 'EN VIVO');
+      const pt = m && m.porEmpezar ? 'POR EMPEZAR' : t && t.pts && !final ? esc(t.pts[0]) + '-' + esc(t.pts[1]) : final ? 'FINAL' : esc((t && t.det) || v.detalle || 'EN VIVO');
       return fila('<strong>' + pt + '</strong>', '<b class="mc-eq">' + sa(0) + esc(apellido(nom[0])) + '</b><span class="mc-sets">' + lista(0) + '</span>',
         '<span class="mc-sets">' + lista(1) + '</span><b class="mc-eq">' + sa(1) + esc(apellido(nom[1])) + '</b>', 'mc-tenis');
     }
@@ -894,6 +894,7 @@
     for (const x of TENIS.lista) {
       const dir = mismoTenista(L, x.home) && mismoTenista(V, x.away), rev = mismoTenista(L, x.away) && mismoTenista(V, x.home);
       if (!dir && !rev) continue;
+      m.porEmpezar = x.estado === 'pre';
       if (x.estado !== 'in' && x.estado !== 'post') return null;
       const par = (a) => (a && rev ? [a[1], a[0]] : a);
       return { sets: (x.sets || []).map(par), tot: par([x.gh || 0, x.ga || 0]), pts: par(x.pts) || null, saca: x.saca == null ? null : (rev ? 1 - x.saca : x.saca), det: x.detalle || '' };
@@ -1141,7 +1142,8 @@
       if (m.fam === 'Tenis' && m.v && m.v.fase === 'in') pedirTenis();
       if (dt > 0) {
         m.t += dt;
-        if (m.pausa) { m.js.forEach((q) => { q.tx = q.x0; q.ty = q.y0; }); dar(m, null); m.bt = [52.5, ALTO[m.fam] / 2]; m.guion = null; m.fijo = false; } else FASES[m.fam].paso(m);
+        if (m.fam === 'Tenis') marcadorTenis(m);
+        if (m.pausa || m.porEmpezar) { m.js.forEach((q) => { q.tx = q.x0; q.ty = q.y0; }); dar(m, null); m.bt = [52.5, ALTO[m.fam] / 2]; m.guion = null; m.fijo = false; } else FASES[m.fam].paso(m);
         if (!m.pausa && m.guion === undefined) m.guion = null;
         integrar(m, dt);
       }

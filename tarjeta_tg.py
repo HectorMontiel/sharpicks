@@ -232,3 +232,66 @@ if __name__ == '__main__':
     open('ticket_demo_vip.png', 'wb').write(ticket('Pick VIP', demo[:1], 'VIP'))
     open('ticket_demo_censurado.png', 'wb').write(ticket('Picks VIP · ya es hora', demo, 'VIP', censurado=True))
     print('listo')
+
+
+def invita_vip(titulo: str, patas: List[Dict], apuesta: int, cuota_total: float, numeros: Optional[Dict] = None, aprox: bool = False) -> bytes:
+    """v579 — EL USUARIO: «en el gratis, que si se hubieran unido al VIP hubieran tenido ese parley; atraer a que se unan». Lo que cobró el VIP, contado desde
+    afuera: no dice «¡ganamos!» porque en este canal no se mandó. Lleva los números reales de la semana, verdes Y rojos: eso es lo que da confianza."""
+    ap = '~' if aprox else ''
+    patas = patas[:6]
+    fila_h, cab_h = 118, 330
+    alto = cab_h + fila_h * len(patas) + 448 + (70 if numeros else 0)
+    im = Image.new('RGB', (ANCHO, alto), (20, 14, 44))
+    d = ImageDraw.Draw(im)
+    for i in range(alto):                       # fondo morado, el color del VIP, que se apaga hacia abajo
+        t = i / alto
+        d.line([(0, i), (ANCHO, i)], fill=(int(58 - 38 * t), int(34 - 20 * t), int(112 - 68 * t)))
+    d.rounded_rectangle([30, 30, ANCHO - 30, alto - 30], radius=36, fill=(15, 18, 38), outline=ORO, width=6)
+    x = 70
+    try:
+        logo = Image.open(os.path.join(AQUI, 'web', 'marca', 'logo-96.png')).convert('RGBA').resize((76, 76))
+        im.paste(logo, (x, 58), logo)
+        x += 94
+    except Exception:
+        pass
+    d.text((x, 62), 'Shar', font=_fuente(38), fill=BLANCO)
+    d.text((x + d.textlength('Shar', font=_fuente(38)), 62), 'Picks', font=_fuente(38), fill=VERDE)
+    d.text((x, 108), _corta(d, titulo.upper(), _fuente(24), 500), font=_fuente(24), fill=TENUE)
+    fe, et = _fuente(30), 'SÓLO VIP'
+    ew = d.textlength(et, font=fe) + 44
+    d.rounded_rectangle([ANCHO - 70 - ew, 66, ANCHO - 70, 120], radius=27, fill=ORO)
+    d.text((ANCHO - 70 - ew + 22, 74), et, font=fe, fill=FONDO)
+    d.rounded_rectangle([70, 158, ANCHO - 70, 296], radius=28, fill=ORO)
+    tg, fg = 'LOS VIP COBRARON', _fuente(78)
+    d.text(((ANCHO - d.textlength(tg, font=fg)) / 2, 184), tg, font=fg, fill=FONDO)
+    y = cab_h
+    for p in patas:
+        d.ellipse([70, y + 10, 124, y + 64], fill=VERDE)
+        d.line([(84, y + 38), (94, y + 49), (111, y + 25)], fill=FONDO, width=7)
+        d.text((144, y + 6), _corta(d, p.get('apuesta', ''), _fuente(36), ANCHO - 220), font=_fuente(36), fill=BLANCO)
+        sub = str(p.get('partido', '')) + ('  ' + str(p.get('marcador')) if p.get('marcador') else '')
+        d.text((144, y + 56), _corta(d, sub, _fuente(26, False), ANCHO - 220), font=_fuente(26, False), fill=TENUE)
+        y += fila_h
+    d.line([(70, y), (ANCHO - 70, y)], fill=BORDE, width=2)
+    d.text((70, y + 20), 'Cuota', font=_fuente(28, False), fill=TENUE)
+    d.text((70, y + 54), ap + '%.2f' % cuota_total, font=_fuente(56), fill=ORO)
+    tx = 'Con %s' % _pesos(apuesta)
+    d.text((ANCHO - 70 - d.textlength(tx, font=_fuente(30, False)), y + 26), tx, font=_fuente(30, False), fill=TENUE)
+    tc = '%s+%s de ganancia' % (ap, _pesos(apuesta * (cuota_total - 1)))
+    d.text((ANCHO - 70 - d.textlength(tc, font=_fuente(44)), y + 62), tc, font=_fuente(44), fill=BLANCO)
+    y += 136
+    if numeros:
+        tn = 'VIP, últimos 7 días:  %d verdes  ·  %d rojas  ·  %d %%' % (numeros['v'], numeros['r'], round(100 * numeros['v'] / max(1, numeros['v'] + numeros['r'])))
+        fn = _fuente(30)
+        d.text(((ANCHO - d.textlength(tn, font=fn)) / 2, y + 6), tn, font=fn, fill=BLANCO)
+        y += 70
+    d.rounded_rectangle([70, y, ANCHO - 70, y + 150], radius=26, fill=VERDE)
+    t1, f1 = 'ÚNETE AL VIP', _fuente(68)
+    d.text(((ANCHO - d.textlength(t1, font=f1)) / 2, y + 14), t1, font=f1, fill=FONDO)
+    t2, f2 = 'recibe el próximo antes del partido', _fuente(30, False)
+    d.text(((ANCHO - d.textlength(t2, font=f2)) / 2, y + 100), t2, font=f2, fill=FONDO)
+    d.text((70, alto - 112), 'Lo que ya pasó no asegura lo que viene.', font=_fuente(24, False), fill=TENUE)
+    d.text((70, alto - 78), 'sharpicksapp.com  ·  +18  ·  juega con responsabilidad', font=_fuente(24, False), fill=TENUE)
+    b = io.BytesIO()
+    im.save(b, 'PNG', optimize=True)
+    return b.getvalue()
