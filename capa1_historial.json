@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-06T09:53:07Z",
+"actualizado": "2026-11-06T11:24:48Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -24411,6 +24411,26 @@
 "cuota": 1.15,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "PSIM Yogyakarta vs Dewa United",
+"apuesta": "Gana Dewa United",
+"cuota": 1.79,
+"resultado": "verde",
+"marcador": "1-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "PSIM Yogyakarta vs Dewa United",
+"apuesta": "Gana Dewa United",
+"cuota": 1.79,
+"resultado": "verde",
+"marcador": "1-2"
 },
 {
 "dia": "2026-11-06",
