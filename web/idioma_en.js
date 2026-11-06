@@ -1117,5 +1117,11 @@ window.I18N_EN = {
 "La IA no ve una apuesta clara en este partido": "The AI doesn't see a clear bet for this match",
 "La IA todavía no propone apuesta en este deporte: se está midiendo": "The AI isn't proposing a bet for this sport yet: it's still calibrating",
 "Lo que metería la IA (#": "What the AI would place (#",
-"Modelo: últimos # días. «🧠 IA»: cuando le da # %+ en fútbol y tenis, desde que se mide (#+ partidos); no son los mismos partidos": "Model: last # days. \"🧠 AI\": when it gives # %+ in soccer and tennis, since tracking began (#+ matches); these are not the same matches"
+"Modelo: últimos # días. «🧠 IA»: cuando le da # %+ en fútbol y tenis, desde que se mide (#+ partidos); no son los mismos partidos": "Model: last # days. \"🧠 AI\": when it gives # %+ in soccer and tennis, since tracking began (#+ matches); these are not the same matches",
+"Al crear tu cuenta gratis te llevas # 🪙 de regalo para desbloquear tus primeros picks": "Create your free account and get # 🪙 free to unlock your first picks",
+"Fundadores: $# al mes": "Founders: $# per month",
+"O semestral: $# cada # meses": "Or semiannual: $# every # months",
+"Paquetes: # 🪙 $# · # 🪙 $# · # 🪙 $# · # 🪙 $#": "Packages: # 🪙 $# · # 🪙 $# · # 🪙 $# · # 🪙 $#",
+"después": "after",
+"para los primeros #, para siempre": "for the first #, forever"
 };
