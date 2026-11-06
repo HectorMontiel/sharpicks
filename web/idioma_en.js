@@ -1108,5 +1108,9 @@ window.I18N_EN = {
 "No se pudo cancelar tu renovación, así que no se borró nada. Intenta de nuevo en un momento": "Your renewal couldn't be canceled, so nothing was deleted. Try again in a moment",
 "Una cuenta de administrador no se borra desde aquí": "An admin account can't be deleted from here",
 "No se pudo borrar tu cuenta. Intenta de nuevo o escríbenos a sharpicks.bet@gmail.com": "Your account couldn't be deleted. Try again or write to us at sharpicks.bet@gmail.com",
-"Falta confirmar": "Confirmation is missing"
+"Falta confirmar": "Confirmation is missing",
+"Soy mayor de 18 años y acepto los": "I'm 18 or older and I accept the",
+"Para crear tu cuenta confirma que eres mayor de 18 años y aceptas los términos": "To create your account, confirm you're 18 or older and accept the terms",
+"Usamos tu correo, usuario y actividad para darte el servicio y cobrar. Los avisos por Telegram son opcionales y puedes limitar el uso de tus datos desde el aviso": "We use your email, username and activity to provide the service and charge you. Telegram alerts are optional and you can limit the use of your data as explained in the notice",
+"y el": "and the"
 };

@@ -104,6 +104,15 @@ def test_renovacion_con_consentimiento_expreso():
     assert '<input type="checkbox" id="vip-renovar">' in c and 'id="vip-renovar" checked' not in c
 
 
+def test_registro_con_consentimiento_expreso():
+    h = leer('web', 'index.html')
+    assert '<input type="checkbox" id="c-acepto">' in h and 'Soy mayor de 18 años' in h
+    assert 'id="c-acepto"> <span>Soy mayor' in h and 'checked' not in h[h.index('id="c-acepto"') - 30:h.index('id="c-acepto"') + 20]
+    c = leer('web', 'cuenta.js')
+    assert "!$('c-acepto').checked" in c and 'acepto_terminos: new Date().toISOString()' in c
+    assert c.index("!$('c-acepto').checked") < c.index('sb.auth.signUp(')
+
+
 def test_legales_al_dia_y_en_dos_idiomas():
     for pag in ('privacidad.html', 'terminos.html'):
         h = leer('web', pag)

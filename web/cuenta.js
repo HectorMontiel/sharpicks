@@ -881,13 +881,14 @@
     if (!RE_USUARIO.test(u)) return msg('El usuario: de 3 a 20 letras, números, «_» o «.», sin espacios.');
     if (contraDebil(c1)) return msg(contraDebil(c1));
     if (c1 !== c2) return msg('Las contraseñas no coinciden.');
+    if (!$('c-acepto').checked) return msg('Para crear tu cuenta confirma que eres mayor de 18 años y aceptas los términos.');   // v586 — consentimiento expreso
     const boton = e.target.querySelector('button[type=submit]');
     if (boton && boton.disabled) return;
     msg('Creando tu cuenta…');
     const listo = ocupado(boton, 'Creando…');
     const libre = await usuarioLibre(u);
     if (libre !== true) { listo(); return msg(libre === false ? 'Ese usuario ya existe. Prueba otro.' : NO_SE_PUDO); }
-    const { data, error } = await sb.auth.signUp({ email: correo, password: c1, options: { data: { usuario: u }, captchaToken: await esperarCaptcha(), emailRedirectTo: location.origin + location.pathname } });
+    const { data, error } = await sb.auth.signUp({ email: correo, password: c1, options: { data: { usuario: u, acepto_terminos: new Date().toISOString() }, captchaToken: await esperarCaptcha(), emailRedirectTo: location.origin + location.pathname } });
     listo();
     reiniciarCaptcha();
     if (error && /captcha/i.test(error.message)) return msg('Completa la verificación de abajo y vuelve a intentar.');
