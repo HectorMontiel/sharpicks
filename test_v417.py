@@ -308,7 +308,7 @@ def probar_v434():
           'v458: siluetas mientras carga en vez de «Cargando…»')
     check('function estadoCombVisto(c, extra)' in cu and "estadoCombVisto(c, h.extra) !== 'pendiente'" in cu and "estadoCombVisto(c, h.extra) === 'pendiente'" in cu,
           'v459: la combinada decidida al pitazo pasa al historial al momento (no espera al servidor)')
-    check("const modo = mom ? 'momentum' : !pocasJugadas ? 'jugadas' : mits && mits.some((x) => x != null) ? 'mitades' : 'linea';" in app
+    check("const modo = mom ? 'momentum' : !pocasJugadas ? 'jugadas' : tramos.some((x) => x.t[0] + x.t[1] > 0) ? 'mitades' : 'linea';" in app
           and "fetch('/presion?f='" in app and 'class="ola-tiempos"' in app and "(v.fase === 'in' || v.fase === 'post') ? cancha(v, p)" in app,
           'v460: presión en todos (FotMob minuto a minuto → jugadas → por tiempo → línea), partida en 1T|2T y también al terminar')
     check('enTiempo(j.seg / 60, j.per)' in app, 'v460: lo del tiempo agregado del 1T no cae en el 2T')
@@ -343,7 +343,7 @@ def probar_v434():
           'v436: sin jugadas suficientes no se inventa la presión: la línea del partido con goles y tarjetas')
     check("gid === null && Date.now() - (estado.p365[k + '|t'] || 0) > 120e3" in app and 'setInterval(vivo365, 20 * 1000);' in app,
           'v436: se vuelve a buscar el partido en 365Scores y se refresca cada 20 s')
-    check("mitades: 'Presión por tiempo', linea: 'Sin datos de presión en esta liga' }[modo]" in app and 'tamaño = peligro (xG)</span>' not in app, 'v434: el menos texto posible en la cancha')
+    check("linea: 'Sin datos de presión en esta liga' }[modo]" in app and 'tamaño = peligro (xG)</span>' not in app, 'v434: el menos texto posible en la cancha')
 
 
 if __name__ == '__main__':

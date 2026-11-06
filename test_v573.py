@@ -45,7 +45,7 @@ def test_no_se_inventa_lo_que_cuenta():
     # sólo las jugadas reales disparan gol, canasta o jonrón: el flujo simulado únicamente pasa y conduce
     i, j = P.index('function decidirFlujo(m) {'), P.index('function acomodarNhl(m) {')
     assert 'aviso(' not in P[i:j]
-    assert P.count("aviso(m, '¡GOL!'") == 1 and "aviso(m, '¡JONRÓN!'" in P and 'if (real && real.anota)' in P
+    assert P.count("aviso(m, '¡GOL!'") == 1 and "aviso(m, '¡JONRÓN!'" in P and 'if (real.anota)' in P
 
 
 def test_lo_que_tiene_que_ser_real():

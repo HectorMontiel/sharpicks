@@ -25,7 +25,19 @@ function campos(r) {
   return o;
 }
 
-function partidos(txt) {
+// v577 — el marcador del tenis: juegos de cada set (BA/BB, BC/BD…), puntos del juego (WA/WB) y quién saca (WC: 1 local, 2 visitante)
+function extraTenis(c) {
+  const sets = [];
+  for (const [x, y] of [['BA', 'BB'], ['BC', 'BD'], ['BE', 'BF'], ['BG', 'BH'], ['BI', 'BJ']]) {
+    if (c[x] == null || c[y] == null) break;
+    sets.push([Number(c[x]), Number(c[y])]);
+  }
+  const pts = c.WA != null && c.WB != null ? [c.WA, c.WB] : null;
+  const saca = c.WC === '1' ? 0 : c.WC === '2' ? 1 : null;
+  return { sets, pts, saca };
+}
+
+function partidos(txt, tenis) {
   const out = [];
   let liga = '';
   for (const r of txt.split('~')) {
@@ -34,7 +46,8 @@ function partidos(txt) {
     const c = campos(r);
     const ab = Number(c.AB || 0);
     out.push({ id: c.AA, liga, home: c.AE || c.CX || '', away: c.AF || '', gh: c.AG != null ? Number(c.AG) : null, ga: c.AH != null ? Number(c.AH) : null,
-      estado: ab === 2 ? 'in' : ab === 3 ? 'post' : 'pre', detalle: FASE[Number(c.AC)] || (ab === 3 ? 'Final' : ab === 2 ? 'En juego' : ''), inicio: Number(c.AD || 0) });
+      estado: ab === 2 ? 'in' : ab === 3 ? 'post' : 'pre', detalle: FASE[Number(c.AC)] || (ab === 3 ? 'Final' : ab === 2 ? 'En juego' : ''), inicio: Number(c.AD || 0),
+      ...(tenis ? extraTenis(c) : {}) });
   }
   return out;
 }
@@ -65,7 +78,7 @@ export async function onRequestGet({ request }) {
     }
     const dep = DEPORTES[u.searchParams.get('dep') || 'futbol'];
     if (!dep) return json({ error: 'deporte' }, 400);
-    return json({ partidos: partidos(await pedir('f_' + dep + '_0_3_es-mx_1')) });
+    return json({ partidos: partidos(await pedir('f_' + dep + '_0_3_es-mx_1'), dep === DEPORTES.tenis) });
   } catch (e) {
     return json({ error: 'sin respuesta de la fuente' }, 502);
   }

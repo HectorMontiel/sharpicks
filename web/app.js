@@ -756,6 +756,25 @@
   const jugada = (t) => JUGADA[t] || (/^goal/.test(t || '') ? JUGADA.goal : /^penalty.*scored/.test(t || '') ? JUGADA['penalty---scored'] : null);
   const BASE_442 = [[0, 50], [24, 10], [20, 36], [20, 64], [24, 90], [58, 10], [50, 38], [50, 62], [58, 90], [90, 38], [90, 62]];
   const minuto = (s) => { const m = String(s || '').match(/(\d+)(?:'\s*\+\s*(\d+))?/); return m ? Number(m[1]) + (m[2] ? Number(m[2]) / 10 : 0) : 0; };
+  // v577 — la presión sin datos por minuto: cada acción real se pone en una oleada. Se recuerda por partido (no cambia en cada repintado)
+  // y lo que llega en vivo se apunta en el minuto que corre.
+  estado.curvas = {};
+  function curvaPresion(k, tramos, ahora, fin, goles) {
+    const mem = estado.curvas[k] = estado.curvas[k] || {}, val = new Array(Math.ceil(fin) + 2).fill(0);
+    const azarDe = (s) => { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return () => { h ^= h << 13; h ^= h >>> 17; h ^= h << 5; return (h >>> 0) / 4294967296; }; };
+    tramos.forEach((tr, i) => [0, 1].forEach((l) => {
+      const hasta = Math.min(tr.b, ahora), n = Math.round(tr.t[l]), id = i + '|' + l;
+      if (hasta <= tr.a) return;
+      const ya = mem[id] = mem[id] || [];
+      if (!ya.length && n) {
+        const r = azarDe(String(k) + id), ol = Array.from({ length: 3 + Math.floor(r() * 3) }, () => tr.a + (hasta - tr.a) * r());
+        for (let j = 0; j < n; j++) ya.push(Math.max(tr.a, Math.min(hasta, ol[Math.floor(r() * ol.length)] + (r() + r() - 1) * 3.5)));
+      } else while (ya.length < n) ya.push(hasta);
+      ya.slice(0, n).forEach((m) => { const x = Math.floor(m); if (val[x] != null) val[x] += l === 0 ? 1 : -1; });
+    }));
+    (goles || []).forEach((g) => { const x = Math.floor(g.m); if (val[x] != null && x <= ahora) val[x] += (g.lado === 0 ? 1 : -1) * 4; });
+    return val.map((_, i) => (i > ahora ? 0 : val[i] + 0.6 * ((val[i - 1] || 0) + (val[i + 1] || 0))));
+  }
   function cancha(v, p) {
     // v573 — cada deporte con su cancha (pistas.js); la de fútbol sigue aquí
     if (p && p.deporte !== 'Fútbol') return window.Pistas && Pistas.TIENE(p.deporte) ? Pistas.html(v, p, clavePartido(p)) : '';
@@ -871,10 +890,15 @@
     const mom = pfm && Array.isArray(pfm.momentum) && pfm.momentum.length >= 5 ? pfm.momentum : null;
     const fin = Math.max(90, ahora, mom ? mom.length - 1 : 0), xm = (m) => Math.max(0, Math.min(100, 100 * m / fin));
     const pocasJugadas = reales.filter((q) => q.w > 0).length < 4;
-    const dominio = (x) => { if (!x) return null; const t = (i) => (x.tiros || [0, 0])[i] + 2 * (x.puerta || [0, 0])[i] + (x.corners || [0, 0])[i] + 3 * (x.ocasiones || [0, 0])[i] + 0.3 * (x.area || [0, 0])[i];
-      const a = t(0), b = t(1); return a + b > 0 ? (a - b) / (a + b) : null; };
-    const mits = pfm && pfm.mitades ? pfm.mitades.map(dominio) : null;
-    const modo = mom ? 'momentum' : !pocasJugadas ? 'jugadas' : mits && mits.some((x) => x != null) ? 'mitades' : 'linea';
+    // v577 — el usuario: «la presión se ve plana». Era una barra por tiempo. Sin datos por minuto, cuenta cada acción real de cada tiempo (tiros, córners,
+    // ocasiones y toques en el área) y las agrupa en oleadas: los totales son reales; el minuto de lo ya pasado, estimado (lo que llega en vivo va en su minuto).
+    const accion = (x, i) => (x.tiros || [0, 0])[i] + (x.puerta || [0, 0])[i] + (x.corners || [0, 0])[i] + 2 * (x.ocasiones || [0, 0])[i] + 0.4 * (x.area || [0, 0])[i];
+    let tramos = pfm && pfm.mitades ? pfm.mitades.map((x, i) => (x ? { a: i ? 45.5 : 0, b: i ? fin : 45, t: [accion(x, 0), accion(x, 1)] } : null)).filter(Boolean) : [];
+    if (!tramos.length && k && estado.motor[k] && estado.motor[k].gid) {       // sin FotMob: los totales de 365Scores
+      const h365 = estado.s365[estado.motor[k].gid] || [], u365 = h365.length ? h365[h365.length - 1].v : null;
+      if (u365) { const t365 = (i) => Object.entries(STATS_ATAQUE).reduce((n, [id, w]) => n + w * ((u365[id] || [0, 0])[i] || 0), 0); if (t365(0) + t365(1) > 0) tramos = [{ a: 0, b: fin, t: [t365(0) / 2, t365(1) / 2] }]; }
+    }
+    const modo = mom ? 'momentum' : !pocasJugadas ? 'jugadas' : tramos.some((x) => x.t[0] + x.t[1] > 0) ? 'mitades' : 'linea';
     const barra = (x0, x1, valor, tope) => { const h = 11 * Math.abs(valor) / tope; return h < 0.2 ? '' : '<rect x="' + x0.toFixed(2) + '" y="' + (valor > 0 ? 12 - h : 12).toFixed(2) +
       '" width="' + Math.max(0.3, x1 - x0).toFixed(2) + '" height="' + h.toFixed(2) + '" fill="' + (valor > 0 ? c.l : c.r) + '"/>'; };
     let barras = '';
@@ -888,12 +912,13 @@
       const tope = Math.max(1, ...suave.map(Math.abs)), W = 100 / fin;
       barras = suave.map((x, i) => barra(xm(i) - W * 0.38, xm(i) + W * 0.38, x, tope)).join('');
     } else if (modo === 'mitades') {
-      // una barra ancha por tiempo, hasta el minuto que va
-      const hasta = Math.min(ahora || fin, fin);
-      barras = [[0, 45, mits[0]], [45.5, fin, mits[1]]].map(([a, b, x]) => (x == null || hasta <= a ? '' : barra(xm(a) + 0.4, xm(Math.min(b, hasta)) - 0.4, x || 0.05, 1))).join('');
+      const goles = (pfm && Array.isArray(pfm.eventos) ? pfm.eventos.filter((e) => e.tipo === 'gol').map((e) => ({ m: e.m, lado: e.local ? 0 : 1 })) : []);
+      const suave = curvaPresion(k, tramos, Math.min(ahora || fin, fin), fin, goles);
+      const tope = Math.max(1, ...suave.map(Math.abs)), W = 100 / fin;
+      barras = suave.map((x, i) => barra(xm(i) - W * 0.38, xm(i) + W * 0.38, x, tope)).join('');
     }
     const ola = '<svg class="presion-svg' + (modo === 'linea' ? ' linea' : '') + '" viewBox="0 0 100 24" preserveAspectRatio="none" aria-label="' +
-      ({ momentum: 'Presión minuto a minuto', jugadas: 'Presión minuto a minuto', mitades: 'Presión por tiempo', linea: 'El partido minuto a minuto' }[modo]) + '">' +
+      ({ momentum: 'Presión minuto a minuto', jugadas: 'Presión minuto a minuto', mitades: 'Presión estimada con las acciones reales de cada tiempo', linea: 'El partido minuto a minuto' }[modo]) + '">' +
       (modo === 'linea' ? '<line x1="0" y1="12" x2="100" y2="12" class="pista"/><line x1="0" y1="12" x2="' + xm(ahora).toFixed(1) + '" y2="12" class="va"/>' : barras) +
       '<line x1="' + xm(45.5).toFixed(2) + '" y1="1" x2="' + xm(45.5).toFixed(2) + '" y2="23" class="eje medio"/>' + (modo === 'linea' ? '' : '<line x1="0" y1="12" x2="100" y2="12" class="eje"/>') + '</svg>';
     const tiempos = '<div class="ola-tiempos"><span style="width:' + xm(45.5).toFixed(1) + '%">1.er tiempo</span><span>2.º tiempo</span></div>';
@@ -920,7 +945,12 @@
     const form = fm && (fm[0] || fm[1]) ? '<small class="tenue">' + esc(fm[0] || '') + ' vs ' + esc(fm[1] || '') + '</small>' : '';
     // v434 — el usuario: «el menos texto posible»; lo demás queda en el tooltip
     const leyenda = '<div class="cancha-ley" title="Tamaño del tiro = peligro (xG). Animación aproximada según el juego."><span>× tiro</span><span>★ gol</span></div>';
-    return '<div class="cancha">' + cab + s + leyenda + '<div class="cancha-tit"><span>' + ({ momentum: 'Presión', jugadas: 'Presión', mitades: 'Presión por tiempo', linea: 'Sin datos de presión en esta liga' }[modo]) + '</span>' + form + '</div><div class="ola">' + ola + goles + '</div>' + tiempos + '</div>';
+    // v577 — el marcador, también en la de fútbol
+    const abr = (x) => { const w = String(x || '').trim().split(/\s+/), u = w[w.length - 1] || ''; return (w.length > 1 && u.length > 2 ? u : w.join('')).slice(0, 3).toUpperCase(); };
+    const nomMc = (v && v.nombres) || [], gMc = (v && v.g) || [0, 0];
+    const cenMc = letrero === 'FINAL' ? 'FINAL' : letrero ? 'DESCANSO' : (Math.floor(reloj) || '') + "'";
+    const mcFut = v ? '<div class="mc-caja"><div class="mc mc-fut"><i class="mc-c" style="background:' + cL + '"></i><b class="mc-eq">' + esc(abr(nomMc[0])) + '</b><b class="mc-n">' + gMc[0] + '</b><span class="mc-cen"><em>' + cenMc + '</em></span><b class="mc-n">' + gMc[1] + '</b><b class="mc-eq">' + esc(abr(nomMc[1])) + '</b><i class="mc-c" style="background:' + cR + '"></i></div></div>' : '';
+    return '<div class="cancha">' + cab + mcFut + s + leyenda + '<div class="cancha-tit"><span>' + ({ momentum: 'Presión', jugadas: 'Presión', mitades: 'Presión <small class="tenue">aprox.</small>', linea: 'Sin datos de presión en esta liga' }[modo]) + '</span>' + form + '</div><div class="ola">' + ola + goles + '</div>' + tiempos + '</div>';
   }
   // v431 — EL MOTOR: QUE LA CANCHA SE VEA COMO EL PARTIDO. El usuario: «no me
   // gusta que las bolitas se queden estáticas… no se entienden las circunferencias

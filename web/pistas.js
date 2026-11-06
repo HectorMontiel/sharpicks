@@ -19,7 +19,7 @@
   const TIENE = (d) => !!ALTO[familia(d)];
   const SIM = {
     NHL: { v: 17, vP: 14, vE: 32, vPase: 72, rig: 4.4, T: [0.3, 1], robo: 0.13, pase: 0.74, sep: 3.2, corto: 5, largo: 30, muyLargo: 55, seguir: 0.72, seguirG: 0.05 },
-    NBA: { v: 13, vP: 10, vE: 28, vPase: 55, rig: 4, T: [0.4, 1.2], robo: 0, pase: 0.72, sep: 3, corto: 6, largo: 26, muyLargo: 42 },
+    NBA: { v: 13, vP: 11, vE: 28, vPase: 50, rig: 4, T: [0.55, 1.5], robo: 0, pase: 0.72, sep: 3, corto: 6, largo: 24, muyLargo: 30 },
   };
 
   // ---------------------------------------------------------------- color
@@ -113,6 +113,7 @@
       const u = lugar(p);
       return { id: String(p.id), t: (p.type || {}).text || '', txt: p.shortDescription || p.text || '', lado: p.team ? lado(p) : null, per, clk: (p.clock || {}).displayValue || '',
         min: (Math.min(per - 1, 4) * largo) + (dep === 'NHL' ? Math.min(largo, clk) : Math.max(0, largo - clk)), x: u && u[0], y: u && u[1], anota: !!p.scoringPlay, val: Number(p.scoreValue || 0),
+        g: casa === false ? [Number(p.awayScore || 0), Number(p.homeScore || 0)] : [Number(p.homeScore || 0), Number(p.awayScore || 0)],
         dif: casa === false ? Number(p.awayScore || 0) - Number(p.homeScore || 0) : Number(p.homeScore || 0) - Number(p.awayScore || 0), part: (p.participants || []).map((z) => String((z.athlete || {}).id || '')) };
     });
   }
@@ -139,6 +140,12 @@
       }
     }
     return { jugadas: out, series, lideres };
+  }
+  function tablero(d, n1) {
+    const co = ((d.header || {}).competitions || [])[0] || {}, cs = co.competitors || [];
+    const de = (x) => ((x || {}).team || {}).abbreviation || '';
+    const a = cs.find((c) => String((c.team || {}).id) === String(n1)), b = cs.find((c) => String((c.team || {}).id) !== String(n1));
+    return { per: Number((co.status || {}).period || 0), reloj: (co.status || {}).displayClock || '', abr: [de(a), de(b)] };
   }
   // NHL: ESPN dice quién está en el hielo ahora mismo
   function enHielo(d, n1) {
@@ -172,9 +179,9 @@
         const pl = plantilla(d, n1), nombres = {}, numeros = {};
         pl.flat().forEach((a) => { nombres[String(a.id)] = a.nombre; numeros[String(a.id)] = a.n; });
         const jugadas = jugadasPista(d, dep, n1);
-        return { jugadas, plantilla: pl, nombres, numeros, enJuego: dep === 'NHL' ? enHielo(d, n1) : enCancha(jugadas, pl) };
+        return { jugadas, plantilla: pl, nombres, numeros, marc: tablero(d, n1), enJuego: dep === 'NHL' ? enHielo(d, n1) : enCancha(jugadas, pl) };
       }
-      if (dep === 'NFL') return jugadasNfl(d, n1);
+      if (dep === 'NFL') return Object.assign(jugadasNfl(d, n1), { marc: tablero(d, n1) });
     } catch (e) { /* una respuesta rara no tumba la página */ }
     return null;
   }
@@ -415,7 +422,59 @@
     const setsTxt = fam === 'Tenis' && v && v.g && (v.g[0] || v.g[1]) ? ' · sets ' + v.g[0] + '-' + v.g[1] : '';
     const chip = ult && ICONO[fam] ? etiqueta(fam, ult, datos.nombres) : (fam === 'Tenis' ? '🎾 <b>' + esc((v && v.detalle) || 'En vivo') + '</b>' + setsTxt : (ICONO[fam] || '') + ' <b>En vivo</b>');
     const ley = LEY[fam] ? '<div class="cancha-ley" title="El movimiento es una animación; lo que anotan sale de lo que de verdad pasó.">' + LEY[fam] + '</div>' : '';
-    return '<div class="cancha cancha-' + fam.toLowerCase() + '"><div class="cancha-ult"><span class="chip-ult">' + chip + '</span></div>' + s + ley + tira(dep, v, datos, c, L, V, k) + '</div>';
+    return '<div class="cancha cancha-' + fam.toLowerCase() + '"><div class="cancha-ult"><span class="chip-ult">' + chip + '</span></div><div class="mc-caja">' + marcador(fam, v, datos, k, MOTORES[k]) + '</div>' + s + ley + tira(dep, v, datos, c, L, V, k) + '</div>';
+  }
+
+  // ---------------------------------------------------------------- el marcador de cada deporte
+  // v577 — el usuario: «agrégale el marcador a todas las canchas, cada uno con su distinción, sin quitar mucho espacio». Una sola línea, con el estilo
+  // del tablero de cada deporte: LED ámbar de arena en la NBA, hielo en la NHL, barra de TV en la NFL, tablero con B-S-O y bases en el béisbol, sets y puntos en el tenis.
+  const abrevia = (x) => { const s = String(x || '').trim().split(/\s+/), w = s[s.length - 1] || ''; return (s.length > 1 && w.length > 2 ? w : s.join('')).slice(0, 3).toUpperCase(); };
+  const ordinal = (n, fem) => n + (fem ? '.ª' : '.º');
+  const diamante = (b) => {
+    const base = (x, y, on) => '<rect x="' + (x - 2.6) + '" y="' + (y - 2.6) + '" width="5.2" height="5.2" transform="rotate(45 ' + x + ' ' + y + ')" class="' + (on ? 'on' : '') + '"/>';
+    return '<svg class="mc-dia" viewBox="0 0 22 16" aria-hidden="true">' + base(11, 4, b.en2) + base(18, 10.5, b.en1) + base(4, 10.5, b.en3) + '</svg>';
+  };
+  const puntos = (n, t, c) => Array.from({ length: t }, (_, i) => '<i class="' + (i < n ? 'on ' + c : '') + '"></i>').join('');
+  function marcador(fam, v, datos, k, m) {
+    if (!v) return '';
+    // NBA y NHL: mientras haya jugadas por enseñar, el marcador va con la última que ya se vio (si no, se adelanta al gol)
+    const hayPend = m && m.ultReal && m.ultReal.g && datos && datos.jugadas && datos.jugadas.some((q) => !m.vistas.has(q.id));
+    const g = hayPend ? m.ultReal.g : v.g || [0, 0], mc = (datos && datos.marc) || {}, nom = v.nombres || [], ab = [0, 1].map((i) => (mc.abr && mc.abr[i]) || abrevia(nom[i]));
+    const final = v.terminado || v.fase === 'post', desc = /half|intermission|end of|fin de|descanso|entretiempo/i.test(String(v.est || '') + ' ' + String(v.detalle || ''));
+    const lado = (i, cuanto, extra) => '<b class="mc-eq' + (extra ? ' ' + extra : '') + '">' + esc(ab[i]) + '</b><b class="mc-n">' + cuanto + '</b>';
+    const fila = (cen, a, b, clase) => '<div class="mc ' + clase + '">' + a + '<span class="mc-cen">' + cen + '</span>' + b + '</div>';
+    const per = Number(mc.per || 0), clk = esc(mc.reloj || '');
+    if (fam === 'NBA') {
+      const q = final ? 'FINAL' : desc ? 'DESCANSO' : per > 4 ? 'TE' + (per - 4) : (per ? 'C' + per : '-');
+      return fila('<em>' + q + '</em>' + (final || desc ? '' : '<strong>' + clk + '</strong>'), lado(0, g[0]), '<b class="mc-n">' + g[1] + '</b><b class="mc-eq">' + esc(ab[1]) + '</b>', 'mc-nba');
+    }
+    if (fam === 'NHL') {
+      const q = final ? 'FINAL' : desc ? 'DESCANSO' : per > 3 ? 'TE' : (per || '-') + '.º PER';
+      return fila('<em>' + q + '</em>' + (final || desc ? '' : '<strong>' + clk + '</strong>'), lado(0, g[0]), '<b class="mc-n">' + g[1] + '</b><b class="mc-eq">' + esc(ab[1]) + '</b>', 'mc-nhl');
+    }
+    if (fam === 'NFL') {
+      const of = m && m.of, baja = m && m.baja ? String(m.baja).split(' · ')[0] : '';
+      const q = final ? 'FINAL' : desc ? 'DESCANSO' : per > 4 ? 'TE' : (per ? ordinal(per) + ' C' : '');
+      return fila('<em>' + q + (final || desc ? '' : ' ' + clk) + '</em>' + (baja && !final ? '<strong>' + esc(baja) + '</strong>' : ''),
+        '<b class="mc-eq' + (of === 0 && !final ? ' con' : '') + '">' + esc(ab[0]) + '</b><b class="mc-n">' + g[0] + '</b>',
+        '<b class="mc-n">' + g[1] + '</b><b class="mc-eq' + (of === 1 && !final ? ' con' : '') + '">' + esc(ab[1]) + '</b>', 'mc-nfl');
+    }
+    if (fam === 'BEIS') {
+      const b = (BEIS[k] || {}).d;
+      const c = b && b.tot ? [b.tot[0][0] == null ? g[0] : b.tot[0][0], b.tot[1][0] == null ? g[1] : b.tot[1][0]] : g;
+      const cen = b ? '<em>' + (final ? 'FINAL' : (b.arriba ? '▲' : '▼') + ' ' + (b.entrada || '')) + '</em>' + (final ? '' : diamante(b) + '<span class="mc-bso"><span>B' + puntos(b.bolas, 3, 'v') + '</span><span>S' + puntos(b.strikes, 2, 'a') + '</span><span>O' + puntos(b.outs, 2, 'r') + '</span></span>') : '<em>' + (final ? 'FINAL' : 'EN VIVO') + '</em>';
+      return fila(cen, lado(0, c[0]), '<b class="mc-n">' + c[1] + '</b><b class="mc-eq">' + esc(ab[1]) + '</b>', 'mc-beis');
+    }
+    if (fam === 'Tenis') {
+      const t = (m && m.tenis) || null, sets = t ? t.sets : [], tot = t ? t.tot : g;
+      const apellido = (x) => { const s = String(x || '').trim().split(/\s+/); return (s.length > 1 && /\.$/.test(s[s.length - 1]) ? s[0] : s[s.length - 1]).slice(0, 9); };
+      const lista = (i) => (sets && sets.length ? sets.map((x, j) => '<i' + (j === sets.length - 1 && !final ? ' class="va"' : '') + '>' + x[i] + '</i>').join('') : '<i>' + tot[i] + '</i>');
+      const sa = (i) => (t && t.saca === i && !final ? '<u></u>' : '');
+      const pt = t && t.pts && !final ? esc(t.pts[0]) + '-' + esc(t.pts[1]) : final ? 'FINAL' : esc((t && t.det) || v.detalle || 'EN VIVO');
+      return fila('<strong>' + pt + '</strong>', '<b class="mc-eq">' + sa(0) + esc(apellido(nom[0])) + '</b><span class="mc-sets">' + lista(0) + '</span>',
+        '<span class="mc-sets">' + lista(1) + '</span><b class="mc-eq">' + sa(1) + esc(apellido(nom[1])) + '</b>', 'mc-tenis');
+    }
+    return '';
   }
 
   // ---------------------------------------------------------------- el motor
@@ -427,7 +486,7 @@
         if (a && b) a.innerHTML = b.innerHTML;
         o.querySelectorAll('.letrero').forEach((x) => x.remove());
         const l = n.querySelector('.letrero'); if (l) o.appendChild(l);
-        o._chip = null;
+        o._chip = null; o._mc = null; o._proxMc = 0;
         n.replaceWith(o);
         return;
       }
@@ -480,6 +539,10 @@
     const port = m.port, s = SIM[m.fam];
     m.prox = m.t + azar(s.T[0], s.T[1]);
     const r = Math.random(), otro = port.lado === 0 ? 1 : 0;
+    if (m.fam === 'NBA' && (port.cx - 52.5) * port.dir < 4) {       // aún en su mitad: sube botando, como en la cancha
+      port.rx = port.dir; port.ry = (27.95 - port.cy) / 40; m.prox = m.t + 0.7;
+      return;
+    }
     if (s.robo && r < s.robo) {
       const rival = cerca(campoDe(m, otro), port.cx, port.cy)[0];
       if (rival) { lanzar(m, rival, false); return; }
@@ -542,6 +605,7 @@
       return j;
     };
     const enLugar = (j) => { if (j && tiene) { j.tx = x; j.ty = y; } };
+    const llega = tiene ? entre(0, Math.hypot(x - m.bx, y - m.by) / 34 - 0.6, 1.6) : 0;     // desde lejos, primero se acerca
     const rebote = (lado, gx, gy) => { const r = cerca(m.js.filter((j) => j.lado === lado), gx, gy)[0]; if (r) lanzar(m, r, false); };
     const otro = atk === 0 ? 1 : 0;
     if (fam === 'NHL') {
@@ -552,12 +616,12 @@
       }
       if (/Goal/.test(t)) {
         const j = tirador();
-        return [[0, () => { m.fijo = true; enLugar(j); dar(m, j); }], [0.9, () => { lanzar(m, null, true, [redX, redY + azar(-1, 1)], 95); aviso(m, '¡GOL!', 3.5); }], [3.6, () => { dar(m, null); m.bt = [52.5, 22.3]; }], [4.6, () => { m.fijo = false; m.bt = null; }]];
+        return [[0, () => { m.fijo = true; enLugar(j); dar(m, j); }], [0.9 + llega, () => { lanzar(m, null, true, [redX, redY + azar(-1, 1)], 95); aviso(m, '¡GOL!', 3.5); }], [3.6 + llega, () => { dar(m, null); m.bt = [52.5, 22.3]; }], [4.6 + llega, () => { m.fijo = false; m.bt = null; }]];
       }
       if (/^Shot|Missed|Blocked/.test(t)) {
         const j = tirador(), def = m.js.find((g) => g.lado === otro && g.rol === 'G');
         const dest = /Missed/.test(t) ? [redX, redY + (Math.random() < 0.5 ? -8 : 8)] : /Blocked/.test(t) && tiene ? [x + (atk === 0 ? 5 : -5), y] : [def ? def.cx : redX, redY + azar(-1.5, 1.5)];
-        return [[0, () => { m.fijo = true; enLugar(j); dar(m, j); }], [0.9, () => { lanzar(m, null, true, dest, 90); }], [1.7, () => { m.fijo = false; rebote(otro, dest[0], dest[1]); }]];
+        return [[0, () => { m.fijo = true; enLugar(j); dar(m, j); }], [0.9 + llega, () => { lanzar(m, null, true, dest, 90); }], [1.7 + llega, () => { m.fijo = false; rebote(otro, dest[0], dest[1]); }]];
       }
       if (/Hit/.test(t)) { const j = tirador(); return [[0, () => { enLugar(j); if (tiene) m.bt = [x, y]; }], [0.9, () => { m.bt = null; }]]; }
       if (/Giveaway|Takeaway/.test(t)) {
@@ -576,11 +640,13 @@
     }
     if (/Shot|Layup|Dunk|Jumper|Hook|Tip/.test(t)) {
       const j = tirador(), val = q.val || 2;
-      return [[0, () => { m.fijo = true; enLugar(j); dar(m, j); }], [1, () => { lanzar(m, null, true, [redX, q.anota ? redY : redY + azar(-3, 3)], 42); if (q.anota) aviso(m, '+' + val, 1.3); }], [1.9, () => { m.fijo = false; if (q.anota) rebote(otro, redX, redY); }]];
+      return [[0, () => { m.fijo = true; enLugar(j); dar(m, j); }], [1 + llega, () => { lanzar(m, null, true, [redX, q.anota ? redY : redY + azar(-3, 3)], 42); if (q.anota) aviso(m, '+' + val, 1.3); }],
+        [1.9 + llega, () => { m.fijo = false; if (q.anota) { m.posesion = otro; rebote(otro, redX, redY); } else m.suelta = m.t + 3.5; }]];
     }
+    if (/Substitution/.test(t)) return [];              // el cambio no detiene el juego en la cancha: sólo se anuncia
     if (/Rebound/.test(t)) {
       const j = tirador();
-      return [[0, () => { if (j) { lanzar(m, j, false, tiene ? [x, y] : null); if (m.vuelo) m.vuelo.a = j; } }]];
+      return [[0, () => { m.suelta = 0; m.posesion = atk; if (j) { lanzar(m, j, false, tiene ? [x, y] : null); if (m.vuelo) m.vuelo.a = j; } }]];
     }
     if (/Turnover|Steal/.test(t)) {
       const gana = /Steal/.test(t) ? atk : otro, j = gana == null ? null : cerca(m.js.filter((z) => z.lado === gana), m.bx, m.by)[0];
@@ -597,9 +663,18 @@
       if (pend.length > 8) pend.slice(0, -8).filter((q) => !q.anota).forEach((q) => m.vistas.add(q.id));
       const nueva = js.find((q) => !m.vistas.has(q.id));
       if (nueva) {
-        m.vistas.add(nueva.id);
-        anunciar(m, etiqueta(m.fam, nueva, m.datos.nombres));
-        m.guion = pasosDe(m, nueva).map(([s, f]) => ({ en: m.t + s, f }));
+        // v578 — EL RITMO REAL. ESPN entrega las jugadas en grupo cada 20 s y se jugaban seguidas: tiro en una canasta y, 2 s después, en la otra. Ahora cada
+        // una espera lo que de verdad pasó en el reloj del partido desde la anterior; si van muy atrasadas, se acorta, pero nunca a saltos.
+        if (m.esperaId !== nueva.id) {
+          const antes = m.ultReal, seg = antes && nueva.per === antes.per ? (nueva.min - antes.min) * 60 : 6;
+          const pausa = entre(1.5, Math.max(0, seg), 16) * (pend.length > 5 ? 0.45 : 1);
+          m.esperaId = nueva.id; m.listo = Math.max(m.t + 0.5, (m.tReal == null ? m.t : m.tReal) + pausa);
+        }
+        if (m.t >= m.listo) {
+          m.vistas.add(nueva.id); m.ultReal = nueva; m.tReal = m.t;
+          anunciar(m, etiqueta(m.fam, nueva, m.datos.nombres));
+          m.guion = pasosDe(m, nueva).map(([s, f]) => ({ en: m.t + s, f }));
+        }
       }
     }
     if (m.guion) {
@@ -607,7 +682,7 @@
       if (!m.guion.length) m.guion = null;
     }
     if (m.fijo) return;
-    if (!m.port && !m.vuelo) {
+    if (!m.port && !m.vuelo && m.t >= (m.suelta || 0)) {
       const l = m.posesion != null ? m.posesion : posesionInicial(m);
       dar(m, cerca(campoDe(m, l), m.bx, m.by)[0] || null); m.prox = m.t + 0.4;
     }
@@ -639,64 +714,98 @@
     m.bt = [x, cy];
   }
   function nflSituacion(m) {
-    const u = m.datos && m.datos.jugadas && m.datos.jugadas[m.datos.jugadas.length - 1];
+    // la línea que corresponde a la última jugada YA ENSEÑADA, no a la última que llegó
+    const u = m.jugadaNfl || (m.datos && m.datos.jugadas && m.datos.jugadas[m.datos.jugadas.length - 1]);
     if (u && u.ydF != null) {
       m.of = u.equipoFin; m.losX = yardaAx(entre(0, u.ydF, 100), m.of);
       const d = m.of === 0 ? 1 : -1; m.fdX = u.dist ? entre(8.75, m.losX + d * Number(u.dist) * 0.875, 96.25) : null;
       if (u.baja) m.baja = bajaEs(u.baja) + (u.pos ? ' · ' + u.pos : '');
     } else if (m.losX == null) { m.of = 0; m.losX = 52.5; m.fdX = 61.25; }
   }
-  function nflJugada(m, real) {
+  // v578 — el usuario: «cambian las jugadas muy drásticamente; que se vea lo más cerca del partido real». Entre jugada y jugada ya no se inventan jugadas:
+  // como en la TV, se junta el equipo, se forma y hay movimiento antes del centro. El centro sale sólo cuando llega la jugada real, y termina en su yarda real.
+  function nflHuddle(m) {
+    const L = m.of, dir = L === 0 ? 1 : -1, x = m.losX, cy = 23.35;
+    const of = m.js.filter((q) => q.lado === L), de = m.js.filter((q) => q.lado !== L);
+    of.forEach((q, i) => { const a = (i / of.length) * 6.283; q.tx = x - dir * 9 + Math.cos(a) * 3.2; q.ty = cy + Math.sin(a) * 3.2; });
+    de.forEach((q, i) => { const a = (i / de.length) * 6.283; q.tx = x + dir * 9 + Math.cos(a) * 3.6; q.ty = cy + Math.sin(a) * 3.6; });
+    dar(m, null); m.bt = [x, cy];
+  }
+  function nflMovimiento(m) {           // antes del centro: un receptor cruza la formación y la defensa se acomoda
     const L = m.of, dir = L === 0 ? 1 : -1, of = m.js.filter((q) => q.lado === L), de = m.js.filter((q) => q.lado !== L);
+    const wr = of.filter((q) => q.rol === 'WR'), w = wr[Math.floor(Math.random() * wr.length)];
+    if (w) { w.ty = entre(5, w.ty > 23 ? w.ty - azar(5, 11) : w.ty + azar(5, 11), 41.7); w.tx = m.losX - dir * 0.8; }
+    de.slice(4).forEach((q) => { q.ty = entre(4, q.ty + azar(-2.2, 2.2), 42.7); q.tx += dir * azar(-0.7, 0.7); });
+  }
+  function nflJugada(m, real) {
+    const L = real.lado, dir = L === 0 ? 1 : -1, of = m.js.filter((q) => q.lado === L), de = m.js.filter((q) => q.lado !== L);
     const qb = of.find((q) => q.rol === 'QB'), rb = of.find((q) => q.rol === 'RB'), wrs = of.filter((q) => q.rol === 'WR' || q.rol === 'TE');
-    const pases = real ? /Pass|Sack|Interception/i.test(real.t) : Math.random() < 0.62;
-    const rutas = () => wrs.forEach((w, i) => { w.tx = m.losX + dir * azar(8, 19); w.ty = entre(4, w.cy + (i % 2 ? 1 : -1) * azar(2, 12), 42.7); });
-    const presion = () => de.forEach((d, i) => { if (i < 4 && qb) { d.tx = qb.cx + dir * 1.5; d.ty = qb.cy + (i - 1.5) * 2; } else { const w = wrs[i % wrs.length]; if (w) { d.tx = w.tx + dir * 1.5; d.ty = w.ty + azar(-1, 1); } } });
-    const fin = real ? yardaAx(entre(0, real.ydF == null ? 50 : real.ydF, 100), real.lado) : null;
-    if (real) {
-      const [juega, recibe] = nombresNfl(real.txt);
-      if (pases) { if (juega && qb) nombrar(m, qb, juega, ''); } else if (juega && rb) nombrar(m, rb, juega, '');
-      if (recibe && wrs[0]) m.receptor = recibe;
+    // la yarda final, en la dirección del equipo que se queda con el balón (en despejes e intercepciones cambia)
+    const fin = real.ydF == null ? m.losX : yardaAx(entre(0, real.ydF, 100), real.equipoFin == null ? L : real.equipoFin);
+    const [juega, recibe] = nombresNfl(real.txt);
+    const t = real.t + ' ' + real.txt;
+    if (/Kickoff|Punt|Field Goal|Extra Point/i.test(t) && !/Pass|Rush/i.test(real.t)) {
+      const fg = /Field Goal|Extra Point/i.test(t), dest = fg ? [L === 0 ? 100 : 5, 23.35] : [fin, azar(10, 37)];
+      const rec = !fg ? cerca(de, dest[0], dest[1])[0] : null;
+      m.corre = null;
+      return { dura: 3.8, pasos: [[0, () => { dar(m, null); m.bt = null; lanzar(m, null, true, dest, 32); if (rec) { rec.tx = dest[0]; rec.ty = dest[1]; } }]].concat(real.anota ? [[1.8, () => aviso(m, '¡ANOTAN!', 2.4)]] : []) };
     }
-    const guion = [[0, () => { dar(m, qb); m.bt = null; }]];
-    if (real && /Punt|Kickoff|Field Goal/i.test(real.t)) {
-      const larga = /Field Goal/i.test(real.t);
-      return [[0, () => { dar(m, null); m.bt = null; lanzar(m, null, true, larga ? [L === 0 ? 100 : 5, 23.35] : [fin == null ? m.losX + dir * 35 : fin, azar(10, 36)], 34); }], [2.4, () => { m.bt = null; }]];
+    if (/Pass|Sack|Interception/i.test(real.t)) {
+      if (juega && qb) nombrar(m, qb, juega, '');
+      const w = wrs[Math.floor(Math.random() * wrs.length)];
+      if (recibe && w) nombrar(m, w, recibe, '');
+      const yard = (fin - m.losX) * dir, prof = entre(3, yard - 1.5, 45);
+      const rutas = () => wrs.forEach((x, i) => { x.tx = m.losX + dir * (x === w ? prof : azar(5, 15)); x.ty = entre(4, x.cy + (i % 2 ? 1 : -1) * azar(2, 9), 42.7); });
+      const presion = () => de.forEach((d, i) => { if (i < 4 && qb) { d.tx = qb.cx + dir * 1.5; d.ty = qb.cy + (i - 1.5) * 2; } else { const x = wrs[i % wrs.length]; if (x) { d.tx = x.tx + dir * 1.5; d.ty = x.ty + azar(-1, 1); } } });
+      const p = [[0, () => { dar(m, qb); }], [0.3, () => { if (qb) { qb.tx = m.losX - dir * 6; qb.ty = 23.35; } rutas(); presion(); }]];
+      if (/Sack/i.test(real.t)) return { dura: 3, pasos: p.concat([[1.7, () => { if (qb) { qb.tx = fin; } if (de[0]) { de[0].tx = fin + dir; de[0].ty = 23.35; } }]]) };
+      if (/Incompletion/i.test(real.t) && w) return { dura: 3.4, pasos: p.concat([[1.9, () => { lanzar(m, null, true, [w.tx, w.ty], 34); }]]) };
+      p.push([1.9, () => { if (w) lanzar(m, w, true, null, 34); }]);
+      p.push([2.3, () => { if (w) m.corre = { q: w, hasta: fin }; }]);
+      if (real.anota) p.push([3, () => aviso(m, '¡TOUCHDOWN!', 2.6)]);
+      return { dura: 3 + Math.abs(fin - m.losX) / 11, pasos: p };
     }
-    if (pases) {
-      guion.push([0.2, () => { if (qb) { qb.tx = m.losX - dir * 7.5; qb.ty = 23.35; } rutas(); presion(); }]);
-      if (real && /Sack/i.test(real.t)) guion.push([1.9, () => { const c = de[0]; if (c && qb) { c.tx = qb.cx; c.ty = qb.cy; } }]);
-      else {
-        const w = wrs[Math.floor(Math.random() * wrs.length)];
-        if (real && m.receptor && w) { nombrar(m, w, m.receptor, ''); m.receptor = null; }
-        guion.push([1.8, () => { if (w) lanzar(m, w, true, null, 30); }]);
-        if (!real || !/Incompletion/i.test(real.t)) guion.push([3, () => { if (w && m.port === w) { const meta = fin == null ? w.cx + dir * azar(2, 5) : fin; w.rx = dir; w.ry = 0; w.tx = meta; m.corre = meta; } }]);
-      }
-    } else {
-      guion.push([0.2, () => { if (rb && qb) { rb.tx = qb.cx; rb.ty = qb.cy + 0.6; } }]);
-      guion.push([0.7, () => { if (rb) { dar(m, rb); const meta = fin == null ? m.losX + dir * azar(1, 5) : fin; rb.rx = dir; rb.ry = 0; m.corre = meta; } de.slice(0, 7).forEach((d) => { d.tx = (m.corre || m.losX) + dir * 0.5; d.ty = 23.35 + azar(-5, 5); }); }]);
+    if (/Rush/i.test(real.t) || /\bfor\b.*yard/i.test(real.txt)) {
+      if (juega && rb) nombrar(m, rb, juega, '');
+      const p = [[0, () => { dar(m, qb); }], [0.3, () => { if (rb && qb) { rb.tx = qb.cx; rb.ty = qb.cy + 0.6; } }],
+        [0.8, () => { if (rb) { dar(m, rb); m.corre = { q: rb, hasta: fin }; } }]];
+      if (real.anota) p.push([2.4, () => aviso(m, '¡TOUCHDOWN!', 2.6)]);
+      return { dura: 1.8 + Math.abs(fin - m.losX) / 11, pasos: p };
     }
-    if (real && real.anota) guion.push([3.8, () => aviso(m, /Touchdown/i.test(real.t + real.txt) ? '¡TOUCHDOWN!' : '¡ANOTAN!', 3)]);
-    return guion;
+    return { dura: 1.6, pasos: [] };                 // castigo o tiempo fuera: se ve en el letrero y sigue
   }
   function nfl(m) {
     const js = (m.datos && m.datos.jugadas) || [];
-    if (m.losX == null) { nflSituacion(m); m.estado = 'linea'; m.espera = m.t + 1; nflLineaUp(m); }
+    if (m.losX == null) { nflSituacion(m); nflLineaUp(m); m.estado = 'linea'; m.espera = m.t + 1; m.proxMov = m.t + 2.5; }
     if (m.guion) {
       while (m.guion.length && m.t >= m.guion[0].en) m.guion.shift().f();
-      if (m.port && m.corre != null) {
-        const q = m.port, d = q.dir;
-        q.tx = m.corre; q.ty = q.cy;
-        if ((m.corre - q.cx) * d <= 0.4) { m.corre = null; dar(m, null); m.bt = [q.cx, q.cy]; }
+      if (m.corre) {
+        const c = m.corre, q = c.q;
+        if (m.port === q) {
+          q.tx = c.hasta; q.ty = q.cy;
+          cerca(m.js.filter((z) => z.lado !== q.lado), q.cx, q.cy).slice(0, 3).forEach((d) => { d.tx = q.cx + q.dir * 2; d.ty = q.cy; });   // lo persiguen
+          if ((c.hasta - q.cx) * q.dir <= 0.4) { m.corre = null; m.bt = [q.cx, q.cy]; m.port = null; m.portador = null; }
+        }
       }
-      if (!m.guion.length && m.t >= m.finGuion) { m.guion = null; m.corre = null; m.estado = 'silbato'; m.espera = m.t + 0.9; dar(m, null); m.bt = [m.bx, m.by]; }
+      if (!m.guion.length && m.t >= m.finGuion) { m.guion = null; m.corre = null; m.estado = 'silbato'; m.espera = m.t + 1; dar(m, null); m.bt = [m.bx, m.by]; }
       return;
     }
-    if (m.t < m.espera) return;
-    if (m.estado === 'silbato') { nflSituacion(m); nflLineaUp(m); m.estado = 'linea'; m.espera = m.t + azar(2.2, 3.6); return; }
-    const nueva = js.find((q) => !m.vistas.has(q.id));
-    if (nueva) { m.vistas.add(nueva.id); anunciar(m, etiqueta('NFL', nueva)); m.finGuion = m.t + 4.6; m.guion = nflJugada(m, nueva).map(([s, f]) => ({ en: m.t + s, f })); return; }
-    m.finGuion = m.t + 4.2; m.guion = nflJugada(m, null).map(([s, f]) => ({ en: m.t + s, f }));
+    const pendientes = js.filter((q) => !m.vistas.has(q.id));
+    if (m.t >= m.espera) {
+      const rapido = pendientes.length > 1;           // si van atrasadas, sin perder tiempo
+      if (m.estado === 'silbato') { nflSituacion(m); nflHuddle(m); m.estado = 'junta'; m.espera = m.t + (rapido ? 1.6 : azar(4.5, 6.5)); return; }
+      if (m.estado === 'junta') { nflLineaUp(m); m.estado = 'linea'; m.espera = m.t + (rapido ? 1.4 : 2.6); m.proxMov = m.t + 2.8; return; }
+      if (pendientes.length) {
+        const nueva = pendientes[0];
+        m.vistas.add(nueva.id); m.jugadaNfl = nueva; m.of = nueva.lado;
+        anunciar(m, etiqueta('NFL', nueva));
+        const j = nflJugada(m, nueva);
+        m.finGuion = m.t + j.dura;
+        m.guion = j.pasos.map(([s, f]) => ({ en: m.t + s, f }));
+        return;
+      }
+      if (m.t >= m.proxMov) { m.proxMov = m.t + azar(2.6, 4.2); nflMovimiento(m); }
+    }
   }
 
   // ------------- béisbol: lanzamiento a lanzamiento, batazos en su lugar real
@@ -758,41 +867,126 @@
     if (pit) pit.tx = LOMA[0];
   }
 
-  // ------------- tenis: el peloteo
+  // ------------- tenis: siguen peleando hasta que llega un punto real
+  // v577 — el usuario: «la animación se corta; que sigan peleando y, cuando sea punto, que lo marque». Antes el peloteo tenía un largo al azar y
+  // la pelota se iba afuera. Ahora el marcador real (Flashscore: sets, juegos, puntos y quién saca) decide: el peloteo sigue
+  // mientras no cambie; cuando cambia, termina con el que de verdad ganó el punto y el marcador se actualiza justo entonces.
   const CANCHA_T = { x0: 11, x1: 94, y0: 6, y1: 52, red: 52.5 };
+  const TENIS = { t: 0, lista: [], pidiendo: false };
+  const palabrasT = (x) => [...palabras(x)].filter((w) => w.length > 1);
+  function mismoTenista(a, b) {
+    const x = palabrasT(a), y = palabrasT(b), c = x.filter((w) => y.includes(w)).length;
+    return c >= 1 && c >= Math.min(x.length, y.length);
+  }
+  async function pedirTenis() {
+    if (Date.now() - TENIS.t < 12000 || TENIS.pidiendo) return;
+    TENIS.pidiendo = true; TENIS.t = Date.now();
+    try {
+      const r = await fetch('vivo?dep=tenis');
+      if (r.ok) TENIS.lista = (await r.json()).partidos || [];
+    } catch (e) { /* sigue con lo que tenía */ }
+    TENIS.pidiendo = false;
+  }
+  // el marcador de ESTE partido, en el orden de NUESTRO «A vs B»
+  function marcadorTenis(m) {
+    const [L, V] = String((m.p || {}).partido || '').split(' vs ');
+    if (!L || !V) return null;
+    for (const x of TENIS.lista) {
+      const dir = mismoTenista(L, x.home) && mismoTenista(V, x.away), rev = mismoTenista(L, x.away) && mismoTenista(V, x.home);
+      if (!dir && !rev) continue;
+      if (x.estado !== 'in' && x.estado !== 'post') return null;
+      const par = (a) => (a && rev ? [a[1], a[0]] : a);
+      return { sets: (x.sets || []).map(par), tot: par([x.gh || 0, x.ga || 0]), pts: par(x.pts) || null, saca: x.saca == null ? null : (rev ? 1 - x.saca : x.saca), det: x.detalle || '' };
+    }
+    return null;
+  }
+  const VALOR_PT = { 0: 0, 15: 1, 30: 2, 40: 3, A: 4, AD: 4, V: 4 };
+  // qué cambió entre dos marcadores: { aviso, gana } (gana: 0, 1 o null si no se puede saber)
+  function queCambio(a, b) {
+    if (!a || !b) return null;
+    if (JSON.stringify([a.sets, a.pts, a.tot]) === JSON.stringify([b.sets, b.pts, b.tot])) return null;
+    const dT = [b.tot[0] - a.tot[0], b.tot[1] - a.tot[1]];
+    if (dT[0] > 0 || dT[1] > 0) return { aviso: '¡SET!', gana: dT[0] > 0 ? 0 : 1 };
+    const suma = (s, l) => (s || []).reduce((n, x) => n + Number(x[l] || 0), 0), dJ = [suma(b.sets, 0) - suma(a.sets, 0), suma(b.sets, 1) - suma(a.sets, 1)];
+    if (dJ[0] > 0 || dJ[1] > 0) return { aviso: '¡JUEGO!', gana: dJ[0] > 0 ? 0 : 1 };
+    if (a.pts && b.pts) {
+      const v = (x) => (VALOR_PT[String(x)] == null ? Number(x) || 0 : VALOR_PT[String(x)]), d = [v(b.pts[0]) - v(a.pts[0]), v(b.pts[1]) - v(a.pts[1])];
+      return { aviso: '¡PUNTO!', gana: d[0] > 0 ? 0 : d[1] > 0 ? 1 : null };
+    }
+    return null;
+  }
+  const fondoT = (q) => (q.lado === 0 ? CANCHA_T.x0 - 3 : CANCHA_T.x1 + 3);
+  // la bola va al otro lado y el que la recibe corre a devolverla; devuelve cuánto tarda en llegar
+  function golpeT(m, aQ, vel, linea, dest) {
+    const d = dest || [aQ.lado === 0 ? azar(CANCHA_T.x0 + 2, 38) : azar(67, CANCHA_T.x1 - 2), azar(CANCHA_T.y0 + 7, CANCHA_T.y1 - 7)];
+    aQ.tx = d[0] + (aQ.lado === 0 ? -2.5 : 2.5); aQ.ty = d[1];
+    const otro = m.js.find((q) => q !== aQ);
+    if (otro) { otro.tx = fondoT(otro); otro.ty = 29 + (d[1] - 29) * -0.35; }     // el otro vuelve a su sitio, cubriendo el lado contrario
+    lanzar(m, null, linea, d, vel);
+    m.objetivo = aQ;
+    return m.vuelo ? m.vuelo.T : 0.8;
+  }
   function tenis(m) {
-    if (m.pausa) return;
-    const j = m.js;
-    if (m.guion) {
-      while (m.guion.length && m.t >= m.guion[0].en) m.guion.shift().f();
-      if (!m.guion.length) m.guion = null;
-      return;
+    const ahora = marcadorTenis(m);
+    // lo que llega por la fuente se guarda; se enseña hasta que el punto termina en la cancha
+    if (ahora) {
+      const c = queCambio(m.tenU, ahora);
+      if (c && !m.punto) m.punto = c;
+      if (!m.tenis) m.tenis = ahora;
+      m.tenU = ahora;
     }
     if (m.t < m.prox) return;
-    const saca = m.saca || 0, s = j[saca], r = j[1 - saca];
-    if (!s || !r) return;
-    const lado = (m.ladoSaque = (m.ladoSaque || 0) + 1) % 2 ? 1 : -1;
-    const al = (seg, f) => ({ en: m.t + seg, f });
-    const fondo = (q) => (q.lado === 0 ? CANCHA_T.x0 - 3 : CANCHA_T.x1 + 3);
-    s.tx = fondo(s); s.ty = 29 + lado * 8; r.tx = fondo(r); r.ty = 29 - lado * 10;
-    const golpes = 3 + Math.floor(Math.random() * 8);
-    const serie = [al(1, () => { dar(m, s); m.bt = null; })];
-    let t = 2, de = s;
-    for (let i = 0; i < golpes; i++) {
-      const aQ = de === s ? r : s, tt = t, dest = [aQ.lado === 0 ? azar(CANCHA_T.x0 + 2, 38) : azar(67, CANCHA_T.x1 - 2), azar(CANCHA_T.y0 + 7, CANCHA_T.y1 - 7)];
-      serie.push(al(tt, () => {
-        aQ.tx = dest[0] + (aQ.lado === 0 ? -2.5 : 2.5); aQ.ty = dest[1];
-        lanzar(m, null, i === 0, dest, i === 0 ? 85 : 64);
-        m.objetivo = aQ;
-      }));
-      serie.push(al(tt + 0.85, () => dar(m, aQ)));
-      t += 1.05; de = aQ;
+    const js = m.js;
+    if (!m.faseT) m.faseT = 'prep';
+    if (m.faseT === 'prep') {
+      m.pasePrep = true;
+      const u = m.tenU, saca = u && u.saca != null ? u.saca : (m.sacaSim || 0);
+      const s = js[saca], r = js[1 - saca];
+      if (!s || !r) return;
+      m.ladoSaque = ((m.ladoSaque || 0) + 1) % 2;
+      const l = m.ladoSaque ? 1 : -1;
+      s.tx = fondoT(s); s.ty = 29 + l * 8; r.tx = fondoT(r); r.ty = 29 - l * 10;
+      dar(m, s); m.sacador = s; m.golpes = 0; m.maxG = 10 + Math.floor(Math.random() * 14);
+      m.prox = m.t + 1.1; m.faseT = 'saque';
+      return;
     }
-    const ult = de;
-    serie.push(al(t, () => { const fuera = [ult.lado === 0 ? 100 : 5, azar(10, 48)]; lanzar(m, null, false, fuera, 42); }));
-    serie.push(al(t + 1.1, () => { m.saca = (saca + (Math.random() < 0.25 ? 1 : 0)) % 2; dar(m, null); m.bt = [52.5, 55]; }));
-    m.prox = m.t + t + 1.8;
-    m.guion = serie;
+    if (m.faseT === 'saque') {
+      const s = m.sacador, r = js.find((q) => q !== s);
+      const dest = [r.lado === 0 ? azar(31, 44) : azar(61, 74), 29 + (s.ty > 29 ? -1 : 1) * azar(3, 15)];     // al cuadro de servicio contrario
+      m.prox = m.t + golpeT(m, r, 88, true, dest); m.faseT = 'golpe';
+      return;
+    }
+    if (m.faseT === 'golpe') {
+      const a = m.objetivo, otro = js.find((q) => q !== a);
+      dar(m, a); m.golpes++;
+      if (m.punto) {                                   // el marcador ya cambió: este intercambio termina con el que de verdad ganó
+        const g = m.punto.gana;
+        if (g == null || g === a.lado) {
+          // gana el que tiene la bola: tiro ganador a la esquina y el otro no llega
+          const dest = [otro.lado === 0 ? azar(CANCHA_T.x0 + 1, 22) : azar(83, CANCHA_T.x1 - 1), Math.random() < 0.5 ? azar(12, 19) : azar(39, 46)];
+          otro.tx = dest[0] + (otro.lado === 0 ? 8 : -8); otro.ty = dest[1] + (dest[1] > 29 ? -8 : 8);
+          lanzar(m, null, true, dest, 78);
+        } else {
+          // pierde el que tiene la bola: la manda a la red
+          lanzar(m, null, false, [CANCHA_T.red + (a.lado === 0 ? -1.2 : 1.2), azar(14, 44)], 62);
+        }
+        m.prox = m.t + (m.vuelo ? m.vuelo.T : 0.7) + 0.15; m.faseT = 'fin';
+        return;
+      }
+      if (m.golpes >= m.maxG) {                        // sin novedad en mucho rato: se juega otro peloteo, sin anunciar nada
+        lanzar(m, null, false, [CANCHA_T.red + (a.lado === 0 ? -1.2 : 1.2), azar(14, 44)], 62);
+        m.prox = m.t + (m.vuelo ? m.vuelo.T : 0.7) + 0.6; m.faseT = 'prep'; m.sacaSim = m.sacaSim || 0;
+        return;
+      }
+      m.prox = m.t + golpeT(m, otro, azar(58, 74), m.golpes % 5 === 0);
+      return;
+    }
+    // fin: se canta el punto y el marcador cambia justo ahora
+    aviso(m, m.punto ? m.punto.aviso : '', 1.6);
+    if (m.punto && m.punto.aviso !== '¡PUNTO!') m.chipEspecial = m.punto.aviso;
+    m.tenis = m.tenU;
+    m.punto = null;
+    m.prox = m.t + 2; m.faseT = 'prep';
   }
 
   const FASES = { NHL: { paso: flujo }, NBA: { paso: flujo }, NFL: { paso: nfl }, BEIS: { paso: beis }, Tenis: { paso: tenis } };
@@ -806,6 +1000,7 @@
       if (conduce) { q.tx = entre(6, q.cx + q.rx * 5, 99); q.ty = entre(4, q.cy + q.ry * 5, A - 4); }
       let tx = q.tx, ty = q.ty;
       if (!parado && q !== port && m.fam !== 'NFL' && m.fam !== 'BEIS') { tx += Math.sin(m.t * 0.9 + q.fase) * 1; ty += Math.cos(m.t * 0.7 + q.fase * 1.7) * 1; }
+      if (m.fam === 'NFL' && !parado && q !== port && !m.guion) { tx += Math.sin(m.t * 1.1 + q.fase) * 0.42; ty += Math.cos(m.t * 0.9 + q.fase * 1.7) * 0.42; }
       if (m.fam === 'BEIS' && q.lado === 1 && !parado) { tx += Math.sin(m.t * 0.6 + q.fase) * 0.45; ty += Math.cos(m.t * 0.5 + q.fase) * 0.45; }
       const w = conduce ? s.rig * 1.4 : s.rig;
       q.vx += (w * w * (tx - q.cx) - 2 * w * q.vx) * dt; q.vy += (w * w * (ty - q.cy) - 2 * w * q.vy) * dt;
@@ -880,6 +1075,17 @@
       const f = m.fdX == null ? -5 : m.fdX; svg._fd.setAttribute('x1', f); svg._fd.setAttribute('x2', f);
     }
     if (m.fam === 'BEIS') beisTexto(svg, m);
+    if (m.t >= (svg._proxMc || 0)) {
+      svg._proxMc = m.t + 0.4;
+      const caja = svg.parentElement && svg.parentElement.querySelector('.mc-caja');
+      if (caja) {
+        const h = marcador(m.fam, m.v, m.datos, m.clave, m), num = h.replace(/<[^>]+>/g, ' ');
+        if (svg._mc !== h) {
+          if (svg._mcNum && svg._mcNum !== num && !/FINAL/.test(num)) { caja.classList.remove('cambia'); void caja.offsetWidth; caja.classList.add('cambia'); }
+          svg._mc = h; svg._mcNum = num; caja.innerHTML = h;
+        }
+      }
+    }
     const clave = (m.chipN || 0) + '|' + (m.baja || '') + (m.beisChip || '');
     if (svg._chip !== clave) {
       svg._chip = clave;
@@ -932,6 +1138,7 @@
       preparar(svgs[0], m);
       if (!m.js.length) return;
       if (m.fam === 'BEIS' && m.p && m.v && m.v.fase === 'in') pedirBeisbol(k, m.p);
+      if (m.fam === 'Tenis' && m.v && m.v.fase === 'in') pedirTenis();
       if (dt > 0) {
         m.t += dt;
         if (m.pausa) { m.js.forEach((q) => { q.tx = q.x0; q.ty = q.y0; }); dar(m, null); m.bt = [52.5, ALTO[m.fam] / 2]; m.guion = null; m.fijo = false; } else FASES[m.fam].paso(m);

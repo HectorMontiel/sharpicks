@@ -1286,3 +1286,53 @@ button.arm-pata:active { background: rgba(255,255,255,.04); }
 .p-linea td { color: var(--texto); }
 .p-linea .t { font-weight: 800; background: rgba(255,255,255,.05); }
 .cancha-svg .jug.nombrado .nom { opacity: 1; }
+
+/* v577 — el marcador de cada deporte: una línea, pegada a la cancha */
+.mc-caja { margin: 0 0 4px; }
+.mc { display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 30px; padding: 3px 10px; border-radius: 9px; font-variant-numeric: tabular-nums; line-height: 1; white-space: nowrap; overflow: hidden; }
+.mc-eq { font-size: 12px; font-weight: 800; letter-spacing: .4px; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.mc-n { font-size: 18px; font-weight: 900; min-width: 22px; text-align: center; }
+.mc-cen { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; margin: 0 auto; padding: 0 6px; }
+.mc-cen em { font-style: normal; font-size: 10px; font-weight: 800; letter-spacing: .5px; }
+.mc-cen strong { font-size: 12px; font-weight: 800; }
+.mc-caja.cambia .mc { animation: mc-sube .9s ease-out; }
+@keyframes mc-sube { 0% { transform: scale(1.035); filter: brightness(1.7); } 100% { transform: none; filter: none; } }
+.mc-fut { background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.1); }
+.mc-fut .mc-c { width: 4px; height: 18px; border-radius: 2px; }
+.mc-fut .mc-cen em { font-size: 12px; color: #4ade80; }
+.mc-nba { background: #07080c; border: 1px solid #2c2413; box-shadow: inset 0 0 12px rgba(255,160,40,.1); font-family: ui-monospace, Menlo, Consolas, monospace; }
+.mc-nba .mc-n { color: #ff9d2e; font-size: 20px; text-shadow: 0 0 7px rgba(255,157,46,.75); }
+.mc-nba .mc-eq { color: #ffe3b8; }
+.mc-nba .mc-cen em { color: #ffcf7d; }
+.mc-nba .mc-cen strong { color: #ff5148; text-shadow: 0 0 6px rgba(255,81,72,.7); font-size: 13px; }
+.mc-nhl { background: linear-gradient(180deg, #17344f, #0d2136); border: 1px solid rgba(120,190,255,.38); }
+.mc-nhl .mc-n { color: #fff; text-shadow: 0 0 8px rgba(130,205,255,.8); }
+.mc-nhl .mc-eq { color: #bfe2ff; }
+.mc-nhl .mc-cen em { color: #ff7a7a; }
+.mc-nhl .mc-cen strong { color: #e8f5ff; }
+.mc-nfl { background: linear-gradient(90deg, #0d3b22, #15552f 50%, #0d3b22); border: 1px solid rgba(255,255,255,.2); }
+.mc-nfl .mc-n { color: #fff; }
+.mc-nfl .mc-eq { color: #fff; }
+.mc-nfl .mc-eq.con::after { content: ' ◂'; color: #facc15; }
+.mc-nfl .mc-eq.con:first-child::after { content: ' ▸'; }
+.mc-nfl .mc-cen em { color: #dcfce7; }
+.mc-nfl .mc-cen strong { color: #facc15; font-size: 11px; }
+.mc-beis { background: #123a2b; border: 2px solid #0a241a; }
+.mc-beis .mc-n { color: #fdf6e3; background: #0a241a; padding: 3px 4px; border-radius: 3px; font-size: 16px; }
+.mc-beis .mc-eq { color: #fdf6e3; }
+.mc-beis .mc-cen { flex-direction: row; gap: 6px; }
+.mc-beis .mc-cen em { color: #fde68a; font-size: 12px; }
+.mc-dia { width: 24px; height: 18px; }
+.mc-dia rect { fill: rgba(255,255,255,.14); stroke: rgba(255,255,255,.65); stroke-width: .7; }
+.mc-dia rect.on { fill: #facc15; stroke: #facc15; }
+.mc-bso { display: inline-flex; flex-direction: column; gap: 1px; font-size: 7.5px; font-weight: 800; color: #d6e8dc; }
+.mc-bso span { display: inline-flex; align-items: center; gap: 2px; line-height: 7px; }
+.mc-bso i { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.18); }
+.mc-bso i.on.v { background: #4ade80; } .mc-bso i.on.a { background: #facc15; } .mc-bso i.on.r { background: #f87171; }
+.mc-tenis { background: linear-gradient(180deg, #123a68, #0d2c50); border: 1px solid rgba(255,255,255,.2); gap: 5px; padding: 3px 7px; }
+.mc-tenis .mc-eq { color: #fff; display: inline-flex; align-items: center; gap: 3px; font-size: 11px; }
+.mc-tenis .mc-eq u { width: 6px; height: 6px; border-radius: 50%; background: #e6ff3a; box-shadow: 0 0 4px #e6ff3a; flex: none; }
+.mc-sets { display: inline-flex; gap: 3px; }
+.mc-sets i { font-style: normal; font-size: 13px; font-weight: 800; color: #cfe2f7; min-width: 9px; text-align: center; }
+.mc-sets i.va { color: #fff; background: rgba(255,255,255,.14); border-radius: 3px; padding: 1px 3px; }
+.mc-tenis .mc-cen strong { color: #e6ff3a; font-size: 14px; font-weight: 900; }
