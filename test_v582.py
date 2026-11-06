@@ -139,7 +139,7 @@ def test_quien_usa_espanol_no_paga_nada():
     i = leer(W, 'idioma.js')
     assert "if (lang !== 'en') return;" in i
     assert i.index("if (lang !== 'en') return;") < i.index('new MutationObserver')
-    assert "document.write('<script src=\"idioma_en.js\">" in i          # sólo se baja en inglés
+    assert "if (lang === 'en') document.write('<script src=\"idioma_en.js' + (VER ? '?' + VER : '')" in i   # sólo se baja en inglés, y con versión
     h = leer(W, 'index.html')
     assert 'idioma_en.js' not in h
     assert h.index('idioma.js') < h.index('estilo.css') < h.index('app.js')    # antes que todo lo que pinta

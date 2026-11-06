@@ -10,7 +10,9 @@
   const lang = leer(K_LANG) === 'en' ? 'en' : 'es';
   const I18N = window.I18N = { lang, locale: lang === 'en' ? 'en-US' : 'es-MX', t: (s) => s, traducir: () => {} };
   document.documentElement.lang = lang;
-  if (lang === 'en') document.write('<script src="idioma_en.js"><\/script>');
+  // con la misma versión que este archivo (?v=…, la pone sitio_web.yml): si no, el dominio guarda un diccionario viejo
+  const VER = document.currentScript && document.currentScript.src.split('?')[1];
+  if (lang === 'en') document.write('<script src="idioma_en.js' + (VER ? '?' + VER : '') + '"><\/script>');
 
   // ---- la pantalla para elegir
   const MX = '<svg viewBox="0 0 60 40" aria-hidden="true"><rect width="20" height="40" fill="#006847"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#ce1126"/><circle cx="30" cy="20" r="5.5" fill="#8c6a2f"/><path d="M26 22q4 4 8 0" fill="none" stroke="#006847" stroke-width="1.4"/></svg>';
