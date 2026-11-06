@@ -1123,5 +1123,7 @@ window.I18N_EN = {
 "O semestral: $# cada # meses": "Or semiannual: $# every # months",
 "Paquetes: # 🪙 $# · # 🪙 $# · # 🪙 $# · # 🪙 $#": "Packages: # 🪙 $# · # 🪙 $# · # 🪙 $# · # 🪙 $#",
 "después": "after",
-"para los primeros #, para siempre": "for the first #, forever"
+"para los primeros #, para siempre": "for the first #, forever",
+"Abrir el Pulso": "Open the Pulse",
+"Apuestas del modelo": "Model bets"
 };
