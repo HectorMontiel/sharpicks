@@ -1106,5 +1106,12 @@ window.I18N_EN = {
 "Soy mayor de 18 años y acepto los": "I'm 18 or older and I accept the",
 "Para crear tu cuenta confirma que eres mayor de 18 años y aceptas los términos": "To create your account, confirm you're 18 or older and accept the terms",
 "Usamos tu correo, usuario y actividad para darte el servicio y cobrar. Los avisos por Telegram son opcionales y puedes limitar el uso de tus datos desde el aviso": "We use your email, username and activity to provide the service and charge you. Telegram alerts are optional and you can limit the use of your data as explained in the notice",
-"y el": "and the"
+"y el": "and the",
+"IA con confianza máxima": "Max confidence AI",
+"IA: confianza alta": "AI: High confidence",
+"IA: confianza máxima": "AI: Max confidence",
+"IA: confianza máxima · VIP": "AI: Max confidence · VIP",
+"Los picks con confianza alta de la IA brillan en morado. Aún no está medido que acierten más": "AI high confidence picks glow in purple. It is not yet measured that they hit more",
+"VIP: la IA ilumina en morado los picks en los que tiene confianza alta": "VIP: The AI highlights in purple the picks it has high confidence in",
+"con confianza alta": "with high confidence"
 };
