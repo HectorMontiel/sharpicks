@@ -53,7 +53,8 @@ class ExportadorFailClosedTests(unittest.TestCase):
 
         with patch.object(requests, 'get', return_value=Respuesta(True, [])), \
              patch.object(requests, 'post', side_effect=post), \
-             patch.object(requests, 'delete', return_value=Respuesta(True, status_code=204)):
+             patch.object(requests, 'delete', return_value=Respuesta(True, status_code=204)), \
+             self.assertLogs(exportar_web.logger, level='ERROR') as captured:
             with self.assertRaisesRegex(RuntimeError, 'texto premium'):
                 exportar_web.subir_supabase(
                     [{'id': 'pick-1', 'fecha': '2026-10-19', 'partido': 'A-B',
@@ -61,6 +62,8 @@ class ExportadorFailClosedTests(unittest.TestCase):
                       'estado': 'pendiente'}],
                     [{'id': 'pick-1', 'apuesta': 'Victoria local'}],
                 )
+        self.assertNotIn('simulated failure', '\n'.join(captured.output))
+        self.assertIn('HTTP 500', '\n'.join(captured.output))
 
     def test_failed_individual_retry_blocks_publication(self):
         import requests
@@ -69,7 +72,8 @@ class ExportadorFailClosedTests(unittest.TestCase):
             return Respuesta(False, status_code=500, text='simulated failure')
 
         with patch.object(requests, 'get', return_value=Respuesta(True, [])), \
-             patch.object(requests, 'post', side_effect=post):
+             patch.object(requests, 'post', side_effect=post), \
+             self.assertLogs(exportar_web.logger, level='ERROR') as captured:
             with self.assertRaisesRegex(RuntimeError, 'incluso tras reintentar'):
                 exportar_web.subir_supabase(
                     [{'id': 'pick-1', 'fecha': '2026-10-19', 'partido': 'A-B',
@@ -77,6 +81,7 @@ class ExportadorFailClosedTests(unittest.TestCase):
                       'estado': 'pendiente'}],
                     [],
                 )
+        self.assertNotIn('simulated failure', '\n'.join(captured.output))
 
 
 class CombinadasFailClosedTests(unittest.TestCase):
@@ -97,6 +102,20 @@ class CombinadasFailClosedTests(unittest.TestCase):
                     'https://example.supabase.co',
                     'test-key',
                 )
+
+    def test_table_read_error_log_excludes_response_body(self):
+        import requests
+        with patch.object(requests, 'get', side_effect=[
+            Respuesta(True, []), Respuesta(False, status_code=503, text='private response canary')
+        ]), self.assertLogs(combinadas_web.logger, level='ERROR') as captured:
+            with self.assertRaisesRegex(RuntimeError, 'no se puede publicar'):
+                combinadas_web.subir(
+                    [{'id': 'pick-1', 'estado': 'pendiente', 'inicio': '2026-10-19T18:00:00Z',
+                      'partido': 'A-B', 'cuota': 1.2, 'prob': .8, 'deporte': 'Fútbol'}],
+                    'https://example.supabase.co', 'test-key',
+                )
+        self.assertNotIn('private response canary', '\n'.join(captured.output))
+        self.assertIn('HTTP 503', '\n'.join(captured.output))
 
 
 if __name__ == '__main__':

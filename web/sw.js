@@ -1,20 +1,63 @@
-// v378 — Para que se pueda instalar como app en el celular. Siempre pide a la
-// red primero (los datos cambian a cada rato); sin red, lo último guardado.
-const CACHE = 'sharpicks-v1';
-// v512 — en el dominio viejo (sharpicks.pages.dev) el service worker se borra solo con lo guardado: así
-// la siguiente visita llega a la red, donde la página de mudanza lleva al usuario a sharpicksapp.com.
+// SharPicks Service Worker — caché acotada y segura.
+// Sólo almacena recursos estáticos del mismo origen. Nunca cachea respuestas API,
+// páginas HTML, rutas dinámicas ni URLs con query string (datos en vivo).
+const CACHE = 'sharpicks-static-v2';
 const VIEJO = self.location.hostname === 'sharpicks.pages.dev';
-self.addEventListener('install', (e) => self.skipWaiting());
-self.addEventListener('activate', (e) => e.waitUntil(VIEJO
-  ? caches.keys().then((ks) => Promise.all(ks.map((k) => caches.delete(k))))
-    .then(() => self.registration.unregister())
-    .then(() => self.clients.matchAll({ type: 'window' }))
-    .then((cs) => cs.forEach((c) => c.navigate(c.url)))
-  : self.clients.claim()));
-self.addEventListener('fetch', (e) => {
-  const u = new URL(e.request.url);
-  if (VIEJO || e.request.method !== 'GET' || u.origin !== location.origin) return;
-  e.respondWith(fetch(e.request).then((r) => {
-    const c = r.clone(); caches.open(CACHE).then((k) => k.put(e.request, c)); return r;
-  }).catch(() => caches.match(e.request)));
+
+const ASSET_EXTENSIONS = new Set([
+  '.css', '.js', '.mjs', '.png', '.jpg', '.jpeg', '.webp', '.gif',
+  '.svg', '.ico', '.woff', '.woff2', '.ttf', '.otf'
+]);
+
+function esRecursoEstatico(request, url) {
+  if (VIEJO || request.method !== 'GET' || url.origin !== self.location.origin) return false;
+  if (url.search || url.hash) return false;
+  if (request.headers.has('authorization')) return false;
+  if (url.pathname.startsWith('/rest/') || url.pathname.startsWith('/functions/')) return false;
+  if (url.pathname.startsWith('/vivo') || url.pathname.startsWith('/presion')) return false;
+  const extension = url.pathname.slice(url.pathname.lastIndexOf('.')).toLowerCase();
+  return ASSET_EXTENSIONS.has(extension);
+}
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(self.skipWaiting());
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil((async () => {
+    if (VIEJO) {
+      const keys = await caches.keys();
+      await Promise.all(keys.map((key) => caches.delete(key)));
+      await self.registration.unregister();
+      const clients = await self.clients.matchAll({ type: 'window' });
+      clients.forEach((client) => client.navigate(client.url));
+      return;
+    }
+
+    // Conserva únicamente la versión vigente; evita acumulación indefinida.
+    const keys = await caches.keys();
+    await Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)));
+    await self.clients.claim();
+  })());
+});
+
+self.addEventListener('fetch', (event) => {
+  const request = event.request;
+  const url = new URL(request.url);
+  if (!esRecursoEstatico(request, url)) return;
+
+  event.respondWith((async () => {
+    const cache = await caches.open(CACHE);
+    try {
+      const response = await fetch(request);
+      if (response && response.ok && response.type === 'basic') {
+        await cache.put(request, response.clone());
+      }
+      return response;
+    } catch (error) {
+      const cached = await cache.match(request);
+      if (cached) return cached;
+      throw error;
+    }
+  })());
 });

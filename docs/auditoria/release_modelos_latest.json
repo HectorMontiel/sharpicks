@@ -1,0 +1,1262 @@
+{
+  "schema_version": 1,
+  "repository": "HectorMontiel/sharpicks",
+  "tag_name": "modelos-latest",
+  "release_name": "Modelos entrenados (última versión)",
+  "release_published_at": "2026-10-29T15:24:36Z",
+  "checked_at": "2026-10-30T17:43:38.104087+00:00",
+  "method": "GitHub Release metadata through gh API; assets are not downloaded",
+  "scope": "asset names and metadata only; archive contents, owners and consumers are not verified",
+  "summary": {
+    "asset_count": 73,
+    "total_size_bytes": 735067828,
+    "assets_without_digest": 0,
+    "content_type_counts": {
+      "application/json": 1,
+      "application/x-gtar": 72
+    }
+  },
+  "assets": [
+    {
+      "name": "modelos-afc_champions.tar.gz",
+      "size_bytes": 3868883,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:991a5df27b8db01ac9078892a29ec07832ef5eca0e45108d9817c2560aa783c3",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:56:33Z",
+      "updated_at": "2026-10-30T12:56:33Z",
+      "download_count_at_snapshot": 1,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-argentina.tar.gz",
+      "size_bytes": 21129288,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:24e13225adc8a0d115ae6336c9272257627199abc67ad82c972e0974728af93b",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:57:00Z",
+      "updated_at": "2026-10-30T12:57:02Z",
+      "download_count_at_snapshot": 1,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-arg_primera_nacional.tar.gz",
+      "size_bytes": 19244254,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:4334c10a4acf5e411cffc67e669c10b221ec8c4860348aab2e78b57b02c34f82",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:56:45Z",
+      "updated_at": "2026-10-30T12:56:47Z",
+      "download_count_at_snapshot": 1,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-aus_aleague.tar.gz",
+      "size_bytes": 7265100,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:9b6af4fb632c1386bb526e9f7b58c944d959d948c178652efbb112f8441dbc6b",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:57:07Z",
+      "updated_at": "2026-10-30T12:57:08Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-aut_bundesliga.tar.gz",
+      "size_bytes": 12027135,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:52ff2d5f5353afcbb67c2e93cc3762a2f825340fbf9bcdbe19e1a1a446f8fdb3",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:57:16Z",
+      "updated_at": "2026-10-30T12:57:17Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-bel_pro_league.tar.gz",
+      "size_bytes": 486289,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:31fb2b2aaa163136dba0d3d7a75eaa8c328ea0a6f1e6e23765a54c656d76490b",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:57:18Z",
+      "updated_at": "2026-10-30T12:57:19Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-bol_division.tar.gz",
+      "size_bytes": 11946912,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:9e1fcb71b5cbbd3d83c0d6d2f6a421ba4112bcaf38b93ba0448b4ec42e481bdc",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:57:27Z",
+      "updated_at": "2026-10-30T12:57:28Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-brasil.tar.gz",
+      "size_bytes": 19423608,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:5937980c11027e2c5f34899076a666a2555387b5328d7724c3ffa49f01cc6545",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:57:51Z",
+      "updated_at": "2026-10-30T12:57:52Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-bra_copa.tar.gz",
+      "size_bytes": 3444334,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:2d1f3d8076aec40b0cf49654233d6b46ade405eb27ec91c9584fd483291612ea",
+      "state": "uploaded",
+      "created_at": "2026-10-29T15:23:31Z",
+      "updated_at": "2026-10-29T15:23:32Z",
+      "download_count_at_snapshot": 10,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-bra_serie_b.tar.gz",
+      "size_bytes": 14810645,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:bf29d90210ae889d3ac37d0559c9ec52cf937dd4c53288eb14ac8b6d499d1eb0",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:57:37Z",
+      "updated_at": "2026-10-30T12:57:38Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-bundesliga.tar.gz",
+      "size_bytes": 10245883,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:000d470454f62e8de76c66b5df5f50fc3a20523f9a6b1557f24ccd5b05012e26",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:57:59Z",
+      "updated_at": "2026-10-30T12:58:00Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-champions.tar.gz",
+      "size_bytes": 6445971,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:f015867123d42d6b6b2ed078cba21b59574a8dc2acb927d08452eee7a29f7aef",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:58:05Z",
+      "updated_at": "2026-10-30T12:58:06Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-china.tar.gz",
+      "size_bytes": 13222678,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:8363d63054e02ec38840a294fce42977e80ac28c29a2e9005c759abf78691bcb",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:58:24Z",
+      "updated_at": "2026-10-30T12:58:25Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-chi_primera.tar.gz",
+      "size_bytes": 10506199,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:5ada068fc012400ea319528d35dcc9031a18301423a33bfe92a9451c94902ed1",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:58:13Z",
+      "updated_at": "2026-10-30T12:58:15Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-col_primera_a.tar.gz",
+      "size_bytes": 16337727,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:4a5fde5504fd4915d547c8d9ae917f04cae2cf8f4a35d582e98d3df4a8f95215",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:58:36Z",
+      "updated_at": "2026-10-30T12:58:37Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-conference_league.tar.gz",
+      "size_bytes": 4260884,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:3e79641d3d8271ccef500f026cf65eb51306b07558bec8112cc160cf5c76bc61",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:58:40Z",
+      "updated_at": "2026-10-30T12:58:41Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-crc_fpd.tar.gz",
+      "size_bytes": 10348503,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:ce79eeb317e0437c69d995314e959db7cc1415776f6bd7c6d6d1e50c7be06342",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:58:48Z",
+      "updated_at": "2026-10-30T12:58:49Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-dinamarca.tar.gz",
+      "size_bytes": 12655768,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:4a8b0c47111012135b12d584fb8803afcf41500b2a74af3f9967a46e767058d3",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:58:58Z",
+      "updated_at": "2026-10-30T12:59:00Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-ecu_liga_pro.tar.gz",
+      "size_bytes": 11240579,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:ebd6c97ae8c2a7ef41392f716d30ac5d0d0576c6a0dbab009661aa4f1be25a5f",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:59:07Z",
+      "updated_at": "2026-10-30T12:59:08Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-eng_carabao.tar.gz",
+      "size_bytes": 35553193,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:1c2c0c1710bb66560e1d9d2fc3dd76a83fbcf4a1c143f7ac5dd36da053ac3b3d",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:59:33Z",
+      "updated_at": "2026-10-30T12:59:38Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-eng_championship.tar.gz",
+      "size_bytes": 611594,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:941fe7ad7deaa2d3f6d02bc6cb128d242126b72106c22569b2563b05ee100e54",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:59:40Z",
+      "updated_at": "2026-10-30T12:59:40Z",
+      "download_count_at_snapshot": 1,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-eng_fa_cup.tar.gz",
+      "size_bytes": 3840616,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:afd485daf0458d25f30b46f57079aec1602e96fef9d2c8d1660af8cbec38ad1c",
+      "state": "uploaded",
+      "created_at": "2026-10-29T15:23:46Z",
+      "updated_at": "2026-10-29T15:23:48Z",
+      "download_count_at_snapshot": 1,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-eng_league_one.tar.gz",
+      "size_bytes": 16409155,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:31e5a6a45f5674b8c1f2f5536927a559daf3401f65fec6ba2394a30350494b50",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:59:51Z",
+      "updated_at": "2026-10-30T12:59:52Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-eng_league_two.tar.gz",
+      "size_bytes": 572313,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:9bb608db256debdad66f383526f4147724048a73298874f3cafd07a1d2c93519",
+      "state": "uploaded",
+      "created_at": "2026-10-30T12:59:53Z",
+      "updated_at": "2026-10-30T12:59:53Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-eng_national.tar.gz",
+      "size_bytes": 16442633,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:bbc47520f9cfa7121f73f4578f5051736d730ba04d6843cf957e06f5135a3afe",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:00:04Z",
+      "updated_at": "2026-10-30T13:00:05Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-eredivisie.tar.gz",
+      "size_bytes": 10216575,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:438ebdc05bf4ea424c462e25fecdb8d819ebaa87e6b7c5dff84bcc6277496966",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:00:12Z",
+      "updated_at": "2026-10-30T13:00:13Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-esp_copa_rey.tar.gz",
+      "size_bytes": 22993210,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:2d36494cb7a2e544f070e1e06698901d78cf2ae1e18d7dd8934a2e7dbe8e7008",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:00:29Z",
+      "updated_at": "2026-10-30T13:00:30Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-esp_hypermotion.tar.gz",
+      "size_bytes": 536787,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:d333656e2ca4333870d709764779755785df8db66ae832b7ea9b4d89e9b2f444",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:00:31Z",
+      "updated_at": "2026-10-30T13:00:32Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-europa_league.tar.gz",
+      "size_bytes": 8228361,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:fb24da1ded7c29991f9eea75f3694dcc98818962efaf2d4b18de741d996379b8",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:00:38Z",
+      "updated_at": "2026-10-30T13:00:39Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-finlandia.tar.gz",
+      "size_bytes": 10615670,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:c8c908d5e4c654cebffb301f80f03fdcd51ea693fff06ff675a6e3751cef46e9",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:00:46Z",
+      "updated_at": "2026-10-30T13:00:47Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-fra_ligue2.tar.gz",
+      "size_bytes": 11204579,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:5387598636becc7110bedd5352aa1cbfb383de1223d1152859992ceb9b943c95",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:00:55Z",
+      "updated_at": "2026-10-30T13:00:56Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-ger_bundesliga2.tar.gz",
+      "size_bytes": 10257790,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:c4f1cc5094bdc9ac8ad63700dc3e3cc991da57ec4081535b3e052520146283c9",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:01:04Z",
+      "updated_at": "2026-10-30T13:01:05Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-ger_dfb_pokal.tar.gz",
+      "size_bytes": 19970290,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:123a517c2d188474f7b2abe437c436dd7d9009056531ecbb791016cb1506979a",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:01:17Z",
+      "updated_at": "2026-10-30T13:01:18Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-gre_super_league.tar.gz",
+      "size_bytes": 8056677,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:d771f30ca34131a1b1a4116ac5e89c8f9f5a527727c743bf90c715a3626ea25f",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:01:24Z",
+      "updated_at": "2026-10-30T13:01:25Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-ind_isl.tar.gz",
+      "size_bytes": 5639392,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:82c8e6d8cfe18e84b44857e89a5279a47638869704fd1b5700e5ac15779ef05e",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:01:30Z",
+      "updated_at": "2026-10-30T13:01:30Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-irlanda.tar.gz",
+      "size_bytes": 10787708,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:fb67d531e5b7ce57569228eac7cfa86bb495317758c3cdcea6a3823879174984",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:01:38Z",
+      "updated_at": "2026-10-30T13:01:39Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-ita_serie_b.tar.gz",
+      "size_bytes": 11917719,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:ada3434b74deef344c83b8c141d2b9656bf72e35a43d736c457aa1b6701396c9",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:01:47Z",
+      "updated_at": "2026-10-30T13:01:48Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-jpn_j1.tar.gz",
+      "size_bytes": 17647121,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:3b8d737affaa0324e444de84fead18ef3d0ddcfd9f343472de8ef259567c91a6",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:01:59Z",
+      "updated_at": "2026-10-30T13:02:00Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-kbo.tar.gz",
+      "size_bytes": 116654,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:83089bbda06851ea7ca4f80d5b101c608192c12519f68a435e1f00fe3d7b7668",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:02:02Z",
+      "updated_at": "2026-10-30T13:02:02Z",
+      "download_count_at_snapshot": 1,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-ksa_pro.tar.gz",
+      "size_bytes": 9906358,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:fda45e6638a65043450f8888d6fe037a79c78f137e1224764bda53274d591caa",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:02:09Z",
+      "updated_at": "2026-10-30T13:02:10Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-laliga.tar.gz",
+      "size_bytes": 12083993,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:29adf10d5fcc1c2821a281337a1d496a51b91bf90e8d49df3f31eb1012e3c9a3",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:02:18Z",
+      "updated_at": "2026-10-30T13:02:19Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-leagues_cup.tar.gz",
+      "size_bytes": 663923,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:25896b82d2e58bc769db946397d13132016c865cf9ebf7ec590414c12181c7d3",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:02:21Z",
+      "updated_at": "2026-10-30T13:02:21Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-libertadores.tar.gz",
+      "size_bytes": 4996240,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:e8cf1e9fccf0e201f7f569eee1ad7076a136cc409d63bb147a67e8d4b80bf3fc",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:02:25Z",
+      "updated_at": "2026-10-30T13:02:26Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-liga_mx.tar.gz",
+      "size_bytes": 7021276,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:f956d277daa7599a185b95894c79a0bb6e83ef11694e1a93f98317f108cd6e10",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:02:31Z",
+      "updated_at": "2026-10-30T13:02:32Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-ligue_1.tar.gz",
+      "size_bytes": 10782390,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:f4accb93679d659609b5cd61487f86a7b570c434cd0ccc36f4f21305465f1359",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:02:39Z",
+      "updated_at": "2026-10-30T13:02:40Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-mex_expansion.tar.gz",
+      "size_bytes": 11166863,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:f25c6a3367961b7b1b6ab1138a6b2c006666e397ef2cef34836b7a72538bb24d",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:02:47Z",
+      "updated_at": "2026-10-30T13:02:48Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-mlb.tar.gz",
+      "size_bytes": 4171700,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:ff1e5169ac92585112a51355e4945d0660071a9f2b361891f46b8010f09f3dad",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:02:50Z",
+      "updated_at": "2026-10-30T13:02:51Z",
+      "download_count_at_snapshot": 1,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-mls.tar.gz",
+      "size_bytes": 21058781,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:dea0b391eab133eb00889e21196faf6d7a44677574a8b666108495a2e4f5dca4",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:03:04Z",
+      "updated_at": "2026-10-30T13:03:06Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-nba.tar.gz",
+      "size_bytes": 3505281,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:a5104c92bc701846d5d76fa8bc48fe50d80204f3a23d7939ec2ce3209cf0806b",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:03:07Z",
+      "updated_at": "2026-10-30T13:03:08Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-ned_eerste.tar.gz",
+      "size_bytes": 507455,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:1569cce2a59ac05ada9482d4ea38302bcf78624099a79050d976bd4de1eaefe2",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:03:09Z",
+      "updated_at": "2026-10-30T13:03:09Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-noruega.tar.gz",
+      "size_bytes": 14029584,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:c4247c156032b95621d896378beaf7f8f101f1820f7b600d984dd8428e94a6c6",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:03:19Z",
+      "updated_at": "2026-10-30T13:03:20Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-par_division.tar.gz",
+      "size_bytes": 440527,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:4cc3031cb07d15ea191ee94d033813aa342c64e1a0ba4cb0b21b476d41fcfec5",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:03:21Z",
+      "updated_at": "2026-10-30T13:03:22Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-per_liga1.tar.gz",
+      "size_bytes": 12987408,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:7e5cecfa87632ce0c20360e0fdb9291aa0a9d0fe77b2a141ecad5055f956194f",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:03:30Z",
+      "updated_at": "2026-10-30T13:03:32Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-polonia.tar.gz",
+      "size_bytes": 16537598,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:44c3c03e1a95dac21eebfc8b7e5c9e221d78c562e6c98016261aea2cc4e7cd24",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:03:42Z",
+      "updated_at": "2026-10-30T13:03:43Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-premier.tar.gz",
+      "size_bytes": 7107175,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:157a907c527121188190658d2ba3e0151289d220c34637465196dab185e7311e",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:03:48Z",
+      "updated_at": "2026-10-30T13:03:49Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-primeira.tar.gz",
+      "size_bytes": 19346011,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:a4d34793d9323790df3536ea3dc4d8971f6b3acd30bbd995e6e58fad2655bd32",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:04:02Z",
+      "updated_at": "2026-10-30T13:04:07Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-rsa_premier.tar.gz",
+      "size_bytes": 9806496,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:4515bb5a93daa8cf8df425644797c3e42a36d59b4ce9477063ee7aa027468447",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:04:14Z",
+      "updated_at": "2026-10-30T13:04:17Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-rumania.tar.gz",
+      "size_bytes": 17224162,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:36cf5b6e23da5dfb510227d8fb097964d62a9eee27cfe0209d2e1bd4325966e0",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:04:28Z",
+      "updated_at": "2026-10-30T13:04:29Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-rus_premier.tar.gz",
+      "size_bytes": 14412568,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:471500b3f9875573c1463dea510e167348791f164dd9726c9fcecaa0aa6cf95c",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:04:38Z",
+      "updated_at": "2026-10-30T13:04:39Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-sco_championship.tar.gz",
+      "size_bytes": 6844228,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:27aab872419b70b0bc42c323ce9e1be92fa7737c10cf79f681ab6b38ffd5c4b7",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:04:44Z",
+      "updated_at": "2026-10-30T13:04:46Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-sco_premiership.tar.gz",
+      "size_bytes": 8006595,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:412318905aff4aef3c5a48740747a6a126c9331fc66543028460ba4f9c313de2",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:04:51Z",
+      "updated_at": "2026-10-30T13:04:52Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-serie_a.tar.gz",
+      "size_bytes": 2917062,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:609129801e881a77b5771a5887e27c42a0e259defff1867418cc704aef36d290",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:04:55Z",
+      "updated_at": "2026-10-30T13:04:55Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-slv_primera.tar.gz",
+      "size_bytes": 448469,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:87ca975c39f40e1cf039d133ea238fee2d25867c7b881e46814fa3a7575e24d6",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:04:57Z",
+      "updated_at": "2026-10-30T13:04:57Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-sudamericana.tar.gz",
+      "size_bytes": 311173,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:d13ae28387314e61e65866c14ff51a58ba940e9f2e783ad3cc9e30ff318d7351",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:04:58Z",
+      "updated_at": "2026-10-30T13:04:59Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-suecia.tar.gz",
+      "size_bytes": 13917025,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:0731780e9fde81dd48b9303ff3832ba1fe21b918050979b74e40a6db61b3ce30",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:05:08Z",
+      "updated_at": "2026-10-30T13:05:09Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-tennis.tar.gz",
+      "size_bytes": 11351635,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:36d8acb2c1a83b2c8f77933f4bd71277d849396b54ad1b33bec53d7104115e4e",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:05:12Z",
+      "updated_at": "2026-10-30T13:05:13Z",
+      "download_count_at_snapshot": 1,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-tennis_wta.tar.gz",
+      "size_bytes": 11496513,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:d7baf6e1d8210d60947c06a4ba4eadc70d0f25b132430fa7ae986fb717522703",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:05:15Z",
+      "updated_at": "2026-10-30T13:05:16Z",
+      "download_count_at_snapshot": 1,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-tiros_equipo.tar.gz",
+      "size_bytes": 5283362,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:3feef9d796fc1cfc54ee3eb456a9e4c274484d646b012a557c780f5d9f3f6018",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:05:18Z",
+      "updated_at": "2026-10-30T13:05:19Z",
+      "download_count_at_snapshot": 1,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-turquia.tar.gz",
+      "size_bytes": 6081410,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:1bf4885152a57bcfff6cd20d8a57141800ea95cdd3462f3a93070040104cf0f4",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:05:24Z",
+      "updated_at": "2026-10-30T13:05:24Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-uru_primera.tar.gz",
+      "size_bytes": 12501358,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:0593c43204ae54c8dfb9b3d2762d66aecf43368748440be9b1ea3a9d3a4a8f7f",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:05:33Z",
+      "updated_at": "2026-10-30T13:05:33Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-usl_championship.tar.gz",
+      "size_bytes": 16728124,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:c46be9d46f8a8d621632509f250050440082eb3ae4bc7ad83f849901117be921",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:05:44Z",
+      "updated_at": "2026-10-30T13:05:45Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos-ven_primera.tar.gz",
+      "size_bytes": 10890414,
+      "content_type": "application/x-gtar",
+      "digest": "sha256:01a02bca2b89184b4526288842e5f2cb406206d945f724452b7500f3d03aa8f7",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:05:53Z",
+      "updated_at": "2026-10-30T13:05:53Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "generated_model_archive",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model archive name and extension",
+      "decision_state": "review_required"
+    },
+    {
+      "name": "modelos_publicados.json",
+      "size_bytes": 5994,
+      "content_type": "application/json",
+      "digest": "sha256:eba3836acf77e7c055fe9b4b91b1fefc7f8b35e30f11f9105923262fdafd0d8e",
+      "state": "uploaded",
+      "created_at": "2026-10-30T13:05:55Z",
+      "updated_at": "2026-10-30T13:05:55Z",
+      "download_count_at_snapshot": 0,
+      "classification_candidates": [
+        "model_registry_metadata",
+        "private_candidate",
+        "review_required"
+      ],
+      "evidence": "model registry/manifest name",
+      "decision_state": "review_required"
+    }
+  ]
+}

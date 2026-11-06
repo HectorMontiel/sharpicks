@@ -1,0 +1,98 @@
+{
+ "dias": 7,
+ "por_flujo": {
+  "Relevo de las dos horas": {
+   "trabajos": 117,
+   "min": 8174
+  },
+  "Precálculo del día": {
+   "trabajos": 122,
+   "min": 2576
+  },
+  "Sitio web": {
+   "trabajos": 92,
+   "min": 1322
+  },
+  "Cuotas de las casas mexicanas": {
+   "trabajos": 125,
+   "min": 994
+  },
+  "Reentrenar modelos de ligas (datos frescos)": {
+   "trabajos": 7,
+   "min": 735
+  },
+  "Recalibrar la cadena completa (semanal)": {
+   "trabajos": 1,
+   "min": 126
+  },
+  "Tests seguros SharPicks v402": {
+   "trabajos": 45,
+   "min": 66
+  },
+  "Verificar instalación limpia de SharPicks": {
+   "trabajos": 46,
+   "min": 52
+  },
+  "Validar SharPicks sin desplegar": {
+   "trabajos": 48,
+   "min": 47
+  },
+  "Precalcular goleadores (rosters de ESPN)": {
+   "trabajos": 7,
+   "min": 33
+  },
+  "Pulso en vivo (avisos e IA)": {
+   "trabajos": 1,
+   "min": 32
+  },
+  "Sitio web (rápido)": {
+   "trabajos": 30,
+   "min": 16
+  },
+  "Bot Telegram - Día completo (hoy y mañana)": {
+   "trabajos": 6,
+   "min": 13
+  },
+  "Respaldo nocturno de la base": {
+   "trabajos": 15,
+   "min": 11
+  },
+  "Bot Telegram - Apuestas del Día": {
+   "trabajos": 6,
+   "min": 9
+  },
+  "Smoke test de SharPicks en producción": {
+   "trabajos": 21,
+   "min": 9
+  },
+  "Radar de errores de cuota (diario)": {
+   "trabajos": 7,
+   "min": 9
+  },
+  "Vigilante de límites": {
+   "trabajos": 14,
+   "min": 6
+  },
+  "Claves a Supabase": {
+   "trabajos": 2,
+   "min": 0
+  }
+ },
+ "min_total": 14230,
+ "min_mes": 60986,
+ "usd_mes_alojado": 353.92,
+ "pico_simultaneos": 5,
+ "tiempo_con_n": {
+  "0": 48.7,
+  "1": 40.9,
+  "2": 8.5,
+  "3": 1.3,
+  "4": 0.6,
+  "5": 0.0
+ },
+ "sin_relevo": {
+  "min_total": 6056,
+  "min_mes": 25954,
+  "usd_mes_alojado": 143.72
+ }
+}

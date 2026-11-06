@@ -31,15 +31,17 @@ env:
 
 jobs:
   enviar_dia_completo:
-    runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
+    # ADR-0002: con el despertador activo sólo envía él; un cron atrasado mandaría el mensaje otra vez
+    if: ${{ github.event_name != 'schedule' || vars.DESPERTADOR != 'activo' }}
+    runs-on: ${{ vars.RUNNER_PESADO || 'ubuntu-latest' }}   # ADR-0002: sin la variable, runners de GitHub
     timeout-minutes: 60
 
     steps:
       - name: Clonar repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
       - name: Configurar Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12'
           cache: 'pip'

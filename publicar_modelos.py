@@ -39,6 +39,7 @@ import hashlib
 import json
 import logging
 import os
+import re
 import subprocess
 import sys
 import tarfile
@@ -46,9 +47,10 @@ import tempfile
 
 logger = logging.getLogger('publicar_modelos')
 
-# v511 — el repo de cada corrida (GitHub lo pone en GITHUB_REPOSITORY); en local, el privado nuevo
-REPO = (os.environ.get('REPO_MODELOS') or os.environ.get('GITHUB_REPOSITORY')
-        or 'HectorMontiel/sharpicks')
+# Nunca inferir el destino de publicación del repo de checkout. El workflow
+# público debe nombrar el destino privado explícitamente y verificarlo antes
+# de crear/actualizar un Release.
+REPO = os.environ.get('REPO_MODELOS', '').strip()
 ETIQUETA = os.environ.get('RELEASE_MODELOS', 'modelos-latest')
 RAIZ = 'modelos'
 
@@ -85,6 +87,21 @@ def _gh(*args, comprobar=True):
         raise RuntimeError(f"gh {' '.join(args)} -> {r.returncode}: "
                            f"{(r.stderr or r.stdout).strip()[:300]}")
     return r
+
+
+def _validar_destino_privado() -> None:
+    """Fail closed unless the configured GitHub destination is private."""
+    if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', REPO):
+        raise ValueError('REPO_MODELOS debe indicar explícitamente owner/repo privado')
+    if REPO.casefold() == 'hectormontiel/sharpicks':
+        raise ValueError('se rechaza publicar modelos en el repositorio público sharpicks')
+    try:
+        respuesta = _gh('api', f'repos/{REPO}')
+        privado = json.loads(respuesta.stdout or '{}').get('private') is True
+    except Exception:
+        raise RuntimeError('no se pudo verificar que el destino de modelos sea privado') from None
+    if not privado:
+        raise ValueError('el destino configurado no es un repositorio privado')
 
 
 def asegurar_release() -> None:
@@ -171,6 +188,11 @@ def _manifiesto_previo(tmp: str) -> dict:
 
 
 def publicar(claves=None, verificar=False, forzar=False) -> int:
+    try:
+        _validar_destino_privado()
+    except (ValueError, RuntimeError) as e:
+        logger.error('publicación de modelos abortada: %s', e)
+        return 2
     claves = claves or competiciones()
     if not claves:
         logger.error('no hay nada en modelos/ que publicar')

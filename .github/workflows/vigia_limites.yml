@@ -23,7 +23,11 @@ jobs:
     steps:
       # sólo hace falta un archivo: se baja del commit exacto (sin checkout parcial, que envenena runners: test_v519)
       - name: Bajar el vigilante
-        run: curl -fsSL "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/vigia_limites.py" -o vigia_limites.py
+        env:
+          GH_TOKEN: ${{ github.token }}
+        # con la API y el token de la corrida: sirve igual con el repo público o privado
+        run: |
+          gh api "repos/${{ github.repository }}/contents/vigia_limites.py?ref=${{ github.sha }}" -H "Accept: application/vnd.github.raw" > vigia_limites.py
       - name: Medir y avisar
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}

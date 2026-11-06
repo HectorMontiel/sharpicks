@@ -11,6 +11,7 @@
 
 # Los CSV y JSON de datos se normalizan a LF para que el diff sea estable
 # entre el runner de GitHub (Linux) y las máquinas locales (Windows).
+tools/vps_runner/* text eol=lf
 *.csv      text eol=lf
 *.json     text eol=lf
 *.py       text eol=lf
