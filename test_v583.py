@@ -65,6 +65,20 @@ def test_ventanas_no_mandan_columna_que_no_existe():
     assert a.index("f['base'], f['id'], f['ventana']") < a.index("f.pop('analisis_en', None)")
 
 
+def test_emparejar_nombres_reescritos():
+    a, b, c = {'partido': 'Bayern München vs Werder Bremen'}, {'partido': 'Chomutov vs Velvary'}, {'partido': 'Opava vs Vlasim'}
+    uno, dos, tres = {'x': 1}, {'x': 2}, {'x': 3}
+    assert ia.emparejar([b], {'Chomutov vs Velvary': dos}) == [(b, dos)]
+    assert ia.emparejar([a, b], {'Bayern Munchen vs Werder Bremen': uno, 'Chomutov vs Velvary': dos}) == [(b, dos), (a, uno)]     # sin acento
+    assert ia.emparejar([a, b], {'Bayern Munich vs Bremen': uno, 'Chomutov vs Velvary': dos}) == [(b, dos), (a, uno)]            # sobra uno de cada lado
+    assert ia.emparejar([a, b, c], {'Otro uno': uno, 'Otro dos': dos, 'Opava vs Vlasim': tres}) == [(c, tres)]                    # ambiguo: no adivina
+    assert ia.emparejar([a], None) == [] and ia.emparejar([a], {'_limite': True}) == []
+
+
+def test_ventanas_sin_mercados():
+    assert "f.pop('mercados', None)" in leer('ia_gemini.py')
+
+
 def test_analisis_con_lite_primero():
     assert 'res = preguntar(entrada, dep, tipo, LITE)' in leer('ia_gemini.py')
 

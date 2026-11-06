@@ -967,6 +967,38 @@ def guardar(sb, filas: List[Dict]):
     return r
 
 
+def _sin_acentos(s: str) -> str:
+    import unicodedata
+    return ''.join(c for c in unicodedata.normalize('NFKD', str(s)) if not unicodedata.combining(c)).lower().strip()
+
+
+def emparejar(lote: List[Dict], res: Optional[Dict]) -> List[tuple]:
+    """v585 — cada partido del lote con su respuesta. La IA a veces reescribe el nombre y el partido se quedaba sin análisis en cada pasada
+    (el único de 46 el 6-nov: Bayern München vs Werder Bremen). Primero el nombre exacto, luego sin acentos, y si sólo sobra uno de cada lado, son el mismo."""
+    if not res:
+        return []
+    sobran = {k: v for k, v in res.items() if not k.startswith('_')}
+    pares, faltan = [], []
+    for m in lote:
+        if m['partido'] in sobran:
+            pares.append((m, sobran.pop(m['partido'])))
+        else:
+            faltan.append(m)
+    aun = []
+    for m in faltan:
+        k = next((x for x in sobran if _sin_acentos(x) == _sin_acentos(m['partido'])), None)
+        if k is not None:
+            pares.append((m, sobran.pop(k)))
+        else:
+            aun.append(m)
+    if len(aun) == 1 and len(sobran) == 1:
+        pares.append((aun[0], next(iter(sobran.values()))))
+        aun = []
+    if aun:
+        logger.warning('[ia] sin respuesta para %s; la IA devolvió %s', [m['partido'] for m in aun], list(sobran))
+    return pares
+
+
 def analizar(sb, lista: List[Dict], mercado: Dict, ventana: Optional[str] = None):
     """En lotes por deporte: primero las noticias de la web, luego el análisis, y se
     guarda. Devuelve (cuántos, si se acabó el cupo de todos los modelos)."""
@@ -1004,7 +1036,7 @@ def analizar(sb, lista: List[Dict], mercado: Dict, ventana: Optional[str] = None
         if res and res.get('_limite'):
             print('ia: todos los modelos agotaron su cupo de hoy')
             return hechos, True
-        filas = [fila(m, res[m['partido']], mercado) for m in lote if res and m['partido'] in res]
+        filas = [fila(m, d, mercado) for m, d in emparejar(lote, res)]
         sin_respuesta = 0 if filas else sin_respuesta + 1
         for f in filas:                     # v446 — para medir si con noticias acierta más
             w = web.get(f['partido'])
@@ -1012,7 +1044,9 @@ def analizar(sb, lista: List[Dict], mercado: Dict, ventana: Optional[str] = None
             f['noticias'] = ' | '.join(w['noticias'])[:900] if f['con_noticias'] else None
             if ventana:                     # v447 — la misma fila, guardada aparte con su hora
                 f['base'], f['id'], f['ventana'] = f['id'], f['id'] + '|' + ventana, ventana
-                f.pop('analisis_en', None)  # v583 — ia_ventanas sólo mide y no tiene esa columna (la base rechazaba el lote entero)
+                # v583 — ia_ventanas sólo mide y no tiene estas columnas (la base rechazaba el lote entero y se perdían las consultas)
+                f.pop('analisis_en', None)
+                f.pop('mercados', None)
         if filas:
             r = guardar(sb, filas)
             if r.ok:
