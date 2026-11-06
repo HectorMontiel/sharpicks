@@ -443,7 +443,7 @@
       aTiempo(sb.rpc('enlace_vip'), 5000, { data: null }),
     ]);
     const lugares = (r1 && r1.data) || 0, vipUrl = r2 && r2.data;
-    const pm = Number(yo.precios.precio_mensual || 189), pf = Number(yo.precios.precio_fundador || 129), ps = Number(yo.precios.precio_semestral || 919);
+    const pm = Number(yo.precios.precio_mensual || 199), pf = Number(yo.precios.precio_fundador || 149), ps = Number(yo.precios.precio_semestral || 999), lf = Number(yo.precios.lugares_fundador || 20);
     let h = '<button class="cerrar" data-cerrar-cuenta>✕</button><h3>Mi cuenta</h3>' +
       '<div class="cuenta-cab"><b>@' + esc(p.usuario || '—') + '</b><span class="tenue">' + esc(yo.user.email || '') + '</span></div>' +
       '<div class="cuenta-plan">' + (esAdmin() ? '👑 <b>Administrador</b> · monedas y VIP ilimitados'
@@ -462,7 +462,7 @@
         // v584 — sin marcar de inicio: LFPC 76 bis (reforma dic-2025) pide consentimiento expreso para los cobros recurrentes
         '<label class="renovar"><input type="checkbox" id="vip-renovar"> <span>🔁 <b>Renovar automáticamente</b> con el mismo monto cada mes o cada 6 meses, según tu plan, en la fecha de renovación. ' +
         'Te avisamos ' + DIAS_AVISO + ' días antes de cada cobro y cancelas cuando quieras. Sin marcar: pagas sólo este periodo.</span></label>' +
-        '<button class="vip-btn" data-vip="mensual">' + (lugares > 0 ? '⭐ Fundador: $' + pf + ' al mes <small>quedan ' + lugares + ' de 50 · después $' + pm + '</small>' : 'Mensual: $' + pm + ' al mes') + '</button>' +
+        '<button class="vip-btn" data-vip="mensual">' + (lugares > 0 ? '⭐ Fundador: $' + pf + ' al mes <small>quedan ' + lugares + ' de ' + lf + ' · después $' + pm + '</small>' : 'Mensual: $' + pm + ' al mes') + '</button>' +
         '<button class="vip-btn sec" data-vip="semestral">Semestral: $' + ps + ' cada 6 meses <small>≈ $' + Math.round(ps / 6) + ' al mes</small></button>' +
         '<p class="tenue chico">Precios en pesos con IVA incluido. El cobro lo hace Stripe o Mercado Pago; nosotros nunca vemos tu tarjeta.</p></div>';
     }

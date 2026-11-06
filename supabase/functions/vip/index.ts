@@ -1,7 +1,6 @@
 // v383 — HACERSE VIP: crea la suscripción en Mercado Pago y devuelve su
 // página de cobro (Mercado Pago pide la tarjeta: nosotros nunca la vemos).
-// Precio (tabla `ajustes`): fundador $129 al mes para los primeros 50, después
-// $189; semestral $919 cada 6 meses. IVA y comisión incluidos (v541).
+// Precio (tabla `ajustes`): fundador, mensual y semestral (v592). IVA y comisión incluidos.
 import { createClient } from 'npm:@supabase/supabase-js@2.45.4';
 
 const CORS = {
@@ -32,12 +31,12 @@ Deno.serve(async (req) => {
       const { data: reservado, error: errorReserva } = await admin.rpc('reservar_lugar_fundador', {
         p_id: 'reserva:' + crypto.randomUUID(),
         p_usuario: user.id,
-        p_precio: Number(A.precio_fundador ?? 129),
+        p_precio: Number(A.precio_fundador ?? 149),
       });
       if (errorReserva) throw new Error('No se pudo reservar una plaza fundador');
       fundador = reservado === true;
     }
-    const precio = Number(semestral ? A.precio_semestral ?? 919 : fundador ? A.precio_fundador ?? 129 : A.precio_mensual ?? 189);
+    const precio = Number(semestral ? A.precio_semestral ?? 999 : fundador ? A.precio_fundador ?? 149 : A.precio_mensual ?? 199);
     if (!renovar) {
       // v395 — el usuario eligió NO renovar: un solo pago por ese periodo (Checkout Pro)
       const meses = semestral ? 6 : 1;

@@ -1,0 +1,37 @@
+name: Paquete fiscal del mes
+
+# v592 — manda al administrador el paquete del mes. Apagado hasta poner la variable FISCAL_ACTIVO=1.
+on:
+  schedule:
+    - cron: '23 15 3 * *'
+    - cron: '23 15 6 * *'
+    - cron: '23 15 12 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fiscal-mensual
+  cancel-in-progress: false
+
+jobs:
+  mandar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            fiscal_mensual.py
+            vigia_limites.py
+      - name: Armar y mandar
+        env:
+          FISCAL_ACTIVO: ${{ vars.FISCAL_ACTIVO }}
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          BREVO_REMITENTE: ${{ secrets.BREVO_REMITENTE }}
+        run: python3 fiscal_mensual.py

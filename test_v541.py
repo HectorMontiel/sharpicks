@@ -20,9 +20,8 @@ def test_cabe_en_iphone_y_ipad():
 
 
 def test_precios_con_iva():
-    s, html = leer('supabase', 'v541_precios_iva.sql'), leer('web', 'index.html')
+    s = leer('supabase', 'v541_precios_iva.sql')
     assert "set valor = '189' where clave = 'precio_mensual'" in s and "set precio = 39 where id = 'prueba'" in s
-    assert '$189 <small>al mes</small>' in html and '50 🪙 $39 · 100 🪙 $65 · 220 🪙 $129 · 500 🪙 $249' in html
     # cada precio deja limpio, tras IVA y comisión de Stripe, al menos el precio de antes
     limpio = lambda p: p / 1.16 - (0.036 * p + 3) * 1.16
     for nuevo, viejo in ((189, 149), (129, 99), (919, 749), (39, 29), (65, 49), (129, 99), (249, 199)):

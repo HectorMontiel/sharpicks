@@ -24,6 +24,13 @@ Deno.serve(async (req) => {
       return await r.json();
     };
     const admin = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!, { auth: { persistSession: false } });
+    // v592 — cada cobro, uno por uno, en el libro `pagos`. El id hace que un aviso repetido no lo cuente dos veces.
+    const anotarPago = async (idPago: string, tipoPago: string, usuario: string | null, p: Record<string, any>) => {
+      const fees = Array.isArray(p.fee_details) ? p.fee_details.reduce((a: number, f: Record<string, any>) => a + Number(f.amount ?? 0), 0) : null;
+      const { error } = await admin.from('pagos').upsert({ id: idPago, fuente: 'mercadopago', tipo: tipoPago, usuario, bruto: Number(p.transaction_amount ?? 0), comision: fees,
+        pagado: p.date_approved ?? p.debit_date ?? p.date_created ?? new Date().toISOString() });
+      if (error) throw new Error('No se pudo anotar el cobro');
+    };
 
     // pago único: monedas
     if (tipo === 'payment' || tipo === '') {
@@ -36,6 +43,7 @@ Deno.serve(async (req) => {
           p_precio: Number(p.transaction_amount ?? 0),
         });
         if (error) throw new Error('No se pudo acreditar la compra de monedas');
+        await anotarPago('mp:' + String(p.id), 'monedas', usuario, p);
       }
       if (p && ref.startsWith('vip|') && p.status === 'approved') {
         // v395 — VIP de un solo pago (sin renovación): se suma el periodo UNA vez
@@ -45,13 +53,21 @@ Deno.serve(async (req) => {
           p_meses: Number(meses), p_precio: Number(p.transaction_amount ?? 0), p_fundador: fund === '1',
         });
         if (error) throw new Error('No se pudo activar el VIP de pago único');
+        await anotarPago('mp-unico:' + String(p.id), 'vip_unico', usuario, p);
       }
       if (p) return ok();
     }
 
     // suscripción VIP
     let pre: string | null = null;
-    if (tipo.includes('authorized_payment')) pre = (await mp('/authorized_payments/' + id))?.preapproval_id ?? null;
+    if (tipo.includes('authorized_payment')) {
+      const ap = await mp('/authorized_payments/' + id);
+      pre = ap?.preapproval_id ?? null;
+      if (ap && (ap.payment?.status === 'approved' || ap.status === 'approved')) {
+        const su = pre ? await mp('/preapproval/' + pre) : null;
+        await anotarPago('mp-rec:' + id, 'vip_renovacion', su?.external_reference ?? null, ap);
+      }
+    }
     else if (tipo.includes('preapproval')) pre = id;
     if (!pre) return ok();
     const s = await mp('/preapproval/' + pre);

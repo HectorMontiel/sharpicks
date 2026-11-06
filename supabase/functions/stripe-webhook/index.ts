@@ -40,6 +40,17 @@ Deno.serve(async (req) => {
     const admin = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!, { auth: { persistSession: false } });
     const obj = ev?.data?.object || {};
     let subId: string | null = null;
+    // v592 — cada cobro, uno por uno, en el libro `pagos`. El id hace que un aviso repetido no lo cuente dos veces.
+    const anotarPago = async (id: string, tipo: string, usuario: string | null, bruto: number, comision: number | null, pagado: number) => {
+      const { error } = await admin.from('pagos').upsert({ id, fuente: 'stripe', tipo, usuario, bruto, comision, pagado: new Date(pagado * 1000).toISOString() });
+      if (error) throw new Error('No se pudo anotar el cobro');
+    };
+    const comisionDe = async (intento: string | null) => {
+      if (!intento) return null;
+      const pi = await stripe('/payment_intents/' + intento + '?expand[]=latest_charge.balance_transaction');
+      const fee = pi?.latest_charge?.balance_transaction?.fee;
+      return typeof fee === 'number' ? fee / 100 : null;
+    };
 
     if (ev.type === 'checkout.session.completed') {
       const s = await stripe('/checkout/sessions/' + obj.id);
@@ -50,6 +61,7 @@ Deno.serve(async (req) => {
           p_paquete: s.metadata.paquete, p_precio: Number(s.amount_total ?? 0) / 100,
         });
         if (error) throw new Error('No se pudo acreditar la compra de monedas');
+        await anotarPago('stripe:' + s.id, 'monedas', s.metadata.usuario, Number(s.amount_total ?? 0) / 100, await comisionDe(s.payment_intent), Number(s.created));
         return ok();
       }
       if (s.mode === 'payment' && s.payment_status === 'paid' && s.metadata?.tipo === 'vip_unico') {
@@ -60,12 +72,18 @@ Deno.serve(async (req) => {
           p_precio: Number(s.amount_total ?? 0) / 100, p_fundador: s.metadata.fundador === '1',
         });
         if (error) throw new Error('No se pudo activar el VIP de pago único');
+        await anotarPago('stripe-unico:' + s.id, 'vip_unico', s.metadata.usuario, Number(s.amount_total ?? 0) / 100, await comisionDe(s.payment_intent), Number(s.created));
         return ok();
       }
       if (s.mode === 'subscription') subId = typeof s.subscription === 'string' ? s.subscription : s.subscription?.id;
     } else if (ev.type === 'invoice.paid') {
       // en las versiones nuevas de la API la suscripción va en `parent.subscription_details`
       subId = obj.parent?.subscription_details?.subscription || obj.subscription || null;
+      // la primera mensualidad y las renovaciones llegan por aquí
+      if (subId && Number(obj.amount_paid ?? 0) > 0) {
+        const su = await stripe('/subscriptions/' + subId);
+        await anotarPago('stripe-inv:' + obj.id, 'vip_renovacion', su?.metadata?.usuario ?? null, Number(obj.amount_paid) / 100, await comisionDe(obj.payment_intent ?? null), Number(obj.status_transitions?.paid_at ?? obj.created));
+      }
     } else if (ev.type === 'customer.subscription.updated' || ev.type === 'customer.subscription.deleted') {
       subId = obj.id;
     }

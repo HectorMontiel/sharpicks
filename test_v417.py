@@ -138,8 +138,8 @@ def probar_v421():
     sim = _json.load(open(os.path.join('web', 'combinadas_simuladas.json'), encoding='utf-8'))
     check(sim['desde'] == '2026-10-17' and len(sim['combinadas']) >= 10 and all(c['tipo'] == 'combinada' for c in sim['combinadas'])
           and "const DESDE_NUEVO = '2026-10-22'" in app, 'v421: las de 2 patas del historial son el método nuevo desde la misma fecha (simulado, y lo dice)')
-    check('💰 Cuota alta y 🔗 combinadas sin gastar monedas' in html and '20 🪙 de regalo al registrarte' in html and '50 🪙 de regalo' not in html,
-          'v421: el VIP incluye 💰 Cuota alta y se regalan 20 🪙')
+    check('💰 Cuota alta y 🔗 combinadas sin gastar monedas' in html and '15 🪙 de regalo al registrarte' in html and '50 🪙 de regalo' not in html,
+          'v421: el VIP incluye 💰 Cuota alta y se regalan 15 🪙 (v592)')
     check("set valor = '20' where clave = 'monedas_bienvenida'" in leer('supabase', 'v421_bienvenida_20.sql'), 'v421: la base regala 20 🪙')
 
 
