@@ -109,8 +109,8 @@
   },
   "Fuerte San Francisco": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "San Lorenzo W",
-    "ratio": 0.4516,
+    "candidato": "San Luis W",
+    "ratio": 0.4286,
     "visto": "2026-11-06"
   },
   "Gimnasia y Esgrima (Jujuy)": {
@@ -253,8 +253,8 @@
   },
   "San Diego FC": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "San Lorenzo W",
-    "ratio": 0.6,
+    "candidato": "San Luis W",
+    "ratio": 0.5882,
     "visto": "2026-11-06"
   },
   "Sportivo Luqueño": {
@@ -793,9 +793,9 @@
   },
   "Sportivo San Lorenzo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Sportivo Trinidense",
-    "ratio": 0.6154,
-    "visto": "2026-11-02"
+    "candidato": "GV San Jose",
+    "ratio": 0.5161,
+    "visto": "2026-11-06"
   },
   "Wycombe Wanderers": {
     "contexto": "cuotas_mx→futbol",
@@ -931,9 +931,9 @@
   },
   "San Lorenzo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "San Carlos",
-    "ratio": 0.5714,
-    "visto": "2026-11-04"
+    "candidato": "GV San Jose",
+    "ratio": 0.5455,
+    "visto": "2026-11-06"
   },
   "Red Bull Bragantino": {
     "contexto": "oddsapi",
@@ -1123,8 +1123,8 @@
   },
   "San Antonio Bulo Bulo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "San Lorenzo W",
-    "ratio": 0.4375,
+    "candidato": "San Luis W",
+    "ratio": 0.3448,
     "visto": "2026-11-06"
   },
   "Stade Laval": {
@@ -1401,7 +1401,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Vasco U20",
     "ratio": 0.5455,
-    "visto": "2026-10-30"
+    "visto": "2026-11-06"
   },
   "Qingdao West Coast": {
     "contexto": "cuotas_mx→futbol",
@@ -1435,8 +1435,8 @@
   },
   "Dinamo Moscow": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Lokomotiv Moscow",
-    "ratio": 0.6207,
+    "candidato": "Dinamo Helfort",
+    "ratio": 0.5926,
     "visto": "2026-11-06"
   },
   "Crystal Palace": {
@@ -1699,8 +1699,8 @@
   },
   "CSKA Moscow": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Lokomotiv Moscow",
-    "ratio": 0.5926,
+    "candidato": "CSKA 1948 Sofia",
+    "ratio": 0.4615,
     "visto": "2026-11-06"
   },
   "Sporting CP": {

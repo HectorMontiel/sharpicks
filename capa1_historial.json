@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-06T16:30:43Z",
+"actualizado": "2026-11-06T17:47:13Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -24521,6 +24521,16 @@
 "cuota": 2.25,
 "resultado": "verde",
 "marcador": "3-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Necaxa U21 vs Club Tijuana U21",
+"apuesta": "Gana Club Tijuana U21",
+"cuota": 3.35,
+"resultado": "rojo",
+"marcador": "1-0"
 },
 {
 "dia": "2026-11-06",
