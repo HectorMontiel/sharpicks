@@ -176849,3 +176849,35 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000017575,2026-11-06,aus_aleague,Central Coast Mariners,Jesse Mantell,1949001,M,0,13,0,0,0,0.0,,2,
 1000017575,2026-11-06,aus_aleague,Central Coast Mariners,Isaac Kwon,2428634,F,0,13,1,1,0,0.06,,3,
 1000017575,2026-11-06,aus_aleague,Central Coast Mariners,Alexander Bolton,2347479,D,0,1,0,0,0,0.0,,1,
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Ofek Melika,1477918,G,1,90,0,0,0,0.0,11,0,1508254
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,James Tavernier,212689,D,1,90,2,0,0,0.0,32,1,203876
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Mohamed Aly Camara,848174,D,1,65,0,0,0,0.0,34,1,1116994
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Raz Shlomo,940461,D,1,90,0,0,0,0.0,36,1,355362
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Sagiv Yehezkel,557532,D,1,90,5,1,1,0.0,38,1,192113
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Issouf Sissokho,1233589,M,1,90,1,0,0,0.0,65,2,1079170
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Osher Davida,1155249,F,1,56,1,0,0,0.0,82,3,1004957
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Dor Peretz,580694,M,1,89,1,0,0,0.0,84,2,1129072
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Gabi Kanichowsky,819066,M,1,56,0,0,0,0.0,86,2,1569823
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Hélio Varela,1524518,F,1,90,5,1,0,0.0,88,3,2244019
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Elad Madmon,1559823,F,1,56,1,0,0,0.0,115,3,1310393
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Ido Shahar,1116740,M,0,34,2,0,0,0.0,,2,963876
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Ester Sokler,813621,F,0,34,1,1,1,0.0,,3,1191634
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Hisham Layous,1074437,F,0,34,3,2,0,0.0,,3,354745
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Itai Ben Hamo,1358125,D,0,25,0,0,0,0.0,,1,383541
+1000015310,2026-11-06,isr_premier,Maccabi Tel Aviv,Itamar Noy,1298551,M,0,1,0,0,0,0.0,,2,405800
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Dor Hevron,1661170,G,1,90,0,0,0,0.0,11,0,281075
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Eloge Yao,665326,D,1,90,0,0,0,0.0,33,1,145593
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Eitan Tibi,174225,D,1,90,2,1,1,0.0,35,1,135083
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Bashar Abdach,1893924,D,1,90,0,0,0,0.0,37,1,330801
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Guy Deznet,1599483,D,1,90,1,0,0,0.0,51,1,479924
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Itay Baruch,2020197,D,1,60,0,0,0,0.0,59,1,
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Samuel Owusu,683748,M,1,45,0,0,0,0.0,72,2,159652
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Ido Cohen,1664214,M,1,90,1,1,0,0.0,74,2,
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Eyal Einbrom,1244624,M,1,69,1,0,0,0.0,76,2,221351
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,José Cortés,1031317,M,1,69,6,0,0,0.0,78,2,126673
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Liran Hazan,1607439,F,1,69,1,1,0,0.0,115,3,1684315
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Guy Hadida,716877,M,0,46,3,3,1,0.0,,2,291726
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Pavlos Correa,848623,D,0,30,0,0,0,0.0,,1,173452
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Lior Kasa,1618922,M,0,21,1,0,0,0.0,,2,1777006
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Kyle Spence,578427,F,0,21,1,0,0,0.0,,3,166360
+1000015310,2026-11-06,isr_premier,Maccabi Petach Tikva,Yoav Koren,1737605,F,0,21,0,0,0,0.0,,3,

@@ -151,8 +151,8 @@
   },
   "Inter de San Carlos": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "San Luis W",
-    "ratio": 0.4444,
+    "candidato": "GV San Jose",
+    "ratio": 0.4667,
     "visto": "2026-11-06"
   },
   "Jaguares de Córdoba": {
@@ -235,8 +235,8 @@
   },
   "Real Sociedad": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Aviles",
-    "ratio": 0.5,
+    "candidato": "Real Oruro",
+    "ratio": 0.5217,
     "visto": "2026-11-06"
   },
   "Real Valladolid": {
@@ -391,8 +391,8 @@
   },
   "Real Sociedad II": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Aviles",
-    "ratio": 0.4444,
+    "candidato": "Real Oruro",
+    "ratio": 0.4615,
     "visto": "2026-11-06"
   },
   "Carlisle United": {
@@ -559,8 +559,8 @@
   },
   "San Jose Earthquakes": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "San Lorenzo W",
-    "ratio": 0.3871,
+    "candidato": "GV San Jose",
+    "ratio": 0.5161,
     "visto": "2026-11-06"
   },
   "D.C. United": {
@@ -1117,8 +1117,8 @@
   },
   "West Ham United": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "West Ham U21",
-    "ratio": 0.7407,
+    "candidato": "Cambrian United",
+    "ratio": 0.6,
     "visto": "2026-11-06"
   },
   "San Antonio Bulo Bulo": {
@@ -1249,8 +1249,8 @@
   },
   "Sporting San José": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "San Lorenzo W",
-    "ratio": 0.4286,
+    "candidato": "GV San Jose",
+    "ratio": 0.7143,
     "visto": "2026-11-06"
   },
   "Universidad Católica": {
@@ -1369,8 +1369,8 @@
   },
   "Sport Huancayo": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Wiener Sport-Club",
-    "ratio": 0.3846,
+    "candidato": "Herk Sport Hasselt W",
+    "ratio": 0.5,
     "visto": "2026-11-06"
   },
   "Real Oruro": {
@@ -1405,7 +1405,7 @@
   },
   "Qingdao West Coast": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "West Ham U21",
+    "candidato": "Central Coast Mariners W",
     "ratio": 0.4,
     "visto": "2026-11-06"
   },
@@ -1435,9 +1435,9 @@
   },
   "Dinamo Moscow": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dinamo Bucuresti",
-    "ratio": 0.5517,
-    "visto": "2026-11-05"
+    "candidato": "Lokomotiv Moscow",
+    "ratio": 0.6207,
+    "visto": "2026-11-06"
   },
   "Crystal Palace": {
     "contexto": "cuotas_mx→futbol",
@@ -1465,14 +1465,14 @@
   },
   "Real Potosí": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Real Aviles",
-    "ratio": 0.5455,
+    "candidato": "Real Oruro",
+    "ratio": 0.6667,
     "visto": "2026-11-06"
   },
   "AD San Carlos": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "San Luis W",
-    "ratio": 0.5714,
+    "candidato": "GV San Jose",
+    "ratio": 0.5833,
     "visto": "2026-11-06"
   },
   "Nacional Potosí": {
@@ -1629,7 +1629,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Velez Mostar",
     "ratio": 0.6667,
-    "visto": "2026-10-31"
+    "visto": "2026-11-06"
   },
   "Newcastle United": {
     "contexto": "cuotas_mx→futbol",
@@ -1833,7 +1833,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Academia del Balompie",
     "ratio": 0.5909,
-    "visto": "2026-10-31"
+    "visto": "2026-11-06"
   },
   "Ciudad de Bolívar": {
     "contexto": "cuotas_mx→futbol",
@@ -2179,8 +2179,8 @@
   },
   "Rodina Moscow": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Dynamo Moscow U19",
-    "ratio": 0.6667,
+    "candidato": "Lokomotiv Moscow",
+    "ratio": 0.6207,
     "visto": "2026-11-06"
   },
   "Juan Pablo II": {
@@ -2625,7 +2625,7 @@
     "contexto": "cuotas_mx→futbol",
     "candidato": "Inac Kobe Leonesa W (Jpn)",
     "ratio": 0.3529,
-    "visto": "2026-11-01"
+    "visto": "2026-11-06"
   },
   "FC Cologne": {
     "contexto": "oddsapi",
