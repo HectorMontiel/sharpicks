@@ -25375,21 +25375,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5781719,2026-08-22,eredivisie,PEC Zwolle,Gabriel Reiziger,1701453,F,0,13,1,1,0,0.06,,3.0,659662.0
 5781719,2026-08-22,eredivisie,PEC Zwolle,Tijs Velthuis,1092256,D,0,3,0,0,0,0.0,,1.0,626386.0
 5781719,2026-08-22,eredivisie,PEC Zwolle,Odysseus Velanas,775666,F,0,3,1,1,0,0.19,,3.0,326666.0
-5115953,2026-08-22,argentina,Gimnasia LP,Nelson Insfrán,955209,G,1,90,0,0,0,0.0,11.0,0.0,1279679.0
-5115953,2026-08-22,argentina,Gimnasia LP,Bautista Barros Schelotto,1221037,D,1,90,0,0,0,0.0,32.0,1.0,348051.0
-5115953,2026-08-22,argentina,Gimnasia LP,Juan Cortazzo,1608138,D,1,43,1,0,0,0.03,34.0,1.0,601279.0
-5115953,2026-08-22,argentina,Gimnasia LP,Enzo Martínez,951841,D,1,90,0,0,0,0.0,36.0,1.0,743137.0
-5115953,2026-08-22,argentina,Gimnasia LP,Pedro Silva Torrejón,723677,D,1,90,0,0,0,0.0,38.0,1.0,813613.0
-5115953,2026-08-22,argentina,Gimnasia LP,Ignacio Miramón,1206830,M,1,90,0,0,0,0.0,63.0,2.0,1122364.0
-5115953,2026-08-22,argentina,Gimnasia LP,Augusto Max,793799,M,1,46,0,0,0,0.0,65.0,2.0,344202.0
-5115953,2026-08-22,argentina,Gimnasia LP,Nicolás Barros Schelotto,1521000,M,1,45,1,0,0,0.03,67.0,2.0,1714188.0
-5115953,2026-08-22,argentina,Gimnasia LP,Ignacio Fernández,229816,M,1,90,3,1,0,0.14,85.0,2.0,334635.0
-5115953,2026-08-22,argentina,Gimnasia LP,Agustín Auzmendi,856200,F,1,90,5,3,1,0.75,104.0,3.0,699333.0
-5115953,2026-08-22,argentina,Gimnasia LP,Agustín Colazo,1220047,F,1,77,1,0,0,0.1,106.0,3.0,573086.0
-5115953,2026-08-22,argentina,Gimnasia LP,Renzo Giampaoli,1208736,D,0,47,0,0,0,0.0,,1.0,1286506.0
-5115953,2026-08-22,argentina,Gimnasia LP,Maximiliano Zalazar,1402346,F,0,45,3,1,1,0.56,,3.0,482312.0
-5115953,2026-08-22,argentina,Gimnasia LP,Lucas Janson,360797,F,0,45,3,1,0,0.22,,3.0,397911.0
-5115953,2026-08-22,argentina,Gimnasia LP,Franco Torres,1276546,F,0,13,0,0,0,0.0,,3.0,367199.0
 5115953,2026-08-22,argentina,Gimnasia Mendoza,César Rigamonti,270775,G,1,90,0,0,0,0.0,11.0,0.0,319649.0
 5115953,2026-08-22,argentina,Gimnasia Mendoza,Luciano Paredes,1372927,D,1,90,0,0,0,0.0,32.0,1.0,549722.0
 5115953,2026-08-22,argentina,Gimnasia Mendoza,Diego Mondino,830954,D,1,52,0,0,0,0.0,34.0,1.0,279206.0
@@ -25451,22 +25436,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5103594,2026-08-22,brasil,Fluminense,Kevin Serna,1109119,F,0,45,1,1,1,0.23,,3.0,2635673.0
 5103594,2026-08-22,brasil,Fluminense,Germán Cano,113616,F,0,14,0,0,0,0.0,,3.0,364193.0
 5103594,2026-08-22,brasil,Fluminense,Riquelme,1697411,F,0,7,0,0,0,0.0,,3.0,
-5103594,2026-08-22,brasil,Remo,Marcelo,936701,G,1,90,0,0,0,0.0,11.0,0.0,402976.0
-5103594,2026-08-22,brasil,Remo,Marcelinho,1336663,D,1,69,0,0,0,0.0,32.0,1.0,273253.0
-5103594,2026-08-22,brasil,Remo,Marllon,319659,D,1,89,0,0,0,0.0,34.0,1.0,515092.0
-5103594,2026-08-22,brasil,Remo,Duplexe Tchamba,834641,D,1,90,0,0,0,0.0,36.0,1.0,427036.0
-5103594,2026-08-22,brasil,Remo,Marlon,670799,D,1,90,0,0,0,0.0,38.0,1.0,214981.0
-5103594,2026-08-22,brasil,Remo,Zé Welison,535944,M,1,90,2,0,0,0.05,64.0,2.0,660937.0
-5103594,2026-08-22,brasil,Remo,Zé Ricardo,951710,M,1,89,0,0,0,0.0,66.0,2.0,346954.0
-5103594,2026-08-22,brasil,Remo,Yago Pikachu,498595,F,1,90,1,0,0,0.01,83.0,3.0,422419.0
-5103594,2026-08-22,brasil,Remo,Vitor Bueno,671705,M,1,60,0,0,0,0.0,85.0,2.0,737637.0
-5103594,2026-08-22,brasil,Remo,Jája,1041427,F,1,70,2,1,1,0.24,87.0,3.0,654060.0
-5103594,2026-08-22,brasil,Remo,Bill,940855,F,1,90,0,0,0,0.0,115.0,3.0,
-5103594,2026-08-22,brasil,Remo,David Braga,1471036,M,0,30,0,0,0,0.0,,2.0,
-5103594,2026-08-22,brasil,Remo,Antonio Galeano,887141,F,0,21,0,0,0,0.0,,3.0,1968354.0
-5103594,2026-08-22,brasil,Remo,Alef Manga,964936,F,0,20,2,0,0,0.07,,3.0,424713.0
-5103594,2026-08-22,brasil,Remo,Patrick,576129,M,0,1,0,0,0,0.0,,2.0,384555.0
-5103594,2026-08-22,brasil,Remo,Leonel Picco,1097836,M,0,1,0,0,0,0.0,,2.0,2016775.0
 5967039,2026-08-22,ita_serie_b,Avellino,Tommaso Martinelli,1420260,G,1,90,0,0,0,0.0,11.0,0.0,2804771.0
 5967039,2026-08-22,ita_serie_b,Avellino,Tommaso Cancellotti,299934,D,1,90,0,0,0,0.0,32.0,1.0,218818.0
 5967039,2026-08-22,ita_serie_b,Avellino,Lorenco Simic,634244,D,1,90,0,0,0,0.0,34.0,1.0,277395.0
@@ -28021,22 +27990,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000009075,2026-08-23,ecu_liga_pro,Aucas,Michael Carcelén,1134930,M,0,45,2,0,0,0.0,,2.0,521688.0
 1000009075,2026-08-23,ecu_liga_pro,Aucas,Alexander Bolaños,988120,F,0,31,0,0,0,0.0,,3.0,
 1000009075,2026-08-23,ecu_liga_pro,Aucas,Steven Tapiero,1122642,M,0,18,0,0,0,0.0,,2.0,152132.0
-5115951,2026-08-23,argentina,Belgrano,Thiago Cardozo,643566,G,1,90,0,0,0,0.0,11.0,0.0,2106881.0
-5115951,2026-08-23,argentina,Belgrano,Agustín Falcón,1897457,D,1,51,0,0,0,0.0,32.0,1.0,705673.0
-5115951,2026-08-23,argentina,Belgrano,Leonardo Morales,795485,D,1,90,1,0,0,0.01,34.0,1.0,796500.0
-5115951,2026-08-23,argentina,Belgrano,Lisandro López,182456,D,1,90,1,0,0,0.03,36.0,1.0,435486.0
-5115951,2026-08-23,argentina,Belgrano,Adrián Spörle,743009,D,1,90,1,0,0,0.04,38.0,1.0,332019.0
-5115951,2026-08-23,argentina,Belgrano,Emiliano Ariel Rigoni,371543,M,1,90,3,1,0,0.1,72.0,2.0,951666.0
-5115951,2026-08-23,argentina,Belgrano,Adrián Sánchez,1118246,M,1,64,2,1,0,0.04,74.0,2.0,2066361.0
-5115951,2026-08-23,argentina,Belgrano,Franco Vázquez,270774,M,1,80,3,1,0,0.19,76.0,2.0,636224.0
-5115951,2026-08-23,argentina,Belgrano,Juan Velázquez,1644112,M,1,46,0,0,0,0.0,78.0,2.0,1748176.0
-5115951,2026-08-23,argentina,Belgrano,Lucas Passerini,564614,F,1,79,3,1,0,0.29,104.0,3.0,1194516.0
-5115951,2026-08-23,argentina,Belgrano,Nicolás Fernández,566676,F,1,90,6,1,0,0.41,106.0,3.0,2063208.0
-5115951,2026-08-23,argentina,Belgrano,Ramiro Hernandes,1652019,M,0,45,2,1,1,0.13,,2.0,968414.0
-5115951,2026-08-23,argentina,Belgrano,Alcides Benítez,1732714,D,0,39,0,0,0,0.0,,1.0,1680001.0
-5115951,2026-08-23,argentina,Belgrano,Francisco González Metilli,748843,M,0,26,2,0,0,0.05,,2.0,1117990.0
-5115951,2026-08-23,argentina,Belgrano,Lautaro Gutierrez,1848229,F,0,11,1,0,0,0.02,,3.0,606001.0
-5115951,2026-08-23,argentina,Belgrano,Ramiro Tulián,1779252,M,0,10,0,0,0,0.0,,2.0,
 5115951,2026-08-23,argentina,Defensa y Justicia,Matías Borgogno,938344,G,1,90,0,0,0,0.0,11.0,0.0,1723370.0
 5115951,2026-08-23,argentina,Defensa y Justicia,Valentín Loza,1901742,D,1,90,0,0,0,0.0,32.0,1.0,
 5115951,2026-08-23,argentina,Defensa y Justicia,Damián Fernández,1087551,D,1,90,1,1,1,0.48,34.0,1.0,1464191.0
@@ -28129,22 +28082,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5967042,2026-08-23,ita_serie_b,Sampdoria,Fabio Depaoli,722983,M,1,70,1,0,0,0.06,107.0,2.0,601285.0
 5967042,2026-08-23,ita_serie_b,Sampdoria,Tjas Begic,1172405,M,0,32,2,1,0,0.04,,2.0,1030839.0
 5967042,2026-08-23,ita_serie_b,Sampdoria,Yari Verschaeren,988793,M,0,20,1,1,0,0.03,,2.0,1970485.0
-5103597,2026-08-23,brasil,Palmeiras,Carlos Miguel,1043826,G,1,90,0,0,0,0.0,11.0,0.0,3135907.0
-5103597,2026-08-23,brasil,Palmeiras,Agustín Giay,1358345,D,1,83,1,0,0,0.01,33.0,1.0,11256915.0
-5103597,2026-08-23,brasil,Palmeiras,Gustavo Gómez,274392,D,1,90,0,0,0,0.0,35.0,1.0,2583668.0
-5103597,2026-08-23,brasil,Palmeiras,Alexander Barboza,657969,D,1,46,0,0,0,0.0,37.0,1.0,1811261.0
-5103597,2026-08-23,brasil,Palmeiras,Allan,1721789,M,1,71,1,0,0,0.02,62.0,2.0,9600788.0
-5103597,2026-08-23,brasil,Palmeiras,Andreas Pereira,575779,M,1,90,0,0,0,0.0,64.0,2.0,12269526.0
-5103597,2026-08-23,brasil,Palmeiras,Marlon Freitas,634868,M,1,71,0,0,0,0.0,66.0,2.0,2224092.0
-5103597,2026-08-23,brasil,Palmeiras,Arthur Gabriel,1787794,M,1,90,0,0,0,0.0,68.0,2.0,1526499.0
-5103597,2026-08-23,brasil,Palmeiras,Mauricio,1059490,M,1,90,3,1,1,0.38,85.0,2.0,12586699.0
-5103597,2026-08-23,brasil,Palmeiras,Vitor Roque,1339347,F,1,70,4,2,1,1.03,104.0,3.0,31385499.0
-5103597,2026-08-23,brasil,Palmeiras,José López,1216079,F,1,90,3,2,2,0.28,106.0,3.0,18485406.0
-5103597,2026-08-23,brasil,Palmeiras,Murilo Cerqueira,851514,D,0,44,0,0,0,0.0,,1.0,2598277.0
-5103597,2026-08-23,brasil,Palmeiras,Jhon Arias,1023030,M,0,20,0,0,0,0.0,,2.0,12893347.0
-5103597,2026-08-23,brasil,Palmeiras,Emiliano Martínez,1137909,M,0,19,0,0,0,0.0,,2.0,6487815.0
-5103597,2026-08-23,brasil,Palmeiras,Felipe Anderson,230190,M,0,19,1,0,0,0.02,,2.0,1319990.0
-5103597,2026-08-23,brasil,Palmeiras,Khellven,1043763,D,0,7,0,0,0,0.0,,1.0,4952835.0
 5967045,2026-08-23,ita_serie_b,Palermo,Mattia Fortin,1289946,G,1,90,0,0,0,0.0,11.0,0.0,2058182.0
 5967045,2026-08-23,ita_serie_b,Palermo,Tommaso Cassandro,1070046,D,1,72,1,0,0,0.1,32.0,1.0,1535428.0
 5967045,2026-08-23,ita_serie_b,Palermo,Mattia Bani,415017,D,1,90,0,0,0,0.0,34.0,1.0,1241301.0
@@ -59084,22 +59021,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5887604,2026-09-09,primeira,Benfica,Jhon Durán,1088066,F,0,24,0,0,0,0.0,,3.0,19853819.0
 5887604,2026-09-09,primeira,Benfica,Souffian El Karouani,1079500,D,0,12,0,0,0,0.0,,1.0,8543000.0
 5887604,2026-09-09,primeira,Benfica,Georgiy Sudakov,1192398,M,0,4,0,0,0,0.0,,2.0,22439835.0
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Victor Souza,1189602,G,1,90,0,0,0,0.0,11.0,0.0,282169.0
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Gabriel Inocêncio,1172407,D,1,90,0,0,0,0.0,32.0,1.0,212743.0
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Ericson,905495,D,1,90,0,0,0,0.0,34.0,1.0,
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Vilar,1390279,D,1,90,1,0,0,0.01,36.0,1.0,
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Felipe,1259570,D,1,78,1,1,1,0.22,38.0,1.0,221110.0
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Leandro Maciel,753077,M,1,67,2,0,0,0.03,65.0,2.0,250392.0
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Zé Hugo,1359528,F,1,67,1,0,0,0.03,82.0,3.0,
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Everton Morelli,879585,M,1,78,2,0,0,0.09,84.0,2.0,187936.0
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Rafael Gava,762031,M,1,90,1,0,0,0.12,86.0,2.0,200380.0
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Kelvin,1358147,F,1,78,1,0,0,0.02,88.0,3.0,259424.0
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Hygor,730760,F,1,90,0,0,0,0.0,115.0,3.0,147456.0
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Arthur Caíke,449837,F,0,23,2,0,0,0.08,,3.0,203448.0
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Wesley,1895029,F,0,23,2,0,0,0.05,,3.0,
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Jonathan,795212,D,0,12,0,0,0,0.0,,1.0,163486.0
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Matheus Sales,583764,M,0,12,0,0,0,0.0,,2.0,257713.0
-5190699,2026-09-09,bra_serie_b,Botafogo SP,Jadson,1657941,F,0,12,0,0,0,0.0,,3.0,416302.0
 5190699,2026-09-09,bra_serie_b,Novorizontino,Jordi,575381,G,1,90,0,0,0,0.0,11.0,0.0,325076.0
 5190699,2026-09-09,bra_serie_b,Novorizontino,Madson,319973,D,1,90,0,0,0,0.0,32.0,1.0,211466.0
 5190699,2026-09-09,bra_serie_b,Novorizontino,Gabriel Bahia,1461831,D,1,84,0,0,0,0.0,34.0,1.0,238018.0
@@ -62326,22 +62247,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5190700,2026-09-11,bra_serie_b,São Bernardo,Daniel Amorim,961500,F,0,30,0,0,0,0.0,,3.0,122674.0
 5190700,2026-09-11,bra_serie_b,São Bernardo,Lucas Lima,1357756,M,0,14,1,0,0,0.18,,2.0,239699.0
 5190700,2026-09-11,bra_serie_b,São Bernardo,Fabrício Daniel,1233937,F,0,14,0,0,0,0.0,,3.0,163801.0
-5190700,2026-09-11,bra_serie_b,Londrina,Maurício,798592,G,1,90,0,0,0,0.0,11.0,0.0,134164.0
-5190700,2026-09-11,bra_serie_b,Londrina,Caio,1741917,D,1,69,1,1,1,0.24,33.0,1.0,
-5190700,2026-09-11,bra_serie_b,Londrina,Wallace,130560,D,1,90,2,0,0,0.04,35.0,1.0,56733.0
-5190700,2026-09-11,bra_serie_b,Londrina,Gabriel,1174677,D,1,90,0,0,0,0.0,37.0,1.0,149883.0
-5190700,2026-09-11,bra_serie_b,Londrina,Nino Paraíba,121939,M,1,69,0,0,0,0.0,72.0,2.0,90820.0
-5190700,2026-09-11,bra_serie_b,Londrina,Guilherme Portuga,1666535,M,1,82,4,0,0,0.1,74.0,2.0,72000.0
-5190700,2026-09-11,bra_serie_b,Londrina,João Vitor,1441765,M,1,90,3,1,0,0.05,76.0,2.0,410849.0
-5190700,2026-09-11,bra_serie_b,Londrina,Heron,1083351,M,1,82,0,0,0,0.0,78.0,2.0,170612.0
-5190700,2026-09-11,bra_serie_b,Londrina,William Pottker,288782,F,1,45,1,0,0,0.03,103.0,3.0,146259.0
-5190700,2026-09-11,bra_serie_b,Londrina,Igor Bahia,1437503,F,1,90,3,3,0,1.28,105.0,3.0,
-5190700,2026-09-11,bra_serie_b,Londrina,Herbert,1790950,F,1,90,4,1,0,0.13,107.0,3.0,
-5190700,2026-09-11,bra_serie_b,Londrina,João Andrade,1813977,F,0,45,1,0,0,0.03,,3.0,
-5190700,2026-09-11,bra_serie_b,Londrina,Kauê Leonardo,1720732,D,0,21,0,0,0,0.0,,1.0,
-5190700,2026-09-11,bra_serie_b,Londrina,Tárik,875673,M,0,21,2,1,1,0.52,,2.0,114743.0
-5190700,2026-09-11,bra_serie_b,Londrina,Artur,600100,D,0,8,0,0,0,0.0,,1.0,139600.0
-5190700,2026-09-11,bra_serie_b,Londrina,João Tavares,1402099,M,0,8,0,0,0,0.0,,2.0,196052.0
 5882287,2026-09-12,fem_espana,Barcelona,Cata Coll,1178008,G,1,90,0,0,0,0.0,11.0,0.0,
 5882287,2026-09-12,fem_espana,Barcelona,Sydney Schertenleib,1660200,M,1,90,0,0,0,0.0,32.0,2.0,
 5882287,2026-09-12,fem_espana,Barcelona,Martina Fernández,1345250,D,1,90,1,0,0,0.0,34.0,1.0,
@@ -176754,3 +176659,97 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000017455,2026-11-05,par_division,Luqueño,Marcelo Ojeda,1910581,M,0,12,1,1,1,0.0,,2.0,
 1000017455,2026-11-05,par_division,Luqueño,Kevin Pereira,1335068,F,0,12,1,1,1,0.0,,3.0,385084.0
 1000017455,2026-11-05,par_division,Luqueño,Walter González,618713,F,0,5,0,0,0,0.0,,3.0,295710.0
+5103697,2026-11-05,brasil,Palmeiras,Carlos Miguel,1043826,G,1,90,0,0,0,0.0,11.0,0.0,9906207.0
+5103697,2026-11-05,brasil,Palmeiras,Murilo,851514,D,1,74,1,0,0,0.1,33.0,1.0,5025138.0
+5103697,2026-11-05,brasil,Palmeiras,Gustavo Gómez,274392,D,1,45,1,0,0,0.37,35.0,1.0,2606462.0
+5103697,2026-11-05,brasil,Palmeiras,Bruno Fuchs,1043908,D,1,90,0,0,0,0.0,37.0,1.0,3405085.0
+5103697,2026-11-05,brasil,Palmeiras,Khellven,1043763,M,1,90,0,0,0,0.0,62.0,2.0,6673948.0
+5103697,2026-11-05,brasil,Palmeiras,Andreas Pereira,575779,M,1,90,3,1,0,0.08,64.0,2.0,14154978.0
+5103697,2026-11-05,brasil,Palmeiras,Marlon Freitas,634868,M,1,46,0,0,0,0.0,66.0,2.0,4451417.0
+5103697,2026-11-05,brasil,Palmeiras,Arthur,1787794,M,1,90,0,0,0,0.0,68.0,2.0,5711542.0
+5103697,2026-11-05,brasil,Palmeiras,Mauricio,1059490,M,1,61,1,1,1,0.16,84.0,2.0,19148055.0
+5103697,2026-11-05,brasil,Palmeiras,Jhon Arias,1023030,M,1,45,3,3,2,1.61,86.0,2.0,15787863.0
+5103697,2026-11-05,brasil,Palmeiras,Vitor Roque,1339347,F,1,90,5,2,0,1.44,105.0,3.0,42965881.0
+5103697,2026-11-05,brasil,Palmeiras,Alexander Barboza,657969,D,0,44,0,0,0,0.0,,1.0,2681457.0
+5103697,2026-11-05,brasil,Palmeiras,Lucas Evangelista,452269,M,0,44,0,0,0,0.0,,2.0,2213230.0
+5103697,2026-11-05,brasil,Palmeiras,José López,1216079,F,0,45,3,1,1,0.97,,3.0,32912021.0
+5103697,2026-11-05,brasil,Palmeiras,Felipe Anderson,230190,M,0,29,2,1,1,0.38,,2.0,1094310.0
+5103697,2026-11-05,brasil,Palmeiras,Emiliano Martínez,1137909,M,0,16,0,0,0,0.0,,2.0,4693577.0
+5103697,2026-11-05,brasil,Remo,Marcelo,936701,G,1,90,0,0,0,0.0,11.0,0.0,406854.0
+5103697,2026-11-05,brasil,Remo,Marllon,319659,D,1,90,0,0,0,0.0,33.0,1.0,553603.0
+5103697,2026-11-05,brasil,Remo,Zé Welison,535944,D,1,90,3,2,1,0.08,35.0,1.0,648903.0
+5103697,2026-11-05,brasil,Remo,Duplexe Tchamba,834641,D,1,46,0,0,0,0.0,37.0,1.0,652547.0
+5103697,2026-11-05,brasil,Remo,Marcelinho,1336663,D,1,70,0,0,0,0.0,51.0,1.0,270530.0
+5103697,2026-11-05,brasil,Remo,Marlon,670799,D,1,46,0,0,0,0.0,59.0,1.0,348819.0
+5103697,2026-11-05,brasil,Remo,David Braga,1471036,M,1,90,2,0,0,0.08,72.0,2.0,
+5103697,2026-11-05,brasil,Remo,Leonel Picco,1097836,M,1,45,1,1,0,0.02,74.0,2.0,1803527.0
+5103697,2026-11-05,brasil,Remo,Patrick,576129,M,1,90,0,0,0,0.0,76.0,2.0,299591.0
+5103697,2026-11-05,brasil,Remo,Jája,1041427,M,1,78,2,1,0,0.03,78.0,2.0,1217280.0
+5103697,2026-11-05,brasil,Remo,Bill,940855,F,1,90,0,0,0,0.0,115.0,3.0,
+5103697,2026-11-05,brasil,Remo,Mayk,954252,D,0,45,2,1,0,0.06,,1.0,578501.0
+5103697,2026-11-05,brasil,Remo,Zé Ivaldo,769769,D,0,44,0,0,0,0.0,,1.0,1216746.0
+5103697,2026-11-05,brasil,Remo,Edson Fernando,1069712,M,0,44,0,0,0,0.0,,2.0,290385.0
+5103697,2026-11-05,brasil,Remo,Yago Pikachu,498595,M,0,20,1,0,0,0.04,,2.0,420383.0
+5103697,2026-11-05,brasil,Remo,Eduardo Melo,1460459,F,0,12,0,0,0,0.0,,3.0,414233.0
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Jordan,1460428,G,1,90,0,0,0,0.0,11.0,0.0,175133.0
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Jonathan,795212,D,1,45,1,1,1,0.01,33.0,1.0,178093.0
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Vilar,1390279,D,1,90,0,0,0,0.0,35.0,1.0,
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Darlan,1908414,D,1,90,1,0,0,0.33,37.0,1.0,
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Gabriel Inocêncio,1172407,M,1,90,3,3,1,1.06,62.0,2.0,208827.0
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Leandro Maciel,753077,M,1,61,3,0,0,0.06,64.0,2.0,266334.0
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Rafael Gava,762031,M,1,90,2,0,0,0.03,66.0,2.0,232352.0
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Patrick Brey,937517,M,1,73,0,0,0,0.0,68.0,2.0,258769.0
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Everton Morelli,879585,M,1,90,1,0,0,0.02,84.0,2.0,905302.0
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Wesley,1895029,M,1,61,1,1,1,0.55,86.0,2.0,
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Hygor,730760,F,1,45,2,2,1,0.86,105.0,3.0,293727.0
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Pedrinho,2347425,D,0,44,0,0,0,0.0,,1.0,
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Zé Hugo,1359528,F,0,45,1,0,0,0.03,,3.0,
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Yuri,1776096,M,0,29,0,0,0,0.0,,2.0,
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Thiago Moraes,1290658,M,0,29,1,0,0,0.1,,2.0,
+5190799,2026-11-05,bra_serie_b,Botafogo SP,Felipe,1259570,D,0,17,0,0,0,0.0,,1.0,199563.0
+5190799,2026-11-05,bra_serie_b,Londrina,Maurício,798592,G,1,90,0,0,0,0.0,11.0,0.0,216321.0
+5190799,2026-11-05,bra_serie_b,Londrina,Caio,1741917,D,1,90,0,0,0,0.0,33.0,1.0,
+5190799,2026-11-05,bra_serie_b,Londrina,Wallace,130560,D,1,90,0,0,0,0.0,35.0,1.0,56733.0
+5190799,2026-11-05,bra_serie_b,Londrina,Matheus,2341327,D,1,90,0,0,0,0.0,37.0,1.0,
+5190799,2026-11-05,bra_serie_b,Londrina,André Dhominique,1359383,M,1,65,0,0,0,0.0,72.0,2.0,389193.0
+5190799,2026-11-05,bra_serie_b,Londrina,Geovane Meurer,1402131,M,1,65,0,0,0,0.0,74.0,2.0,193394.0
+5190799,2026-11-05,bra_serie_b,Londrina,Lucas Marques,642764,M,1,71,2,0,0,0.06,76.0,2.0,
+5190799,2026-11-05,bra_serie_b,Londrina,Artur,600100,M,1,90,1,0,0,0.04,78.0,2.0,256773.0
+5190799,2026-11-05,bra_serie_b,Londrina,João Andrade,1813977,F,1,46,0,0,0,0.0,103.0,3.0,
+5190799,2026-11-05,bra_serie_b,Londrina,Igor Bahia,1437503,F,1,82,1,0,0,0.03,105.0,3.0,
+5190799,2026-11-05,bra_serie_b,Londrina,Herbert,1790950,F,1,90,2,0,0,0.03,107.0,3.0,
+5190799,2026-11-05,bra_serie_b,Londrina,Pablo Dyego,444778,F,0,45,2,0,0,0.07,,3.0,104028.0
+5190799,2026-11-05,bra_serie_b,Londrina,Nino Paraíba,121939,D,0,25,0,0,0,0.0,,1.0,65977.0
+5190799,2026-11-05,bra_serie_b,Londrina,Tárik,875673,M,0,25,0,0,0,0.0,,2.0,66016.0
+5190799,2026-11-05,bra_serie_b,Londrina,Cainã,1800462,M,0,19,0,0,0,0.0,,2.0,
+5190799,2026-11-05,bra_serie_b,Londrina,Kauã Jonathan,1927740,F,0,8,0,0,0,0.0,,3.0,
+1000019631,2026-11-05,argentina,Gimnasia LP,Harlen Castillo,1435218,G,1,90,0,0,0,0.0,11.0,0.0,436876.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Pablo Aguiar,1826057,D,1,90,1,0,0,0.04,32.0,1.0,466945.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Germán Conti,438183,D,1,90,1,0,0,0.07,34.0,1.0,277928.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Enzo Martínez,951841,D,1,90,0,0,0,0.0,36.0,1.0,1230037.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Matías Melluso,919156,D,1,90,0,0,0,0.0,38.0,1.0,246123.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Mateo Seoane,1340223,M,1,82,1,0,0,0.15,63.0,2.0,952836.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Ignacio Miramón,1206830,M,1,90,2,0,0,0.04,65.0,2.0,2168086.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Nicolás Barros Schelotto,1521000,M,1,75,1,1,0,0.03,67.0,2.0,8187263.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Lucas Janson,360797,M,1,65,1,1,1,0.07,85.0,2.0,449722.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Agustín Auzmendi,856200,F,1,90,3,2,1,0.92,104.0,3.0,1060387.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Marcelo Torres,847979,F,1,75,1,0,0,0.01,106.0,3.0,1906550.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Facundo Di Biasi,1700566,M,0,25,1,0,0,0.02,,2.0,909226.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Renzo Giampaoli,1208736,D,0,15,0,0,0,0.0,,1.0,957337.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Manuel Panaro,1206551,F,0,15,0,0,0,0.0,,3.0,1526965.0
+1000019631,2026-11-05,argentina,Gimnasia LP,Augusto Max,793799,M,0,8,0,0,0,0.0,,2.0,283378.0
+1000019631,2026-11-05,argentina,Belgrano,Thiago Cardozo,643566,G,1,90,0,0,0,0.0,11.0,0.0,2073802.0
+1000019631,2026-11-05,argentina,Belgrano,Alcides Benítez,1732714,D,1,83,1,1,1,0.19,32.0,1.0,1475641.0
+1000019631,2026-11-05,argentina,Belgrano,Leonardo Morales,795485,D,1,90,1,0,0,0.05,34.0,1.0,759987.0
+1000019631,2026-11-05,argentina,Belgrano,Lisandro López,182456,D,1,90,1,0,0,0.06,36.0,1.0,558199.0
+1000019631,2026-11-05,argentina,Belgrano,Federico Ricca,522203,D,1,75,1,1,0,0.17,38.0,1.0,268749.0
+1000019631,2026-11-05,argentina,Belgrano,Santiago Longo,1132245,M,1,63,1,0,0,0.03,64.0,2.0,1421272.0
+1000019631,2026-11-05,argentina,Belgrano,Adrián Sánchez,1118246,M,1,90,0,0,0,0.0,66.0,2.0,2090862.0
+1000019631,2026-11-05,argentina,Belgrano,Emiliano Ariel Rigoni,371543,F,1,83,3,1,0,0.35,83.0,3.0,1042921.0
+1000019631,2026-11-05,argentina,Belgrano,Franco Vázquez,270774,M,1,90,4,2,0,0.12,85.0,2.0,652876.0
+1000019631,2026-11-05,argentina,Belgrano,Lucas Zelarayán,322965,F,1,90,3,0,0,0.12,87.0,3.0,1749164.0
+1000019631,2026-11-05,argentina,Belgrano,Lucas Passerini,564614,F,1,90,3,1,0,0.33,115.0,3.0,1231596.0
+1000019631,2026-11-05,argentina,Belgrano,Nicolás Fernández,566676,F,0,27,1,0,0,0.19,,3.0,2030468.0
+1000019631,2026-11-05,argentina,Belgrano,Adrián Spörle,743009,D,0,15,0,0,0,0.0,,1.0,456680.0
+1000019631,2026-11-05,argentina,Belgrano,Agustín Falcón,1897457,D,0,7,1,0,0,0.05,,1.0,690246.0
+1000019631,2026-11-05,argentina,Belgrano,Ramiro Hernandes,1652019,M,0,7,0,0,0,0.0,,2.0,2095201.0

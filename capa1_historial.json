@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-06T00:14:20Z",
+"actualizado": "2026-11-06T02:09:09Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23814,6 +23814,36 @@
 },
 {
 "dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Botafogo SP vs Londrina",
+"apuesta": "Gana Botafogo SP",
+"cuota": 1.65,
+"resultado": "verde",
+"marcador": "4-0"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Botafogo-SP vs Londrina",
+"apuesta": "Botafogo-SP o empate",
+"cuota": 1.177,
+"resultado": "verde",
+"marcador": "4-0"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Botafogo-SP vs Londrina",
+"apuesta": "Gana Botafogo-SP",
+"cuota": 1.65,
+"resultado": "verde",
+"marcador": "4-0"
+},
+{
+"dia": "2026-11-05",
 "nivel": "🏆",
 "deporte": "Fútbol",
 "partido": "CSU Craiova vs Egnatia",
@@ -23821,6 +23851,16 @@
 "cuota": 1.125,
 "resultado": "verde",
 "marcador": "2-0"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Choloma vs Atletico Independiente",
+"apuesta": "Gana Choloma",
+"cuota": 1.97,
+"resultado": "rojo",
+"marcador": "0-0"
 },
 {
 "dia": "2026-11-05",
@@ -23901,6 +23941,16 @@
 "cuota": 1.58,
 "resultado": "verde",
 "marcador": "0-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Gimnasia L.P. vs Belgrano",
+"apuesta": "Empate",
+"cuota": 3.3,
+"resultado": "rojo",
+"marcador": "2-1"
 },
 {
 "dia": "2026-11-05",
@@ -24031,6 +24081,16 @@
 "cuota": 1.5,
 "resultado": "verde",
 "marcador": "2-3"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Palmeiras vs Remo",
+"apuesta": "Gana Palmeiras",
+"cuota": 1.2728,
+"resultado": "verde",
+"marcador": "6-1"
 },
 {
 "dia": "2026-11-05",
