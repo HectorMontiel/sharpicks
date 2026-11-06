@@ -1113,5 +1113,9 @@ window.I18N_EN = {
 "IA: confianza máxima · VIP": "AI: Max confidence · VIP",
 "Los picks con confianza alta de la IA brillan en morado. Aún no está medido que acierten más": "AI high confidence picks glow in purple. It is not yet measured that they hit more",
 "VIP: la IA ilumina en morado los picks en los que tiene confianza alta": "VIP: The AI highlights in purple the picks it has high confidence in",
-"con confianza alta": "with high confidence"
+"con confianza alta": "with high confidence",
+"La IA no ve una apuesta clara en este partido": "The AI doesn't see a clear bet for this match",
+"La IA todavía no propone apuesta en este deporte: se está midiendo": "The AI isn't proposing a bet for this sport yet: it's still calibrating",
+"Lo que metería la IA (#": "What the AI would place (#",
+"Modelo: últimos # días. «🧠 IA»: cuando le da # %+ en fútbol y tenis, desde que se mide (#+ partidos); no son los mismos partidos": "Model: last # days. \"🧠 AI\": when it gives # %+ in soccer and tennis, since tracking began (#+ matches); these are not the same matches"
 };
