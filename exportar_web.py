@@ -761,6 +761,51 @@ def no_retroceder(picks: List[Dict], url: str = None, key: str = None, base: Dic
     return n
 
 
+def retener_enviados(picks: List[Dict]) -> int:
+    """v575 — EL USUARIO: «ya pusiste algo y luego cambian; genera desconfianza». Lo que se enseñó por Telegram (lleva texto en
+    `telegram_enviados`) sigue en la lista aunque el modelo lo deje de dar: se ve en la app, se califica y su resultado sale en Telegram.
+    Si algo falla, no se agrega nada: la pasada sigue como siempre."""
+    url, key = os.environ.get('SUPABASE_URL'), os.environ.get('SUPABASE_SERVICE_KEY')
+    if not url or not key or not picks:
+        return 0
+    import requests
+    h = {'apikey': key, 'Authorization': 'Bearer ' + key}
+    base = url.rstrip('/') + '/rest/v1/'
+    desde = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=36)).strftime('%Y-%m-%dT%H:%M:%S')
+    try:
+        ids = set()
+        for pag in range(20):                  # por páginas: Supabase entrega 1000 como máximo (v466)
+            r = requests.get(base + 'telegram_enviados', headers=h, timeout=30, params={
+                'select': 'pick', 'tipo': 'eq.pick', 'canal': 'in.(vip,gratis)', 'texto': 'not.is.null', 'inicio': 'gte.' + desde,
+                'order': 'pick', 'limit': 1000, 'offset': pag * 1000})
+            lote = r.json() if r.ok else []
+            for x in lote:
+                k = str(x.get('pick') or '')
+                ids |= set(k[5:].split('+')) if k.startswith('comb:') else {k}
+            if len(lote) < 1000:
+                break
+        ya = {p['id'] for p in picks}
+        faltan = sorted(i for i in ids if i and i not in ya)
+        if not faltan:
+            return 0
+        filas, reales = [], {}
+        for i in range(0, len(faltan), 100):
+            trozo = ','.join(faltan[i:i + 100])
+            r = requests.get(base + 'picks', headers=h, timeout=30, params={'select': '*', 'id': 'in.(%s)' % trozo})
+            filas += r.json() if r.ok else []
+            rp = requests.get(base + 'picks_premium', headers=h, timeout=30, params={'select': 'id,apuesta', 'id': 'in.(%s)' % trozo})
+            reales.update({x['id']: x['apuesta'] for x in (rp.json() if rp.ok else [])})
+        claves = list(picks[0].keys())         # las mismas columnas que los demás: si no, Supabase rechaza el lote
+        for f in filas:
+            nueva = {k: f.get(k) for k in claves}
+            nueva['apuesta'] = reales.get(f['id']) or f.get('apuesta')
+            picks.append(nueva)
+        return len(filas)
+    except Exception as e:
+        logger.warning('[web] no se retuvo lo mandado por Telegram: %s', type(e).__name__)
+        return 0
+
+
 def main() -> int:
     logging.basicConfig(level=logging.INFO, format='%(levelname)s %(message)s')
     try:
@@ -768,6 +813,7 @@ def main() -> int:
     except Exception:
         pass
     r = construir()
+    print('web: %d picks ya mandados por Telegram que el modelo dejó de dar: se quedan y cuentan' % retener_enviados(r['picks']))
     # v463 — los pendientes que ya terminaron se cierran con su resultado final (ESPN y,
     # si no, Flashscore) ANTES de escribir y subir: si no, se quedaban pendientes para siempre
     try:

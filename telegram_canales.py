@@ -30,11 +30,11 @@ en ambas, en el VIP más y mejores»). La app se CONSULTA; Telegram AVISA:
        corregir pronto: el que se entera tarde ya no la alcanza);
     ⏰ «ya es hora de apostar»: cada 💎/🔷 al abrir su ventana de 4 h antes del
        partido (v351-v352: fijar ahí acierta 82 % contra 79 % al pitido);
-    ♻️ si retiramos o cambiamos algo que ya mandamos;
+    ⚠️ sólo si un pick mandado se anula porque el partido no se completó (v575);
     🌙 resumen de la noche: verdes y rojas del día.
   GRATIS
     lo de siempre (3 publicaciones, error de muestra, «ayer en el VIP») y además
-    ♻️ si se retira lo publicado, 🌙 el resumen de la noche y 🎉 al llegar a
+    ⚠️ si se anula lo publicado, 🌙 el resumen de la noche y 🎉 al llegar a
     100 miembros, 5 códigos de VIP de regalo (una sola vez).
 
 Ejecutar:  python telegram_canales.py [--seco]
@@ -59,7 +59,7 @@ MAX_LEN = 3800
 CDMX = dt.timezone(dt.timedelta(hours=-6))
 # el canal gratis: horarios (hora de CDMX) y qué toca en cada uno
 HORARIOS_GRATIS = ((9, 'combinada'), (14, 'pick'), (19, 'combinada'))
-VENTANA_GRATIS_H = 8              # sólo partidos que empiezan en las próximas 8 h
+VENTANA_GRATIS_H = 4              # v575 — igual que el VIP: cerca del partido cambia menos (antes 8 h)
 # v545 — el gratis es el 🥇 Oro nuevo (70-79 % con cuota ≥ 1,25): dos patas ya no caben en 1,30-1,50 (antes eran Oro de
 # 80-84 % a ~1,15), así que la combinada del canal gratis va de 1,50 a 1,80 y cada pata con 70 %+
 COMB_MIN, COMB_MAX = 1.50, 1.80   # cuota total de la combinada
@@ -549,32 +549,22 @@ def _resultado_txt(ps: List[Dict]) -> Optional[str]:
 
 
 # ---------- el canal VIP ----------
-def _retirados(picks: List[Dict], enviados: Set, canal: str, ahora: dt.datetime) -> List[Dict]:
-    """Lo que ya mandamos a `canal`, aún sin empezar, que el modelo ya NO da.
-    Sólo con una pasada completa (si viniera casi vacía por un fallo, se callaría)."""
-    pend = [p for p in picks if p.get('estado') == 'pendiente']
-    if len(pend) < 30:
-        return []
-    vivos = {p['id'] for p in picks}
-    out = []
-    for (k, c), x in list(_DETALLES.items()):
-        ini = _utc(x.get('inicio'))
-        if c != canal or ini is None or ini <= ahora or (k, canal, 'retirado') in enviados:
-            continue
-        ids = k[5:].split('+') if k.startswith('comb:') else [k]
-        if any(i not in vivos for i in ids):
-            out.append(x)
-    return out
-
-
-def _avisos_retiro(picks: List[Dict], enviados: Set, canal: str, ahora: dt.datetime) -> List[Tuple[str, List]]:
-    rs = _retirados(picks, enviados, canal, ahora)
+# v575 — LO QUE SE MANDÓ SE QUEDA Y CUENTA. El usuario: «ya pusiste algo y luego cambian; genera desconfianza». El aviso de «♻️ Cambio… nosotros ya
+# no lo contamos» salió 136 veces en 3 semanas: si iba a salir rojo, parecía esconder las pérdidas. Ahora un pick mandado sigue en la lista
+# (`exportar_web.retener_enviados`) y se califica como cualquiera. Sólo se avisa si de verdad se cae: el partido no se completó (estado «nula»).
+def _avisos_anulados(picks: List[Dict], enviados: Set, canal: str, ahora: dt.datetime) -> List[Tuple[str, List]]:
+    rs = []
+    for p in picks:
+        ini = _utc(p.get('inicio'))
+        if (p.get('estado') == 'nula' and ini is not None and ahora - ini < dt.timedelta(hours=36) and (p['id'], canal) in _DETALLES
+                and (p['id'], canal, 'anulado') not in enviados):
+            rs.append(p)
     if not rs:
         return []
-    t = ('♻️ <b>Cambio</b>: ya no recomendamos esto (el modelo lo retiró con los datos nuevos):\n\n' +
-         '\n'.join('✖️ %s · %s' % (_e(x.get('texto')), _e(x.get('partido'))) for x in rs) +
-         '\n\nSi ya lo metiste, tú decides; nosotros ya no lo contamos.' + PIE)
-    return [(t, [(x['pick'], canal, 'retirado') for x in rs])]
+    t = ('⚠️ <b>Pick anulado</b>: el partido no se completó\n\n' +
+         '\n'.join('➖ %s · %s' % (_e(_DETALLES[(p['id'], canal)].get('texto') or p.get('apuesta')), _e(p.get('partido'))) for p in rs) +
+         '\n\nNo cuenta ni a favor ni en contra.' + PIE)
+    return [(t, [(p['id'], canal, 'anulado') for p in rs])]
 
 
 def _dia_cdmx(p: Dict) -> Optional[str]:
@@ -623,13 +613,13 @@ def armar_vip(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[Tupl
         t = ('💎 <b>VIP · %s</b>\n⏰ Ya es hora de apostar\n\n' % gancho + '\n\n'.join(_por_partido(top, ahora, ia=True)) +
              ('\n\n➕ <b>%d más</b> en la app 👉 %s' % (mas, SITIO) if mas > 0 else '') + PIE)
         par = parley_de(top)
-        # sólo lo que se enseñó lleva texto: de lo demás (ya son todos los niveles) no se avisa si luego se retira
+        # sólo lo que se enseñó lleva texto: eso es lo que se queda fijo aunque el modelo lo deje de dar (v575)
         ids_top = {p['id'] for p in top}
         # sin parley de alta probabilidad, el mensaje sale sin foto y sin aviso de «¡ganamos!»
         out.append((t, [_cubre_pick(p, 'vip') if p['id'] in ids_top else (p['id'], 'vip', 'pick') for p in ya] +
                     ([_cubre_ticket(par, 'vip', 'Parley VIP', True)] if par else []),
                     _ticket('Parley VIP · hora de apostar', par, ahora, 'VIP') if par else None))
-    out += _avisos_retiro(picks, enviados, 'vip', ahora)
+    out += _avisos_anulados(picks, enviados, 'vip', ahora)
     res = [p for p in picks if p.get('estado') in ('verde', 'roja') and (p['id'], 'vip', 'pick') in enviados
            and _utc(p.get('inicio')) is not None and _utc(p.get('inicio')) >= ahora - dt.timedelta(hours=8)
            and (p['id'], 'vip', 'resultado') not in enviados]
@@ -805,7 +795,7 @@ def armar_gratis(picks: List[Dict], enviados: Set, ahora: dt.datetime) -> List[T
             t = ('💎 <b>Ayer en el VIP</b>: ✅ %d ❌ %d · <b>%d %%</b> 🔥\n'
                  '👉 Hazte VIP y recíbelos al momento: %s' % (v, len(ps) - v, round(100 * v / len(ps)), SITIO))
             out.append((t, [(clave, 'gratis', 'resumen')]))
-    out += _avisos_retiro(picks, enviados, 'gratis', ahora)
+    out += _avisos_anulados(picks, enviados, 'gratis', ahora)
     # 🌙 la noche: lo que se publicó aquí y el total del día en la app
     if loc.hour >= HORA_NOCHE and ('noche:' + hoy, 'gratis', 'resumen') not in enviados:
         dia = [p for p in picks if _dia_cdmx(p) == hoy and p.get('tipo') != 'error']

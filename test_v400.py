@@ -56,15 +56,12 @@ def probar_telegram():
     check('Ya es hora de apostar' in vip and 'Gana A1' in vip and 'Gana A2' not in vip,
           '⏰ el 💎 se manda al abrir su ventana de 4 h, no antes')
     check('Error de cuota · al momento' in vip and 'Gana B3' in vip, '💰 el error de cuota sale al momento, aunque falten 8 h')
-    # ♻️ algo ya mandado que el modelo retiró
+    # v575 — lo que el modelo deja de dar se queda: ya no se avisa ningún «Cambio»
     tc._DETALLES.clear()
     tc._DETALLES[('idX', 'vip')] = {'pick': 'idX', 'canal': 'vip', 'texto': 'Goles: Menos de 2.5', 'partido': 'X vs Y',
                                     'inicio': '2026-10-17 23:00:00'}
     msgs = tc.armar_vip(ps, {('id1', 'vip', 'pick'), ('id3', 'vip', 'pick')}, ahora)
-    r = [t for t, c, *_ in msgs if 'Cambio' in t]
-    check(r and 'Goles: Menos de 2.5' in r[0], '♻️ se avisa lo que ya mandamos y el modelo retiró')
-    check(not [t for t, *_ in tc.armar_vip(ps[:3], {('id1', 'vip', 'pick'), ('id3', 'vip', 'pick')}, ahora) if 'Cambio' in t],
-          'con una pasada casi vacía (un fallo) no se avisa nada')
+    check(not [t for t, c, *_ in msgs if 'Cambio' in t or 'ya no recomendamos' in t], 'v575: lo ya mandado no se retira ni se avisa')
     tc._DETALLES.clear()
     # 🌙 la noche
     noche = dt.datetime(2026, 10, 18, 4, 30, tzinfo=dt.timezone.utc)           # 22:30 CDMX del 17
