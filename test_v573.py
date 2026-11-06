@@ -59,6 +59,11 @@ def test_lo_que_tiene_que_ser_real():
     assert 'm.losX = yardaAx(entre(0, u.ydF, 100), m.of);' in P and 'Number(u.dist) * 0.875' in P
 
 
+def test_el_reloj_de_cada_liga():
+    # medido: la NHL cuenta lo jugado (0:33, 5:55…) y la NBA lo que falta (12:00, 6:26…)
+    assert "(dep === 'NHL' ? Math.min(largo, clk) : Math.max(0, largo - clk))" in P
+
+
 def test_todo_en_espanol():
     for t in ('Saque de centro', 'Tiro a puerta', 'Pérdida', 'Tiempo muerto', 'Pase completo', 'Captura', 'Jonrón', 'Ponche', 'Gol de campo fallado'):
         assert t in P

@@ -58,7 +58,7 @@
     if (fam === 'NBA' && /Shot|Layup|Dunk|Jumper|Hook|Tip|Free Throw/.test(q.t) && !/Rebound/.test(q.t)) t = (q.anota ? 'Encesta: ' : 'Falla: ') + t.toLowerCase();
     const quien = q.part && q.part.length && nombres ? nombres[q.part[0]] : '';
     const delTexto = fam === 'NFL' ? (nombresNfl(q.txt)[1] || nombresNfl(q.txt)[0] || '') : '';
-    return ICONO[fam] + ' <b>' + esc(t) + '</b>' + (quien || delTexto ? ' · ' + esc(quien || delTexto) : '') + (q.clk ? ' · ' + esc(q.clk) : '');
+    return ICONO[fam] + ' <b>' + esc(t) + '</b>' + (quien || delTexto ? ' · ' + esc(quien || delTexto) : '') + (q.clk ? ' · ' + (q.per ? (fam === 'NHL' ? 'P' : 'C') + q.per + ' ' : '') + esc(q.clk) : '');
   }
   const bajaEs = (x) => String(x || '').replace(/(\d)(st|nd|rd|th) & Goal/, '$1.º y gol').replace(/(\d)(st|nd|rd|th) & (\d+)/, '$1.º y $3');
 
@@ -108,10 +108,11 @@
       return [(a / 94) * 105, ((ataca === 0 ? c.x : 50 - c.x) / 50) * ALTO.NBA];
     };
     return crudas.map((p) => {
+      // en la NHL el reloj de ESPN cuenta lo jugado (de 0 a 20); en la NBA, lo que falta
       const per = (p.period || {}).number || 1, largo = dep === 'NHL' ? 20 : 12, clk = reloj((p.clock || {}).displayValue);
       const u = lugar(p);
       return { id: String(p.id), t: (p.type || {}).text || '', txt: p.shortDescription || p.text || '', lado: p.team ? lado(p) : null, per, clk: (p.clock || {}).displayValue || '',
-        min: (Math.min(per - 1, 4) * largo) + Math.max(0, largo - clk), x: u && u[0], y: u && u[1], anota: !!p.scoringPlay, val: Number(p.scoreValue || 0),
+        min: (Math.min(per - 1, 4) * largo) + (dep === 'NHL' ? Math.min(largo, clk) : Math.max(0, largo - clk)), x: u && u[0], y: u && u[1], anota: !!p.scoringPlay, val: Number(p.scoreValue || 0),
         dif: casa === false ? Number(p.awayScore || 0) - Number(p.homeScore || 0) : Number(p.homeScore || 0) - Number(p.awayScore || 0), part: (p.participants || []).map((z) => String((z.athlete || {}).id || '')) };
     });
   }
