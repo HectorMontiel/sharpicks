@@ -67,8 +67,8 @@
   },
   "Club Olimpia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Tijuana W",
-    "ratio": 0.5833,
+    "candidato": "Club Tijuana U21",
+    "ratio": 0.5,
     "visto": "2026-11-06"
   },
   "Cruz Azul": {
@@ -331,8 +331,8 @@
   },
   "Club Atlético La Paz": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Tijuana W",
-    "ratio": 0.5625,
+    "candidato": "Club Tijuana U21",
+    "ratio": 0.5,
     "visto": "2026-11-06"
   },
   "Sporting JAX": {
@@ -769,8 +769,8 @@
   },
   "Club Atlético Morelia": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Tijuana W",
-    "ratio": 0.4848,
+    "candidato": "Club Tijuana U21",
+    "ratio": 0.4324,
     "visto": "2026-11-06"
   },
   "Atlético Junior": {
@@ -1339,8 +1339,8 @@
   },
   "Club Brugge": {
     "contexto": "cuotas_mx→futbol",
-    "candidato": "Club Tijuana W",
-    "ratio": 0.5217,
+    "candidato": "Racing Club Aruba",
+    "ratio": 0.5,
     "visto": "2026-11-06"
   },
   "Sporting Club Delhi": {
