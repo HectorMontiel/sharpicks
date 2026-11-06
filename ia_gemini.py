@@ -65,6 +65,7 @@ ESQUEMA = {
     'type': 'OBJECT',
     'properties': {
         'analisis': {'type': 'STRING'},
+        'analisis_en': {'type': 'STRING'},   # v582 — el mismo análisis en inglés, en la misma consulta (no gasta cupo)
         'p_local': {'type': 'NUMBER'}, 'p_empate': {'type': 'NUMBER'}, 'p_visita': {'type': 'NUMBER'},
         'pred_goles': {'type': 'STRING', 'enum': ['mas', 'menos']},
         'confianza': {'type': 'INTEGER'},
@@ -91,9 +92,9 @@ ESQUEMA = {
         # v391 — el usuario: «si ve que la apuesta que metemos no se va a cumplir, que lo diga»
         'veredictos': {'type': 'ARRAY', 'items': {'type': 'OBJECT', 'properties': {
             'apuesta': {'type': 'STRING'}, 'opinion': {'type': 'STRING', 'enum': ['a_favor', 'en_contra']},
-            'motivo': {'type': 'STRING'}}, 'required': ['apuesta', 'opinion', 'motivo']}},
+            'motivo': {'type': 'STRING'}, 'motivo_en': {'type': 'STRING'}}, 'required': ['apuesta', 'opinion', 'motivo', 'motivo_en']}},
     },
-    'required': ['analisis', 'p_local', 'p_empate', 'p_visita', 'pred_goles', 'confianza', 'pick_ia', 'coincide', 'veredictos',
+    'required': ['analisis', 'analisis_en', 'p_local', 'p_empate', 'p_visita', 'pred_goles', 'confianza', 'pick_ia', 'coincide', 'veredictos',
                  'marcador_probable', 'goles_esperados', 'ambos_anotan', 'corners_esperados', 'linea_corners', 'pred_corners',
                  'tarjetas_esperadas', 'linea_tarjetas', 'pred_tarjetas', 'goles_local_esperados',
                  'goles_visita_esperados', 'mejor_apuesta', 'prob_mejor_apuesta', 'prob_goles', 'prob_ambos_anotan',
@@ -105,7 +106,7 @@ ESQUEMA['properties']['primero_anota'] = {'type': 'STRING', 'enum': ['local', 'v
 ESQUEMA['properties']['prob_primero'] = {'type': 'NUMBER'}
 ESQUEMA['required'] += ['primero_anota', 'prob_primero']
 # v407 — los demás deportes: el mismo template sin lo que es sólo del fútbol
-_COMUNES = ['analisis', 'p_local', 'p_empate', 'p_visita', 'confianza', 'pick_ia', 'coincide', 'veredictos',
+_COMUNES = ['analisis', 'analisis_en', 'p_local', 'p_empate', 'p_visita', 'confianza', 'pick_ia', 'coincide', 'veredictos',
             'marcador_probable', 'goles_local_esperados', 'goles_visita_esperados', 'mejor_apuesta',
             'prob_mejor_apuesta', 'prob_marcador', 'total_esperado', 'linea_total', 'pred_total', 'prob_total',
             'linea_handicap', 'pred_handicap', 'prob_handicap']
@@ -159,7 +160,16 @@ INSTRUCCION = (
 )
 
 
+# v582 — la app también va en inglés: el texto libre de la IA se pide en los dos idiomas
+EN_TAMBIEN = (' IDIOMA: además del español, escribe "analisis_en" (el MISMO análisis en inglés natural de apuestas deportivas, '
+              'mismos datos y mismo largo) y, en cada veredicto, "motivo_en" (el mismo motivo en inglés). Los demás campos, igual que siempre.')
+
+
 def instruccion(deporte: str) -> str:
+    return _instruccion_base(deporte) + EN_TAMBIEN
+
+
+def _instruccion_base(deporte: str) -> str:
     """v407 — la misma plantilla para cada deporte, con su unidad."""
     if deporte == 'Fútbol':
         return INSTRUCCION
@@ -636,14 +646,14 @@ def fila(m: Dict, d: Dict, mercado: Dict) -> Dict:
             'prob_total': _prob(d.get('prob_total')), 'linea_handicap': _linea_h(d.get('linea_handicap')),
             'pred_handicap': d.get('pred_handicap') if d.get('pred_handicap') in ('local', 'visita') else None,
             'prob_handicap': _prob(d.get('prob_handicap')),
-            'partido': m['partido'], 'analisis': str(d.get('analisis') or '')[:900],
+            'partido': m['partido'], 'analisis': str(d.get('analisis') or '')[:900], 'analisis_en': str(d.get('analisis_en') or '')[:900] or None,
             'pred_resultado': ['local', 'empate', 'visita'][max(range(3), key=lambda i: (pl, pe, pv)[i])],
             'p_local': round(pl, 3), 'p_empate': round(pe, 3), 'p_visita': round(pv, 3),
             'pred_goles': d.get('pred_goles') if d.get('pred_goles') in ('mas', 'menos') else None,
             'confianza': max(1, min(5, int(d.get('confianza') or 3))), 'pick_ia': str(d.get('pick_ia') or '')[:160],
             'coincide': bool(d.get('coincide')), 'modelo': d.get('_modelo'),
             'veredictos': [{'apuesta': str(v.get('apuesta') or '')[:160], 'opinion': v.get('opinion'),
-                            'motivo': str(v.get('motivo') or '')[:240]}
+                            'motivo': str(v.get('motivo') or '')[:240], 'motivo_en': str(v.get('motivo_en') or '')[:240] or None}
                            for v in (d.get('veredictos') or []) if v.get('opinion') in ('a_favor', 'en_contra')][:8],
             'p_mercado_local': mk.get('home'), 'p_mercado_empate': mk.get('draw'), 'p_mercado_visita': mk.get('away'),
             'clave_liga': (mercado.get(m['partido']) or {}).get('clave'),

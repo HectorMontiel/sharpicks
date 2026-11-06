@@ -290,7 +290,7 @@
   }
   const NO_SE_PUDO = 'No se pudo comprobar ahora. Revisa tu conexión e inténtalo otra vez.';
   const yaExiste = (e) => !!e && (e.code === '23505' || /duplicate|unique/i.test(e.message || ''));
-  const fecha = (s) => s ? new Intl.DateTimeFormat('es-MX', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(s)) : '';
+  const fecha = (s) => s ? new Intl.DateTimeFormat(window.I18N.locale, { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(s)) : '';
 
   // v395 — la suscripción que manda (la más reciente que siga viva) y su aviso
   const DIAS_AVISO = 7;
@@ -475,6 +475,10 @@
       '" placeholder="3-20 letras, números, _ o ." autocapitalize="off"><button class="ver" data-mi-usuario>Guardar</button></div></div>';
     h += '<div class="caja"><div class="tit">🎯 Mis intereses</div><p class="tenue chico">Tus deportes y ligas van primero y arman tu «✨ Para ti».</p>' +
       '<button class="ver" data-intereses>Elegir deportes y ligas</button></div>';
+    // v582 — el idioma, también aquí: la bandera marcada es el de ahora
+    h += '<div class="caja"><div class="tit">🌐 Idioma</div><div class="idioma-fila" translate="no">' +
+      '<button class="idioma-op chico' + (window.I18N.lang === 'es' ? ' on' : '') + '" data-idioma-poner="es">' + window.I18N.banderas.es + '<span>Español</span></button>' +
+      '<button class="idioma-op chico' + (window.I18N.lang === 'en' ? ' on' : '') + '" data-idioma-poner="en">' + window.I18N.banderas.en + '<span>English</span></button></div></div>';
     h += '<div class="caja" id="caja-tg">' + ESQ + '</div>';            // v527 — avisos personales por Telegram
     // v446 — sus reportes de errores (y, al administrador, los que faltan por revisar)
     h += '<div class="caja"><div class="tit">⚠️ ' + (esAdmin() ? 'Reportes' : 'Mis reportes') + '</div><div id="mis-reportes">' + ESQ + '</div></div>';
@@ -733,7 +737,7 @@
       const conStripe = (yo.metodo || 'stripe') === 'stripe';
       const r = await fetch(FN + (conStripe ? 'stripe' : 'monedas'), { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: C.SUPABASE_ANON_KEY,
         Authorization: 'Bearer ' + (s.session ? s.session.access_token : '') },
-        body: JSON.stringify(conStripe ? { accion: 'monedas', paquete: t.dataset.comprar } : { paquete: t.dataset.comprar }) });
+        body: JSON.stringify(conStripe ? { accion: 'monedas', paquete: t.dataset.comprar, idioma: window.I18N.lang } : { paquete: t.dataset.comprar }) });
       const d = await r.json().catch(() => ({}));
       if (d.url) { location.href = d.url; return; }
       t.disabled = false;
@@ -784,7 +788,7 @@
       const conStripe = (yo.metodo || 'stripe') === 'stripe';
       const r = await fetch(FN + (conStripe ? 'stripe' : 'vip'), { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: C.SUPABASE_ANON_KEY,
         Authorization: 'Bearer ' + (s.session ? s.session.access_token : '') },
-        body: JSON.stringify(conStripe ? { accion: 'vip', tipo: t.dataset.vip, renovar } : { tipo: t.dataset.vip, correo: ($('mp-correo') || {}).value, renovar }) });
+        body: JSON.stringify(conStripe ? { accion: 'vip', tipo: t.dataset.vip, renovar, idioma: window.I18N.lang } : { tipo: t.dataset.vip, correo: ($('mp-correo') || {}).value, renovar }) });
       const d = await r.json().catch(() => ({}));
       if (d.url) { location.href = d.url; return; }
       t.disabled = false;
@@ -1066,7 +1070,7 @@
   });
   setTimeout(aplicarPlegado, 0);
   const ICO_HIST = new Proxy({}, { get: (_, d) => (window.SP && window.SP.icoDep ? window.SP.icoDep(d) : '') });
-  const DIA_MX = (f) => new Intl.DateTimeFormat('es-MX', { timeZone: 'America/Mexico_City', weekday: 'short', day: 'numeric', month: 'short' }).format(f);
+  const DIA_MX = (f) => new Intl.DateTimeFormat(window.I18N.locale, { timeZone: 'America/Mexico_City', weekday: 'short', day: 'numeric', month: 'short' }).format(f);
   const aFechaP = (s) => new Date(String(s || '').replace(' ', 'T') + (/[zZ]|[+-]\d\d:?\d\d$/.test(String(s)) ? '' : 'Z'));
   function miHistorial() { pintarHistorial($('mi-hist')); }
   // v459 — el usuario: «la de 2 picks ya está en verde, ¿por qué no se sumó a mi historial?».
@@ -1176,7 +1180,7 @@
     const empezo = (p) => p.inicio && aFechaP(p.inicio) <= new Date();
     const yaRoja = c.estado === 'pendiente' && ps.some((p) => p._visto === 'roja');
     const yaVerde = c.estado === 'pendiente' && !yaRoja && ps.length && ps.every((p) => p._visto === 'verde' || p._visto === 'nula') && ps.some((p) => p._visto === 'verde');
-    const hora = (p) => p.inicio ? new Intl.DateTimeFormat('es-MX', { timeZone: 'America/Mexico_City', hour: '2-digit', minute: '2-digit' }).format(aFechaP(p.inicio)) : '';
+    const hora = (p) => p.inicio ? new Intl.DateTimeFormat(window.I18N.locale, { timeZone: 'America/Mexico_City', hour: '2-digit', minute: '2-digit' }).format(aFechaP(p.inicio)) : '';
     const prox = ps.filter((p) => p.inicio && !empezo(p)).sort((a, b) => aFechaP(a.inicio) - aFechaP(b.inicio))[0];
     // v550 — verde de cuota 2+ sin premio: es la regla de una premiada por día (que no parezca que falló)
     const chip = c.estado === 'verde' ? '<span class="et verde">' + OK() + ' Verde' + (c.premio ? ' · +' + c.premio + ' 🪙' : '') + '</span>' +

@@ -11,7 +11,7 @@
   // v483 — «cuando busco algún equipo la aplicación se traba»: cada repintado creaba miles de
   // Intl.DateTimeFormat (uno por llamada, y `diaDe` se llama varias veces por pick). Los formateadores se
   // crean UNA vez y el día de cada instante se recuerda: pintar bajó de ~620 ms a lo que se mide en test_v483.
-  const FMT = (o) => new Intl.DateTimeFormat(o.loc || 'es-MX', Object.assign({ timeZone: ZONA }, o.op));
+  const FMT = (o) => new Intl.DateTimeFormat(o.loc || window.I18N.locale, Object.assign({ timeZone: ZONA }, o.op));
   const F_DIA = FMT({ loc: 'en-CA', op: {} }), F_HORA = FMT({ op: { hour: '2-digit', minute: '2-digit' } }),
     F_DIAHORA = FMT({ op: { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' } }),
     F_FECHA = FMT({ op: { weekday: 'short', day: 'numeric', month: 'short' } });
@@ -1895,7 +1895,7 @@
       : (a.pred_handicap === 'local' ? L + ' ' + lin(a.linea_handicap) : V + ' ' + lin(-a.linea_handicap));
     const est = a.evaluado ? (a.ok_resultado ? ' · <b class="txt-verde">✅ acertó</b>' : ' · <b class="txt-rojo">❌ falló</b>') : '';
     return '<details class="ctx ia"><summary>🤖 Análisis IA' + est + '</summary>' +
-      '<p class="ia-txt">' + esc(a.analisis || '') + '</p>' +
+      '<p class="ia-txt" translate="no">' + esc((window.I18N.lang === 'en' && a.analisis_en) || a.analisis || '') + '</p>' +
       '<div class="ia-pred">La IA ve: <b>' + esc(res) + '</b> · ' + L.slice(0, 14) + ' ' + Math.round(100 * (a.p_local || 0)) + ' %' +
       (a.p_empate ? ' · empate ' + Math.round(100 * a.p_empate) + ' %' : '') + ' · ' + V.slice(0, 14) + ' ' + Math.round(100 * (a.p_visita || 0)) + ' %</div>' +
       '<div class="ia-pred">' + (fut && a.pred_goles ? 'Goles: <b>' + (a.pred_goles === 'mas' ? 'más de 2.5' : 'menos de 2.5') + '</b>' + pp(a.prob_goles) + ' · ' : '') +
@@ -1938,14 +1938,14 @@
         (a.pick_ia && a.pick_ia !== 'ninguno' ? '<div class="ia-pred">Su pick favorito: <b>' + esc(a.pick_ia) + '</b> ' + (a.coincide ? '✅ coincide con nuestro análisis' : '⚠️ ve el partido distinto') + '</div>' : '') +
         (a.veredictos && a.veredictos.length ? '<div class="ia-ver">' + a.veredictos.map((v) =>
           '<div class="' + (v.opinion === 'en_contra' ? 'contra' : 'favor') + '">' + (v.opinion === 'en_contra' ? '❌ En contra' : '✅ A favor') +
-          ': <b>' + esc(v.apuesta) + '</b> — ' + esc(v.motivo) + (v.estado === 'verde' ? ' · salió ✅' : v.estado === 'roja' ? ' · salió ❌' : '') + '</div>').join('') + '</div>' : '')) +
+          ': <b>' + esc(v.apuesta) + '</b> — <span translate="no">' + esc((window.I18N.lang === 'en' && v.motivo_en) || v.motivo) + '</span>' + (v.estado === 'verde' ? ' · salió ✅' : v.estado === 'roja' ? ' · salió ❌' : '') + '</div>').join('') + '</div>' : '')) +
       // v446 — lo que encontró en la web (bajas, alineaciones) y «¿te sirvió?» (sólo se mide)
-      (a.noticias ? sub('Noticias', '<div class="ia-noti">' + String(a.noticias).split(' | ').map((n) => '<div>· ' + esc(n) + '</div>').join('') + '</div>') : '') +
+      (a.noticias ? sub('Noticias', '<div class="ia-noti" translate="no">' + String(a.noticias).split(' | ').map((n) => '<div>· ' + esc(n) + '</div>').join('') + '</div>') : '') +
       (window.SPX && SPX.votoIA ? SPX.votoIA(a.id) : '') +
       '</details>';
   }
   function formaHtml(f) {
-    return String(f || '').split('').map((c) => '<i class="fr ' + ({ G: 'g', E: 'e', P: 'p' }[c] || '') + '">' + c + '</i>').join('');
+    return String(f || '').split('').map((c) => '<i class="fr ' + ({ G: 'g', E: 'e', P: 'p' }[c] || '') + '">' + (window.I18N.lang === 'en' ? ({ G: 'W', E: 'D', P: 'L' }[c] || c) : c) + '</i>').join('');
   }
   // v470 — una pestaña plegada dentro de otra (Antes del partido, Análisis IA)
   const sub = (titulo, cuerpo) => !cuerpo ? '' : '<details class="sub"><summary>' + titulo + '</summary><div class="sub-c">' + cuerpo + '</div></details>';
@@ -1982,7 +1982,7 @@
     const col = (CTX_DEP[dep] || {}).u || ['Córn.', 'A puerta', 'Amar.'];
     return '<div class="u5"><div class="u5-f u5-cab"><span></span><span>Rival</span><span>Res.</span>' + col.map((c) => '<span>' + c + '</span>').join('') + '</div>' +
       u.map((x) => { const r = x[3] > x[4] ? 'G' : x[3] === x[4] ? 'E' : 'P';
-        return '<div class="u5-f"><i class="fr ' + r.toLowerCase() + '">' + r + '</i><span class="u5-r" title="' + esc(x[0] + ' · ' + x[1]) + '">' +
+        return '<div class="u5-f"><i class="fr ' + r.toLowerCase() + '">' + (window.I18N.lang === 'en' ? ({ G: 'W', E: 'D', P: 'L' }[r]) : r) + '</i><span class="u5-r" title="' + esc(x[0] + ' · ' + x[1]) + '">' +
           (x[2] ? 'vs ' : '@ ') + esc(x[1]) + '</span><b>' + x[3] + '-' + x[4] + '</b><span>' + par(x[5]) + '</span><span>' + par(x[6]) + '</span><span>' + par(x[7]) + '</span></div>'; }).join('') + '</div>';
   }
   function formaEquipo(nombre, f, u, dep) {

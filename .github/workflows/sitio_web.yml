@@ -65,6 +65,8 @@ jobs:
           node --check web/fechas.js
           node --check web/app.js
           node --check web/pistas.js
+          node --check web/idioma.js
+          node --check web/idioma_en.js
           node --check web/cuenta.js
           node --check web/guia.js
           node test_web_v402.cjs

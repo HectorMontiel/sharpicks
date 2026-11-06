@@ -1157,6 +1157,24 @@ details.mas[open] > summary::after { content: ' ▴'; }
 @container (max-width: 145px) { .marca-img, .marca-img img { width: 30px; height: 30px; } .marca #nombre { font-size: 13px; margin-left: -5px; } }
 @container (max-width: 98px) { .marca #nombre { display: none; } }
 @media (max-width: 430px) { .derecha, .cuenta { gap: 6px; } .ayuda-btn { width: 28px; height: 28px; flex-shrink: 0; } }
+/* v582 — el idioma: pantalla al abrir, bandera en el encabezado y caja en Mi cuenta */
+.idioma-pantalla { position: fixed; inset: 0; z-index: 100000; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(7, 9, 18, .94); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.idioma-caja { position: relative; width: min(360px, 100%); padding: 26px 22px 20px; border-radius: 22px; border: 1px solid var(--borde-vidrio, rgba(255,255,255,.14)); background: var(--panel, #141827); text-align: center; color: var(--texto, #fff); }
+.idioma-caja img { border-radius: 16px; display: block; margin: 0 auto 12px; }
+.idioma-caja h2 { margin: 0 0 18px; font-size: 21px; font-weight: 800; }
+.idioma-caja h2 small { display: block; margin-top: 3px; font-size: 14px; font-weight: 500; color: var(--tenue, #9aa3b5); }
+.idioma-op { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 62px; margin-bottom: 10px; padding: 11px 16px; border-radius: 14px; border: 1.5px solid var(--borde, rgba(255,255,255,.14)); background: rgba(255,255,255,.05); color: inherit; font: inherit; font-size: 17px; font-weight: 700; cursor: pointer; text-align: left; transition: border-color .15s, background .15s; }
+.idioma-op:hover, .idioma-op:focus-visible { background: rgba(255,255,255,.1); }
+.idioma-op.on { border-color: var(--marca-luz, #a78bfa); }
+.idioma-op svg { flex: none; width: 48px; height: 32px; border-radius: 5px; box-shadow: 0 0 0 1px rgba(255,255,255,.18); }
+.idioma-fijo { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 6px; font-size: 13px; color: var(--tenue, #9aa3b5); cursor: pointer; }
+.idioma-fijo input { width: 17px; height: 17px; accent-color: var(--marca-luz, #a78bfa); }
+.idioma-cerrar { position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border: 0; border-radius: 50%; background: transparent; color: var(--tenue, #9aa3b5); font-size: 16px; cursor: pointer; }
+.idioma-btn { flex: none; width: 32px; height: 30px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer; }
+.idioma-btn svg { width: 28px; height: 19px; border-radius: 3px; box-shadow: 0 0 0 1px rgba(255,255,255,.28); }
+.idioma-fila { display: flex; gap: 8px; }
+.idioma-op.chico { min-height: 46px; margin: 0; padding: 8px 10px; gap: 9px; font-size: 14px; }
+.idioma-op.chico svg { width: 30px; height: 20px; }
 
 /* v541 — la cabecera con sesión cabe en cualquier iPhone (también 320-375 px): el usuario se corta con «…»,
    y en los más angostos todo se aprieta un poco. Medido en 320, 375, 390, 402 y 440 px. */

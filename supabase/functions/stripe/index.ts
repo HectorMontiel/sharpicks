@@ -45,7 +45,7 @@ Deno.serve(async (req) => {
       global: { headers: { Authorization: req.headers.get('Authorization') ?? '' } }, auth: { persistSession: false } });
     const { data: { user } } = await yo.auth.getUser();
     if (!user) return json({ error: 'Inicia sesión para pagar.' }, 401);
-    const { accion = 'monedas', paquete, tipo = 'mensual', renovar = true } = await req.json().catch(() => ({}));
+    const { accion = 'monedas', paquete, tipo = 'mensual', renovar = true, idioma = 'es' } = await req.json().catch(() => ({}));
     const admin = createClient(URL_, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!, { auth: { persistSession: false } });
     const base = {
       client_reference_id: user.id,
@@ -53,7 +53,7 @@ Deno.serve(async (req) => {
       // Los métodos (tarjeta, Apple Pay, Google Pay) se eligen en el panel de
       // Stripe: la API ya no acepta payment_method_types. OXXO y SPEI van por
       // Mercado Pago.
-      locale: 'es-419',
+      locale: idioma === 'en' ? 'en' : 'es-419',   // v582 — el pago en el idioma de la app
     };
 
     if (accion === 'monedas') {
