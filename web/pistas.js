@@ -916,6 +916,12 @@
     }
     return null;
   }
+  // qué tan avanzado va: los sets, luego los juegos y luego los puntos del juego
+  const avanceT = (x) => {
+    const v = (p) => (VALOR_PT[String(p)] == null ? Number(p) || 0 : VALOR_PT[String(p)]);
+    const juegos = (x.sets || []).reduce((n, s) => n + Number(s[0] || 0) + Number(s[1] || 0), 0);
+    return (x.tot[0] + x.tot[1]) * 1e5 + juegos * 100 + (x.pts ? v(x.pts[0]) + v(x.pts[1]) : 0);
+  };
   const fondoT = (q) => (q.lado === 0 ? CANCHA_T.x0 - 3 : CANCHA_T.x1 + 3);
   // la bola va al otro lado y el que la recibe corre a devolverla; devuelve cuánto tarda en llegar
   function golpeT(m, aQ, vel, linea, dest) {
@@ -930,7 +936,8 @@
   function tenis(m) {
     const ahora = marcadorTenis(m);
     // lo que llega por la fuente se guarda; se enseña hasta que el punto termina en la cancha
-    if (ahora) {
+    // v581 — medido con Swan-Yao: la caché a veces da un marcador más viejo (de 7-5 regresaba a 6-5 y cantaba el set otra vez). Nunca retrocede.
+    if (ahora && (!m.tenU || avanceT(ahora) >= avanceT(m.tenU))) {
       const c = queCambio(m.tenU, ahora);
       if (c && !m.punto) m.punto = c;
       if (!m.tenis) m.tenis = ahora;

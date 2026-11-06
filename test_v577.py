@@ -22,6 +22,10 @@ def test_el_tenis_sigue_hasta_el_punto_real():
     assert 'm.bt = [52.5, 55]' not in P
 
 
+def test_el_marcador_del_tenis_nunca_retrocede():
+    assert 'avanceT(ahora) >= avanceT(m.tenU)' in P and 'const avanceT = (x) =>' in P
+
+
 def test_el_vivo_trae_sets_puntos_y_saque():
     assert 'function extraTenis(c)' in V and "['BA', 'BB']" in V and 'c.WA != null' in V and "c.WC === '1' ? 0 : c.WC === '2' ? 1 : null" in V
     assert "dep === DEPORTES.tenis" in V and "'Cache-Control': 'public, max-age=30'" in V
