@@ -143,5 +143,150 @@ def main() -> int:
     return 0
 
 
+# v589 — EN VIVO, Y CON MEJORES FUENTES. En el pasado sólo había titulares del partido y en 850 de 910 picks no decían nada (impacto 0). Antes de
+# cada partido se le da a la misma IA a ciegas lo que sí mueve un resultado: las bajas por equipo (FotMob en fútbol, reporte de ESPN en NBA/NHL/NFL)
+# y noticias buscadas por equipo. Se guarda aparte; nadie lo ve. No se enseña hasta que pase `mediciones/medir_ia_experimento.py`.
+VERSION_VIVO = 'vivo-v1'
+LOTE_VIVO = 6
+MAX_VIVO = int(os.environ.get('EXP_MAX_VIVO', '25'))
+HORAS_VIVO = 14
+CUPO_VIVO = 300            # no le quita cupo a los análisis ni al Pulso
+TOPE_VIVO_S = 300
+RUTAS_ESPN = {'NBA': 'basketball/nba', 'NHL': 'hockey/nhl', 'NFL': 'football/nfl'}
+BUSQUEDA_BAJAS = '"%s" (lesión OR baja OR bajas OR lesionado OR suspendido OR duda OR rotación OR injury OR injured OR out) when:3d%s'
+
+
+def lesiones_espn(deporte: str, cache: Dict) -> Dict:
+    """{equipo: ['Jugador (Out): comentario']} del reporte de lesiones de ESPN; {} si no hay."""
+    ruta = RUTAS_ESPN.get(deporte)
+    if not ruta:
+        return {}
+    if deporte not in cache:
+        cache[deporte] = {}
+        try:
+            d = requests.get('https://site.api.espn.com/apis/site/v2/sports/%s/injuries' % ruta, timeout=20).json()
+            for eq in d.get('injuries') or []:
+                cache[deporte][eq.get('displayName')] = ['%s (%s): %s' % ((x.get('athlete') or {}).get('displayName', '?'), x.get('status', '?'), str(x.get('shortComment') or '')[:110])
+                                                         for x in (eq.get('injuries') or [])[:8]]
+        except Exception as e:
+            logger.warning('experimento: lesiones %s: %s', deporte, type(e).__name__)
+    return cache[deporte]
+
+
+def bajas_fotmob(partido: str, tabla: Dict) -> Dict:
+    h, _, a = partido.partition(' vs ')
+    for k, v in tabla.items():
+        if k.split('|')[1:] == [h.strip(), a.strip()]:
+            return {lado: ['%s (%s)' % (b.get('jugador'), b.get('tipo')) for b in ((v.get(lado) or {}).get('bajas') or [])[:10]] for lado in ('home', 'away')}
+    return {}
+
+
+def titulares_de_bajas(equipo: str, liga, inicio, fem_extra: str = '') -> List[str]:
+    """Búsqueda por equipo y por bajas; sólo lo publicado antes de empezar."""
+    import email.utils
+    import xml.etree.ElementTree as ET
+    import datetime as dt
+    import ia_gemini as g
+    try:
+        r = requests.get(g.RSS_URL, params={'q': BUSQUEDA_BAJAS % (g._nombre_busqueda(equipo), fem_extra), 'hl': 'es-419', 'gl': 'MX', 'ceid': 'MX:es-419'},
+                         timeout=15, headers={'User-Agent': 'Mozilla/5.0'})
+        items = ET.fromstring(r.text).findall('.//item') if r.ok else []
+    except Exception:
+        return []
+    fuera = []
+    for it in items:
+        try:
+            pub = email.utils.parsedate_to_datetime(it.findtext('pubDate') or '')
+        except Exception:
+            pub = None
+        if inicio and pub and pub >= inicio:
+            continue
+        t = (it.findtext('title') or '').rpartition(' - ')[0].strip() or (it.findtext('title') or '').strip()
+        if t and not g._SIN_INFO.search(t) and bool(g._TITULAR_FEM.search(t)) == bool(fem_extra) and t not in fuera:
+            fuera.append(t[:160])
+        if len(fuera) >= 4:
+            break
+    return fuera
+
+
+def entrada_vivo(m: Dict) -> Dict:
+    """Lo único que ve: equipos, liga, bajas, titulares y el texto de cada apuesta. Sin cuota, probabilidad, nivel ni nada nuestro."""
+    return {'partido': m['partido'], 'liga': m.get('liga'), 'deporte': m.get('deporte'), 'fecha': m['fecha'], 'bajas': m.get('bajas') or {}, 'titulares': m.get('titulares') or [], 'apuestas': m['apuestas']}
+
+
+def vivo() -> int:
+    import datetime as dt
+    import escudos
+    import ia_gemini as g
+    key = os.environ.get('GEMINI_API_KEY')
+    if not key:
+        return 0
+    base, h = _base()
+    sb = (base + 'ia_analisis', h)
+    ahora = dt.datetime.now(dt.timezone.utc)
+    g.leer_uso_de_hoy(sb, ahora)
+    picks = json.load(open(g.DATOS, encoding='utf-8')).get('picks') or []
+    try:
+        reales = json.load(open(g.PRIVADO, encoding='utf-8'))
+    except Exception:
+        reales = {}
+    try:
+        tabla = json.load(open('bajas_dia.json', encoding='utf-8')).get('partidos') or {}
+    except Exception:
+        tabla = {}
+    hechos = {(x['fecha'], x['partido'], x['apuesta']) for x in _todas(base, h, 'ia_experimento', {'select': 'fecha,partido,apuesta', 'version': 'eq.' + VERSION_VIVO,
+                                                                                                  'fecha': 'gte.' + (ahora - dt.timedelta(days=2)).strftime('%Y-%m-%d'), 'order': 'fecha,partido,apuesta'})}
+    por = {}
+    for p in picks:
+        ini = g._utc(p.get('inicio'))
+        ap = reales.get(p.get('id'), p.get('apuesta'))
+        if (p.get('estado') != 'pendiente' or p.get('solo_analisis') or p.get('tipo') in ('combinada', 'error') or ini is None or not ap or '🔒' in ap
+                or not ahora < ini <= ahora + dt.timedelta(hours=HORAS_VIVO) or (p.get('fecha'), p.get('partido'), ap) in hechos):
+            continue
+        m = por.setdefault((p['fecha'], p['partido']), {'fecha': p['fecha'], 'partido': p['partido'], 'liga': p.get('liga'), 'deporte': str(p.get('deporte') or 'Fútbol'), 'ini': ini, 'apuestas': []})
+        if ap not in m['apuestas']:
+            m['apuestas'].append(ap)
+    lista = sorted(por.values(), key=lambda m: m['ini'])
+    ini_paso, consultas, guardadas, cache = time.monotonic(), 0, 0, {}
+    for a in range(0, len(lista), LOTE_VIVO):
+        gastado = g.USADAS_HOY['lite'] + sum(u['llamadas'] for (mo, _), u in g.USO.items() if mo == g.MODELO_CUPO)
+        if consultas >= MAX_VIVO or gastado >= CUPO_VIVO or time.monotonic() - ini_paso > TOPE_VIVO_S:
+            break
+        lote = lista[a:a + LOTE_VIVO]
+        for m in lote:
+            casa, _, visita = m['partido'].partition(' vs ')
+            les = lesiones_espn(m['deporte'], cache)
+            m['bajas'] = ({'home': les.get(casa.strip(), []), 'away': les.get(visita.strip(), [])} if les else bajas_fotmob(m['partido'], tabla)) if m['deporte'] != 'Tenis' else {}
+            try:
+                fem = ' femenil' if escudos._cat(m.get('liga'), casa, visita)[0] else ''
+            except Exception:
+                fem = ''
+            m['titulares'] = [t for eq in (casa, visita) if eq.strip() for t in titulares_de_bajas(eq.strip(), m.get('liga'), m['ini'], fem)]
+        paquete = [dict(entrada_vivo(m), i=i, apuestas=[{'j': j, 'texto': x} for j, x in enumerate(m['apuestas'])]) for i, m in enumerate(lote)]
+        cuerpo = {'systemInstruction': {'parts': [{'text': INSTRUCCION + ' "bajas" trae a los ausentes de cada lado ("home" es el local); pesa sólo los que sepas por el dato que sean importantes, sin inventar.'}]},
+                  'contents': [{'role': 'user', 'parts': [{'text': json.dumps(paquete, ensure_ascii=False)}]}],
+                  'generationConfig': {'temperature': 0.1, 'responseMimeType': 'application/json', 'responseSchema': ESQUEMA}}
+        consultas += 1
+        try:
+            r = requests.post('https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent' % MODELO, params={'key': key}, json=cuerpo, timeout=90)
+            g._contar(MODELO, 'ciega', r.ok, r.status_code == 429)
+            if r.status_code == 429:
+                break
+            r.raise_for_status()
+            filas = filas_de_respuesta(lote, json.loads(r.json()['candidates'][0]['content']['parts'][0]['text']).get('r') or [])
+            for f in filas:
+                m = next(x for x in lote if x['partido'] == f['partido'] and x['fecha'] == f['fecha'])
+                f.update(version=VERSION_VIVO, datos=json.dumps({'bajas': m['bajas'], 'titulares': m['titulares']}, ensure_ascii=False)[:3000])
+            if filas:
+                requests.post(base + 'ia_experimento', headers=dict(h, Prefer='resolution=merge-duplicates,return=minimal'), json=filas, timeout=60).raise_for_status()
+                guardadas += len(filas)
+        except Exception as e:      # sólo el tipo: el texto podría llevar la clave en la URL
+            logger.warning('experimento: %s', type(e).__name__)
+        time.sleep(PAUSA_S)
+    g.guardar_uso(sb, ahora)
+    print('experimento en vivo: %d partidos, %d consultas, %d apuestas guardadas' % (len(lista), consultas, guardadas))
+    return 0
+
+
 if __name__ == '__main__':
-    raise SystemExit(main())
+    raise SystemExit(vivo() if '--vivo' in sys.argv else main())

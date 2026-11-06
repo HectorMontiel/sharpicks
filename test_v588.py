@@ -67,6 +67,30 @@ def test_calificacion_no_se_atasca():
     assert 'picks = picks + _picks_de_la_base(sb, desde[:10])' in a
 
 
+def test_vivo_a_ciegas():
+    m = {'fecha': '2026-11-07', 'partido': 'A vs B', 'liga': 'L', 'deporte': 'NBA', 'bajas': {'home': ['X (Out): rodilla']}, 'titulares': ['t'], 'apuestas': ['Gana A'],
+         'cuota': 1.2, 'prob': .8, 'nivel': 'Diamante', 'ini': 'x'}
+    t = json.dumps(ex.entrada_vivo(m), ensure_ascii=False).lower()
+    for prohibido in ['cuota', 'prob', 'diamante', 'nivel', '1.2']:
+        assert prohibido not in t, prohibido
+
+
+def test_bajas_por_nombre_exacto():
+    tabla = {'mls|Inter Miami|Toronto': {'home': {'bajas': [{'jugador': 'J', 'tipo': 'injury'}]}, 'away': {'bajas': []}}}
+    assert ex.bajas_fotmob('Inter Miami vs Toronto', tabla)['home'] == ['J (injury)']
+    assert ex.bajas_fotmob('Inter vs Toronto', tabla) == {}
+
+
+def test_vivo_no_cambia_picks_y_no_quita_cupo():
+    a = leer('ia_experimento.py')
+    assert 'CUPO_VIVO = 300' in a and "not ahora < ini <= ahora + dt.timedelta(hours=HORAS_VIVO)" in a
+    y = leer('.github', 'workflows', 'sitio_web.yml')
+    assert 'python ia_experimento.py --vivo' in y and y.index('name: IA (Gemini)') < y.index('ia_experimento.py --vivo')
+    i = y.index('ia_experimento.py --vivo')
+    assert 'continue-on-error: true' in y[i - 400:i]
+    assert 'add column if not exists datos' in leer('supabase', 'v589_ia_experimento_datos.sql')
+
+
 if __name__ == '__main__':
     for n, f in list(globals().items()):
         if n.startswith('test_'):

@@ -42,7 +42,7 @@ env:
 jobs:
   publicar:
     runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
-    timeout-minutes: 30
+    timeout-minutes: 37
     env:
       # el `if` de un paso no ve el `env` del propio paso: va aquí
       CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -163,6 +163,15 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python ia_gemini.py
       # v395 — aviso 7 días antes de cada renovación del VIP (correo por Brevo)
+      # v589 — la IA lee bajas y noticias a ciegas antes de cada partido. Sólo se guarda para medir: no cambia ningún pick.
+      - name: IA a ciegas (sólo medición)
+        continue-on-error: true
+        timeout-minutes: 7
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: python ia_experimento.py --vivo
       - name: Avisos de renovación
         id: avisos
         continue-on-error: true
