@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-06T19:26:32Z",
+"actualizado": "2026-11-06T21:00:34Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -24454,6 +24454,36 @@
 },
 {
 "dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "B.93 vs Skive",
+"apuesta": "Gana Skive",
+"cuota": 3.55,
+"resultado": "rojo",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Barracas Central vs Racing Club",
+"apuesta": "Gana Racing Club",
+"cuota": 3.4,
+"resultado": "rojo",
+"marcador": "2-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Botev Plovdiv vs Dunav Ruse",
+"apuesta": "Gana Botev Plovdiv",
+"cuota": 1.43,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-06",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Dubai City vs Forte Virtus",
@@ -24461,6 +24491,36 @@
 "cuota": 1.53,
 "resultado": "verde",
 "marcador": "0-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Emden vs VfB Lubeck",
+"apuesta": "Gana Emden",
+"cuota": 1.93,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "FC Arges vs Dinamo Bucuresti",
+"apuesta": "Gana Dinamo Bucuresti",
+"cuota": 1.85,
+"resultado": "rojo",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "FC Arges vs Dinamo Bucuresti",
+"apuesta": "Gana Dinamo Bucuresti",
+"cuota": 1.85,
+"resultado": "rojo",
+"marcador": "2-1"
 },
 {
 "dia": "2026-11-06",
@@ -24481,6 +24541,16 @@
 "cuota": 3.1,
 "resultado": "verde",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Hammarby vs Elfsborg",
+"apuesta": "Gana Hammarby",
+"cuota": 1.42,
+"resultado": "verde",
+"marcador": "4-1"
 },
 {
 "dia": "2026-11-06",
@@ -24645,12 +24715,42 @@
 {
 "dia": "2026-11-06",
 "nivel": "💰",
+"deporte": "Fútbol",
+"partido": "SK Rapid vs Wolfsberger AC",
+"apuesta": "Gana SK Rapid",
+"cuota": 1.3,
+"resultado": "verde",
+"marcador": "6-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
 "deporte": "Tenis",
 "partido": "Sonmez Z. vs Liu C.",
 "apuesta": "Gana Liu C.",
 "cuota": 1.98,
 "resultado": "verde",
 "marcador": "0-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Stade Nyonnais vs Lausanne Ouchy",
+"apuesta": "Gana Lausanne Ouchy",
+"cuota": 1.44,
+"resultado": "verde",
+"marcador": "1-5"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Sundby vs Helsingor",
+"apuesta": "Gana Helsingor",
+"cuota": 2.25,
+"resultado": "rojo",
+"marcador": "1-1"
 },
 {
 "dia": "2026-11-06",
