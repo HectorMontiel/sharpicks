@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-06T02:09:09Z",
+"actualizado": "2026-11-06T03:23:03Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23766,6 +23766,26 @@
 "dia": "2026-11-05",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Arnett Gardens vs Mount Pleasant",
+"apuesta": "Gana Mount Pleasant",
+"cuota": 1.74,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Arnett Gardens vs Mount Pleasant",
+"apuesta": "Gana Mount Pleasant",
+"cuota": 1.74,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Atalanta vs Kairat Almaty",
 "apuesta": "Gana Atalanta",
 "cuota": 1.2,
@@ -24244,6 +24264,36 @@
 },
 {
 "dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Tampa Bay Lightning vs Chicago Blackhawks",
+"apuesta": "Handicap: Chicago Blackhawks +3.5",
+"cuota": 1.167,
+"resultado": "verde",
+"marcador": "4-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Tampa Bay Lightning vs Chicago Blackhawks",
+"apuesta": "Handicap: Tampa Bay Lightning +1.5",
+"cuota": 1.111,
+"resultado": "verde",
+"marcador": "4-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Tampa Bay Lightning vs Chicago Blackhawks",
+"apuesta": "Handicap: Chicago Blackhawks +4.5",
+"cuota": 1.125,
+"resultado": "verde",
+"marcador": "4-1"
+},
+{
+"dia": "2026-11-05",
 "nivel": "💰",
 "deporte": "Fútbol",
 "partido": "Thun vs Hearts",
@@ -24281,6 +24331,16 @@
 "cuota": 2.45,
 "resultado": "rojo",
 "marcador": "0-1"
+},
+{
+"dia": "2026-11-05",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Winnipeg Jets vs Vancouver Canucks",
+"apuesta": "Handicap: Vancouver Canucks +3.5",
+"cuota": 1.111,
+"resultado": "rojo",
+"marcador": "6-2"
 },
 {
 "dia": "2026-11-05",

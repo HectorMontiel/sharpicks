@@ -25004,22 +25004,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5934502,2026-08-22,fem_alemania,FC Köln,Vanessa Leimenstoll,1301452,F,0,24,0,0,0,0.0,,3.0,
 5934502,2026-08-22,fem_alemania,FC Köln,Carolin Elsen,1680148,F,0,14,0,0,0,0.0,,3.0,
 5934502,2026-08-22,fem_alemania,FC Köln,Dóra Zeller,898137,F,0,14,0,0,0,0.0,,3.0,
-5103599,2026-08-22,brasil,Cruzeiro,Otávio,1732742,G,1,90,0,0,0,0.0,11.0,0.0,910309.0
-5103599,2026-08-22,brasil,Cruzeiro,Fágner,20446,D,1,90,4,1,0,0.11,32.0,1.0,293520.0
-5103599,2026-08-22,brasil,Cruzeiro,Fabrício Bruno,750046,D,1,90,0,0,0,0.0,34.0,1.0,10907249.0
-5103599,2026-08-22,brasil,Cruzeiro,João Marcelo,1185338,D,1,90,2,0,0,0.19,36.0,1.0,2321280.0
-5103599,2026-08-22,brasil,Cruzeiro,Lucas Villalba,384587,D,1,90,2,1,0,0.09,38.0,1.0,801693.0
-5103599,2026-08-22,brasil,Cruzeiro,Lucas Daniel Romero,388605,M,1,75,1,0,0,0.02,64.0,2.0,1911941.0
-5103599,2026-08-22,brasil,Cruzeiro,Matheus Henrique,900043,M,1,86,2,0,0,0.1,66.0,2.0,2510838.0
-5103599,2026-08-22,brasil,Cruzeiro,Keny Arroyo,1626714,F,1,75,3,2,1,0.06,83.0,3.0,10410249.0
-5103599,2026-08-22,brasil,Cruzeiro,Matheus Pereira,522651,M,1,90,4,1,1,0.16,85.0,2.0,6971820.0
-5103599,2026-08-22,brasil,Cruzeiro,João Costa,1560063,F,1,45,2,0,0,0.13,87.0,3.0,
-5103599,2026-08-22,brasil,Cruzeiro,Kaio Jorge,964661,F,1,76,1,0,0,0.3,115.0,3.0,20714532.0
-5103599,2026-08-22,brasil,Cruzeiro,Wesley,1372179,F,0,45,2,1,0,0.04,,3.0,
-5103599,2026-08-22,brasil,Cruzeiro,Gérson,580604,M,0,15,1,0,0,0.03,,2.0,17317382.0
-5103599,2026-08-22,brasil,Cruzeiro,Kenji,1695248,F,0,15,0,0,0,0.0,,3.0,
-5103599,2026-08-22,brasil,Cruzeiro,Néiser Villarreal,1680191,M,0,14,0,0,0,0.0,,2.0,
-5103599,2026-08-22,brasil,Cruzeiro,Zé Lucas,1733226,M,0,4,0,0,0,0.0,,2.0,8498584.0
 5109906,2026-08-22,usl_championship,Monterey Bay FC,Fernando Delgado,1261616,G,1,90,0,0,0,0.0,11.0,0.0,293760.0
 5109906,2026-08-22,usl_championship,Monterey Bay FC,Quinton Elliot,1780532,D,1,90,0,0,0,0.0,32.0,1.0,
 5109906,2026-08-22,usl_championship,Monterey Bay FC,Kelsey Egwu,1682712,D,1,90,0,0,0,0.0,34.0,1.0,151688.0
@@ -28038,21 +28022,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5103602,2026-08-23,brasil,Vitória,Marinho,339125,F,0,27,1,0,0,0.03,,3.0,300403.0
 5103602,2026-08-23,brasil,Vitória,Renato Kayzer,679873,F,0,20,0,0,0,0.0,,3.0,788055.0
 5103602,2026-08-23,brasil,Vitória,Mateusinho,1357732,D,0,13,0,0,0,0.0,,1.0,
-5103602,2026-08-23,brasil,Bahia,Ronaldo,812077,G,1,90,0,0,0,0.0,11.0,0.0,1539858.0
-5103602,2026-08-23,brasil,Bahia,Román Gómez,1617809,D,1,90,1,0,0,0.19,32.0,1.0,1741267.0
-5103602,2026-08-23,brasil,Bahia,David Duarte,638782,D,1,90,1,1,0,0.02,34.0,1.0,1104761.0
-5103602,2026-08-23,brasil,Bahia,Santiago Ramos,1073724,D,1,90,1,1,0,0.19,36.0,1.0,12031236.0
-5103602,2026-08-23,brasil,Bahia,Luciano Juba,1174329,D,1,90,2,1,0,0.07,38.0,1.0,8020611.0
-5103602,2026-08-23,brasil,Bahia,Erick,1028125,M,1,71,1,0,0,0.5,73.0,2.0,2235987.0
-5103602,2026-08-23,brasil,Bahia,Nicolás Acevedo,1020027,M,1,90,1,0,0,0.03,75.0,2.0,2575448.0
-5103602,2026-08-23,brasil,Bahia,Rodrigo Nestor,1118194,M,1,82,5,0,0,0.15,77.0,2.0,5018400.0
-5103602,2026-08-23,brasil,Bahia,Cristian Olivera,1136409,F,1,90,3,1,0,0.41,103.0,3.0,3876471.0
-5103602,2026-08-23,brasil,Bahia,Alejo Véliz,1250658,F,1,89,5,1,1,1.29,105.0,3.0,4437684.0
-5103602,2026-08-23,brasil,Bahia,Erick Pulga,1340527,F,1,82,4,2,0,0.12,107.0,3.0,8472590.0
-5103602,2026-08-23,brasil,Bahia,Jean Lucas,934675,M,0,19,2,1,1,0.95,,2.0,10414050.0
-5103602,2026-08-23,brasil,Bahia,Michel Araújo,902826,M,0,8,1,1,0,0.43,,2.0,1665624.0
-5103602,2026-08-23,brasil,Bahia,Ruan Pablo,1664010,F,0,8,1,0,0,0.02,,3.0,3157005.0
-5103602,2026-08-23,brasil,Bahia,Everaldo,295103,F,0,1,0,0,0,0.0,,3.0,431143.0
 5967042,2026-08-23,ita_serie_b,Cesena,Alessandro Siano,1668235,G,1,90,0,0,0,0.0,11.0,0.0,257232.0
 5967042,2026-08-23,ita_serie_b,Cesena,Andrea Ciofi,878860,D,1,90,0,0,0,0.0,32.0,1.0,1206853.0
 5967042,2026-08-23,ita_serie_b,Cesena,Mihajlo Ilic,1343910,D,1,90,0,0,0,0.0,34.0,1.0,1958809.0
@@ -176753,3 +176722,66 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000019631,2026-11-05,argentina,Belgrano,Adrián Spörle,743009,D,0,15,0,0,0,0.0,,1.0,456680.0
 1000019631,2026-11-05,argentina,Belgrano,Agustín Falcón,1897457,D,0,7,1,0,0,0.05,,1.0,690246.0
 1000019631,2026-11-05,argentina,Belgrano,Ramiro Hernandes,1652019,M,0,7,0,0,0,0.0,,2.0,2095201.0
+1000022936,2026-11-06,mex_expansion,Cancún FC,Edson Arce,1516498,G,1,90,0,0,0,0.0,11.0,0.0,
+1000022936,2026-11-06,mex_expansion,Cancún FC,Jonathan Hernández,1554749,D,1,90,1,0,0,0.01,32.0,1.0,
+1000022936,2026-11-06,mex_expansion,Cancún FC,Rodrigo Reyes,1169761,D,1,90,1,0,0,0.22,34.0,1.0,260945.0
+1000022936,2026-11-06,mex_expansion,Cancún FC,Luis Bustillos,1432172,D,1,84,0,0,0,0.0,36.0,1.0,
+1000022936,2026-11-06,mex_expansion,Cancún FC,Alek Álvarez,1178451,D,1,90,0,0,0,0.0,38.0,1.0,376392.0
+1000022936,2026-11-06,mex_expansion,Cancún FC,Francisco Melendre,1797676,M,1,79,3,0,0,0.09,72.0,2.0,
+1000022936,2026-11-06,mex_expansion,Cancún FC,Christo Vela,1378994,M,1,65,1,1,0,0.04,74.0,2.0,483230.0
+1000022936,2026-11-06,mex_expansion,Cancún FC,Karel Campos,1226470,M,1,84,2,1,0,0.08,76.0,2.0,537213.0
+1000022936,2026-11-06,mex_expansion,Cancún FC,Armando Chávez,1138098,M,1,90,0,0,0,0.0,78.0,2.0,222107.0
+1000022936,2026-11-06,mex_expansion,Cancún FC,Christopher Trejo,951735,F,1,90,4,1,0,0.34,104.0,3.0,570437.0
+1000022936,2026-11-06,mex_expansion,Cancún FC,José Rodríguez,1392218,F,1,90,1,1,1,0.32,106.0,3.0,
+1000022936,2026-11-06,mex_expansion,Cancún FC,Francisco Uscanga,165594,M,0,25,0,0,0,0.0,,2.0,
+1000022936,2026-11-06,mex_expansion,Cancún FC,Gipson Preciado,1483118,M,0,11,0,0,0,0.0,,2.0,
+1000022936,2026-11-06,mex_expansion,Cancún FC,Jair Cortés,1025121,D,0,6,1,0,0,0.03,,1.0,453037.0
+1000022936,2026-11-06,mex_expansion,Cancún FC,Thiago Gigena,1727517,F,0,6,0,0,0,0.0,,3.0,298274.0
+1000022936,2026-11-06,mex_expansion,Piratas,Humberto Hernández,70250,G,1,90,0,0,0,0.0,11.0,0.0,141649.0
+1000022936,2026-11-06,mex_expansion,Piratas,Rolando González,821785,D,1,90,1,0,0,0.03,32.0,1.0,122649.0
+1000022936,2026-11-06,mex_expansion,Piratas,Ángel López,2101218,D,1,90,0,0,0,0.0,34.0,1.0,
+1000022936,2026-11-06,mex_expansion,Piratas,Uziel García,1169756,D,1,87,2,1,0,0.1,36.0,1.0,359362.0
+1000022936,2026-11-06,mex_expansion,Piratas,Kenneth Jaime,1373792,D,1,75,2,0,0,0.05,38.0,1.0,
+1000022936,2026-11-06,mex_expansion,Piratas,Diego Cruz,683765,M,1,90,0,0,0,0.0,73.0,2.0,148239.0
+1000022936,2026-11-06,mex_expansion,Piratas,Brian Figueroa,863133,M,1,75,3,0,0,0.18,75.0,2.0,382521.0
+1000022936,2026-11-06,mex_expansion,Piratas,Omar Soto,1437906,M,1,90,2,0,0,0.09,77.0,2.0,211600.0
+1000022936,2026-11-06,mex_expansion,Piratas,Christian Fernandez,2101219,F,1,90,4,2,1,0.34,103.0,3.0,
+1000022936,2026-11-06,mex_expansion,Piratas,Daniel Lajud,922565,F,1,81,1,0,0,0.04,105.0,3.0,136437.0
+1000022936,2026-11-06,mex_expansion,Piratas,Juan Gamboa,1072518,F,1,86,0,0,0,0.0,107.0,3.0,299631.0
+1000022936,2026-11-06,mex_expansion,Piratas,Ramon Palomares,2098226,D,0,15,0,0,0,0.0,,1.0,
+1000022936,2026-11-06,mex_expansion,Piratas,Gabriel López,1380588,M,0,15,2,0,0,0.07,,2.0,444529.0
+1000022936,2026-11-06,mex_expansion,Piratas,Francisco García,1384970,F,0,9,0,0,0,0.0,,3.0,
+1000022936,2026-11-06,mex_expansion,Piratas,Eduardo Ochoa,2098238,D,0,4,0,0,0,0.0,,1.0,
+1000022936,2026-11-06,mex_expansion,Piratas,Jesús Venegas,1242124,M,0,3,0,0,0,0.0,,2.0,196804.0
+5103699,2026-11-06,brasil,Cruzeiro,Otávio,1732742,G,1,90,0,0,0,0.0,11.0,0.0,22505145.0
+5103699,2026-11-06,brasil,Cruzeiro,Fágner,20446,D,1,82,1,0,0,0.63,32.0,1.0,368159.0
+5103699,2026-11-06,brasil,Cruzeiro,Jonathan Jesus,1488554,D,1,90,0,0,0,0.0,34.0,1.0,15444255.0
+5103699,2026-11-06,brasil,Cruzeiro,Fabrício Bruno,750046,D,1,5,0,0,0,0.0,36.0,1.0,8232903.0
+5103699,2026-11-06,brasil,Cruzeiro,Gabriel Rojas,805540,D,1,90,1,0,0,0.02,38.0,1.0,2469687.0
+5103699,2026-11-06,brasil,Cruzeiro,Lucas Daniel Romero,388605,M,1,90,2,0,0,0.29,64.0,2.0,1937720.0
+5103699,2026-11-06,brasil,Cruzeiro,Zé Lucas,1733226,M,1,90,1,1,0,0.06,66.0,2.0,11513074.0
+5103699,2026-11-06,brasil,Cruzeiro,Keny Arroyo,1626714,F,1,82,5,3,0,0.64,83.0,3.0,15766375.0
+5103699,2026-11-06,brasil,Cruzeiro,Bruno Rodrigues,683709,M,1,82,5,1,1,0.66,85.0,2.0,1021377.0
+5103699,2026-11-06,brasil,Cruzeiro,Gérson,580604,F,1,87,2,0,0,0.08,87.0,3.0,18080752.0
+5103699,2026-11-06,brasil,Cruzeiro,Kaio Jorge,964661,F,1,90,5,3,2,1.13,115.0,3.0,25033982.0
+5103699,2026-11-06,brasil,Cruzeiro,Matías Viña,840184,D,0,85,0,0,0,0.0,,1.0,1705947.0
+5103699,2026-11-06,brasil,Cruzeiro,Kauã Moraes,1759878,D,0,8,0,0,0,0.0,,1.0,
+5103699,2026-11-06,brasil,Cruzeiro,Matheus Henrique,900043,M,0,8,0,0,0,0.0,,2.0,5111843.0
+5103699,2026-11-06,brasil,Cruzeiro,Marquinhos,1255210,F,0,8,0,0,0,0.0,,3.0,2044986.0
+5103699,2026-11-06,brasil,Cruzeiro,Lucas Silva,346004,M,0,3,0,0,0,0.0,,2.0,554610.0
+5103699,2026-11-06,brasil,Bahia,Ronaldo,812077,G,1,90,0,0,0,0.0,11.0,0.0,1618847.0
+5103699,2026-11-06,brasil,Bahia,Marcos Victor,1355337,D,1,90,0,0,0,0.0,32.0,1.0,801018.0
+5103699,2026-11-06,brasil,Bahia,David Duarte,638782,D,1,90,0,0,0,0.0,34.0,1.0,1229619.0
+5103699,2026-11-06,brasil,Bahia,Kanu,844161,D,1,83,0,0,0,0.0,36.0,1.0,1665695.0
+5103699,2026-11-06,brasil,Bahia,Luciano Juba,1174329,D,1,90,2,0,0,0.1,38.0,1.0,16920682.0
+5103699,2026-11-06,brasil,Bahia,Erick,1028125,M,1,65,0,0,0,0.0,64.0,2.0,4144349.0
+5103699,2026-11-06,brasil,Bahia,Nicolás Acevedo,1020027,M,1,57,0,0,0,0.0,66.0,2.0,11053257.0
+5103699,2026-11-06,brasil,Bahia,Cristian Olivera,1136409,F,1,90,4,3,1,0.28,83.0,3.0,5324690.0
+5103699,2026-11-06,brasil,Bahia,Éverton Ribeiro,263937,M,1,65,1,0,0,0.02,85.0,2.0,671465.0
+5103699,2026-11-06,brasil,Bahia,Rodrigo Nestor,1118194,F,1,65,0,0,0,0.0,87.0,3.0,10158008.0
+5103699,2026-11-06,brasil,Bahia,Alejo Véliz,1250658,F,1,90,3,2,1,0.18,115.0,3.0,9447973.0
+5103699,2026-11-06,brasil,Bahia,Jean Lucas,934675,M,0,33,1,0,0,0.02,,2.0,15878639.0
+5103699,2026-11-06,brasil,Bahia,Caio Alexandre,1116234,M,0,25,0,0,0,0.0,,2.0,6434191.0
+5103699,2026-11-06,brasil,Bahia,Michel Araújo,902826,M,0,25,0,0,0,0.0,,2.0,1665624.0
+5103699,2026-11-06,brasil,Bahia,Erick Pulga,1340527,F,0,25,2,0,0,0.16,,3.0,15405290.0
+5103699,2026-11-06,brasil,Bahia,Román Gómez,1617809,D,0,7,0,0,0,0.0,,1.0,1711764.0
