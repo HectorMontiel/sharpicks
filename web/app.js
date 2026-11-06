@@ -1560,15 +1560,19 @@
     // mucho espacio». Dos renglones por pick: nivel + apuesta + estado; y cuota · probabilidad · grado, cómo va y Seguir.
     const prog = pr ? '<span class="progreso pk-prog ' + pr.e + '">' + esc(pr.t) + '</span>'
       : realDe(p) ? '<span class="progreso pk-prog ' + p.estado + '">' + esc(realDe(p)) + '</span>' : '';
-    return '<div class="pick-fila compacta ' + (ev === 'verde' ? 'verde' : ev === 'roja' ? 'roja' : '') + '">' +
-      '<div class="pk-top"><span class="et nivel ' + nv.c + '">' + nv.i + ' ' + nv.n + '</span>' +
-      '<div class="apuesta">' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</div>' + estadoPick(p, v) + '</div>' +
-      '<div class="pk-meta"><span class="pk-dato"><small>cuota</small><b>' + (p.cuota ? Number(p.cuota).toFixed(2) : '—') + '</b></span>' +
+    // v593 — el usuario: «las patas del modelo ocupan bastante; que ocupen menos o se puedan ocultar». A la vista, un renglón: nivel, apuesta, cuota y estado,
+    // más cómo va si ya empezó. Al tocarlo, lo demás. Si falta desbloquearlo se queda abierto: el botón no se esconde.
+    const extra = window.SPX ? SPX.extra(p) : '';
+    return '<details class="pick-fila compacta pk-det ' + (ev === 'verde' ? 'verde' : ev === 'roja' ? 'roja' : '') + '"' + (/class="desbloquear"/.test(extra) ? ' open' : '') + '>' +
+      '<summary class="pk-top"><span class="pk-ico nivel ' + nv.c + '" title="' + esc(nv.n) + '">' + nv.i + '</span>' +
+      '<span class="apuesta">' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</span>' +
+      '<b class="pk-cuota">' + (p.cuota ? Number(p.cuota).toFixed(2) : '—') + '</b>' + estadoPick(p, v) + '</summary>' + prog +
+      '<div class="pk-meta"><span class="et nivel ' + nv.c + '">' + nv.i + ' ' + nv.n + '</span>' +
       '<span class="pk-dato"><small>prob.</small><b>' + pct(p.prob) + '</b></span>' +
       '<span class="pk-dato"><small>' + (p.tipo === 'error' ? 'paga de más' : 'nivel') + '</small><b>' +
       (p.tipo === 'error' ? '+' + Math.round(100 * (p.ventaja || 0)) + ' %' : grado(p)) + '</b></span>' +
-      (window.SPX ? SPX.extra(p) : '') + '</div>' + prog + iaDelPick(p) +
-      (p.tipo === 'error' && p.porque ? '<div class="porque">' + esc(p.porque) + ' · riesgo alto: apuesta poco</div>' : '') + '</div>';
+      extra + '</div>' + iaDelPick(p) +
+      (p.tipo === 'error' && p.porque ? '<div class="porque">' + esc(p.porque) + ' · riesgo alto: apuesta poco</div>' : '') + '</details>';
   }
   // ---------- v396: COMBINADAS ----------
   const ICONO_DEP = new Proxy({}, { get: (_, d) => icoDep(d) });   // v455 — íconos en vez de emojis
@@ -1649,22 +1653,24 @@
       metodoBloque(ps, L, V) +             // v558
       // v517 — «la tarjeta principal ya se hizo larga»: a la vista la cancha y el Pulso; las estadísticas, plegadas
       penalesHtml(v, L, V) + (v && (v.fase === 'in' || v.fase === 'post') ? cancha(v, p) : '') +
-      (!v && /^(Tenis|Béisbol|KBO)$/.test(p.deporte) && faseDe(ps) === 'vivo' ? cancha({ fase: 'in', nombres: [L, V], g: [0, 0], colores: null }, p) : '') + pulsoChip(p, v) +   // v460: también al terminar
+      (!v && /^(Tenis|Béisbol|KBO)$/.test(p.deporte) && faseDe(ps) === 'vivo' ? cancha({ fase: 'in', nombres: [L, V], g: [0, 0], colores: null }, p) : '') + pulsoChip(p, v, (ps.find((x) => x.espn) || p).id) +   // v460: también al terminar
       seccionStats(compensacion(p, v) + miniStats(v, p)) +
-      ps.map((x) => filaPick(x, v, ps.length > 1)).join('') +
+      '<details class="ctx picks-sec" open><summary>' + ico('target') + ' Apuestas del modelo <small class="tenue">' + ps.length + '</small></summary>' + ps.map((x) => filaPick(x, v, ps.length > 1)).join('') + '</details>' +
       (!previa && ps.some((x) => x.espn) ? '<button class="ver" data-ficha="' + esc((ps.find((x) => x.espn) || p).id) + '">Ver partido →</button>' : '') +
       '</article>';
   }
   // v513 — en la tarjeta en vivo, el Pulso gratis: «otro gol» en su tramo medido (lo demás, en «Ver partido»)
-  function pulsoChip(p, v) {
+  // v593 — el usuario: «no veo un acceso directo a Pulso»: el renglón abre el partido justo en el Pulso.
+  function pulsoChip(p, v, id) {
+    const ir = ' data-ficha="' + esc(id || p.id) + '" data-ficha-ir="pulso" aria-label="Abrir el Pulso"';
     if (!window.PULSO || !v || v.fase !== 'in' || (p.deporte && p.deporte !== 'Fútbol')) return '';
-    if (PULSO.enPrimerTiempo(v)) return '<div class="pulso-chip espera">' + ico('activity', 'acento') + ' Pulso · se abre en el 2.º tiempo</div>';
+    if (PULSO.enPrimerTiempo(v)) return '<button type="button" class="pulso-chip espera"' + ir + '>' + ico('activity', 'acento') + ' Pulso · se abre en el 2.º tiempo</button>';
     const ms = PULSO.mercados(p, v, conRespaldo(v, p));
     const m = PULSO.mejor(ms, pulsoAbierto(p)) || ms.find((x) => x.k === 'gol' && x.tramo);
     if (!m || !m.tramo) return '';
     const t = m.tramo, [L, V] = lados(p);
-    return '<div class="pulso-chip ' + (m.p >= 0.7 ? 'alta' : m.p >= 0.6 ? 'media' : 'baja') + '" title="Pulso SharPicks: lo medido en el historial">' +
-      ico('activity', 'acento') + ' Pulso · ' + esc(PULSO.nombre(m.k, L, V).toLowerCase()) + ' <b>' + Math.round(100 * t.desde) + '-' + Math.round(100 * t.hasta) + '%</b> <small>salió ' + Math.round(100 * t.fue) + '%</small></div>';
+    return '<button type="button" class="pulso-chip ' + (m.p >= 0.7 ? 'alta' : m.p >= 0.6 ? 'media' : 'baja') + '"' + ir + ' title="Pulso SharPicks: lo medido en el historial">' +
+      ico('activity', 'acento') + ' Pulso · ' + esc(PULSO.nombre(m.k, L, V).toLowerCase()) + ' <b>' + Math.round(100 * t.desde) + '-' + Math.round(100 * t.hasta) + '%</b> <small>salió ' + Math.round(100 * t.fue) + '%</small><span class="pulso-ir">›</span></button>';
   }
   // v517 — «CANDIDATOS PULSO» arriba de En vivo: los partidos donde lo medido dice que hay algo bueno que meter
   // ahora (lo más probable que aún paga, 70 %+). Se tocan y abren «Ver partido».
@@ -2651,7 +2657,15 @@
     }
     return { abiertas, ancla };
   }
+  // v593 — si el usuario oculta «Apuestas del modelo», sigue oculto aunque la tarjeta se repinte cada minuto
+  const picksCerrados = new Set();
+  document.addEventListener('click', (e) => {
+    const s = e.target.closest && e.target.closest('.picks-sec > summary');
+    const c = s && s.closest('[data-k]');
+    if (c) { if (s.parentElement.open) picksCerrados.add(c.dataset.k); else picksCerrados.delete(c.dataset.k); }
+  });
   function restaurarVista(m) {
+    picksCerrados.forEach((k) => { document.querySelectorAll('[data-k]').forEach((c) => { if (c.dataset.k === k) c.querySelectorAll('.picks-sec').forEach((d) => { d.open = false; }); }); });
     if (!m) return;
     if (m.abiertas.size) document.querySelectorAll('[data-k]').forEach((c) => {
       [...c.querySelectorAll('details')].forEach((d, i) => { if (m.abiertas.has(c.dataset.k + '|' + d.className + '|' + i)) d.open = true; });
@@ -2884,7 +2898,9 @@
     if (t.dataset.dep) { estado.depTocado = true; alterna(estado.deportes, t.dataset.dep); pintar(); return; }
     if (t.dataset.niv) { alterna(estado.niveles, t.dataset.niv); pintar(); return; }
     if (t.dataset.fase) { estado.fase = t.dataset.fase; pintar(); return; }
-    if (t.dataset.ficha) { if (t.matches('.arm-pata,.comb-pata,.tg-pata')) abrirPata(t.dataset.ficha); else ficha(t.dataset.ficha); return; }
+    if (t.dataset.ficha) { if (t.matches('.arm-pata,.comb-pata,.tg-pata')) abrirPata(t.dataset.ficha); else ficha(t.dataset.ficha);
+      if (t.dataset.fichaIr === 'pulso') requestAnimationFrame(() => { const x = $('ficha-cuerpo').querySelector('.pulso'); if (x) x.scrollIntoView({ block: 'start' }); });
+      return; }
     if (t.dataset.parK) { estado.parley[t.dataset.parK] = Number(t.dataset.parN) || 3; pintar(); return; }
     if (t.dataset.armNiv) {
       const n = t.dataset.armNiv;

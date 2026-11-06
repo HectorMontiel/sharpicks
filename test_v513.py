@@ -56,7 +56,7 @@ def probar():
     app = leer('web', 'app.js')
     check('function pulsoHtml(p, v, vs, L, V, abierto)' in app and 'data-pulso-abrir' in app and 'PULSO.delPick(real, p, v, vs)' in app,
           'v513: el Pulso en «Ver partido», con monedas y tus picks en vivo')
-    check('pulsoChip(p, v)' in app, 'v513: el chip del Pulso en la tarjeta en vivo')
+    check('pulsoChip(p, v, ' in app, 'v513: el chip del Pulso en la tarjeta en vivo')
     check("/FIRST_HALF/.test(v.est || '')" in js and 'const DESDE = { gol: 55' in js and 'function mejor(ms, abierto)' in js,
           'v517: el Pulso sólo en el 2.º tiempo y con su «Mejor ahora»')
     check("/^STATUS_HALFTIME$/.test(v.est || '')" in js and "/HALF|Medio/i.test(v.est" not in js,
