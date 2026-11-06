@@ -891,17 +891,56 @@ def _primer_gol(x: Dict, picks: List[Dict]) -> Optional[str]:
     return {'h': 'local', 'a': 'visita'}.get(_lado(evs[0]['team']['displayName'], home, away))
 
 
+TOPE_EVALUAR_S = 90
+
+
+def _picks_de_la_base(sb, desde: str) -> List[Dict]:
+    """v588 — los picks ya resueltos de la base, con el texto real de los premium: la foto del día sólo trae unos días."""
+    import requests
+    base = sb[0].rsplit('/', 1)[0]
+    filas, reales = [], {}
+    for i in range(30):
+        r = requests.get(base + '/picks', headers=sb[1], timeout=30, params={'select': 'id,fecha,partido,estado,marcador,apuesta', 'fecha': 'gte.' + desde,
+                         'estado': 'in.(verde,roja)', 'order': 'id', 'limit': 1000, 'offset': i * 1000})
+        lote = r.json() if r.ok else []
+        filas += lote
+        if len(lote) < 1000:
+            break
+    for i in range(30):
+        r = requests.get(base + '/picks_premium', headers=sb[1], timeout=30, params={'select': 'id,apuesta', 'order': 'id', 'limit': 1000, 'offset': i * 1000})
+        lote = r.json() if r.ok else []
+        reales.update((x['id'], x['apuesta']) for x in lote)
+        if len(lote) < 1000:
+            break
+    for x in filas:
+        x['apuesta'] = reales.get(x['id'], x.get('apuesta'))
+    return filas
+
+
 def evaluar(sb, picks: List[Dict]) -> int:
     """✅/❌ a lo que la IA predijo de los partidos ya terminados."""
     import requests
     hace = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=2.5)).isoformat()
     tres = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=3)).isoformat()
-    r = requests.get(sb[0], headers=sb[1], timeout=30,
-                     params={'select': '*', 'inicio': 'lt.' + hace, 'limit': 500,
-                             'or': '(evaluado.is.null,and(corners_real.is.null,linea_corners.not.is.null,inicio.gt.%s),'
-                                   'and(ok_mejor.is.null,mejor_apuesta.not.is.null,inicio.gt.%s))' % (tres, tres)})
+    # v588 — LO QUE PARÓ LA CALIFICACIÓN DESDE EL 26-OCT: 500 filas sin orden; las viejas que nunca tendrán resultado llenaban
+    # el cupo y los partidos nuevos no entraban (21-oct: 152 calificados; 2 y 5-nov: 0). Ahora lo reciente primero, por
+    # páginas, sólo 21 días, con tope de tiempo, y con los resultados de la base además de los del día.
+    desde = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=21)).isoformat()
+    picks = picks + _picks_de_la_base(sb, desde[:10])
+    inicio_paso, pagina, filas = time.monotonic(), 0, []
     n = 0
-    for x in (r.json() if r.ok else []):
+    while time.monotonic() - inicio_paso < TOPE_EVALUAR_S:
+        if not filas:
+            r = requests.get(sb[0], headers=sb[1], timeout=30,
+                             params={'select': '*', 'order': 'inicio.desc', 'limit': 300, 'offset': pagina * 300,
+                                     'and': '(inicio.lt.%s,inicio.gt.%s)' % (hace, desde),
+                                     'or': '(evaluado.is.null,and(corners_real.is.null,linea_corners.not.is.null,inicio.gt.%s),'
+                                           'and(ok_mejor.is.null,mejor_apuesta.not.is.null,inicio.gt.%s))' % (tres, tres)})
+            filas = r.json() if r.ok else []
+            pagina += 1
+            if not filas:
+                break
+        x = filas.pop(0)
         g = _final(x['partido'], x['fecha'], picks)
         if not g:
             continue
@@ -1291,6 +1330,7 @@ def main() -> int:
     except Exception:
         pass
     ahora = dt.datetime.now(dt.timezone.utc)
+    arranque = time.monotonic()
     evaluados = 0 if seco else evaluar(sb, picks)
     if not seco:
         print('ia: consultas de hoy al modelo lite: %d de 500' % leer_uso_de_hoy(sb, ahora))
@@ -1305,7 +1345,6 @@ def main() -> int:
             print(json.dumps(datos_del_partido(m, mercado), ensure_ascii=False, indent=1))
         print('ia (seco): %d partidos por analizar' % len(nuevos))
         return 0
-    arranque = time.monotonic()
     hechos_ahora, sin_cupo = analizar(sb, nuevos, mercado)
     if not sin_cupo:
         traducir_pendientes(sb, ahora)        # v583 — lo que ya estaba analizado también en inglés
