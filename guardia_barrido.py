@@ -83,7 +83,7 @@ FRESCURA_S = 300          # v148: 5 min — por debajo, se sirve tal cual
 #     tres horas, y por encima de cinco minutos la interfaz ya dice la edad
 #     exacta y pide confirmar el precio en la casa antes de apostar.
 #
-# Elegido por HMREY sobre la alternativa de 6 h. El equilibrio es: dentro de la
+# Elegido por el dueño sobre la alternativa de 6 h. El equilibrio es: dentro de la
 # ventana se sirve al instante y se revalida por detrás, así que la cuota vieja
 # sólo la ve el primero que llega y sólo hasta que termina la revalidación.
 CADUCIDAD_S = int(os.environ.get('CADUCIDAD_BARRIDO_S', 3 * 3600))

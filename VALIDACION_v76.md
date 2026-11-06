@@ -1,6 +1,6 @@
 # VALIDACIÓN v76 — Auditoría del histórico de cuotas, backfill inmediato y Playdoit
 
-Fecha: 2026-07-28 · Remotos: `origin` (HMREY) + `upstream` (HectorMontiel)
+Fecha: 2026-07-28 · Remotos: `origin` + `upstream`
 
 ---
 

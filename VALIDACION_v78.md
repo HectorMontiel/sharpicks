@@ -1,6 +1,6 @@
 # VALIDACIÓN v78 — Calibración multideporte, y el edge que no estaba donde se creía
 
-Fecha: 2026-07-29 · Remotos: `origin` (HMREY) + `upstream` (HectorMontiel)
+Fecha: 2026-07-29 · Remotos: `origin` + `upstream`
 
 ---
 

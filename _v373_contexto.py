@@ -83,7 +83,7 @@ NB = 300
 D2023 = np.datetime64('2023-07-01')
 NS = (4, 6, 10, 15, 25)
 BOOST = (1.0, 1.2, 1.3, 1.8)
-RUTA_E = os.environ.get('V373_E', r'C:\Users\HMREY\AppData\Local\Temp\claude\D--Claude'
+RUTA_E = os.environ.get('V373_E', r'C:\ruta\AppData\Local\Temp\claude\D--Claude'
                         r'\ac0b7101-79c7-47ef-8aff-6775a8d6ea8b\scratchpad\e_v361.pkl')
 
 CAL = {'mls', 'brasil', 'china', 'jpn_j1', 'suecia', 'noruega', 'finlandia', 'irlanda', 'argentina'}

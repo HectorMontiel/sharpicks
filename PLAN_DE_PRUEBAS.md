@@ -256,7 +256,7 @@ Ejecutadas en cada entrega (script de humo):
 
 ```powershell
 schtasks /create /tn "PipelineMundial2026" `
-  /tr "C:\Users\HMREY\proyecto_mundial_2026\.venv\Scripts\python.exe C:\Users\HMREY\proyecto_mundial_2026\pipeline_mundial.py --real --train" `
+  /tr "C:\ruta\proyecto_mundial_2026\.venv\Scripts\python.exe C:\ruta\proyecto_mundial_2026\pipeline_mundial.py --real --train" `
   /sc daily /st 06:00
 ```
 

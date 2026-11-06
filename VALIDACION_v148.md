@@ -477,7 +477,7 @@ sangría. Queda como operación aparte y deliberada. Mientras tanto, quien quier
 un clon ligero hoy tiene la vía barata y sin riesgo:
 
 ```bash
-git clone --depth 1 --single-branch https://github.com/HectorMontiel/mundial-2026-predictor.git
+git clone --depth 1 --single-branch https://github.com/sharpicks/sharpicks.git
 ```
 
 ---

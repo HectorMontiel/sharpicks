@@ -127,6 +127,6 @@ $$;
 revoke execute on function public.enlace_vip() from public, anon;
 grant execute on function public.enlace_vip() to authenticated;
 
--- (el registro del administrador: cuando el dueño cree su cuenta «HMREY»)
--- update public.perfiles set admin = true where lower(usuario) = 'hmrey';
+-- (el registro del administrador: cuando el dueño cree su cuenta)
+-- update public.perfiles set admin = true where false  -- ya aplicado; el administrador se marcó a mano;
 notify pgrst, 'reload schema';

@@ -86,7 +86,7 @@ def _mod(nombre, ruta):
 
 V = _mod('v371', '_v371_sencillas.py')
 
-E_PATH = os.environ.get('V373_E', r'C:\Users\HMREY\AppData\Local\Temp\claude\D--Claude'
+E_PATH = os.environ.get('V373_E', r'C:\ruta\AppData\Local\Temp\claude\D--Claude'
                                   r'\ac0b7101-79c7-47ef-8aff-6775a8d6ea8b\scratchpad\e_v361.pkl')
 DESDE = pd.Timestamp('2026-08-24')
 PISOS = (1.30, 1.45, 1.60, 1.70, 1.80)

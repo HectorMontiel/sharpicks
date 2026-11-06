@@ -1,6 +1,6 @@
 # VALIDACIÓN v88 — Telegram tumbaba la app, y los picks de «MLB» eran de Taiwán
 
-Fecha: 2026-07-31 · Remotos: `origin` (HMREY) + `upstream` (HectorMontiel)
+Fecha: 2026-07-31 · Remotos: `origin` + `upstream`
 
 ---
 

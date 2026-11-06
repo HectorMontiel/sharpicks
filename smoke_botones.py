@@ -10,7 +10,7 @@ los botones de cada vista y verifica que ninguno lanza excepción.
 
 CUÁNDO SE USA ESTE, Y CUÁNDO NO (v152)
 --------------------------------------
-Dejó de ser la puerta de cada push, por decisión de HMREY y con un motivo
+Dejó de ser la puerta de cada push, por decisión del dueño y con un motivo
 medido: el 2026-08-22 no terminó en 55 minutos en dos intentos seguidos (EXIT
 124 las dos veces), y sólo la vista de «Apuestas del Día» tarda 254 s. La cifra
 real está en horas, no en los 110 minutos que decía la documentación. Una puerta

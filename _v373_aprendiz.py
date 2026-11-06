@@ -75,7 +75,7 @@ import pandas as pd
 
 T0 = time.time()
 rng = np.random.default_rng(373)
-E_CTX = os.environ.get('V373_E', r'C:\Users\HMREY\AppData\Local\Temp\claude\D--Claude'
+E_CTX = os.environ.get('V373_E', r'C:\ruta\AppData\Local\Temp\claude\D--Claude'
                        r'\ac0b7101-79c7-47ef-8aff-6775a8d6ea8b\scratchpad\e_v361.pkl')
 PISOS = (1.30, 1.45, 1.60, 1.70, 1.80)
 ANCHO = 0.50

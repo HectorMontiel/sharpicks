@@ -1,6 +1,6 @@
 # VALIDACIÓN v87 — La ficha no miraba el mercado, y los modelos del CI ya abren
 
-Fecha: 2026-07-31 · Remotos: `origin` (HMREY) + `upstream` (HectorMontiel)
+Fecha: 2026-07-31 · Remotos: `origin` + `upstream`
 
 Las tres tareas que quedaban abiertas tras la v86. Las tres se cierran, pero
 **ninguna por el camino que se había propuesto** — y eso es parte del resultado.

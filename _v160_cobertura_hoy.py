@@ -2,7 +2,7 @@
 """
 v160 - QUE PARTIDOS HAY HOY DE VERDAD, Y CUALES ESTA VIENDO EL BARRIDO.
 
-HMREY reporta 55 partidos hoy y echa en falta Real Madrid-Bayern y otros.
+El dueño reporta 55 partidos hoy y echa en falta Real Madrid-Bayern y otros.
 Esto no opina: pregunta a ESPN por las 64 competiciones que el proyecto tiene
 codificadas MAS un puñado de codigos que el proyecto no conoce (amistosos de
 club, supercopas, ligas grandes que faltan), cuenta los partidos de hoy y dice

@@ -1,6 +1,6 @@
 # VALIDACIÓN v80 — La Capa 1 no contenía ni un pick del modelo, y nadie había medido lo que sí contenía
 
-Fecha: 2026-07-29 · Remotos: `origin` (HMREY) + `upstream` (HectorMontiel)
+Fecha: 2026-07-29 · Remotos: `origin` + `upstream`
 
 ---
 

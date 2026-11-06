@@ -1,6 +1,6 @@
 # VALIDACIÓN v79 — El modelo de MLB predecía 2026 con la forma de 2025, y el barrido tardaba el doble de lo necesario
 
-Fecha: 2026-07-29 · Remotos: `origin` (HMREY) + `upstream` (HectorMontiel)
+Fecha: 2026-07-29 · Remotos: `origin` + `upstream`
 
 ---
 

@@ -1,6 +1,6 @@
 # VALIDACIÓN v86 — La app se caía con dos usuarios, y el modelo no responde al ELO
 
-Fecha: 2026-07-31 · Remotos: `origin` (HMREY) + `upstream` (HectorMontiel)
+Fecha: 2026-07-31 · Remotos: `origin` + `upstream`
 
 ---
 

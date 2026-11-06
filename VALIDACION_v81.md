@@ -1,6 +1,6 @@
 # VALIDACIÓN v81 — El Kelly dinámico no era la mejora; subir la fracción fija sí
 
-Fecha: 2026-07-29 · Remotos: `origin` (HMREY) + `upstream` (HectorMontiel)
+Fecha: 2026-07-29 · Remotos: `origin` + `upstream`
 
 ---
 

@@ -5,7 +5,6 @@ const ORIGENES = new Set([
   'https://sharpicksapp.com',          // v512 — el dominio propio
   'https://www.sharpicksapp.com',
   'https://sharpicks.pages.dev',
-  'https://hectormontiel.github.io',
 ]);
 const json = (body: unknown, status = 200, origin = '') => {
   const permitido = ORIGENES.has(origin) ? origin : 'https://sharpicksapp.com';

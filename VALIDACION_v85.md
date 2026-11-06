@@ -1,6 +1,6 @@
 # VALIDACIÓN v85 — Auditoría de monotonía: 32 de 56 modelos de liga no responden a la fuerza
 
-Fecha: 2026-07-29 · Remotos: `origin` (HMREY) + `upstream` (HectorMontiel)
+Fecha: 2026-07-29 · Remotos: `origin` + `upstream`
 
 ---
 

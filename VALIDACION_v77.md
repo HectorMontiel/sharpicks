@@ -1,6 +1,6 @@
 # VALIDACIÓN v77 — Playdoit prioritaria, tres vistas, MLB reactivada y calibración de la confianza
 
-Fecha: 2026-07-28 · Remotos: `origin` (HMREY) + `upstream` (HectorMontiel)
+Fecha: 2026-07-28 · Remotos: `origin` + `upstream`
 
 ---
 

@@ -1,6 +1,6 @@
 # VALIDACIÓN v75 — Histórico de cuotas, calibración medida y limpieza del catálogo
 
-Fecha: 2026-07-28 · Rama de trabajo: `main` · Remotos: `origin` (HMREY) + `upstream` (HectorMontiel)
+Fecha: 2026-07-28 · Rama de trabajo: `main` · Remotos: `origin` + `upstream`
 
 ---
 

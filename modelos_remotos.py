@@ -75,7 +75,7 @@ import threading
 
 logger = logging.getLogger(__name__)
 
-# El repositorio real del proyecto. `HMREY/...` es un fork viejo.
+# El repositorio real del proyecto. Los demás son copias viejas.
 # v511 — el repo de cada corrida (GitHub lo pone en GITHUB_REPOSITORY); en local, el privado nuevo
 REPO = (os.environ.get('REPO_MODELOS') or os.environ.get('GITHUB_REPOSITORY')
         or 'HectorMontiel/sharpicks')
