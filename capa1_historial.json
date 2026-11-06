@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-05T22:40:03Z",
+"actualizado": "2026-11-06T00:14:20Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -23846,6 +23846,16 @@
 "dia": "2026-11-05",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Defensa y Justicia 2 vs Boca Juniors 2",
+"apuesta": "Gana Boca Juniors 2",
+"cuota": 1.81,
+"resultado": "verde",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Dhofar vs Saham",
 "apuesta": "Gana Saham",
 "cuota": 3.0,
@@ -23871,6 +23881,16 @@
 "cuota": 2.35,
 "resultado": "verde",
 "marcador": "1-6"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Genesis vs Real Espana",
+"apuesta": "Gana Genesis",
+"cuota": 3.2,
+"resultado": "rojo",
+"marcador": "1-1"
 },
 {
 "dia": "2026-11-05",
@@ -24045,6 +24065,16 @@
 {
 "dia": "2026-11-05",
 "nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Police XI vs Township Rollers",
+"apuesta": "Gana Police XI",
+"cuota": 3.35,
+"resultado": "rojo",
+"marcador": "1-4"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
 "deporte": "Tenis",
 "partido": "Pridankina E. vs Shubladze A.",
 "apuesta": "Gana Shubladze A.",
@@ -24101,6 +24131,16 @@
 "cuota": 1.6364,
 "resultado": "verde",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-05",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Sao Paulo U20 vs Ceara U20",
+"apuesta": "Gana Sao Paulo U20",
+"cuota": 1.7,
+"resultado": "verde",
+"marcador": "4-1"
 },
 {
 "dia": "2026-11-05",
