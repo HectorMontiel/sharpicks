@@ -198,8 +198,8 @@ def probar_v447():
         ia.analizar(('u', {}), [{'partido': 'A vs B', 'peso': 1, 'deporte': 'Fútbol'}, {'partido': 'C vs D', 'peso': -1, 'deporte': 'Fútbol'}], {})
     finally:
         ia.preguntar, ia.noticias_web, ia.guardar, ia.PAUSA_S, ia.noticias_rss = viejo_p, viejo_w, viejo_g, viejo_s, viejo_r
-    check(vistos == [('p', 'analisis', ia.MODELOS[0]), ('p', 'solo_analisis', ia.LITE[0])] and 'lite' in ia.LITE[0],
-          'v450: con pick va primero y con el mejor modelo; sin pick, con el lite (v533: ya sin la búsqueda de Gemini)')
+    check(vistos == [('p', 'analisis', ia.LITE[0]), ('p', 'solo_analisis', ia.LITE[0])] and 'lite' in ia.LITE[0],
+          'v450: con pick va primero; v583: todo con el lite, flash respondió bien 0 de 52 (v533: ya sin la búsqueda de Gemini)')
     # la cuenta del cupo
     ia.USO.clear()
     ia._contar('gemini-flash-latest', 'analisis', True)
@@ -218,7 +218,7 @@ def probar_v447():
           'v450: la cuenta del cupo se suma a la del día y dice cuándo se acabó')
     ia.USO.clear()
     src = open('ia_gemini.py', encoding='utf-8').read()
-    check("medidos = 0 if sin_cupo else ventanas(sb, picks, ahora, mercado)" in src and "f['base'], f['id'], f['ventana'] = f['id'], f['id'] + '|' + ventana, ventana" in src,
+    check("medidos = 0 if sin_cupo or time.monotonic() - arranque > 570 else ventanas(sb, picks, ahora, mercado)" in src and "f['base'], f['id'], f['ventana'] = f['id'], f['id'] + '|' + ventana, ventana" in src,
           'v447: las ventanas corren después del análisis de siempre y sólo si queda cupo')
     sql = open(os.path.join('supabase', 'v447_primero_y_ventanas.sql'), encoding='utf-8').read()
     check('create table if not exists public.ia_ventanas (like public.ia_analisis including all)' in sql
@@ -239,7 +239,7 @@ def probar_v451():
           'v451: las demás ligas: con pick en segundo lugar, sólo análisis al final')
     check(n('NBA', 'NBA') == 0 and n('WTA', 'Tenis', 1) == 1, 'v451: en los otros deportes, su liga grande es principal')
     src = open('ia_gemini.py', encoding='utf-8').read()
-    check('nuevos = sorted(todos, key=lambda m: nivel(m, mercado))[:MAX_POR_PASADA]' in src,
+    check('nuevos = sorted(todos, key=lambda m: turno(m, mercado, ahora))[:MAX_POR_PASADA]' in src,
           'v451: el tope por pasada se corta DESPUÉS de ordenar por prioridad')
 
 

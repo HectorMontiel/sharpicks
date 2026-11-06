@@ -34,7 +34,7 @@ const INSTRUCCION = 'Eres el analista en vivo de SharPicks. Te doy un partido de
   'estadísticas del momento y los mercados del Pulso con la probabilidad que da nuestro modelo (medido con miles de ' +
   'partidos) y lo que salió en el historial en ese tramo. Elige UNO de esos mercados: el que mejor combine probabilidad ' +
   'alta y lo que dicen las estadísticas del partido (quién ataca, tiros a puerta, córners, expulsados). No inventes ' +
-  'mercados ni probabilidades. Todos los mercados que te doy todavía pagan algo; si dudas, el de probabilidad más alta. Escribe el motivo en español sencillo, MUY breve: 8 a 12 palabras, sin cifras ni emojis.';
+  'mercados ni probabilidades. Todos los mercados que te doy todavía pagan algo; si dudas, el de probabilidad más alta. Escribe el motivo en español sencillo, MUY breve: 8 a 12 palabras, sin cifras ni emojis. Escribe también "motivo_en": el mismo motivo en inglés natural de apuestas deportivas.';
 
 type Dic = Record<string, any>;
 let M: Dic | null = null, mDesde = 0;
@@ -193,7 +193,7 @@ async function preguntarIA(p: Dic, e: Dic, ms: Dic[]) {
     mercados: ms.map((m) => ({ mercado: m.k, nombre: nombre(m.k, p), prob_modelo: Math.round(1000 * m.p) / 1000, salio_historial: m.tramo ? m.tramo.fue : null })) };
   const cuerpo = { systemInstruction: { parts: [{ text: INSTRUCCION }] }, contents: [{ role: 'user', parts: [{ text: JSON.stringify(datos) }] }],
     generationConfig: { temperature: 0.2, responseMimeType: 'application/json',
-      responseSchema: { type: 'OBJECT', properties: { mercado: { type: 'STRING', enum: claves }, motivo: { type: 'STRING' } }, required: ['mercado', 'motivo'] } } };
+      responseSchema: { type: 'OBJECT', properties: { mercado: { type: 'STRING', enum: claves }, motivo: { type: 'STRING' }, motivo_en: { type: 'STRING' } }, required: ['mercado', 'motivo', 'motivo_en'] } } };
   for (const modelo of MODELOS_IA) {
     try {
       const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${s.GEMINI_API_KEY}`,
@@ -210,7 +210,7 @@ async function preguntarIA(p: Dic, e: Dic, ms: Dic[]) {
       if (!r.ok) continue;
       USO_IA.ok++;
       const d = JSON.parse((await r.json()).candidates[0].content.parts[0].text);
-      if (claves.includes(d.mercado)) return { mercado: d.mercado, motivo: String(d.motivo || '').slice(0, 200), modelo_ia: modelo };
+      if (claves.includes(d.mercado)) return { mercado: d.mercado, motivo: String(d.motivo || '').slice(0, 200), motivo_en: String(d.motivo_en || '').slice(0, 200) || null, modelo_ia: modelo };
     } catch (_) { /* siguiente modelo */ }
   }
   return null;

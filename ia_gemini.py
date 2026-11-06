@@ -384,6 +384,16 @@ def nivel(m: Dict, mercado: Dict) -> int:
     return 0 if principal else 1 if m.get('peso', 0) >= 0 else 2
 
 
+def turno(m: Dict, mercado: Dict, ahora: dt.datetime) -> int:
+    """v583 — quién va primero. 0 = con pick o liga principal que empieza en 24 h · 1 = liga principal más lejos · 2 = con pick más lejos
+    · 3 = sólo análisis. Antes una liga principal de pasado mañana iba antes que un Diamante de hoy en liga menor (Bayern München femenil, 6-nov)."""
+    nv = nivel(m, mercado)
+    if nv == 2:
+        return 3
+    ini = _utc(m.get('inicio'))
+    return 0 if ini is not None and ini <= ahora + dt.timedelta(hours=24) else nv + 1
+
+
 def _contar(modelo: str, tipo: str, ok: bool, agotado: bool = False):
     u = USO.setdefault((modelo, tipo), {'llamadas': 0, 'ok': 0, 'agotado': False})
     u['llamadas'] += 1
@@ -963,10 +973,11 @@ def analizar(sb, lista: List[Dict], mercado: Dict, ventana: Optional[str] = None
     hechos = 0
     lotes = []
     inicio, sin_respuesta = time.monotonic(), 0
-    for nv in (0, 1, 2):                      # v451 — principales, luego con pick, luego sólo análisis
+    ahora = dt.datetime.now(dt.timezone.utc)
+    for t in (0, 1, 2, 3):                    # v583 — ver turno()
         for dep in dict.fromkeys(m.get('deporte', 'Fútbol') for m in lista):
-            del_dep = [m for m in lista if m.get('deporte', 'Fútbol') == dep and nivel(m, mercado) == nv]
-            lotes += [(dep, nv < 2, del_dep[i:i + LOTE]) for i in range(0, len(del_dep), LOTE)]
+            del_dep = [m for m in lista if m.get('deporte', 'Fútbol') == dep and turno(m, mercado, ahora) == t]
+            lotes += [(dep, t < 3, del_dep[i:i + LOTE]) for i in range(0, len(del_dep), LOTE)]
     for dep, con_pick, lote in lotes:
         # v572 — parar a tiempo: el paso tiene 12 min, y al cortarlo GitHub se perdía la cuenta de lo gastado (4 pasadas del 5-nov)
         if time.monotonic() - inicio > TOPE_PASADA_S or sin_respuesta >= MAX_SIN_RESPUESTA:
@@ -988,7 +999,8 @@ def analizar(sb, lista: List[Dict], mercado: Dict, ventana: Optional[str] = None
                 d['noticias_recientes_web'] = w['noticias']
                 d['fuentes_de_las_noticias'] = w['fuentes']
             entrada.append(d)
-        res = preguntar(entrada, dep, tipo, None if con_pick and not ventana else LITE)
+        # v583 — siempre lite primero: flash respondió bien 0 de 52 consultas (3-6 nov) y sus 503 y esperas se comían la pasada (22 en vez de 80)
+        res = preguntar(entrada, dep, tipo, LITE)
         if res and res.get('_limite'):
             print('ia: todos los modelos agotaron su cupo de hoy')
             return hechos, True
@@ -1000,6 +1012,7 @@ def analizar(sb, lista: List[Dict], mercado: Dict, ventana: Optional[str] = None
             f['noticias'] = ' | '.join(w['noticias'])[:900] if f['con_noticias'] else None
             if ventana:                     # v447 — la misma fila, guardada aparte con su hora
                 f['base'], f['id'], f['ventana'] = f['id'], f['id'] + '|' + ventana, ventana
+                f.pop('analisis_en', None)  # v583 — ia_ventanas sólo mide y no tiene esa columna (la base rechazaba el lote entero)
         if filas:
             r = guardar(sb, filas)
             if r.ok:
@@ -1008,6 +1021,104 @@ def analizar(sb, lista: List[Dict], mercado: Dict, ventana: Optional[str] = None
                 logger.warning('[ia] la base rechazó el lote: %s %s', r.status_code, r.text[:200])
         time.sleep(PAUSA_S)
     return hechos, False
+
+
+# v583 — EL USUARIO: «en inglés no está traducido». Lo ya analizado, y las noticias (vienen de Google News, no de la IA), se traducen aparte:
+# una sola consulta traduce 20 filas, así que limpiar lo pendiente cuesta muy poco cupo.
+LOTE_TRADUCIR = 20
+TOPE_TRADUCIR_S = 120
+ESQUEMA_TRADUCIR = {'type': 'OBJECT', 'properties': {'filas': {'type': 'ARRAY', 'items': {'type': 'OBJECT', 'properties': {
+    'i': {'type': 'INTEGER'}, 'analisis_en': {'type': 'STRING'},
+    'motivos_en': {'type': 'ARRAY', 'items': {'type': 'STRING'}},
+    'noticias_en': {'type': 'ARRAY', 'items': {'type': 'STRING'}}}, 'required': ['i', 'analisis_en', 'motivos_en', 'noticias_en']}}},
+    'required': ['filas']}
+INSTRUCCION_TRADUCIR = ('Translate each item from Spanish into natural English as used in sports betting. Keep every fact and number, and keep the '
+                        'names of teams, players and leagues unchanged. Add nothing. For each item return its "i"; "analisis_en" from "analisis"; '
+                        '"motivos_en" with exactly one translation per entry of "motivos", in the same order; and "noticias_en" with exactly one '
+                        'translation per entry of "noticias", in the same order (a headline already in English stays as it is).')
+
+
+def _por_traducir(sb, ahora: dt.datetime) -> List[Dict]:
+    """Las filas que la app enseña (2 días atrás en adelante) y aún no están en inglés: lo que falta por jugar primero, lo más cercano antes."""
+    import requests
+    desde = (ahora - dt.timedelta(days=2)).strftime('%Y-%m-%d')
+    filas = []
+    for i in range(50):                       # v466 — por páginas
+        r = requests.get(sb[0], headers=sb[1], timeout=30, params={'select': 'id,inicio,analisis,analisis_en,veredictos,noticias,noticias_en',
+                                                                   'fecha': 'gte.' + desde, 'order': 'id', 'limit': 1000, 'offset': i * 1000})
+        if not r.ok:
+            return []
+        lote = r.json()
+        filas += lote
+        if len(lote) < 1000:
+            break
+    faltan = [x for x in filas if (x.get('analisis') and not x.get('analisis_en')) or (x.get('noticias') and not x.get('noticias_en'))]
+    ya = ahora.strftime('%Y-%m-%d %H:%M')
+    return sorted(faltan, key=lambda x: (str(x.get('inicio'))[:16] < ya, str(x.get('inicio'))))
+
+
+def _entrada_traducir(lote: List[Dict]) -> List[Dict]:
+    return [{'i': i, 'analisis': '' if x.get('analisis_en') else x.get('analisis') or '',
+             'motivos': [str(v.get('motivo') or '') for v in (x.get('veredictos') or [])],
+             'noticias': [n for n in str(x.get('noticias') or '').split(' | ') if n]} for i, x in enumerate(lote)]
+
+
+def cambio_traducido(x: Dict, t: Dict) -> Dict:
+    """Lo que se le escribe a la fila. Si una lista no trae el mismo largo no se usa: un motivo pegado al pick equivocado es peor que en español."""
+    cambio = {}
+    en = str(t.get('analisis_en') or '').strip()
+    if en and not x.get('analisis_en') and x.get('analisis'):
+        cambio['analisis_en'] = en
+    ver = x.get('veredictos') or []
+    mot = t.get('motivos_en') or []
+    if ver and len(mot) == len(ver):
+        cambio['veredictos'] = [dict(v, motivo_en=v.get('motivo_en') or str(m)[:240] or None) for v, m in zip(ver, mot)]
+    nt = [n for n in str(x.get('noticias') or '').split(' | ') if n]
+    nt_en = t.get('noticias_en') or []
+    if nt and len(nt_en) == len(nt) and all(str(n).strip() for n in nt_en):
+        cambio['noticias_en'] = ' | '.join(str(n).strip() for n in nt_en)
+    return cambio
+
+
+def traducir_pendientes(sb, ahora: dt.datetime) -> int:
+    """Devuelve cuántas filas quedaron traducidas. Se detiene sola si no hay cupo, por tiempo o por presupuesto."""
+    import requests
+    k = os.environ.get('GEMINI_API_KEY')
+    faltan = _por_traducir(sb, ahora)
+    inicio, hechas = time.monotonic(), 0
+    modelo = LITE[0]
+    for a in range(0, len(faltan), LOTE_TRADUCIR):
+        gastado = USADAS_HOY['lite'] + sum(u['llamadas'] for (mo, _), u in USO.items() if mo == MODELO_CUPO)
+        if modelo in _AGOTADOS or gastado >= CUPO_SOLO or time.monotonic() - inicio > TOPE_TRADUCIR_S:
+            break
+        lote = faltan[a:a + LOTE_TRADUCIR]
+        cuerpo = {'systemInstruction': {'parts': [{'text': INSTRUCCION_TRADUCIR}]},
+                  'contents': [{'role': 'user', 'parts': [{'text': json.dumps(_entrada_traducir(lote), ensure_ascii=False)}]}],
+                  'generationConfig': {'temperature': 0.1, 'responseMimeType': 'application/json', 'responseSchema': ESQUEMA_TRADUCIR}}
+        try:
+            r = requests.post('https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent' % modelo,
+                              params={'key': k}, json=cuerpo, timeout=90)
+            del_dia = r.status_code == 429 and razon_429(r)[0]
+            _contar(modelo, 'traduccion', r.ok, del_dia)
+            if del_dia:
+                _AGOTADOS.add(modelo)
+            if not r.ok:
+                logger.warning('[ia] traducción: %s respondió %s', modelo, r.status_code)
+                time.sleep(PAUSA_S)
+                continue
+            salida = json.loads(r.json()['candidates'][0]['content']['parts'][0]['text']).get('filas') or []
+            for t in salida:
+                i = t.get('i')
+                if not isinstance(i, int) or not 0 <= i < len(lote):
+                    continue
+                cambio = cambio_traducido(lote[i], t)
+                if cambio and requests.patch(sb[0], headers=sb[1], params={'id': 'eq.' + lote[i]['id']}, json=cambio, timeout=30).ok:
+                    hechas += 1
+        except Exception as e:
+            logger.warning('[ia] traducción: %s', type(e).__name__)
+        time.sleep(PAUSA_S)
+    print('ia: %d traducidos al inglés; faltaban %d' % (hechas, len(faltan)))
+    return hechas
 
 
 # v447 — EL USUARIO: «midamos a qué hora acierta más y, si sale bien, agarremos el
@@ -1153,16 +1264,19 @@ def main() -> int:
     mercado = _mercado()
     lista = partidos(picks, ahora)
     todos = [m for m in lista if m['id'] not in hechos]
-    nuevos = sorted(todos, key=lambda m: nivel(m, mercado))[:MAX_POR_PASADA]   # v451 — el orden estable deja lo demás igual
-    nuevos += sorted(por_rehacer(lista, hechos, ahora), key=lambda m: nivel(m, mercado))[:max(0, MAX_POR_PASADA - len(nuevos))]
+    nuevos = sorted(todos, key=lambda m: turno(m, mercado, ahora))[:MAX_POR_PASADA]   # v451 — el orden estable deja lo demás igual
+    nuevos += sorted(por_rehacer(lista, hechos, ahora), key=lambda m: turno(m, mercado, ahora))[:max(0, MAX_POR_PASADA - len(nuevos))]
     if seco:
         for m in nuevos[:2]:
             print(json.dumps(datos_del_partido(m, mercado), ensure_ascii=False, indent=1))
         print('ia (seco): %d partidos por analizar' % len(nuevos))
         return 0
+    arranque = time.monotonic()
     hechos_ahora, sin_cupo = analizar(sb, nuevos, mercado)
-    # v447 — el mismo partido otra vez ~12 h, ~6 h y ~2 h antes, SÓLO para medir
-    medidos = 0 if sin_cupo else ventanas(sb, picks, ahora, mercado)
+    if not sin_cupo:
+        traducir_pendientes(sb, ahora)        # v583 — lo que ya estaba analizado también en inglés
+    # v447 — el mismo partido otra vez ~12 h, ~6 h y ~2 h antes, SÓLO para medir (y sólo si queda tiempo del paso de 12 min)
+    medidos = 0 if sin_cupo or time.monotonic() - arranque > 570 else ventanas(sb, picks, ahora, mercado)
     guardar_uso(sb, ahora)
     print('ia: %d analizados, %d evaluados, %d en ventanas · consultas: %s' % (hechos_ahora, evaluados, medidos,
           ', '.join('%s %s=%d%s' % (t, m.replace('gemini-', ''), u['llamadas'], ' (sin cupo)' if u['agotado'] else '') for (m, t), u in sorted(USO.items()))))

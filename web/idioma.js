@@ -68,7 +68,7 @@
   // lo que depende del texto: apuestas, marcador y frases con datos
   const MD = (x) => (/^m[áa]s/i.test(x) ? 'Over' : 'Under');
   const PATRONES = [
-    [/^Gana (.+)$/, '$1 to win'],
+    [/^[Gg]ana (.+)$/, '$1 to win'],
     [/^(.+) o empate$/, '$1 or draw'],
     [/^Goles: (M[áa]s|Menos) de ([\d.]+)$/i, (m, a, n) => 'Goals: ' + MD(a) + ' ' + n],
     [/^Goles (.+): (M[áa]s|Menos) de ([\d.]+)$/i, (m, e, a, n) => e + ' goals: ' + MD(a) + ' ' + n],

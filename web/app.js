@@ -1533,7 +1533,7 @@
   function iaDelPick(p) {
     const a = window.SPX && SPX.yo.ia ? SPX.yo.ia[p.partido] : null;
     const v = a && (a.veredictos || []).find((x) => String(x.apuesta).trim() === String((SPX.yo.desbloqueados || {})[p.id] || p.apuesta).trim());
-    return v && v.opinion === 'en_contra' ? '<div class="ia-aviso">🤖 La IA lo ve en contra: ' + esc(v.motivo) + '</div>' : '';
+    return v && v.opinion === 'en_contra' ? '<div class="ia-aviso">🤖 La IA lo ve en contra: <span translate="no">' + esc((window.I18N.lang === 'en' && v.motivo_en) || v.motivo) + '</span></div>' : '';
   }
   // v453 — EL DATO REAL de cada pick terminado (sale del marcador final): «Quedó 2-1 ·
   // 3 goles (línea 2.5)». En córners y tarjetas sólo el marcador (no se guardan por pick).
@@ -1940,7 +1940,7 @@
           '<div class="' + (v.opinion === 'en_contra' ? 'contra' : 'favor') + '">' + (v.opinion === 'en_contra' ? '❌ En contra' : '✅ A favor') +
           ': <b>' + esc(v.apuesta) + '</b> — <span translate="no">' + esc((window.I18N.lang === 'en' && v.motivo_en) || v.motivo) + '</span>' + (v.estado === 'verde' ? ' · salió ✅' : v.estado === 'roja' ? ' · salió ❌' : '') + '</div>').join('') + '</div>' : '')) +
       // v446 — lo que encontró en la web (bajas, alineaciones) y «¿te sirvió?» (sólo se mide)
-      (a.noticias ? sub('Noticias', '<div class="ia-noti" translate="no">' + String(a.noticias).split(' | ').map((n) => '<div>· ' + esc(n) + '</div>').join('') + '</div>') : '') +
+      (a.noticias ? sub('Noticias', '<div class="ia-noti" translate="no">' + String((window.I18N.lang === 'en' && a.noticias_en) || a.noticias).split(' | ').map((n) => '<div>· ' + esc(n) + '</div>').join('') + '</div>') : '') +
       (window.SPX && SPX.votoIA ? SPX.votoIA(a.id) : '') +
       '</details>';
   }
@@ -2165,7 +2165,7 @@
     const iaE = ia.rec ? iaEstado(ia.rec) : null;
     const iaH = ia.rec ? '<div class="pulso-ia ' + iaE.cl + '"><span class="pulso-ia-et">' + ico('sparkles', 'acento') + ' IA + modelo · al ' + ia.rec.minuto + "' (" + esc(ia.rec.marcador) + ')</span><b>' + esc(PULSO.nombre(ia.rec.mercado, L, V)) + '</b>' +
         '<span class="pulso-top-p">' + Math.round(100 * Number(ia.rec.prob)) + '%</span>' + '<small class="ia-va">' + iaE.txt + '</small>' +
-        (ia.rec.motivo ? '<small>' + esc(ia.rec.motivo) + '</small>' : '') + '</div>'
+        (ia.rec.motivo ? '<small translate="no">' + esc((window.I18N.lang === 'en' && ia.rec.motivo_en) || ia.rec.motivo) + '</small>' : '') + '</div>'
       : ia.hay && !abierto ? '<div class="pulso-ia bloq"><span class="pulso-ia-et">' + ico('sparkles', 'acento') + ' IA + modelo</span><b>Ya tiene su recomendación</b><small>' + ico('lock', 'candado') + ' VIP o abre el Pulso de este partido</small></div>' : '';
     return '<div class="pulso"><div class="pulso-cab"><span>' + ico('activity', 'acento') + ' Pulso SharPicks</span><small>en vivo</small></div>' + iaH + dest +
       '<div class="pulso-grid">' + ms.filter((m) => m !== top).map(burbuja).join('') + '</div>' +

@@ -1400,7 +1400,7 @@
     const h = await aTiempo(sb.rpc('pulso_ia_hay', { p_desde: desde }), 6000, { data: null });
     if (h && h.data) { yo.pulsoHay = {}; h.data.forEach((x) => { if (!yo.pulsoHay[x.clave]) yo.pulsoHay[x.clave] = x; }); }
     if (yo.user) {
-      const r = await aTiempo(sb.from('pulso_ia').select('clave,marcador,minuto,mercado,prob,motivo,acierto,creado').gte('fecha', desde).order('creado', { ascending: false }).limit(300), 6000, { data: null });
+      const r = await aTiempo(sb.from('pulso_ia').select('clave,marcador,minuto,mercado,prob,motivo,motivo_en,acierto,creado').gte('fecha', desde).order('creado', { ascending: false }).limit(300), 6000, { data: null });
       if (r && r.data) { yo.pulsoIA = {}; r.data.forEach((x) => { if (!yo.pulsoIA[x.clave]) yo.pulsoIA[x.clave] = x; }); }
     }
     if (JSON.stringify([yo.pulsoIA, yo.pulsoHay, yo.pulsoSen]) !== antes && window.SP && window.SP.pulsoIA) window.SP.pulsoIA();
