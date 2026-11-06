@@ -1376,7 +1376,7 @@
       '<tr><td>' + Number(b.desde).toFixed(2) + (Number(b.hasta) >= 50 ? ' o más' : ' – ' + (Number(b.hasta) - 0.01).toFixed(2)) + '</td><td>' + b.monedas + ' 🪙</td></tr>').join('');
     // la IA: sólo lo mejor (la apuesta que metería, en su banda más alta con 30+ partidos, y su «a favor»)
     const DEP = { 'Fútbol': '⚽', Tenis: '🎾', NBA: '🏀', NFL: '🏈', NHL: '🏒', MLB: '⚾' };
-    const mejores = ((med && med.data) || []).filter((x) => x.que === 'mejor' && x.total >= 30)
+    const mejores = ((med && med.data) || []).filter((x) => iaVigente(x) && x.total >= 30)
       .sort((a, b) => b.ok / b.total - a.ok / a.total).slice(0, 2)
       .map((x) => linea('🧠', 'IA, lo que metería ' + (DEP[x.deporte] || '') + ' (confianza ' + x.banda + ')', x.ok, x.total - x.ok)).join('');
     const a = ac && ac.data;
@@ -1551,10 +1551,12 @@
 
   // v399 — «lo que metería la IA» con ✅/❌, y si sus probabilidades son
   // honestas: cuando dijo 70-80 %, ¿cuánto salió de verdad? (`ia_medicion`)
+  // v591 — lo que la IA de verdad propone: 80 %+ en fútbol y tenis (la regla y su medición están en app.js, iaApuestaHtml)
+  function iaVigente(m) { return m.que === 'mejor' && m.banda === '80 % o más' && ['Fútbol', 'Tenis'].includes(m.deporte); }
   function filaMejor(med) {
-    const xs = (med || []).filter((m) => m.que === 'mejor');
+    const xs = (med || []).filter(iaVigente);
     const ok = xs.reduce((s, m) => s + m.ok, 0), tot = xs.reduce((s, m) => s + m.total, 0);
-    return '<div class="ia-fila"><span>🧠 Lo que metería la IA</span><b>✅ ' + ok + ' ❌ ' + (tot - ok) + '</b><small>' +
+    return '<div class="ia-fila"><span>🧠 Lo que metería la IA (80 %+)</span><b>✅ ' + ok + ' ❌ ' + (tot - ok) + '</b><small>' +
       (tot ? Math.round(100 * ok / tot) + ' %' : '—') + '</small></div>';
   }
   // v420 — «es mucho texto: deja sólo lo mejor, nivelado entre porcentaje y
@@ -1590,13 +1592,13 @@
     if (error || !(data || []).length) { caja.innerHTML = ''; return; }
     const ICO = new Proxy({}, { get: (_, d) => (window.SP && window.SP.icoDep ? window.SP.icoDep(d) : '') });
     const ia = {};
-    (med || []).filter((m) => m.que === 'mejor').forEach((m) => { const x = ia[m.deporte] = ia[m.deporte] || [0, 0]; x[0] += m.ok; x[1] += m.total; });
+    (med || []).filter(iaVigente).forEach((m) => { const x = ia[m.deporte] = ia[m.deporte] || [0, 0]; x[0] += m.ok; x[1] += m.total; });
     caja.innerHTML = '<table class="tabla"><tr><th>Deporte</th><th>Modelo</th><th>%</th><th>🧠 IA</th></tr>' +
       data.filter((d) => d.verdes + d.rojas >= 10).sort((a, b) => (b.verdes + b.rojas) - (a.verdes + a.rojas)).map((d) => {
         const n = d.verdes + d.rojas, x = ia[d.deporte];
         return '<tr><td>' + (ICO[d.deporte] || '•') + ' ' + esc(d.deporte) + '</td><td>✅ ' + d.verdes + ' ❌ ' + d.rojas + '</td><td><b>' + Math.round(100 * d.verdes / n) + ' %</b></td><td>' +
           (x && x[1] >= 20 ? Math.round(100 * x[0] / x[1]) + ' % <small>(' + x[1] + ')</small>' : '—') + '</td></tr>';
-      }).join('') + '</table><p class="tenue chico">Últimos 30 días. «🧠 IA»: lo que metería la IA en ese deporte (con 20+ partidos).</p>';
+      }).join('') + '</table><p class="tenue chico">Modelo: últimos 30 días. «🧠 IA»: cuando le da 80 %+ en fútbol y tenis, desde que se mide (20+ partidos); no son los mismos partidos.</p>';
   }
   function calibracion(med) {
     // v407 — una fila por predicción y banda, sumando los deportes

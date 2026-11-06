@@ -36,7 +36,7 @@ def probar_v417():
           and 'SPX.esVip && SPX.esVip()' in app, 'quien no es VIP ve «🤖 Análisis IA 🔒 VIP» y lo lleva al plan VIP')
     check('t.dataset.foco && document.getElementById(t.dataset.foco)' in app, 'el candado aterriza en el plan VIP')
     check("esVip: () => esVip()" in js and "from('ia_disponibles')" in js, 'la página sabe qué partidos tienen IA')
-    check('async function numerosPlanes()' in js and 'v + r >= 30' in js and "x.que === 'mejor' && x.total >= 30" in js,
+    check('async function numerosPlanes()' in js and 'v + r >= 30' in js and "iaVigente(x) && x.total >= 30" in js,
           'los planes enseñan números reales, sólo con 30+ partidos, y de la IA sólo lo mejor')
     check('id="plan-vip"' in html and 'id="numeros-vip"' in html and 'id="numeros-monedas"' in html
           and 'Análisis IA de cada partido' in html, 'cada plan dice lo que incluye y trae sus números')

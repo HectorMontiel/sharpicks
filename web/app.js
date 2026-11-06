@@ -1884,6 +1884,15 @@
     return '<div class="ia-pa1"><div><small>🥇 Anota primero</small>' + fila(L, r.h) + fila(V, r.a) + '</div>' +
       '<div><small title="Pago anticipado: llega a ir ganando por un gol">🏁 PA1</small>' + fila(L, r.pa1h) + fila(V, r.pa1a) + '</div></div>';
   }
+  // v591 — LA IA SÓLO PROPONE APUESTA CUANDO ESO NO LA DEJA POR DEBAJO DEL MODELO. Medido el 6-nov en los mismos partidos: fútbol con 80 %+ 82,3 vs 82,6 y 86,9 vs 83,1
+  // (sin el filtro 72,7 vs 81,1); tenis 86,3 vs 85,7 y 87,8 vs 87,5. NHL con 80 %+ salió 71,7 % (53): ahí, en NBA y en NFL da su análisis sin apuesta.
+  const IA_APUESTA_DEPORTES = ['Fútbol', 'Tenis'], IA_APUESTA_MIN = 0.8;
+  function iaApuestaHtml(a, dep) {
+    if (!IA_APUESTA_DEPORTES.includes(dep)) return '<div class="ia-meter tenue">🧠 La IA todavía no propone apuesta en este deporte: se está midiendo.</div>';
+    const dos = !!a.mejor_2h, txt = dos ? a.mejor_2h : a.mejor_apuesta, pr = dos ? a.prob_mejor_2h : a.prob_mejor_apuesta;
+    if (!txt || pr == null || Number(pr) < IA_APUESTA_MIN) return '<div class="ia-meter tenue">🧠 La IA no ve una apuesta clara en este partido.</div>';
+    return '<div class="ia-meter">🧠 Lo que metería la IA: <b>' + esc(txt) + '</b> · ' + Math.round(100 * pr) + ' %' + (dos ? ' <small>(2 h antes)</small>' : '') + '</div>';
+  }
   function iaHtml(a, L, V, ctx, jug) {
     if (!a) return '';
     const res = { local: 'gana ' + L, empate: 'empate', visita: 'gana ' + V }[a.pred_resultado] || '';
@@ -1902,10 +1911,7 @@
       'confianza ' + '★'.repeat(a.confianza || 0) + '☆'.repeat(5 - (a.confianza || 0)) + '</div>' +
       // v470 — lo principal a la vista; lo demás en pestañas que se abren
       // v533 — si la IA la rehízo ~2 h antes (con noticias frescas), se enseña ésa: acertó +20 pts (barrido 29-oct)
-      (a.mejor_2h ? '<div class="ia-meter">🧠 Lo que metería la IA: <b>' + esc(a.mejor_2h) + '</b>' +
-        (a.prob_mejor_2h != null ? ' · ' + Math.round(100 * a.prob_mejor_2h) + ' %' : '') + ' <small>(2 h antes)</small></div>'
-      : a.mejor_apuesta ? '<div class="ia-meter">🧠 Lo que metería la IA: <b>' + esc(a.mejor_apuesta) + '</b>' +
-        (a.prob_mejor_apuesta != null ? ' · ' + Math.round(100 * a.prob_mejor_apuesta) + ' %' : '') + '</div>' : '') +
+      iaApuestaHtml(a, dep) +
       // v392 — más precisa: marcador, goles esperados, ambos anotan, córners, tarjetas (con ✅/❌ al terminar)
       sub('Predicciones', '<div class="ia-grid">' + (Array.isArray(a.mercados) && a.mercados.length
         // v568 — la plantilla de cada deporte: los mercados que Playdoit sí ofrece (plantillas_deporte.py)
