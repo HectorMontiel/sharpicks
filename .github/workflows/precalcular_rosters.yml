@@ -47,6 +47,11 @@ env:
   # v510 — repo privado: los modelos del Release se bajan con el token de la corrida
   GH_TOKEN: ${{ github.token }}
 
+# Baja prioridad: en el servidor lo de los usuarios (cuotas, precálculo, sitio, Telegram) va primero
+defaults:
+  run:
+    shell: nice -n 10 bash --noprofile --norc -eo pipefail {0}
+
 jobs:
   precalcular:
     runs-on: ${{ vars.RUNNER_PESADO || 'ubuntu-latest' }}   # sin la variable, runners de GitHub

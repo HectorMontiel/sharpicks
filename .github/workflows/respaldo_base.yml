@@ -40,7 +40,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: python respaldo_base.py --salida respaldo
+        run: python respaldo_base.py --salida respaldo || { echo "::warning::reintento en 60 s"; sleep 60; python respaldo_base.py --salida respaldo; }
       - name: Empacar y cifrar
         env:
           RESPALDO_CLAVE: ${{ secrets.RESPALDO_CLAVE }}

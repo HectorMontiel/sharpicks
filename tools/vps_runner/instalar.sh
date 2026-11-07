@@ -2,7 +2,7 @@
 # Prepara un servidor Ubuntu 24.04 (x64) con runners propios de GitHub Actions para SharPicks (ADR-0002).
 # Se corre UNA vez, como root, en el servidor:
 #
-#   RUNNER_REG_TOKEN=<token de registro> REPO=HectorMontiel/sharpicks N=3 bash instalar.sh
+#   RUNNER_REG_TOKEN=<token de registro> REPO=HectorMontiel/sharpicks N=6 bash instalar.sh
 #
 # despertador.sh tiene que estar junto a este archivo.
 # El token de registro dura 1 hora y sólo sirve para registrar runners. Se saca con:
@@ -12,7 +12,7 @@ set -euo pipefail
 
 : "${RUNNER_REG_TOKEN:?falta RUNNER_REG_TOKEN}"
 REPO="${REPO:-HectorMontiel/sharpicks}"
-N="${N:-3}"            # 1 se queda con el Relevo (dormido, no gasta) y 2 trabajan; medido: 98 % del tiempo corren ≤ 2
+N="${N:-6}"            # el lunes coinciden seis flujos y uno es el Relevo dormido. Con 4, Telegram esperó 20 min en la cola (medido)
 ETIQUETA="sharpicks-vps"
 BASE=/opt/runners
 USUARIO=runner
@@ -30,6 +30,12 @@ apt-get install -y -qq gh git curl jq unzip build-essential libgomp1 libicu-dev 
 # cuatro a las 06:21 y canceló todo lo que corría. Toman las librerías nuevas al arrancar el siguiente reinicio.
 mkdir -p /etc/needrestart/conf.d
 echo '$nrconf{override_rc}{qr(^actions\.runner\.)} = 0;' > /etc/needrestart/conf.d/sharpicks-runners.conf
+
+# Los parches, a una hora con poco trabajo y sin azar. Medido: el de systemd dejó el DNS caído 18 s y tiró una corrida.
+mkdir -p /etc/systemd/system/apt-daily.timer.d /etc/systemd/system/apt-daily-upgrade.timer.d
+printf '[Timer]\nOnCalendar=\nOnCalendar=*-*-* 11:50\nRandomizedDelaySec=0\nPersistent=false\n' > /etc/systemd/system/apt-daily.timer.d/hora.conf
+printf '[Timer]\nOnCalendar=\nOnCalendar=*-*-* 12:20\nRandomizedDelaySec=0\nPersistent=false\n' > /etc/systemd/system/apt-daily-upgrade.timer.d/hora.conf
+systemctl daemon-reload
 
 # memoria de respaldo: el reentreno y el precálculo tienen picos
 if [ ! -f /swapfile ]; then
@@ -75,7 +81,14 @@ chmod +x "$BASE/antes_del_trabajo.sh"
 
 for i in $(seq 1 "$N"); do
   D="$BASE/r$i"
-  if [ -f "$D/.runner" ]; then echo "r$i ya estaba registrado"; continue; fi
+  if [ -f "$D/.runner" ]; then
+    echo "r$i ya estaba registrado"
+    if ! grep -q SERVIDOR_PROCESOS "$D/.env"; then
+      echo "SERVIDOR_PROCESOS=$(nproc)" >> "$D/.env"
+      (cd "$D" && ./svc.sh stop >/dev/null && ./svc.sh start >/dev/null)
+    fi
+    continue
+  fi
   mkdir -p "$D" && tar xzf "$TGZ" -C "$D" && chown -R "$USUARIO":"$USUARIO" "$D"
   "$D/bin/installdependencies.sh" >/dev/null
   # Python y sus paquetes, uno por runner. Medido: con una carpeta compartida, dos trabajos a la vez fallan al instalarlo.
@@ -88,6 +101,7 @@ PYTHONIOENCODING=utf-8
 AGENT_TOOLSDIRECTORY=$HERRAMIENTAS
 RUNNER_TOOL_CACHE=$HERRAMIENTAS
 ACTIONS_RUNNER_HOOK_JOB_STARTED=$BASE/antes_del_trabajo.sh
+SERVIDOR_PROCESOS=$(nproc)
 EOF
   chown "$USUARIO":"$USUARIO" "$D/.env"
   su - "$USUARIO" -c "cd '$D' && ./config.sh --unattended --url 'https://github.com/$REPO' --token '$RUNNER_REG_TOKEN' --name '$(hostname)-r$i' --labels '$ETIQUETA' --work _work --replace" >/dev/null
