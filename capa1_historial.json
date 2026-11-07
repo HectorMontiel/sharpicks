@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-07T13:04:19Z",
+"actualizado": "2026-11-07T14:41:37Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -25331,6 +25331,16 @@
 "cuota": 1.75,
 "resultado": "rojo",
 "marcador": "3-3"
+},
+{
+"dia": "2026-11-07",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Safa Baku vs Araz",
+"apuesta": "Gana Safa Baku",
+"cuota": 2.55,
+"resultado": "rojo",
+"marcador": "2-2"
 }
 ]
 }
