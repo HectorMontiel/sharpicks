@@ -33,3 +33,4 @@ radar_errores.txt      -text
 # autocrlf=true la copia de Windows salía con CRLF y LightGBM no la leía
 # («Model format error»). Se declara binario para que git no lo toque.
 modelos/remates_ml_*.txt binary
+tools/vps_runner/* text eol=lf

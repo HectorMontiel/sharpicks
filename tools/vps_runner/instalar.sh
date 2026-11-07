@@ -73,12 +73,15 @@ for i in $(seq 1 "$N"); do
   if [ -f "$D/.runner" ]; then echo "r$i ya estaba registrado"; continue; fi
   mkdir -p "$D" && tar xzf "$TGZ" -C "$D" && chown -R "$USUARIO":"$USUARIO" "$D"
   "$D/bin/installdependencies.sh" >/dev/null
+  # Python y sus paquetes, uno por runner. Medido: con una carpeta compartida, dos trabajos a la vez fallan al instalarlo.
+  HERRAMIENTAS="/opt/hostedtoolcache/r$i"
+  install -d -o "$USUARIO" -g "$USUARIO" "$HERRAMIENTAS"
   cat > "$D/.env" <<EOF
 TZ=UTC
 LANG=C.UTF-8
 PYTHONIOENCODING=utf-8
-AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
-RUNNER_TOOL_CACHE=/opt/hostedtoolcache
+AGENT_TOOLSDIRECTORY=$HERRAMIENTAS
+RUNNER_TOOL_CACHE=$HERRAMIENTAS
 ACTIONS_RUNNER_HOOK_JOB_STARTED=$BASE/antes_del_trabajo.sh
 EOF
   chown "$USUARIO":"$USUARIO" "$D/.env"

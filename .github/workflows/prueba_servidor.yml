@@ -1,7 +1,7 @@
 name: Prueba del servidor (temporal)
 
 # Sólo para validar los runners propios antes de migrar. No publica ni envía nada.
-# Dos a la vez y sin caché, a propósito: es el peor caso para la carpeta de Python que comparten los runners.
+# Dos a la vez y sin caché, a propósito: es el peor caso para que dos runners se estorben.
 # Se borra antes de fusionar la rama.
 on:
   push:

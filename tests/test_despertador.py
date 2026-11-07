@@ -13,6 +13,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRIPT = os.path.join(RAIZ, 'tools', 'vps_runner', 'despertador.sh')
 CHAIN = {'precalculo_dia', 'relevo'}   # no se despiertan: los dispara la cadena de cuotas_mx
 CADA_HORA = {'cuotas_mx', 'sitio_web'}
+CON_SU_CRON = {'fiscal_mensual'}       # no se despierta: tiene 3 intentos al mes en GitHub y un lanzamiento de más mandaría el paquete otra vez
 LUNES = (2026, 11, 9)
 MARTES = (2026, 11, 10)
 
@@ -78,7 +79,7 @@ class Despertador(unittest.TestCase):
 
     def frescos(self, ahora):
         """Todo corrió hace un momento: no debería lanzarse nada."""
-        for wf in ('cuotas_mx', 'sitio_web', 'vigia_limites', 'precalcular_rosters', 'retrain_leagues', 'radar_diario',
+        for wf in ('foto_precios', 'cuotas_mx', 'sitio_web', 'vigia_limites', 'precalcular_rosters', 'retrain_leagues', 'radar_diario',
                    'telegram_dia_completo', 'respaldo_base', 'telegram_bot', 'recalibrar'):
             self.corridas(wf, (ahora - 60, 'workflow_dispatch'))
 
@@ -112,6 +113,16 @@ class Despertador(unittest.TestCase):
         self.corridas('cuotas_mx', (a - 56 * 60, 'schedule'))
         self.correr(a)
         self.assertEqual(self.lanzados(), ['cuotas_mx.yml {"ref":"main","inputs":{"forzar":"false"}}'])
+
+    def test_la_foto_se_lanza_cada_dos_horas(self):
+        a = seg(MARTES, 14)
+        self.frescos(a)
+        self.corridas('foto_precios', (a - 114 * 60, 'workflow_dispatch'))
+        self.correr(a)
+        self.assertEqual(self.lanzados(), [])
+        self.corridas('foto_precios', (a - 116 * 60, 'workflow_dispatch'))
+        self.correr(a)
+        self.assertEqual(self.lanzados(), ['foto_precios.yml {"ref":"main"}'])
 
     def test_cuotas_recientes_no_se_lanzan(self):
         a = seg(MARTES, 14)
@@ -282,7 +293,7 @@ class Tabla(unittest.TestCase):
     def test_cada_flujo_con_cron_está_cubierto(self):
         tabla, s = self.tabla()
         for wf in self.crons():
-            self.assertTrue(wf in tabla or wf in CHAIN or wf in CADA_HORA or (wf == 'recalibrar' and 'recalibrar.yml' in s), wf)
+            self.assertTrue(wf in tabla or wf in CHAIN or wf in CADA_HORA or wf in CON_SU_CRON or (wf == 'recalibrar' and 'recalibrar.yml' in s), wf)
 
     def test_la_tabla_coincide_con_el_cron(self):
         tabla, _ = self.tabla()

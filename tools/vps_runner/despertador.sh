@@ -66,9 +66,9 @@ lanza() {
 }
 
 revisa_cada_hora() {
-  local wf=$1 cuerpo=$2
+  local wf=$1 cuerpo=$2 minutos=${3:-55}
   if ! ultima_corrida "$wf"; then anota "FALLO al leer $wf: no se lanza"; FALLOS=$(( FALLOS + 1 )); return; fi
-  if [ $(( AHORA - U )) -gt $(( 55 * 60 )) ]; then lanza "$wf" "$cuerpo"; fi
+  if [ $(( AHORA - U )) -gt $(( minutos * 60 )) ]; then lanza "$wf" "$cuerpo"; fi
 }
 
 # ventana (min): tope de atraso para lo que se ve afuera. Un envío de la mañana no sale a media tarde. 0 = sin tope.
@@ -95,7 +95,8 @@ if [ "$ESTADO" != activo ] && [ "$SECO" = 0 ]; then
   SECO=1
 fi
 
-revisa_cada_hora foto_precios.yml '{"ref":"main"}'   # sólo GitHub puede leer esas dos fuentes (v594)
+# Sólo GitHub puede leer esas dos fuentes (v594). Cada 2 h: en privado, cada hora se pasaría de los 2,000 min gratis.
+revisa_cada_hora foto_precios.yml '{"ref":"main"}' 115
 revisa_cada_hora cuotas_mx.yml '{"ref":"main","inputs":{"forzar":"false"}}'
 revisa_cada_hora sitio_web.yml '{"ref":"main"}'
 
