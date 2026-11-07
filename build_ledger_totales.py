@@ -43,6 +43,8 @@ import warnings
 import numpy as np
 import pandas as pd
 
+import reparto
+
 try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
     sys.stderr.reconfigure(encoding='utf-8', errors='replace')
@@ -197,16 +199,20 @@ def adjuntar_cuotas(led: pd.DataFrame) -> pd.DataFrame:
     return led.merge(p, on=['liga', 'match_id'], how='left')
 
 
+def _ledger_seguro(clave: str):
+    try:
+        return clave, ledger_de_liga(clave), None
+    except Exception as ex:
+        return clave, pd.DataFrame(), f'{type(ex).__name__}: {ex}'
+
+
 def construir() -> pd.DataFrame:
     import config
     claves = [c for c, cfg in config.LEAGUES.items() if cfg.get('disponible', True)]
     trozos = []
-    for i, c in enumerate(claves, 1):
-        try:
-            t = ledger_de_liga(c)
-        except Exception as ex:
-            print(f'  {i:2d}/{len(claves)} {c:24s} ERROR '
-                  f'{type(ex).__name__}: {str(ex)[:50]}')
+    for i, (c, t, error) in enumerate(reparto.mapa(_ledger_seguro, claves), 1):
+        if error:
+            print(f'  {i:2d}/{len(claves)} {c:24s} ERROR {error[:70]}')
             continue
         if len(t):
             trozos.append(t)

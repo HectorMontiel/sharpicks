@@ -36,6 +36,8 @@ from typing import Dict, List, Optional
 import numpy as np
 import requests
 
+import conexiones  # noqa: F401  (en el servidor, esta API se lee de la foto)
+
 logger = logging.getLogger(__name__)
 
 API = 'https://statsapi.mlb.com/api/v1'

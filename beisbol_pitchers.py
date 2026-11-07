@@ -434,7 +434,7 @@ def _k_por_equipo() -> Dict[str, float]:
     """
     def _pedir():
         try:
-            import mlb_statsapi as msa
+            import mlb_statsapi as msa  # noqa: F401  (activa `conexiones`)
             import requests
             anio = pd.Timestamp.now('UTC').year
             r = requests.get(

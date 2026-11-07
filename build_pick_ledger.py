@@ -60,6 +60,8 @@ from typing import Dict, List, Optional
 import numpy as np
 import pandas as pd
 
+import reparto
+
 # La consola de Windows es cp1252: sin esto, imprimir una flecha o un
 # visto aborta el script DESPUÉS de haber hecho todo el trabajo.
 try:
@@ -290,20 +292,26 @@ def adjuntar_cuotas(ledger: pd.DataFrame) -> pd.DataFrame:
     return ledger
 
 
+def _ledger_liga_seguro(trabajo):
+    clave, n_folds = trabajo
+    try:
+        return clave, ledger_liga(clave, n_folds=n_folds), None
+    except Exception as e:
+        return clave, pd.DataFrame(), f"{type(e).__name__}: {e}"
+
+
 def construir(solo: Optional[str] = None, n_folds: int = N_FOLDS) -> pd.DataFrame:
     claves = ligas_objetivo(solo)
     logger.info(f"Construyendo ledger de {len(claves)} ligas "
                 f"({n_folds} pliegues de origen móvil)…")
     partes = []
     fallos = {}
-    for clave in claves:
-        try:
-            d = ledger_liga(clave, n_folds=n_folds)
-            if not d.empty:
-                partes.append(d)
-        except Exception as e:
-            fallos[clave] = f"{type(e).__name__}: {e}"
-            logger.warning(f"[{clave}] no evaluable: {e}")
+    for clave, d, error in reparto.mapa(_ledger_liga_seguro, [(c, n_folds) for c in claves]):
+        if error:
+            fallos[clave] = error
+            logger.warning(f"[{clave}] no evaluable: {error}")
+        elif not d.empty:
+            partes.append(d)
     if not partes:
         raise RuntimeError('ninguna liga produjo predicciones')
     ledger = adjuntar_cuotas(pd.concat(partes, ignore_index=True))

@@ -46,6 +46,8 @@ from typing import Dict, List, Optional
 import numpy as np
 import pandas as pd
 
+import reparto
+
 try:
     sys.stdout.reconfigure(encoding='utf-8')
 except Exception:
@@ -580,35 +582,28 @@ def verificar_alineacion(d: pd.DataFrame, etiqueta: str) -> dict:
     return info
 
 
+def _ledger_seguro(trabajo: str):
+    dep, _, circuito = trabajo.partition('/')
+    funcion = {'mlb': ledger_mlb, 'nfl': ledger_nfl, 'kbo': ledger_kbo}.get(dep)
+    try:
+        return trabajo, (ledger_tenis(circuito) if dep == 'tenis' else funcion()), None
+    except Exception as e:
+        return trabajo, pd.DataFrame(), f'{type(e).__name__}: {e}'
+
+
 def construir(deporte: Optional[str] = None) -> pd.DataFrame:
+    # v255 - nfl y kbo eran los dos que faltaban. Sin ledger fuera de muestra, la
+    # puerta del §7 no se puede abrir en esos deportes: exige ROI y p5 y no habia
+    # con que calcularlos.
+    trabajos = [t for t in ('tenis/atp', 'tenis/wta', 'mlb', 'nfl', 'kbo')
+                if deporte in (None, t.split('/')[0])]
+    # Dos hilos: el tenis son 350 mil partidos y uno solo no alcanza; los otros acaban pronto y le dejan sitio
     partes = []
-    if deporte in (None, 'tenis'):
-        for c in ('atp', 'wta'):
-            try:
-                d = ledger_tenis(c)
-                if not d.empty:
-                    partes.append(d)
-            except Exception as e:
-                logger.warning(f"[tenis/{c}] {type(e).__name__}: {e}")
-    if deporte in (None, 'mlb'):
-        try:
-            d = ledger_mlb()
-            if not d.empty:
-                partes.append(d)
-        except Exception as e:
-            logger.warning(f"[mlb] {type(e).__name__}: {e}")
-    # v255 - los dos que faltaban. Sin ledger fuera de muestra, la puerta del
-    # §7 no se puede abrir en esos deportes: exige ROI y p5 y no habia con que
-    # calcularlos.
-    for _dep, _fn in (('nfl', ledger_nfl), ('kbo', ledger_kbo)):
-        if deporte not in (None, _dep):
-            continue
-        try:
-            d = _fn()
-            if not d.empty:
-                partes.append(d)
-        except Exception as e:
-            logger.warning(f"[{_dep}] {type(e).__name__}: {e}")
+    for trabajo, d, error in reparto.mapa(_ledger_seguro, trabajos, hilos_por_proceso=2):
+        if error:
+            logger.warning(f"[{trabajo}] {error}")
+        elif not d.empty:
+            partes.append(d)
     if not partes:
         raise RuntimeError('ningún deporte produjo ledger')
     # guardia obligatoria: un ledger desalineado es peor que ninguno

@@ -25,6 +25,8 @@ from typing import Dict, List, Optional
 import pandas as pd
 import requests
 
+import conexiones  # noqa: F401  (en el servidor, reusa la conexión)
+
 logger = logging.getLogger(__name__)
 
 ESPN_BASE = 'https://site.api.espn.com/apis/site/v2/sports/soccer/{liga}/scoreboard'

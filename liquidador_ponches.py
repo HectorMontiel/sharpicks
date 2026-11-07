@@ -66,6 +66,7 @@ def _norm(nombre: str) -> str:
 
 
 def _get(url: str, params: dict) -> dict:
+    import conexiones  # noqa: F401
     import requests
     try:
         r = requests.get(url, params=params, timeout=_TIMEOUT)

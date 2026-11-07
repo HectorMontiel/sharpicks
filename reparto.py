@@ -19,10 +19,10 @@ def procesos() -> int:
     return max(int(os.environ.get('SERVIDOR_PROCESOS') or 1), 1)
 
 
-def un_hilo_por_proceso() -> None:
-    """Cada proceso con un solo hilo, para no pedirle más núcleos de los que hay."""
+def un_hilo_por_proceso(n: int = 1) -> None:
+    """Cada proceso con un solo hilo (o `n`), para no pedirle más núcleos de los que hay."""
     for var in HILOS_DE_LIBRERIAS:
-        os.environ[var] = '1'
+        os.environ[var] = str(n)
 
 
 def hilos(funcion, elementos, n: int = 4) -> list:
@@ -34,14 +34,14 @@ def hilos(funcion, elementos, n: int = 4) -> list:
         return list(pool.map(funcion, elementos))
 
 
-def mapa(funcion, elementos) -> list:
+def mapa(funcion, elementos, hilos_por_proceso: int = 1) -> list:
     """`funcion` sobre cada elemento, con el resultado en el mismo orden."""
     elementos = list(elementos)
     n = procesos()
     if n <= 1 or len(elementos) < 2:
         return [funcion(x) for x in elementos]
     previo = {v: os.environ.get(v) for v in HILOS_DE_LIBRERIAS}
-    un_hilo_por_proceso()
+    un_hilo_por_proceso(hilos_por_proceso)
     try:
         with ProcessPoolExecutor(n, mp_context=mp.get_context('spawn')) as pool:
             return list(pool.map(funcion, elementos, chunksize=max(len(elementos) // (n * 4), 1)))

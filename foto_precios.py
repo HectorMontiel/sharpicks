@@ -28,6 +28,28 @@ HILOS = 6
 MARGEN_MIN = 15    # lo que tarda un precálculo, con holgura
 
 
+def _grabar_mlb() -> int:
+    """La API de la MLB también responde que no al servidor (406). Lo que no se grabe queda sin dato, sin romper."""
+    import beisbol_pitchers
+    import contexto_ponches
+    import mlb_statsapi as ms
+
+    anio = int(time.strftime('%Y'))
+    try:
+        juegos = ms.grabar_temporada_para_la_foto(anio)
+        ms.stats_pitcheo(anio)
+        ms.equipos_lmb()
+        beisbol_pitchers._k_por_equipo()
+        for p in ms.partidos_del_dia() + ms.proximos(2):
+            for pid in (p.get('home_pitcher'), p.get('away_pitcher')):
+                if pid:
+                    contexto_ponches.aperturas(pid, anio)
+        return juegos
+    except Exception as e:
+        print('aviso: MLB sin grabar completa: %s' % type(e).__name__)
+        return 0
+
+
 def generar(salida: str = PAQUETE) -> int:
     """Baja todo en limpio. Devuelve 0 si hay precios de las dos fuentes."""
     os.environ['FOTO_PRECIOS_GRABAR'] = '1'
@@ -48,6 +70,7 @@ def generar(salida: str = PAQUETE) -> int:
         beisbol_pitchers.props_ponches()
     except Exception as e:
         print('aviso: ponches sin grabar: %s' % type(e).__name__)
+    cuentas['mlb'] = _grabar_mlb()
     for dep in cm.ALTENAR_SPORT:
         idx = cm._indice_playdoit(dep)
         cuentas['playdoit'][dep] = len(idx)

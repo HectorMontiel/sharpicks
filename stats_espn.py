@@ -91,6 +91,9 @@ import numpy as np
 import pandas as pd
 import requests
 
+import conexiones  # noqa: F401  (en el servidor, reusa la conexión)
+import reparto
+
 logger = logging.getLogger('stats_espn')
 
 DIRECTORIO = 'stats_espn'
@@ -104,6 +107,7 @@ BASE = 'https://site.api.espn.com/apis/site/v2/sports/soccer/{code}'
 UA = {'User-Agent': 'Mozilla/5.0'}
 TIMEOUT = 25
 HILOS = 8
+HILOS_LIGAS = 3    # sólo en el servidor: ligas a la vez; cada una escribe su archivo
 
 # v393 — COMPETICIONES QUE ESPN CUBRE SÓLO PARA ESTADÍSTICAS. No están en
 # `fixtures_espn.ESPN_CODIGOS` (sus partidos salen de FotMob o la liga no está
@@ -688,11 +692,15 @@ def main() -> int:
 
     print('ventana %s → %s · %d competiciones' % (desde, hasta, len(claves)))
     total_nuevas = 0
-    for c in claves:
+    def _traer(c):
         try:
-            r = backfill(c, desde, hasta, hilos=args.hilos)
+            return backfill(c, desde, hasta, hilos=args.hilos), None
         except EscrituraPeligrosa as e:
-            print('::warning::[stats_espn] %s' % e)
+            return None, e
+
+    for c, (r, peligro) in zip(claves, reparto.hilos(_traer, claves, n=HILOS_LIGAS)):
+        if peligro:
+            print('::warning::[stats_espn] %s' % peligro)
             continue
         if r.get('error'):
             print('  %-24s %s' % (c, r['error']))

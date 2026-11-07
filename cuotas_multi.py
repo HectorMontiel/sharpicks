@@ -67,6 +67,8 @@ from typing import Dict, List, Optional
 import pandas as pd
 import requests
 
+import conexiones  # noqa: F401  (en el servidor, reusa la conexión)
+
 logger = logging.getLogger(__name__)
 
 # Clave pública que la propia web de Pinnacle envía desde el navegador. No es

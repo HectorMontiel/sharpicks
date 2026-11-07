@@ -73,6 +73,7 @@ _MEM: Dict[tuple, tuple] = {}
 
 def _get(url: str, params: Dict) -> Dict:
     try:
+        import conexiones  # noqa: F401
         import requests
     except Exception:
         return {}

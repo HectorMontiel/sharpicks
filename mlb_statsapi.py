@@ -57,6 +57,8 @@ import numpy as np
 import pandas as pd
 import requests
 
+import conexiones  # noqa: F401  (en el servidor, esta API se lee de la foto)
+
 logger = logging.getLogger(__name__)
 
 BASE = 'https://statsapi.mlb.com/api/v1/schedule'
@@ -80,7 +82,44 @@ ID_A_CODIGO: Dict[int, str] = {
 FINALES = {'F', 'FR', 'FT', 'O'}
 
 
+def _en_el_servidor() -> bool:
+    return bool(os.environ.get('FOTO_PRECIOS_TTL'))
+
+
+def _clave_temporada(anio) -> str:
+    import cuotas_multi as cm
+    return cm._foto_clave(BASE, {'temporada_para_la_foto': int(anio)})
+
+
+def grabar_temporada_para_la_foto(anio: int) -> int:
+    """(GitHub) Todo el calendario de la temporada: de ahí salen resultados, próximos y abridores."""
+    import cuotas_multi as cm
+    d = _pedir({'sportId': 1, 'startDate': f'{anio}-02-15', 'endDate': f'{anio}-12-01',
+                'hydrate': 'probablePitcher,team'})
+    cm._escribir_cache(_clave_temporada(anio), d)
+    return sum(len(dia.get('games') or []) for dia in d.get('dates') or [])
+
+
+def _temporada_de_la_foto(params: dict) -> dict:
+    """(Servidor) Lo mismo que respondería la API a un rango de fechas de la MLB."""
+    import cuotas_multi as cm
+    ini, fin = params['startDate'], params['endDate']
+    doc = cm._leer_cache(_clave_temporada(ini[:4]))
+    if doc is None:
+        raise RuntimeError('la foto no trae la temporada %s' % ini[:4])
+    tipo = params.get('gameType')
+    dias = []
+    for dia in doc.get('dates') or []:
+        if ini <= str(dia.get('date')) <= fin:
+            juegos = [g for g in dia.get('games') or [] if tipo in (None, g.get('gameType'))]
+            if juegos:
+                dias.append({**dia, 'games': juegos})
+    return {'dates': dias}
+
+
 def _pedir(params: dict, reintentos: int = 3) -> dict:
+    if _en_el_servidor() and params.get('sportId') == 1:
+        return _temporada_de_la_foto(params)
     ultimo = None
     for i in range(reintentos):
         try:
@@ -183,6 +222,10 @@ def actualizar(anios: List[int], salida: str = SALIDA) -> pd.DataFrame:
     el modelo necesita fresca).
     """
     frames = []
+    if _en_el_servidor():
+        # La foto sólo trae la temporada en curso: lo demás se queda como está en el archivo
+        import cuotas_multi as cm
+        anios = [a for a in anios if cm._leer_cache(_clave_temporada(a)) is not None]
     for a in sorted(anios):
         try:
             df = descargar_temporada(a)
@@ -193,6 +236,8 @@ def actualizar(anios: List[int], salida: str = SALIDA) -> pd.DataFrame:
     if not frames:
         return pd.read_csv(salida, parse_dates=['date']) \
             if os.path.exists(salida) else pd.DataFrame()
+    if _en_el_servidor() and os.path.exists(salida):
+        frames.insert(0, pd.read_csv(salida, parse_dates=['date']))
     df = pd.concat(frames, ignore_index=True)
     df = df.dropna(subset=['home_runs', 'away_runs'])
     df['home_runs'] = df['home_runs'].astype(int)

@@ -58,6 +58,8 @@ import os
 import time
 from typing import Dict, List, Optional, Tuple
 
+import reparto
+
 logger = logging.getLogger('espn_extras')
 
 BASE = 'https://site.api.espn.com/apis/site/v2/sports/soccer/{code}'
@@ -65,6 +67,7 @@ CABEZ = {'User-Agent': 'Mozilla/5.0'}
 CACHE_ROSTERS = 'goleadores_cache.json'
 TIMEOUT = 25
 PAUSA = 0.05
+HILOS_LIGAS = 5    # sólo en el servidor: ligas a la vez, cada una en fila
 
 # Cuántas plantillas distintas puede haber por liga antes de sospechar. Una
 # liga tiene 18-24 equipos; 80 significa que se están mezclando competiciones.
@@ -446,9 +449,16 @@ def main() -> int:
     print('%d competiciones · ventana de %d días' % (len(claves), a.dias))
     tot_c = tot_p = 0
     fallos = []
-    for c in claves:
+    def _recoger(c):
         try:
-            r = recolectar(c, dias=a.dias)
+            return recolectar(c, dias=a.dias), None
+        except Exception as e:
+            return None, e
+
+    for c, (r, error) in zip(claves, reparto.hilos(_recoger, claves, n=HILOS_LIGAS)):
+        try:
+            if error:
+                raise error
             if not a.solo_plantillas:
                 res = aplicar_cuotas(c, r['cuotas'])
                 tot_c += res.get('escritas', 0)

@@ -544,6 +544,9 @@ def liquidar(dias: int = 10) -> int:
     hoy = dt.date.today()
     desde = (hoy - dt.timedelta(days=dias)).isoformat()
     eqs = sorted(set(dj['equipo'].astype(str)))
+    # Se busca por equipo una sola vez: recorrer la tabla por cada peldaño era el 25 % de este paso
+    filas_equipo = dj.groupby('equipo', sort=False).indices
+    fechas_dj = dj['fecha'].astype(str)
     hechos = 0
     for nombre in sorted(os.listdir(HIST_DIR)):
         ruta = os.path.join(HIST_DIR, nombre)
@@ -559,8 +562,9 @@ def liquidar(dias: int = 10) -> int:
             fechas = {f0.isoformat(), (f0 + dt.timedelta(days=1)).isoformat()}
             cand = [e for e in (rf._resolver_equipo(r['home'], eqs),
                                 rf._resolver_equipo(r['away'], eqs)) if e]
-            s = dj[dj['equipo'].isin(cand)
-                   & dj['fecha'].astype(str).isin(fechas)]
+            pos = sorted(p for e in set(cand) for p in filas_equipo.get(e, ()))
+            s = dj.iloc[pos]
+            s = s[fechas_dj.iloc[pos].isin(fechas)]
             if s.empty:
                 continue
             j = por_apellidos(r['jugador'],
