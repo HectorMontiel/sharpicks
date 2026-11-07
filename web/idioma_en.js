@@ -1132,5 +1132,6 @@ window.I18N_EN = {
 "después": "after",
 "para los primeros #, para siempre": "for the first #, forever",
 "Abrir el Pulso": "Open the Pulse",
-"Apuestas del modelo": "Model bets"
+"Apuestas del modelo": "Model bets",
+"en Cuota alta): cuánto más paga la cuota que el precio justo del mercado": "in High odds): how much higher the odds pay than the fair market price"
 };
