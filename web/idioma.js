@@ -88,7 +88,7 @@
     [/^Remates Local: (M[áa]s|Menos) de ([\d.]+)$/i, (m, a, n) => 'Home shots: ' + MD(a) + ' ' + n],
     [/^Remates Visita: (M[áa]s|Menos) de ([\d.]+)$/i, (m, a, n) => 'Away shots: ' + MD(a) + ' ' + n],
     [/^acierta de verdad (\d+) ?%(.*)$/, (m, a, r) => 'really hits ' + a + '%' + r.replace('medido', 'measured')],
-    [/^Paga (\d+) ?% m[áa]s que el precio justo \(Pinnacle\) en (.+)$/, (m, a, c) => 'Pays ' + a + '% over the fair price (Pinnacle) at ' + c],
+    [/^Paga (\d+) ?% m[áa]s que el precio justo(?: \(Pinnacle\) en .+)?$/, (m, a) => 'Pays ' + a + '% over the fair price'],
     [/^Ambos anotan: S[íi]$/i, 'Both teams to score: Yes'], [/^Ambos anotan: No$/i, 'Both teams to score: No'],
     [/^Handicap: (.+)$/, 'Handicap: $1'],
     [/^(Goles|Puntos|Carreras|Juegos|Tiros|C[óo]rners) de (.+)$/, (m, q, e) => e + ' ' + ({ goles: 'goals', puntos: 'points', carreras: 'runs', juegos: 'games', tiros: 'shots', 'córners': 'corners', corners: 'corners' }[q.toLowerCase()])],

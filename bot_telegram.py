@@ -77,9 +77,9 @@ def _guia_simple(r: dict) -> str:
     if not cand:
         return ""
     p = cand[0]
-    porque = ("la línea sharp de Pinnacle lo confirma" if p.get('sharp_confirmado')
+    porque = ("el precio del mercado lo confirma" if p.get('sharp_confirmado')
               else f"el modelo le da {(p.get('prob') or 0)*100:.0f}% de acierto")
-    casa = f" en {p['casa']}" if p.get('casa') else ""
+    casa = ""
     return (f"👉 *{p.get('apuesta','?')}* ({p.get('partido','?')}) "
             f"@ {p.get('cuota','?')}{casa} — {porque}.")
 
@@ -636,9 +636,7 @@ def texto_dia_completo(r: dict, dia: Optional[str] = None,
 
     lineas += ["", "=" * 62,
                "CÓMO LEER ESTO",
-               "- La cuota y la casa sólo aparecen donde puedes apostar de "
-               "verdad: Playdoit o Novibet. Las demás casas se leen para "
-               "calcular el precio justo, no para ofrecerte nada.",
+               "- Todas las cuotas son aproximadas y pueden cambiar.",
                "- 'justa' es 1/probabilidad: por debajo de esa cuota, la "
                "apuesta pierde valor aunque el pronóstico acierte.",
                "- Córners, tarjetas y remates van SIN EV a propósito: el "
@@ -685,9 +683,8 @@ def resumen_dia_completo(r: dict, dia: Optional[str] = None,
                           + (f" ({m['casa']})" if m.get('casa') else '')
                           + f" · EV {float(m['ev'])*100:+.1f}%")
     else:
-        lineas += ["", "_Ningún mercado con precio en Playdoit o Novibet y EV "
-                       "positivo. Cero no es un fallo: es que las casas y el "
-                       "modelo coinciden._"]
+        lineas += ["", "_Ningún mercado con precio y EV positivo. Cero no es un "
+                       "fallo: es que el mercado y el modelo coinciden._"]
     lineas.append("")
     lineas.append("_El detalle completo va en el fichero adjunto._")
     return '\n'.join(lineas)[:MAX_CAPTION]

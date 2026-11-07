@@ -1551,7 +1551,7 @@
   function filaPick(p, v, varias) {
     if (p.solo_analisis) {
       return '<div class="pick-fila analisis"><small class="tenue">📊 Sin pick sugerido' +
-        (p.apuesta ? ' · ' + (p.fuente === 'casa' ? 'la casa ve' : 'el modelo ve') + ' <b>' + esc(p.apuesta) + '</b>' + (p.prob ? ' (' + pct(p.prob) + ')' : '') : '') + '</small></div>';
+        (p.apuesta ? ' · ' + (p.fuente === 'casa' ? 'el mercado ve' : 'el modelo ve') + ' <b>' + esc(p.apuesta) + '</b>' + (p.prob ? ' (' + pct(p.prob) + ')' : '') : '') + '</small></div>';
     }
     const pr = progreso(p, v);
     const nv = nivel(p);
@@ -1566,7 +1566,7 @@
     return '<details class="pick-fila compacta pk-det ' + (ev === 'verde' ? 'verde' : ev === 'roja' ? 'roja' : '') + '"' + (/class="desbloquear"/.test(extra) ? ' open' : '') + '>' +
       '<summary class="pk-top"><span class="pk-ico nivel ' + nv.c + '" title="' + esc(nv.n) + '">' + nv.i + '</span>' +
       '<span class="apuesta">' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</span>' +
-      '<b class="pk-cuota">' + (p.cuota ? Number(p.cuota).toFixed(2) : '—') + '</b>' + estadoPick(p, v) + '</summary>' + prog +
+      '<b class="pk-cuota">' + (p.cuota ? '~' + Number(p.cuota).toFixed(2) : '—') + '</b>' + estadoPick(p, v) + '</summary>' + prog +
       '<div class="pk-meta"><span class="et nivel ' + nv.c + '">' + nv.i + ' ' + nv.n + '</span>' +
       '<span class="pk-dato"><small>prob.</small><b>' + pct(p.prob) + '</b></span>' +
       '<span class="pk-dato"><small>' + (p.tipo === 'error' ? 'paga de más' : 'nivel') + '</small><b>' +
@@ -1593,7 +1593,7 @@
       const kp = !m.get(x.id) && x.partido ? clavePartido(x) : null;
       const alt = kp ? estado.picks.concat(estado.analisis || []).find((q) => clavePartido(q) === kp) : null, ir = alt ? alt.id : null;
       return '<div class="comb-pata"' + (m.get(x.id) || ir ? ' data-ficha="' + esc(m.get(x.id) ? x.id : ir) + '" role="button" tabindex="0"' : '') + '><span>' + e + '</span><div><b>' + txt + '</b><small>' + (ICONO_DEP[x.deporte] || '') + ' ' + esc(x.partido || '') +
-        ' · ' + Number(x.cuota || 0).toFixed(2) + ' · ' + pct(x.prob) + (x.ia === 'a_favor' ? ' · 🤖 a favor' : '') + '</small></div>' +
+        ' · ' + '~' + Number(x.cuota || 0).toFixed(2) + ' · ' + pct(x.prob) + (x.ia === 'a_favor' ? ' · 🤖 a favor' : '') + '</small></div>' +
         (m.get(x.id) || ir ? '<i class="comb-ir">›</i>' : '') + '</div>';
     }).join('');
     const evs = (c.patas || []).map((x) => (m.get(x.id) ? estadoVisto(m.get(x.id)) : x.estado));
@@ -1604,7 +1604,7 @@
       : faseCombinada(c) === 'vivo' ? '<span class="et vivo"><i class="punto"></i>En juego</span>' : '<span class="et">⏳ ' + esc(horaCdmx(aFecha(c.inicio))) + '</span>';
     return '<div class="dest comb ' + (c.estado === 'verde' ? 'verde' : c.estado === 'roja' ? 'roja' : '') + '">' +
       '<div class="fila"><span class="et nivel">' + (c.alcance === 'IA' ? ico('sparkles', 'acento') : ICONO_DEP[c.alcance] || ico('link-2')) + ' ' + esc(c.alcance === 'IA' ? 'IA + modelo' : c.alcance) + (c.tipo === 'alta' ? ' · 3 patas' : '') + '</span>' + est + '</div>' +
-      patas + '<div class="dest-pie"><b>' + Number(c.cuota || 0).toFixed(2) + '</b><span>probabilidad ' + pct(c.prob) + '</span></div>' +
+      patas + '<div class="dest-pie"><b>' + '~' + Number(c.cuota || 0).toFixed(2) + '</b><span>probabilidad ' + pct(c.prob) + '</span></div>' +
       (window.SPX && SPX.extraComb ? SPX.extraComb(c) : '') + '</div>';
   }
   // v421 — «actualiza el historial de las combinadas con la mejora, desde la misma
@@ -1826,7 +1826,7 @@
       const poca = pat.some((y) => y.x[13] === 0);       // v559 — a un equipo le faltan partidos: no es el método medido
       const prob = Math.min(0.99, pat.reduce((a, y) => a * Number(y.x[5]), 1) * (poca ? 1 : MET_FACTOR[n] || 1));
       const fuerza = poca ? 'Poca historia' : peor >= 0.8 ? 'Cumplimiento fuerte' : peor >= 0.7 ? 'Cumplimiento medio' : 'Cumplimiento débil';
-      h += '<div class="met-pie"><span>Cuota ~<b>' + cuota.toFixed(2) + '</b> · ~<b>' + Math.round(100 * prob) + ' %</b></span><span class="met-fuerza f-' + (poca ? 2 : peor >= 0.8 ? 3 : peor >= 0.7 ? 2 : 1) + '">' + fuerza + '</span></div>';
+      h += '<div class="met-pie"><span>Cuota <b>~' + cuota.toFixed(2) + '</b> · ~<b>' + Math.round(100 * prob) + ' %</b></span><span class="met-fuerza f-' + (poca ? 2 : peor >= 0.8 ? 3 : peor >= 0.7 ? 2 : 1) + '">' + fuerza + '</span></div>';
     }
     if (s.q.size) h += '<button type="button" class="chip" data-met-restaurar="1" data-met-k="' + esc(k) + '">Devolver ' + s.q.size + (s.q.size === 1 ? ' quitada' : ' quitadas') + '</button>';
     return h;
@@ -2215,7 +2215,7 @@
       // v513 — la probabilidad EN VIVO de que el pick quede verde (Pulso; VIP o con el partido abierto)
       const real = (window.SPX && SPX.yo.desbloqueados[x.id]) || (x.premium ? '' : x.apuesta);
       const ahora = abierto && window.PULSO && v && v.fase === 'in' && !(pr && /verde|roja/.test(pr.e)) ? PULSO.delPick(real, p, v, vs) : null;
-      return '<div class="linea-ap"><span>' + nivel(x).i + ' ' + (window.SPX ? SPX.apuesta(x) : esc(x.apuesta)) + ' · ' + (x.cuota ? Number(x.cuota).toFixed(2) : '') + '</span>' +
+      return '<div class="linea-ap"><span>' + nivel(x).i + ' ' + (window.SPX ? SPX.apuesta(x) : esc(x.apuesta)) + ' · ' + (x.cuota ? '~' + Number(x.cuota).toFixed(2) : '') + '</span>' +
         (pr ? '<span class="progreso ' + pr.e + '">' + esc(pr.t) + '</span>' : '<span class="tenue">' + pct(x.prob) + '</span>') +
         (ahora != null ? '<span class="pulso-pick" title="Probabilidad en vivo (Pulso)">ahora ' + Math.round(100 * ahora) + ' %</span>' : '') + '</div>';
     }).join('');
@@ -2345,7 +2345,7 @@
       '<span class="pf-eq">' + escudo(p.logo_h, L, p.deporte) + '<b>' + esc(L) + '</b>' + (marc ? '<em>' + esc(marc[0]) + '</em>' : '') + '</span>' +
       '<span class="pf-eq">' + escudo(p.logo_a, V, p.deporte) + '<b>' + esc(V) + '</b>' + (marc ? '<em>' + esc(marc[1]) + '</em>' : '') + '</span></span>' +
       '<span class="pf-pick"><span class="pf-niv">' + nv.i + '</span><span class="pf-ap">' + ap + '</span>' +
-      '<span class="pf-cu">' + (p.cuota ? Number(p.cuota).toFixed(2) : '') + '</span>' +
+      '<span class="pf-cu">' + (p.cuota ? '~' + Number(p.cuota).toFixed(2) : '') + '</span>' +
       (ps.length > 1 ? '<span class="pf-mas">+' + (ps.length - 1) + '</span>' : '') + resumenPicks(ps) +
       (ia ? '<span class="pf-ia s' + ia + '">' + ico('sparkles') + (ia === 2 ? ' IA: confianza máxima' : ' IA: confianza alta') + '</span>' : '') + '</span>' +
       '</button>' + (abierto ? '<div class="pf-detalle">' + tarjeta(ps) +
@@ -2415,7 +2415,7 @@
       '<div class="dest-eqs">' + escudo(p.logo_h, L, p.deporte) + '<span>' + esc(marc || 'vs') + '</span>' + escudo(p.logo_a, V, p.deporte) + '</div>' +
       '<div class="dest-nom">' + esc(L) + ' – ' + esc(V) + '</div>' +
       '<div class="dest-ap">' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</div>' +
-      '<div class="dest-pie"><b>' + (p.cuota ? Number(p.cuota).toFixed(2) : '') + '</b>' + (res || '<span>probabilidad ' + pct(p.prob) + '</span>') + '</div></button>';
+      '<div class="dest-pie"><b>' + (p.cuota ? '~' + Number(p.cuota).toFixed(2) : '') + '</b>' + (res || '<span>probabilidad ' + pct(p.prob) + '</span>') + '</div></button>';
   }
   function tiraMarcador() {
     const hoy = diaPestana(0), l0 = estado.picks.filter((p) => diaDe(p) === hoy), l = l0.filter((p) => p.tipo !== 'error'),
@@ -2588,7 +2588,7 @@
           const ia = iaSegura(p);              // v531 — sin morado no se pone nada («“más difícil” les quita credibilidad»)
           // v551 — el usuario: «que al picar el pick me lleve al partido para analizarlo»: cada pata abre su partido
           return '<div class="arm-pata-fila"><button type="button" class="arm-pata' + (ia ? ' ia-' + ia : '') + '" data-ficha="' + esc(p.id) + '" aria-label="Ver el partido"><span class="arm-niv">' + nv.i + '</span><span class="arm-txt"><b>' + (window.SPX ? SPX.apuesta(p) : esc(p.apuesta)) + '</b><small>' +
-            esc(L) + ' vs ' + esc(V) + ' · ' + esc(horaCdmx(aFecha(p.inicio))) + '</small></span><span class="arm-num"><b>' + Number(p.cuota).toFixed(2) + '</b><small>' + pct(p.prob) + '</small></span>' +
+            esc(L) + ' vs ' + esc(V) + ' · ' + esc(horaCdmx(aFecha(p.inicio))) + '</small></span><span class="arm-num"><b>' + '~' + Number(p.cuota).toFixed(2) + '</b><small>' + pct(p.prob) + '</small></span>' +
             (ia ? '<span class="arm-ia ia-' + ia + '">' + ico('sparkles') + (ia === 2 ? ' IA: confianza máxima' : ' IA: confianza alta') + '</span>' : '') + '<span class="arm-ir">›</span></button>' +
             '<button type="button" class="arm-cambiar" data-arm-cambiar="' + esc(p.id) + '" aria-label="Cambiar sólo esta pata" title="Cambiar sólo esta pata">' + ico('refresh-cw') + '</button></div>';
         }).join('') +
@@ -2600,7 +2600,7 @@
           // v531 — cuántas ve seguras la IA, y armarla sólo con ésas (VIP)
           (vip ? '<div class="arm-ia-res">' + ico('sparkles') + ' La IA ve <b>' + r.patas.filter((x) => iaSegura(x.p)).length + ' de ' + r.patas.length +
             '</b> patas seguras <button class="chip' + (A.soloIA ? ' activa' : '') + '" data-arm-soloia="1">' + (A.soloIA ? 'Todas las patas' : 'Sólo las seguras') + '</button></div>' : '') +
-          '<div class="arm-pie"><span>Cuota <b>' + cuota.toFixed(2) + '</b> · se cumplen todas ~<b>' + Math.round(100 * prob) + ' %</b>' +
+          '<div class="arm-pie"><span>Cuota <b>' + '~' + cuota.toFixed(2) + '</b> · se cumplen todas ~<b>' + Math.round(100 * prob) + ' %</b>' +
           '</span>' +
           (r.patas.length >= 2 && !cerradas.length ? '<button class="vip-btn" data-arm-boleto="' + esc(r.patas.map((x) => x.p.id).join(',')) + '">Pasar a mi combinada</button>' : '') + '</div>' +
           // v540 — patas de pago (gratis con otros niveles): se desbloquean todas juntas, cada una a su precio por cuota

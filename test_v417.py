@@ -171,7 +171,7 @@ def probar_v423():
           and 0.55 < b[0]['prob'] < 0.58, 'v423: el béisbol de invierno sale como sólo análisis, con lo que ve la casa (no la MLB)')
     m = _json.load(open('_v423_beisbol_invierno.json', encoding='utf-8'))
     check(m['casa_065_o_mas']['roi_por_100'] < 0 and 'no se meten picks' in m['veredicto'], 'v423: medido, no hay pick que vender (y queda escrito)')
-    check("p.fuente === 'casa' ? 'la casa ve'" in leer('web', 'app.js'), 'v423: la tarjeta dice que es lo que ve la casa')
+    check("p.fuente === 'casa' ? 'el mercado ve'" in leer('web', 'app.js'), 'v423: la tarjeta dice que es lo que ve la casa')
 
 
 def probar_v424():

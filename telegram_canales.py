@@ -203,10 +203,10 @@ def _e(x) -> str:
 def _apuesta(p: Dict, ia: bool = False) -> str:
     """`ia`: el sello «✨ IA» (sólo en lo del VIP: la IA es del VIP)."""
     if p.get('tipo') == 'error':
-        return '🚨 <b>%s</b> · 💸 %.2f · 🎯 %d %% · +%d %% de valor%s' % (
+        return '🚨 <b>%s</b> · 💸 ~%.2f · 🎯 %d %% · +%d %% de valor' % (
             _e(p.get('apuesta')), float(p.get('cuota') or 0), round(100 * float(p.get('prob') or 0)),
-            round(100 * float(p.get('ventaja') or 0)), (' en ' + _e(p.get('casa'))) if p.get('casa') else '')
-    return '✅ <b>%s</b> · 💸 %.2f · 🎯 %d %%%s' % (
+            round(100 * float(p.get('ventaja') or 0)))
+    return '✅ <b>%s</b> · 💸 ~%.2f · 🎯 %d %%%s' % (
         _e(p.get('apuesta')), float(p.get('cuota') or 0), round(100 * float(p.get('prob') or 0)),
         ' · ✨ IA: confianza máxima' if ia and int(p.get('_ia') or 0) >= 5 else '')
 
@@ -324,7 +324,7 @@ def armar_metodo(picks: List[Dict], enviados: Set, ahora: dt.datetime, lineas: D
     prob = min(0.99, prob * METODO_FACTOR)
     monto = _monto([{'partido': p['partido'], 'apuesta': y['apuesta']} for y in patas])
     t = ('🧩💎 <b>VIP · Parley del partido</b>\n%s\n\n' % _cab_partido(p, ahora) +
-         '\n'.join('✅ <b>%s</b> · 💸 %.2f' % (_e(y['apuesta']), y['cuota']) for y in patas) +
+         '\n'.join('✅ <b>%s</b> · 💸 ~%.2f' % (_e(y['apuesta']), y['cuota']) for y in patas) +
          '\n\n🔗 Cuota <b>~%.2f</b> · 🎯 ~%d %%' % (cuota, round(100 * prob)) + PIE)
     foto = None
     try:

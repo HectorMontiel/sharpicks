@@ -105,7 +105,7 @@ def probar_copas():
     check(filas[1]['apuesta'] == '' and filas[1]['prob'] is None, 'v480 copas: sin precio de la casa, sin sugerencia (nunca el disparate del modelo)')
     check(filas[2]['apuesta'] == 'Gana Girona', 'v480 copas: las ligas no se tocan')
     app = open(os.path.join('web', 'app.js'), encoding='utf-8').read()
-    check("p.fuente === 'casa' ? 'la casa ve' : 'el modelo ve'" in app, 'v480 copas: la página dice «la casa ve»')
+    check("p.fuente === 'casa' ? 'el mercado ve' : 'el modelo ve'" in app, 'v480 copas: la página dice «la casa ve»')
 
 
 if __name__ == '__main__':

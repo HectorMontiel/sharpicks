@@ -121,7 +121,7 @@ def ticket(titulo: str, patas: List[Dict], etiqueta: str = 'VIP', pie: Optional[
                 c.text((10, 8), 'Gana XXXXXX XXXXXXX', font=_fuente(42), fill=BLANCO),
                 c.rounded_rectangle([10, 80, 610, 98], radius=9, fill=VERDE)))
             if cuota:
-                ct = '%.2f' % cuota
+                ct = '~%.2f' % cuota
                 cw = d.textlength(ct, font=fc) + 50
                 d.rounded_rectangle([ANCHO - 70 - cw, y + 18, ANCHO - 70, y + 92], radius=18, fill=VERDE_OSC)
                 d.text((ANCHO - 70 - cw + 25, y + 27), ct, font=fc, fill=BLANCO)
@@ -134,7 +134,7 @@ def ticket(titulo: str, patas: List[Dict], etiqueta: str = 'VIP', pie: Optional[
             continue
         d.text((70, y + 44), _corta(d, p.get('apuesta', ''), _fuente(42), 700), font=_fuente(42), fill=BLANCO)
         # la cuota en su caja verde, a la derecha
-        ct = '%.2f' % cuota
+        ct = '~%.2f' % cuota
         cw = d.textlength(ct, font=fc) + 50
         d.rounded_rectangle([ANCHO - 70 - cw, y + 18, ANCHO - 70, y + 92], radius=18, fill=VERDE_OSC)
         d.text((ANCHO - 70 - cw + 25, y + 27), ct, font=fc, fill=BLANCO)
@@ -148,13 +148,13 @@ def ticket(titulo: str, patas: List[Dict], etiqueta: str = 'VIP', pie: Optional[
     if censurado:
         # v563 — la cuota total y lo que se gana, a la vista; lo escondido es la jugada
         d.text((70, y + 6), 'Cuota total', font=_fuente(30, False), fill=TENUE)
-        d.text((70, y + 44), '%.2f' % cuota_total, font=_fuente(52), fill=VERDE)
+        d.text((70, y + 44), '~%.2f' % cuota_total, font=_fuente(52), fill=VERDE)
         d.text((ANCHO - 70 - d.textlength(tx, font=_fuente(40)), y + 52), tx, font=_fuente(40), fill=BLANCO)
         msg = 'Desbloquéalo con VIP en sharpicksapp.com'
         d.text(((ANCHO - d.textlength(msg, font=_fuente(30))) / 2, y + 116), msg, font=_fuente(30), fill=ORO)
     elif len(patas) > 1:
         d.text((70, y + 6), 'Cuota total', font=_fuente(30, False), fill=TENUE)
-        d.text((70, y + 44), '%.2f' % cuota_total, font=_fuente(52), fill=VERDE)
+        d.text((70, y + 44), '~%.2f' % cuota_total, font=_fuente(52), fill=VERDE)
         d.text((ANCHO - 70 - d.textlength(tx, font=_fuente(40)), y + 52), tx, font=_fuente(40), fill=BLANCO)
     else:
         d.text((70, y + 10), tx, font=_fuente(40), fill=BLANCO)
@@ -211,7 +211,7 @@ def ganado(titulo: str, patas: List[Dict], apuesta: int, cuota_total: float, eti
         y += fila_h
     d.line([(70, y), (ANCHO - 70, y)], fill=BORDE, width=2)
     d.text((70, y + 20), 'Cuota', font=_fuente(28, False), fill=TENUE)
-    d.text((70, y + 54), ap + '%.2f' % cuota_total, font=_fuente(56), fill=VERDE)
+    d.text((70, y + 54), ap + '~%.2f' % cuota_total, font=_fuente(56), fill=VERDE)
     tx = 'Apostando %s' % _pesos(apuesta)
     d.text((ANCHO - 70 - d.textlength(tx, font=_fuente(30, False)), y + 26), tx, font=_fuente(30, False), fill=TENUE)
     tc = 'cobras %s%s' % (ap, _pesos(apuesta * cuota_total))
@@ -274,7 +274,7 @@ def invita_vip(titulo: str, patas: List[Dict], apuesta: int, cuota_total: float,
         y += fila_h
     d.line([(70, y), (ANCHO - 70, y)], fill=BORDE, width=2)
     d.text((70, y + 20), 'Cuota', font=_fuente(28, False), fill=TENUE)
-    d.text((70, y + 54), ap + '%.2f' % cuota_total, font=_fuente(56), fill=ORO)
+    d.text((70, y + 54), ap + '~%.2f' % cuota_total, font=_fuente(56), fill=ORO)
     tx = 'Con %s' % _pesos(apuesta)
     d.text((ANCHO - 70 - d.textlength(tx, font=_fuente(30, False)), y + 26), tx, font=_fuente(30, False), fill=TENUE)
     tc = '%s+%s de ganancia' % (ap, _pesos(apuesta * (cuota_total - 1)))

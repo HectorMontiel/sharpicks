@@ -1004,9 +1004,9 @@
     const cuota = ps.reduce((s, p) => s * Number(p.cuota || 1), 1), prob = ps.reduce((s, p) => s * Number(p.prob || 0), 1), pr = PREMIO(cuota);
     caja.hidden = false;
     caja.innerHTML = '<button class="boleto-cab" data-ver-boleto><span>🔗 <b>Tu combinada</b> · ' + ps.length + (ps.length === 1 ? ' pick' : ' picks') +
-      ' · cuota <b>' + cuota.toFixed(2) + '</b></span><small>' + (ps.length < 2 ? 'agrega otro' : (pr ? 'si acierta: +' + pr + ' 🪙' : 'premio desde cuota 2,00')) + ' ▾</small></button>' +
+      ' · cuota <b>' + '~' + cuota.toFixed(2) + '</b></span><small>' + (ps.length < 2 ? 'agrega otro' : (pr ? 'si acierta: +' + pr + ' 🪙' : 'premio desde cuota 2,00')) + ' ▾</small></button>' +
       (yo.verBoleto ? '<div class="boleto-cuerpo">' + ps.map((p) => '<div class="boleto-pata"><span>' + apuesta(p) + '<small>' + esc(p.partido) + '</small></span><b>' +
-        Number(p.cuota).toFixed(2) + '</b><button class="cerrar-mini" data-quitar-comb="' + esc(p.id) + '" aria-label="Quitar">✕</button></div>').join('') +
+        '~' + Number(p.cuota).toFixed(2) + '</b><button class="cerrar-mini" data-quitar-comb="' + esc(p.id) + '" aria-label="Quitar">✕</button></div>').join('') +
         '<div class="boleto-pie"><small>Probabilidad ~' + Math.round(100 * prob) + ' % · premio: 2 🪙 desde cuota 2,00, 3 🪙 desde 3,00, 5 🪙 desde 5,00 (una premiada por día)</small>' +
         '<button class="vip-btn" data-guardar-comb' + (ps.length < 2 ? ' disabled' : '') + '>Guardar combinada</button><p class="sub" id="boleto-msg"></p></div></div>' : '');
   }
@@ -1211,7 +1211,7 @@
     const pr = PREMIO(Number(c.cuota));
     const premio = c.estado === 'pendiente' && !yaRoja && (pr || !yaVerde) ? '<div class="comb-premio' + (pr ? '' : ' tenue') + '" title="Se paga una combinada premiada por día">' +
       (pr ? (yaVerde ? '🪙 Ganaste <b>+' + pr + '</b> · se acredita al confirmarse' : '🪙 Si acierta: <b>+' + pr + '</b>') : 'Sin premio: desde cuota 2,00') + '</div>' : '';
-    return '<div class="tg-item ' + c.estado + '"><div class="fila"><span>🔗 ' + c.patas.length + ' picks · <b>' + Number(c.cuota).toFixed(2) + '</b></span>' + chip + '</div>' + premio +
+    return '<div class="tg-item ' + c.estado + '"><div class="fila"><span>🔗 ' + c.patas.length + ' picks · <b>' + '~' + Number(c.cuota).toFixed(2) + '</b></span>' + chip + '</div>' + premio +
       // v552 — «si te equivocaste, que se pueda eliminar»: mientras ninguno de sus partidos haya empezado
       (c.estado === 'pendiente' && !ps.some(empezo) ? '<button class="borrar-comb" data-borrar-comb="' + esc(c.id) + '">🗑️ Eliminar combinada</button>' : '') +
       ps.map((p) => {
@@ -1219,7 +1219,7 @@
         if (!p.id) return '<div class="tg-pata"><span class="tenue">Cargando…</span></div>';
         const ico = p._visto === 'verde' ? '✅' : p._visto === 'roja' ? '❌' : p._visto === 'nula' ? '↩️' : empezo(p) ? '🔴' : '🕒';
         const txt = ico + ' ' + apuesta(p.id ? p : { apuesta: '—' }) + ' <span class="tenue">· ' + esc(p.partido || '') + (p.estado === 'pendiente' && !empezo(p) && p.inicio ? ' · ' + hora(p) : '') +
-          (p.cuota ? ' · ' + Number(p.cuota).toFixed(2) : '') + '</span>' +
+          (p.cuota ? ' · ' + '~' + Number(p.cuota).toFixed(2) : '') + '</span>' +
           (p.id && window.SP && window.SP.realDe && window.SP.realDe(p) ? '<small class="real">' + esc(window.SP.realDe(p)) + '</small>' : '');
         return pickDe(p.id) ? '<button class="tg-pata ir-partido" data-ficha="' + esc(p.id) + '">' + txt + ' <span class="ir">›</span></button>' : '<div class="tg-pata">' + txt + '</div>';
       }).join('') + '</div>';
@@ -1663,7 +1663,7 @@
           : '<span class="et vivo">⏳ ' + (x.comb ? hechas + ' de ' + x.ps.length + ' ✅' : 'Pendiente') + '</span>';
         const cuota = x.ps.reduce((s, p) => s * Number(p.cuota || 1), 1);
         return '<div class="tg-item ' + x.est + '"><div class="fila"><span>' + (x.comb ? '🔗 Combinada' : (tg.canal === 'vip' ? '💎 Pick' : '🎯 Pick del día')) +
-          ' · <b>' + cuota.toFixed(2) + '</b></span>' + chip + '</div>' +
+          ' · <b>' + '~' + cuota.toFixed(2) + '</b></span>' + chip + '</div>' +
           x.ps.map((p) => '<div class="tg-pata">' + (p.estado === 'verde' ? '✅' : p.estado === 'roja' ? '❌' : '⏳') + ' ' + esc(p.apuesta) +
             ' <span class="tenue">· ' + esc(p.partido) + (p.marcador ? ' ' + esc(p.marcador) : '') + '</span></div>').join('') + '</div>';
       }).join('') + '</div></details>';

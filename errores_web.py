@@ -103,8 +103,8 @@ def errores(datos: Dict, ahora: Optional[dt.datetime] = None) -> List[Dict]:
                         'fecha': c.get('fecha'), 'deporte': c.get('deporte'), 'liga': c.get('liga'),
                         'clave_liga': c.get('clave_liga'),
                         'apuesta': c.get('apuesta'), 'cuota': round(cuota, 3), 'prob': round(prob, 3),
-                        'elige': False, 'tipo': 'error', 'casa': c.get('casa'), 'ventaja': round(ventaja, 3),
-                        'porque': ('🔥 ' if fuerte else '') + 'Paga %.0f %% más que el precio justo (Pinnacle) en %s' % (100 * ventaja, c.get('casa') or 'la casa'),
+                        'elige': False, 'tipo': 'error', 'casa': None, 'ventaja': round(ventaja, 3),
+                        'porque': ('🔥 ' if fuerte else '') + 'Paga %.0f %% más que el precio justo' % (100 * ventaja),
                         'estado': estado, 'resultado_c1': None, 'marcador': (r or (None, None))[1], 'gratis': False})
         except Exception as ex:
             logger.debug('[errores] %s: %s', c.get('partido'), ex)
