@@ -109,7 +109,7 @@ def bajar(paquete: str = PAQUETE) -> int:
     if not url:
         print('sin foto: el release no trae el paquete')
         return 1
-    temporal = paquete + '.tmp'
+    temporal = '%s.%d.tmp' % (paquete, os.getpid())  # dos flujos pueden bajarla a la vez
     with requests.get(url, headers=h, stream=True, timeout=120) as r:
         if r.status_code != 200:
             print('sin foto: descarga %s' % r.status_code)
