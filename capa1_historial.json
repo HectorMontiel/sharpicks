@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-07T01:10:29Z",
+"actualizado": "2026-11-07T01:53:25Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -24811,6 +24811,16 @@
 "cuota": 4.2,
 "resultado": "rojo",
 "marcador": "1-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Independiente Petrolero vs Real Tomayapo",
+"apuesta": "Independiente Petrolero o empate",
+"cuota": 1.125,
+"resultado": "rojo",
+"marcador": "0-2"
 },
 {
 "dia": "2026-11-06",
