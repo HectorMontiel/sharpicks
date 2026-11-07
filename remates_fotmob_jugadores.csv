@@ -177198,3 +177198,33 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Sota Miura,1337487,D,0,19,0,0,0,0.0,,1.0,975148.0
 5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Shuto Yamaichi,1859408,F,0,19,1,0,0,0.09,,3.0,
 5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Yu Kobayashi,196255,F,0,9,0,0,0,0.0,,3.0,176785.0
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,James Nieuwenhuizen,1327400,G,1,90,0,0,0,0.0,11,0,196910
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Nathaniel Atkinson,907799,D,1,90,0,0,0,0.0,32,1,225774
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Julio Cascante,279274,D,1,90,1,0,0,0.08,34,1,501656
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Harrison Delbridge,630865,D,1,90,0,0,0,0.0,36,1,78062
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Aziz Behich,192735,D,1,90,1,0,0,0.01,38,1,124215
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Matheus Rossetto,764133,M,1,56,2,1,1,0.04,64,2,739713
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Kavian Rahmani,1688569,M,1,67,2,0,0,0.32,66,2,609225
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Medin Memeti,1554827,F,1,73,0,0,0,0.0,83,3,743442
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Emiliano Marcondes,343316,M,1,73,0,0,0,0.0,85,2,151742
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Awer Mabil,421328,F,1,65,1,1,0,0.26,87,3,321445
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Andrew Nabbout,398901,F,1,73,2,2,1,0.46,115,3,160681
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Matthew Leckie,185014,F,0,34,0,0,0,0.0,,3,93835
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Besian Kutleshi,1750128,D,0,23,0,0,0,0.0,,1,752053
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Liam Bonetig,1814030,D,0,17,0,0,0,0.0,,1,249951
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Quinn Macnicol,1531562,M,0,17,0,0,0,0.0,,2,518657
+1000017577,2026-11-07,aus_aleague,Melbourne City FC,Takeshi Kanamori,431277,F,0,17,0,0,0,0.0,,3,117492
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Lawrence Thomas,254469,G,1,90,0,0,0,0.0,11,0,111390
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Panashe Madanha,1409119,D,1,90,2,0,0,0.11,32,1,339171
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Germán Ferreyra,616154,D,1,90,1,0,0,0.02,34,1,50000
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Nathan Barrie,1622778,D,1,90,0,0,0,0.0,36,1,268782
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Jarrod Carluccio,1137943,D,1,90,1,0,0,0.07,38,1,270384
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Angus Thurgate,913132,M,1,90,1,1,0,0.26,64,2,450872
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Dylan Scicluna,1421822,M,1,73,2,1,0,0.04,66,2,218146
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Nicolas Milanović,1217265,F,1,90,6,3,1,0.27,83,3,450051
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Miguel Di Pizio,1466656,M,1,83,3,2,0,0.1,85,2,689751
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Liam Gillion,1435045,F,1,83,3,0,0,0.1,87,3,308275
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Brandon Borrello,494312,F,1,90,8,1,0,0.65,115,3,260385
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Atiya Waraga,1910414,F,0,17,1,0,0,0.02,,3,
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Hiroshi Ibusuki,170453,F,0,7,0,0,0,0.0,,3,127825
+1000017577,2026-11-07,aus_aleague,Western Sydney Wanderers FC,Aydan Hammond,1609284,F,0,7,1,1,0,0.41,,3,243110
