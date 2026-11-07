@@ -89,6 +89,21 @@ with tempfile.TemporaryDirectory() as tmp:
     ok('desempacar: sólo lo esperado', fp.desempacar(paq, destino) == 1 and os.listdir(destino) == ['playdoit_nba.json'])
     ok('desempacar: conserva la edad', abs(os.path.getmtime(os.path.join(destino, 'playdoit_nba.json')) - edad) < 3)
 
+    # Con la foto vencida no se cocina: medido, salen 0 de Capa 1
+    def _con_edad(minutos):
+        with open(os.path.join(cm.CACHE_DIR, fp.META), 'w', encoding='utf-8') as f:
+            json.dump({'generado': time.time() - minutos * 60}, f)
+
+    cm.CACHE_DIR = tempfile.mkdtemp()
+    cm.FOTO_TTL = 0
+    ok('vencida: sin la variable, nunca (GitHub sigue igual)', not fp.vencida())
+    cm.FOTO_TTL = 14400
+    ok('vencida: sin foto, sí', fp.vencida())
+    _con_edad(120)
+    ok('vencida: de 2 h, no', not fp.vencida())
+    _con_edad(230)
+    ok('vencida: si caduca antes de terminar, sí', fp.vencida())
+
 cm.CACHE_DIR, cm.FOTO_TTL, cm.FOTO_GRABAR = carpeta_original, ttl0, gr0
 cm.requests.get = original
 

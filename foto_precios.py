@@ -25,6 +25,7 @@ PAQUETE = 'foto_precios.tar.gz'
 ETIQUETA = os.environ.get('RELEASE_FOTO', 'foto-precios')
 META = 'foto_meta.json'
 HILOS = 6
+MARGEN_MIN = 15    # lo que tarda un precálculo, con holgura
 
 
 def generar(salida: str = PAQUETE) -> int:
@@ -134,6 +135,19 @@ def estado() -> dict:
     doc['hay'] = True
     doc['edad_min'] = round((time.time() - doc.get('generado', 0)) / 60, 1)
     return doc
+
+
+def vencida() -> bool:
+    """En el servidor: ¿la foto caduca antes de que termine el precálculo?
+
+    Medido: con la foto vencida salen 0 de Capa 1 (producción 21). Mejor seguir con el último día bueno.
+    """
+    import cuotas_multi as cm
+
+    if not cm.FOTO_TTL:
+        return False
+    doc = estado()
+    return not doc['hay'] or (doc['edad_min'] + MARGEN_MIN) * 60 >= cm.FOTO_TTL
 
 
 def main() -> int:

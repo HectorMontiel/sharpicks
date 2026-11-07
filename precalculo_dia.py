@@ -392,6 +392,11 @@ def main() -> int:
         print(json.dumps(estado(a.salida), ensure_ascii=False, indent=1))
         return 0
 
+    import foto_precios
+    if foto_precios.vencida():
+        print('::warning::la foto de precios está vencida: no se cocina y sigue el último día bueno')
+        return 1
+
     # v236 — LOS ALIAS DE NOMBRE SE DESCUBREN ANTES DE COCINAR EL DÍA.
     #
     # Va PRIMERO a propósito: `construir()` empareja cada fixture con el
