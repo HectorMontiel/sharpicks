@@ -36687,23 +36687,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Rio Nitta,1266581,F,0,10,0,0,0,0.0,,3.0,305798.0
 5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Jordy Croux,310505,F,0,3,0,0,0,0.0,,3.0,217923.0
 5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Ryo Miyaichi,245422,F,0,3,0,0,0,0.0,,3.0,192435.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Matheus Vidotto,320549,G,1,90,0,0,0,0.0,11.0,0.0,222781.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Kaito Suzuki,1176764,D,1,90,0,0,0,0.0,33.0,1.0,280596.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Naoki Hayashi,1232144,D,1,90,0,0,0,0.0,35.0,1.0,272385.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Ryota Inoue,1437333,D,1,90,0,0,0,0.0,37.0,1.0,225366.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Yosuke Uchida,1735105,M,1,90,0,0,0,0.0,62.0,2.0,331857.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Koki Morita,1029685,M,1,41,1,0,0,0.01,64.0,2.0,760277.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Rei Hirakawa,899472,M,1,72,0,0,0,0.0,66.0,2.0,409556.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Yuta Arai,1507610,M,1,90,1,1,0,0.07,68.0,2.0,476401.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Yuan Matsuhashi,1134749,M,1,73,0,0,0,0.0,84.0,2.0,278418.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Issei Kumatoriya,1717479,M,1,46,0,0,0,0.0,86.0,2.0,231375.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Itsuki Someno,1134525,F,1,60,0,0,0,0.0,105.0,3.0,709100.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Joi Yamamoto,1611225,M,0,49,1,0,0,0.01,,2.0,322477.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Ryosuke Shirai,1512501,M,0,44,0,0,0,0.0,,2.0,356238.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Soma Kanda,1611174,F,0,30,0,0,0,0.0,,3.0,379529.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Kai Shibato,922838,M,0,18,0,0,0,0.0,,2.0,153231.0
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Shion Nakayama,1817161,M,0,17,0,0,0,0.0,,2.0,
-5803555,2026-08-29,jpn_j1,Tokyo Verdy,Gakuto Kawamura,1719931,F,0,1,0,0,0,0.0,,3.0,
 5803555,2026-08-29,jpn_j1,Kashima Antlers,Tomoki Hayakawa,1232143,G,1,90,0,0,0,0.0,11.0,0.0,1363595.0
 5803555,2026-08-29,jpn_j1,Kashima Antlers,Rikuto Hirose,648262,D,1,83,1,0,0,0.05,32.0,1.0,192886.0
 5803555,2026-08-29,jpn_j1,Kashima Antlers,Naomichi Ueda,430831,D,1,90,1,0,0,0.04,34.0,1.0,706596.0
@@ -36861,21 +36844,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803548,2026-08-29,jpn_j1,Sanfrecce Hiroshima,Taishi Matsumoto,858023,M,0,45,1,0,0,0.18,,2.0,363493.0
 5803548,2026-08-29,jpn_j1,Sanfrecce Hiroshima,Takumu Kawamura,922811,M,0,29,1,0,0,0.02,,2.0,858649.0
 5803548,2026-08-29,jpn_j1,Sanfrecce Hiroshima,Shun Ayukawa,1134471,F,0,22,1,0,0,0.18,,3.0,256018.0
-1000014545,2026-08-29,liga_mx,Atlante,Oscar Jiménez,463774,G,1,90,0,0,0,0.0,11.0,0.0,297774.0
-1000014545,2026-08-29,liga_mx,Atlante,Cristóbal Alfaro,1832995,D,1,90,0,0,0,0.0,33.0,1.0,
-1000014545,2026-08-29,liga_mx,Atlante,Eduardo Tercero,862169,D,1,90,0,0,0,0.0,35.0,1.0,167632.0
-1000014545,2026-08-29,liga_mx,Atlante,Aaron Quirós,1244341,D,1,90,0,0,0,0.0,37.0,1.0,1370474.0
-1000014545,2026-08-29,liga_mx,Atlante,Walter Portales,1190694,D,1,90,1,1,0,0.1,51.0,1.0,270987.0
-1000014545,2026-08-29,liga_mx,Atlante,Armando Escobar,1028589,D,1,87,1,0,0,0.04,59.0,1.0,116127.0
-1000014545,2026-08-29,liga_mx,Atlante,José González,1288844,M,1,87,3,0,0,0.11,73.0,2.0,172800.0
-1000014545,2026-08-29,liga_mx,Atlante,Eugenio Pizzuto,1107285,M,1,89,1,0,0,0.02,75.0,2.0,201010.0
-1000014545,2026-08-29,liga_mx,Atlante,Martín Sarrafiore,816993,M,1,89,4,1,1,0.19,77.0,2.0,621041.0
-1000014545,2026-08-29,liga_mx,Atlante,Luis Puente,1109128,F,1,90,2,1,0,0.22,104.0,3.0,545395.0
-1000014545,2026-08-29,liga_mx,Atlante,Jhojan Julio,860927,F,1,90,2,1,0,0.3,106.0,3.0,637918.0
-1000014545,2026-08-29,liga_mx,Atlante,Jairón Charcopa,1504135,F,0,3,1,0,0,0.01,,3.0,274513.0
-1000014545,2026-08-29,liga_mx,Atlante,Joaquín Moxica,1577972,F,0,3,1,0,0,0.03,,3.0,
-1000014545,2026-08-29,liga_mx,Atlante,Martín Fernández,1053835,M,0,1,0,0,0,0.0,,2.0,403871.0
-1000014545,2026-08-29,liga_mx,Atlante,Octavio Vázquez,1888856,M,0,1,0,0,0,0.0,,2.0,
 1000014545,2026-08-29,liga_mx,León,Óscar García,1339704,G,1,90,0,0,0,0.0,11.0,0.0,1929391.0
 1000014545,2026-08-29,liga_mx,León,Iván Moreno,949958,D,1,90,0,0,0,0.0,32.0,1.0,936179.0
 1000014545,2026-08-29,liga_mx,León,Juan Guevara,1610383,D,1,90,0,0,0,0.0,34.0,1.0,827054.0
@@ -36908,22 +36876,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000014544,2026-08-29,liga_mx,Cruz Azul,Alán Montes,1170826,D,0,6,0,0,0,0.0,,1.0,1031675.0
 1000014544,2026-08-29,liga_mx,Cruz Azul,Christian Ebere,692891,F,0,6,0,0,0,0.0,,3.0,748423.0
 1000014544,2026-08-29,liga_mx,Cruz Azul,Josué Díaz,1283439,D,0,4,0,0,0,0.0,,1.0,494676.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Togo Umeda,1024050,G,1,90,0,0,0,0.0,11.0,0.0,272698.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Hidehiro Sugai,1190984,D,1,90,0,0,0,0.0,32.0,1.0,440600.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Seung-Wook Park,1247341,D,1,90,0,0,0,0.0,34.0,1.0,394825.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Yuki Honda,430836,D,1,65,0,0,0,0.0,36.0,1.0,160249.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Yutaka Yoshida,176130,D,1,82,1,0,0,0.1,38.0,1.0,166263.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Yudai Shimamoto,1717480,M,1,90,1,0,0,0.08,73.0,2.0,656828.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Masaki Yumiba,1134476,M,1,82,1,0,0,0.09,75.0,2.0,344161.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Ryo Germain,886435,M,1,90,0,0,0,0.0,77.0,2.0,432149.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Yuto Tsuji,2172653,F,1,66,2,0,0,0.1,103.0,3.0,
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Se-Hun Oh,688340,F,1,90,1,0,0,0.25,105.0,3.0,808506.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Tomoya Fujii,1135469,M,1,75,0,0,0,0.0,107.0,2.0,206342.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Jelani Sumiyoshi,1134784,D,0,25,0,0,0,0.0,,1.0,285574.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Kosuke Kinoshita,623937,F,0,24,0,0,0,0.0,,3.0,379372.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Capixaba,747924,F,0,15,0,0,0,0.0,,3.0,267113.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Sen Takagi,1463407,D,0,8,0,0,0,0.0,,1.0,293410.0
-5803553,2026-08-29,jpn_j1,Shimizu S-Pulse,Kei Koizumi,523646,M,0,8,0,0,0,0.0,,2.0,262487.0
 5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Ryosuke Kojima,848282,G,1,90,0,0,0,0.0,11.0,0.0,670299.0
 5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Wataru Harada,1267663,D,1,90,0,0,0,0.0,33.0,1.0,414150.0
 5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Taiyo Koga,758052,D,1,90,0,0,0,0.0,35.0,1.0,862318.0
@@ -40195,22 +40147,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5107581,2026-08-30,suecia,Hammarby,Oscar Johansson Schellhas,449256,M,0,25,1,1,0,0.02,,2.0,301633.0
 5107581,2026-08-30,suecia,Hammarby,Nahir Besara,120019,M,0,5,0,0,0,0.0,,2.0,390600.0
 5107581,2026-08-30,suecia,Hammarby,Suwaibou Kebbeh,1800384,F,0,5,2,1,0,0.58,,3.0,
-1000014550,2026-08-30,liga_mx,Santos Laguna,Carlos Acevedo,751164,G,1,90,0,0,0,0.0,11.0,0.0,1452547.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Franco Pardo,845263,D,1,68,0,0,0,0.0,33.0,1.0,1444113.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Felipe Sánchez,1436220,D,1,90,0,0,0,0.0,35.0,1.0,1241716.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Efraín Orona,823038,D,1,87,5,2,0,0.13,37.0,1.0,671630.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Mauricio Cuevas,1079040,M,1,90,1,0,0,0.06,72.0,2.0,335785.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Aldo López,1138422,M,1,90,0,0,0,0.0,74.0,2.0,1572239.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Fran Villalba,638074,M,1,76,2,1,0,0.14,76.0,2.0,928293.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Diego González,1348496,M,1,68,2,0,0,0.15,78.0,2.0,3490347.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Kevin Palacios,1300602,F,1,90,2,0,0,0.15,103.0,3.0,1001917.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Ezequiel Bullaude,972098,F,1,90,3,1,0,0.31,105.0,3.0,1589680.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Ramiro Sordo,1201409,F,1,68,2,0,0,0.04,107.0,3.0,1793399.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Emmanuel Echeverría,1572473,D,0,22,0,0,0,0.0,,1.0,1252525.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Jonathan Pérez,1621323,D,0,22,2,0,0,0.12,,1.0,
-1000014550,2026-08-30,liga_mx,Santos Laguna,Eduardo Aguirre,689693,F,0,22,0,0,0,0.0,,3.0,1350943.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Javier Güémez,471119,M,0,14,0,0,0,0.0,,2.0,335947.0
-1000014550,2026-08-30,liga_mx,Santos Laguna,Luis Gómez,1621326,M,0,3,1,0,0,0.05,,2.0,
 1000014550,2026-08-30,liga_mx,Tigres,Nahuel Guzmán,193993,G,1,90,0,0,0,0.0,11.0,0.0,568818.0
 1000014550,2026-08-30,liga_mx,Tigres,Jesús Garza,1075104,D,1,90,0,0,0,0.0,32.0,1.0,1578206.0
 1000014550,2026-08-30,liga_mx,Tigres,Joaquim,1257033,D,1,90,0,0,0,0.0,34.0,1.0,4524625.0
@@ -177177,3 +177113,66 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000014220,2026-11-07,col_primera_a,Independiente Medellín,Jackson Martínez,51360,F,0,24,1,0,0,0.05,,3.0,
 1000014220,2026-11-07,col_primera_a,Independiente Medellín,Léider Berrío,1396258,M,0,16,2,1,0,0.15,,2.0,483281.0
 1000014220,2026-11-07,col_primera_a,Independiente Medellín,Nivaldo Hernandez,1937621,M,0,9,0,0,0,0.0,,2.0,
+1000014636,2026-11-07,liga_mx,Atlante,Oscar Jiménez,463774,G,1,90,0,0,0,0.0,11.0,0.0,133909.0
+1000014636,2026-11-07,liga_mx,Atlante,Nico Carrera,1309373,D,1,90,2,1,0,0.32,33.0,1.0,206596.0
+1000014636,2026-11-07,liga_mx,Atlante,Aaron Quirós,1244341,D,1,90,0,0,0,0.0,35.0,1.0,1371737.0
+1000014636,2026-11-07,liga_mx,Atlante,Gustavo Sánchez,1044929,D,1,85,1,0,0,0.04,37.0,1.0,380371.0
+1000014636,2026-11-07,liga_mx,Atlante,Walter Portales,1190694,D,1,90,1,1,0,0.02,51.0,1.0,684171.0
+1000014636,2026-11-07,liga_mx,Atlante,Walter Clar,497408,D,1,77,0,0,0,0.0,59.0,1.0,222396.0
+1000014636,2026-11-07,liga_mx,Atlante,Martín Sarrafiore,816993,M,1,90,5,2,0,0.6,73.0,2.0,864144.0
+1000014636,2026-11-07,liga_mx,Atlante,Eugenio Pizzuto,1107285,M,1,85,2,0,0,0.04,75.0,2.0,326178.0
+1000014636,2026-11-07,liga_mx,Atlante,Luis Calzadilla,1114432,M,1,90,4,1,0,0.52,77.0,2.0,602810.0
+1000014636,2026-11-07,liga_mx,Atlante,Joaquín Moxica,1577972,F,1,34,1,0,0,0.03,104.0,3.0,
+1000014636,2026-11-07,liga_mx,Atlante,Jhojan Julio,860927,F,1,90,1,0,0,0.01,106.0,3.0,878712.0
+1000014636,2026-11-07,liga_mx,Atlante,Diogo Bagüí,1682280,D,0,56,0,0,0,0.0,,1.0,
+1000014636,2026-11-07,liga_mx,Atlante,José González,1288844,M,0,13,0,0,0,0.0,,2.0,225373.0
+1000014636,2026-11-07,liga_mx,Atlante,Maximiliano García,1432163,M,0,5,0,0,0,0.0,,2.0,242701.0
+1000014636,2026-11-07,liga_mx,Atlante,Luis Puente,1109128,F,0,5,1,0,0,0.04,,3.0,793255.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Carlos Acevedo,751164,G,1,90,0,0,0,0.0,11.0,0.0,1506091.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Franco Pardo,845263,D,1,90,0,0,0,0.0,33.0,1.0,1765479.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Felipe Sánchez,1436220,D,1,90,0,0,0,0.0,35.0,1.0,1277470.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Jonathan Pérez,1621323,D,1,46,0,0,0,0.0,37.0,1.0,680783.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Mauricio Cuevas,1079040,D,1,90,0,0,0,0.0,51.0,1.0,1259326.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Emmanuel Echeverría,1572473,D,1,90,0,0,0,0.0,59.0,1.0,1208537.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Eduardo Aguirre,689693,M,1,57,1,1,0,0.03,72.0,2.0,1389728.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Fran Villalba,638074,M,1,63,1,0,0,0.03,74.0,2.0,895497.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Facundo Cáseres,1200721,M,1,63,0,0,0,0.0,76.0,2.0,2265520.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Ezequiel Bullaude,972098,M,1,85,1,0,0,0.03,78.0,2.0,2345967.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Esteban Lozano,1172985,F,1,90,7,1,1,0.51,115.0,3.0,1633231.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Tahiel Jiménez,1580561,F,0,45,2,1,1,0.1,,3.0,1381127.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Kevin Palacios,1300602,M,0,33,0,0,0,0.0,,2.0,1002567.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Aldo López,1138422,M,0,27,0,0,0,0.0,,2.0,1535859.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Javier Güémez,471119,M,0,27,0,0,0,0.0,,2.0,337405.0
+1000014636,2026-11-07,liga_mx,Santos Laguna,Luis Gómez,1621326,M,0,5,0,0,0,0.0,,2.0,
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Yuya Oki,917257,G,1,90,0,0,0,0.0,11.0,0.0,199886.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Hidehiro Sugai,1190984,D,1,90,0,0,0,0.0,32.0,1.0,280893.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Yuji Takahashi,397173,D,1,90,1,1,0,0.03,34.0,1.0,175595.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Seung-Wook Park,1247341,D,1,89,0,0,0,0.0,36.0,1.0,342427.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Mateus Brunetti,1192873,D,1,90,2,1,0,0.06,38.0,1.0,248978.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Kei Koizumi,523646,M,1,78,0,0,0,0.0,65.0,2.0,256749.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Masaki Yumiba,1134476,M,1,90,0,0,0,0.0,84.0,2.0,262023.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Taiki Hirato,727818,M,1,45,1,0,0,0.01,86.0,2.0,343272.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Kenta Inoue,1155384,F,1,69,0,0,0,0.0,103.0,3.0,189434.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Se-Hun Oh,688340,F,1,90,0,0,0,0.0,105.0,3.0,771638.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Tomoya Fujii,1135469,M,1,69,4,1,0,0.08,107.0,2.0,190387.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Yudai Shimamoto,1717480,M,0,44,0,0,0,0.0,,2.0,772071.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Ryo Germain,886435,M,0,21,3,1,0,0.14,,2.0,387612.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Kai Matsuzaki,1134798,F,0,21,1,0,0,0.04,,3.0,283429.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Doo-Jae Won,864277,M,0,12,1,0,0,0.02,,2.0,343272.0
+5803655,2026-11-07,jpn_j1,Shimizu S-Pulse,Capixaba,747924,F,0,1,0,0,0,0.0,,3.0,249769.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Matheus Vidotto,320549,G,1,90,0,0,0,0.0,11.0,0.0,167992.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Yosuke Uchida,1735105,M,1,90,0,0,0,0.0,32.0,2.0,262023.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Naoki Hayashi,1232144,D,1,90,0,0,0,0.0,34.0,1.0,297478.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Yu-Min Cho,925642,D,1,18,0,0,0,0.0,36.0,1.0,784465.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Shuhei Mizoguchi,1336927,D,1,90,0,0,0,0.0,38.0,1.0,273911.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Kanya Fujimoto,924315,M,1,59,0,0,0,0.0,72.0,2.0,1394009.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Koki Morita,1029685,M,1,59,0,0,0,0.0,74.0,2.0,630165.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Rei Hirakawa,899472,M,1,90,1,0,0,0.02,76.0,2.0,323123.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Yuta Arai,1507610,M,1,90,3,0,0,0.15,78.0,2.0,274869.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Kazunari Ichimi,727607,F,1,86,0,0,0,0.0,104.0,3.0,232083.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Itsuki Someno,1134525,F,1,67,0,0,0,0.0,106.0,3.0,473334.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Maaya Sako,1297846,D,0,72,0,0,0,0.0,,1.0,200631.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Issei Kumatoriya,1717479,M,0,31,1,1,1,0.26,,2.0,233316.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Kai Shibato,922838,M,0,31,0,0,0,0.0,,2.0,161576.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Yuan Matsuhashi,1134749,M,0,23,1,0,0,0.03,,2.0,257022.0
+5803655,2026-11-07,jpn_j1,Tokyo Verdy,Shimon Teranuma,1373215,F,0,4,0,0,0,0.0,,3.0,339434.0
