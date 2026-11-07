@@ -36563,36 +36563,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803556,2026-08-29,jpn_j1,Cerezo Osaka,Lucas Fernandes,684725,F,0,17,0,0,0,0.0,,3.0,605386.0
 5803556,2026-08-29,jpn_j1,Cerezo Osaka,Shinji Kagawa,144993,M,0,9,0,0,0,0.0,,2.0,158910.0
 5803556,2026-08-29,jpn_j1,Cerezo Osaka,Pablo Sabbag,860910,F,0,9,2,0,0,0.24,,3.0,600129.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Alexandre Pisano,1611208,G,1,90,0,0,0,0.0,11.0,0.0,851974.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Yuki Nogami,431974,D,1,70,0,0,0,0.0,33.0,1.0,168193.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Haruya Fujii,930029,D,1,90,2,0,0,0.09,35.0,1.0,1029649.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Shuhei Tokumoto,1026494,D,1,90,1,0,0,0.01,37.0,1.0,191336.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Yuya Asano,1011544,M,1,90,2,0,0,0.04,62.0,2.0,207880.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Sho Inagaki,523612,M,1,90,2,1,1,0.82,64.0,2.0,259225.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Tomoki Takamine,1062275,M,1,90,0,0,0,0.0,66.0,2.0,585499.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Katsuhiro Nakayama,1011555,M,1,90,2,1,1,0.4,68.0,2.0,288187.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Ryuji Izumi,727950,M,1,83,2,0,0,0.63,84.0,2.0,184272.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Yudai Kimura,1337003,M,1,90,3,1,0,0.33,86.0,2.0,669823.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Yuya Yamagishi,733923,F,1,83,1,1,0,0.11,105.0,3.0,303743.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Yota Sato,1227821,D,0,20,0,0,0,0.0,,1.0,247786.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Hidemasa Koda,1155129,M,0,7,1,0,0,0.03,,2.0,425179.0
-5803552,2026-08-29,jpn_j1,Nagoya Grampus,Kensuke Nagai,197538,M,0,7,0,0,0,0.0,,2.0,227497.0
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Lennart Moser,934832,G,1,90,0,0,0,0.0,11.0,0.0,336816.0
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Hiroshi Omori,1232169,D,1,90,0,0,0,0.0,33.0,1.0,245528.0
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Yugo Tatsuta,824563,D,1,90,0,0,0,0.0,35.0,1.0,422932.0
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Yoshitake Suzuki,824515,D,1,83,3,1,1,0.06,37.0,1.0,213942.0
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Kosuke Shirai,621532,M,1,90,1,0,0,0.03,62.0,2.0,183934.0
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Eiji Miyamoto,1385784,M,1,90,1,1,0,0.04,64.0,2.0,191784.0
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Oberdan,1359812,M,1,90,1,0,0,0.05,66.0,2.0,
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Towa Yamane,922601,M,1,83,1,0,0,0.02,68.0,2.0,223040.0
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Sang-Ho Na,828055,M,1,62,1,0,0,0.02,84.0,2.0,446252.0
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Ataru Esaka,624056,M,1,76,1,0,0,0.09,86.0,2.0,223621.0
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Lucão,891762,F,1,76,2,0,0,0.21,105.0,3.0,228207.0
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Léo Gaúcho,1379435,F,0,28,0,0,0,0.0,,3.0,
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Yuta Kamiya,727842,M,0,14,3,0,0,0.16,,2.0,184135.0
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Kota Kawano,1110789,F,0,14,0,0,0,0.0,,3.0,668517.0
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Shu Ikedo,2129962,D,0,7,0,0,0,0.0,,1.0,
-5803552,2026-08-29,jpn_j1,Fagiano Okayama FC,Noah Kenshin Browne,1237563,F,0,7,1,0,0,0.19,,3.0,338442.0
 5803962,2026-08-29,polonia,Radomiak Radom,Filip Majchrowicz,948374,G,1,90,0,0,0,0.0,11.0,0.0,686787.0
 5803962,2026-08-29,polonia,Radomiak Radom,Zié Ouattara,960049,D,1,90,0,0,0,0.0,32.0,1.0,908131.0
 5803962,2026-08-29,polonia,Radomiak Radom,Kryspin Szczesniak,1138434,D,1,90,0,0,0,0.0,34.0,1.0,433612.0
@@ -36625,37 +36595,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803962,2026-08-29,polonia,Cracovia,Sayfallah Ltaief,1167610,F,0,24,2,1,0,0.3,,3.0,846604.0
 5803962,2026-08-29,polonia,Cracovia,Mateusz Praszelik,920851,M,0,17,0,0,0,0.0,,2.0,386692.0
 5803962,2026-08-29,polonia,Cracovia,Dijon Kameri,1276631,M,0,7,0,0,0,0.0,,2.0,949055.0
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Halls,1282076,G,1,90,0,0,0,0.0,11.0,0.0,278337.0
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Shinnosuke Fukuda,1437159,D,1,90,1,0,0,0.04,32.0,1.0,616460.0
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Weverton,1675021,D,1,89,0,0,0,0.0,34.0,1.0,416778.0
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Yoshinori Suzuki,628316,D,1,90,0,0,0,0.0,36.0,1.0,245962.0
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Kyo Sato,1337015,D,1,90,0,0,0,0.0,38.0,1.0,490025.0
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Sung-Jun Yoon,1793782,M,1,90,0,0,0,0.0,64.0,2.0,
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,João Pedro,1281588,M,1,89,1,0,0,0.02,66.0,2.0,
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Haruki Arai,1285959,F,1,89,2,1,1,0.8,83.0,3.0,265177.0
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Maceió,1617877,F,1,62,0,0,0,0.0,85.0,3.0,
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Ryuma Nakano,1612519,M,1,62,0,0,0,0.0,87.0,2.0,292399.0
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Rafael Elias,931201,F,1,90,4,2,1,0.14,115.0,3.0,1827894.0
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Shun Nagasawa,116604,F,0,28,0,0,0,0.0,,3.0,189946.0
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Temma Matsuda,865992,F,0,28,0,0,0,0.0,,3.0,234560.0
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Kodai Nagata,1716199,D,0,1,0,0,0,0.0,,1.0,258724.0
-5803550,2026-08-29,jpn_j1,Kyoto Sanga FC,Fuchi Honda,1061134,F,0,1,0,0,0,0.0,,3.0,511956.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Takumi Nagaishi,659439,G,1,90,0,0,0,0.0,11.0,0.0,170912.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Daiki Fukazawa,1141239,M,1,90,2,1,0,0.08,33.0,2.0,252384.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Teppei Oka,1089571,D,1,90,1,1,0,0.11,35.0,1.0,
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Yuma Tsujioka,1451006,D,1,90,2,1,0,0.14,37.0,1.0,168822.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Yu Hashimoto,1611147,M,1,90,2,1,0,0.1,62.0,2.0,436210.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Kokoro Maeda,1900072,M,1,68,1,0,0,0.03,64.0,2.0,
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Tomoya Miki,1067661,M,1,90,3,0,0,0.09,66.0,2.0,592001.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Kazuki Fujimoto,1067021,M,1,46,0,0,0,0.0,68.0,2.0,291798.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Shu Morooka,1437166,M,1,81,2,1,0,0.09,84.0,2.0,579038.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Masato Shigemi,1469704,M,1,57,2,2,0,0.44,86.0,2.0,351737.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Werik Popó,1400722,F,1,68,1,0,0,0.12,105.0,3.0,273488.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Yota Maejima,747922,M,0,45,2,2,0,0.1,,2.0,264504.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Shosei Usui,1614808,F,0,33,1,0,0,0.04,,3.0,313485.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Keiya Shiihashi,727865,M,0,22,0,0,0,0.0,,2.0,224271.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Shintaro Nago,955321,M,0,22,0,0,0,0.0,,2.0,378526.0
-5803550,2026-08-29,jpn_j1,Avispa Fukuoka,Abdul Hanan Sani Brown,1714895,F,0,9,0,0,0,0.0,,3.0,395882.0
 5803554,2026-08-29,jpn_j1,Urawa Red Diamonds,Shusaku Nishikawa,20993,G,1,90,0,0,0,0.0,11.0,0.0,279332.0
 5803554,2026-08-29,jpn_j1,Urawa Red Diamonds,Danilo Boza,955787,D,1,90,2,1,0,0.35,32.0,1.0,736272.0
 5803554,2026-08-29,jpn_j1,Urawa Red Diamonds,Yuta Miyamoto,1308626,D,1,90,0,0,0,0.0,34.0,1.0,652858.0
@@ -36671,39 +36610,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803554,2026-08-29,jpn_j1,Urawa Red Diamonds,Harumi Minamino,1365945,F,0,22,1,1,1,0.22,,3.0,332315.0
 5803554,2026-08-29,jpn_j1,Urawa Red Diamonds,Eiichi Katayama,622088,D,0,1,0,0,0,0.0,,1.0,147127.0
 5803554,2026-08-29,jpn_j1,Urawa Red Diamonds,Kotaro Hayashi,1437139,M,0,1,0,0,0,0.0,,2.0,699153.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Rubén Blanco,396526,G,1,90,0,0,0,0.0,11.0,0.0,355560.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Taisei Inoue,1611216,D,1,87,0,0,0,0.0,32.0,1.0,340810.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Jeison Quiñónes,1022346,D,1,90,0,0,0,0.0,34.0,1.0,638678.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Kosei Suwama,1714755,D,1,90,0,0,0,0.0,36.0,1.0,413463.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Ryotaro Tsunoda,1194458,D,1,80,0,0,0,0.0,38.0,1.0,448424.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Kei Chinen,831831,M,1,90,1,0,0,0.07,64.0,2.0,342016.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Kosuke Matsumura,1477971,M,1,80,1,1,0,0.03,66.0,2.0,
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Tomoki Kondo,1266580,F,1,87,2,1,0,0.46,83.0,3.0,357809.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Jun Amano,523739,M,1,90,2,1,0,0.25,85.0,2.0,166774.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Shin Miidera,2120233,F,1,72,1,1,0,0.09,87.0,3.0,
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Kaina Tanimura,1380687,F,1,90,3,2,2,0.61,115.0,3.0,916527.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Toichi Suzuki,887706,D,0,18,0,0,0,0.0,,1.0,252753.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Takuya Kida,309930,M,0,10,0,0,0,0.0,,2.0,246395.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Rio Nitta,1266581,F,0,10,0,0,0,0.0,,3.0,305798.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Jordy Croux,310505,F,0,3,0,0,0,0.0,,3.0,217923.0
-5803554,2026-08-29,jpn_j1,Yokohama F.Marinos,Ryo Miyaichi,245422,F,0,3,0,0,0,0.0,,3.0,192435.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Tomoki Hayakawa,1232143,G,1,90,0,0,0,0.0,11.0,0.0,1363595.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Rikuto Hirose,648262,D,1,83,1,0,0,0.05,32.0,1.0,192886.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Naomichi Ueda,430831,D,1,90,1,0,0,0.04,34.0,1.0,706596.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Ikuma Sekigawa,1028353,D,1,90,0,0,0,0.0,36.0,1.0,682007.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Ryoya Ogawa,727419,D,1,90,2,0,0,0.04,38.0,1.0,705104.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Yuta Matsumura,1133794,M,1,83,1,0,0,0.07,72.0,2.0,557490.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Gaku Shibasaki,262394,M,1,73,1,0,0,0.02,74.0,2.0,168193.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Matheus Bueno,1173576,M,1,88,0,0,0,0.0,76.0,2.0,620952.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,José Elber,290120,M,1,73,4,1,0,0.99,78.0,2.0,237605.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Léo,558007,F,1,90,10,4,2,1.54,104.0,3.0,1488282.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Yuma Suzuki,619621,F,1,88,0,0,0,0.0,106.0,3.0,1490211.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Aleksandar Cavric,364496,M,0,17,2,1,0,0.65,,2.0,655849.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Kento Misao,648364,M,0,17,1,0,0,0.1,,2.0,397065.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Keisuke Tsukui,1437167,D,0,7,0,0,0,0.0,,1.0,547162.0
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Haruki Hayashi,1899991,M,0,7,1,0,0,0.01,,2.0,
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Anthony Motosuna,1818880,D,0,2,1,0,0,0.05,,1.0,
-5803555,2026-08-29,jpn_j1,Kashima Antlers,Minato Yoshida,1748953,F,0,2,0,0,0,0.0,,3.0,
 5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Svend Brodersen,538435,G,1,90,0,0,0,0.0,11.0,0.0,652709.0
 5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Reon Yamahara,1292274,D,1,83,0,0,0,0.0,32.0,1.0,518459.0
 5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Pedro Romano,1521407,D,1,83,0,0,0,0.0,34.0,1.0,
@@ -36736,40 +36642,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803549,2026-08-29,jpn_j1,JEF United Chiba,Rikuto Ishio,1611325,D,0,11,0,0,0,0.0,,1.0,300776.0
 5803549,2026-08-29,jpn_j1,JEF United Chiba,Naohiro Sugiyama,1259958,M,0,11,2,1,0,0.08,,2.0,201086.0
 5803549,2026-08-29,jpn_j1,JEF United Chiba,Leonardo Rocha,873576,F,0,11,2,0,0,0.15,,3.0,465988.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Masaaki Goto,833022,G,1,90,0,0,0,0.0,11.0,0.0,194518.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Ryosuke Shindo,648375,D,1,90,0,0,0,0.0,33.0,1.0,235156.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Ikki Arai,727872,D,1,20,0,0,0,0.0,35.0,1.0,144691.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Yusei Egawa,1134726,D,1,90,0,0,0,0.0,37.0,1.0,255475.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Hijiri Onaga,825997,M,1,90,0,0,0,0.0,62.0,2.0,228061.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Hotaru Yamaguchi,176201,M,1,46,0,0,0,0.0,64.0,2.0,99441.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Riku Yamada,891074,M,1,70,0,0,0,0.0,66.0,2.0,165152.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Shunya Yoneda,922801,M,1,77,0,0,0,0.0,68.0,2.0,192717.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Motoki Hasegawa,1171972,M,1,90,0,0,0,0.0,84.0,2.0,500774.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Yuto Iwasaki,826010,M,1,58,1,1,0,0.02,86.0,2.0,312557.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Thiago Santana,645763,F,1,70,1,0,0,0.03,105.0,3.0,312829.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Masahiro Sekiguchi,1171973,M,0,70,0,0,0,0.0,,2.0,165971.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Kenshin Yasuda,1372205,M,0,45,2,0,0,0.06,,2.0,437005.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Norman Campbell,1284495,M,0,32,0,0,0,0.0,,2.0,535358.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Diego Pituca,724110,M,0,20,0,0,0,0.0,,2.0,118464.0
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Reijin Ko,1900486,F,0,20,0,0,0,0.0,,3.0,
-5803557,2026-08-29,jpn_j1,V-Varen Nagasaki,Matheus Jesus,750052,M,0,13,1,0,0,0.05,,2.0,1100493.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Seung-Gyu Kim,167247,G,1,90,0,0,0,0.0,11.0,0.0,273965.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Sei Muroya,727418,D,1,90,1,0,0,0.05,32.0,1.0,230706.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Alexander Scholz,203755,D,1,90,0,0,0,0.0,34.0,1.0,623062.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Hayato Inamura,1638975,D,1,90,0,0,0,0.0,36.0,1.0,344312.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Kashifu Bangunagande,1089572,D,1,60,0,0,0,0.0,38.0,1.0,264177.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Kein Sato,1544870,M,1,83,0,0,0,0.0,72.0,2.0,882952.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Kento Hashimoto,310872,M,1,90,1,0,0,0.03,74.0,2.0,295383.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Takahiro Ko,824618,M,1,79,1,1,0,0.03,76.0,2.0,698277.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Shion Homma,962314,F,1,60,3,2,1,0.3,78.0,3.0,278698.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Motoki Nagakura,1396529,F,1,67,3,1,1,0.24,104.0,3.0,395976.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Marcelo Ryan,1221382,F,1,60,4,2,1,0.72,106.0,3.0,929900.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Kento Hashimoto,1169798,D,0,30,0,0,0,0.0,,1.0,275137.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Fuki Yamada,1134760,M,0,30,0,0,0,0.0,,2.0,409865.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Soma Anzai,1473298,M,0,30,0,0,0,0.0,,2.0,517485.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Teruhito Nakagawa,621514,F,0,23,0,0,0,0.0,,3.0,195892.0
-5803557,2026-08-29,jpn_j1,FC Tokyo,Kyota Tokiwa,1714916,M,0,11,0,0,0,0.0,,2.0,
-5803557,2026-08-29,jpn_j1,FC Tokyo,Hirokazu Ishihara,834648,D,0,7,0,0,0,0.0,,1.0,563701.0
 5803551,2026-08-29,jpn_j1,Mito Hollyhock,Konosuke Nishikawa,1232792,G,1,90,0,0,0,0.0,11.0,0.0,802830.0
 5803551,2026-08-29,jpn_j1,Mito Hollyhock,Takumi Mase,1155058,D,1,90,1,1,0,0.03,32.0,1.0,276917.0
 5803551,2026-08-29,jpn_j1,Mito Hollyhock,Yasuki Kimoto,735811,D,1,90,2,0,0,0.08,34.0,1.0,138764.0
@@ -177176,3 +177048,154 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803655,2026-11-07,jpn_j1,Tokyo Verdy,Kai Shibato,922838,M,0,31,0,0,0,0.0,,2.0,161576.0
 5803655,2026-11-07,jpn_j1,Tokyo Verdy,Yuan Matsuhashi,1134749,M,0,23,1,0,0,0.03,,2.0,257022.0
 5803655,2026-11-07,jpn_j1,Tokyo Verdy,Shimon Teranuma,1373215,F,0,4,0,0,0,0.0,,3.0,339434.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Daniel Schmidt,266895,G,1,90,0,0,0,0.0,11.0,0.0,285051.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Teruki Hara,824427,D,1,90,1,0,0,0.05,33.0,1.0,263558.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Haruya Fujii,930029,D,1,90,1,0,0,0.08,35.0,1.0,884632.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Yota Sato,1227821,D,1,78,0,0,0,0.0,37.0,1.0,231844.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Ryuji Izumi,727950,M,1,90,0,0,0,0.0,62.0,2.0,184953.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Sho Inagaki,523612,M,1,90,2,0,0,0.16,64.0,2.0,247460.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Tomoki Takamine,1062275,M,1,45,3,1,0,0.05,66.0,2.0,607019.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Katsuhiro Nakayama,1011555,M,1,90,1,0,0,0.02,68.0,2.0,263694.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Takuya Uchida,824511,M,1,67,0,0,0,0.0,84.0,2.0,195004.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Yudai Kimura,1337003,M,1,90,1,1,0,0.06,86.0,2.0,682297.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Yuya Yamagishi,733923,F,1,61,1,0,0,0.11,105.0,3.0,312854.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Mateus,671941,M,0,45,2,1,0,0.22,,2.0,500298.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Hidemasa Koda,1155129,M,0,29,0,0,0,0.0,,2.0,270447.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Tsukasa Morishima,727602,M,0,23,0,0,0,0.0,,2.0,463709.0
+5803654,2026-11-07,jpn_j1,Nagoya Grampus,Yuki Nogami,431974,D,0,12,0,0,0,0.0,,1.0,156271.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Halls,1282076,G,1,90,0,0,0,0.0,11.0,0.0,199703.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Hisashi Tawiah,1155059,D,1,90,0,0,0,0.0,33.0,1.0,189718.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Yoshinori Suzuki,628316,D,1,90,0,0,0,0.0,35.0,1.0,188785.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Takaaki Shichi,747904,M,1,90,1,0,0,0.05,37.0,2.0,159653.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Sung-Jun Yoon,1793782,M,1,89,1,1,1,0.12,62.0,2.0,668373.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Shimpei Fukuoka,941492,M,1,89,1,1,0,0.02,64.0,2.0,601076.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,João Pedro,1281588,M,1,90,0,0,0,0.0,66.0,2.0,
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Kyo Sato,1337015,D,1,90,0,0,0,0.0,68.0,1.0,337767.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Alex Negueba,1288263,F,1,58,3,2,1,0.26,84.0,3.0,384337.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Haruki Arai,1285959,F,1,89,4,1,0,0.26,86.0,3.0,286453.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Rafael Elias,931201,F,1,90,3,1,0,0.06,105.0,3.0,1785208.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Takumi Kato,1337761,F,0,32,0,0,0,0.0,,3.0,179386.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Masaya Okugawa,647450,F,0,1,0,0,0,0.0,,3.0,369952.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Shun Nagasawa,116604,F,0,1,0,0,0,0.0,,3.0,142761.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Hiroto Morooka,1388022,M,0,1,0,0,0,0.0,,2.0,181697.0
+5803654,2026-11-07,jpn_j1,Kyoto Sanga FC,Ryuma Nakano,1612519,M,0,1,0,0,0,0.0,,2.0,241655.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Takumi Nagaishi,659439,G,1,90,0,0,0,0.0,11.0,0.0,177518.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Takumi Kamijima,955323,D,1,90,1,0,0,0.21,33.0,1.0,207880.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Kennedy Egbus Mikuni,1010712,D,1,90,0,0,0,0.0,35.0,1.0,455601.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Teppei Oka,1089571,D,1,90,1,0,0,0.04,37.0,1.0,
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Masato Yuzawa,727962,M,1,46,0,0,0,0.0,62.0,2.0,165755.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Keiya Shiihashi,727865,M,1,86,0,0,0,0.0,64.0,2.0,225527.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Tomoya Miki,1067661,M,1,90,1,0,0,0.02,66.0,2.0,851691.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Yu Hashimoto,1611147,M,1,63,0,0,0,0.0,68.0,2.0,386494.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Shu Morooka,1437166,M,1,90,2,0,0,0.09,84.0,2.0,296216.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Shintaro Nago,955321,M,1,63,3,1,0,0.14,86.0,2.0,343272.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Werik Popó,1400722,F,1,63,0,0,0,0.0,105.0,3.0,259423.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Masato Shigemi,1469704,M,0,45,1,0,0,0.02,,2.0,265196.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Kohei Okuno,922826,M,0,27,2,0,0,0.06,,2.0,351163.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Sonosuke Sato,1742460,M,0,27,2,1,0,0.02,,2.0,210474.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Shosei Usui,1614808,F,0,27,1,1,1,0.05,,3.0,259649.0
+5803648,2026-11-07,jpn_j1,Avispa Fukuoka,Hiroki Akino,402601,M,0,4,0,0,0,0.0,,2.0,146430.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Masaaki Goto,833022,G,1,90,0,0,0,0.0,11.0,0.0,220157.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Ikki Arai,727872,D,1,45,1,0,0,0.01,33.0,1.0,163100.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Kanta Doi,1436733,D,1,90,0,0,0,0.0,35.0,1.0,796498.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Yusei Egawa,1134726,D,1,90,0,0,0,0.0,37.0,1.0,218126.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Hijiri Onaga,825997,M,1,90,1,0,0,0.02,62.0,2.0,211705.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Hotaru Yamaguchi,176201,M,1,90,0,0,0,0.0,64.0,2.0,263236.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Motoki Hasegawa,1171972,M,1,69,0,0,0,0.0,66.0,2.0,468781.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Shunya Yoneda,922801,M,1,90,0,0,0,0.0,68.0,2.0,206221.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Matheus Jesus,750052,M,1,81,1,0,0,0.01,84.0,2.0,1106384.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Kenshin Yasuda,1372205,M,1,69,2,1,1,0.07,86.0,2.0,299882.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Ryogo Yamasaki,490050,F,1,58,0,0,0,0.0,105.0,3.0,161297.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Ryosuke Shindo,648375,D,0,44,0,0,0,0.0,,1.0,350951.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Tenmu Matsumoto,1690874,M,0,32,1,0,0,0.07,,2.0,256727.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Diego Pituca,724110,M,0,21,0,0,0,0.0,,2.0,224069.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Yuto Iwasaki,826010,M,0,21,0,0,0,0.0,,2.0,263727.0
+5803648,2026-11-07,jpn_j1,V-Varen Nagasaki,Thiago Santana,645763,F,0,9,0,0,0,0.0,,3.0,311545.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Hiroki Iikura,20626,G,1,90,0,0,0,0.0,11.0,0.0,50000.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Takuto Kimura,1436609,D,1,61,0,0,0,0.0,32.0,1.0,222480.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Jeison Quiñónes,1022346,D,1,90,1,1,0,0.18,34.0,1.0,590579.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Kosei Suwama,1714755,D,1,90,0,0,0,0.0,36.0,1.0,390811.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Toichi Suzuki,887706,D,1,61,0,0,0,0.0,38.0,1.0,231020.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Riku Yamane,1337783,M,1,90,1,0,0,0.05,64.0,2.0,892769.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Kosuke Matsumura,1477971,M,1,70,2,0,0,0.16,66.0,2.0,
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Tomoki Kondo,1266580,F,1,90,1,1,1,0.19,83.0,3.0,364373.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Daiya Tono,862605,M,1,49,0,0,0,0.0,85.0,2.0,267899.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Ryo Miyaichi,245422,F,1,70,1,0,0,0.02,87.0,3.0,199494.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Kaina Tanimura,1380687,F,1,90,3,0,0,0.38,115.0,3.0,981170.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Taisei Inoue,1611216,D,0,41,0,0,0,0.0,,1.0,502087.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Ryotaro Tsunoda,1194458,D,0,29,0,0,0,0.0,,1.0,470259.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Jun Amano,523739,M,0,29,0,0,0,0.0,,2.0,176614.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,Takuya Kida,309930,M,0,20,0,0,0,0.0,,2.0,225527.0
+5803656,2026-11-07,jpn_j1,Yokohama F.Marinos,George Onaiwu,1387864,F,0,20,0,0,0,0.0,,3.0,224155.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Lennart Moser,934832,G,1,90,0,0,0,0.0,11.0,0.0,278388.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Soichiro Mori,1735106,D,1,90,0,0,0,0.0,33.0,1.0,710458.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Yugo Tatsuta,824563,D,1,90,0,0,0,0.0,35.0,1.0,405859.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Yoshitake Suzuki,824515,D,1,79,0,0,0,0.0,37.0,1.0,186445.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Haruka Motoyama,1337276,M,1,65,1,0,0,0.05,62.0,2.0,317243.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Eiji Miyamoto,1385784,M,1,90,1,0,0,0.05,64.0,2.0,187464.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Oberdan,1359812,M,1,90,1,0,0,0.03,66.0,2.0,
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Towa Yamane,922601,M,1,78,2,1,0,0.17,68.0,2.0,222323.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Kota Kawano,1110789,M,1,65,1,0,0,0.12,84.0,2.0,286447.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Ataru Esaka,624056,M,1,90,3,0,0,0.34,86.0,2.0,223621.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Noah Kenshin Browne,1237563,M,1,71,4,3,1,1.0,105.0,2.0,353696.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Masaya Matsumoto,430846,M,0,25,0,0,0,0.0,,2.0,377423.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Sang-Ho Na,828055,M,0,25,1,1,0,0.3,,2.0,442788.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Léo Gaúcho,1379435,F,0,19,0,0,0,0.0,,3.0,
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Ryo Takeuchi,166868,M,0,12,0,0,0,0.0,,2.0,124670.0
+5803656,2026-11-07,jpn_j1,Fagiano Okayama FC,Yota Fujii,1611329,M,0,11,0,0,0,0.0,,2.0,302278.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Seung-Gyu Kim,167247,G,1,90,0,0,0,0.0,11.0,0.0,269464.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Rio Omori,1215511,D,1,90,1,0,0,0.04,32.0,1.0,258503.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Alexander Scholz,203755,D,1,90,0,0,0,0.0,34.0,1.0,623062.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Hayato Inamura,1638975,D,1,90,1,0,0,0.0,36.0,1.0,264916.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Kashifu Bangunagande,1089572,D,1,37,0,0,0,0.0,38.0,1.0,241787.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Kota Tawaratsumida,1436732,M,1,70,1,0,0,0.07,72.0,2.0,990813.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Shuto Nagano,1838730,D,1,90,0,0,0,0.0,74.0,1.0,402628.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Takahiro Ko,824618,M,1,90,1,0,0,0.02,76.0,2.0,863017.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Soma Anzai,1473298,M,1,90,1,0,0,0.15,78.0,2.0,401222.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Teruhito Nakagawa,621514,F,1,70,0,0,0,0.0,104.0,3.0,225699.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Motoki Nagakura,1396529,F,1,89,3,2,1,0.43,106.0,3.0,449320.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Kento Hashimoto,1169798,D,0,53,1,0,0,0.05,,1.0,272550.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Shion Homma,962314,M,0,20,0,0,0,0.0,,2.0,284671.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Dani Gómez,863166,F,0,20,2,1,1,0.46,,3.0,439363.0
+5803650,2026-11-07,jpn_j1,FC Tokyo,Marcelo Ryan,1221382,F,0,1,0,0,0,0.0,,3.0,807326.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Tomoki Hayakawa,1232143,G,1,90,0,0,0,0.0,11.0,0.0,1471449.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Ryuta Koike,728445,D,1,84,1,0,0,0.12,32.0,1.0,169212.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Naomichi Ueda,430831,D,1,90,0,0,0,0.0,34.0,1.0,602817.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Ikuma Sekigawa,1028353,D,1,90,1,0,0,0.04,36.0,1.0,560894.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Ryoya Ogawa,727419,D,1,70,1,0,0,0.03,38.0,1.0,705202.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Yuta Matsumura,1133794,M,1,90,1,0,0,0.01,72.0,2.0,508767.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Yuta Higuchi,1011554,M,1,46,0,0,0,0.0,74.0,2.0,353819.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Matheus Bueno,1173576,M,1,70,1,0,0,0.02,76.0,2.0,624787.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,José Elber,290120,M,1,56,0,0,0,0.0,78.0,2.0,237605.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Léo Ceará,558007,F,1,90,1,0,0,0.02,104.0,3.0,1456851.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Yuma Suzuki,619621,F,1,90,0,0,0,0.0,106.0,3.0,1505575.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Gaku Shibasaki,262394,M,0,44,0,0,0,0.0,,2.0,184163.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Aleksandar Čavrić,364496,M,0,34,1,1,0,0.03,,2.0,625242.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Haruki Hayashi,1899991,M,0,20,0,0,0,0.0,,2.0,
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Kento Misao,648364,M,0,20,0,0,0,0.0,,2.0,343071.0
+5803650,2026-11-07,jpn_j1,Kashima Antlers,Haruto Matsumoto,1744439,D,0,6,0,0,0,0.0,,1.0,322477.0
+1000017576,2026-11-07,aus_aleague,Auckland FC,Michael Woud,848317,G,1,90,0,0,0,0.0,11.0,0.0,125670.0
+1000017576,2026-11-07,aus_aleague,Auckland FC,Hiroki Sakai,116645,D,1,90,0,0,0,0.0,32.0,1.0,110422.0
+1000017576,2026-11-07,aus_aleague,Auckland FC,Ronan Wynne,1201124,D,1,90,1,0,0,0.02,34.0,1.0,218110.0
+1000017576,2026-11-07,aus_aleague,Auckland FC,Nando Pijnaker,1053731,D,1,90,1,0,0,0.07,36.0,1.0,135593.0
+1000017576,2026-11-07,aus_aleague,Auckland FC,Francis De Vries,825593,D,1,90,1,0,0,0.04,38.0,1.0,334913.0
+1000017576,2026-11-07,aus_aleague,Auckland FC,Daniel Normann,1909353,M,1,90,0,0,0,0.0,64.0,2.0,151706.0
+1000017576,2026-11-07,aus_aleague,Auckland FC,Luis Gallegos,206847,M,1,90,2,0,0,0.07,66.0,2.0,117492.0
+1000017576,2026-11-07,aus_aleague,Auckland FC,Callan Elliot,1013276,F,1,79,1,1,0,0.02,83.0,3.0,134751.0
+1000017576,2026-11-07,aus_aleague,Auckland FC,Lachlan Bayliss,1565865,M,1,88,2,0,0,0.12,85.0,2.0,458360.0
+1000017576,2026-11-07,aus_aleague,Auckland FC,Logan Rogerson,676431,F,1,90,2,0,0,0.24,87.0,3.0,154164.0
+1000017576,2026-11-07,aus_aleague,Auckland FC,Sam Cosgrove,609501,F,1,90,6,1,0,0.45,115.0,3.0,260385.0
+1000017576,2026-11-07,aus_aleague,Auckland FC,Lachlan Brook,845381,F,0,11,2,1,0,0.18,,3.0,500181.0
+1000017576,2026-11-07,aus_aleague,Auckland FC,Isa Prins,1689129,M,0,2,0,0,0,0.0,,2.0,
+1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Henry Gray,1325762,G,1,90,0,0,0,0.0,11.0,0.0,267921.0
+1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Matthew Sheridan,1541879,D,1,90,0,0,0,0.0,32.0,1.0,336910.0
+1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Bill Poni Tuiloma,505792,D,1,90,1,1,0,0.02,34.0,1.0,207936.0
+1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Lukas Kelly-Heald,1477435,D,1,90,0,0,0,0.0,36.0,1.0,587330.0
+1000017576,2026-11-07,aus_aleague,Wellington Phoenix,James McGarry,686053,D,1,90,0,0,0,0.0,38.0,1.0,217409.0
+1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Bryce Duke,1134447,M,1,90,3,0,0,0.12,72.0,2.0,374674.0
+1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Max Anderson,1050300,M,1,90,0,0,0,0.0,74.0,2.0,298927.0
+1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Alex Rufer,519240,M,1,90,1,0,0,0.01,76.0,2.0,340544.0
+1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Kazuki Nagasawa,459493,M,1,90,1,0,0,0.32,78.0,2.0,111390.0
+1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Corban Piper,1680420,F,1,90,0,0,0,0.0,104.0,3.0,227097.0
+1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Rafael Durán,861895,F,1,73,3,1,0,0.37,106.0,3.0,351369.0
+1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Riley Bidois,1353588,F,0,17,0,0,0,0.0,,3.0,254832.0
