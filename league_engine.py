@@ -1355,11 +1355,18 @@ CRECIMIENTO_MAXIMO = float(os.environ.get('CRECIMIENTO_MAXIMO_HISTORICO',
                                           '2.0'))
 
 
+def _escribir_historico(ruta: str, df) -> None:
+    """Escribe de golpe: quien lo lea a la vez ve el archivo entero, el viejo o el nuevo."""
+    temporal = f'{ruta}.{os.getpid()}.tmp'
+    df.to_csv(temporal, index=False)
+    os.replace(temporal, ruta)
+
+
 def _guardar_historico(clave: str, df) -> None:
     """Escribe `historico_<clave>.csv`, salvo que sea una pérdida de datos."""
     ruta = f'historico_{clave}.csv'
     if os.environ.get('PERMITIR_HISTORICO_MENOR') == '1':
-        df.to_csv(ruta, index=False)
+        _escribir_historico(ruta, df)
         return
     previas = 0
     if os.path.exists(ruta):
@@ -1396,7 +1403,7 @@ def _guardar_historico(clave: str, df) -> None:
             f'% menos). NO se sobrescribe ni se reentrena: casi siempre es la '
             f'fuente caída, no una temporada que desaparece. '
             f'PERMITIR_HISTORICO_MENOR=1 si esta vez es a propósito.')
-    df.to_csv(ruta, index=False)
+    _escribir_historico(ruta, df)
 
 
 def entrenar_liga(clave: str, con_ratings: bool = False) -> Dict:
@@ -3117,6 +3124,47 @@ class ClubEngine:
         }
 
 
+def _entrenar_una(clave: str, con_ratings: bool = False):
+    """Entrena una liga y dice cómo fue: un fallo puntual no aborta a las demás."""
+    try:
+        r = entrenar_liga(clave, con_ratings=con_ratings)
+        return clave, ('saltada' if isinstance(r, dict) and r.get('reentrenado') is False else 'hecha'), None
+    except Exception as e:
+        return clave, 'fallo', f'{type(e).__name__}: {e}'
+
+
+def _iniciar_proceso(forzar: bool) -> None:
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    globals()['FORZAR_REENTRENO'] = forzar
+
+
+def _entrenar_en_paralelo(claves, con_ratings: bool, procesos: int):
+    """Una liga por proceso, cada una con un solo hilo, para no pedirle más núcleos de los que hay.
+
+    Cada liga escribe sólo sus archivos (comprobado listando lo que toca). Las que se agrupan con otras
+    (`agrupar_con`) leen el histórico de esas otras, así que van cuando ya terminaron, igual que en serie.
+    Se usa `spawn` porque los hilos de las librerías de modelos no aguantan un `fork`.
+    """
+    import multiprocessing as mp
+    from concurrent.futures import ProcessPoolExecutor
+
+    for var in ('LOKY_MAX_CPU_COUNT', 'OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS'):
+        os.environ[var] = '1'
+    primero = [c for c in claves if not LEAGUES[c].get('agrupar_con')]
+    despues = [c for c in claves if LEAGUES[c].get('agrupar_con')]
+    resultados = []
+    with ProcessPoolExecutor(procesos, mp_context=mp.get_context('spawn'), initializer=_iniciar_proceso,
+                             initargs=(FORZAR_REENTRENO,)) as pool:
+        for tanda in (primero, despues):
+            futuros = {c: pool.submit(_entrenar_una, c, con_ratings) for c in tanda}
+            for c, f in futuros.items():
+                try:
+                    resultados.append(f.result())
+                except Exception as e:   # el proceso murió entero (p. ej. sin memoria)
+                    resultados.append((c, 'fallo', f'{type(e).__name__}: {e}'))
+    return resultados
+
+
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     con_ratings = '--ratings' in sys.argv
@@ -3129,19 +3177,25 @@ if __name__ == '__main__':
         globals()['FORZAR_REENTRENO'] = True
     if '--build' in sys.argv:
         _saltadas, _hechas = [], []
+        _claves = []
         for clave, cfg in LEAGUES.items():
             if not cfg.get('disponible'):
                 logger.info(f"[{clave}] omitida: {cfg.get('nota', 'no disponible')}")
                 continue
             if objetivo and clave != objetivo:
                 continue
-            try:
-                _r = entrenar_liga(clave, con_ratings=con_ratings)
-                if isinstance(_r, dict) and _r.get('reentrenado') is False:
-                    _saltadas.append(clave)
-                else:
-                    _hechas.append(clave)
-            except Exception as e:
-                logger.error(f"[{clave}] falló: {type(e).__name__}: {e}")
+            _claves.append(clave)
+        _procesos = int(os.environ.get('ENTRENAR_PROCESOS') or 1)
+        if _procesos > 1 and len(_claves) > 1:
+            _resultados = _entrenar_en_paralelo(_claves, con_ratings, _procesos)
+        else:
+            _resultados = [_entrenar_una(c, con_ratings) for c in _claves]
+        for clave, _estado, _error in _resultados:
+            if _estado == 'saltada':
+                _saltadas.append(clave)
+            elif _estado == 'hecha':
+                _hechas.append(clave)
+            else:
+                logger.error(f"[{clave}] falló: {_error}")
         logger.info(f"reentrenadas {len(_hechas)}, sin datos nuevos "
                     f"{len(_saltadas)} ({', '.join(_saltadas) or 'ninguna'})")
