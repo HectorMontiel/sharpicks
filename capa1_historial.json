@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-07T11:33:22Z",
+"actualizado": "2026-11-07T13:04:19Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -25321,6 +25321,16 @@
 "cuota": 3.0,
 "resultado": "rojo",
 "marcador": "0-2"
+},
+{
+"dia": "2026-11-07",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Hlinsko vs Letohrad",
+"apuesta": "Gana Hlinsko",
+"cuota": 1.75,
+"resultado": "rojo",
+"marcador": "3-3"
 }
 ]
 }
