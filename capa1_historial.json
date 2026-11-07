@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-07T05:05:52Z",
+"actualizado": "2026-11-07T06:46:56Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -24516,6 +24516,16 @@
 "dia": "2026-11-06",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Atlante vs Santos Laguna",
+"apuesta": "Gana Atlante",
+"cuota": 2.2223,
+"resultado": "rojo",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Atlético Grau vs Cusco FC",
 "apuesta": "Gana Atlético Grau",
 "cuota": 2.95,
@@ -25161,6 +25171,16 @@
 "cuota": 1.96,
 "resultado": "rojo",
 "marcador": "0-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Shimizu S-Pulse vs Verdy",
+"apuesta": "Gana Verdy",
+"cuota": 3.2,
+"resultado": "verde",
+"marcador": "0-1"
 },
 {
 "dia": "2026-11-06",
