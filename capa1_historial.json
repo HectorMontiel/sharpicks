@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-07T01:53:25Z",
+"actualizado": "2026-11-07T03:30:21Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -24496,6 +24496,26 @@
 "dia": "2026-11-06",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Atl. San Luis vs Juarez",
+"apuesta": "Gana Atl. San Luis",
+"cuota": 1.7273,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Atl. San Luis vs Juarez",
+"apuesta": "Atl. San Luis o empate",
+"cuota": 1.2,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Atlético Grau vs Cusco FC",
 "apuesta": "Gana Atlético Grau",
 "cuota": 2.95,
@@ -24571,6 +24591,16 @@
 "cuota": 1.59,
 "resultado": "verde",
 "marcador": "3-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🏆",
+"deporte": "NHL",
+"partido": "Buffalo Sabres vs Columbus Blue Jackets",
+"apuesta": "Handicap: Buffalo Sabres +2.5",
+"cuota": 1.1,
+"resultado": "verde",
+"marcador": "5-2"
 },
 {
 "dia": "2026-11-06",
@@ -24811,6 +24841,16 @@
 "cuota": 4.2,
 "resultado": "rojo",
 "marcador": "1-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🏆",
+"deporte": "Fútbol",
+"partido": "Inca Aruba vs Isidro Metapán",
+"apuesta": "Isidro Metapán o empate",
+"cuota": 1.133,
+"resultado": "verde",
+"marcador": "1-1"
 },
 {
 "dia": "2026-11-06",
@@ -25141,6 +25181,16 @@
 "cuota": 1.74,
 "resultado": "verde",
 "marcador": "2-4"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Tigre vs Sarmiento Junin",
+"apuesta": "Gana Tigre",
+"cuota": 2.04,
+"resultado": "verde",
+"marcador": "1-0"
 },
 {
 "dia": "2026-11-06",
