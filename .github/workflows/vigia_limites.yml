@@ -7,10 +7,12 @@ on:
   schedule:
     - cron: '17 13 * * *'
     - cron: '47 1 * * *'
+    - cron: '17 7 * * *'
   workflow_dispatch:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: vigia-limites
@@ -18,7 +20,7 @@ concurrency:
 
 jobs:
   vigilar:
-    runs-on: ${{ vars.RUNNER_PESADO || 'ubuntu-latest' }}   # sin la variable, runners de GitHub
+    runs-on: ubuntu-latest   # siempre aquí: si el servidor se cae, es quien avisa
     timeout-minutes: 15
     steps:
       # sólo hace falta un archivo: se baja del commit exacto (sin checkout parcial, que envenena runners: test_v519)
@@ -37,4 +39,5 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
           BREVO_REMITENTE: ${{ secrets.BREVO_REMITENTE }}
+          GH_TOKEN: ${{ github.token }}
         run: python3 vigia_limites.py

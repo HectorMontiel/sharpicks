@@ -16,8 +16,8 @@ def ok(nombre, cond):
 
 
 MOVIDOS = {'cuotas_mx', 'precalcular_rosters', 'precalculo_dia', 'radar_diario', 'recalibrar', 'relevo', 'respaldo_base',
-           'retrain_leagues', 'sitio_web', 'telegram_bot', 'telegram_dia_completo', 'vigia_limites'}
-CON_FOTO = MOVIDOS - {'relevo', 'respaldo_base', 'vigia_limites'}
+           'retrain_leagues', 'sitio_web', 'telegram_bot', 'telegram_dia_completo'}
+CON_FOTO = MOVIDOS - {'relevo', 'respaldo_base'}
 VARIABLE = "${{ vars.RUNNER_PESADO || 'ubuntu-latest' }}"
 
 for ruta in sorted(glob.glob('.github/workflows/*.yml')):
@@ -29,7 +29,7 @@ for ruta in sorted(glob.glob('.github/workflows/*.yml')):
     if nombre in MOVIDOS:
         ok('%s: sólo con la variable va al servidor' % nombre, all(j.get('runs-on') == VARIABLE for j in trabajos))
         ok('%s: no lo disparan pull requests' % nombre, 'pull_request' not in disparos and 'pull_request_target' not in disparos)
-    elif nombre != 'prueba_servidor':
+    else:
         ok('%s: sigue en GitHub' % nombre, all(j.get('runs-on') == 'ubuntu-latest' for j in trabajos))
     if nombre in CON_FOTO:
         pasos = [p for j in trabajos for p in j.get('steps', [])]

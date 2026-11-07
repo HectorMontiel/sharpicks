@@ -109,6 +109,7 @@ precalcular_rosters.yml 4 43 0
 retrain_leagues.yml 5 47 0
 radar_diario.yml 6 17 0
 telegram_dia_completo.yml 6 41 180
+vigia_limites.yml 7 17 0
 respaldo_base.yml 9 15 0
 telegram_bot.yml 10 19 180
 vigia_limites.yml 13 17 0

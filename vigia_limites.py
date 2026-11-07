@@ -39,6 +39,7 @@ LIMITES = {
     'altas_dia':     (300, 'correos', 'Subir de plan en Brevo (los correos de alta se cortan a 300 al día).', False),
 }
 NIVELES = (95, 80)
+HORAS_SIN_BARRER = 6
 NOMBRE = {'egreso_mes': 'Tráfico de salida del mes', 'base_mb': 'Tamaño de la base', 'mau': 'Usuarios activos del mes',
           'funciones_mes': 'Llamadas a funciones del mes', 'altas_dia': 'Correos de alta de hoy'}
 UA = {'User-Agent': 'Mozilla/5.0 sharpicks-vigia'}
@@ -207,6 +208,36 @@ def cupo_usuarios(m24: dict) -> int | None:
     return int(LIMITES['egreso_mes'][0] / (por_visita * 30))
 
 
+def horas_sin_barrer(ahora: dt.datetime) -> float | None:
+    """Horas desde el último barrido bueno de las cuotas. None si no se puede saber."""
+    repo, tok = os.environ.get('GITHUB_REPOSITORY'), os.environ.get('GH_TOKEN')
+    if not repo or not tok:
+        return None
+    url = 'https://api.github.com/repos/%s/actions/workflows/cuotas_mx.yml/runs?branch=main&status=success&per_page=1' % repo
+    req = urllib.request.Request(url, headers={**UA, 'Authorization': 'Bearer ' + tok, 'Accept': 'application/vnd.github+json'})
+    try:
+        corridas = json.load(urllib.request.urlopen(req, timeout=30)).get('workflow_runs') or []
+        ultima = dt.datetime.fromisoformat(corridas[0]['created_at'].replace('Z', '+00:00'))
+    except Exception as e:
+        print('vigia: no se pudo leer el último barrido: %s' % type(e).__name__)
+        return None
+    return (ahora - ultima).total_seconds() / 3600
+
+
+def avisar_si_la_cadena_paro(ahora: dt.datetime) -> None:
+    """Una vez al día, si el servidor o la cadena de cuotas dejaron de correr."""
+    horas = horas_sin_barrer(ahora)
+    if horas is None or horas < HORAS_SIN_BARRER:
+        return
+    hoy = ahora.date().isoformat()
+    if sql("select 1 from public.vigia_avisos where mes = '%s' and metrica = 'cadena'" % hoy):
+        return
+    texto = ('🔴 Las cuotas llevan %.0f horas sin actualizarse (lo normal es cada hora y media). '
+             'Revisa que el servidor esté prendido y avísale a Claude.' % horas)
+    if telegram('<b>⚠️ SharPicks: se paró la cadena</b>\n\n' + texto) or correo('⚠️ SharPicks: se paró la cadena', texto):
+        sql("insert into public.vigia_avisos (mes, metrica, nivel) values ('%s', 'cadena', 95) on conflict do nothing" % hoy)
+
+
 def main(seco: bool = False) -> int:
     ahora = dt.datetime.now(dt.timezone.utc).replace(microsecond=0)
     hoy = ahora.date()
@@ -216,8 +247,10 @@ def main(seco: bool = False) -> int:
           % (m24['egreso'] / 1048576, m24['medidas'], m24['kb_mediana'], m24['peticiones'], m24['visitas'], m24['funciones']))
     print('vigia: base %.1f MB · activos del mes %d · usuarios %d · altas 24 h %d · caben ~%s usuarios activos en el plan gratis'
           % (f['base_mb'], f['mau'], f['usuarios'], f['altas_dia'], cupo if cupo is not None else '?'))
+    print('vigia: horas sin barrer las cuotas: %s' % horas_sin_barrer(ahora))
     if seco:
         return 0
+    avisar_si_la_cadena_paro(ahora)
     filas = [('egreso', m24['egreso'], LIMITES['egreso_mes'][0], m24), ('funciones', m24['funciones'], LIMITES['funciones_mes'][0], None),
              ('visitas', m24['visitas'], None, None), ('base_mb', f['base_mb'], 500, None), ('mau', f['mau'], 50000, None),
              ('usuarios', f['usuarios'], None, None), ('altas_dia', f['altas_dia'], 300, None)]
