@@ -54,6 +54,7 @@ Uso:
     precargar('futbol')
     c = cuotas_partido('futbol', 'Guadalajara', 'Puebla')
 """
+import hashlib
 import json
 import logging
 import os
@@ -913,7 +914,30 @@ def _cache_path(nombre: str) -> str:
     return os.path.join(CACHE_DIR, nombre)
 
 
+# v594 — LA FOTO DE PRECIOS. Desde el servidor propio, Cloudflare responde 403 a
+# las dos únicas fuentes que no tienen otra puerta exacta (Pinnacle y Playdoit).
+# No se intenta pasar: una tarea de GitHub, donde esas lecturas ya corren hoy,
+# deja las respuestas en una foto (`foto_precios.py`) y el servidor las lee.
+#
+#   FOTO_PRECIOS_GRABAR=1   (GitHub)    guarda las respuestas de Pinnacle
+#   FOTO_PRECIOS_TTL=<seg>  (servidor)  lee la foto y NO toca esas dos fuentes
+#
+# Sin esas variables, todo se comporta exactamente igual que antes.
+FOTO_TTL = int(os.environ.get('FOTO_PRECIOS_TTL') or 0)
+FOTO_GRABAR = bool(os.environ.get('FOTO_PRECIOS_GRABAR'))
+_FOTO_FUENTES = (PIN_BASE, 'https://sb2frontend-altenar2.biahosted.com/')
+_FOTO_CACHES = ('pinnacle_', 'playdoit_', 'foto_raw_')
+
+
+def _foto_clave(url: str, params=None) -> str:
+    """El nombre de una respuesta grabada: la misma consulta, el mismo nombre."""
+    texto = url + '?' + json.dumps(sorted((params or {}).items()), default=str)
+    return 'foto_raw_%s.json' % hashlib.sha1(texto.encode('utf-8')).hexdigest()[:20]
+
+
 def _leer_cache(clave: str, ttl: int = TTL):
+    if FOTO_TTL and clave.startswith(_FOTO_CACHES):
+        ttl = max(ttl, FOTO_TTL)
     p = _cache_path(clave)
     if os.path.exists(p) and time.time() - os.path.getmtime(p) < ttl:
         try:
@@ -933,12 +957,17 @@ def _escribir_cache(clave: str, datos) -> None:
 
 
 def _get(url, params=None, headers=None, timeout=40, intentos=3):
+    if FOTO_TTL and str(url).startswith(_FOTO_FUENTES):
+        return _leer_cache(_foto_clave(url, params))     # v594: nunca a la red
     for i in range(intentos):
         try:
             r = requests.get(url, params=params, headers=headers or PIN_HEADERS,
                              timeout=timeout)
             r.raise_for_status()
-            return r.json()
+            datos = r.json()
+            if FOTO_GRABAR and str(url).startswith(PIN_BASE):
+                _escribir_cache(_foto_clave(url, params), datos)
+            return datos
         except Exception as e:
             if i == intentos - 1:
                 logger.debug(f"[cuotas] {url}: {type(e).__name__}: {e}")

@@ -1,0 +1,43 @@
+name: Foto de precios
+
+# v594 — Baja los precios de las dos fuentes que no responden al servidor propio y
+# los deja en un paquete. Va sólo a mano hasta que se autorice el paso al servidor.
+# Ver `foto_precios.py`.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: foto-precios
+  cancel-in-progress: false
+
+jobs:
+  foto:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        run: pip install --quiet requests pandas numpy
+
+      - name: Bajar y empaquetar
+        run: python foto_precios.py --generar
+
+      - name: Publicar el paquete
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view foto-precios >/dev/null 2>&1 || \
+            gh release create foto-precios --title "Foto de precios" --notes "Paquete automatico" --prerelease --latest=false
+          gh release upload foto-precios foto_precios.tar.gz --clobber
