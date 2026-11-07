@@ -14084,21 +14084,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5887559,2026-08-07,primeira,Estoril,Pedro Carvalho,1525164,M,0,24,0,0,0,0.0,,2.0,870339.0
 5887559,2026-08-07,primeira,Estoril,Jandro Orellana,1070191,M,0,7,0,0,0,0.0,,2.0,680197.0
 5887559,2026-08-07,primeira,Estoril,Tiago Brito,1459916,M,0,3,0,0,0,0.0,,2.0,346147.0
-5887559,2026-08-07,primeira,Famalicao,Lazar Carevic,727379,G,1,90,0,0,0,0.0,11.0,0.0,1945577.0
-5887559,2026-08-07,primeira,Famalicao,Rodrigo Pinheiro,1080508,D,1,90,0,0,0,0.0,32.0,1.0,1935177.0
-5887559,2026-08-07,primeira,Famalicao,Léo Realpe,1031759,D,1,90,0,0,0,0.0,34.0,1.0,1759962.0
-5887559,2026-08-07,primeira,Famalicao,Finn van Breemen,1363788,D,1,90,0,0,0,0.0,36.0,1.0,1377657.0
-5887559,2026-08-07,primeira,Famalicao,Pedro Bondo,1230671,D,1,90,0,0,0,0.0,38.0,1.0,2015488.0
-5887559,2026-08-07,primeira,Famalicao,Tommie van de Looi,869364,M,1,90,1,0,0,0.02,64.0,2.0,
-5887559,2026-08-07,primeira,Famalicao,Mathias De Amorim,1527142,M,1,90,0,0,0,0.0,66.0,2.0,5511932.0
-5887559,2026-08-07,primeira,Famalicao,Gil Dias,566467,F,1,77,1,1,0,0.15,83.0,3.0,1198000.0
-5887559,2026-08-07,primeira,Famalicao,Pedro Santos,1356599,M,1,66,0,0,0,0.0,85.0,2.0,711180.0
-5887559,2026-08-07,primeira,Famalicao,Sorriso,1257305,F,1,77,1,1,0,0.1,87.0,3.0,3736924.0
-5887559,2026-08-07,primeira,Famalicao,Georgios Koutsias,1169353,F,1,83,1,1,1,0.9,115.0,3.0,1599222.0
-5887559,2026-08-07,primeira,Famalicao,Tamás Szucs,1315571,M,0,24,0,0,0,0.0,,2.0,1713150.0
-5887559,2026-08-07,primeira,Famalicao,Roméo Beney,1481890,F,0,13,1,0,0,0.01,,3.0,1657195.0
-5887559,2026-08-07,primeira,Famalicao,Óscar Aranda,1208987,F,0,12,0,0,0,0.0,,3.0,1325827.0
-5887559,2026-08-07,primeira,Famalicao,Umar Abubakar,1783963,F,0,7,1,0,0,0.29,,3.0,916892.0
 5840286,2026-08-07,eng_carabao,Middlesbrough,Solomon Brynn,1123524,G,1,90,0,0,0,0.0,11.0,0.0,2700971.0
 5840286,2026-08-07,eng_carabao,Middlesbrough,Callum Brittain,716852,D,1,90,0,0,0,0.0,32.0,1.0,2603324.0
 5840286,2026-08-07,eng_carabao,Middlesbrough,Luke Ayling,190666,D,1,90,0,0,0,0.0,34.0,1.0,540670.0
@@ -14877,22 +14862,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5887566,2026-08-08,primeira,Vitoria de Guimaraes,Matija Mitrovic,1553104,M,0,12,0,0,0,0.0,,2.0,2154632.0
 5887566,2026-08-08,primeira,Vitoria de Guimaraes,Miguel Nogueira,1793477,F,0,12,1,0,0,0.11,,3.0,800072.0
 5887566,2026-08-08,primeira,Vitoria de Guimaraes,Lohann Doucet,1327518,M,0,1,0,0,0,0.0,,2.0,580480.0
-5887566,2026-08-08,primeira,Arouca,Ignacio de Arruabarrena,630168,G,1,90,0,0,0,0.0,11.0,0.0,836204.0
-5887566,2026-08-08,primeira,Arouca,Tiago Esgaio,816222,D,1,90,1,0,0,0.02,32.0,1.0,595093.0
-5887566,2026-08-08,primeira,Arouca,Javi Sánchez,683761,D,1,73,0,0,0,0.0,34.0,1.0,381301.0
-5887566,2026-08-08,primeira,Arouca,Jose Fontán,1160390,D,1,90,0,0,0,0.0,36.0,1.0,1003549.0
-5887566,2026-08-08,primeira,Arouca,Mateo Flores,1664552,M,1,65,0,0,0,0.0,38.0,2.0,1096797.0
-5887566,2026-08-08,primeira,Arouca,Taichi Fukui,1269404,M,1,90,0,0,0,0.0,64.0,2.0,1743176.0
-5887566,2026-08-08,primeira,Arouca,Espen van Ee,1526602,M,1,69,0,0,0,0.0,66.0,2.0,1256820.0
-5887566,2026-08-08,primeira,Arouca,Alfonso Trezza,1139353,F,1,90,0,0,0,0.0,83.0,3.0,945721.0
-5887566,2026-08-08,primeira,Arouca,Hyun-Ju Lee,1328820,M,1,70,0,0,0,0.0,85.0,2.0,1609285.0
-5887566,2026-08-08,primeira,Arouca,Naïs Djouahra,770328,F,1,90,2,1,0,0.04,87.0,3.0,944801.0
-5887566,2026-08-08,primeira,Arouca,Barbero,1027396,F,1,65,1,1,1,0.37,115.0,3.0,762088.0
-5887566,2026-08-08,primeira,Arouca,Orest Lebedenko,864304,D,0,25,0,0,0,0.0,,1.0,513759.0
-5887566,2026-08-08,primeira,Arouca,Dylan Nandín,1350681,F,0,25,0,0,0,0.0,,3.0,1083600.0
-5887566,2026-08-08,primeira,Arouca,Pedro Santos,1356299,M,0,21,0,0,0,0.0,,2.0,653489.0
-5887566,2026-08-08,primeira,Arouca,Pablo Gozálbez,1118703,M,0,20,0,0,0,0.0,,2.0,634482.0
-5887566,2026-08-08,primeira,Arouca,Diogo Monteiro,1218999,D,0,17,0,0,0,0.0,,1.0,713448.0
 5840313,2026-08-08,eng_carabao,Colchester United,Thimothée Lo-Tutala,1409928,G,1,90,0,0,0,0.0,11.0,0.0,571544.0
 5840313,2026-08-08,eng_carabao,Colchester United,Jack Tucker,886088,D,1,45,1,0,0,0.05,33.0,1.0,258616.0
 5840313,2026-08-08,eng_carabao,Colchester United,Sean Raggett,564724,D,1,90,0,0,0,0.0,35.0,1.0,88132.0
@@ -177172,3 +177141,34 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5781802,2026-11-06,eredivisie,PEC Zwolle,Thijs Oosting,932541,M,0,16,0,0,0,0.0,,2.0,872311.0
 5781802,2026-11-06,eredivisie,PEC Zwolle,Nick Fichtinger,1529480,M,0,5,0,0,0,0.0,,2.0,733054.0
 5781802,2026-11-06,eredivisie,PEC Zwolle,Gabriël Reiziger,1701453,F,0,5,0,0,0,0.0,,3.0,576840.0
+5887675,2026-11-06,primeira,Famalicão,Lazar Carević,727379,G,1,90,0,0,0,0.0,11.0,0.0,3901927.0
+5887675,2026-11-06,primeira,Famalicão,Gustavo Garcia,1256650,D,1,90,2,0,0,0.28,32.0,1.0,1347254.0
+5887675,2026-11-06,primeira,Famalicão,Víctor Rofino,1324047,D,1,90,0,0,0,0.0,34.0,1.0,1318926.0
+5887675,2026-11-06,primeira,Famalicão,Finn van Breemen,1363788,D,1,90,1,0,0,0.01,36.0,1.0,1846203.0
+5887675,2026-11-06,primeira,Famalicão,Pedro Bondo,1230671,D,1,90,0,0,0,0.0,38.0,1.0,1872577.0
+5887675,2026-11-06,primeira,Famalicão,Tommie van de Looi,869364,M,1,90,1,1,0,0.02,64.0,2.0,1916538.0
+5887675,2026-11-06,primeira,Famalicão,Mathias De Amorim,1527142,M,1,90,1,0,0,0.1,66.0,2.0,13973370.0
+5887675,2026-11-06,primeira,Famalicão,Roméo Beney,1481890,F,1,74,3,2,0,0.08,83.0,3.0,1553987.0
+5887675,2026-11-06,primeira,Famalicão,Pedro Santos,1356599,M,1,66,1,0,0,0.04,85.0,2.0,679352.0
+5887675,2026-11-06,primeira,Famalicão,Sorriso,1257305,F,1,65,0,0,0,0.0,87.0,3.0,6249467.0
+5887675,2026-11-06,primeira,Famalicão,Georgios Koutsias,1169353,F,1,74,0,0,0,0.0,115.0,3.0,3922210.0
+5887675,2026-11-06,primeira,Famalicão,Paulo Moreira,1203521,M,0,24,1,1,1,0.09,,2.0,1177398.0
+5887675,2026-11-06,primeira,Famalicão,Óscar Aranda,1208987,F,0,24,2,0,0,0.08,,3.0,2184741.0
+5887675,2026-11-06,primeira,Famalicão,Gil Dias,566467,F,0,16,1,0,0,0.02,,3.0,1174476.0
+5887675,2026-11-06,primeira,Famalicão,Patricio Salas,1513185,F,0,16,1,1,0,0.03,,3.0,4738011.0
+5887675,2026-11-06,primeira,Arouca,Ignacio de Arruabarrena,630168,G,1,90,0,0,0,0.0,11.0,0.0,900559.0
+5887675,2026-11-06,primeira,Arouca,Tiago Esgaio,816222,D,1,90,0,0,0,0.0,32.0,1.0,588911.0
+5887675,2026-11-06,primeira,Arouca,Javi Sánchez,683761,D,1,90,0,0,0,0.0,34.0,1.0,572969.0
+5887675,2026-11-06,primeira,Arouca,Jose Fontán,1160390,D,1,90,0,0,0,0.0,36.0,1.0,1399181.0
+5887675,2026-11-06,primeira,Arouca,Orest Lebedenko,864304,D,1,90,0,0,0,0.0,38.0,1.0,515499.0
+5887675,2026-11-06,primeira,Arouca,Espen van Ee,1526602,M,1,90,0,0,0,0.0,64.0,2.0,1581028.0
+5887675,2026-11-06,primeira,Arouca,Taichi Fukui,1269404,M,1,77,0,0,0,0.0,66.0,2.0,7851065.0
+5887675,2026-11-06,primeira,Arouca,Alfonso Trezza,1139353,F,1,56,0,0,0,0.0,83.0,3.0,915688.0
+5887675,2026-11-06,primeira,Arouca,Mateo Flores,1664552,M,1,56,1,0,0,0.01,85.0,2.0,1098044.0
+5887675,2026-11-06,primeira,Arouca,Naïs Djouahra,770328,F,1,77,3,1,0,0.09,87.0,3.0,1235819.0
+5887675,2026-11-06,primeira,Arouca,Barbero,1027396,F,1,69,0,0,0,0.0,115.0,3.0,1820946.0
+5887675,2026-11-06,primeira,Arouca,Brian Mansilla,1353472,M,0,34,0,0,0,0.0,,2.0,855283.0
+5887675,2026-11-06,primeira,Arouca,Pablo Gozálbez,1118703,M,0,34,2,2,0,0.05,,2.0,671120.0
+5887675,2026-11-06,primeira,Arouca,Dylan Nandín,1350681,F,0,21,1,0,0,0.19,,3.0,1076426.0
+5887675,2026-11-06,primeira,Arouca,Hyun-Ju Lee,1328820,M,0,13,0,0,0,0.0,,2.0,2116038.0
+5887675,2026-11-06,primeira,Arouca,Gabriel Rukavina,1386766,F,0,13,0,0,0,0.0,,3.0,658500.0

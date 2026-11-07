@@ -1,6 +1,6 @@
 {
 "version": 1,
-"actualizado": "2026-11-06T22:33:27Z",
+"actualizado": "2026-11-07T00:07:54Z",
 "filas": [
 {
 "dia": "2026-10-03",
@@ -24526,6 +24526,16 @@
 "dia": "2026-11-06",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Baglan Dragons vs Ynyshir Albions",
+"apuesta": "Gana Baglan Dragons",
+"cuota": 2.9,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Barracas Central vs Racing Club",
 "apuesta": "Gana Racing Club",
 "cuota": 3.4,
@@ -24564,6 +24574,36 @@
 },
 {
 "dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Burmoos vs Golling",
+"apuesta": "Gana Burmoos",
+"cuota": 1.59,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Chateauroux vs Nimes",
+"apuesta": "Gana Nimes",
+"cuota": 2.55,
+"resultado": "rojo",
+"marcador": "1-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Chomutov vs Velvary",
+"apuesta": "Gana Chomutov",
+"cuota": 1.33,
+"resultado": "verde",
+"marcador": "3-1"
+},
+{
+"dia": "2026-11-06",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Cliftonville vs Larne",
@@ -24571,6 +24611,16 @@
 "cuota": 1.6667,
 "resultado": "rojo",
 "marcador": "4-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Denbigh vs Mold Alexandra",
+"apuesta": "Gana Denbigh",
+"cuota": 2.7,
+"resultado": "rojo",
+"marcador": "2-2"
 },
 {
 "dia": "2026-11-06",
@@ -24666,6 +24716,46 @@
 "dia": "2026-11-06",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Famalicao vs Arouca",
+"apuesta": "Gana Arouca",
+"cuota": 3.45,
+"resultado": "rojo",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Famalicao vs Arouca",
+"apuesta": "Empate",
+"cuota": 3.35,
+"resultado": "rojo",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Gleisdorf vs SC Weiz",
+"apuesta": "Gana SC Weiz",
+"cuota": 2.4,
+"resultado": "verde",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Gleisdorf vs SC Weiz",
+"apuesta": "Gana Gleisdorf",
+"cuota": 2.45,
+"resultado": "rojo",
+"marcador": "0-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Goa vs Bengaluru FC",
 "apuesta": "Gana Bengaluru FC",
 "cuota": 3.1,
@@ -24724,6 +24814,16 @@
 },
 {
 "dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Jadran Dekani vs NK Bistrica",
+"apuesta": "Gana Jadran Dekani",
+"cuota": 2.6,
+"resultado": "verde",
+"marcador": "1-0"
+},
+{
+"dia": "2026-11-06",
 "nivel": "🎯",
 "deporte": "Fútbol",
 "partido": "Kfar Saba 1928 vs Maccabi Yavne",
@@ -24771,6 +24871,16 @@
 "cuota": 2.25,
 "resultado": "verde",
 "marcador": "3-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Merelbeke vs Heist",
+"apuesta": "Gana Heist",
+"cuota": 1.78,
+"resultado": "rojo",
+"marcador": "2-1"
 },
 {
 "dia": "2026-11-06",
@@ -24851,6 +24961,36 @@
 "cuota": 1.79,
 "resultado": "verde",
 "marcador": "1-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "Pachern vs Koflach",
+"apuesta": "Gana Koflach",
+"cuota": 1.77,
+"resultado": "verde",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Pachern vs Koflach",
+"apuesta": "Gana Koflach",
+"cuota": 1.77,
+"resultado": "verde",
+"marcador": "0-2"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Penrhyncoch vs Caersws FC",
+"apuesta": "Gana Caersws FC",
+"cuota": 1.5556,
+"resultado": "verde",
+"marcador": "0-3"
 },
 {
 "dia": "2026-11-06",
@@ -24946,6 +25086,26 @@
 "dia": "2026-11-06",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "TUS Bad Waltersdorf vs Stadtwerke Bruck/Mur",
+"apuesta": "Gana TUS Bad Waltersdorf",
+"cuota": 2.08,
+"resultado": "rojo",
+"marcador": "0-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "🎯",
+"deporte": "Fútbol",
+"partido": "Tapachula vs Zacatepec",
+"apuesta": "Gana Zacatepec",
+"cuota": 1.74,
+"resultado": "verde",
+"marcador": "2-4"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Toulouse vs Strasbourg",
 "apuesta": "Gana Strasbourg",
 "cuota": 3.35,
@@ -24956,11 +25116,31 @@
 "dia": "2026-11-06",
 "nivel": "💰",
 "deporte": "Fútbol",
+"partido": "Traiskirchen vs Wiener Viktoria",
+"apuesta": "Gana Traiskirchen",
+"cuota": 1.77,
+"resultado": "verde",
+"marcador": "2-1"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
 "partido": "Truong Tuoi Dong Nai vs Da Nang",
 "apuesta": "Gana Truong Tuoi Dong Nai",
 "cuota": 2.65,
 "resultado": "verde",
 "marcador": "1-0"
+},
+{
+"dia": "2026-11-06",
+"nivel": "💰",
+"deporte": "Fútbol",
+"partido": "UFC Fehring vs Leoben",
+"apuesta": "Gana UFC Fehring",
+"cuota": 1.42,
+"resultado": "rojo",
+"marcador": "3-3"
 },
 {
 "dia": "2026-11-06",
