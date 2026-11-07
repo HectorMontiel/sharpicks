@@ -140,6 +140,12 @@ jobs:
           sed -i -E "s#(src|href)=\"([a-z0-9_.-]+\.(js|css))\"#\1=\"\2?v=$V\"#g" web/index.html && grep -c "?v=$V" web/index.html
       - name: Quitar los .sql del sitio publicado
         run: rm -f web/*.sql
+      # Los runners de GitHub ya traen Node; el servidor no.
+      - name: Instalar Node para publicar
+        if: ${{ vars.RUNNER_PESADO != '' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
       - name: Publicar en Cloudflare Pages (sharpicksapp.com)
         id: cloudflare
         if: env.CF_TOKEN != ''

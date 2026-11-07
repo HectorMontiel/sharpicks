@@ -24,7 +24,7 @@ AQUI="$(cd "$(dirname "$0")" && pwd)"
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
-apt-get install -y -qq git curl jq unzip build-essential libgomp1 libicu-dev ca-certificates ufw unattended-upgrades
+apt-get install -y -qq gh git curl jq unzip build-essential libgomp1 libicu-dev ca-certificates ufw unattended-upgrades
 
 # memoria de respaldo: el reentreno y el precálculo tienen picos
 if [ ! -f /swapfile ]; then
