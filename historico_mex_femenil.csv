@@ -616,8 +616,8 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2023-04-17,Chivas,Club León,3.0,0.0,Liga MX Femenil,4071722,20230417_Chivas_Club-León,,,,,,,,,,,,,,,,,
 2023-04-17,Club Tijuana,Atlas,1.0,1.0,Liga MX Femenil,4071720,20230417_Club-Tijuana_Atlas,,,,,,,,,,,,,,,,,
 2023-04-17,Toluca,Monterrey,2.0,0.0,Liga MX Femenil,4071721,20230417_Toluca_Monterrey,,,,,,,,,,,,,,,,,
-2023-04-18,Tigres,Mazatlán FC,5.0,0.0,Liga MX Femenil,4071728,20230418_Tigres_Mazatlán-FC,,,,,,,,,,,,,,,,,
 2023-04-18,Pachuca,Necaxa,5.0,1.0,Liga MX Femenil,4071729,20230418_Pachuca_Necaxa,,,,,,,,,,,,,,,,,
+2023-04-18,Tigres,Mazatlán FC,5.0,0.0,Liga MX Femenil,4071728,20230418_Tigres_Mazatlán-FC,,,,,,,,,,,,,,,,,
 2023-04-18,Santos Laguna,FC Juárez,3.0,2.0,Liga MX Femenil,4071727,20230418_Santos-Laguna_FC-Juárez,,,,,,,,,,,,,,,,,
 2023-04-22,Cruz Azul,Chivas,0.0,2.0,Liga MX Femenil,4071725,20230422_Cruz-Azul_Chivas,,,,,,,,,,,,,,,,,
 2023-04-23,Atlas,Pachuca,1.0,1.0,Liga MX Femenil,4071723,20230423_Atlas_Pachuca,,,,,,,,,,,,,,,,,
@@ -680,8 +680,8 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2023-07-18,Tigres,Puebla,4.0,0.0,Liga MX Femenil,4208941,20230718_Tigres_Puebla,,,,,,,,,,,,,,,,,
 2023-07-18,FC Juárez,Atlético de San Luis,1.0,1.0,Liga MX Femenil,4208960,20230718_FC-Juárez_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2023-07-21,Querétaro,Atlético de San Luis,4.0,0.0,Liga MX Femenil,4208961,20230721_Querétaro_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
-2023-07-22,Mazatlán FC,Toluca,0.0,3.0,Liga MX Femenil,4208963,20230722_Mazatlán-FC_Toluca,,,,,,,,,,,,,,,,,
 2023-07-22,FC Juárez,Tigres,0.0,4.0,Liga MX Femenil,4208962,20230722_FC-Juárez_Tigres,,,,,,,,,,,,,,,,,
+2023-07-22,Mazatlán FC,Toluca,0.0,3.0,Liga MX Femenil,4208963,20230722_Mazatlán-FC_Toluca,,,,,,,,,,,,,,,,,
 2023-07-22,Pumas,Atlas,4.0,1.0,Liga MX Femenil,4208964,20230722_Pumas_Atlas,,,,,,,,,,,,,,,,,
 2023-07-23,CF América,Santos Laguna,6.0,0.0,Liga MX Femenil,4208966,20230723_CF-América_Santos-Laguna,,,,,,,,,,,,,,,,,
 2023-07-23,Monterrey,Club León,7.0,0.0,Liga MX Femenil,4208965,20230723_Monterrey_Club-León,,,,,,,,,,,,,,,,,
@@ -689,32 +689,32 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2023-07-24,Necaxa,Club Tijuana,1.0,2.0,Liga MX Femenil,4208968,20230724_Necaxa_Club-Tijuana,,,,,,,,,,,,,,,,,
 2023-07-25,Pachuca,Cruz Azul,0.0,2.0,Liga MX Femenil,4208969,20230725_Pachuca_Cruz-Azul,,,,,,,,,,,,,,,,,
 2023-07-27,Atlas,Querétaro,0.0,2.0,Liga MX Femenil,4208938,20230727_Atlas_Querétaro,,,,,,,,,,,,,,,,,
-2023-07-29,Santos Laguna,Chivas,0.0,3.0,Liga MX Femenil,4208970,20230729_Santos-Laguna_Chivas,,,,,,,,,,,,,,,,,
 2023-07-29,Tigres,Mazatlán FC,6.0,0.0,Liga MX Femenil,4208971,20230729_Tigres_Mazatlán-FC,,,,,,,,,,,,,,,,,
+2023-07-29,Santos Laguna,Chivas,0.0,3.0,Liga MX Femenil,4208970,20230729_Santos-Laguna_Chivas,,,,,,,,,,,,,,,,,
 2023-07-29,Cruz Azul,Pumas,2.0,1.0,Liga MX Femenil,4208972,20230729_Cruz-Azul_Pumas,,,,,,,,,,,,,,,,,
-2023-07-30,Atlas,FC Juárez,3.0,2.0,Liga MX Femenil,4208973,20230730_Atlas_FC-Juárez,,,,,,,,,,,,,,,,,
 2023-07-30,Puebla,Monterrey,0.0,3.0,Liga MX Femenil,4208975,20230730_Puebla_Monterrey,,,,,,,,,,,,,,,,,
-2023-07-30,Toluca,Pachuca,2.0,1.0,Liga MX Femenil,4208959,20230730_Toluca_Pachuca,,,,,,,,,,,,,,,,,
 2023-07-30,Atlético de San Luis,Necaxa,1.0,0.0,Liga MX Femenil,4208958,20230730_Atlético-de-San-Luis_Necaxa,,,,,,,,,,,,,,,,,
+2023-07-30,Toluca,Pachuca,2.0,1.0,Liga MX Femenil,4208959,20230730_Toluca_Pachuca,,,,,,,,,,,,,,,,,
+2023-07-30,Atlas,FC Juárez,3.0,2.0,Liga MX Femenil,4208973,20230730_Atlas_FC-Juárez,,,,,,,,,,,,,,,,,
 2023-08-01,Club León,Querétaro,2.0,0.0,Liga MX Femenil,4208942,20230801_Club-León_Querétaro,,,,,,,,,,,,,,,,,
 2023-08-04,Querétaro,Club Tijuana,0.0,2.0,Liga MX Femenil,4208943,20230804_Querétaro_Club-Tijuana,,,,,,,,,,,,,,,,,
-2023-08-05,FC Juárez,Cruz Azul,1.0,0.0,Liga MX Femenil,4208945,20230805_FC-Juárez_Cruz-Azul,,,,,,,,,,,,,,,,,
-2023-08-05,Pachuca,Atlético de San Luis,3.0,1.0,Liga MX Femenil,4208944,20230805_Pachuca_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2023-08-05,Pumas,Santos Laguna,1.0,0.0,Liga MX Femenil,4208946,20230805_Pumas_Santos-Laguna,,,,,,,,,,,,,,,,,
+2023-08-05,Pachuca,Atlético de San Luis,3.0,1.0,Liga MX Femenil,4208944,20230805_Pachuca_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
+2023-08-05,FC Juárez,Cruz Azul,1.0,0.0,Liga MX Femenil,4208945,20230805_FC-Juárez_Cruz-Azul,,,,,,,,,,,,,,,,,
 2023-08-05,CF América,Toluca,4.0,1.0,Liga MX Femenil,4208947,20230805_CF-América_Toluca,,,,,,,,,,,,,,,,,
 2023-08-06,Monterrey,Atlas,2.0,0.0,Liga MX Femenil,4208948,20230806_Monterrey_Atlas,,,,,,,,,,,,,,,,,
-2023-08-06,Necaxa,Puebla,2.0,1.0,Liga MX Femenil,4208950,20230806_Necaxa_Puebla,,,,,,,,,,,,,,,,,
 2023-08-06,Chivas,Tigres,2.0,2.0,Liga MX Femenil,4208949,20230806_Chivas_Tigres,,,,,,,,,,,,,,,,,
+2023-08-06,Necaxa,Puebla,2.0,1.0,Liga MX Femenil,4208950,20230806_Necaxa_Puebla,,,,,,,,,,,,,,,,,
 2023-08-07,Mazatlán FC,Club León,0.0,1.0,Liga MX Femenil,4208951,20230807_Mazatlán-FC_Club-León,,,,,,,,,,,,,,,,,
 2023-08-09,Club Tijuana,CF América,1.0,5.0,Liga MX Femenil,4208974,20230809_Club-Tijuana_CF-América,,,,,,,,,,,,,,,,,
 2023-08-12,Club León,Club Tijuana,3.0,2.0,Liga MX Femenil,4208952,20230812_Club-León_Club-Tijuana,,,,,,,,,,,,,,,,,
 2023-08-12,Santos Laguna,Querétaro,1.0,3.0,Liga MX Femenil,4208953,20230812_Santos-Laguna_Querétaro,,,,,,,,,,,,,,,,,
 2023-08-12,Cruz Azul,Monterrey,0.0,3.0,Liga MX Femenil,4208954,20230812_Cruz-Azul_Monterrey,,,,,,,,,,,,,,,,,
+2023-08-13,Toluca,FC Juárez,1.0,1.0,Liga MX Femenil,4208977,20230813_Toluca_FC-Juárez,,,,,,,,,,,,,,,,,
 2023-08-13,Atlético de San Luis,Mazatlán FC,4.0,1.0,Liga MX Femenil,4208978,20230813_Atlético-de-San-Luis_Mazatlán-FC,,,,,,,,,,,,,,,,,
 2023-08-13,Tigres,Pachuca,4.0,2.0,Liga MX Femenil,4208957,20230813_Tigres_Pachuca,,,,,,,,,,,,,,,,,
 2023-08-13,Necaxa,Chivas,0.0,3.0,Liga MX Femenil,4208956,20230813_Necaxa_Chivas,,,,,,,,,,,,,,,,,
 2023-08-13,Puebla,Pumas,1.0,1.0,Liga MX Femenil,4208976,20230813_Puebla_Pumas,,,,,,,,,,,,,,,,,
-2023-08-13,Toluca,FC Juárez,1.0,1.0,Liga MX Femenil,4208977,20230813_Toluca_FC-Juárez,,,,,,,,,,,,,,,,,
 2023-08-15,Atlas,CF América,1.0,5.0,Liga MX Femenil,4208955,20230815_Atlas_CF-América,,,,,,,,,,,,,,,,,
 2023-08-17,Atlético de San Luis,Santos Laguna,2.0,0.0,Liga MX Femenil,4208979,20230817_Atlético-de-San-Luis_Santos-Laguna,,,,,,,,,,,,,,,,,
 2023-08-17,Querétaro,Puebla,3.0,0.0,Liga MX Femenil,4208980,20230817_Querétaro_Puebla,,,,,,,,,,,,,,,,,
@@ -724,9 +724,9 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2023-08-18,Mazatlán FC,Necaxa,0.0,2.0,Liga MX Femenil,4209013,20230818_Mazatlán-FC_Necaxa,,,,,,,,,,,,,,,,,
 2023-08-19,CF América,Cruz Azul,4.0,0.0,Liga MX Femenil,4209011,20230819_CF-América_Cruz-Azul,,,,,,,,,,,,,,,,,
 2023-08-20,Puebla,Pachuca,4.0,3.0,Liga MX Femenil,4209009,20230820_Puebla_Pachuca,,,,,,,,,,,,,,,,,
-2023-08-21,Club Tijuana,Toluca,3.0,0.0,Liga MX Femenil,4209008,20230821_Club-Tijuana_Toluca,,,,,,,,,,,,,,,,,
-2023-08-21,Pumas,Mazatlán FC,4.0,1.0,Liga MX Femenil,4209016,20230821_Pumas_Mazatlán-FC,,,,,,,,,,,,,,,,,
 2023-08-21,Cruz Azul,Chivas,1.0,5.0,Liga MX Femenil,4209006,20230821_Cruz-Azul_Chivas,,,,,,,,,,,,,,,,,
+2023-08-21,Pumas,Mazatlán FC,4.0,1.0,Liga MX Femenil,4209016,20230821_Pumas_Mazatlán-FC,,,,,,,,,,,,,,,,,
+2023-08-21,Club Tijuana,Toluca,3.0,0.0,Liga MX Femenil,4209008,20230821_Club-Tijuana_Toluca,,,,,,,,,,,,,,,,,
 2023-08-22,Necaxa,Querétaro,0.0,2.0,Liga MX Femenil,4209007,20230822_Necaxa_Querétaro,,,,,,,,,,,,,,,,,
 2023-08-22,Club León,CF América,2.0,3.0,Liga MX Femenil,4209025,20230822_Club-León_CF-América,,,,,,,,,,,,,,,,,
 2023-08-22,Monterrey,FC Juárez,2.0,2.0,Liga MX Femenil,4209024,20230822_Monterrey_FC-Juárez,,,,,,,,,,,,,,,,,
@@ -736,8 +736,8 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2023-08-26,Monterrey,Pumas,0.0,0.0,Liga MX Femenil,4209020,20230826_Monterrey_Pumas,,,,,,,,,,,,,,,,,
 2023-08-26,FC Juárez,Pachuca,1.0,1.0,Liga MX Femenil,4209021,20230826_FC-Juárez_Pachuca,,,,,,,,,,,,,,,,,
 2023-08-26,Cruz Azul,Querétaro,2.0,1.0,Liga MX Femenil,4209018,20230826_Cruz-Azul_Querétaro,,,,,,,,,,,,,,,,,
-2023-08-27,Club León,Puebla,1.0,0.0,Liga MX Femenil,4209005,20230827_Club-León_Puebla,,,,,,,,,,,,,,,,,
 2023-08-27,Atlético de San Luis,Chivas,1.0,1.0,Liga MX Femenil,4209017,20230827_Atlético-de-San-Luis_Chivas,,,,,,,,,,,,,,,,,
+2023-08-27,Club León,Puebla,1.0,0.0,Liga MX Femenil,4209005,20230827_Club-León_Puebla,,,,,,,,,,,,,,,,,
 2023-08-28,Toluca,Necaxa,2.0,0.0,Liga MX Femenil,4209004,20230828_Toluca_Necaxa,,,,,,,,,,,,,,,,,
 2023-08-29,Santos Laguna,Club Tijuana,0.0,3.0,Liga MX Femenil,4209003,20230829_Santos-Laguna_Club-Tijuana,,,,,,,,,,,,,,,,,
 2023-08-31,Pachuca,Atlas,4.0,3.0,Liga MX Femenil,4209026,20230831_Pachuca_Atlas,,,,,,,,,,,,,,,,,
@@ -759,48 +759,48 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2023-09-11,Cruz Azul,Atlas,2.0,0.0,Liga MX Femenil,4208992,20230911_Cruz-Azul_Atlas,,,,,,,,,,,,,,,,,
 2023-09-12,Tigres,Club León,3.0,1.0,Liga MX Femenil,4208996,20230912_Tigres_Club-León,,,,,,,,,,,,,,,,,
 2023-09-13,Atlético de San Luis,CF América,1.0,4.0,Liga MX Femenil,4208997,20230913_Atlético-de-San-Luis_CF-América,,,,,,,,,,,,,,,,,
+2023-09-15,Querétaro,Tigres,0.0,4.0,Liga MX Femenil,4208994,20230915_Querétaro_Tigres,,,,,,,,,,,,,,,,,
 2023-09-15,FC Juárez,Puebla,3.0,0.0,Liga MX Femenil,4209031,20230915_FC-Juárez_Puebla,,,,,,,,,,,,,,,,,
 2023-09-15,Necaxa,Santos Laguna,2.0,2.0,Liga MX Femenil,4208982,20230915_Necaxa_Santos-Laguna,,,,,,,,,,,,,,,,,
-2023-09-15,Querétaro,Tigres,0.0,4.0,Liga MX Femenil,4208994,20230915_Querétaro_Tigres,,,,,,,,,,,,,,,,,
 2023-09-16,Monterrey,Pachuca,2.0,2.0,Liga MX Femenil,4209055,20230916_Monterrey_Pachuca,,,,,,,,,,,,,,,,,
 2023-09-16,Pumas,Toluca,5.0,1.0,Liga MX Femenil,4209054,20230916_Pumas_Toluca,,,,,,,,,,,,,,,,,
-2023-09-17,CF América,Chivas,2.0,1.0,Liga MX Femenil,4209052,20230917_CF-América_Chivas,,,,,,,,,,,,,,,,,
 2023-09-17,Puebla,Cruz Azul,2.0,0.0,Liga MX Femenil,4209053,20230917_Puebla_Cruz-Azul,,,,,,,,,,,,,,,,,
+2023-09-17,CF América,Chivas,2.0,1.0,Liga MX Femenil,4209052,20230917_CF-América_Chivas,,,,,,,,,,,,,,,,,
 2023-09-18,Club León,Atlético de San Luis,3.0,0.0,Liga MX Femenil,4209051,20230918_Club-León_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2023-09-18,Club Tijuana,Atlas,1.0,1.0,Liga MX Femenil,4208995,20230918_Club-Tijuana_Atlas,,,,,,,,,,,,,,,,,
 2023-09-18,Mazatlán FC,FC Juárez,0.0,1.0,Liga MX Femenil,4209050,20230918_Mazatlán-FC_FC-Juárez,,,,,,,,,,,,,,,,,
 2023-09-29,Necaxa,Monterrey,0.0,4.0,Liga MX Femenil,4209049,20230929_Necaxa_Monterrey,,,,,,,,,,,,,,,,,
 2023-09-30,Cruz Azul,Club León,0.0,1.0,Liga MX Femenil,4209048,20230930_Cruz-Azul_Club-León,,,,,,,,,,,,,,,,,
 2023-10-01,Chivas,Mazatlán FC,5.0,0.0,Liga MX Femenil,4209056,20231001_Chivas_Mazatlán-FC,,,,,,,,,,,,,,,,,
-2023-10-02,Pachuca,CF América,4.0,2.0,Liga MX Femenil,4209057,20231002_Pachuca_CF-América,,,,,,,,,,,,,,,,,
 2023-10-02,FC Juárez,Querétaro,2.0,2.0,Liga MX Femenil,4209065,20231002_FC-Juárez_Querétaro,,,,,,,,,,,,,,,,,
-2023-10-03,Tigres,Pumas,3.0,0.0,Liga MX Femenil,4209062,20231003_Tigres_Pumas,,,,,,,,,,,,,,,,,
+2023-10-02,Pachuca,CF América,4.0,2.0,Liga MX Femenil,4209057,20231002_Pachuca_CF-América,,,,,,,,,,,,,,,,,
 2023-10-03,Atlas,Puebla,2.0,1.0,Liga MX Femenil,4209064,20231003_Atlas_Puebla,,,,,,,,,,,,,,,,,
-2023-10-03,Santos Laguna,Toluca,2.0,2.0,Liga MX Femenil,4209061,20231003_Santos-Laguna_Toluca,,,,,,,,,,,,,,,,,
+2023-10-03,Tigres,Pumas,3.0,0.0,Liga MX Femenil,4209062,20231003_Tigres_Pumas,,,,,,,,,,,,,,,,,
 2023-10-03,Atlético de San Luis,Club Tijuana,0.0,2.0,Liga MX Femenil,4209063,20231003_Atlético-de-San-Luis_Club-Tijuana,,,,,,,,,,,,,,,,,
-2023-10-05,FC Juárez,Club León,1.0,0.0,Liga MX Femenil,4209010,20231005_FC-Juárez_Club-León,,,,,,,,,,,,,,,,,
+2023-10-03,Santos Laguna,Toluca,2.0,2.0,Liga MX Femenil,4209061,20231003_Santos-Laguna_Toluca,,,,,,,,,,,,,,,,,
 2023-10-05,Toluca,Puebla,3.0,0.0,Liga MX Femenil,4209002,20231005_Toluca_Puebla,,,,,,,,,,,,,,,,,
+2023-10-05,FC Juárez,Club León,1.0,0.0,Liga MX Femenil,4209010,20231005_FC-Juárez_Club-León,,,,,,,,,,,,,,,,,
 2023-10-06,Cruz Azul,Atlético de San Luis,3.0,1.0,Liga MX Femenil,4209060,20231006_Cruz-Azul_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2023-10-07,Atlas,Mazatlán FC,3.0,1.0,Liga MX Femenil,4209059,20231007_Atlas_Mazatlán-FC,,,,,,,,,,,,,,,,,
-2023-10-08,CF América,FC Juárez,5.0,2.0,Liga MX Femenil,4209046,20231008_CF-América_FC-Juárez,,,,,,,,,,,,,,,,,
 2023-10-08,Club Tijuana,Tigres,0.0,0.0,Liga MX Femenil,4209058,20231008_Club-Tijuana_Tigres,,,,,,,,,,,,,,,,,
+2023-10-08,CF América,FC Juárez,5.0,2.0,Liga MX Femenil,4209046,20231008_CF-América_FC-Juárez,,,,,,,,,,,,,,,,,
 2023-10-08,Puebla,Santos Laguna,2.0,1.0,Liga MX Femenil,4209047,20231008_Puebla_Santos-Laguna,,,,,,,,,,,,,,,,,
-2023-10-09,Toluca,Chivas,2.0,4.0,Liga MX Femenil,4209045,20231009_Toluca_Chivas,,,,,,,,,,,,,,,,,
 2023-10-09,Club León,Pachuca,0.0,6.0,Liga MX Femenil,4209029,20231009_Club-León_Pachuca,,,,,,,,,,,,,,,,,
+2023-10-09,Toluca,Chivas,2.0,4.0,Liga MX Femenil,4209045,20231009_Toluca_Chivas,,,,,,,,,,,,,,,,,
 2023-10-10,Pumas,Necaxa,6.0,0.0,Liga MX Femenil,4209028,20231010_Pumas_Necaxa,,,,,,,,,,,,,,,,,
 2023-10-10,Monterrey,Querétaro,3.0,1.0,Liga MX Femenil,4209030,20231010_Monterrey_Querétaro,,,,,,,,,,,,,,,,,
 2023-10-12,Mazatlán FC,Santos Laguna,2.0,2.0,Liga MX Femenil,4209032,20231012_Mazatlán-FC_Santos-Laguna,,,,,,,,,,,,,,,,,
 2023-10-12,CF América,Necaxa,5.0,0.0,Liga MX Femenil,4209038,20231012_CF-América_Necaxa,,,,,,,,,,,,,,,,,
 2023-10-12,Querétaro,Pumas,3.0,2.0,Liga MX Femenil,4209033,20231012_Querétaro_Pumas,,,,,,,,,,,,,,,,,
-2023-10-13,Toluca,Atlas,2.0,1.0,Liga MX Femenil,4209034,20231013_Toluca_Atlas,,,,,,,,,,,,,,,,,
-2023-10-13,Atlético de San Luis,Monterrey,1.0,2.0,Liga MX Femenil,4209036,20231013_Atlético-de-San-Luis_Monterrey,,,,,,,,,,,,,,,,,
-2023-10-13,Chivas,Club León,2.0,0.0,Liga MX Femenil,4209037,20231013_Chivas_Club-León,,,,,,,,,,,,,,,,,
 2023-10-13,Tigres,Cruz Azul,1.0,0.0,Liga MX Femenil,4209035,20231013_Tigres_Cruz-Azul,,,,,,,,,,,,,,,,,
 2023-10-13,Pachuca,Club Tijuana,2.0,3.0,Liga MX Femenil,4209039,20231013_Pachuca_Club-Tijuana,,,,,,,,,,,,,,,,,
+2023-10-13,Atlético de San Luis,Monterrey,1.0,2.0,Liga MX Femenil,4209036,20231013_Atlético-de-San-Luis_Monterrey,,,,,,,,,,,,,,,,,
+2023-10-13,Toluca,Atlas,2.0,1.0,Liga MX Femenil,4209034,20231013_Toluca_Atlas,,,,,,,,,,,,,,,,,
+2023-10-13,Chivas,Club León,2.0,0.0,Liga MX Femenil,4209037,20231013_Chivas_Club-León,,,,,,,,,,,,,,,,,
+2023-10-15,Cruz Azul,Club Tijuana,3.0,6.0,Liga MX Femenil,4209040,20231015_Cruz-Azul_Club-Tijuana,,,,,,,,,,,,,,,,,
+2023-10-15,Atlético de San Luis,Tigres,0.0,1.0,Liga MX Femenil,4209043,20231015_Atlético-de-San-Luis_Tigres,,,,,,,,,,,,,,,,,
 2023-10-15,Necaxa,Atlas,0.0,1.0,Liga MX Femenil,4209044,20231015_Necaxa_Atlas,,,,,,,,,,,,,,,,,
 2023-10-15,Puebla,CF América,1.0,6.0,Liga MX Femenil,4209041,20231015_Puebla_CF-América,,,,,,,,,,,,,,,,,
-2023-10-15,Atlético de San Luis,Tigres,0.0,1.0,Liga MX Femenil,4209043,20231015_Atlético-de-San-Luis_Tigres,,,,,,,,,,,,,,,,,
-2023-10-15,Cruz Azul,Club Tijuana,3.0,6.0,Liga MX Femenil,4209040,20231015_Cruz-Azul_Club-Tijuana,,,,,,,,,,,,,,,,,
 2023-10-16,Chivas,Pumas,3.0,0.0,Liga MX Femenil,4209027,20231016_Chivas_Pumas,,,,,,,,,,,,,,,,,
 2023-10-16,Querétaro,Pachuca,1.0,1.0,Liga MX Femenil,4209042,20231016_Querétaro_Pachuca,,,,,,,,,,,,,,,,,
 2023-10-17,Monterrey,Mazatlán FC,3.0,1.0,Liga MX Femenil,4209075,20231017_Monterrey_Mazatlán-FC,,,,,,,,,,,,,,,,,
@@ -808,11 +808,11 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2023-10-17,Santos Laguna,FC Juárez,0.0,4.0,Liga MX Femenil,4209073,20231017_Santos-Laguna_FC-Juárez,,,,,,,,,,,,,,,,,
 2023-10-19,CF América,Querétaro,4.0,1.0,Liga MX Femenil,4209072,20231019_CF-América_Querétaro,,,,,,,,,,,,,,,,,
 2023-10-20,Toluca,Cruz Azul,3.0,0.0,Liga MX Femenil,4209070,20231020_Toluca_Cruz-Azul,,,,,,,,,,,,,,,,,
-2023-10-20,Tigres,Monterrey,1.0,3.0,Liga MX Femenil,4209076,20231020_Tigres_Monterrey,,,,,,,,,,,,,,,,,
 2023-10-20,Pachuca,Necaxa,3.0,1.0,Liga MX Femenil,4209071,20231020_Pachuca_Necaxa,,,,,,,,,,,,,,,,,
 2023-10-20,Atlas,Chivas,1.0,2.0,Liga MX Femenil,4209066,20231020_Atlas_Chivas,,,,,,,,,,,,,,,,,
-2023-10-21,Santos Laguna,Club León,2.0,2.0,Liga MX Femenil,4209068,20231021_Santos-Laguna_Club-León,,,,,,,,,,,,,,,,,
+2023-10-20,Tigres,Monterrey,1.0,3.0,Liga MX Femenil,4209076,20231020_Tigres_Monterrey,,,,,,,,,,,,,,,,,
 2023-10-21,Mazatlán FC,Puebla,3.0,4.0,Liga MX Femenil,4209069,20231021_Mazatlán-FC_Puebla,,,,,,,,,,,,,,,,,
+2023-10-21,Santos Laguna,Club León,2.0,2.0,Liga MX Femenil,4209068,20231021_Santos-Laguna_Club-León,,,,,,,,,,,,,,,,,
 2023-10-21,Pumas,Atlético de San Luis,4.0,1.0,Liga MX Femenil,4209067,20231021_Pumas_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2023-10-23,Club Tijuana,FC Juárez,0.0,1.0,Liga MX Femenil,4209077,20231023_Club-Tijuana_FC-Juárez,,,,,,,,,,,,,,,,,
 2023-11-03,Club León,Atlas,1.0,1.0,Liga MX Femenil,4209084,20231103_Club-León_Atlas,,,,,,,,,,,,,,,,,
@@ -858,20 +858,20 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2024-01-15,FC Juárez,Chivas,2.0,0.0,Liga MX Femenil,4388913,20240115_FC-Juárez_Chivas,,,,,,,,,,,,,,,,,
 2024-01-16,Cruz Azul,Mazatlán FC,1.0,2.0,Liga MX Femenil,4388914,20240116_Cruz-Azul_Mazatlán-FC,,,,,,,,,,,,,,,,,
 2024-01-17,Toluca,Pumas,2.0,2.0,Liga MX Femenil,4388915,20240117_Toluca_Pumas,,,,,,,,,,,,,,,,,
-2024-01-18,Tigres,Santos Laguna,7.0,1.0,Liga MX Femenil,4388916,20240118_Tigres_Santos-Laguna,,,,,,,,,,,,,,,,,
-2024-01-18,Atlas,Club León,0.0,3.0,Liga MX Femenil,4388886,20240118_Atlas_Club-León,,,,,,,,,,,,,,,,,
 2024-01-18,CF América,Club Tijuana,4.0,0.0,Liga MX Femenil,4388876,20240118_CF-América_Club-Tijuana,,,,,,,,,,,,,,,,,
 2024-01-18,Puebla,Querétaro,0.0,1.0,Liga MX Femenil,4388877,20240118_Puebla_Querétaro,,,,,,,,,,,,,,,,,
+2024-01-18,Atlas,Club León,0.0,3.0,Liga MX Femenil,4388886,20240118_Atlas_Club-León,,,,,,,,,,,,,,,,,
+2024-01-18,Tigres,Santos Laguna,7.0,1.0,Liga MX Femenil,4388916,20240118_Tigres_Santos-Laguna,,,,,,,,,,,,,,,,,
 2024-01-19,Pachuca,FC Juárez,1.0,1.0,Liga MX Femenil,4388878,20240119_Pachuca_FC-Juárez,,,,,,,,,,,,,,,,,
 2024-01-19,Monterrey,Necaxa,7.0,0.0,Liga MX Femenil,4388879,20240119_Monterrey_Necaxa,,,,,,,,,,,,,,,,,
 2024-01-19,Chivas,Atlético de San Luis,4.0,1.0,Liga MX Femenil,4388880,20240119_Chivas_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2024-01-20,Club León,Tigres,2.0,7.0,Liga MX Femenil,4388881,20240120_Club-León_Tigres,,,,,,,,,,,,,,,,,
-2024-01-21,Cruz Azul,Puebla,0.0,4.0,Liga MX Femenil,4388883,20240121_Cruz-Azul_Puebla,,,,,,,,,,,,,,,,,
 2024-01-21,Mazatlán FC,Atlas,1.0,3.0,Liga MX Femenil,4388882,20240121_Mazatlán-FC_Atlas,,,,,,,,,,,,,,,,,
+2024-01-21,Cruz Azul,Puebla,0.0,4.0,Liga MX Femenil,4388883,20240121_Cruz-Azul_Puebla,,,,,,,,,,,,,,,,,
 2024-01-21,Querétaro,Monterrey,0.0,3.0,Liga MX Femenil,4388884,20240121_Querétaro_Monterrey,,,,,,,,,,,,,,,,,
-2024-01-22,Chivas,Toluca,1.0,1.0,Liga MX Femenil,4388885,20240122_Chivas_Toluca,,,,,,,,,,,,,,,,,
-2024-01-22,Club Tijuana,Atlético de San Luis,3.0,2.0,Liga MX Femenil,4388875,20240122_Club-Tijuana_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2024-01-22,Necaxa,Pachuca,0.0,4.0,Liga MX Femenil,4388887,20240122_Necaxa_Pachuca,,,,,,,,,,,,,,,,,
+2024-01-22,Club Tijuana,Atlético de San Luis,3.0,2.0,Liga MX Femenil,4388875,20240122_Club-Tijuana_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
+2024-01-22,Chivas,Toluca,1.0,1.0,Liga MX Femenil,4388885,20240122_Chivas_Toluca,,,,,,,,,,,,,,,,,
 2024-01-23,Pumas,FC Juárez,2.0,1.0,Liga MX Femenil,4388889,20240123_Pumas_FC-Juárez,,,,,,,,,,,,,,,,,
 2024-01-23,Santos Laguna,CF América,0.0,5.0,Liga MX Femenil,4388888,20240123_Santos-Laguna_CF-América,,,,,,,,,,,,,,,,,
 2024-01-25,Puebla,Chivas,1.0,1.0,Liga MX Femenil,4388890,20240125_Puebla_Chivas,,,,,,,,,,,,,,,,,
@@ -883,27 +883,27 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2024-01-26,Toluca,Mazatlán FC,6.0,0.0,Liga MX Femenil,4388917,20240126_Toluca_Mazatlán-FC,,,,,,,,,,,,,,,,,
 2024-01-27,Pachuca,Querétaro,4.0,1.0,Liga MX Femenil,4388918,20240127_Pachuca_Querétaro,,,,,,,,,,,,,,,,,
 2024-01-27,Tigres,Club Tijuana,2.0,0.0,Liga MX Femenil,4388919,20240127_Tigres_Club-Tijuana,,,,,,,,,,,,,,,,,
-2024-02-01,Querétaro,Chivas,1.0,2.0,Liga MX Femenil,4388921,20240201_Querétaro_Chivas,,,,,,,,,,,,,,,,,
 2024-02-01,Cruz Azul,Tigres,1.0,2.0,Liga MX Femenil,4388920,20240201_Cruz-Azul_Tigres,,,,,,,,,,,,,,,,,
+2024-02-01,Querétaro,Chivas,1.0,2.0,Liga MX Femenil,4388921,20240201_Querétaro_Chivas,,,,,,,,,,,,,,,,,
 2024-02-02,Mazatlán FC,Atlético de San Luis,3.0,1.0,Liga MX Femenil,4388922,20240202_Mazatlán-FC_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2024-02-02,Club Tijuana,Puebla,1.0,1.0,Liga MX Femenil,4388923,20240202_Club-Tijuana_Puebla,,,,,,,,,,,,,,,,,
-2024-02-03,CF América,Monterrey,4.0,0.0,Liga MX Femenil,4388924,20240203_CF-América_Monterrey,,,,,,,,,,,,,,,,,
 2024-02-03,Club León,FC Juárez,1.0,1.0,Liga MX Femenil,4388925,20240203_Club-León_FC-Juárez,,,,,,,,,,,,,,,,,
 2024-02-03,Pumas,Pachuca,1.0,2.0,Liga MX Femenil,4388926,20240203_Pumas_Pachuca,,,,,,,,,,,,,,,,,
+2024-02-03,CF América,Monterrey,4.0,0.0,Liga MX Femenil,4388924,20240203_CF-América_Monterrey,,,,,,,,,,,,,,,,,
 2024-02-05,Santos Laguna,Atlas,0.0,0.0,Liga MX Femenil,4388943,20240205_Santos-Laguna_Atlas,,,,,,,,,,,,,,,,,
 2024-02-05,Necaxa,Toluca,0.0,0.0,Liga MX Femenil,4388958,20240205_Necaxa_Toluca,,,,,,,,,,,,,,,,,
 2024-02-08,Querétaro,CF América,1.0,5.0,Liga MX Femenil,4388957,20240208_Querétaro_CF-América,,,,,,,,,,,,,,,,,
-2024-02-09,Toluca,Tigres,0.0,7.0,Liga MX Femenil,4388952,20240209_Toluca_Tigres,,,,,,,,,,,,,,,,,
+2024-02-09,Atlas,Club Tijuana,0.0,4.0,Liga MX Femenil,4388956,20240209_Atlas_Club-Tijuana,,,,,,,,,,,,,,,,,
 2024-02-09,FC Juárez,Mazatlán FC,3.0,2.0,Liga MX Femenil,4388955,20240209_FC-Juárez_Mazatlán-FC,,,,,,,,,,,,,,,,,
 2024-02-09,Atlético de San Luis,Cruz Azul,3.0,5.0,Liga MX Femenil,4388954,20240209_Atlético-de-San-Luis_Cruz-Azul,,,,,,,,,,,,,,,,,
-2024-02-09,Atlas,Club Tijuana,0.0,4.0,Liga MX Femenil,4388956,20240209_Atlas_Club-Tijuana,,,,,,,,,,,,,,,,,
 2024-02-09,Chivas,Santos Laguna,10.0,2.0,Liga MX Femenil,4388953,20240209_Chivas_Santos-Laguna,,,,,,,,,,,,,,,,,
-2024-02-10,Pachuca,Club León,0.0,1.0,Liga MX Femenil,4388951,20240210_Pachuca_Club-León,,,,,,,,,,,,,,,,,
+2024-02-09,Toluca,Tigres,0.0,7.0,Liga MX Femenil,4388952,20240209_Toluca_Tigres,,,,,,,,,,,,,,,,,
 2024-02-10,Pumas,Monterrey,2.0,3.0,Liga MX Femenil,4388950,20240210_Pumas_Monterrey,,,,,,,,,,,,,,,,,
+2024-02-10,Pachuca,Club León,0.0,1.0,Liga MX Femenil,4388951,20240210_Pachuca_Club-León,,,,,,,,,,,,,,,,,
 2024-02-11,Puebla,Necaxa,1.0,0.0,Liga MX Femenil,4388949,20240211_Puebla_Necaxa,,,,,,,,,,,,,,,,,
 2024-02-16,CF América,Mazatlán FC,5.0,0.0,Liga MX Femenil,4388948,20240216_CF-América_Mazatlán-FC,,,,,,,,,,,,,,,,,
-2024-02-17,Necaxa,Pumas,0.0,5.0,Liga MX Femenil,4388947,20240217_Necaxa_Pumas,,,,,,,,,,,,,,,,,
 2024-02-17,Cruz Azul,Pachuca,1.0,4.0,Liga MX Femenil,4388945,20240217_Cruz-Azul_Pachuca,,,,,,,,,,,,,,,,,
+2024-02-17,Necaxa,Pumas,0.0,5.0,Liga MX Femenil,4388947,20240217_Necaxa_Pumas,,,,,,,,,,,,,,,,,
 2024-02-18,Club León,Chivas,1.0,1.0,Liga MX Femenil,4388927,20240218_Club-León_Chivas,,,,,,,,,,,,,,,,,
 2024-02-19,Santos Laguna,Atlético de San Luis,0.0,2.0,Liga MX Femenil,4388942,20240219_Santos-Laguna_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2024-02-19,Club Tijuana,Querétaro,1.0,2.0,Liga MX Femenil,4388941,20240219_Club-Tijuana_Querétaro,,,,,,,,,,,,,,,,,
@@ -913,44 +913,44 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2024-03-04,FC Juárez,Atlas,1.0,3.0,Liga MX Femenil,4388936,20240304_FC-Juárez_Atlas,,,,,,,,,,,,,,,,,
 2024-03-04,Querétaro,Cruz Azul,3.0,0.0,Liga MX Femenil,4388935,20240304_Querétaro_Cruz-Azul,,,,,,,,,,,,,,,,,
 2024-03-04,Toluca,CF América,3.0,0.0,Liga MX Femenil,4388934,20240304_Toluca_CF-América,,,,,,,,,,,,,,,,,
+2024-03-05,Monterrey,Santos Laguna,6.0,0.0,Liga MX Femenil,4388931,20240305_Monterrey_Santos-Laguna,,,,,,,,,,,,,,,,,
 2024-03-05,Pachuca,Puebla,2.0,0.0,Liga MX Femenil,4388933,20240305_Pachuca_Puebla,,,,,,,,,,,,,,,,,
 2024-03-05,Chivas,Necaxa,4.0,0.0,Liga MX Femenil,4388932,20240305_Chivas_Necaxa,,,,,,,,,,,,,,,,,
-2024-03-05,Monterrey,Santos Laguna,6.0,0.0,Liga MX Femenil,4388931,20240305_Monterrey_Santos-Laguna,,,,,,,,,,,,,,,,,
+2024-03-08,Atlas,Pumas,0.0,2.0,Liga MX Femenil,4388929,20240308_Atlas_Pumas,,,,,,,,,,,,,,,,,
 2024-03-08,Club León,Monterrey,1.0,4.0,Liga MX Femenil,4388988,20240308_Club-León_Monterrey,,,,,,,,,,,,,,,,,
 2024-03-08,CF América,Puebla,4.0,1.0,Liga MX Femenil,4388930,20240308_CF-América_Puebla,,,,,,,,,,,,,,,,,
-2024-03-08,Atlas,Pumas,0.0,2.0,Liga MX Femenil,4388929,20240308_Atlas_Pumas,,,,,,,,,,,,,,,,,
-2024-03-09,Cruz Azul,FC Juárez,1.0,4.0,Liga MX Femenil,4388928,20240309_Cruz-Azul_FC-Juárez,,,,,,,,,,,,,,,,,
 2024-03-09,Tigres,Querétaro,2.0,0.0,Liga MX Femenil,4388987,20240309_Tigres_Querétaro,,,,,,,,,,,,,,,,,
+2024-03-09,Cruz Azul,FC Juárez,1.0,4.0,Liga MX Femenil,4388928,20240309_Cruz-Azul_FC-Juárez,,,,,,,,,,,,,,,,,
 2024-03-11,Mazatlán FC,Chivas,0.0,2.0,Liga MX Femenil,4388975,20240311_Mazatlán-FC_Chivas,,,,,,,,,,,,,,,,,
 2024-03-11,Toluca,Atlético de San Luis,5.0,1.0,Liga MX Femenil,4388989,20240311_Toluca_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2024-03-12,Santos Laguna,Necaxa,3.0,2.0,Liga MX Femenil,4388986,20240312_Santos-Laguna_Necaxa,,,,,,,,,,,,,,,,,
 2024-03-13,Puebla,Atlas,0.0,0.0,Liga MX Femenil,4388944,20240313_Puebla_Atlas,,,,,,,,,,,,,,,,,
-2024-03-16,Monterrey,Tigres,0.0,0.0,Liga MX Femenil,4388984,20240316_Monterrey_Tigres,,,,,,,,,,,,,,,,,
 2024-03-16,Pumas,Cruz Azul,4.0,2.0,Liga MX Femenil,4388983,20240316_Pumas_Cruz-Azul,,,,,,,,,,,,,,,,,
+2024-03-16,Monterrey,Tigres,0.0,0.0,Liga MX Femenil,4388984,20240316_Monterrey_Tigres,,,,,,,,,,,,,,,,,
 2024-03-17,FC Juárez,Club Tijuana,1.0,2.0,Liga MX Femenil,4388982,20240317_FC-Juárez_Club-Tijuana,,,,,,,,,,,,,,,,,
+2024-03-18,Necaxa,Club León,2.0,1.0,Liga MX Femenil,4388978,20240318_Necaxa_Club-León,,,,,,,,,,,,,,,,,
 2024-03-18,Chivas,CF América,2.0,1.0,Liga MX Femenil,4388980,20240318_Chivas_CF-América,,,,,,,,,,,,,,,,,
 2024-03-18,Atlético de San Luis,Atlas,0.0,0.0,Liga MX Femenil,4388979,20240318_Atlético-de-San-Luis_Atlas,,,,,,,,,,,,,,,,,
-2024-03-18,Necaxa,Club León,2.0,1.0,Liga MX Femenil,4388978,20240318_Necaxa_Club-León,,,,,,,,,,,,,,,,,
 2024-03-18,Puebla,Mazatlán FC,1.0,2.0,Liga MX Femenil,4388981,20240318_Puebla_Mazatlán-FC,,,,,,,,,,,,,,,,,
 2024-03-19,Querétaro,Santos Laguna,2.0,1.0,Liga MX Femenil,4388976,20240319_Querétaro_Santos-Laguna,,,,,,,,,,,,,,,,,
 2024-03-19,Pachuca,Toluca,4.0,0.0,Liga MX Femenil,4388977,20240319_Pachuca_Toluca,,,,,,,,,,,,,,,,,
-2024-03-23,Toluca,Club León,0.0,0.0,Liga MX Femenil,4388972,20240323_Toluca_Club-León,,,,,,,,,,,,,,,,,
 2024-03-23,Club Tijuana,Cruz Azul,0.0,2.0,Liga MX Femenil,4388974,20240323_Club-Tijuana_Cruz-Azul,,,,,,,,,,,,,,,,,
 2024-03-23,Pumas,Puebla,3.0,3.0,Liga MX Femenil,4388973,20240323_Pumas_Puebla,,,,,,,,,,,,,,,,,
-2024-03-24,CF América,Atlético de San Luis,2.0,1.0,Liga MX Femenil,4388969,20240324_CF-América_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
+2024-03-23,Toluca,Club León,0.0,0.0,Liga MX Femenil,4388972,20240323_Toluca_Club-León,,,,,,,,,,,,,,,,,
 2024-03-24,Atlas,Monterrey,0.0,1.0,Liga MX Femenil,4388971,20240324_Atlas_Monterrey,,,,,,,,,,,,,,,,,
 2024-03-24,Mazatlán FC,Querétaro,2.0,2.0,Liga MX Femenil,4388959,20240324_Mazatlán-FC_Querétaro,,,,,,,,,,,,,,,,,
 2024-03-24,Tigres,Chivas,1.0,0.0,Liga MX Femenil,4388970,20240324_Tigres_Chivas,,,,,,,,,,,,,,,,,
+2024-03-24,CF América,Atlético de San Luis,2.0,1.0,Liga MX Femenil,4388969,20240324_CF-América_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2024-03-25,Necaxa,FC Juárez,1.0,4.0,Liga MX Femenil,4388968,20240325_Necaxa_FC-Juárez,,,,,,,,,,,,,,,,,
 2024-03-26,Pachuca,Santos Laguna,4.0,0.0,Liga MX Femenil,4388967,20240326_Pachuca_Santos-Laguna,,,,,,,,,,,,,,,,,
 2024-03-29,Monterrey,Club Tijuana,3.0,1.0,Liga MX Femenil,4388966,20240329_Monterrey_Club-Tijuana,,,,,,,,,,,,,,,,,
 2024-03-29,Cruz Azul,CF América,1.0,5.0,Liga MX Femenil,4388965,20240329_Cruz-Azul_CF-América,,,,,,,,,,,,,,,,,
 2024-03-29,Querétaro,Necaxa,1.0,1.0,Liga MX Femenil,4388964,20240329_Querétaro_Necaxa,,,,,,,,,,,,,,,,,
-2024-03-30,Club León,Mazatlán FC,3.0,0.0,Liga MX Femenil,4388963,20240330_Club-León_Mazatlán-FC,,,,,,,,,,,,,,,,,
 2024-03-30,Atlético de San Luis,Pachuca,1.0,3.0,Liga MX Femenil,4388960,20240330_Atlético-de-San-Luis_Pachuca,,,,,,,,,,,,,,,,,
-2024-03-31,Puebla,Tigres,0.0,6.0,Liga MX Femenil,4388990,20240331_Puebla_Tigres,,,,,,,,,,,,,,,,,
-2024-03-31,Chivas,Atlas,1.0,1.0,Liga MX Femenil,4388961,20240331_Chivas_Atlas,,,,,,,,,,,,,,,,,
+2024-03-30,Club León,Mazatlán FC,3.0,0.0,Liga MX Femenil,4388963,20240330_Club-León_Mazatlán-FC,,,,,,,,,,,,,,,,,
 2024-03-31,FC Juárez,Toluca,0.0,0.0,Liga MX Femenil,4388962,20240331_FC-Juárez_Toluca,,,,,,,,,,,,,,,,,
+2024-03-31,Chivas,Atlas,1.0,1.0,Liga MX Femenil,4388961,20240331_Chivas_Atlas,,,,,,,,,,,,,,,,,
+2024-03-31,Puebla,Tigres,0.0,6.0,Liga MX Femenil,4388990,20240331_Puebla_Tigres,,,,,,,,,,,,,,,,,
 2024-04-01,Santos Laguna,Pumas,2.0,3.0,Liga MX Femenil,4388991,20240401_Santos-Laguna_Pumas,,,,,,,,,,,,,,,,,
 2024-04-11,Toluca,Querétaro,1.0,2.0,Liga MX Femenil,4388997,20240411_Toluca_Querétaro,,,,,,,,,,,,,,,,,
 2024-04-13,Pumas,Chivas,1.0,1.0,Liga MX Femenil,4388992,20240413_Pumas_Chivas,,,,,,,,,,,,,,,,,
@@ -958,17 +958,17 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2024-04-14,Atlético de San Luis,FC Juárez,0.0,3.0,Liga MX Femenil,4388993,20240414_Atlético-de-San-Luis_FC-Juárez,,,,,,,,,,,,,,,,,
 2024-04-15,Mazatlán FC,Monterrey,0.0,3.0,Liga MX Femenil,4388995,20240415_Mazatlán-FC_Monterrey,,,,,,,,,,,,,,,,,
 2024-04-15,Atlas,Pachuca,1.0,3.0,Liga MX Femenil,4388996,20240415_Atlas_Pachuca,,,,,,,,,,,,,,,,,
+2024-04-16,Tigres,CF América,1.0,2.0,Liga MX Femenil,4388998,20240416_Tigres_CF-América,,,,,,,,,,,,,,,,,
 2024-04-16,Santos Laguna,Puebla,0.0,1.0,Liga MX Femenil,4388999,20240416_Santos-Laguna_Puebla,,,,,,,,,,,,,,,,,
 2024-04-16,Club Tijuana,Necaxa,3.0,0.0,Liga MX Femenil,4389000,20240416_Club-Tijuana_Necaxa,,,,,,,,,,,,,,,,,
-2024-04-16,Tigres,CF América,1.0,2.0,Liga MX Femenil,4388998,20240416_Tigres_CF-América,,,,,,,,,,,,,,,,,
 2024-04-19,Monterrey,Toluca,1.0,0.0,Liga MX Femenil,4388946,20240419_Monterrey_Toluca,,,,,,,,,,,,,,,,,
 2024-04-19,Querétaro,Club León,3.0,2.0,Liga MX Femenil,4389027,20240419_Querétaro_Club-León,,,,,,,,,,,,,,,,,
 2024-04-20,Atlas,Tigres,0.0,1.0,Liga MX Femenil,4389026,20240420_Atlas_Tigres,,,,,,,,,,,,,,,,,
 2024-04-21,Puebla,FC Juárez,3.0,3.0,Liga MX Femenil,4389025,20240421_Puebla_FC-Juárez,,,,,,,,,,,,,,,,,
 2024-04-21,Pachuca,Chivas,3.0,0.0,Liga MX Femenil,4389024,20240421_Pachuca_Chivas,,,,,,,,,,,,,,,,,
-2024-04-22,Club Tijuana,Santos Laguna,5.0,2.0,Liga MX Femenil,4389023,20240422_Club-Tijuana_Santos-Laguna,,,,,,,,,,,,,,,,,
 2024-04-22,Cruz Azul,Toluca,2.0,3.0,Liga MX Femenil,4389015,20240422_Cruz-Azul_Toluca,,,,,,,,,,,,,,,,,
 2024-04-22,Necaxa,Mazatlán FC,2.0,3.0,Liga MX Femenil,4389022,20240422_Necaxa_Mazatlán-FC,,,,,,,,,,,,,,,,,
+2024-04-22,Club Tijuana,Santos Laguna,5.0,2.0,Liga MX Femenil,4389023,20240422_Club-Tijuana_Santos-Laguna,,,,,,,,,,,,,,,,,
 2024-04-23,CF América,Pumas,3.0,0.0,Liga MX Femenil,4389021,20240423_CF-América_Pumas,,,,,,,,,,,,,,,,,
 2024-04-23,Monterrey,Atlético de San Luis,7.0,0.0,Liga MX Femenil,4389020,20240423_Monterrey_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2024-04-26,Tigres,FC Juárez,1.0,0.0,Liga MX Femenil,4388940,20240426_Tigres_FC-Juárez,,,,,,,,,,,,,,,,,
@@ -978,29 +978,29 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2024-04-29,Toluca,Club Tijuana,2.0,1.0,Liga MX Femenil,4389016,20240429_Toluca_Club-Tijuana,,,,,,,,,,,,,,,,,
 2024-04-29,Querétaro,Atlas,0.0,2.0,Liga MX Femenil,4389001,20240429_Querétaro_Atlas,,,,,,,,,,,,,,,,,
 2024-04-29,Mazatlán FC,Pumas,2.0,7.0,Liga MX Femenil,4389017,20240429_Mazatlán-FC_Pumas,,,,,,,,,,,,,,,,,
+2024-04-30,FC Juárez,Monterrey,1.0,0.0,Liga MX Femenil,4389011,20240430_FC-Juárez_Monterrey,,,,,,,,,,,,,,,,,
 2024-04-30,Tigres,Necaxa,3.0,1.0,Liga MX Femenil,4389014,20240430_Tigres_Necaxa,,,,,,,,,,,,,,,,,
 2024-04-30,Club León,Santos Laguna,4.0,0.0,Liga MX Femenil,4389012,20240430_Club-León_Santos-Laguna,,,,,,,,,,,,,,,,,
 2024-04-30,CF América,Pachuca,2.0,4.0,Liga MX Femenil,4389013,20240430_CF-América_Pachuca,,,,,,,,,,,,,,,,,
-2024-04-30,FC Juárez,Monterrey,1.0,0.0,Liga MX Femenil,4389011,20240430_FC-Juárez_Monterrey,,,,,,,,,,,,,,,,,
 2024-05-03,Necaxa,Atlético de San Luis,2.0,1.0,Liga MX Femenil,4389010,20240503_Necaxa_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2024-05-03,Puebla,Toluca,1.0,2.0,Liga MX Femenil,4389009,20240503_Puebla_Toluca,,,,,,,,,,,,,,,,,
 2024-05-04,Atlas,Cruz Azul,1.0,1.0,Liga MX Femenil,4389008,20240504_Atlas_Cruz-Azul,,,,,,,,,,,,,,,,,
 2024-05-04,Club Tijuana,Club León,1.0,1.0,Liga MX Femenil,4389007,20240504_Club-Tijuana_Club-León,,,,,,,,,,,,,,,,,
 2024-05-04,Pumas,Querétaro,4.0,1.0,Liga MX Femenil,4389006,20240504_Pumas_Querétaro,,,,,,,,,,,,,,,,,
 2024-05-04,Pachuca,Tigres,1.0,1.0,Liga MX Femenil,4389005,20240504_Pachuca_Tigres,,,,,,,,,,,,,,,,,
+2024-05-05,Monterrey,Chivas,0.0,1.0,Liga MX Femenil,4389004,20240505_Monterrey_Chivas,,,,,,,,,,,,,,,,,
 2024-05-05,Santos Laguna,Mazatlán FC,3.0,2.0,Liga MX Femenil,4389003,20240505_Santos-Laguna_Mazatlán-FC,,,,,,,,,,,,,,,,,
 2024-05-05,FC Juárez,CF América,1.0,1.0,Liga MX Femenil,4389002,20240505_FC-Juárez_CF-América,,,,,,,,,,,,,,,,,
-2024-05-05,Monterrey,Chivas,0.0,1.0,Liga MX Femenil,4389004,20240505_Monterrey_Chivas,,,,,,,,,,,,,,,,,
 2024-05-10,Club León,Pachuca,1.0,4.0,Liga MX Femenil,4473895,20240510_Club-León_Pachuca,,,,,,,,,,,,,,,,,
 2024-05-10,Chivas,CF América,0.0,2.0,Liga MX Femenil,4473891,20240510_Chivas_CF-América,,,,,,,,,,,,,,,,,
 2024-05-11,Pumas,Monterrey,0.0,2.0,Liga MX Femenil,4473893,20240511_Pumas_Monterrey,,,,,,,,,,,,,,,,,
 2024-05-11,FC Juárez,Tigres,0.0,1.0,Liga MX Femenil,4473897,20240511_FC-Juárez_Tigres,,,,,,,,,,,,,,,,,
 2024-05-12,CF América,Chivas,4.0,1.0,Liga MX Femenil,4473892,20240512_CF-América_Chivas,,,,,,,,,,,,,,,,,
 2024-05-13,Pachuca,Club León,1.0,0.0,Liga MX Femenil,4473896,20240513_Pachuca_Club-León,,,,,,,,,,,,,,,,,
-2024-05-14,Monterrey,Pumas,1.0,0.0,Liga MX Femenil,4473894,20240514_Monterrey_Pumas,,,,,,,,,,,,,,,,,
 2024-05-14,Tigres,FC Juárez,1.0,1.0,Liga MX Femenil,4473898,20240514_Tigres_FC-Juárez,,,,,,,,,,,,,,,,,
-2024-05-18,CF América,Tigres,3.0,1.0,Liga MX Femenil,4478723,20240518_CF-América_Tigres,,,,,,,,,,,,,,,,,
+2024-05-14,Monterrey,Pumas,1.0,0.0,Liga MX Femenil,4473894,20240514_Monterrey_Pumas,,,,,,,,,,,,,,,,,
 2024-05-18,Monterrey,Pachuca,2.0,0.0,Liga MX Femenil,4478725,20240518_Monterrey_Pachuca,,,,,,,,,,,,,,,,,
+2024-05-18,CF América,Tigres,3.0,1.0,Liga MX Femenil,4478723,20240518_CF-América_Tigres,,,,,,,,,,,,,,,,,
 2024-05-21,Tigres,CF América,1.0,0.0,Liga MX Femenil,4478724,20240521_Tigres_CF-América,,,,,,,,,,,,,,,,,
 2024-05-21,Pachuca,Monterrey,2.0,4.0,Liga MX Femenil,4478726,20240521_Pachuca_Monterrey,,,,,,,,,,,,,,,,,
 2024-05-25,CF América,Monterrey,1.0,0.0,Liga MX Femenil,4481612,20240525_CF-América_Monterrey,,,,,,,,,,,,,,,,,
@@ -1008,13 +1008,13 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2024-06-28,Monterrey,Tigres,0.0,0.0,Liga MX Femenil,4500391,20240628_Monterrey_Tigres,,,,,,,,,,,,,,,,,
 2024-07-02,Tigres,Monterrey,3.0,2.0,Liga MX Femenil,4500392,20240702_Tigres_Monterrey,,,,,,,,,,,,,,,,,
 2024-07-04,Necaxa,Pachuca,0.0,5.0,Liga MX Femenil,4505059,20240704_Necaxa_Pachuca,0.0,3.0,2.0,1.0,1.0,1.0,1.0,11.0,,,,,10.0,90.0,,,flashscore
-2024-07-05,Pumas,Club León,2.0,0.0,Liga MX Femenil,4505051,20240705_Pumas_Club-León,5.0,2.0,2.0,2.0,0.0,0.0,4.0,7.0,,,,,49.0,51.0,,,flashscore
 2024-07-05,FC Juárez,Chivas,0.0,1.0,Liga MX Femenil,4505050,20240705_FC-Juárez_Chivas,0.0,4.0,2.0,3.0,0.0,0.0,2.0,2.0,,,,,47.0,53.0,,,flashscore
-2024-07-07,Atlético de San Luis,Mazatlán FC,1.0,0.0,Liga MX Femenil,4505056,20240707_Atlético-de-San-Luis_Mazatlán-FC,2.0,6.0,5.0,2.0,0.0,0.0,5.0,2.0,,,,,44.0,56.0,,,flashscore
-2024-07-07,Puebla,Monterrey,0.0,1.0,Liga MX Femenil,4505054,20240707_Puebla_Monterrey,3.0,3.0,1.0,1.0,0.0,0.0,1.0,9.0,,,,,49.0,51.0,,,flashscore
-2024-07-07,Cruz Azul,CF América,2.0,1.0,Liga MX Femenil,4505052,20240707_Cruz-Azul_CF-América,2.0,5.0,0.0,1.0,0.0,0.0,3.0,1.0,,,,,42.0,58.0,,,flashscore
+2024-07-05,Pumas,Club León,2.0,0.0,Liga MX Femenil,4505051,20240705_Pumas_Club-León,5.0,2.0,2.0,2.0,0.0,0.0,4.0,7.0,,,,,49.0,51.0,,,flashscore
 2024-07-07,Santos Laguna,Toluca,0.0,2.0,Liga MX Femenil,4505053,20240707_Santos-Laguna_Toluca,2.0,4.0,2.0,0.0,0.0,0.0,1.0,4.0,,,,,37.0,63.0,,,flashscore
+2024-07-07,Cruz Azul,CF América,2.0,1.0,Liga MX Femenil,4505052,20240707_Cruz-Azul_CF-América,2.0,5.0,0.0,1.0,0.0,0.0,3.0,1.0,,,,,42.0,58.0,,,flashscore
+2024-07-07,Puebla,Monterrey,0.0,1.0,Liga MX Femenil,4505054,20240707_Puebla_Monterrey,3.0,3.0,1.0,1.0,0.0,0.0,1.0,9.0,,,,,49.0,51.0,,,flashscore
 2024-07-07,Querétaro,Club Tijuana,1.0,0.0,Liga MX Femenil,4505055,20240707_Querétaro_Club-Tijuana,5.0,5.0,2.0,2.0,0.0,1.0,1.0,0.0,,,,,50.0,50.0,,,flashscore
+2024-07-07,Atlético de San Luis,Mazatlán FC,1.0,0.0,Liga MX Femenil,4505056,20240707_Atlético-de-San-Luis_Mazatlán-FC,2.0,6.0,5.0,2.0,0.0,0.0,5.0,2.0,,,,,44.0,56.0,,,flashscore
 2024-07-08,Atlas,Tigres,1.0,3.0,Liga MX Femenil,4505057,20240708_Atlas_Tigres,2.0,5.0,3.0,1.0,0.0,0.0,3.0,4.0,,,,,41.0,59.0,,,flashscore
 2024-07-19,Club León,FC Juárez,1.0,0.0,Liga MX Femenil,4505145,20240719_Club-León_FC-Juárez,2.0,0.0,4.0,2.0,1.0,1.0,3.0,4.0,,,,,44.0,56.0,,,flashscore
 2024-07-19,Toluca,Pumas,1.0,2.0,Liga MX Femenil,4505058,20240719_Toluca_Pumas,8.0,3.0,5.0,2.0,0.0,0.0,4.0,8.0,,,,,62.0,38.0,,,flashscore
@@ -1027,26 +1027,26 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2024-07-26,Pumas,FC Juárez,3.0,2.0,Liga MX Femenil,4505067,20240726_Pumas_FC-Juárez,1.0,5.0,1.0,2.0,0.0,0.0,7.0,8.0,,,,,44.0,56.0,,,flashscore
 2024-07-28,Querétaro,Atlético de San Luis,1.0,1.0,Liga MX Femenil,4505040,20240728_Querétaro_Atlético-de-San-Luis,6.0,7.0,2.0,1.0,0.0,0.0,1.0,1.0,,,,,54.0,46.0,,,flashscore
 2024-07-28,Cruz Azul,Atlas,0.0,0.0,Liga MX Femenil,4505165,20240728_Cruz-Azul_Atlas,4.0,2.0,3.0,5.0,0.0,1.0,3.0,2.0,,,,,50.0,50.0,,,flashscore
-2024-07-29,Club León,Puebla,0.0,0.0,Liga MX Femenil,4505031,20240729_Club-León_Puebla,4.0,1.0,0.0,1.0,0.0,0.0,3.0,2.0,,,,,45.0,55.0,,,flashscore
 2024-07-29,Necaxa,Santos Laguna,1.0,0.0,Liga MX Femenil,4505174,20240729_Necaxa_Santos-Laguna,3.0,5.0,3.0,0.0,0.0,0.0,6.0,3.0,,,,,47.0,53.0,,,flashscore
+2024-07-29,Club León,Puebla,0.0,0.0,Liga MX Femenil,4505031,20240729_Club-León_Puebla,4.0,1.0,0.0,1.0,0.0,0.0,3.0,2.0,,,,,45.0,55.0,,,flashscore
 2024-07-30,CF América,Toluca,2.0,2.0,Liga MX Femenil,4505032,20240730_CF-América_Toluca,5.0,4.0,1.0,3.0,0.0,0.0,7.0,7.0,,,,,54.0,46.0,,,flashscore
 2024-08-02,Atlas,Club León,0.0,0.0,Liga MX Femenil,4505038,20240802_Atlas_Club-León,5.0,8.0,1.0,2.0,0.0,0.0,3.0,0.0,,,,,45.0,55.0,,,flashscore
 2024-08-03,Atlético de San Luis,Pumas,1.0,2.0,Liga MX Femenil,4505039,20240803_Atlético-de-San-Luis_Pumas,5.0,5.0,2.0,3.0,0.0,0.0,4.0,5.0,,,,,46.0,54.0,,,flashscore
 2024-08-04,FC Juárez,Santos Laguna,3.0,1.0,Liga MX Femenil,4505030,20240804_FC-Juárez_Santos-Laguna,2.0,2.0,0.0,2.0,0.0,0.0,6.0,2.0,,,,,52.0,48.0,,,flashscore
 2024-08-05,Cruz Azul,Pachuca,0.0,4.0,Liga MX Femenil,4505041,20240805_Cruz-Azul_Pachuca,6.0,4.0,3.0,1.0,0.0,0.0,6.0,7.0,,,,,42.0,58.0,,,flashscore
+2024-08-06,Necaxa,Monterrey,0.0,4.0,Liga MX Femenil,4505042,20240806_Necaxa_Monterrey,2.0,7.0,1.0,2.0,0.0,0.0,0.0,9.0,,,,,35.0,65.0,,,flashscore
 2024-08-06,Puebla,Chivas,0.0,1.0,Liga MX Femenil,4505045,20240806_Puebla_Chivas,5.0,3.0,2.0,1.0,0.0,0.0,2.0,2.0,,,,,43.0,57.0,,,flashscore
 2024-08-06,Toluca,Club Tijuana,2.0,4.0,Liga MX Femenil,4505044,20240806_Toluca_Club-Tijuana,8.0,5.0,1.0,1.0,0.0,0.0,4.0,8.0,,,,,63.0,37.0,,,flashscore
-2024-08-06,Necaxa,Monterrey,0.0,4.0,Liga MX Femenil,4505042,20240806_Necaxa_Monterrey,2.0,7.0,1.0,2.0,0.0,0.0,0.0,9.0,,,,,35.0,65.0,,,flashscore
 2024-08-07,Querétaro,CF América,0.0,4.0,Liga MX Femenil,4505046,20240807_Querétaro_CF-América,4.0,10.0,2.0,4.0,0.0,0.0,0.0,4.0,,,,,37.0,63.0,,,flashscore
 2024-08-09,Club León,Cruz Azul,1.0,0.0,Liga MX Femenil,4505047,20240809_Club-León_Cruz-Azul,4.0,3.0,1.0,2.0,0.0,1.0,9.0,1.0,,,,,50.0,50.0,,,flashscore
 2024-08-10,Pumas,Pachuca,0.0,2.0,Liga MX Femenil,4505097,20240810_Pumas_Pachuca,2.0,5.0,0.0,2.0,0.0,0.0,0.0,3.0,,,,,44.0,56.0,,,flashscore
 2024-08-10,Mazatlán FC,FC Juárez,0.0,6.0,Liga MX Femenil,4505048,20240810_Mazatlán-FC_FC-Juárez,4.0,6.0,3.0,0.0,0.0,0.0,0.0,6.0,,,,,43.0,57.0,,,flashscore
 2024-08-11,Santos Laguna,Atlas,0.0,3.0,Liga MX Femenil,4505088,20240811_Santos-Laguna_Atlas,5.0,3.0,,,,,2.0,4.0,,,,,41.0,59.0,,,flashscore
 2024-08-12,CF América,Necaxa,4.0,0.0,Liga MX Femenil,4505089,20240812_CF-América_Necaxa,8.0,2.0,2.0,1.0,0.0,0.0,12.0,2.0,,,,,63.0,37.0,,,flashscore
+2024-08-13,Club Tijuana,Puebla,3.0,2.0,Liga MX Femenil,4505093,20240813_Club-Tijuana_Puebla,2.0,2.0,2.0,5.0,0.0,0.0,7.0,6.0,,,,,54.0,46.0,,,flashscore
+2024-08-13,Monterrey,Atlético de San Luis,1.0,0.0,Liga MX Femenil,4505092,20240813_Monterrey_Atlético-de-San-Luis,13.0,1.0,0.0,2.0,0.0,0.0,10.0,0.0,,,,,60.0,40.0,,,flashscore
 2024-08-13,Toluca,Tigres,0.0,6.0,Liga MX Femenil,4505090,20240813_Toluca_Tigres,1.0,6.0,3.0,2.0,0.0,0.0,8.0,11.0,,,,,38.0,62.0,,,flashscore
 2024-08-13,Chivas,Querétaro,0.0,0.0,Liga MX Femenil,4505091,20240813_Chivas_Querétaro,11.0,1.0,3.0,4.0,0.0,0.0,3.0,2.0,,,,,60.0,40.0,,,flashscore
-2024-08-13,Monterrey,Atlético de San Luis,1.0,0.0,Liga MX Femenil,4505092,20240813_Monterrey_Atlético-de-San-Luis,13.0,1.0,0.0,2.0,0.0,0.0,10.0,0.0,,,,,60.0,40.0,,,flashscore
-2024-08-13,Club Tijuana,Puebla,3.0,2.0,Liga MX Femenil,4505093,20240813_Club-Tijuana_Puebla,2.0,2.0,2.0,5.0,0.0,0.0,7.0,6.0,,,,,54.0,46.0,,,flashscore
 2024-08-16,Necaxa,Mazatlán FC,1.0,2.0,Liga MX Femenil,4505094,20240816_Necaxa_Mazatlán-FC,3.0,2.0,1.0,0.0,0.0,0.0,5.0,3.0,,,,,55.0,45.0,,,flashscore
 2024-08-17,Atlas,Club Tijuana,3.0,1.0,Liga MX Femenil,4505095,20240817_Atlas_Club-Tijuana,2.0,4.0,1.0,1.0,0.0,0.0,4.0,3.0,,,,,48.0,52.0,,,flashscore
 2024-08-17,FC Juárez,Monterrey,0.0,1.0,Liga MX Femenil,4505096,20240817_FC-Juárez_Monterrey,4.0,3.0,2.0,3.0,0.0,0.0,2.0,1.0,,,,,47.0,53.0,,,flashscore
@@ -1057,49 +1057,49 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2024-08-19,Querétaro,Toluca,1.0,0.0,Liga MX Femenil,4505102,20240819_Querétaro_Toluca,4.0,5.0,1.0,3.0,0.0,0.0,1.0,0.0,,,,,50.0,50.0,,,flashscore
 2024-08-20,Atlético de San Luis,Chivas,0.0,3.0,Liga MX Femenil,4505101,20240820_Atlético-de-San-Luis_Chivas,8.0,3.0,2.0,2.0,0.0,0.0,2.0,8.0,,,,,52.0,48.0,,,flashscore
 2024-08-22,Pachuca,Atlas,3.0,0.0,Liga MX Femenil,4505034,20240822_Pachuca_Atlas,3.0,1.0,2.0,1.0,0.0,0.0,5.0,3.0,,,,,54.0,46.0,,,flashscore
-2024-08-23,Club Tijuana,Cruz Azul,3.0,0.0,Liga MX Femenil,4505035,20240823_Club-Tijuana_Cruz-Azul,6.0,1.0,3.0,0.0,0.0,1.0,6.0,2.0,,,,,51.0,49.0,,,flashscore
 2024-08-23,Chivas,Club León,2.0,1.0,Liga MX Femenil,4505065,20240823_Chivas_Club-León,3.0,5.0,1.0,1.0,0.0,0.0,3.0,4.0,,,,,42.0,58.0,,,flashscore
+2024-08-23,Club Tijuana,Cruz Azul,3.0,0.0,Liga MX Femenil,4505035,20240823_Club-Tijuana_Cruz-Azul,6.0,1.0,3.0,0.0,0.0,1.0,6.0,2.0,,,,,51.0,49.0,,,flashscore
 2024-08-24,Pumas,Puebla,2.0,1.0,Liga MX Femenil,4505103,20240824_Pumas_Puebla,5.0,1.0,2.0,2.0,0.0,1.0,16.0,3.0,,,,,57.0,43.0,,,flashscore
 2024-08-25,Atlético de San Luis,Pachuca,2.0,3.0,Liga MX Femenil,4505105,20240825_Atlético-de-San-Luis_Pachuca,0.0,3.0,2.0,6.0,0.0,0.0,8.0,9.0,,,,,43.0,57.0,,,flashscore
+2024-08-26,Necaxa,Atlas,0.0,1.0,Liga MX Femenil,4505070,20240826_Necaxa_Atlas,6.0,2.0,1.0,0.0,0.0,0.0,2.0,2.0,,,,,47.0,53.0,,,flashscore
+2024-08-26,Mazatlán FC,Querétaro,0.0,2.0,Liga MX Femenil,4505104,20240826_Mazatlán-FC_Querétaro,2.0,0.0,3.0,2.0,0.0,0.0,0.0,2.0,,,,,46.0,54.0,,,flashscore
 2024-08-26,Santos Laguna,Tigres,0.0,3.0,Liga MX Femenil,4505078,20240826_Santos-Laguna_Tigres,5.0,5.0,2.0,2.0,0.0,0.0,0.0,4.0,,,,,37.0,63.0,,,flashscore
 2024-08-26,FC Juárez,Club Tijuana,4.0,0.0,Liga MX Femenil,4505069,20240826_FC-Juárez_Club-Tijuana,8.0,5.0,,,,,5.0,1.0,,,,,63.0,37.0,,,flashscore
-2024-08-26,Mazatlán FC,Querétaro,0.0,2.0,Liga MX Femenil,4505104,20240826_Mazatlán-FC_Querétaro,2.0,0.0,3.0,2.0,0.0,0.0,0.0,2.0,,,,,46.0,54.0,,,flashscore
-2024-08-26,Necaxa,Atlas,0.0,1.0,Liga MX Femenil,4505070,20240826_Necaxa_Atlas,6.0,2.0,1.0,0.0,0.0,0.0,2.0,2.0,,,,,47.0,53.0,,,flashscore
 2024-08-27,Monterrey,Toluca,5.0,0.0,Liga MX Femenil,4505073,20240827_Monterrey_Toluca,6.0,0.0,,,,,10.0,1.0,,,,,60.0,40.0,,,flashscore
 2024-08-27,Club León,CF América,0.0,1.0,Liga MX Femenil,4505071,20240827_Club-León_CF-América,1.0,13.0,2.0,1.0,0.0,0.0,0.0,2.0,,,,,43.0,57.0,,,flashscore
 2024-08-27,Chivas,Cruz Azul,2.0,0.0,Liga MX Femenil,4505072,20240827_Chivas_Cruz-Azul,3.0,6.0,1.0,1.0,0.0,0.0,8.0,2.0,,,,,47.0,53.0,,,flashscore
-2024-08-30,Club Tijuana,Santos Laguna,1.0,0.0,Liga MX Femenil,4505074,20240830_Club-Tijuana_Santos-Laguna,8.0,4.0,3.0,2.0,0.0,0.0,8.0,2.0,,,,,60.0,40.0,,,flashscore
 2024-08-30,CF América,FC Juárez,0.0,0.0,Liga MX Femenil,4505066,20240830_CF-América_FC-Juárez,13.0,2.0,1.0,2.0,0.0,0.0,10.0,4.0,,,,,55.0,45.0,,,flashscore
 2024-08-30,Tigres,Necaxa,6.0,0.0,Liga MX Femenil,4505037,20240830_Tigres_Necaxa,15.0,1.0,0.0,4.0,0.0,0.0,10.0,0.0,,,,,70.0,30.0,,,flashscore
-2024-09-01,CF América,Pumas,2.0,2.0,Liga MX Femenil,4505076,20240901_CF-América_Pumas,8.0,1.0,1.0,0.0,0.0,0.0,8.0,3.0,,,,,63.0,37.0,,,flashscore
-2024-09-01,Puebla,Atlético de San Luis,2.0,2.0,Liga MX Femenil,4505075,20240901_Puebla_Atlético-de-San-Luis,1.0,7.0,4.0,4.0,0.0,0.0,4.0,6.0,,,,,47.0,53.0,,,flashscore
+2024-08-30,Club Tijuana,Santos Laguna,1.0,0.0,Liga MX Femenil,4505074,20240830_Club-Tijuana_Santos-Laguna,8.0,4.0,3.0,2.0,0.0,0.0,8.0,2.0,,,,,60.0,40.0,,,flashscore
 2024-09-01,Pachuca,Mazatlán FC,7.0,0.0,Liga MX Femenil,4505077,20240901_Pachuca_Mazatlán-FC,7.0,2.0,1.0,0.0,0.0,0.0,14.0,2.0,,,,,59.0,41.0,,,flashscore
-2024-09-02,Toluca,Chivas,2.0,0.0,Liga MX Femenil,4505079,20240902_Toluca_Chivas,6.0,4.0,,,,,4.0,1.0,,,,,51.0,49.0,,,flashscore
+2024-09-01,Puebla,Atlético de San Luis,2.0,2.0,Liga MX Femenil,4505075,20240901_Puebla_Atlético-de-San-Luis,1.0,7.0,4.0,4.0,0.0,0.0,4.0,6.0,,,,,47.0,53.0,,,flashscore
+2024-09-01,CF América,Pumas,2.0,2.0,Liga MX Femenil,4505076,20240901_CF-América_Pumas,8.0,1.0,1.0,0.0,0.0,0.0,8.0,3.0,,,,,63.0,37.0,,,flashscore
 2024-09-02,Tigres,Club León,1.0,0.0,Liga MX Femenil,4505068,20240902_Tigres_Club-León,10.0,0.0,2.0,5.0,0.0,1.0,2.0,0.0,,,,,57.0,43.0,,,flashscore
+2024-09-02,Toluca,Chivas,2.0,0.0,Liga MX Femenil,4505079,20240902_Toluca_Chivas,6.0,4.0,,,,,4.0,1.0,,,,,51.0,49.0,,,flashscore
 2024-09-02,Querétaro,Monterrey,1.0,3.0,Liga MX Femenil,4505080,20240902_Querétaro_Monterrey,3.0,2.0,0.0,3.0,0.0,0.0,1.0,4.0,,,,,44.0,56.0,,,flashscore
 2024-09-03,Cruz Azul,Necaxa,1.0,1.0,Liga MX Femenil,4505081,20240903_Cruz-Azul_Necaxa,11.0,0.0,1.0,1.0,0.0,0.0,1.0,1.0,,,,,61.0,39.0,,,flashscore
 2024-09-04,Atlas,FC Juárez,1.0,0.0,Liga MX Femenil,4505082,20240904_Atlas_FC-Juárez,1.0,6.0,4.0,5.0,0.0,0.0,2.0,2.0,,,,,45.0,55.0,,,flashscore
 2024-09-05,Mazatlán FC,Tigres,0.0,2.0,Liga MX Femenil,4505043,20240905_Mazatlán-FC_Tigres,1.0,11.0,2.0,1.0,0.0,0.0,0.0,2.0,,,,,34.0,66.0,,,flashscore
-2024-09-07,Santos Laguna,Querétaro,0.0,2.0,Liga MX Femenil,4505083,20240907_Santos-Laguna_Querétaro,5.0,6.0,3.0,0.0,0.0,0.0,2.0,10.0,,,,,44.0,56.0,,,flashscore
-2024-09-07,Pumas,Atlas,4.0,2.0,Liga MX Femenil,4505084,20240907_Pumas_Atlas,7.0,2.0,1.0,3.0,0.0,0.0,8.0,5.0,,,,,50.0,50.0,,,flashscore
 2024-09-07,Toluca,Puebla,1.0,0.0,Liga MX Femenil,4505085,20240907_Toluca_Puebla,4.0,2.0,3.0,3.0,1.0,1.0,10.0,2.0,,,,,60.0,40.0,,,flashscore
+2024-09-07,Pumas,Atlas,4.0,2.0,Liga MX Femenil,4505084,20240907_Pumas_Atlas,7.0,2.0,1.0,3.0,0.0,0.0,8.0,5.0,,,,,50.0,50.0,,,flashscore
+2024-09-07,Santos Laguna,Querétaro,0.0,2.0,Liga MX Femenil,4505083,20240907_Santos-Laguna_Querétaro,5.0,6.0,3.0,0.0,0.0,0.0,2.0,10.0,,,,,44.0,56.0,,,flashscore
 2024-09-08,FC Juárez,Pachuca,0.0,0.0,Liga MX Femenil,4505086,20240908_FC-Juárez_Pachuca,3.0,8.0,2.0,5.0,1.0,0.0,0.0,0.0,,,,,54.0,46.0,,,flashscore
 2024-09-08,Chivas,Necaxa,3.0,1.0,Liga MX Femenil,4505115,20240908_Chivas_Necaxa,7.0,1.0,0.0,2.0,0.0,0.0,14.0,4.0,,,,,58.0,42.0,,,flashscore
-2024-09-09,Atlético de San Luis,Tigres,1.0,2.0,Liga MX Femenil,4505123,20240909_Atlético-de-San-Luis_Tigres,1.0,6.0,1.0,1.0,0.0,0.0,2.0,4.0,,,,,36.0,64.0,,,flashscore
-2024-09-09,Mazatlán FC,CF América,1.0,8.0,Liga MX Femenil,4505120,20240909_Mazatlán-FC_CF-América,1.0,9.0,1.0,0.0,0.0,0.0,2.0,16.0,,,,,20.0,80.0,,,flashscore
-2024-09-09,Monterrey,Cruz Azul,1.0,0.0,Liga MX Femenil,4505121,20240909_Monterrey_Cruz-Azul,8.0,1.0,1.0,0.0,0.0,0.0,5.0,2.0,,,,,65.0,35.0,,,flashscore
 2024-09-09,Club León,Club Tijuana,4.0,3.0,Liga MX Femenil,4505122,20240909_Club-León_Club-Tijuana,6.0,5.0,1.0,3.0,0.0,0.0,6.0,4.0,,,,,51.0,49.0,,,flashscore
+2024-09-09,Monterrey,Cruz Azul,1.0,0.0,Liga MX Femenil,4505121,20240909_Monterrey_Cruz-Azul,8.0,1.0,1.0,0.0,0.0,0.0,5.0,2.0,,,,,65.0,35.0,,,flashscore
+2024-09-09,Mazatlán FC,CF América,1.0,8.0,Liga MX Femenil,4505120,20240909_Mazatlán-FC_CF-América,1.0,9.0,1.0,0.0,0.0,0.0,2.0,16.0,,,,,20.0,80.0,,,flashscore
+2024-09-09,Atlético de San Luis,Tigres,1.0,2.0,Liga MX Femenil,4505123,20240909_Atlético-de-San-Luis_Tigres,1.0,6.0,1.0,1.0,0.0,0.0,2.0,4.0,,,,,36.0,64.0,,,flashscore
 2024-09-13,Atlas,Toluca,1.0,1.0,Liga MX Femenil,4505119,20240913_Atlas_Toluca,7.0,6.0,,,,,5.0,7.0,,,,,46.0,54.0,,,flashscore
 2024-09-13,Querétaro,Club León,2.0,1.0,Liga MX Femenil,4505118,20240913_Querétaro_Club-León,5.0,5.0,3.0,3.0,1.0,0.0,4.0,6.0,,,,,50.0,50.0,,,flashscore
 2024-09-14,Cruz Azul,Atlético de San Luis,2.0,0.0,Liga MX Femenil,4505117,20240914_Cruz-Azul_Atlético-de-San-Luis,5.0,6.0,2.0,3.0,0.0,0.0,5.0,13.0,,,,,59.0,41.0,,,flashscore
+2024-09-15,Puebla,Mazatlán FC,3.0,1.0,Liga MX Femenil,4505114,20240915_Puebla_Mazatlán-FC,7.0,1.0,2.0,1.0,0.0,1.0,8.0,2.0,,,,,60.0,40.0,,,flashscore
 2024-09-15,Tigres,Monterrey,0.0,0.0,Liga MX Femenil,4505116,20240915_Tigres_Monterrey,3.0,7.0,1.0,2.0,0.0,0.0,7.0,0.0,,,,,51.0,49.0,,,flashscore
 2024-09-15,CF América,Chivas,7.0,0.0,Liga MX Femenil,4505106,20240915_CF-América_Chivas,6.0,7.0,1.0,4.0,0.0,0.0,7.0,0.0,,,,,58.0,42.0,,,flashscore
-2024-09-15,Puebla,Mazatlán FC,3.0,1.0,Liga MX Femenil,4505114,20240915_Puebla_Mazatlán-FC,7.0,1.0,2.0,1.0,0.0,1.0,8.0,2.0,,,,,60.0,40.0,,,flashscore
+2024-09-16,Club Tijuana,Pumas,5.0,1.0,Liga MX Femenil,4505112,20240916_Club-Tijuana_Pumas,3.0,6.0,4.0,3.0,0.0,0.0,12.0,2.0,,,,,53.0,47.0,,,flashscore
 2024-09-16,Necaxa,FC Juárez,0.0,2.0,Liga MX Femenil,4505111,20240916_Necaxa_FC-Juárez,3.0,6.0,4.0,2.0,0.0,0.0,1.0,5.0,,,,,34.0,66.0,,,flashscore
 2024-09-16,Pachuca,Santos Laguna,3.0,0.0,Liga MX Femenil,4505113,20240916_Pachuca_Santos-Laguna,10.0,0.0,3.0,3.0,0.0,1.0,12.0,1.0,,,,,60.0,40.0,,,flashscore
-2024-09-16,Club Tijuana,Pumas,5.0,1.0,Liga MX Femenil,4505112,20240916_Club-Tijuana_Pumas,3.0,6.0,4.0,3.0,0.0,0.0,12.0,2.0,,,,,53.0,47.0,,,flashscore
-2024-09-20,Chivas,Mazatlán FC,1.0,2.0,Liga MX Femenil,4505033,20240920_Chivas_Mazatlán-FC,6.0,5.0,1.0,3.0,0.0,0.0,4.0,3.0,,,,,61.0,39.0,,,flashscore
 2024-09-20,Pumas,Querétaro,0.0,0.0,Liga MX Femenil,4505110,20240920_Pumas_Querétaro,9.0,3.0,4.0,4.0,0.0,0.0,10.0,4.0,,,,,59.0,41.0,,,flashscore
+2024-09-20,Chivas,Mazatlán FC,1.0,2.0,Liga MX Femenil,4505033,20240920_Chivas_Mazatlán-FC,6.0,5.0,1.0,3.0,0.0,0.0,4.0,3.0,,,,,61.0,39.0,,,flashscore
 2024-09-21,Santos Laguna,Puebla,2.0,1.0,Liga MX Femenil,4505109,20240921_Santos-Laguna_Puebla,3.0,6.0,1.0,1.0,0.0,0.0,4.0,2.0,,,,,50.0,50.0,,,flashscore
 2024-09-22,FC Juárez,Cruz Azul,1.0,0.0,Liga MX Femenil,4505108,20240922_FC-Juárez_Cruz-Azul,13.0,4.0,1.0,0.0,0.0,0.0,3.0,2.0,,,,,58.0,42.0,,,flashscore
 2024-09-22,Atlético de San Luis,Necaxa,2.0,1.0,Liga MX Femenil,4505143,20240922_Atlético-de-San-Luis_Necaxa,8.0,1.0,1.0,0.0,0.0,0.0,9.0,5.0,,,,,58.0,42.0,,,flashscore
@@ -1108,18 +1108,18 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2024-09-23,Mazatlán FC,Atlas,0.0,2.0,Liga MX Femenil,4505107,20240923_Mazatlán-FC_Atlas,0.0,6.0,2.0,1.0,0.0,0.0,1.0,2.0,,,,,54.0,46.0,,,flashscore
 2024-09-23,Toluca,Club León,2.0,0.0,Liga MX Femenil,4505141,20240923_Toluca_Club-León,1.0,1.0,2.0,1.0,0.0,0.0,6.0,2.0,,,,,43.0,57.0,,,flashscore
 2024-09-24,Monterrey,CF América,2.0,4.0,Liga MX Femenil,4505140,20240924_Monterrey_CF-América,2.0,2.0,1.0,2.0,0.0,1.0,3.0,4.0,,,,,41.0,59.0,,,flashscore
-2024-09-26,CF América,Santos Laguna,2.0,0.0,Liga MX Femenil,4505138,20240926_CF-América_Santos-Laguna,11.0,0.0,0.0,2.0,0.0,0.0,8.0,0.0,,,,,67.0,33.0,,,flashscore
 2024-09-26,Querétaro,FC Juárez,0.0,2.0,Liga MX Femenil,4505139,20240926_Querétaro_FC-Juárez,3.0,2.0,3.0,1.0,0.0,0.0,0.0,2.0,,,,,44.0,56.0,,,flashscore
-2024-09-27,Necaxa,Toluca,1.0,4.0,Liga MX Femenil,4505132,20240927_Necaxa_Toluca,2.0,6.0,2.0,1.0,0.0,0.0,3.0,5.0,,,,,30.0,70.0,,,flashscore
+2024-09-26,CF América,Santos Laguna,2.0,0.0,Liga MX Femenil,4505138,20240926_CF-América_Santos-Laguna,11.0,0.0,0.0,2.0,0.0,0.0,8.0,0.0,,,,,67.0,33.0,,,flashscore
+2024-09-27,Pumas,Chivas,3.0,1.0,Liga MX Femenil,4505136,20240927_Pumas_Chivas,4.0,6.0,2.0,2.0,0.0,0.0,8.0,4.0,,,,,45.0,55.0,,,flashscore
+2024-09-27,Pachuca,Puebla,2.0,0.0,Liga MX Femenil,4505137,20240927_Pachuca_Puebla,7.0,0.0,1.0,1.0,0.0,0.0,12.0,2.0,,,,,56.0,44.0,,,flashscore
+2024-09-27,Tigres,Cruz Azul,2.0,0.0,Liga MX Femenil,4505135,20240927_Tigres_Cruz-Azul,12.0,2.0,2.0,2.0,0.0,1.0,6.0,2.0,,,,,59.0,41.0,,,flashscore
 2024-09-27,Atlas,Atlético de San Luis,3.0,0.0,Liga MX Femenil,4505131,20240927_Atlas_Atlético-de-San-Luis,9.0,1.0,0.0,1.0,0.0,0.0,9.0,2.0,,,,,60.0,40.0,,,flashscore
 2024-09-27,Club León,Monterrey,1.0,1.0,Liga MX Femenil,4505133,20240927_Club-León_Monterrey,5.0,6.0,3.0,1.0,0.0,0.0,5.0,3.0,,,,,39.0,61.0,,,flashscore
-2024-09-27,Pachuca,Puebla,2.0,0.0,Liga MX Femenil,4505137,20240927_Pachuca_Puebla,7.0,0.0,1.0,1.0,0.0,0.0,12.0,2.0,,,,,56.0,44.0,,,flashscore
-2024-09-27,Pumas,Chivas,3.0,1.0,Liga MX Femenil,4505136,20240927_Pumas_Chivas,4.0,6.0,2.0,2.0,0.0,0.0,8.0,4.0,,,,,45.0,55.0,,,flashscore
-2024-09-27,Tigres,Cruz Azul,2.0,0.0,Liga MX Femenil,4505135,20240927_Tigres_Cruz-Azul,12.0,2.0,2.0,2.0,0.0,1.0,6.0,2.0,,,,,59.0,41.0,,,flashscore
+2024-09-27,Necaxa,Toluca,1.0,4.0,Liga MX Femenil,4505132,20240927_Necaxa_Toluca,2.0,6.0,2.0,1.0,0.0,0.0,3.0,5.0,,,,,30.0,70.0,,,flashscore
 2024-09-30,Puebla,Querétaro,0.0,1.0,Liga MX Femenil,4505130,20240930_Puebla_Querétaro,6.0,2.0,2.0,0.0,0.0,0.0,3.0,4.0,,,,,49.0,51.0,,,flashscore
 2024-09-30,Atlético de San Luis,FC Juárez,2.0,3.0,Liga MX Femenil,4505126,20240930_Atlético-de-San-Luis_FC-Juárez,1.0,11.0,2.0,2.0,0.0,0.0,2.0,5.0,,,,,42.0,58.0,,,flashscore
-2024-09-30,Santos Laguna,Pumas,1.0,3.0,Liga MX Femenil,4505128,20240930_Santos-Laguna_Pumas,4.0,5.0,2.0,1.0,0.0,0.0,1.0,3.0,,,,,49.0,51.0,,,flashscore
 2024-09-30,Chivas,Tigres,1.0,1.0,Liga MX Femenil,4505129,20240930_Chivas_Tigres,2.0,5.0,3.0,2.0,0.0,0.0,2.0,4.0,,,,,46.0,54.0,,,flashscore
+2024-09-30,Santos Laguna,Pumas,1.0,3.0,Liga MX Femenil,4505128,20240930_Santos-Laguna_Pumas,4.0,5.0,2.0,1.0,0.0,0.0,1.0,3.0,,,,,49.0,51.0,,,flashscore
 2024-09-30,Club Tijuana,CF América,1.0,4.0,Liga MX Femenil,4505127,20240930_Club-Tijuana_CF-América,3.0,5.0,1.0,1.0,0.0,0.0,5.0,10.0,,,,,41.0,59.0,,,flashscore
 2024-10-01,Toluca,Pachuca,1.0,3.0,Liga MX Femenil,4505125,20241001_Toluca_Pachuca,4.0,3.0,0.0,2.0,0.0,0.0,2.0,8.0,,,,,41.0,59.0,,,flashscore
 2024-10-01,Monterrey,Mazatlán FC,6.0,1.0,Liga MX Femenil,4505164,20241001_Monterrey_Mazatlán-FC,5.0,3.0,1.0,0.0,0.0,0.0,10.0,1.0,,,,,61.0,39.0,,,flashscore
@@ -1129,31 +1129,31 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2024-10-05,FC Juárez,Toluca,2.0,1.0,Liga MX Femenil,4505168,20241005_FC-Juárez_Toluca,6.0,5.0,3.0,4.0,0.0,0.0,3.0,2.0,,,,,54.0,46.0,,,flashscore
 2024-10-06,Mazatlán FC,Pumas,2.0,1.0,Liga MX Femenil,4505169,20241006_Mazatlán-FC_Pumas,3.0,8.0,2.0,2.0,1.0,1.0,7.0,5.0,,,,,59.0,41.0,,,flashscore
 2024-10-06,Cruz Azul,Puebla,3.0,0.0,Liga MX Femenil,4505167,20241006_Cruz-Azul_Puebla,,,,,,,,,,,,,,,,,
-2024-10-07,Atlético de San Luis,Club León,2.0,2.0,Liga MX Femenil,4505163,20241007_Atlético-de-San-Luis_Club-León,7.0,5.0,2.0,1.0,0.0,0.0,6.0,6.0,,,,,48.0,52.0,,,flashscore
 2024-10-07,Chivas,Club Tijuana,3.0,1.0,Liga MX Femenil,4505170,20241007_Chivas_Club-Tijuana,1.0,5.0,2.0,3.0,0.0,0.0,8.0,6.0,,,,,46.0,54.0,,,flashscore
 2024-10-07,Tigres,CF América,0.0,1.0,Liga MX Femenil,4505171,20241007_Tigres_CF-América,7.0,5.0,3.0,1.0,0.0,0.0,3.0,5.0,,,,,53.0,47.0,,,flashscore
+2024-10-07,Atlético de San Luis,Club León,2.0,2.0,Liga MX Femenil,4505163,20241007_Atlético-de-San-Luis_Club-León,7.0,5.0,2.0,1.0,0.0,0.0,6.0,6.0,,,,,48.0,52.0,,,flashscore
 2024-10-08,Pachuca,Monterrey,0.0,0.0,Liga MX Femenil,4505172,20241008_Pachuca_Monterrey,8.0,4.0,1.0,2.0,0.0,1.0,11.0,1.0,,,,,54.0,46.0,,,flashscore
 2024-10-11,Mazatlán FC,Club Tijuana,1.0,3.0,Liga MX Femenil,4505124,20241011_Mazatlán-FC_Club-Tijuana,9.0,2.0,2.0,1.0,0.0,0.0,1.0,3.0,,,,,49.0,51.0,,,flashscore
 2024-10-12,CF América,Pachuca,5.0,0.0,Liga MX Femenil,4505178,20241012_CF-América_Pachuca,6.0,4.0,1.0,3.0,0.0,0.0,8.0,4.0,,,,,58.0,42.0,,,flashscore
 2024-10-12,Toluca,Cruz Azul,3.0,1.0,Liga MX Femenil,4505181,20241012_Toluca_Cruz-Azul,7.0,5.0,3.0,0.0,0.0,0.0,10.0,3.0,,,,,59.0,41.0,,,flashscore
-2024-10-12,Tigres,Querétaro,5.0,3.0,Liga MX Femenil,4505176,20241012_Tigres_Querétaro,8.0,3.0,4.0,2.0,0.0,0.0,8.0,5.0,,,,,57.0,43.0,,,flashscore
 2024-10-12,Atlas,Chivas,1.0,5.0,Liga MX Femenil,4505177,20241012_Atlas_Chivas,7.0,1.0,0.0,1.0,0.0,0.0,4.0,8.0,,,,,50.0,50.0,,,flashscore
+2024-10-12,Tigres,Querétaro,5.0,3.0,Liga MX Femenil,4505176,20241012_Tigres_Querétaro,8.0,3.0,4.0,2.0,0.0,0.0,8.0,5.0,,,,,57.0,43.0,,,flashscore
 2024-10-13,Puebla,Necaxa,2.0,0.0,Liga MX Femenil,4505180,20241013_Puebla_Necaxa,1.0,6.0,1.0,3.0,0.0,1.0,2.0,0.0,,,,,52.0,48.0,,,flashscore
 2024-10-13,Pumas,Monterrey,1.0,2.0,Liga MX Femenil,4505179,20241013_Pumas_Monterrey,0.0,8.0,1.0,1.0,0.0,0.0,7.0,5.0,,,,,52.0,48.0,,,flashscore
 2024-10-14,Club Tijuana,Atlético de San Luis,6.0,1.0,Liga MX Femenil,4505154,20241014_Club-Tijuana_Atlético-de-San-Luis,8.0,5.0,1.0,2.0,0.0,0.0,11.0,5.0,,,,,69.0,31.0,,,flashscore
 2024-10-15,Santos Laguna,Mazatlán FC,0.0,0.0,Liga MX Femenil,4505175,20241015_Santos-Laguna_Mazatlán-FC,6.0,2.0,4.0,1.0,0.0,0.0,2.0,0.0,,,,,53.0,47.0,,,flashscore
 2024-10-17,Necaxa,Querétaro,0.0,3.0,Liga MX Femenil,4505146,20241017_Necaxa_Querétaro,3.0,7.0,4.0,1.0,0.0,0.0,0.0,5.0,,,,,42.0,58.0,,,flashscore
-2024-10-18,Atlas,Puebla,3.0,0.0,Liga MX Femenil,4505147,20241018_Atlas_Puebla,9.0,1.0,0.0,2.0,0.0,0.0,5.0,1.0,,,,,53.0,47.0,,,flashscore
-2024-10-18,Mazatlán FC,Toluca,2.0,5.0,Liga MX Femenil,4505148,20241018_Mazatlán-FC_Toluca,1.0,3.0,2.0,3.0,1.0,0.0,2.0,5.0,,,,,40.0,60.0,,,flashscore
 2024-10-18,Santos Laguna,Club León,5.0,0.0,Liga MX Femenil,4505149,20241018_Santos-Laguna_Club-León,3.0,5.0,1.0,2.0,0.0,0.0,7.0,1.0,,,,,49.0,51.0,,,flashscore
+2024-10-18,Mazatlán FC,Toluca,2.0,5.0,Liga MX Femenil,4505148,20241018_Mazatlán-FC_Toluca,1.0,3.0,2.0,3.0,1.0,0.0,2.0,5.0,,,,,40.0,60.0,,,flashscore
+2024-10-18,Atlas,Puebla,3.0,0.0,Liga MX Femenil,4505147,20241018_Atlas_Puebla,9.0,1.0,0.0,2.0,0.0,0.0,5.0,1.0,,,,,53.0,47.0,,,flashscore
 2024-10-19,Cruz Azul,Pumas,4.0,5.0,Liga MX Femenil,4505150,20241019_Cruz-Azul_Pumas,3.0,3.0,0.0,3.0,0.0,0.0,7.0,11.0,,,,,51.0,49.0,,,flashscore
 2024-10-20,Atlético de San Luis,CF América,0.0,6.0,Liga MX Femenil,4505152,20241020_Atlético-de-San-Luis_CF-América,0.0,6.0,1.0,0.0,0.0,0.0,1.0,15.0,,,,,35.0,65.0,,,flashscore
 2024-10-21,Pachuca,Club Tijuana,2.0,2.0,Liga MX Femenil,4505151,20241021_Pachuca_Club-Tijuana,7.0,8.0,2.0,0.0,0.0,0.0,5.0,6.0,,,,,56.0,44.0,,,flashscore
 2024-10-21,Monterrey,Chivas,3.0,2.0,Liga MX Femenil,4505144,20241021_Monterrey_Chivas,7.0,0.0,1.0,2.0,0.0,0.0,5.0,4.0,,,,,63.0,37.0,,,flashscore
 2024-10-21,FC Juárez,Tigres,3.0,1.0,Liga MX Femenil,4505153,20241021_FC-Juárez_Tigres,4.0,3.0,3.0,2.0,1.0,1.0,4.0,2.0,,,,,59.0,41.0,,,flashscore
 2024-10-31,Querétaro,Cruz Azul,1.0,3.0,Liga MX Femenil,4505155,20241031_Querétaro_Cruz-Azul,12.0,3.0,4.0,3.0,0.0,0.0,8.0,9.0,,,,,50.0,50.0,,,flashscore
-2024-11-01,Toluca,Atlético de San Luis,4.0,0.0,Liga MX Femenil,4505156,20241101_Toluca_Atlético-de-San-Luis,6.0,6.0,1.0,1.0,0.0,0.0,12.0,2.0,,,,,58.0,42.0,,,flashscore
 2024-11-01,Club León,Mazatlán FC,2.0,1.0,Liga MX Femenil,4505157,20241101_Club-León_Mazatlán-FC,3.0,1.0,2.0,2.0,0.0,0.0,7.0,2.0,,,,,48.0,52.0,,,flashscore
+2024-11-01,Toluca,Atlético de San Luis,4.0,0.0,Liga MX Femenil,4505156,20241101_Toluca_Atlético-de-San-Luis,6.0,6.0,1.0,1.0,0.0,0.0,12.0,2.0,,,,,58.0,42.0,,,flashscore
 2024-11-02,Pumas,Necaxa,1.0,2.0,Liga MX Femenil,4505158,20241102_Pumas_Necaxa,7.0,1.0,0.0,2.0,0.0,0.0,1.0,2.0,,,,,58.0,42.0,,,flashscore
 2024-11-03,Puebla,FC Juárez,2.0,4.0,Liga MX Femenil,4505159,20241103_Puebla_FC-Juárez,1.0,6.0,1.0,1.0,0.0,0.0,4.0,6.0,,,,,48.0,52.0,,,flashscore
 2024-11-03,CF América,Atlas,4.0,1.0,Liga MX Femenil,4505160,20241103_CF-América_Atlas,5.0,1.0,0.0,1.0,0.0,0.0,11.0,4.0,,,,,63.0,37.0,,,flashscore
@@ -1195,32 +1195,32 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2025-01-14,Pumas,Santos Laguna,6.0,1.0,Liga MX Femenil,4692518,20250114_Pumas_Santos-Laguna,3.0,4.0,1.0,2.0,0.0,0.0,10.0,3.0,,,,,51.0,49.0,,,flashscore
 2025-01-15,Pachuca,Cruz Azul,2.0,2.0,Liga MX Femenil,4692519,20250115_Pachuca_Cruz-Azul,5.0,5.0,2.0,0.0,0.0,0.0,7.0,8.0,,,,,51.0,49.0,,,flashscore
 2025-01-16,Necaxa,CF América,0.0,5.0,Liga MX Femenil,4692523,20250116_Necaxa_CF-América,0.0,10.0,3.0,1.0,0.0,0.0,0.0,8.0,,,,,36.0,64.0,,,flashscore
+2025-01-16,Querétaro,Mazatlán FC,3.0,1.0,Liga MX Femenil,4692522,20250116_Querétaro_Mazatlán-FC,0.0,3.0,3.0,2.0,1.0,0.0,5.0,3.0,,,,,53.0,47.0,,,flashscore
 2025-01-16,Atlético de San Luis,Monterrey,1.0,0.0,Liga MX Femenil,4692520,20250116_Atlético-de-San-Luis_Monterrey,3.0,5.0,6.0,0.0,0.0,0.0,3.0,4.0,,,,,35.0,65.0,,,flashscore
 2025-01-16,Puebla,Club León,1.0,2.0,Liga MX Femenil,4692521,20250116_Puebla_Club-León,1.0,11.0,1.0,2.0,1.0,0.0,6.0,2.0,,,,,41.0,59.0,,,flashscore
-2025-01-16,Querétaro,Mazatlán FC,3.0,1.0,Liga MX Femenil,4692522,20250116_Querétaro_Mazatlán-FC,0.0,3.0,3.0,2.0,1.0,0.0,5.0,3.0,,,,,53.0,47.0,,,flashscore
-2025-01-17,Chivas,FC Juárez,0.0,0.0,Liga MX Femenil,4692525,20250117_Chivas_FC-Juárez,4.0,4.0,2.0,1.0,1.0,0.0,3.0,3.0,,,,,47.0,53.0,,,flashscore
 2025-01-17,Tigres,Atlas,1.0,2.0,Liga MX Femenil,4692524,20250117_Tigres_Atlas,6.0,0.0,3.0,3.0,0.0,0.0,5.0,4.0,,,,,61.0,39.0,,,flashscore
+2025-01-17,Chivas,FC Juárez,0.0,0.0,Liga MX Femenil,4692525,20250117_Chivas_FC-Juárez,4.0,4.0,2.0,1.0,1.0,0.0,3.0,3.0,,,,,47.0,53.0,,,flashscore
 2025-01-18,Club Tijuana,Toluca,3.0,1.0,Liga MX Femenil,4692553,20250118_Club-Tijuana_Toluca,8.0,4.0,1.0,0.0,0.0,0.0,9.0,2.0,,,,,53.0,47.0,,,flashscore
 2025-01-20,Monterrey,Puebla,5.0,1.0,Liga MX Femenil,4692545,20250120_Monterrey_Puebla,8.0,0.0,,,,,9.0,1.0,,,,,63.0,37.0,,,flashscore
 2025-01-20,Mazatlán FC,Pachuca,0.0,2.0,Liga MX Femenil,4692546,20250120_Mazatlán-FC_Pachuca,0.0,3.0,1.0,1.0,0.0,0.0,0.0,3.0,,,,,42.0,58.0,,,flashscore
 2025-01-20,Club León,Tigres,2.0,2.0,Liga MX Femenil,4692548,20250120_Club-León_Tigres,1.0,2.0,3.0,4.0,0.0,0.0,3.0,4.0,,,,,41.0,59.0,,,flashscore
 2025-01-20,FC Juárez,Pumas,1.0,1.0,Liga MX Femenil,4692550,20250120_FC-Juárez_Pumas,4.0,1.0,2.0,3.0,0.0,0.0,3.0,2.0,,,,,60.0,40.0,,,flashscore
 2025-01-20,Atlético de San Luis,Club Tijuana,2.0,0.0,Liga MX Femenil,4692547,20250120_Atlético-de-San-Luis_Club-Tijuana,2.0,6.0,3.0,3.0,0.0,0.0,4.0,4.0,,,,,53.0,47.0,,,flashscore
-2025-01-21,Toluca,Querétaro,1.0,2.0,Liga MX Femenil,4692549,20250121_Toluca_Querétaro,7.0,3.0,0.0,1.0,0.0,0.0,9.0,2.0,,,,,58.0,42.0,,,flashscore
 2025-01-21,Cruz Azul,Chivas,1.0,1.0,Liga MX Femenil,4692551,20250121_Cruz-Azul_Chivas,5.0,3.0,4.0,2.0,0.0,0.0,1.0,2.0,,,,,53.0,47.0,,,flashscore
+2025-01-21,Toluca,Querétaro,1.0,2.0,Liga MX Femenil,4692549,20250121_Toluca_Querétaro,7.0,3.0,0.0,1.0,0.0,0.0,9.0,2.0,,,,,58.0,42.0,,,flashscore
 2025-01-22,Atlas,CF América,0.0,3.0,Liga MX Femenil,4692552,20250122_Atlas_CF-América,3.0,4.0,2.0,4.0,1.0,0.0,0.0,10.0,,,,,41.0,59.0,,,flashscore
 2025-01-22,Santos Laguna,Necaxa,2.0,3.0,Liga MX Femenil,4692544,20250122_Santos-Laguna_Necaxa,3.0,2.0,1.0,4.0,0.0,0.0,3.0,3.0,,,,,51.0,49.0,,,flashscore
-2025-01-25,CF América,Club León,5.0,0.0,Liga MX Femenil,4692561,20250125_CF-América_Club-León,13.0,2.0,,,,,10.0,0.0,,,,,63.0,37.0,,,flashscore
 2025-01-25,Club Tijuana,Querétaro,0.0,1.0,Liga MX Femenil,4692554,20250125_Club-Tijuana_Querétaro,5.0,3.0,0.0,1.0,0.0,0.0,3.0,1.0,,,,,57.0,43.0,,,flashscore
+2025-01-25,CF América,Club León,5.0,0.0,Liga MX Femenil,4692561,20250125_CF-América_Club-León,13.0,2.0,,,,,10.0,0.0,,,,,63.0,37.0,,,flashscore
 2025-01-26,Puebla,Atlas,0.0,3.0,Liga MX Femenil,4692555,20250126_Puebla_Atlas,4.0,5.0,3.0,2.0,0.0,0.0,4.0,9.0,,,,,42.0,58.0,,,flashscore
 2025-01-26,Cruz Azul,Mazatlán FC,4.0,0.0,Liga MX Femenil,4692556,20250126_Cruz-Azul_Mazatlán-FC,4.0,0.0,0.0,3.0,0.0,0.0,12.0,2.0,,,,,56.0,44.0,,,flashscore
 2025-01-26,Chivas,Monterrey,0.0,1.0,Liga MX Femenil,4692557,20250126_Chivas_Monterrey,0.0,1.0,0.0,1.0,0.0,0.0,2.0,5.0,,,,,53.0,47.0,,,flashscore
 2025-01-27,Tigres,Toluca,5.0,0.0,Liga MX Femenil,4692558,20250127_Tigres_Toluca,4.0,1.0,0.0,2.0,0.0,0.0,12.0,0.0,,,,,61.0,39.0,,,flashscore
 2025-01-27,Pachuca,Atlético de San Luis,5.0,0.0,Liga MX Femenil,4692559,20250127_Pachuca_Atlético-de-San-Luis,3.0,1.0,1.0,2.0,0.0,0.0,7.0,0.0,,,,,62.0,38.0,,,flashscore
-2025-01-28,Necaxa,Pumas,1.0,4.0,Liga MX Femenil,4692560,20250128_Necaxa_Pumas,2.0,10.0,3.0,3.0,0.0,0.0,2.0,8.0,,,,,49.0,51.0,,,flashscore
 2025-01-28,Santos Laguna,FC Juárez,1.0,2.0,Liga MX Femenil,4692535,20250128_Santos-Laguna_FC-Juárez,4.0,1.0,1.0,0.0,0.0,0.0,3.0,3.0,,,,,51.0,49.0,,,flashscore
-2025-01-31,Atlas,Cruz Azul,1.0,1.0,Liga MX Femenil,4692527,20250131_Atlas_Cruz-Azul,3.0,2.0,2.0,2.0,0.0,1.0,4.0,4.0,,,,,52.0,48.0,,,flashscore
+2025-01-28,Necaxa,Pumas,1.0,4.0,Liga MX Femenil,4692560,20250128_Necaxa_Pumas,2.0,10.0,3.0,3.0,0.0,0.0,2.0,8.0,,,,,49.0,51.0,,,flashscore
 2025-01-31,Pumas,Toluca,3.0,0.0,Liga MX Femenil,4692528,20250131_Pumas_Toluca,5.0,5.0,2.0,1.0,0.0,0.0,7.0,3.0,,,,,46.0,54.0,,,flashscore
+2025-01-31,Atlas,Cruz Azul,1.0,1.0,Liga MX Femenil,4692527,20250131_Atlas_Cruz-Azul,3.0,2.0,2.0,2.0,0.0,1.0,4.0,4.0,,,,,52.0,48.0,,,flashscore
 2025-02-01,Atlético de San Luis,Santos Laguna,3.0,0.0,Liga MX Femenil,4692530,20250201_Atlético-de-San-Luis_Santos-Laguna,3.0,1.0,2.0,2.0,0.0,0.0,7.0,2.0,,,,,64.0,36.0,,,flashscore
 2025-02-01,Querétaro,Tigres,1.0,1.0,Liga MX Femenil,4692529,20250201_Querétaro_Tigres,0.0,13.0,1.0,2.0,0.0,0.0,1.0,1.0,,,,,25.0,75.0,,,flashscore
 2025-02-02,Necaxa,Puebla,1.0,1.0,Liga MX Femenil,4692533,20250202_Necaxa_Puebla,4.0,2.0,2.0,4.0,0.0,0.0,4.0,1.0,,,,,50.0,50.0,,,flashscore
@@ -1232,35 +1232,35 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2025-02-05,Puebla,Pumas,0.0,1.0,Liga MX Femenil,4692537,20250205_Puebla_Pumas,5.0,8.0,,,,,3.0,4.0,,,,,43.0,57.0,,,flashscore
 2025-02-06,Toluca,Atlas,0.0,2.0,Liga MX Femenil,4692538,20250206_Toluca_Atlas,7.0,7.0,0.0,1.0,0.0,0.0,2.0,5.0,,,,,46.0,54.0,,,flashscore
 2025-02-06,Monterrey,Necaxa,4.0,0.0,Liga MX Femenil,4692539,20250206_Monterrey_Necaxa,6.0,0.0,0.0,1.0,0.0,0.0,14.0,1.0,,,,,66.0,34.0,,,flashscore
+2025-02-07,FC Juárez,Querétaro,1.0,0.0,Liga MX Femenil,4692543,20250207_FC-Juárez_Querétaro,4.0,2.0,1.0,3.0,0.0,0.0,4.0,1.0,,,,,55.0,45.0,,,flashscore
 2025-02-07,Santos Laguna,Club Tijuana,1.0,3.0,Liga MX Femenil,4692542,20250207_Santos-Laguna_Club-Tijuana,4.0,7.0,4.0,2.0,0.0,0.0,4.0,9.0,,,,,33.0,67.0,,,flashscore
 2025-02-07,Chivas,Atlético de San Luis,3.0,1.0,Liga MX Femenil,4692541,20250207_Chivas_Atlético-de-San-Luis,5.0,5.0,2.0,3.0,0.0,0.0,6.0,2.0,,,,,56.0,44.0,,,flashscore
 2025-02-07,CF América,Mazatlán FC,6.0,0.0,Liga MX Femenil,4692540,20250207_CF-América_Mazatlán-FC,10.0,0.0,1.0,3.0,0.0,0.0,16.0,1.0,,,,,66.0,34.0,,,flashscore
-2025-02-07,FC Juárez,Querétaro,1.0,0.0,Liga MX Femenil,4692543,20250207_FC-Juárez_Querétaro,4.0,2.0,1.0,3.0,0.0,0.0,4.0,1.0,,,,,55.0,45.0,,,flashscore
 2025-02-08,Club León,Pachuca,0.0,2.0,Liga MX Femenil,4692562,20250208_Club-León_Pachuca,4.0,4.0,2.0,4.0,0.0,0.0,1.0,7.0,,,,,54.0,46.0,,,flashscore
 2025-02-09,Toluca,Santos Laguna,2.0,1.0,Liga MX Femenil,4692563,20250209_Toluca_Santos-Laguna,7.0,7.0,3.0,2.0,0.0,0.0,7.0,4.0,,,,,60.0,40.0,,,flashscore
-2025-02-10,Pumas,Cruz Azul,2.0,0.0,Liga MX Femenil,4692565,20250210_Pumas_Cruz-Azul,6.0,9.0,1.0,1.0,0.0,0.0,5.0,7.0,,,,,40.0,60.0,,,flashscore
 2025-02-10,Tigres,Atlético de San Luis,2.0,1.0,Liga MX Femenil,4692564,20250210_Tigres_Atlético-de-San-Luis,9.0,3.0,1.0,3.0,0.0,0.0,4.0,1.0,,,,,70.0,30.0,,,flashscore
-2025-02-11,Querétaro,Puebla,0.0,0.0,Liga MX Femenil,4692566,20250211_Querétaro_Puebla,6.0,2.0,2.0,2.0,0.0,0.0,0.0,0.0,,,,,65.0,35.0,,,flashscore
-2025-02-11,Pachuca,FC Juárez,6.0,1.0,Liga MX Femenil,4692567,20250211_Pachuca_FC-Juárez,5.0,2.0,,,,,12.0,4.0,,,,,55.0,45.0,,,flashscore
+2025-02-10,Pumas,Cruz Azul,2.0,0.0,Liga MX Femenil,4692565,20250210_Pumas_Cruz-Azul,6.0,9.0,1.0,1.0,0.0,0.0,5.0,7.0,,,,,40.0,60.0,,,flashscore
 2025-02-11,CF América,Monterrey,3.0,2.0,Liga MX Femenil,4692568,20250211_CF-América_Monterrey,14.0,2.0,1.0,0.0,0.0,0.0,8.0,2.0,,,,,53.0,47.0,,,flashscore
+2025-02-11,Pachuca,FC Juárez,6.0,1.0,Liga MX Femenil,4692567,20250211_Pachuca_FC-Juárez,5.0,2.0,,,,,12.0,4.0,,,,,55.0,45.0,,,flashscore
 2025-02-11,Club Tijuana,Chivas,1.0,1.0,Liga MX Femenil,4692569,20250211_Club-Tijuana_Chivas,3.0,6.0,1.0,3.0,0.0,1.0,5.0,5.0,,,,,51.0,49.0,,,flashscore
+2025-02-11,Querétaro,Puebla,0.0,0.0,Liga MX Femenil,4692566,20250211_Querétaro_Puebla,6.0,2.0,2.0,2.0,0.0,0.0,0.0,0.0,,,,,65.0,35.0,,,flashscore
 2025-02-12,Atlas,Necaxa,4.0,1.0,Liga MX Femenil,4692570,20250212_Atlas_Necaxa,7.0,5.0,,,,,12.0,2.0,,,,,61.0,39.0,,,flashscore
 2025-02-12,Mazatlán FC,Club León,1.0,2.0,Liga MX Femenil,4692585,20250212_Mazatlán-FC_Club-León,5.0,8.0,3.0,4.0,0.0,0.0,1.0,2.0,,,,,47.0,53.0,,,flashscore
-2025-02-14,Santos Laguna,Pachuca,1.0,3.0,Liga MX Femenil,4692595,20250214_Santos-Laguna_Pachuca,1.0,5.0,2.0,0.0,0.0,0.0,4.0,10.0,,,,,39.0,61.0,,,flashscore
 2025-02-14,Necaxa,Club Tijuana,1.0,3.0,Liga MX Femenil,4692596,20250214_Necaxa_Club-Tijuana,2.0,4.0,3.0,1.0,0.0,0.0,3.0,6.0,,,,,48.0,52.0,,,flashscore
+2025-02-14,Santos Laguna,Pachuca,1.0,3.0,Liga MX Femenil,4692595,20250214_Santos-Laguna_Pachuca,1.0,5.0,2.0,0.0,0.0,0.0,4.0,10.0,,,,,39.0,61.0,,,flashscore
 2025-02-14,Chivas,Toluca,1.0,0.0,Liga MX Femenil,4692597,20250214_Chivas_Toluca,4.0,6.0,3.0,5.0,0.0,0.0,5.0,3.0,,,,,49.0,51.0,,,flashscore
 2025-02-15,Monterrey,Tigres,1.0,5.0,Liga MX Femenil,4692593,20250215_Monterrey_Tigres,1.0,6.0,2.0,0.0,0.0,0.0,7.0,9.0,,,,,54.0,46.0,,,flashscore
 2025-02-15,Pumas,CF América,1.0,3.0,Liga MX Femenil,4692594,20250215_Pumas_CF-América,1.0,4.0,1.0,1.0,0.0,0.0,3.0,8.0,,,,,40.0,60.0,,,flashscore
 2025-02-15,Atlético de San Luis,Querétaro,1.0,2.0,Liga MX Femenil,4692592,20250215_Atlético-de-San-Luis_Querétaro,0.0,0.0,2.0,4.0,1.0,0.0,1.0,2.0,,,,,51.0,49.0,,,flashscore
-2025-02-16,Club León,Atlas,4.0,3.0,Liga MX Femenil,4692590,20250216_Club-León_Atlas,3.0,5.0,3.0,3.0,0.0,0.0,7.0,6.0,,,,,44.0,56.0,,,flashscore
 2025-02-16,Puebla,Cruz Azul,0.0,5.0,Liga MX Femenil,4692591,20250216_Puebla_Cruz-Azul,1.0,4.0,2.0,1.0,1.0,0.0,3.0,15.0,,,,,37.0,63.0,,,flashscore
+2025-02-16,Club León,Atlas,4.0,3.0,Liga MX Femenil,4692590,20250216_Club-León_Atlas,3.0,5.0,3.0,3.0,0.0,0.0,7.0,6.0,,,,,44.0,56.0,,,flashscore
 2025-02-17,FC Juárez,Mazatlán FC,0.0,1.0,Liga MX Femenil,4692589,20250217_FC-Juárez_Mazatlán-FC,8.0,1.0,2.0,0.0,0.0,0.0,4.0,1.0,,,,,55.0,45.0,,,flashscore
 2025-02-28,Toluca,Necaxa,3.0,0.0,Liga MX Femenil,4692629,20250228_Toluca_Necaxa,8.0,1.0,2.0,2.0,0.0,0.0,11.0,2.0,,,,,56.0,44.0,,,flashscore
 2025-03-01,CF América,Atlético de San Luis,4.0,0.0,Liga MX Femenil,4692588,20250301_CF-América_Atlético-de-San-Luis,6.0,0.0,0.0,3.0,0.0,1.0,8.0,1.0,,,,,77.0,23.0,,,flashscore
+2025-03-03,Pachuca,Necaxa,1.0,0.0,Liga MX Femenil,4692582,20250303_Pachuca_Necaxa,8.0,0.0,0.0,1.0,0.0,0.0,6.0,1.0,,,,,56.0,44.0,,,flashscore
+2025-03-03,Mazatlán FC,Puebla,3.0,0.0,Liga MX Femenil,4692586,20250303_Mazatlán-FC_Puebla,3.0,5.0,2.0,4.0,0.0,0.0,3.0,1.0,,,,,52.0,48.0,,,flashscore
 2025-03-03,Club Tijuana,Club León,2.0,3.0,Liga MX Femenil,4692587,20250303_Club-Tijuana_Club-León,4.0,3.0,2.0,4.0,0.0,0.0,9.0,6.0,,,,,61.0,39.0,,,flashscore
 2025-03-03,Cruz Azul,Monterrey,2.0,3.0,Liga MX Femenil,4692571,20250303_Cruz-Azul_Monterrey,8.0,2.0,0.0,1.0,0.0,0.0,3.0,4.0,,,,,49.0,51.0,,,flashscore
-2025-03-03,Mazatlán FC,Puebla,3.0,0.0,Liga MX Femenil,4692586,20250303_Mazatlán-FC_Puebla,3.0,5.0,2.0,4.0,0.0,0.0,3.0,1.0,,,,,52.0,48.0,,,flashscore
-2025-03-03,Pachuca,Necaxa,1.0,0.0,Liga MX Femenil,4692582,20250303_Pachuca_Necaxa,8.0,0.0,0.0,1.0,0.0,0.0,6.0,1.0,,,,,56.0,44.0,,,flashscore
 2025-03-04,Atlas,Pumas,0.0,1.0,Liga MX Femenil,4692584,20250304_Atlas_Pumas,2.0,5.0,3.0,1.0,0.0,0.0,3.0,5.0,,,,,40.0,60.0,,,flashscore
 2025-03-04,Tigres,Chivas,2.0,0.0,Liga MX Femenil,4692583,20250304_Tigres_Chivas,9.0,3.0,1.0,3.0,0.0,0.0,4.0,1.0,,,,,62.0,38.0,,,flashscore
 2025-03-04,Toluca,FC Juárez,3.0,1.0,Liga MX Femenil,4692581,20250304_Toluca_FC-Juárez,2.0,7.0,2.0,2.0,0.0,0.0,7.0,3.0,,,,,50.0,50.0,,,flashscore
@@ -1269,14 +1269,14 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2025-03-07,Pumas,Mazatlán FC,5.0,0.0,Liga MX Femenil,4692577,20250307_Pumas_Mazatlán-FC,6.0,3.0,1.0,3.0,0.0,1.0,5.0,0.0,,,,,48.0,52.0,,,flashscore
 2025-03-07,Necaxa,Tigres,0.0,4.0,Liga MX Femenil,4692579,20250307_Necaxa_Tigres,1.0,13.0,2.0,0.0,0.0,0.0,1.0,7.0,,,,,32.0,68.0,,,flashscore
 2025-03-08,Chivas,CF América,1.0,1.0,Liga MX Femenil,4692576,20250308_Chivas_CF-América,1.0,9.0,0.0,1.0,0.0,1.0,2.0,8.0,,,,,45.0,55.0,,,flashscore
-2025-03-09,Puebla,Club Tijuana,2.0,2.0,Liga MX Femenil,4692575,20250309_Puebla_Club-Tijuana,4.0,3.0,3.0,1.0,0.0,0.0,8.0,6.0,,,,,46.0,54.0,,,flashscore
-2025-03-09,Atlético de San Luis,Toluca,1.0,0.0,Liga MX Femenil,4692574,20250309_Atlético-de-San-Luis_Toluca,1.0,6.0,3.0,1.0,0.0,0.0,2.0,3.0,,,,,44.0,56.0,,,flashscore
 2025-03-09,FC Juárez,Atlas,1.0,0.0,Liga MX Femenil,4692625,20250309_FC-Juárez_Atlas,6.0,1.0,3.0,2.0,1.0,0.0,2.0,1.0,,,,,55.0,45.0,,,flashscore
+2025-03-09,Atlético de San Luis,Toluca,1.0,0.0,Liga MX Femenil,4692574,20250309_Atlético-de-San-Luis_Toluca,1.0,6.0,3.0,1.0,0.0,0.0,2.0,3.0,,,,,44.0,56.0,,,flashscore
+2025-03-09,Puebla,Club Tijuana,2.0,2.0,Liga MX Femenil,4692575,20250309_Puebla_Club-Tijuana,4.0,3.0,3.0,1.0,0.0,0.0,8.0,6.0,,,,,46.0,54.0,,,flashscore
 2025-03-11,Santos Laguna,Cruz Azul,0.0,1.0,Liga MX Femenil,4692572,20250311_Santos-Laguna_Cruz-Azul,1.0,8.0,5.0,3.0,0.0,0.0,1.0,9.0,,,,,35.0,65.0,,,flashscore
 2025-03-11,Club León,Querétaro,0.0,0.0,Liga MX Femenil,4692573,20250311_Club-León_Querétaro,5.0,4.0,1.0,2.0,0.0,0.0,5.0,2.0,,,,,54.0,46.0,,,flashscore
 2025-03-12,CF América,Puebla,7.0,0.0,Liga MX Femenil,4692617,20250312_CF-América_Puebla,8.0,1.0,0.0,1.0,0.0,1.0,20.0,2.0,,,,,61.0,39.0,,,flashscore
-2025-03-13,Cruz Azul,Toluca,2.0,1.0,Liga MX Femenil,4692619,20250313_Cruz-Azul_Toluca,10.0,5.0,3.0,1.0,0.0,0.0,3.0,1.0,,,,,53.0,47.0,,,flashscore
 2025-03-13,Pachuca,Pumas,1.0,1.0,Liga MX Femenil,4692618,20250313_Pachuca_Pumas,4.0,3.0,1.0,0.0,0.0,0.0,3.0,5.0,,,,,51.0,49.0,,,flashscore
+2025-03-13,Cruz Azul,Toluca,2.0,1.0,Liga MX Femenil,4692619,20250313_Cruz-Azul_Toluca,10.0,5.0,3.0,1.0,0.0,0.0,3.0,1.0,,,,,53.0,47.0,,,flashscore
 2025-03-13,Querétaro,Chivas,1.0,1.0,Liga MX Femenil,4692620,20250313_Querétaro_Chivas,2.0,5.0,4.0,3.0,0.0,0.0,2.0,1.0,,,,,47.0,53.0,,,flashscore
 2025-03-14,Necaxa,Club León,1.0,0.0,Liga MX Femenil,4692623,20250314_Necaxa_Club-León,1.0,4.0,3.0,2.0,0.0,0.0,2.0,4.0,,,,,48.0,52.0,,,flashscore
 2025-03-14,Atlas,Monterrey,2.0,1.0,Liga MX Femenil,4692621,20250314_Atlas_Monterrey,6.0,4.0,,,,,4.0,5.0,,,,,44.0,56.0,,,flashscore
@@ -1284,11 +1284,11 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2025-03-15,Mazatlán FC,Atlético de San Luis,0.0,0.0,Liga MX Femenil,4692624,20250315_Mazatlán-FC_Atlético-de-San-Luis,6.0,4.0,4.0,3.0,0.0,0.0,1.0,0.0,,,,,51.0,49.0,,,flashscore
 2025-03-15,Tigres,Santos Laguna,5.0,0.0,Liga MX Femenil,4692616,20250315_Tigres_Santos-Laguna,7.0,1.0,1.0,3.0,0.0,0.0,11.0,2.0,,,,,69.0,31.0,,,flashscore
 2025-03-16,Puebla,Pachuca,0.0,1.0,Liga MX Femenil,4692626,20250316_Puebla_Pachuca,1.0,7.0,0.0,2.0,0.0,0.0,1.0,3.0,,,,,46.0,54.0,,,flashscore
-2025-03-17,FC Juárez,CF América,1.0,1.0,Liga MX Femenil,4692627,20250317_FC-Juárez_CF-América,2.0,7.0,1.0,1.0,0.0,0.0,2.0,1.0,,,,,49.0,51.0,,,flashscore
 2025-03-17,Pumas,Club Tijuana,1.0,0.0,Liga MX Femenil,4692628,20250317_Pumas_Club-Tijuana,3.0,6.0,2.0,4.0,0.0,1.0,4.0,1.0,,,,,55.0,45.0,,,flashscore
-2025-03-18,Atlético de San Luis,Cruz Azul,1.0,5.0,Liga MX Femenil,4692632,20250318_Atlético-de-San-Luis_Cruz-Azul,7.0,14.0,1.0,4.0,0.0,0.0,2.0,10.0,,,,,48.0,52.0,,,flashscore
-2025-03-18,Tigres,Mazatlán FC,7.0,0.0,Liga MX Femenil,4692630,20250318_Tigres_Mazatlán-FC,6.0,4.0,,,,,10.0,3.0,,,,,65.0,35.0,,,flashscore
+2025-03-17,FC Juárez,CF América,1.0,1.0,Liga MX Femenil,4692627,20250317_FC-Juárez_CF-América,2.0,7.0,1.0,1.0,0.0,0.0,2.0,1.0,,,,,49.0,51.0,,,flashscore
 2025-03-18,Club León,Chivas,1.0,3.0,Liga MX Femenil,4692631,20250318_Club-León_Chivas,5.0,5.0,2.0,3.0,0.0,0.0,2.0,6.0,,,,,41.0,59.0,,,flashscore
+2025-03-18,Tigres,Mazatlán FC,7.0,0.0,Liga MX Femenil,4692630,20250318_Tigres_Mazatlán-FC,6.0,4.0,,,,,10.0,3.0,,,,,65.0,35.0,,,flashscore
+2025-03-18,Atlético de San Luis,Cruz Azul,1.0,5.0,Liga MX Femenil,4692632,20250318_Atlético-de-San-Luis_Cruz-Azul,7.0,14.0,1.0,4.0,0.0,0.0,2.0,10.0,,,,,48.0,52.0,,,flashscore
 2025-03-19,Atlas,Querétaro,1.0,0.0,Liga MX Femenil,4692633,20250319_Atlas_Querétaro,4.0,3.0,2.0,2.0,0.0,1.0,5.0,1.0,,,,,49.0,51.0,,,flashscore
 2025-03-19,Santos Laguna,Monterrey,1.0,3.0,Liga MX Femenil,4692607,20250319_Santos-Laguna_Monterrey,1.0,4.0,3.0,1.0,0.0,0.0,4.0,10.0,,,,,40.0,60.0,,,flashscore
 2025-03-21,Pachuca,Toluca,2.0,3.0,Liga MX Femenil,4692604,20250321_Pachuca_Toluca,5.0,1.0,2.0,4.0,0.0,1.0,7.0,4.0,,,,,62.0,38.0,,,flashscore
@@ -1302,38 +1302,38 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2025-03-25,Club Tijuana,Pachuca,0.0,0.0,Liga MX Femenil,4692615,20250325_Club-Tijuana_Pachuca,4.0,4.0,0.0,1.0,0.0,0.0,7.0,4.0,,,,,47.0,53.0,1.0,0.0,flashscore
 2025-03-25,Monterrey,FC Juárez,2.0,1.0,Liga MX Femenil,4692598,20250325_Monterrey_FC-Juárez,6.0,1.0,2.0,4.0,0.0,0.0,8.0,3.0,,,,,57.0,43.0,,,flashscore
 2025-03-28,Cruz Azul,Querétaro,0.0,0.0,Liga MX Femenil,4692608,20250328_Cruz-Azul_Querétaro,9.0,2.0,1.0,1.0,0.0,0.0,13.0,0.0,,,,,64.0,36.0,,,flashscore
-2025-03-29,Mazatlán FC,Necaxa,3.0,1.0,Liga MX Femenil,4692609,20250329_Mazatlán-FC_Necaxa,3.0,4.0,3.0,1.0,0.0,0.0,4.0,2.0,,,,,52.0,48.0,,,flashscore
 2025-03-29,Santos Laguna,CF América,0.0,3.0,Liga MX Femenil,4692610,20250329_Santos-Laguna_CF-América,4.0,16.0,1.0,0.0,0.0,0.0,2.0,5.0,,,,,37.0,63.0,,,flashscore
+2025-03-29,Mazatlán FC,Necaxa,3.0,1.0,Liga MX Femenil,4692609,20250329_Mazatlán-FC_Necaxa,3.0,4.0,3.0,1.0,0.0,0.0,4.0,2.0,,,,,52.0,48.0,,,flashscore
 2025-03-29,Club León,Pumas,2.0,3.0,Liga MX Femenil,4692611,20250329_Club-León_Pumas,14.0,3.0,1.0,3.0,0.0,1.0,5.0,4.0,,,,,56.0,44.0,,,flashscore
+2025-03-30,Chivas,Puebla,3.0,0.0,Liga MX Femenil,4692614,20250330_Chivas_Puebla,9.0,3.0,1.0,0.0,0.0,0.0,13.0,1.0,,,,,57.0,43.0,,,flashscore
 2025-03-30,Toluca,Monterrey,2.0,2.0,Liga MX Femenil,4692612,20250330_Toluca_Monterrey,4.0,3.0,0.0,2.0,0.0,0.0,7.0,5.0,,,,,48.0,52.0,,,flashscore
 2025-03-30,Atlético de San Luis,Atlas,0.0,4.0,Liga MX Femenil,4692613,20250330_Atlético-de-San-Luis_Atlas,4.0,4.0,2.0,2.0,0.0,0.0,2.0,7.0,,,,,38.0,62.0,,,flashscore
-2025-03-30,Chivas,Puebla,3.0,0.0,Liga MX Femenil,4692614,20250330_Chivas_Puebla,9.0,3.0,1.0,0.0,0.0,0.0,13.0,1.0,,,,,57.0,43.0,,,flashscore
 2025-03-31,Tigres,FC Juárez,0.0,0.0,Liga MX Femenil,4692644,20250331_Tigres_FC-Juárez,4.0,2.0,2.0,4.0,0.0,1.0,3.0,0.0,,,,,55.0,45.0,,,flashscore
 2025-04-12,Necaxa,Cruz Azul,1.0,0.0,Liga MX Femenil,4692652,20250412_Necaxa_Cruz-Azul,5.0,8.0,2.0,1.0,0.0,0.0,2.0,3.0,,,,,43.0,57.0,,,flashscore
+2025-04-13,Puebla,Toluca,1.0,3.0,Liga MX Femenil,4692651,20250413_Puebla_Toluca,3.0,7.0,1.0,0.0,0.0,0.0,3.0,10.0,,,,,,,,,flashscore
+2025-04-13,Pumas,Tigres,2.0,0.0,Liga MX Femenil,4692650,20250413_Pumas_Tigres,5.0,6.0,1.0,3.0,0.0,0.0,5.0,4.0,,,,,43.0,57.0,,,flashscore
+2025-04-13,Atlas,Mazatlán FC,4.0,1.0,Liga MX Femenil,4692649,20250413_Atlas_Mazatlán-FC,4.0,4.0,0.0,1.0,0.0,0.0,7.0,1.0,,,,,55.0,45.0,,,flashscore
 2025-04-13,CF América,Club Tijuana,4.0,1.0,Liga MX Femenil,4692646,20250413_CF-América_Club-Tijuana,19.0,0.0,1.0,1.0,0.0,1.0,14.0,2.0,,,,,61.0,39.0,,,flashscore
 2025-04-13,FC Juárez,Atlético de San Luis,2.0,0.0,Liga MX Femenil,4692647,20250413_FC-Juárez_Atlético-de-San-Luis,10.0,3.0,1.0,3.0,0.0,0.0,4.0,0.0,,,,,57.0,43.0,,,flashscore
-2025-04-13,Atlas,Mazatlán FC,4.0,1.0,Liga MX Femenil,4692649,20250413_Atlas_Mazatlán-FC,4.0,4.0,0.0,1.0,0.0,0.0,7.0,1.0,,,,,55.0,45.0,,,flashscore
-2025-04-13,Pumas,Tigres,2.0,0.0,Liga MX Femenil,4692650,20250413_Pumas_Tigres,5.0,6.0,1.0,3.0,0.0,0.0,5.0,4.0,,,,,43.0,57.0,,,flashscore
-2025-04-13,Puebla,Toluca,1.0,3.0,Liga MX Femenil,4692651,20250413_Puebla_Toluca,3.0,7.0,1.0,0.0,0.0,0.0,3.0,10.0,,,,,,,,,flashscore
 2025-04-14,Pachuca,Chivas,1.0,0.0,Liga MX Femenil,4692648,20250414_Pachuca_Chivas,2.0,4.0,,,,,6.0,3.0,,,,,47.0,53.0,,,flashscore
-2025-04-15,Club León,Santos Laguna,3.0,1.0,Liga MX Femenil,4692634,20250415_Club-León_Santos-Laguna,4.0,1.0,,,,,8.0,4.0,,,,,50.0,50.0,,,flashscore
 2025-04-15,Monterrey,Querétaro,3.0,1.0,Liga MX Femenil,4692645,20250415_Monterrey_Querétaro,6.0,2.0,2.0,5.0,0.0,0.0,4.0,3.0,,,,,65.0,35.0,,,flashscore
+2025-04-15,Club León,Santos Laguna,3.0,1.0,Liga MX Femenil,4692634,20250415_Club-León_Santos-Laguna,4.0,1.0,,,,,8.0,4.0,,,,,50.0,50.0,,,flashscore
 2025-04-17,Cruz Azul,FC Juárez,5.0,0.0,Liga MX Femenil,4692643,20250417_Cruz-Azul_FC-Juárez,9.0,1.0,1.0,4.0,0.0,0.0,7.0,0.0,,,,,56.0,44.0,,,flashscore
 2025-04-17,Atlético de San Luis,Puebla,1.0,0.0,Liga MX Femenil,4692642,20250417_Atlético-de-San-Luis_Puebla,3.0,10.0,1.0,0.0,0.0,1.0,5.0,5.0,,,,,42.0,58.0,,,flashscore
-2025-04-18,Chivas,Pumas,0.0,0.0,Liga MX Femenil,4692641,20250418_Chivas_Pumas,3.0,2.0,1.0,1.0,0.0,0.0,4.0,3.0,,,,,55.0,45.0,,,flashscore
 2025-04-18,Mazatlán FC,Santos Laguna,1.0,2.0,Liga MX Femenil,4692640,20250418_Mazatlán-FC_Santos-Laguna,4.0,3.0,0.0,1.0,0.0,0.0,2.0,3.0,,,,,53.0,47.0,,,flashscore
 2025-04-18,Querétaro,Necaxa,1.0,0.0,Liga MX Femenil,4692639,20250418_Querétaro_Necaxa,7.0,0.0,3.0,1.0,0.0,1.0,4.0,1.0,,,,,59.0,41.0,,,flashscore
 2025-04-18,Toluca,CF América,4.0,3.0,Liga MX Femenil,4692638,20250418_Toluca_CF-América,0.0,7.0,0.0,2.0,0.0,0.0,6.0,13.0,,,,,47.0,53.0,,,flashscore
-2025-04-19,Pachuca,Tigres,0.0,0.0,Liga MX Femenil,4692636,20250419_Pachuca_Tigres,2.0,3.0,3.0,1.0,0.0,0.0,7.0,2.0,,,,,43.0,57.0,,,flashscore
+2025-04-18,Chivas,Pumas,0.0,0.0,Liga MX Femenil,4692641,20250418_Chivas_Pumas,3.0,2.0,1.0,1.0,0.0,0.0,4.0,3.0,,,,,55.0,45.0,,,flashscore
 2025-04-19,Monterrey,Club León,2.0,0.0,Liga MX Femenil,4692635,20250419_Monterrey_Club-León,2.0,3.0,0.0,1.0,0.0,0.0,2.0,2.0,,,,,70.0,30.0,,,flashscore
 2025-04-19,Club Tijuana,Atlas,0.0,1.0,Liga MX Femenil,4692637,20250419_Club-Tijuana_Atlas,7.0,3.0,2.0,0.0,1.0,0.0,4.0,7.0,,,,,45.0,55.0,,,flashscore
-2025-04-24,FC Juárez,CF América,2.0,2.0,Liga MX Femenil,4776253,20250424_FC-Juárez_CF-América,3.0,0.0,2.0,2.0,0.0,0.0,4.0,3.0,,,,,46.0,54.0,,,flashscore
+2025-04-19,Pachuca,Tigres,0.0,0.0,Liga MX Femenil,4692636,20250419_Pachuca_Tigres,2.0,3.0,3.0,1.0,0.0,0.0,7.0,2.0,,,,,43.0,57.0,,,flashscore
 2025-04-24,Atlas,Pachuca,1.0,1.0,Liga MX Femenil,4776254,20250424_Atlas_Pachuca,2.0,3.0,0.0,1.0,1.0,0.0,5.0,1.0,,,,,44.0,56.0,,,flashscore
+2025-04-24,FC Juárez,CF América,2.0,2.0,Liga MX Femenil,4776253,20250424_FC-Juárez_CF-América,3.0,0.0,2.0,2.0,0.0,0.0,4.0,3.0,,,,,46.0,54.0,,,flashscore
 2025-04-25,Chivas,Pumas,2.0,0.0,Liga MX Femenil,4776255,20250425_Chivas_Pumas,2.0,1.0,1.0,5.0,0.0,0.0,5.0,3.0,,,,,59.0,41.0,,,flashscore
 2025-04-26,Tigres,Monterrey,1.0,1.0,Liga MX Femenil,4776256,20250426_Tigres_Monterrey,5.0,4.0,2.0,2.0,0.0,0.0,1.0,3.0,,,,,49.0,51.0,,,flashscore
+2025-04-27,Pumas,Chivas,0.0,1.0,Liga MX Femenil,4776259,20250427_Pumas_Chivas,7.0,0.0,1.0,3.0,0.0,0.0,0.0,2.0,,,,,46.0,54.0,,,flashscore
 2025-04-27,Pachuca,Atlas,4.0,1.0,Liga MX Femenil,4776258,20250427_Pachuca_Atlas,5.0,1.0,2.0,2.0,0.0,0.0,9.0,3.0,,,,,62.0,38.0,,,flashscore
 2025-04-27,CF América,FC Juárez,5.0,0.0,Liga MX Femenil,4776257,20250427_CF-América_FC-Juárez,5.0,1.0,,,,,6.0,0.0,,,,,58.0,42.0,,,flashscore
-2025-04-27,Pumas,Chivas,0.0,1.0,Liga MX Femenil,4776259,20250427_Pumas_Chivas,7.0,0.0,1.0,3.0,0.0,0.0,0.0,2.0,,,,,46.0,54.0,,,flashscore
 2025-04-29,Monterrey,Tigres,1.0,1.0,Liga MX Femenil,4776260,20250429_Monterrey_Tigres,7.0,3.0,3.0,1.0,0.0,0.0,6.0,3.0,,,,,51.0,49.0,,,flashscore
 2025-05-02,Chivas,CF América,2.0,2.0,Liga MX Femenil,4781023,20250502_Chivas_CF-América,1.0,4.0,2.0,2.0,0.0,0.0,3.0,4.0,,,,,45.0,55.0,,,flashscore
 2025-05-03,Monterrey,Pachuca,1.0,0.0,Liga MX Femenil,4781024,20250503_Monterrey_Pachuca,4.0,0.0,1.0,1.0,0.0,0.0,3.0,0.0,,,,,47.0,53.0,,,flashscore
@@ -1344,11 +1344,11 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2025-07-11,Necaxa,Mazatlán FC,2.0,1.0,Liga MX Femenil,4810302,20250711_Necaxa_Mazatlán-FC,1.0,6.0,2.0,1.0,0.0,0.0,4.0,3.0,,,,,50.0,50.0,,,flashscore
 2025-07-11,Querétaro,Santos Laguna,1.0,1.0,Liga MX Femenil,4810303,20250711_Querétaro_Santos-Laguna,6.0,4.0,2.0,2.0,0.0,0.0,2.0,2.0,,,,,47.0,53.0,,,flashscore
 2025-07-12,Club León,Club Tijuana,1.0,1.0,Liga MX Femenil,4810304,20250712_Club-León_Club-Tijuana,2.0,2.0,2.0,3.0,0.0,0.0,7.0,7.0,,,,,53.0,47.0,,,flashscore
-2025-07-13,CF América,Cruz Azul,2.0,1.0,Liga MX Femenil,4810309,20250713_CF-América_Cruz-Azul,6.0,1.0,2.0,1.0,0.0,0.0,5.0,2.0,,,,,59.0,41.0,,,flashscore
 2025-07-13,FC Juárez,Atlas,1.0,1.0,Liga MX Femenil,4810305,20250713_FC-Juárez_Atlas,4.0,2.0,2.0,3.0,0.0,0.0,2.0,2.0,,,,,57.0,43.0,,,flashscore
 2025-07-13,Puebla,Pachuca,1.0,5.0,Liga MX Femenil,4810306,20250713_Puebla_Pachuca,3.0,5.0,1.0,2.0,0.0,0.0,4.0,10.0,,,,,41.0,59.0,,,flashscore
 2025-07-13,Pumas,Monterrey,4.0,0.0,Liga MX Femenil,4810307,20250713_Pumas_Monterrey,3.0,7.0,3.0,1.0,0.0,0.0,8.0,0.0,,,,,41.0,59.0,,,flashscore
 2025-07-13,Atlético de San Luis,Chivas,0.0,2.0,Liga MX Femenil,4810308,20250713_Atlético-de-San-Luis_Chivas,7.0,4.0,3.0,2.0,0.0,0.0,1.0,7.0,,,,,47.0,53.0,,,flashscore
+2025-07-13,CF América,Cruz Azul,2.0,1.0,Liga MX Femenil,4810309,20250713_CF-América_Cruz-Azul,6.0,1.0,2.0,1.0,0.0,0.0,5.0,2.0,,,,,59.0,41.0,,,flashscore
 2025-07-14,Tigres,Toluca,1.0,1.0,Liga MX Femenil,4810310,20250714_Tigres_Toluca,12.0,2.0,0.0,5.0,0.0,0.0,6.0,9.0,,,,,60.0,40.0,,,flashscore
 2025-07-17,Pachuca,Monterrey,1.0,0.0,Liga MX Femenil,4801912,20250717_Pachuca_Monterrey,,,,,,,,,,,,,,,,,
 2025-07-18,Querétaro,Chivas,0.0,1.0,Liga MX Femenil,4810311,20250718_Querétaro_Chivas,4.0,9.0,4.0,2.0,0.0,0.0,5.0,6.0,,,,,40.0,60.0,,,flashscore
@@ -1372,28 +1372,28 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2025-08-01,Club Tijuana,Atlas,2.0,2.0,Liga MX Femenil,4810329,20250801_Club-Tijuana_Atlas,5.0,4.0,1.0,1.0,0.0,0.0,6.0,4.0,,,,,48.0,52.0,,,flashscore
 2025-08-01,Necaxa,Club León,1.0,1.0,Liga MX Femenil,4810330,20250801_Necaxa_Club-León,0.0,9.0,3.0,3.0,0.0,1.0,2.0,10.0,,,,,47.0,53.0,,,flashscore
 2025-08-02,Tigres,Mazatlán FC,5.0,0.0,Liga MX Femenil,4810331,20250802_Tigres_Mazatlán-FC,3.0,1.0,3.0,2.0,1.0,0.0,12.0,2.0,,,,,69.0,31.0,,,flashscore
-2025-08-03,Puebla,Monterrey,0.0,5.0,Liga MX Femenil,4810332,20250803_Puebla_Monterrey,6.0,3.0,1.0,2.0,0.0,0.0,1.0,8.0,,,,,55.0,45.0,,,flashscore
 2025-08-03,CF América,Querétaro,11.0,0.0,Liga MX Femenil,4810333,20250803_CF-América_Querétaro,12.0,3.0,1.0,3.0,0.0,1.0,22.0,0.0,,,,,60.0,40.0,,,flashscore
-2025-08-04,Atlético de San Luis,FC Juárez,0.0,2.0,Liga MX Femenil,4810334,20250804_Atlético-de-San-Luis_FC-Juárez,4.0,7.0,4.0,1.0,1.0,0.0,0.0,8.0,,,,,39.0,61.0,,,flashscore
+2025-08-03,Puebla,Monterrey,0.0,5.0,Liga MX Femenil,4810332,20250803_Puebla_Monterrey,6.0,3.0,1.0,2.0,0.0,0.0,1.0,8.0,,,,,55.0,45.0,,,flashscore
 2025-08-04,Pumas,Cruz Azul,3.0,1.0,Liga MX Femenil,4810335,20250804_Pumas_Cruz-Azul,3.0,6.0,0.0,2.0,0.0,0.0,7.0,6.0,,,,,50.0,50.0,,,flashscore
+2025-08-04,Atlético de San Luis,FC Juárez,0.0,2.0,Liga MX Femenil,4810334,20250804_Atlético-de-San-Luis_FC-Juárez,4.0,7.0,4.0,1.0,1.0,0.0,0.0,8.0,,,,,39.0,61.0,,,flashscore
 2025-08-05,Pachuca,Toluca,1.0,2.0,Liga MX Femenil,4810336,20250805_Pachuca_Toluca,4.0,3.0,1.0,2.0,0.0,0.0,6.0,7.0,,,,,49.0,51.0,,,flashscore
 2025-08-05,Santos Laguna,Chivas,2.0,1.0,Liga MX Femenil,4810337,20250805_Santos-Laguna_Chivas,3.0,3.0,4.0,2.0,0.0,0.0,8.0,7.0,,,,,48.0,52.0,,,flashscore
 2025-08-08,Chivas,Cruz Azul,1.0,1.0,Liga MX Femenil,4810338,20250808_Chivas_Cruz-Azul,2.0,7.0,2.0,2.0,0.0,0.0,15.0,12.0,,,,,48.0,52.0,,,flashscore
 2025-08-08,Querétaro,Atlético de San Luis,0.0,2.0,Liga MX Femenil,4810339,20250808_Querétaro_Atlético-de-San-Luis,6.0,4.0,4.0,4.0,1.0,0.0,0.0,2.0,,,,,51.0,49.0,,,flashscore
 2025-08-09,Atlas,Tigres,0.0,3.0,Liga MX Femenil,4810340,20250809_Atlas_Tigres,5.0,6.0,0.0,1.0,0.0,0.0,3.0,8.0,,,,,42.0,58.0,,,flashscore
-2025-08-09,Monterrey,Mazatlán FC,5.0,0.0,Liga MX Femenil,4810341,20250809_Monterrey_Mazatlán-FC,5.0,0.0,0.0,1.0,0.0,1.0,18.0,2.0,,,,,76.0,24.0,,,flashscore
 2025-08-09,FC Juárez,Club Tijuana,2.0,0.0,Liga MX Femenil,4810342,20250809_FC-Juárez_Club-Tijuana,5.0,6.0,2.0,2.0,1.0,1.0,4.0,0.0,,,,,48.0,52.0,,,flashscore
+2025-08-09,Puebla,Pumas,1.0,2.0,Liga MX Femenil,4810343,20250809_Puebla_Pumas,5.0,8.0,1.0,1.0,0.0,0.0,2.0,10.0,,,,,42.0,58.0,,,flashscore
 2025-08-09,Necaxa,CF América,0.0,4.0,Liga MX Femenil,4810344,20250809_Necaxa_CF-América,0.0,7.0,4.0,1.0,1.0,0.0,1.0,7.0,,,,,29.0,71.0,,,flashscore
 2025-08-09,Pachuca,Santos Laguna,3.0,1.0,Liga MX Femenil,4810345,20250809_Pachuca_Santos-Laguna,4.0,3.0,1.0,4.0,0.0,0.0,9.0,4.0,,,,,61.0,39.0,,,flashscore
-2025-08-09,Puebla,Pumas,1.0,2.0,Liga MX Femenil,4810343,20250809_Puebla_Pumas,5.0,8.0,1.0,1.0,0.0,0.0,2.0,10.0,,,,,42.0,58.0,,,flashscore
+2025-08-09,Monterrey,Mazatlán FC,5.0,0.0,Liga MX Femenil,4810341,20250809_Monterrey_Mazatlán-FC,5.0,0.0,0.0,1.0,0.0,1.0,18.0,2.0,,,,,76.0,24.0,,,flashscore
 2025-08-10,Toluca,Club León,1.0,0.0,Liga MX Femenil,4810346,20250810_Toluca_Club-León,6.0,3.0,2.0,2.0,0.0,0.0,2.0,0.0,,,,,49.0,51.0,,,flashscore
 2025-08-12,Cruz Azul,Monterrey,4.0,0.0,Liga MX Femenil,4810347,20250812_Cruz-Azul_Monterrey,2.0,6.0,2.0,3.0,0.0,0.0,8.0,0.0,,,,,50.0,50.0,,,flashscore
 2025-08-12,Atlético de San Luis,Atlas,0.0,0.0,Liga MX Femenil,4810348,20250812_Atlético-de-San-Luis_Atlas,4.0,2.0,1.0,2.0,0.0,0.0,4.0,2.0,,,,,48.0,52.0,,,flashscore
 2025-08-12,Querétaro,Pachuca,2.0,2.0,Liga MX Femenil,4810349,20250812_Querétaro_Pachuca,4.0,11.0,4.0,2.0,1.0,0.0,3.0,3.0,,,,,44.0,56.0,,,flashscore
 2025-08-13,Club León,FC Juárez,3.0,2.0,Liga MX Femenil,4810351,20250813_Club-León_FC-Juárez,0.0,8.0,1.0,2.0,0.0,0.0,6.0,8.0,,,,,40.0,60.0,,,flashscore
 2025-08-13,Tigres,Club Tijuana,2.0,0.0,Liga MX Femenil,4810350,20250813_Tigres_Club-Tijuana,5.0,2.0,3.0,1.0,0.0,1.0,4.0,4.0,,,,,64.0,36.0,,,flashscore
-2025-08-14,Toluca,Chivas,2.0,1.0,Liga MX Femenil,4810353,20250814_Toluca_Chivas,3.0,7.0,1.0,2.0,0.0,0.0,6.0,7.0,,,,,52.0,48.0,,,flashscore
 2025-08-14,CF América,Puebla,3.0,0.0,Liga MX Femenil,4810352,20250814_CF-América_Puebla,7.0,2.0,,,,,16.0,2.0,,,,,65.0,35.0,,,flashscore
+2025-08-14,Toluca,Chivas,2.0,1.0,Liga MX Femenil,4810353,20250814_Toluca_Chivas,3.0,7.0,1.0,2.0,0.0,0.0,6.0,7.0,,,,,52.0,48.0,,,flashscore
 2025-08-16,Tigres,Pachuca,2.0,3.0,Liga MX Femenil,4810355,20250816_Tigres_Pachuca,4.0,5.0,0.0,3.0,0.0,0.0,4.0,8.0,,,,,56.0,44.0,,,flashscore
 2025-08-17,Monterrey,Santos Laguna,3.0,1.0,Liga MX Femenil,4810357,20250817_Monterrey_Santos-Laguna,4.0,6.0,1.0,2.0,0.0,0.0,7.0,5.0,,,,,55.0,45.0,,,flashscore
 2025-08-17,Pumas,CF América,2.0,3.0,Liga MX Femenil,4810358,20250817_Pumas_CF-América,4.0,7.0,1.0,1.0,0.0,0.0,7.0,8.0,,,,,38.0,62.0,,,flashscore
@@ -1453,8 +1453,8 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2025-09-26,Club Tijuana,Querétaro,2.0,0.0,Liga MX Femenil,4810410,20250926_Club-Tijuana_Querétaro,6.0,2.0,2.0,0.0,0.0,0.0,11.0,7.0,,,,,52.0,48.0,,,flashscore
 2025-09-27,CF América,FC Juárez,4.0,0.0,Liga MX Femenil,4810411,20250927_CF-América_FC-Juárez,5.0,4.0,0.0,3.0,0.0,0.0,11.0,3.0,,,,,48.0,52.0,,,flashscore
 2025-09-27,Tigres,Club León,9.0,0.0,Liga MX Femenil,4810412,20250927_Tigres_Club-León,3.0,7.0,2.0,3.0,0.0,1.0,24.0,0.0,,,,,58.0,42.0,,,flashscore
-2025-09-29,Pumas,Atlético de San Luis,1.0,2.0,Liga MX Femenil,4810413,20250929_Pumas_Atlético-de-San-Luis,12.0,3.0,2.0,1.0,0.0,0.0,2.0,4.0,,,,,58.0,42.0,,,flashscore
 2025-09-29,Pachuca,Cruz Azul,2.0,2.0,Liga MX Femenil,4810415,20250929_Pachuca_Cruz-Azul,6.0,2.0,3.0,2.0,0.0,0.0,9.0,6.0,,,,,56.0,44.0,,,flashscore
+2025-09-29,Pumas,Atlético de San Luis,1.0,2.0,Liga MX Femenil,4810413,20250929_Pumas_Atlético-de-San-Luis,12.0,3.0,2.0,1.0,0.0,0.0,2.0,4.0,,,,,58.0,42.0,,,flashscore
 2025-09-30,Necaxa,Monterrey,0.0,5.0,Liga MX Femenil,4810416,20250930_Necaxa_Monterrey,1.0,4.0,2.0,0.0,0.0,0.0,1.0,14.0,,,,,38.0,62.0,,,flashscore
 2025-09-30,Atlas,Toluca,2.0,2.0,Liga MX Femenil,4810414,20250930_Atlas_Toluca,4.0,7.0,2.0,6.0,0.0,1.0,6.0,4.0,,,,,54.0,46.0,,,flashscore
 2025-09-30,Santos Laguna,Puebla,1.0,0.0,Liga MX Femenil,4810417,20250930_Santos-Laguna_Puebla,5.0,2.0,3.0,2.0,0.0,0.0,5.0,3.0,,,,,48.0,52.0,,,flashscore
@@ -1569,8 +1569,8 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2026-02-06,Necaxa,Chivas,0.0,2.0,Liga MX Femenil,5111308,20260206_Necaxa_Chivas,2.0,15.0,2.0,1.0,0.0,0.0,1.0,8.0,,,,,39.0,61.0,,,flashscore
 2026-02-06,FC Juárez,CF América,1.0,1.0,Liga MX Femenil,5111309,20260206_FC-Juárez_CF-América,2.0,5.0,2.0,1.0,0.0,0.0,2.0,3.0,,,,,41.0,59.0,,,flashscore
 2026-02-06,Tigres,Cruz Azul,4.0,2.0,Liga MX Femenil,5111310,20260206_Tigres_Cruz-Azul,7.0,5.0,3.0,2.0,0.0,0.0,14.0,12.0,,,,,55.0,45.0,,,flashscore
-2026-02-07,Pachuca,Mazatlán FC,3.0,0.0,Liga MX Femenil,5111313,20260207_Pachuca_Mazatlán-FC,6.0,0.0,0.0,1.0,0.0,0.0,13.0,0.0,,,,,63.0,37.0,,,flashscore
 2026-02-07,Monterrey,Club Tijuana,2.0,0.0,Liga MX Femenil,5111314,20260207_Monterrey_Club-Tijuana,8.0,5.0,1.0,3.0,0.0,0.0,10.0,4.0,,,,,57.0,43.0,,,flashscore
+2026-02-07,Pachuca,Mazatlán FC,3.0,0.0,Liga MX Femenil,5111313,20260207_Pachuca_Mazatlán-FC,6.0,0.0,0.0,1.0,0.0,0.0,13.0,0.0,,,,,63.0,37.0,,,flashscore
 2026-02-09,Cruz Azul,CF América,1.0,2.0,Liga MX Femenil,5111315,20260209_Cruz-Azul_CF-América,4.0,14.0,3.0,1.0,0.0,0.0,1.0,2.0,,,,,41.0,59.0,,,flashscore
 2026-02-09,Club León,Necaxa,3.0,1.0,Liga MX Femenil,5111316,20260209_Club-León_Necaxa,8.0,4.0,1.0,1.0,0.0,0.0,11.0,5.0,,,,,62.0,38.0,,,flashscore
 2026-02-10,Pumas,Chivas,1.0,0.0,Liga MX Femenil,5111318,20260210_Pumas_Chivas,2.0,9.0,3.0,2.0,0.0,0.0,5.0,7.0,,,,,44.0,56.0,,,flashscore
@@ -1578,12 +1578,12 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2026-02-10,Querétaro,Mazatlán FC,1.0,1.0,Liga MX Femenil,5111319,20260210_Querétaro_Mazatlán-FC,6.0,3.0,4.0,3.0,0.0,0.0,1.0,1.0,,,,,55.0,45.0,,,flashscore
 2026-02-10,Monterrey,Toluca,2.0,0.0,Liga MX Femenil,5111320,20260210_Monterrey_Toluca,4.0,2.0,4.0,2.0,0.0,0.0,8.0,1.0,,,,,48.0,52.0,,,flashscore
 2026-02-10,Puebla,Atlas,2.0,1.0,Liga MX Femenil,5111321,20260210_Puebla_Atlas,4.0,3.0,2.0,1.0,0.0,0.0,8.0,7.0,,,,,49.0,51.0,,,flashscore
-2026-02-11,Santos Laguna,Club Tijuana,2.0,2.0,Liga MX Femenil,5111323,20260211_Santos-Laguna_Club-Tijuana,4.0,4.0,5.0,3.0,0.0,1.0,4.0,5.0,,,,,49.0,51.0,,,flashscore
 2026-02-11,Atlético de San Luis,Pachuca,0.0,3.0,Liga MX Femenil,5111322,20260211_Atlético-de-San-Luis_Pachuca,3.0,2.0,1.0,3.0,0.0,1.0,2.0,6.0,,,,,45.0,55.0,,,flashscore
-2026-02-14,Tigres,Puebla,4.0,0.0,Liga MX Femenil,5111263,20260214_Tigres_Puebla,12.0,0.0,1.0,3.0,0.0,0.0,12.0,0.0,,,,,62.0,38.0,,,flashscore
+2026-02-11,Santos Laguna,Club Tijuana,2.0,2.0,Liga MX Femenil,5111323,20260211_Santos-Laguna_Club-Tijuana,4.0,4.0,5.0,3.0,0.0,1.0,4.0,5.0,,,,,49.0,51.0,,,flashscore
 2026-02-14,FC Juárez,Pumas,1.0,1.0,Liga MX Femenil,5111324,20260214_FC-Juárez_Pumas,5.0,2.0,3.0,1.0,0.0,0.0,4.0,3.0,,,,,54.0,46.0,,,flashscore
-2026-02-15,Necaxa,Santos Laguna,0.0,2.0,Liga MX Femenil,5111325,20260215_Necaxa_Santos-Laguna,3.0,11.0,1.0,2.0,0.0,0.0,4.0,6.0,,,,,45.0,55.0,,,flashscore
+2026-02-14,Tigres,Puebla,4.0,0.0,Liga MX Femenil,5111263,20260214_Tigres_Puebla,12.0,0.0,1.0,3.0,0.0,0.0,12.0,0.0,,,,,62.0,38.0,,,flashscore
 2026-02-15,Club Tijuana,Cruz Azul,1.0,1.0,Liga MX Femenil,5111326,20260215_Club-Tijuana_Cruz-Azul,7.0,1.0,4.0,1.0,0.0,0.0,9.0,5.0,,,,,48.0,52.0,,,flashscore
+2026-02-15,Necaxa,Santos Laguna,0.0,2.0,Liga MX Femenil,5111325,20260215_Necaxa_Santos-Laguna,3.0,11.0,1.0,2.0,0.0,0.0,4.0,6.0,,,,,45.0,55.0,,,flashscore
 2026-02-16,CF América,Monterrey,1.0,1.0,Liga MX Femenil,5111328,20260216_CF-América_Monterrey,11.0,2.0,2.0,2.0,1.0,0.0,10.0,4.0,,,,,62.0,38.0,,,flashscore
 2026-02-16,Club León,Puebla,6.0,0.0,Liga MX Femenil,5111332,20260216_Club-León_Puebla,10.0,3.0,0.0,3.0,0.0,0.0,13.0,0.0,,,,,60.0,40.0,,,flashscore
 2026-02-17,Toluca,Pachuca,1.0,1.0,Liga MX Femenil,5111329,20260217_Toluca_Pachuca,3.0,4.0,0.0,2.0,0.0,0.0,10.0,6.0,,,,,52.0,48.0,,,flashscore
@@ -1595,12 +1595,12 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2026-02-21,Santos Laguna,Toluca,0.0,1.0,Liga MX Femenil,5111335,20260221_Santos-Laguna_Toluca,5.0,4.0,0.0,1.0,0.0,1.0,5.0,9.0,,,,,47.0,53.0,,,flashscore
 2026-02-21,Monterrey,Atlético de San Luis,6.0,0.0,Liga MX Femenil,5111336,20260221_Monterrey_Atlético-de-San-Luis,6.0,3.0,1.0,2.0,0.0,0.0,17.0,2.0,,,,,65.0,35.0,,,flashscore
 2026-02-22,Necaxa,Querétaro,2.0,1.0,Liga MX Femenil,5111340,20260222_Necaxa_Querétaro,6.0,3.0,1.0,0.0,0.0,0.0,7.0,4.0,,,,,48.0,52.0,,,flashscore
-2026-02-22,Club Tijuana,Club León,2.0,1.0,Liga MX Femenil,5111337,20260222_Club-Tijuana_Club-León,7.0,5.0,4.0,3.0,0.0,0.0,5.0,5.0,,,,,56.0,44.0,,,flashscore
 2026-02-22,Puebla,Mazatlán FC,1.0,2.0,Liga MX Femenil,5111338,20260222_Puebla_Mazatlán-FC,4.0,5.0,0.0,1.0,0.0,0.0,5.0,5.0,,,,,49.0,51.0,,,flashscore
+2026-02-22,Club Tijuana,Club León,2.0,1.0,Liga MX Femenil,5111337,20260222_Club-Tijuana_Club-León,7.0,5.0,4.0,3.0,0.0,0.0,5.0,5.0,,,,,56.0,44.0,,,flashscore
 2026-02-23,Pachuca,FC Juárez,3.0,0.0,Liga MX Femenil,5111341,20260223_Pachuca_FC-Juárez,7.0,4.0,1.0,2.0,0.0,0.0,9.0,2.0,,,,,56.0,44.0,,,flashscore
 2026-03-11,Chivas,CF América,3.0,2.0,Liga MX Femenil,5111339,20260311_Chivas_CF-América,0.0,8.0,3.0,4.0,0.0,0.0,5.0,7.0,,,,,40.0,60.0,,,flashscore
-2026-03-12,Atlético de San Luis,Puebla,2.0,0.0,Liga MX Femenil,5111342,20260312_Atlético-de-San-Luis_Puebla,4.0,5.0,3.0,3.0,1.0,0.0,6.0,2.0,,,,,49.0,51.0,,,flashscore
 2026-03-12,Cruz Azul,Necaxa,3.0,0.0,Liga MX Femenil,5111344,20260312_Cruz-Azul_Necaxa,5.0,2.0,,,,,4.0,0.0,,,,,62.0,38.0,,,flashscore
+2026-03-12,Atlético de San Luis,Puebla,2.0,0.0,Liga MX Femenil,5111342,20260312_Atlético-de-San-Luis_Puebla,4.0,5.0,3.0,3.0,1.0,0.0,6.0,2.0,,,,,49.0,51.0,,,flashscore
 2026-03-13,Toluca,Pumas,4.0,2.0,Liga MX Femenil,5111349,20260313_Toluca_Pumas,0.0,0.0,1.0,2.0,0.0,0.0,0.0,0.0,,,,,58.0,42.0,,,flashscore
 2026-03-13,Querétaro,Atlas,0.0,1.0,Liga MX Femenil,5111345,20260313_Querétaro_Atlas,3.0,6.0,2.0,0.0,1.0,0.0,0.0,1.0,,,,,50.0,50.0,,,flashscore
 2026-03-13,Pachuca,Club Tijuana,2.0,0.0,Liga MX Femenil,5111346,20260313_Pachuca_Club-Tijuana,12.0,2.0,1.0,1.0,0.0,0.0,18.0,0.0,,,,,58.0,42.0,,,flashscore
@@ -1628,9 +1628,9 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2026-03-26,Tigres,CF América,0.0,1.0,Liga MX Femenil,5111369,20260326_Tigres_CF-América,8.0,3.0,2.0,2.0,0.0,0.0,1.0,8.0,,,,,56.0,44.0,,,flashscore
 2026-03-28,Santos Laguna,Atlético de San Luis,1.0,2.0,Liga MX Femenil,5111375,20260328_Santos-Laguna_Atlético-de-San-Luis,5.0,5.0,3.0,4.0,0.0,0.0,11.0,8.0,,,,,53.0,47.0,,,flashscore
 2026-03-28,Cruz Azul,Puebla,4.0,0.0,Liga MX Femenil,5111374,20260328_Cruz-Azul_Puebla,9.0,4.0,1.0,2.0,0.0,0.0,4.0,0.0,,,,,62.0,38.0,,,flashscore
+2026-03-28,Mazatlán FC,Toluca,2.0,3.0,Liga MX Femenil,5111373,20260328_Mazatlán-FC_Toluca,6.0,6.0,2.0,2.0,0.0,0.0,3.0,5.0,,,,,44.0,56.0,,,flashscore
 2026-03-28,Atlas,Necaxa,3.0,2.0,Liga MX Femenil,5111371,20260328_Atlas_Necaxa,6.0,2.0,2.0,2.0,1.0,0.0,7.0,4.0,,,,,57.0,43.0,,,flashscore
 2026-03-28,Pachuca,Monterrey,0.0,1.0,Liga MX Femenil,5111372,20260328_Pachuca_Monterrey,7.0,2.0,,,,,6.0,4.0,,,,,59.0,41.0,,,flashscore
-2026-03-28,Mazatlán FC,Toluca,2.0,3.0,Liga MX Femenil,5111373,20260328_Mazatlán-FC_Toluca,6.0,6.0,2.0,2.0,0.0,0.0,3.0,5.0,,,,,44.0,56.0,,,flashscore
 2026-03-28,Pumas,Club León,2.0,1.0,Liga MX Femenil,5111370,20260328_Pumas_Club-León,1.0,6.0,3.0,0.0,0.0,0.0,8.0,7.0,,,,,46.0,54.0,,,flashscore
 2026-03-29,Querétaro,FC Juárez,2.0,1.0,Liga MX Femenil,5111376,20260329_Querétaro_FC-Juárez,8.0,10.0,2.0,2.0,0.0,0.0,2.0,1.0,,,,,48.0,52.0,,,flashscore
 2026-03-30,Club Tijuana,Chivas,1.0,1.0,Liga MX Femenil,5111377,20260330_Club-Tijuana_Chivas,3.0,3.0,1.0,2.0,0.0,0.0,6.0,5.0,,,,,59.0,41.0,,,flashscore
@@ -1715,19 +1715,19 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2026-08-25,Atlas,Club Tijuana,2.0,0.0,Liga MX Femenil,5977327,20260825_Atlas_Club-Tijuana,1.0,7.0,2.0,1.0,0.0,0.0,5.0,3.0,2.0,10.0,8.0,10.0,56.0,44.0,0.0,1.0,flashscore
 2026-08-29,Querétaro,Monterrey,0.0,4.0,Liga MX Femenil,5977329,20260829_Querétaro_Monterrey,6.0,3.0,0.0,2.0,1.0,1.0,3.0,8.0,12.0,16.0,13.0,13.0,48.0,52.0,5.0,3.0,flashscore
 2026-08-29,Toluca,Club León,1.0,0.0,Liga MX Femenil,5977328,20260829_Toluca_Club-León,2.0,6.0,4.0,3.0,0.0,1.0,4.0,2.0,5.0,14.0,10.0,19.0,56.0,44.0,3.0,2.0,flashscore
+2026-08-30,Puebla,Necaxa,4.0,1.0,Liga MX Femenil,5977332,20260830_Puebla_Necaxa,6.0,7.0,3.0,3.0,0.0,0.0,6.0,9.0,12.0,17.0,11.0,19.0,45.0,55.0,3.0,3.0,flashscore
 2026-08-30,Chivas,Pumas,0.0,2.0,Liga MX Femenil,5977335,20260830_Chivas_Pumas,8.0,1.0,0.0,4.0,0.0,1.0,9.0,5.0,13.0,7.0,6.0,13.0,56.0,44.0,3.0,3.0,flashscore
 2026-08-30,FC Juárez,Cruz Azul,1.0,0.0,Liga MX Femenil,5977331,20260830_FC-Juárez_Cruz-Azul,3.0,3.0,3.0,1.0,0.0,0.0,3.0,4.0,10.0,11.0,15.0,10.0,63.0,37.0,1.0,2.0,flashscore
-2026-08-30,Tigres,Pachuca,2.0,0.0,Liga MX Femenil,5977330,20260830_Tigres_Pachuca,5.0,4.0,2.0,4.0,0.0,0.0,6.0,3.0,8.0,9.0,9.0,10.0,52.0,48.0,7.0,1.0,flashscore
 2026-08-30,CF América,Club Tijuana,3.0,1.0,Liga MX Femenil,5977333,20260830_CF-América_Club-Tijuana,16.0,1.0,3.0,1.0,0.0,0.0,11.0,1.0,10.0,4.0,16.0,14.0,70.0,30.0,1.0,0.0,flashscore
-2026-08-30,Puebla,Necaxa,4.0,1.0,Liga MX Femenil,5977332,20260830_Puebla_Necaxa,6.0,7.0,3.0,3.0,0.0,0.0,6.0,9.0,12.0,17.0,11.0,19.0,45.0,55.0,3.0,3.0,flashscore
 2026-08-30,Atlético de San Luis,Atlas,6.0,1.0,Liga MX Femenil,5977334,20260830_Atlético-de-San-Luis_Atlas,5.0,3.0,2.0,2.0,0.0,0.0,13.0,3.0,11.0,9.0,13.0,6.0,48.0,52.0,2.0,0.0,flashscore
+2026-08-30,Tigres,Pachuca,2.0,0.0,Liga MX Femenil,5977330,20260830_Tigres_Pachuca,5.0,4.0,2.0,4.0,0.0,0.0,6.0,3.0,8.0,9.0,9.0,10.0,52.0,48.0,7.0,1.0,flashscore
 2026-09-01,Santos Laguna,Atlante,1.0,0.0,Liga MX Femenil,5977336,20260901_Santos-Laguna_Atlante,9.0,2.0,3.0,2.0,0.0,0.0,8.0,2.0,15.0,3.0,19.0,13.0,50.0,50.0,0.0,0.0,flashscore
 2026-09-05,Atlas,Chivas,0.0,4.0,Liga MX Femenil,5977337,20260905_Atlas_Chivas,3.0,1.0,1.0,1.0,0.0,0.0,3.0,6.0,8.0,10.0,12.0,12.0,54.0,46.0,2.0,2.0,flashscore
 2026-09-05,Pumas,CF América,1.0,2.0,Liga MX Femenil,5977338,20260905_Pumas_CF-América,2.0,13.0,3.0,0.0,1.0,0.0,4.0,7.0,8.0,10.0,14.0,9.0,37.0,63.0,4.0,2.0,flashscore
 2026-09-05,Necaxa,Atlético de San Luis,0.0,2.0,Liga MX Femenil,5977339,20260905_Necaxa_Atlético-de-San-Luis,2.0,10.0,3.0,2.0,0.0,0.0,0.0,3.0,4.0,17.0,11.0,15.0,29.0,71.0,1.0,1.0,flashscore
-2026-09-06,Querétaro,Cruz Azul,0.0,2.0,Liga MX Femenil,5977342,20260906_Querétaro_Cruz-Azul,3.0,6.0,1.0,1.0,0.0,0.0,2.0,6.0,8.0,12.0,10.0,5.0,41.0,59.0,1.0,4.0,flashscore
 2026-09-06,Monterrey,Toluca,5.0,1.0,Liga MX Femenil,5977340,20260906_Monterrey_Toluca,3.0,4.0,2.0,2.0,0.0,0.0,19.0,2.0,15.0,4.0,14.0,8.0,52.0,48.0,2.0,0.0,flashscore
 2026-09-06,Club Tijuana,Pachuca,3.0,1.0,Liga MX Femenil,5977341,20260906_Club-Tijuana_Pachuca,1.0,7.0,3.0,2.0,0.0,0.0,8.0,1.0,2.0,22.0,7.0,12.0,37.0,63.0,2.0,5.0,flashscore
+2026-09-06,Querétaro,Cruz Azul,0.0,2.0,Liga MX Femenil,5977342,20260906_Querétaro_Cruz-Azul,3.0,6.0,1.0,1.0,0.0,0.0,2.0,6.0,8.0,12.0,10.0,5.0,41.0,59.0,1.0,4.0,flashscore
 2026-09-07,Tigres,Santos Laguna,3.0,0.0,Liga MX Femenil,5977343,20260907_Tigres_Santos-Laguna,6.0,2.0,1.0,0.0,0.0,0.0,9.0,2.0,11.0,9.0,7.0,11.0,66.0,34.0,3.0,4.0,flashscore
 2026-09-08,Club León,Puebla,5.0,2.0,Liga MX Femenil,5977345,20260908_Club-León_Puebla,9.0,6.0,1.0,2.0,0.0,0.0,13.0,7.0,14.0,6.0,13.0,8.0,61.0,39.0,1.0,1.0,flashscore
 2026-09-08,Atlante,FC Juárez,0.0,1.0,Liga MX Femenil,5977344,20260908_Atlante_FC-Juárez,0.0,7.0,1.0,0.0,0.0,0.0,3.0,9.0,4.0,9.0,4.0,9.0,39.0,61.0,2.0,7.0,flashscore
@@ -1735,58 +1735,58 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2026-09-12,Atlas,Atlante,1.0,0.0,Liga MX Femenil,5977347,20260912_Atlas_Atlante,3.0,6.0,4.0,2.0,0.0,0.0,4.0,3.0,9.0,8.0,13.0,8.0,62.0,38.0,3.0,1.0,flashscore
 2026-09-12,Chivas,Monterrey,2.0,3.0,Liga MX Femenil,5977348,20260912_Chivas_Monterrey,7.0,4.0,2.0,4.0,0.0,0.0,6.0,3.0,11.0,4.0,6.0,17.0,41.0,59.0,1.0,2.0,flashscore
 2026-09-13,FC Juárez,Necaxa,1.0,0.0,Liga MX Femenil,5977349,20260913_FC-Juárez_Necaxa,9.0,0.0,2.0,1.0,0.0,0.0,17.0,0.0,17.0,3.0,9.0,6.0,74.0,26.0,1.0,0.0,flashscore
-2026-09-13,Atlético de San Luis,Santos Laguna,2.0,3.0,Liga MX Femenil,5977351,20260913_Atlético-de-San-Luis_Santos-Laguna,13.0,3.0,3.0,3.0,1.0,0.0,6.0,8.0,13.0,8.0,13.0,9.0,52.0,48.0,2.0,3.0,flashscore
 2026-09-13,Puebla,Querétaro,2.0,6.0,Liga MX Femenil,5977350,20260913_Puebla_Querétaro,4.0,10.0,2.0,2.0,0.0,0.0,5.0,11.0,8.0,19.0,11.0,11.0,41.0,59.0,2.0,2.0,flashscore
+2026-09-13,Atlético de San Luis,Santos Laguna,2.0,3.0,Liga MX Femenil,5977351,20260913_Atlético-de-San-Luis_Santos-Laguna,13.0,3.0,3.0,3.0,1.0,0.0,6.0,8.0,13.0,8.0,13.0,9.0,52.0,48.0,2.0,3.0,flashscore
 2026-09-13,CF América,Tigres,5.0,2.0,Liga MX Femenil,5977352,20260913_CF-América_Tigres,11.0,4.0,3.0,2.0,0.0,0.0,10.0,5.0,9.0,10.0,21.0,14.0,53.0,47.0,2.0,1.0,flashscore
-2026-09-15,Toluca,Club Tijuana,6.0,0.0,Liga MX Femenil,5977353,20260915_Toluca_Club-Tijuana,4.0,3.0,2.0,1.0,0.0,0.0,9.0,4.0,9.0,8.0,15.0,14.0,58.0,42.0,2.0,1.0,flashscore
 2026-09-15,Pachuca,Club León,0.0,1.0,Liga MX Femenil,5977354,20260915_Pachuca_Club-León,5.0,9.0,4.0,1.0,1.0,0.0,3.0,7.0,5.0,11.0,12.0,11.0,41.0,59.0,0.0,4.0,flashscore
-2026-09-19,Monterrey,Necaxa,10.0,0.0,Liga MX Femenil,5977355,20260919_Monterrey_Necaxa,6.0,0.0,0.0,2.0,0.0,0.0,25.0,1.0,18.0,7.0,13.0,8.0,77.0,23.0,0.0,2.0,flashscore
+2026-09-15,Toluca,Club Tijuana,6.0,0.0,Liga MX Femenil,5977353,20260915_Toluca_Club-Tijuana,4.0,3.0,2.0,1.0,0.0,0.0,9.0,4.0,9.0,8.0,15.0,14.0,58.0,42.0,2.0,1.0,flashscore
 2026-09-19,Club Tijuana,Chivas,0.0,2.0,Liga MX Femenil,5977356,20260919_Club-Tijuana_Chivas,3.0,8.0,2.0,3.0,0.0,0.0,4.0,6.0,12.0,10.0,11.0,21.0,58.0,42.0,1.0,3.0,flashscore
+2026-09-19,Monterrey,Necaxa,10.0,0.0,Liga MX Femenil,5977355,20260919_Monterrey_Necaxa,6.0,0.0,0.0,2.0,0.0,0.0,25.0,1.0,18.0,7.0,13.0,8.0,77.0,23.0,0.0,2.0,flashscore
 2026-09-20,Pumas,Puebla,2.0,0.0,Liga MX Femenil,5977357,20260920_Pumas_Puebla,8.0,2.0,1.0,1.0,0.0,0.0,9.0,3.0,20.0,5.0,15.0,8.0,70.0,30.0,0.0,1.0,flashscore
 2026-09-20,CF América,Atlas,2.0,2.0,Liga MX Femenil,5977358,20260920_CF-América_Atlas,10.0,1.0,2.0,1.0,0.0,0.0,10.0,5.0,11.0,11.0,12.0,8.0,66.0,34.0,2.0,1.0,flashscore
 2026-09-20,Atlético de San Luis,Pachuca,2.0,1.0,Liga MX Femenil,5977359,20260920_Atlético-de-San-Luis_Pachuca,2.0,5.0,1.0,0.0,0.0,0.0,3.0,4.0,6.0,17.0,14.0,12.0,37.0,63.0,0.0,1.0,flashscore
 2026-09-21,Atlante,Querétaro,2.0,1.0,Liga MX Femenil,5977360,20260921_Atlante_Querétaro,4.0,4.0,2.0,6.0,0.0,1.0,5.0,9.0,7.0,7.0,13.0,20.0,48.0,52.0,1.0,3.0,flashscore
 2026-09-21,Club León,FC Juárez,0.0,2.0,Liga MX Femenil,5977361,20260921_Club-León_FC-Juárez,4.0,7.0,1.0,4.0,0.0,0.0,0.0,5.0,10.0,5.0,10.0,10.0,54.0,46.0,0.0,2.0,flashscore
-2026-09-22,Santos Laguna,Cruz Azul,2.0,0.0,Liga MX Femenil,5977363,20260922_Santos-Laguna_Cruz-Azul,4.0,6.0,3.0,4.0,0.0,0.0,4.0,8.0,10.0,22.0,10.0,8.0,36.0,64.0,1.0,0.0,flashscore
 2026-09-22,Toluca,Tigres,2.0,7.0,Liga MX Femenil,5977362,20260922_Toluca_Tigres,3.0,7.0,1.0,2.0,1.0,1.0,4.0,12.0,9.0,11.0,9.0,12.0,39.0,61.0,1.0,3.0,flashscore
-2026-09-26,Cruz Azul,Chivas,0.0,1.0,Liga MX Femenil,5977364,20260926_Cruz-Azul_Chivas,5.0,4.0,1.0,1.0,0.0,0.0,2.0,7.0,4.0,5.0,11.0,9.0,50.0,50.0,1.0,3.0,flashscore
-2026-09-26,Querétaro,Atlas,0.0,1.0,Liga MX Femenil,5977365,20260926_Querétaro_Atlas,3.0,4.0,3.0,1.0,0.0,0.0,5.0,4.0,9.0,11.0,12.0,8.0,48.9,51.1,1.0,3.0,espn
+2026-09-22,Santos Laguna,Cruz Azul,2.0,0.0,Liga MX Femenil,5977363,20260922_Santos-Laguna_Cruz-Azul,4.0,6.0,3.0,4.0,0.0,0.0,4.0,8.0,10.0,22.0,10.0,8.0,36.0,64.0,1.0,0.0,flashscore
 2026-09-26,Pachuca,Santos Laguna,4.0,1.0,Liga MX Femenil,5977366,20260926_Pachuca_Santos-Laguna,13.0,1.0,0.0,0.0,0.0,0.0,16.0,4.0,18.0,2.0,7.0,2.0,69.7,30.3,1.0,1.0,espn
+2026-09-26,Querétaro,Atlas,0.0,1.0,Liga MX Femenil,5977365,20260926_Querétaro_Atlas,3.0,4.0,3.0,1.0,0.0,0.0,5.0,4.0,9.0,11.0,12.0,8.0,48.9,51.1,1.0,3.0,espn
+2026-09-26,Cruz Azul,Chivas,0.0,1.0,Liga MX Femenil,5977364,20260926_Cruz-Azul_Chivas,5.0,4.0,1.0,1.0,0.0,0.0,2.0,7.0,4.0,5.0,11.0,9.0,50.0,50.0,1.0,3.0,flashscore
 2026-09-27,FC Juárez,Club Tijuana,5.0,1.0,Liga MX Femenil,5977367,20260927_FC-Juárez_Club-Tijuana,2.0,1.0,0.0,2.0,0.0,0.0,8.0,3.0,4.0,4.0,18.0,10.0,55.5,44.5,3.0,1.0,espn
 2026-09-27,Puebla,Monterrey,1.0,2.0,Liga MX Femenil,5977368,20260927_Puebla_Monterrey,4.0,4.0,2.0,1.0,0.0,1.0,6.0,11.0,6.0,16.0,14.0,5.0,28.0,72.0,1.0,0.0,espn
 2026-09-28,Tigres,Atlético de San Luis,1.0,1.0,Liga MX Femenil,5977369,20260928_Tigres_Atlético-de-San-Luis,8.0,3.0,1.0,3.0,1.0,0.0,3.0,6.0,11.0,8.0,12.0,21.0,74.4,25.6,3.0,3.0,espn
-2026-09-28,Club León,CF América,0.0,5.0,Liga MX Femenil,5977371,20260928_Club-León_CF-América,7.0,6.0,2.0,4.0,0.0,0.0,6.0,6.0,8.0,8.0,10.0,15.0,40.0,60.0,0.0,0.0,flashscore
 2026-09-28,Atlante,Pumas,0.0,0.0,Liga MX Femenil,5977370,20260928_Atlante_Pumas,1.0,5.0,2.0,0.0,0.0,0.0,1.0,5.0,5.0,7.0,10.0,11.0,36.3,63.7,5.0,1.0,espn
+2026-09-28,Club León,CF América,0.0,5.0,Liga MX Femenil,5977371,20260928_Club-León_CF-América,7.0,6.0,2.0,4.0,0.0,0.0,6.0,6.0,8.0,8.0,10.0,15.0,40.0,60.0,0.0,0.0,flashscore
 2026-09-29,Necaxa,Toluca,0.0,4.0,Liga MX Femenil,5977372,20260929_Necaxa_Toluca,1.0,7.0,1.0,1.0,0.0,0.0,2.0,11.0,6.0,16.0,9.0,10.0,19.0,81.0,1.0,2.0,espn
 2026-10-02,Santos Laguna,Puebla,1.0,0.0,Liga MX Femenil,5977373,20261002_Santos-Laguna_Puebla,7.0,1.0,1.0,2.0,0.0,1.0,4.0,1.0,25.0,3.0,13.0,10.0,72.7,27.3,1.0,0.0,espn
-2026-10-03,Monterrey,CF América,4.0,3.0,Liga MX Femenil,5977376,20261003_Monterrey_CF-América,1.0,8.0,1.0,2.0,0.0,0.0,9.0,6.0,8.0,13.0,10.0,17.0,41.7,58.3,2.0,2.0,espn
 2026-10-03,Pumas,Tigres,1.0,3.0,Liga MX Femenil,5977374,20261003_Pumas_Tigres,3.0,7.0,2.0,2.0,1.0,0.0,2.0,6.0,13.0,12.0,12.0,10.0,38.7,61.3,7.0,0.0,espn
+2026-10-03,Monterrey,CF América,4.0,3.0,Liga MX Femenil,5977376,20261003_Monterrey_CF-América,1.0,8.0,1.0,2.0,0.0,0.0,9.0,6.0,8.0,13.0,10.0,17.0,41.7,58.3,2.0,2.0,espn
 2026-10-03,Querétaro,Atlético de San Luis,0.0,1.0,Liga MX Femenil,5977377,20261003_Querétaro_Atlético-de-San-Luis,4.0,5.0,1.0,5.0,0.0,0.0,8.0,3.0,12.0,11.0,10.0,20.0,48.1,51.9,1.0,2.0,espn
 2026-10-04,Club Tijuana,Atlante,1.0,0.0,Liga MX Femenil,5977378,20261004_Club-Tijuana_Atlante,4.0,3.0,1.0,2.0,0.0,0.0,3.0,5.0,14.0,6.0,20.0,13.0,63.9,36.1,3.0,4.0,espn
 2026-10-04,Necaxa,Cruz Azul,0.0,2.0,Liga MX Femenil,5977379,20261004_Necaxa_Cruz-Azul,5.0,2.0,3.0,3.0,0.0,0.0,3.0,6.0,14.0,9.0,14.0,17.0,38.2,61.8,3.0,2.0,espn
 2026-10-04,Chivas,FC Juárez,1.0,0.0,Liga MX Femenil,5977380,20261004_Chivas_FC-Juárez,0.0,7.0,3.0,4.0,0.0,0.0,2.0,3.0,9.0,9.0,11.0,14.0,40.0,60.0,2.0,3.0,flashscore
 2026-10-05,Pachuca,Toluca,1.0,2.0,Liga MX Femenil,5977381,20261005_Pachuca_Toluca,7.0,1.0,1.0,2.0,0.0,1.0,9.0,3.0,19.0,3.0,13.0,5.0,53.8,46.2,2.0,4.0,espn
 2026-10-17,Puebla,Club Tijuana,1.0,1.0,Liga MX Femenil,5977382,20261017_Puebla_Club-Tijuana,1.0,3.0,5.0,1.0,0.0,1.0,6.0,3.0,14.0,10.0,16.0,8.0,33.2,66.8,2.0,2.0,espn
-2026-10-18,Atlético de San Luis,FC Juárez,1.0,2.0,Liga MX Femenil,5977386,20261018_Atlético-de-San-Luis_FC-Juárez,6.0,1.0,3.0,3.0,0.0,0.0,8.0,3.0,12.0,7.0,16.0,14.0,45.0,55.0,0.0,3.0,espn
-2026-10-18,Pumas,Atlas,1.0,0.0,Liga MX Femenil,5977384,20261018_Pumas_Atlas,13.0,4.0,3.0,2.0,0.0,1.0,12.0,4.0,13.0,1.0,12.0,7.0,51.0,49.0,4.0,1.0,espn
 2026-10-18,Monterrey,Cruz Azul,1.0,0.0,Liga MX Femenil,5977383,20261018_Monterrey_Cruz-Azul,5.0,8.0,0.0,1.0,0.0,0.0,5.0,4.0,10.0,6.0,10.0,11.0,53.6,46.4,1.0,4.0,espn
-2026-10-19,Tigres,Querétaro,2.0,0.0,Liga MX Femenil,5977387,20261019_Tigres_Querétaro,6.0,5.0,1.0,2.0,0.0,0.0,8.0,4.0,20.0,4.0,11.0,13.0,62.3,37.7,1.0,3.0,espn
+2026-10-18,Pumas,Atlas,1.0,0.0,Liga MX Femenil,5977384,20261018_Pumas_Atlas,13.0,4.0,3.0,2.0,0.0,1.0,12.0,4.0,13.0,1.0,12.0,7.0,51.0,49.0,4.0,1.0,espn
+2026-10-18,Atlético de San Luis,FC Juárez,1.0,2.0,Liga MX Femenil,5977386,20261018_Atlético-de-San-Luis_FC-Juárez,6.0,1.0,3.0,3.0,0.0,0.0,8.0,3.0,12.0,7.0,16.0,14.0,45.0,55.0,0.0,3.0,espn
 2026-10-19,CF América,Pachuca,2.0,1.0,Liga MX Femenil,5977388,20261019_CF-América_Pachuca,7.0,1.0,4.0,1.0,0.0,1.0,10.0,4.0,16.0,7.0,16.0,13.0,59.3,40.7,4.0,1.0,espn
+2026-10-19,Tigres,Querétaro,2.0,0.0,Liga MX Femenil,5977387,20261019_Tigres_Querétaro,6.0,5.0,1.0,2.0,0.0,0.0,8.0,4.0,20.0,4.0,11.0,13.0,62.3,37.7,1.0,3.0,espn
 2026-10-20,Toluca,Santos Laguna,0.0,0.0,Liga MX Femenil,5977389,20261020_Toluca_Santos-Laguna,5.0,1.0,0.0,0.0,0.0,0.0,7.0,1.0,17.0,10.0,7.0,4.0,67.2,32.8,0.0,2.0,espn
 2026-10-20,Club León,Atlante,2.0,0.0,Liga MX Femenil,5977390,20261020_Club-León_Atlante,6.0,4.0,2.0,0.0,0.0,0.0,4.0,2.0,10.0,7.0,10.0,11.0,63.0,37.0,2.0,0.0,flashscore
 2026-10-21,Chivas,Necaxa,7.0,0.0,Liga MX Femenil,5977385,20261021_Chivas_Necaxa,11.0,2.0,0.0,2.0,0.0,0.0,15.0,3.0,18.0,1.0,8.0,8.0,68.0,32.0,6.0,1.0,flashscore
 2026-10-23,Atlas,Club León,1.0,1.0,Liga MX Femenil,5977375,20261023_Atlas_Club-León,,,,,,,,,,,,,,,,,
-2026-10-24,Pachuca,Necaxa,5.0,0.0,Liga MX Femenil,5977393,20261024_Pachuca_Necaxa,7.0,1.0,0.0,0.0,0.0,0.0,12.0,0.0,21.0,2.0,10.0,13.0,70.5,29.5,4.0,3.0,espn
 2026-10-24,Atlético de San Luis,CF América,0.0,7.0,Liga MX Femenil,5977396,20261024_Atlético-de-San-Luis_CF-América,2.0,7.0,1.0,1.0,1.0,0.0,0.0,15.0,5.0,18.0,11.0,19.0,30.2,69.8,1.0,0.0,espn
+2026-10-24,Pachuca,Necaxa,5.0,0.0,Liga MX Femenil,5977393,20261024_Pachuca_Necaxa,7.0,1.0,0.0,0.0,0.0,0.0,12.0,0.0,21.0,2.0,10.0,13.0,70.5,29.5,4.0,3.0,espn
 2026-10-24,Club Tijuana,Pumas,1.0,1.0,Liga MX Femenil,5977392,20261024_Club-Tijuana_Pumas,2.0,8.0,3.0,3.0,1.0,0.0,2.0,9.0,4.0,19.0,13.0,15.0,42.3,57.7,2.0,5.0,espn
-2026-10-25,FC Juárez,Querétaro,2.0,1.0,Liga MX Femenil,5977395,20261025_FC-Juárez_Querétaro,9.0,2.0,3.0,4.0,0.0,0.0,6.0,5.0,16.0,9.0,7.0,10.0,62.7,37.3,3.0,2.0,espn
 2026-10-25,Cruz Azul,Toluca,1.0,2.0,Liga MX Femenil,5977394,20261025_Cruz-Azul_Toluca,3.0,3.0,4.0,2.0,0.0,0.0,4.0,4.0,14.0,5.0,9.0,8.0,53.2,46.8,5.0,0.0,espn
-2026-10-26,Tigres,Monterrey,2.0,2.0,Liga MX Femenil,5977397,20261026_Tigres_Monterrey,12.0,3.0,2.0,2.0,0.0,2.0,4.0,4.0,17.0,8.0,11.0,15.0,59.1,40.9,3.0,2.0,espn
-2026-10-26,Atlante,Chivas,0.0,1.0,Liga MX Femenil,5977398,20261026_Atlante_Chivas,,,,,,,,,,,,,,,,,
+2026-10-25,FC Juárez,Querétaro,2.0,1.0,Liga MX Femenil,5977395,20261025_FC-Juárez_Querétaro,9.0,2.0,3.0,4.0,0.0,0.0,6.0,5.0,16.0,9.0,7.0,10.0,62.7,37.3,3.0,2.0,espn
 2026-10-26,Atlas,Puebla,2.0,1.0,Liga MX Femenil,5977391,20261026_Atlas_Puebla,3.0,3.0,2.0,1.0,0.0,0.0,7.0,3.0,12.0,16.0,10.0,8.0,66.5,33.5,3.0,1.0,espn
+2026-10-26,Atlante,Chivas,0.0,1.0,Liga MX Femenil,5977398,20261026_Atlante_Chivas,,,,,,,,,,,,,,,,,
+2026-10-26,Tigres,Monterrey,2.0,2.0,Liga MX Femenil,5977397,20261026_Tigres_Monterrey,12.0,3.0,2.0,2.0,0.0,2.0,4.0,4.0,17.0,8.0,11.0,15.0,59.1,40.9,3.0,2.0,espn
 2026-10-27,Santos Laguna,Club León,1.0,2.0,Liga MX Femenil,5977399,20261027_Santos-Laguna_Club-León,,,,,,,,,,,,,,,,,
-2026-10-31,Atlas,Tigres,0.0,7.0,Liga MX Femenil,5977401,20261031_Atlas_Tigres,4.0,11.0,1.0,0.0,0.0,0.0,5.0,18.0,6.0,16.0,6.0,8.0,41.9,58.1,5.0,2.0,espn
 2026-10-31,Toluca,Chivas,2.0,3.0,Liga MX Femenil,5977400,20261031_Toluca_Chivas,,,,,,,,,,,,,,,,,
+2026-10-31,Atlas,Tigres,0.0,7.0,Liga MX Femenil,5977401,20261031_Atlas_Tigres,4.0,11.0,1.0,0.0,0.0,0.0,5.0,18.0,6.0,16.0,6.0,8.0,41.9,58.1,5.0,2.0,espn
 2026-10-31,Monterrey,Pumas,6.0,0.0,Liga MX Femenil,5977402,20261031_Monterrey_Pumas,2.0,4.0,0.0,0.0,0.0,0.0,9.0,2.0,6.0,12.0,8.0,9.0,58.1,41.9,5.0,4.0,espn
 2026-10-31,Querétaro,Pachuca,0.0,5.0,Liga MX Femenil,5977404,20261031_Querétaro_Pachuca,4.0,3.0,1.0,0.0,0.0,0.0,2.0,9.0,5.0,12.0,10.0,10.0,43.0,57.0,9.0,0.0,espn
 2026-10-31,Club Tijuana,Cruz Azul,1.0,3.0,Liga MX Femenil,5977403,20261031_Club-Tijuana_Cruz-Azul,2.0,3.0,3.0,2.0,0.0,1.0,11.0,4.0,6.0,4.0,12.0,15.0,60.7,39.3,0.0,4.0,espn
@@ -1794,7 +1794,11 @@ date,home_team,away_team,home_goals,away_goals,tournament,fotmob_id,MATCH_ID,hom
 2026-11-01,Puebla,FC Juárez,1.0,2.0,Liga MX Femenil,5977406,20261101_Puebla_FC-Juárez,4.0,11.0,3.0,1.0,0.0,0.0,2.0,8.0,6.0,16.0,9.0,8.0,25.9,74.1,3.0,2.0,espn
 2026-11-01,CF América,Atlante,6.0,0.0,Liga MX Femenil,5977407,20261101_CF-América_Atlante,13.0,0.0,0.0,1.0,0.0,0.0,7.0,1.0,14.0,7.0,14.0,8.0,70.7,29.3,4.0,2.0,espn
 2026-11-03,Club León,Atlético de San Luis,1.0,0.0,Liga MX Femenil,5977408,20261103_Club-León_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
-2026-11-05,Necaxa,Atlas,1.0,1.0,Liga MX Femenil,5977410,20261105_Necaxa_Atlas,,,,,,,,,,,,,,,,,
 2026-11-05,Atlante,Tigres,0.0,4.0,Liga MX Femenil,5977409,20261105_Atlante_Tigres,,,,,,,,,,,,,,,,,
+2026-11-05,Necaxa,Atlas,1.0,1.0,Liga MX Femenil,5977410,20261105_Necaxa_Atlas,,,,,,,,,,,,,,,,,
 2026-11-06,Santos Laguna,Club Tijuana,4.0,2.0,Liga MX Femenil,5977412,20261106_Santos-Laguna_Club-Tijuana,,,,,,,,,,,,,,,,,
+2026-11-06,Pachuca,Puebla,4.0,3.0,Liga MX Femenil,5977413,20261106_Pachuca_Puebla,,,,,,,,,,,,,,,,,
+2026-11-06,Pumas,Atlético de San Luis,3.0,1.0,Liga MX Femenil,5977414,20261106_Pumas_Atlético-de-San-Luis,,,,,,,,,,,,,,,,,
 2026-11-06,Querétaro,Toluca,1.0,1.0,Liga MX Femenil,5977411,20261106_Querétaro_Toluca,,,,,,,,,,,,,,,,,
+2026-11-07,Cruz Azul,Club León,1.0,2.0,Liga MX Femenil,5977415,20261107_Cruz-Azul_Club-León,,,,,,,,,,,,,,,,,
+2026-11-07,Chivas,CF América,1.0,3.0,Liga MX Femenil,5977417,20261107_Chivas_CF-América,,,,,,,,,,,,,,,,,
