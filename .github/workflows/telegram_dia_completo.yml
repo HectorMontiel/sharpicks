@@ -31,7 +31,8 @@ env:
 
 jobs:
   enviar_dia_completo:
-    runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
+    if: ${{ github.event_name != 'schedule' || vars.DESPERTADOR != 'activo' }}   # con el despertador sólo envía él
+    runs-on: ${{ vars.RUNNER_PESADO || 'ubuntu-latest' }}   # sin la variable, runners de GitHub
     timeout-minutes: 60
 
     steps:
@@ -55,6 +56,15 @@ jobs:
           pip install -r requirements.txt
 
           python -c "import requests, pandas, numpy; requests.get" || pip install --force-reinstall --no-cache-dir -r requirements.txt   # v516: una instalación cortada a medias se repara sola
+      # Servidor propio: Pinnacle y Playdoit se leen de la foto de GitHub (ver foto_precios.py)
+      - name: Bajar la foto de precios
+        if: ${{ vars.RUNNER_PESADO != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "FOTO_PRECIOS_TTL=14400" >> "$GITHUB_ENV"
+          python foto_precios.py --bajar || echo "::warning::sin foto nueva de precios; sigue la anterior si no caducó"
+
       - name: Datos frescos del día
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}

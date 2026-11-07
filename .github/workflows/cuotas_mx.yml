@@ -129,7 +129,7 @@ env:
 
 jobs:
   cuotas:
-    runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
+    runs-on: ${{ vars.RUNNER_PESADO || 'ubuntu-latest' }}   # sin la variable, runners de GitHub
     timeout-minutes: 45
 
     steps:
@@ -221,6 +221,15 @@ jobs:
         run: |
           pip install requests pandas numpy lightgbm
           python -c "import requests; requests.get" || pip install --force-reinstall --no-cache-dir requests   # v516
+      # Servidor propio: Pinnacle y Playdoit se leen de la foto de GitHub (ver foto_precios.py)
+      - name: Bajar la foto de precios
+        if: ${{ vars.RUNNER_PESADO != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "FOTO_PRECIOS_TTL=14400" >> "$GITHUB_ENV"
+          python foto_precios.py --bajar || echo "::warning::sin foto nueva de precios; sigue la anterior si no caducó"
+
       - name: Barrer las cinco casas
         if: steps.frescura.outputs.saltar != 'true'
         run: |

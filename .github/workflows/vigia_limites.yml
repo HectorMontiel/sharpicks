@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   vigilar:
-    runs-on: ubuntu-latest   # repo público: runners de GitHub (gratis); nada depende del PC del usuario
+    runs-on: ${{ vars.RUNNER_PESADO || 'ubuntu-latest' }}   # sin la variable, runners de GitHub
     timeout-minutes: 15
     steps:
       # sólo hace falta un archivo: se baja del commit exacto (sin checkout parcial, que envenena runners: test_v519)

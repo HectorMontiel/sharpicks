@@ -49,7 +49,7 @@ env:
 
 jobs:
   precalcular:
-    runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
+    runs-on: ${{ vars.RUNNER_PESADO || 'ubuntu-latest' }}   # sin la variable, runners de GitHub
     # El TTL de la caché son 3 días y hay ~50 ligas a ~20 s cada una, así que
     # con 45 minutos sobra incluso si ESPN va lento. Sin tope, un cuelgue de
     # red dejaría el runner corriendo una hora larga sin producir nada.
@@ -75,6 +75,15 @@ jobs:
         run: |
           pip install requests pandas
           python -c "import requests; requests.get" || pip install --force-reinstall --no-cache-dir requests   # v516
+      # Servidor propio: Pinnacle y Playdoit se leen de la foto de GitHub (ver foto_precios.py)
+      - name: Bajar la foto de precios
+        if: ${{ vars.RUNNER_PESADO != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "FOTO_PRECIOS_TTL=14400" >> "$GITHUB_ENV"
+          python foto_precios.py --bajar || echo "::warning::sin foto nueva de precios; sigue la anterior si no caducó"
+
       # v190 — POR `summary`, QUE NO ESTÁ BLOQUEADO.
       #
       # `precalcular_goleadores.py` pide `/teams` y `/roster`, y ESPN devuelve

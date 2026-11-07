@@ -38,7 +38,7 @@ env:
 
 jobs:
   recalibrar:
-    runs-on: ubuntu-latest   # v523 — repo público: runners de GitHub (gratis); nada depende del PC del usuario
+    runs-on: ${{ vars.RUNNER_PESADO || 'ubuntu-latest' }}   # sin la variable, runners de GitHub
     # v189 — el paso 1 vuelve a re-predecir el histórico de verdad, que
     # es lo que este workflow siempre dijo que hacía: ~45 min de fútbol
     # más el tenis y el MLB. Antes concatenaba dos CSV y terminaba en 7.
@@ -64,6 +64,15 @@ jobs:
           pip install -r requirements.txt
 
           python -c "import requests, pandas, numpy; requests.get" || pip install --force-reinstall --no-cache-dir -r requirements.txt   # v516: una instalación cortada a medias se repara sola
+      # Servidor propio: Pinnacle y Playdoit se leen de la foto de GitHub (ver foto_precios.py)
+      - name: Bajar la foto de precios
+        if: ${{ vars.RUNNER_PESADO != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "FOTO_PRECIOS_TTL=14400" >> "$GITHUB_ENV"
+          python foto_precios.py --bajar || echo "::warning::sin foto nueva de precios; sigue la anterior si no caducó"
+
       # El orden es estrictamente secuencial: todo cuelga del ledger. Cada paso
       # falla de forma independiente — un artefacto viejo es peor que uno
       # nuevo, pero mucho mejor que ninguno, así que lo que no se regenere
