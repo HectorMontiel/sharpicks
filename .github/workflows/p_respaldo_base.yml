@@ -1,0 +1,76 @@
+name: 'Prueba: Respaldo nocturno de la base'
+'on':
+  push:
+    branches:
+    - servidor-prueba
+    paths:
+    - .github/workflows/p_respaldo_base.yml
+permissions:
+  contents: read
+env:
+  GH_TOKEN: ${{ github.token }}
+concurrency:
+  group: prueba-respaldo_base
+  cancel-in-progress: false
+jobs:
+  respaldo:
+    runs-on:
+    - self-hosted
+    - sharpicks-vps
+    timeout-minutes: 20
+    steps:
+    - uses: actions/checkout@v4
+    - name: 'Prueba: nunca empujar a main'
+      run: 'printf ''#!/bin/sh\nwhile read a b c d; do case "$c" in refs/heads/main) echo BLOQUEADO; exit 1;; esac; done\n'' > .git/hooks/pre-push
+
+        chmod +x .git/hooks/pre-push
+
+        git config remote.origin.push +HEAD:refs/heads/prueba-salida-respaldo_base'
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - name: Instalar requests
+      run: 'pip install requests
+
+        python -c "import requests; requests.get" || pip install --force-reinstall --no-cache-dir requests   # v516
+
+        '
+    - name: Bajar la base
+      env:
+        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+      run: python respaldo_base.py --salida respaldo
+    - name: Empacar y cifrar
+      env:
+        RESPALDO_CLAVE: ${{ secrets.RESPALDO_CLAVE }}
+      run: 'test -n "$RESPALDO_CLAVE" || { echo "falta el secreto RESPALDO_CLAVE"; exit 1; }
+
+        F="sharpicks-$(date -u +%Y-%m-%d)"
+
+        tar czf "$F.tgz" respaldo
+
+        openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -in "$F.tgz" -out "$F.tgz.enc" -pass env:RESPALDO_CLAVE
+
+        rm -rf respaldo "$F.tgz"          # lo que no va cifrado no se sube
+
+        # v508 — FIRMA (HMAC-SHA256, clave derivada de RESPALDO_CLAVE): AES-CBC cifra pero no avisa si el
+
+        # archivo se alteró. Antes de restaurar: comprobar la firma (ver la nota de memoria del respaldo).
+
+        python -c "import hashlib,hmac,os,sys; k=hashlib.sha256(b''firma|''+os.environ[''RESPALDO_CLAVE''].encode()).digest(); print(hmac.new(k,open(sys.argv[1],''rb'').read(),hashlib.sha256).hexdigest())" "$F.tgz.enc" > "$F.tgz.enc.hmac"
+
+        ls -la "$F.tgz.enc" "$F.tgz.enc.hmac"
+
+        echo "ARCHIVO=$F.tgz.enc" >> "$GITHUB_ENV"
+
+        '
+    - uses: actions/upload-artifact@v4
+      with:
+        name: respaldo-${{ github.run_id }}
+        path: '${{ env.ARCHIVO }}
+
+          ${{ env.ARCHIVO }}.hmac
+
+          '
+        retention-days: 30
+        if-no-files-found: error

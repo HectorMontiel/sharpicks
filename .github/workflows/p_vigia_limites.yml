@@ -1,0 +1,26 @@
+name: 'Prueba: Vigilante de límites'
+'on':
+  push:
+    branches:
+    - servidor-prueba
+    paths:
+    - .github/workflows/p_vigia_limites.yml
+permissions:
+  contents: read
+concurrency:
+  group: prueba-vigia_limites
+  cancel-in-progress: false
+jobs:
+  vigilar:
+    runs-on:
+    - self-hosted
+    - sharpicks-vps
+    timeout-minutes: 15
+    steps:
+    - name: Bajar el vigilante
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: "curl -fsSL -H \"Authorization: Bearer $GH_TOKEN\" -H \"Accept: application/vnd.github.raw\" \\\n  \"https://api.github.com/repos/${{ github.repository }}/contents/vigia_limites.py?ref=${{ github.sha }}\" -o vigia_limites.py\n"
+    - name: Medir y avisar
+      env: {}
+      run: python3 -m py_compile vigia_limites.py && echo vigilante listo

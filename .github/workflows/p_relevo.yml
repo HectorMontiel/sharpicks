@@ -1,0 +1,39 @@
+name: 'Prueba: Relevo de las dos horas'
+'on':
+  push:
+    branches:
+    - servidor-prueba
+    paths:
+    - .github/workflows/p_relevo.yml
+permissions:
+  contents: read
+  actions: write
+env:
+  GH_TOKEN: ${{ github.token }}
+concurrency:
+  group: prueba-relevo
+  cancel-in-progress: false
+jobs:
+  relevo:
+    runs-on:
+    - self-hosted
+    - sharpicks-vps
+    timeout-minutes: 330
+    steps:
+    - uses: actions/checkout@v4
+    - name: 'Prueba: nunca empujar a main'
+      run: 'printf ''#!/bin/sh\nwhile read a b c d; do case "$c" in refs/heads/main) echo BLOQUEADO; exit 1;; esac; done\n'' > .git/hooks/pre-push
+
+        chmod +x .git/hooks/pre-push
+
+        git config remote.origin.push +HEAD:refs/heads/prueba-salida-relevo'
+    - name: Esperar a que toque
+      run: "CICLO_MIN=1\nMINIMO_MIN=6\nMAXIMO_MIN=300\nGEN=$(python3 -c \"import json;print(json.load(open('cuotas_mx.json',encoding='utf-8')).get('generado') or '')\" 2>/dev/null || echo '')\nSEG=$(date -u -d \"$GEN\" +%s 2>/dev/null || echo 0)\nAHORA=$(date -u +%s)\nif [ -z \"$GEN\" ] || [ \"$SEG\" = \"0\" ]; then\n  ESPERA=$(( MINIMO_MIN * 60 ))\n  echo \"El tablero no dice cuándo se generó: espero el mínimo.\"\nelse\n  ESPERA=$(( SEG + CICLO_MIN * 60 - AHORA ))\n  echo \"Último barrido: $GEN. Siguiente a los $CICLO_MIN min.\"\nfi\nif [ \"$ESPERA\" -lt $(( MINIMO_MIN * 60 )) ]; then ESPERA=$(( MINIMO_MIN * 60 )); fi\nif [ \"$ESPERA\" -gt $(( MAXIMO_MIN * 60 )) ]; then ESPERA=$(( MAXIMO_MIN * 60 )); fi\necho \"Duermo $(( ESPERA / 60 )) min (hasta $(date -u -d \"@$(( AHORA + ESPERA ))\" +%H:%MZ)).\"\n# En el servidor, cada barrido arranca con su foto recién hecha en GitHub (tarda ~3 min): mismo\n# ritmo que hoy. Son unos 1,350 min al mes de los 2,000 gratis en privado.\nFOTO_ANTES=240\nif [ \"$FOTO_ANTES\" -gt 0 ]; then\n  sleep $(( ESPERA - FOTO_ANTES ))\n  gh workflow run foto_precios.yml --repo \"${{ github.repository }}\" --ref main || echo \"::warning::no se pudo pedir la foto\"\n  sleep \"$FOTO_ANTES\"\nelse\n  sleep \"$ESPERA\"\nfi\n"
+    - name: Disparar el barrido
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: 'echo [prueba] gh workflow run cuotas_mx.yml --repo "${{ github.repository }}" --ref main -f forzar=false
+
+        echo "Relevo pasado a las $(date -u +%H:%MZ)."
+
+        '

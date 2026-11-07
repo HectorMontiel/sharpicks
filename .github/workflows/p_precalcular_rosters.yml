@@ -1,0 +1,83 @@
+name: 'Prueba: Precalcular goleadores (rosters de ESPN)'
+'on':
+  push:
+    branches:
+    - servidor-prueba
+    paths:
+    - .github/workflows/p_precalcular_rosters.yml
+permissions:
+  contents: write
+env:
+  GH_TOKEN: ${{ github.token }}
+concurrency:
+  group: prueba-precalcular_rosters
+  cancel-in-progress: false
+jobs:
+  precalcular:
+    runs-on:
+    - self-hosted
+    - sharpicks-vps
+    timeout-minutes: 45
+    steps:
+    - uses: actions/checkout@v4
+    - name: 'Prueba: nunca empujar a main'
+      run: 'printf ''#!/bin/sh\nwhile read a b c d; do case "$c" in refs/heads/main) echo BLOQUEADO; exit 1;; esac; done\n'' > .git/hooks/pre-push
+
+        chmod +x .git/hooks/pre-push
+
+        git config remote.origin.push +HEAD:refs/heads/prueba-salida-precalcular_rosters'
+    - name: Abrir los datos cifrados
+      env:
+        DATOS_CLAVE: ${{ secrets.DATOS_CLAVE }}
+      run: python3 cajon.py abrir
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: pip
+    - name: Instalar dependencias mínimas
+      run: 'pip install requests pandas
+
+        python -c "import requests; requests.get" || pip install --force-reinstall --no-cache-dir requests   # v516
+
+        '
+    - name: Bajar la foto de precios
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: 'echo "FOTO_PRECIOS_TTL=14400" >> "$GITHUB_ENV"
+
+        python foto_precios.py --bajar || echo "::warning::sin foto nueva de precios; sigue la anterior si no caducó"
+
+        '
+    - name: Refrescar la caché de plantillas (vía summary de ESPN)
+      env:
+        LIGAS: ${{ github.event.inputs.ligas }}
+      run: "python espn_extras.py --solo-plantillas --dias 8 \\\n       $LIGAS \\\n  || echo \"::warning::refresco de plantillas con avisos\"\n"
+    - name: Comprobar que la caché creció
+      id: cambios
+      run: "if git diff --quiet -- goleadores_cache.json; then\n  echo \"hay_cambios=no\" >> \"$GITHUB_OUTPUT\"\n  echo \"La caché no cambió; no se commitea.\"\nelse\n  echo \"hay_cambios=si\" >> \"$GITHUB_OUTPUT\"\n  git diff --stat -- goleadores_cache.json\nfi\n"
+    - name: Commitear la caché
+      if: steps.cambios.outputs.hay_cambios == 'si'
+      run: 'git config user.name  "github-actions[bot]"
+
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+        git add goleadores_cache.json
+
+        git commit -m "chore(datos): caché de goleadores precalculada ($(date -u +%Y-%m-%d))
+
+
+        Sale del `summary` de cada partido, que ESPN si responde desde el
+
+        runner. `/teams` y `/roster` devuelven 403 desde cualquier IP de
+
+        centro de datos. Ver el encabezado de espn_extras.py."
+
+        # Rebase antes de empujar: el workflow de reentrenamiento puede haber
+
+        # empujado entre medias y sólo toca datos, nunca .py.
+
+        true
+
+        git push --force origin HEAD:refs/heads/prueba-salida-precalcular_rosters
+
+        '

@@ -1,0 +1,175 @@
+name: 'Prueba: Reentrenar modelos de ligas (datos frescos)'
+'on':
+  push:
+    branches:
+    - servidor-prueba
+    paths:
+    - .github/workflows/p_retrain_leagues.yml
+permissions:
+  contents: write
+env:
+  GH_TOKEN: ${{ github.token }}
+concurrency:
+  group: prueba-retrain_leagues
+  cancel-in-progress: false
+jobs:
+  retrain:
+    runs-on:
+    - self-hosted
+    - sharpicks-vps
+    timeout-minutes: 150
+    steps:
+    - name: Clonar repositorio
+      uses: actions/checkout@v4
+    - name: 'Prueba: nunca empujar a main'
+      run: 'printf ''#!/bin/sh\nwhile read a b c d; do case "$c" in refs/heads/main) echo BLOQUEADO; exit 1;; esac; done\n'' > .git/hooks/pre-push
+
+        chmod +x .git/hooks/pre-push
+
+        git config remote.origin.push +HEAD:refs/heads/prueba-salida-retrain_leagues'
+    - name: Abrir los datos cifrados
+      env:
+        DATOS_CLAVE: ${{ secrets.DATOS_CLAVE }}
+      run: python3 cajon.py abrir
+    - name: Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: pip
+    - name: Instalar dependencias
+      run: 'python -m pip install --upgrade pip
+
+        pip install -r requirements.txt
+
+
+        python -c "import requests, pandas, numpy; requests.get" || pip install --force-reinstall --no-cache-dir -r requirements.txt   # v516: una instalación cortada a medias se repara sola
+
+        '
+    - name: Bajar la foto de precios
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: 'echo "FOTO_PRECIOS_TTL=14400" >> "$GITHUB_ENV"
+
+        python foto_precios.py --bajar || echo "::warning::sin foto nueva de precios; sigue la anterior si no caducó"
+
+        '
+    - name: Estadísticas reales de ESPN (córners, tarjetas, faltas)
+      continue-on-error: true
+      run: 'python stats_espn.py --dias 10 || echo "::warning::stats de ESPN con avisos"
+
+        python stats_espn.py --limpiar || echo "::warning::limpieza con avisos"
+
+        # v393 — y de FotMob las ligas que ESPN no cubre (Polonia, Suiza...)
+
+        python stats_fotmob.py --dias 10 || echo "::warning::stats de FotMob con avisos"
+
+        # y de Flashscore las ocho que ni ESPN ni FotMob publican
+
+        python stats_flashscore.py --dias 10 || echo "::warning::stats de Flashscore con avisos"
+
+        '
+    - name: Cuotas y plantillas del summary de ESPN
+      continue-on-error: true
+      run: "python espn_extras.py --dias 10 \\\n  || echo \"::warning::cuotas/plantillas de ESPN con avisos\"\n"
+    - name: Historico de la NFL
+      continue-on-error: true
+      run: "python -c \"import nfl_datos as nd, datetime as dt; nd.construir_historico([dt.date.today().year])\" \\\n  || echo \"::warning::historico de NFL con avisos\"\n"
+    - name: Reentrenar todas las ligas disponibles
+      env:
+        SERVIDOR_PROCESOS: '6'
+      run: '# league_engine --build descarga los CSV frescos de football-data y
+
+        # reentrena cada liga disponible. Un fallo puntual no aborta el resto.
+
+        python league_engine.py --build || echo "reentrenamiento con avisos, se continúa"
+
+        '
+    - name: Verificar que todos los modelos se pueden cargar
+      run: "python - <<'PY'\nimport glob, os, subprocess, sys\nimport joblib\nmalos = []\nfor f in sorted(glob.glob('modelos/*/*.joblib')):\n    try:\n        joblib.load(f)\n    except Exception as e:\n        malos.append((f, f'{type(e).__name__}: {e}'))\nfor f, err in malos:\n    print(f'::warning::modelo ilegible, se restaura el anterior: {f} ({err})')\n    subprocess.run(['git', 'checkout', '--', f], check=False)\nprint(f'Modelos verificados. Ilegibles restaurados: {len(malos)}')\nif len(malos) > 10:\n    print('::error::demasiados modelos ilegibles; no se publica nada.')\n    sys.exit(1)\nPY\n"
+    - name: Reentrenar MLB, tenis (ATP/WTA) y NBA
+      run: "# A la vez: cada motor escribe en su carpeta. El histórico de la NBA va tras su motor.\npython -m engines.mlb_engine    || echo \"::warning::MLB con avisos\" &\npython -m engines.tennis_engine atp || echo \"::warning::tenis ATP con avisos\" &\npython -m engines.tennis_engine wta || echo \"::warning::tenis WTA con avisos\" &\n# v330 — el histórico largo de la NBA (19 temporadas con el cierre\n# de la casa) con lo que nba_api acaba de añadir: es de donde\n# `modelo_nba` saca el estado de cada equipo para Apuestas del Día.\n# Sin red se queda el último commiteado (lo añade `historico_*.csv`).\n{ python -m engines.nba_engine || echo \"::warning::NBA con avisos\"\n  python nba_historico.py || echo \"::warning::histórico largo de la NBA sin actualizar\"; } &\n# v97 — KBO. Naver publica los resultados el mismo dia, asi que el\n# estado del modelo puede ir al dia igual que el de la MLB.\npython -m engines.kbo_engine    || echo \"::warning::KBO con avisos\" &\nwait\n"
+    - name: Perfil de juegos del tenis
+      run: python tenis_juegos.py || echo "::warning::juegos de tenis con avisos"
+    - name: Barrido de prioridad por liga
+      run: python barrido_ligas.py --json || echo "::warning::barrido con avisos"
+    - name: Verificar que los modelos de MLB, tenis y NBA cargan
+      run: "python - <<'PY'\nimport subprocess, sys\ncasos = [('MLB', 'engines.mlb_engine', 'MLBEngine', ()),\n         ('tenis ATP', 'engines.tennis_engine', 'TennisEngine', ('atp',)),\n         ('tenis WTA', 'engines.tennis_engine', 'TennisEngine', ('wta',)),\n         ('NBA', 'engines.nba_engine', 'NBAEngine', ()),\n         ('KBO', 'engines.kbo_engine', 'KBOEngine', ())]\nmalos = []\nfor etq, mod, clase, args in casos:\n    try:\n        m = __import__(mod, fromlist=[clase])\n        eng = getattr(m, clase)(*args).cargar_modelo()\n        if not getattr(eng, 'listo', False):\n            raise RuntimeError(getattr(eng, 'error', 'no listo'))\n        print(f'OK  {etq}')\n    except Exception as e:\n        print(f'::warning::{etq} no carga tras reentrenar: '\n              f'{type(e).__name__}: {e}')\n        malos.append((etq, mod))\nif malos:\n    # restaurar los artefactos del deporte que falló\n    carpetas = {'engines.mlb_engine': 'modelos/mlb',\n                'engines.tennis_engine': 'modelos/tennis modelos/tennis_wta',\n                'engines.nba_engine': 'modelos/nba',\n                'engines.kbo_engine': 'modelos/kbo'}\n    for etq, mod in malos:\n        for c in carpetas.get(mod, '').split():\n            subprocess.run(['git', 'checkout', '--', c], check=False)\n            print(f'restaurado {c} (el reentrenamiento de {etq} no sirve)')\nPY\n"
+    - name: Precalcular las predicciones del día
+      continue-on-error: true
+      run: 'python predicciones_dia.py --dias 3 || echo "::warning::precálculo con avisos"
+
+        '
+    - name: Precalcular el árbitro designado de cada partido
+      continue-on-error: true
+      run: 'python arbitro_partido.py --dias 2 || echo "::warning::árbitros con avisos"
+
+        '
+    - name: Precalcular la alineación probable de cada partido
+      continue-on-error: true
+      run: 'python remates_jugador.py --dias 2 || echo "::warning::alineaciones con avisos"
+
+        '
+    - name: Precalcular las líneas de remates por jugador
+      continue-on-error: true
+      run: 'python lineas_jugador.py --dias 2 || echo "::warning::líneas de jugador con avisos"
+
+        '
+    - name: Precalcular el precio de la casa (1X2, goles y ambos marcan)
+      continue-on-error: true
+      run: 'python mercado_implicito.py --dias 2 || echo "::warning::precio de la casa con avisos"
+
+        '
+    - name: Guardar históricos y estado (antes de lo lento)
+      run: "git config user.name  \"retrain-bot\"\ngit config user.email \"actions@github.com\"\ngit add -A historico_*.csv team_stats_*.json barrido_ligas.json || echo \"::warning::git add de historico_*.csv y 2 mas fallo\"\ngit add -A predicciones_dia.json || echo \"::warning::git add de predicciones_dia.json fallo\"\ngit add -A arbitros_dia.json || echo \"::warning::git add de arbitros_dia.json fallo\"\ngit add -A alineaciones_dia.json || echo \"::warning::git add de alineaciones_dia.json fallo\"\nif git diff --cached --quiet; then\n  echo \"Sin cambios en históricos (ligas en receso). Nada que guardar.\"\nelse\n  fecha=$(date -u +%Y-%m-%d)\n  git commit -m \"chore(datos): históricos y estado de equipos ($fecha)\"\n  # v312 — antes: `git pull --rebase --autostash || true`. Cuando\n  # otro bot había empujado, el autostash chocaba al devolver\n  # `lineas_jugador_hist/*.csv`, lo dejaba a medio fundir («U») y el\n  # `|| true` lo escondía; el paso FINAL moría una hora después\n  # (24, 25, 27 y 28 de septiembre). `git_sin_conflictos.py` une\n  # las filas de los CSV de histórico, se queda con lo recién\n  # generado en el resto y nunca deja un fichero en «U».\n  python git_sin_conflictos.py publicar \\\n    || echo \"::warning::los históricos se publicarán en el paso final\"\nfi\n"
+    - name: Entrenar el modelo de tiros por equipo
+      continue-on-error: true
+      run: python tiros_equipo.py --entrenar || echo "::warning::modelo de tiros con avisos"
+    - name: Publicar los modelos como assets del Release
+      id: publicar
+      continue-on-error: true
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        RELEASE_MODELOS: prueba-modelos-servidor
+      run: python publicar_modelos.py --verificar
+    - name: Dejar de versionar los pesos (transición, idempotente)
+      if: steps.publicar.outcome == 'success'
+      run: "# SÓLO LOS SUBDIRECTORIOS. La raíz de `modelos/` se queda.\n#\n# La primera versión de este paso hacía `git rm -r --cached modelos/`\n# y escribía `modelos/` en .gitignore. Se llevó por delante los once\n# artefactos que viven en la RAÍZ y que no son de ninguna liga —el\n# modelo del Mundial, el MAT, la NFL, la supervivencia de BTTS— y la\n# aplicación se cayó con\n# `FileNotFoundError: './modelos/modelo_tda.joblib'`.\n#\n# Esos ficheros no los regenera este workflow y sólo cambian cuando\n# alguien reentrena el Mundial a mano: son 64 MB estáticos, no los\n# 712 MB diarios que la v148 vino a sacar de la historia.\n_subdirs=$(git ls-files 'modelos/*/*' | head -1)\nif [ -n \"$_subdirs\" ]; then\n  echo \"los modelos por competición siguen versionados: se retiran del índice.\"\n  git rm -r --cached --quiet 'modelos/*/'\n  if ! grep -qx 'modelos/\\*/' .gitignore; then\n    {\n      echo \"\"\n      echo \"# v148 - los pesos POR COMPETICION viajan como assets del Release\"\n      echo \"# modelos-latest. La RAIZ de modelos/ se queda versionada.\"\n      echo \"modelos/*/\"\n    } >> .gitignore\n  fi\nelse\n  echo \"los modelos por competición ya no están versionados. Nada que hacer.\"\nfi\n"
+    - name: Importar cuotas de cierre al histórico
+      run: python import_historical_odds.py || echo "::warning::importación de cuotas con avisos"
+    - name: Fotografiar la línea de hoy (snapshots + CLV)
+      run: python daily_snapshots.py || echo "::warning::snapshots con avisos"
+    - name: Fotografiar las líneas de córners
+      continue-on-error: true
+      run: 'python snapshots_corners.py --dias 2 || echo "::warning::córners con avisos"
+
+        '
+    - name: Fotografiar las líneas de tarjetas
+      continue-on-error: true
+      run: 'python snapshots_tarjetas.py --dias 2 || echo "::warning::tarjetas con avisos"
+
+        '
+    - name: Fotografiar las líneas de remates
+      continue-on-error: true
+      run: 'python snapshots_remates.py --dias 2 || echo "::warning::remates con avisos"
+
+        '
+    - name: Acumular resultados de tenis (amplía el catálogo)
+      run: python acumular_tenis.py --dias 7 || echo "::warning::acumulación de tenis con avisos"
+    - name: Acumular resultados de ITF (fuente viva)
+      run: python acumular_itf.py || echo "::warning::acumulación de ITF con avisos"
+    - name: Refrescar la cobertura de Playdoit
+      run: python monitor_playdoit.py || echo "::warning::monitor de Playdoit con avisos"
+    - name: Anotar los pronosticos del dia
+      run: python pronosticos_guardados.py || echo "::warning::anotacion de pronosticos con avisos"
+    - name: Resolver los pronosticos ya jugados
+      run: python -c "import pronosticos_guardados as p; print(p.resolver_pendientes())" || echo "::warning::resolucion de pronosticos con avisos"
+    - name: Acumular cuotas de cierre de KBO
+      run: python ingesta_cuotas_kbo.py || echo "::warning::cuotas KBO con avisos"
+    - name: Liquidar los picks ya jugados contra el resultado
+      run: python liquidador.py --dias 10 || echo "::warning::liquidación con avisos"
+    - name: Comprobar que las fotos quedaron persistidas
+      run: "python - <<'PY'\nimport csv, os, sys\nruta = 'odds_snapshots.csv'\nif not os.path.exists(ruta):\n    print('::warning::no se generó odds_snapshots.csv — el histórico de '\n          'líneas NO se está acumulando')\n    sys.exit(0)\nwith open(ruta, encoding='utf-8', newline='') as f:\n    filas = list(csv.DictReader(f))\ndias = len({r['snapshot_key'].split('|')[0][:10] for r in filas})\nprint(f'{len(filas)} fotos acumuladas a lo largo de {dias} días.')\nPY\n"
+    - name: Recalibrar encogimiento al mercado
+      run: "# Solo si hay ledger: reconstruirlo entero cada día costaría ~40 min.\n# Lo regenera `build_pick_ledger.py` a mano cuando cambian modelos o\n# features; aquí únicamente se refresca el peso con lo que ya hay.\nif [ -f pick_ledger.csv ]; then\n  python recalibrate_from_history.py || echo \"::warning::recalibración con avisos\"\nelse\n  echo \"sin pick_ledger.csv: se conserva calibracion_mercado.json\"\nfi\n"
+    - name: Commitear artefactos actualizados (si cambiaron)
+      run: "git config user.name  \"retrain-bot\"\ngit config user.email \"actions@github.com\"\n# v312 — si algún paso anterior dejó un fichero a medio fundir, se\n# resuelve AQUÍ, antes de tocar nada: era lo que mataba este paso\n# («Committing is not possible because you have unmerged files»).\npython git_sin_conflictos.py resolver\n# v148 — `modelos/` ya no entra: sus pesos viajan como assets del\n# Release. El `git add` se conserva por si el paso de transición\n# aún no ha corrido; con la carpeta ignorada es un no-op.\ngit add -A team_stats_*.json historico_*.csv roi_bets_*.json || echo \"::warning::git add de team_stats_*.json y 2 mas fallo\"\ngit add -A modelos/ || echo \"::warning::git add de modelos fallo\"\ngit add -A .gitignore || echo \"::warning::git add de .gitignore fallo\"\n# odds_historico.db NO: está en .gitignore y es regenerable. Lo que\n# se commitea es `odds_snapshots.csv`, que contiene lo único que no\n# se puede reconstruir (la línea antes del partido).\ngit add -A corners_snapshots.csv || echo \"::warning::git add de corners_snapshots.csv fallo\"\n# v160 — lo mismo para tarjetas, y el árbitro designado del día.\n# `arbitros_dia.json` NO es regenerable: FotMob sustituye al\n# designado por el que efectivamente pitó en cuanto el partido\n# acaba, así que la foto de hoy no se puede recuperar mañana.\ngit add -A tarjetas_snapshots.csv arbitros_dia.json || echo \"::warning::git add de tarjetas_snapshots.csv y 1 mas fallo\"\n# v163 — lo mismo para remates, y la alineación probable del día.\n# `alineaciones_dia.json` tampoco es regenerable: en cuanto el\n# partido empieza, el once probable pasa a ser el once real y el que\n# se publicó antes ya no existe en ninguna parte.\ngit add -A remates_snapshots.csv alineaciones_dia.json || echo \"::warning::git add de remates_snapshots.csv y 1 mas fallo\"\n# v164 — y las líneas de jugador del día. Tampoco son regenerables:\n# la casa las mueve durante el día y las de esta mañana ya no se\n# pueden recuperar mañana.\ngit add -A lineas_jugador_dia.json || echo \"::warning::git add de lineas_jugador_dia.json fallo\"\n# v165 — y el precio de la casa del día, por el mismo motivo: es la\n# única referencia con la que la tarjeta puede contrastar su propio\n# porcentaje, y la casa mueve sus líneas durante el día.\ngit add -A mercado_dia.json || echo \"::warning::git add de mercado_dia.json fallo\"\n# v176 — y el registro de lo que se recomendo, que es lo\n# unico contra lo que se puede validar manana. Se AÑADE,\n# nunca se reescribe: `pronosticos_guardados.guardar` es de\n# solo-insercion, asi que el commit de hoy no puede borrar\n# el pronostico de ayer.\ngit add -A pronosticos_emitidos.json || echo \"::warning::git add de pronosticos_emitidos.json fallo\"\n# v162 — las estadísticas reales de ESPN. Son la fuente de que\n# córners y tarjetas dejen de ser sintéticos en 40 competiciones;\n# sin commitearlas, cada despliegue empezaría de cero.\ngit add -A stats_espn/ stats_fotmob/ stats_flashscore/ calibracion_stats_liga.json || echo \"::warning::git add de stats_espn y 1 mas fallo\"\ngit add -A odds_snapshots.csv calibracion_mercado.json umbrales_capa1.json \\\n           _v75_import_odds.json _v75_snapshots.json playdoit_cobertura.json cuotas_kbo_cierre.csv \\\n  || echo \"::warning::git add de odds_snapshots y 6 mas fallo\"\n# v123 — el perfil de juegos del tenis, que la ficha del partido lee\n# al vuelo y no puede recalcular (365.000 marcadores).\ngit add -A tenis_juegos_atp.json tenis_juegos_wta.json || echo \"::warning::git add de tenis_juegos_atp.json y 1 mas fallo\"\n# v126 — el ranking de prioridad por liga, que la app lee para saber\n# qué competiciones están en cola de reentrenamiento y cuáles no.\ngit add -A barrido_ligas.json || echo \"::warning::git add de barrido_ligas.json fallo\"\nif git diff --cached --quiet; then\n  echo \"Sin cambios en los modelos (ligas en receso). Nada que commitear.\"\nelse\n  fecha=$(date -u +%Y-%m-%d)\n  git commit -m \"chore(datos): reentrenamiento automático de ligas ($fecha)\"\n  # v148 → v195.3 → v312 — UN PUSH AJENO A MITAD DEL JOB NO TIRA EL\n  # DÍA. La historia de este bucle (un push humano que tiraba 52 min\n  # de trabajo, un rebase que no llegaba a empezar, un `abort` que\n  # mataba el paso con `bash -e`) terminó con un fichero en «U» que\n  # nadie resolvía. Ahora todo eso vive en `git_sin_conflictos.py`:\n  # une las filas de los CSV de histórico, gana lo recién generado en\n  # el resto de artefactos, no pisa código y nunca deja nada a medio\n  # fundir. Probado con los dos casos del fallo real (conflicto al\n  # devolver el autostash y conflicto dentro del rebase).\n  python git_sin_conflictos.py publicar \\\n    || echo \"::warning::no se pudo publicar tras varios intentos; los artefactos se regeneran mañana.\"\nfi\n"

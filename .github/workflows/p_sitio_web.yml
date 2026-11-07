@@ -1,0 +1,173 @@
+name: 'Prueba: Sitio web'
+'on':
+  push:
+    branches:
+    - servidor-prueba
+    paths:
+    - .github/workflows/p_sitio_web.yml
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+env:
+  GH_TOKEN: ${{ github.token }}
+concurrency:
+  group: prueba-sitio_web
+  cancel-in-progress: false
+jobs:
+  publicar:
+    runs-on:
+    - self-hosted
+    - sharpicks-vps
+    timeout-minutes: 37
+    env:
+      CF_TOKEN: ''
+    environment:
+      name: github-pages
+      url: ${{ steps.pages.outputs.page_url }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: 'Prueba: nunca empujar a main'
+      run: 'printf ''#!/bin/sh\nwhile read a b c d; do case "$c" in refs/heads/main) echo BLOQUEADO; exit 1;; esac; done\n'' > .git/hooks/pre-push
+
+        chmod +x .git/hooks/pre-push
+
+        git config remote.origin.push +HEAD:refs/heads/prueba-salida-sitio_web'
+    - name: Abrir los datos cifrados
+      env:
+        DATOS_CLAVE: ${{ secrets.DATOS_CLAVE }}
+      run: python3 cajon.py abrir --estricto
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: pip
+    - name: Instalar dependencias
+      run: 'pip install -r requirements.txt
+
+        python -c "import requests, pandas, numpy; requests.get" || pip install --force-reinstall --no-cache-dir -r requirements.txt   # v516: una instalación cortada a medias se repara sola
+
+        '
+    - name: Bajar la foto de precios
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: 'echo "FOTO_PRECIOS_TTL=14400" >> "$GITHUB_ENV"
+
+        python foto_precios.py --bajar || echo "::warning::sin foto nueva de precios; sigue la anterior si no caducó"
+
+        '
+    - name: Validar código antes de publicar
+      run: 'node --check web/fechas.js
+
+        node --check web/app.js
+
+        node --check web/pistas.js
+
+        node --check web/idioma.js
+
+        node --check web/idioma_en.js
+
+        node --check web/legal.js
+
+        node --check web/cuenta.js
+
+        node --check web/guia.js
+
+        node test_web_v402.cjs
+
+        python -m py_compile exportar_web.py combinadas_web.py comentarios_correo.py telegram_canales.py
+
+        python test_exportador_web_v402.py
+
+        python test_v379.py
+
+        python test_v389.py
+
+        python test_v400.py
+
+        '
+    - name: Sacar los pronósticos al sitio
+      env:
+        SUPABASE_URL: ''
+        SUPABASE_SERVICE_KEY: ''
+        PICK_ID_CLAVE: ${{ secrets.PICK_ID_CLAVE }}
+        PREMIUM_NIVELES: ${{ vars.PREMIUM_NIVELES }}
+        GEMINI_API_KEY: ''
+        SERVIDOR_PROCESOS: '6'
+      run: python exportar_web.py
+    - name: Historial del Pulso
+      continue-on-error: true
+      env:
+        SUPABASE_URL: ''
+        SUPABASE_SERVICE_KEY: ''
+      run: python pulso_historial.py
+    - name: Canales de Telegram
+      id: telegram
+      continue-on-error: true
+      env:
+        SUPABASE_URL: ''
+        SUPABASE_SERVICE_KEY: ''
+        TELEGRAM_BOT_TOKEN: ''
+        TELEGRAM_CHAT_VIP: ''
+        TELEGRAM_CHAT_GRATIS: ''
+        TELEGRAM_VIP_NIVELES: ${{ vars.TELEGRAM_VIP_NIVELES }}
+      run: python telegram_canales.py
+    - name: Versionar los archivos de la página
+      run: "git fetch --quiet --depth=1 origin main\nfor f in $(git ls-tree --name-only FETCH_HEAD web/ | grep -E '\\.(js|css|html|svg)$|^web/pulso_modelo\\.json$'); do\n  git checkout FETCH_HEAD -- \"$f\" || echo \"::warning::no se pudo poner al día $f\"\ndone\nV=$(git rev-parse --short=7 FETCH_HEAD)\nsed -i -E \"s#(src|href)=\\\"([a-z0-9_.-]+\\.(js|css))\\\"#\\1=\\\"\\2?v=$V\\\"#g\" web/index.html && grep -c \"?v=$V\" web/index.html\n"
+    - name: Quitar los .sql del sitio publicado
+      run: rm -f web/*.sql
+    - name: Instalar Node para publicar
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - name: Publicar en Cloudflare Pages (sharpicksapp.com)
+      id: cloudflare
+      continue-on-error: true
+      env: {}
+      run: node --version && npx --yes wrangler@3.114.0 --version
+    - name: IA (Gemini)
+      id: ia
+      continue-on-error: true
+      timeout-minutes: 12
+      env:
+        SUPABASE_URL: ''
+        SUPABASE_SERVICE_KEY: ''
+        GEMINI_API_KEY: ''
+      run: python ia_gemini.py
+    - name: IA a ciegas (sólo medición)
+      continue-on-error: true
+      timeout-minutes: 7
+      env:
+        GEMINI_API_KEY: ''
+        SUPABASE_URL: ''
+        SUPABASE_SERVICE_KEY: ''
+      run: python ia_experimento.py --vivo
+    - name: Avisos de renovación
+      id: avisos
+      continue-on-error: true
+      timeout-minutes: 3
+      env:
+        SUPABASE_URL: ''
+        SUPABASE_SERVICE_KEY: ''
+        BREVO_API_KEY: ''
+        BREVO_REMITENTE: ''
+      run: python avisos_renovacion.py
+    - name: Comentarios al correo
+      id: comentarios
+      continue-on-error: true
+      timeout-minutes: 2
+      env:
+        SUPABASE_URL: ''
+        SUPABASE_SERVICE_KEY: ''
+        BREVO_API_KEY: ''
+        BREVO_REMITENTE: ''
+      run: python comentarios_correo.py
+    - name: Resumen de integraciones y estado del sitio canónico
+      if: always()
+      env:
+        CF_TOKEN: ''
+        TELEGRAM_OUTCOME: ${{ steps.telegram.outcome }}
+        IA_OUTCOME: ${{ steps.ia.outcome }}
+        AVISOS_OUTCOME: ${{ steps.avisos.outcome }}
+        COMENTARIOS_OUTCOME: ${{ steps.comentarios.outcome }}
+        CLOUDFLARE_OUTCOME: ${{ steps.cloudflare.outcome }}
+      run: "{\n  echo \"## Resultado de SharPicks\"\n  echo \"\"\n  echo \"- Telegram: ${TELEGRAM_OUTCOME:-no ejecutado}\"\n  echo \"- IA: ${IA_OUTCOME:-no ejecutada}\"\n  echo \"- Avisos de renovación: ${AVISOS_OUTCOME:-no ejecutados}\"\n  echo \"- Comentarios por correo: ${COMENTARIOS_OUTCOME:-no ejecutados}\"\n  echo \"- Cloudflare Pages: ${CLOUDFLARE_OUTCOME:-no ejecutado}\"\n} >> \"$GITHUB_STEP_SUMMARY\"\nif [ \"$TELEGRAM_OUTCOME\" = \"failure\" ] || [ \"$IA_OUTCOME\" = \"failure\" ] || [ \"$AVISOS_OUTCOME\" = \"failure\" ] || [ \"$COMENTARIOS_OUTCOME\" = \"failure\" ]; then\n  echo \"::warning::Una integración auxiliar falló. Consulta el resumen y los logs de ese paso.\"\nfi\nif [ -z \"$CF_TOKEN\" ]; then\n  echo \"::error::Falta CLOUDFLARE_API_TOKEN: no se actualizó el sitio canónico sharpicksapp.com.\"\n  exit 1\nfi\nif [ \"$CLOUDFLARE_OUTCOME\" != \"success\" ]; then\n  echo \"::error::Cloudflare Pages no confirmó el despliegue de sharpicksapp.com.\"\n  exit 1\nfi\n"

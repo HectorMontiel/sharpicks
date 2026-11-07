@@ -1,0 +1,50 @@
+name: 'Prueba: Radar de errores de cuota (diario)'
+'on':
+  push:
+    branches:
+    - servidor-prueba
+    paths:
+    - .github/workflows/p_radar_diario.yml
+permissions:
+  contents: write
+env:
+  GH_TOKEN: ${{ github.token }}
+concurrency:
+  group: prueba-radar_diario
+  cancel-in-progress: false
+jobs:
+  radar:
+    runs-on:
+    - self-hosted
+    - sharpicks-vps
+    timeout-minutes: 20
+    steps:
+    - uses: actions/checkout@v4
+    - name: 'Prueba: nunca empujar a main'
+      run: 'printf ''#!/bin/sh\nwhile read a b c d; do case "$c" in refs/heads/main) echo BLOQUEADO; exit 1;; esac; done\n'' > .git/hooks/pre-push
+
+        chmod +x .git/hooks/pre-push
+
+        git config remote.origin.push +HEAD:refs/heads/prueba-salida-radar_diario'
+    - name: Abrir los datos cifrados
+      env:
+        DATOS_CLAVE: ${{ secrets.DATOS_CLAVE }}
+      run: python3 cajon.py abrir
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: pip
+    - name: Instalar dependencias mínimas
+      run: pip install lightgbm scikit-learn pandas numpy
+    - name: Bajar la foto de precios
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: 'echo "FOTO_PRECIOS_TTL=14400" >> "$GITHUB_ENV"
+
+        python foto_precios.py --bajar || echo "::warning::sin foto nueva de precios; sigue la anterior si no caducó"
+
+        '
+    - name: Entrenar el radar
+      run: "python radar_errores.py \\\n  || echo \"::warning::el radar no se pudo entrenar\"\n"
+    - name: Commitear el radar
+      run: "git config user.name  \"radar-bot\"\ngit config user.email \"github-actions[bot]@users.noreply.github.com\"\n# Uno por línea: si alguno no existe todavía, un `git add` con\n# varias rutas falla ENTERO y se lleva por delante a los demás.\ngit add radar_errores.txt || echo \"::warning::sin modelo del radar\"\ngit add radar_errores.json || echo \"::warning::sin ficha del radar\"\nif git diff --cached --quiet; then\n  echo \"El radar no cambió.\"\nelse\n  git commit -m \"chore(radar): reentrenado ($(date -u +%Y-%m-%dT%H:%MZ))\n\n  Entrenado con el histórico de pick_ledger.csv y las capturas\n  propias de radar_capturas.csv. Ver radar_errores.py.\"\n  # Rebase: el workflow de cuotas empuja capturas cada dos horas.\n  true\n  git push --force origin HEAD:refs/heads/prueba-salida-radar_diario\nfi\n"

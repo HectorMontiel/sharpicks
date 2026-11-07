@@ -1,0 +1,80 @@
+name: 'Prueba: Cuotas de las casas mexicanas'
+'on':
+  push:
+    branches:
+    - servidor-prueba
+    paths:
+    - .github/workflows/p_cuotas_mx.yml
+permissions:
+  contents: write
+  actions: write
+env:
+  GH_TOKEN: ${{ github.token }}
+concurrency:
+  group: prueba-cuotas_mx
+  cancel-in-progress: false
+jobs:
+  cuotas:
+    runs-on:
+    - self-hosted
+    - sharpicks-vps
+    timeout-minutes: 45
+    steps:
+    - uses: actions/checkout@v4
+    - name: 'Prueba: nunca empujar a main'
+      run: 'printf ''#!/bin/sh\nwhile read a b c d; do case "$c" in refs/heads/main) echo BLOQUEADO; exit 1;; esac; done\n'' > .git/hooks/pre-push
+
+        chmod +x .git/hooks/pre-push
+
+        git config remote.origin.push +HEAD:refs/heads/prueba-salida-cuotas_mx'
+    - name: Abrir los datos cifrados
+      env:
+        DATOS_CLAVE: ${{ secrets.DATOS_CLAVE }}
+      run: python3 cajon.py abrir
+    - name: ¿Hace falta barrer?
+      id: frescura
+      run: "# v302 — el relevo dispara con `forzar=false` y le toca pasar por\n# esta misma guarda. Espera 95 min desde el ultimo barrido, asi que\n# llega siempre por encima de los 80: barre. Si por lo que sea le\n# dispararan dos veces seguidas, la segunda sale aqui gratis.\nFRESCURA_MINUTOS=80\nif [ \"${{ github.event_name }}\" != \"schedule\" ] && [ \"${{ inputs.forzar }}\" != \"false\" ]; then\n  echo \"Lanzado a mano: se barre sin mirar la edad.\"\n  echo \"saltar=false\" >> \"$GITHUB_OUTPUT\"\n  exit 0\nfi\n# v305 — EL TABLERO DE MAIN AHORA, NO EL DEL CHECKOUT.\n#\n# El 2026-09-23 fallaron dos pasadas del cron (18:59 y 22:13) por lo\n# mismo: arrancaron justo cuando acababa un barrido del relevo, su\n# checkout era de ANTES de que aquel subiera su commit, la guarda\n# leyó un tablero de hace 105 min, barrió otra vez, y al subir chocó\n# con el commit del relevo en `anclas.json` y `anclas_capturas.csv`.\n# Se trae main otra vez justo antes de medir la edad.\ngit fetch --quiet --depth=1 origin main && git checkout --quiet FETCH_HEAD -- cuotas_mx.json 2>/dev/null || echo \"::warning::no se pudo refrescar el tablero de main\"\nif [ ! -f cuotas_mx.json ]; then\n  echo \"No hay tablero todavia: se barre.\"\n  echo \"saltar=false\" >> \"$GITHUB_OUTPUT\"\n  exit 0\nfi\nGEN=$(python3 -c \"import json;print(json.load(open('cuotas_mx.json',encoding='utf-8')).get('generado') or '')\" 2>/dev/null || echo '')\nif [ -z \"$GEN\" ]; then\n  echo \"El tablero no dice cuando se genero: se barre.\"\n  echo \"saltar=false\" >> \"$GITHUB_OUTPUT\"\n  exit 0\nfi\nSEG=$(date -u -d \"$GEN\" +%s 2>/dev/null || echo 0)\nif [ \"$SEG\" = \"0\" ]; then\n  echo \"Fecha ilegible ($GEN): se barre.\"\n  echo \"saltar=false\" >> \"$GITHUB_OUTPUT\"\n  exit 0\nfi\nEDAD=$(( ( $(date -u +%s) - SEG ) / 60 ))\necho \"El tablero se genero hace $EDAD min (umbral $FRESCURA_MINUTOS) — $GEN\"\nif [ \"$EDAD\" -lt \"$FRESCURA_MINUTOS\" ] && [ \"$EDAD\" -ge 0 ]; then\n  echo \"Fresco: esta pasada no hace nada.\"\n  echo \"saltar=true\" >> \"$GITHUB_OUTPUT\"\nelse\n  echo \"Viejo: se barre.\"\n  echo \"saltar=false\" >> \"$GITHUB_OUTPUT\"\nfi\n"
+    - uses: actions/setup-python@v5
+      if: steps.frescura.outputs.saltar != 'true'
+      with:
+        python-version: '3.12'
+        cache: pip
+    - name: Instalar dependencias mínimas
+      if: steps.frescura.outputs.saltar != 'true'
+      run: 'pip install requests pandas numpy lightgbm
+
+        python -c "import requests; requests.get" || pip install --force-reinstall --no-cache-dir requests   # v516
+
+        '
+    - name: Bajar la foto de precios
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: 'echo "FOTO_PRECIOS_TTL=14400" >> "$GITHUB_ENV"
+
+        python foto_precios.py --bajar || echo "::warning::sin foto nueva de precios; sigue la anterior si no caducó"
+
+        '
+    - name: Barrer las cinco casas
+      if: steps.frescura.outputs.saltar != 'true'
+      run: "# v267 — DOS PASADAS: una corta y otra larga.\n#\n# La corta (2 dias) corre cada dos horas y mantiene fresco lo\n# inmediato. La larga (7 dias) solo en las pasadas de las 00 y las\n# 12 UTC, y anade la semana: es donde estan las ligas grandes, que\n# juegan de jueves a domingo y que a 48 horas vista no aparecen.\n#\n# Medido sobre 26.647 partidos con Pinnacle y casa blanda: el sabado\n# da 3,7 picks de Capa 1 por dia y el jueves 0,2; y las ligas\n# grandes producen pick en el 9,7 % de sus partidos contra el 5,1 %\n# del resto. Ademas los precios lejanos traen MAS ventaja: +27 % de\n# EV medio a siete dias contra +16 % el mismo dia, porque la casa\n# blanda todavia no ha ajustado.\n#\n# Se acumulan porque desde la v267 `cuotas_mx.py` ya no pisa el\n# fichero: conserva lo anterior que aun no ha empezado. Asi la\n# pasada larga no hay que repetirla cada dos horas, que seria\n# multiplicar por tres y medio las peticiones (de 8.080 a ~28.000\n# por pasada) y pedir que una casa nos corte.\n# v302 — LA LARGA SE DECIDE POR EDAD, NO POR LA HORA.\n#\n# Con el relevo las pasadas caen cada ~110 min y la hora deriva:\n# esperar a las 00 o las 12 UTC dejaria dias enteros sin semana.\n# `ultimo_largo` lo escribe `cuotas_mx.py` en el propio tablero; si\n# tiene mas de 11 h, o no esta, toca la de siete dias.\n_LARGO=$(python3 -c \"import json;print(json.load(open('cuotas_mx.json',encoding='utf-8')).get('ultimo_largo') or '')\" 2>/dev/null || echo '')\n_SEG=$(date -u -d \"$_LARGO\" +%s 2>/dev/null || echo 0)\n_EDAD_H=$(( ( $(date -u +%s) - _SEG ) / 3600 ))\nif [ -z \"$_LARGO\" ] || [ \"$_SEG\" = \"0\" ] || [ \"$_EDAD_H\" -ge 11 ]; then _DIAS=7; else _DIAS=2; fi\necho \"barrido de $_DIAS dias (ultima larga: ${_LARGO:-nunca}, hace ${_EDAD_H} h)\"\npython cuotas_mx.py --dias \"$_DIAS\" --max 400 \\\n  || echo \"::warning::barrido de casas mexicanas con avisos\"\n"
+    - name: Anotar las capturas del radar
+      if: steps.frescura.outputs.saltar != 'true'
+      run: "python barrido_capa1.py \\\n  || echo \"::warning::el barrido de la capa 1 salio con avisos\"\n"
+    - name: Acumular las anclas candidatas
+      if: steps.frescura.outputs.saltar != 'true'
+      run: "python anclas.py \\\n  || echo \"::warning::la captura de anclas salio con avisos\"\n"
+    - name: Commitear las cuotas
+      if: steps.frescura.outputs.saltar != 'true'
+      run: "git config user.name  \"cuotas-mx-bot\"\ngit config user.email \"github-actions[bot]@users.noreply.github.com\"\n# Uno por linea, y no `git add a b`: si `radar_capturas.csv` no\n# existe todavia —el primer dia, o una pasada en la que el barrido\n# no anotara nada— un `git add` con las dos rutas falla ENTERO y se\n# lleva por delante el de las cuotas, que si estaban. Lo vigila\n# `test_catalogo_y_cuotas`, que es quien lo cazo aqui.\ngit add cuotas_mx.json || echo \"::warning::git add de cuotas_mx.json fallo\"\ngit add radar_capturas.csv || echo \"::warning::todavia no hay capturas del radar\"\ngit add anclas_capturas.csv || echo \"::warning::todavia no hay capturas de anclas\"\ngit add anclas.json || echo \"::warning::todavia no hay medicion de anclas\"\nif git diff --cached --quiet; then\n  echo \"Las cuotas no cambiaron.\"\nelse\n  git commit -m \"chore(cuotas): casas mexicanas ($(date -u +%Y-%m-%dT%H:%MZ))\n\n  Calientemx, 1xBet, Winpot, Novibet y Sportium via el comparador\n  publico de Flashscore. Ver el encabezado de cuotas_mx.py.\"\n  # Rebase antes de empujar: el reentrenamiento puede haber empujado\n  # entre medias y sólo toca datos.\n  # v305 — SUBIR NO PUEDE ROMPER POR UNA CARRERA CON OTRA PASADA.\n  #\n  # Todo lo que este paso commitea son capturas de ESTA pasada:\n  # si otra subió entre medias, lo nuestro es lo más reciente y\n  # manda (`-X theirs`: en un rebase, «theirs» es el commit que se\n  # reaplica, o sea el nuestro). Tres intentos con espera por si\n  # la otra pasada sigue subiendo.\n  _OK=0\n  for _i in 1 2 3; do\n    if true && git push --force origin HEAD:refs/heads/prueba-salida-cuotas_mx; then\n      _OK=1; break\n    fi\n    git rebase --abort 2>/dev/null || true\n    sleep $((_i * 15))\n  done\n  if [ \"$_OK\" != \"1\" ]; then\n    echo \"::error::no se pudieron subir las cuotas tras tres intentos\"\n    exit 1\n  fi\nfi\n"
+    - name: Cocinar el dia con los precios nuevos
+      if: steps.frescura.outputs.saltar != 'true'
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: 'echo [prueba] gh workflow run precalculo_dia.yml --repo "${{ github.repository }}" --ref main || echo "::warning::no se pudo disparar el precalculo"
+
+        '
+    - name: Pasar el relevo
+      if: always()
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: "if [ \"${{ steps.frescura.outputs.saltar }}\" = \"true\" ]; then\n  _VIVOS=$(gh run list --repo \"${{ github.repository }}\" --workflow=relevo.yml --limit 10 --json status --jq '[.[] | select(.status != \"completed\")] | length' 2>/dev/null || echo 0)\n  if [ \"${_VIVOS:-0}\" -gt 0 ]; then\n    echo \"Ya hay un relevo esperando: no se toca.\"\n    exit 0\n  fi\nfi\necho [prueba] gh workflow run relevo.yml --repo \"${{ github.repository }}\" --ref main || echo \"::warning::no se pudo pasar el relevo; el cron queda de red\"\n"

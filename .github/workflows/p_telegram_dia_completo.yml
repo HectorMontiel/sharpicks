@@ -1,0 +1,76 @@
+name: 'Prueba: Bot Telegram - Día completo (hoy y mañana)'
+'on':
+  push:
+    branches:
+    - servidor-prueba
+    paths:
+    - .github/workflows/p_telegram_dia_completo.yml
+permissions:
+  contents: read
+env:
+  GH_TOKEN: ${{ github.token }}
+concurrency:
+  group: prueba-telegram_dia_completo
+  cancel-in-progress: false
+jobs:
+  enviar_dia_completo:
+    runs-on:
+    - self-hosted
+    - sharpicks-vps
+    timeout-minutes: 60
+    steps:
+    - name: Clonar repositorio
+      uses: actions/checkout@v4
+    - name: 'Prueba: nunca empujar a main'
+      run: 'printf ''#!/bin/sh\nwhile read a b c d; do case "$c" in refs/heads/main) echo BLOQUEADO; exit 1;; esac; done\n'' > .git/hooks/pre-push
+
+        chmod +x .git/hooks/pre-push
+
+        git config remote.origin.push +HEAD:refs/heads/prueba-salida-telegram_dia_completo'
+    - name: Abrir los datos cifrados
+      env:
+        DATOS_CLAVE: ${{ secrets.DATOS_CLAVE }}
+      run: python3 cajon.py abrir
+    - name: Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: pip
+    - name: Instalar dependencias
+      run: 'python -m pip install --upgrade pip
+
+        pip install -r requirements.txt
+
+
+        python -c "import requests, pandas, numpy; requests.get" || pip install --force-reinstall --no-cache-dir -r requirements.txt   # v516: una instalación cortada a medias se repara sola
+
+        '
+    - name: Bajar la foto de precios
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: 'echo "FOTO_PRECIOS_TTL=14400" >> "$GITHUB_ENV"
+
+        python foto_precios.py --bajar || echo "::warning::sin foto nueva de precios; sigue la anterior si no caducó"
+
+        '
+    - name: Datos frescos del día
+      env:
+        ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      run: '# El runner es un entorno estéril: primero los datos del día.
+
+        python pipeline_total.py --update-only || echo "pipeline con avisos, se continúa"
+
+        '
+    - name: Enviar hoy y mañana
+      env:
+        TELEGRAM_BOT_TOKEN: ''
+        TELEGRAM_CHAT_ID: ''
+        ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        PYTHONIOENCODING: utf-8
+        PYTHONUTF8: '1'
+        DEPORTES_ENVIO: ${{ inputs.deportes }}
+      run: 'python bot_dia_completo.py ${{ inputs.solo_hoy && ''--solo-hoy'' || '''' }} --deportes "$DEPORTES_ENVIO"
+
+        '
