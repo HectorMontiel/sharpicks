@@ -141,7 +141,7 @@ jobs:
 
       - name: Reentrenar todas las ligas disponibles
         env:
-          ENTRENAR_PROCESOS: ${{ vars.RUNNER_PESADO != '' && '6' || '1' }}
+          SERVIDOR_PROCESOS: ${{ vars.RUNNER_PESADO != '' && '6' || '1' }}
         run: |
           # league_engine --build descarga los CSV frescos de football-data y
           # reentrena cada liga disponible. Un fallo puntual no aborta el resto.

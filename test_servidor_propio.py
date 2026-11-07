@@ -38,14 +38,26 @@ for ruta in sorted(glob.glob('.github/workflows/*.yml')):
         ok('%s: baja la foto tras instalar y sólo en el servidor' % nombre, len(idx) == 1 and dep and dep[0] < idx[0] and 'RUNNER_PESADO' in str(pasos[idx[0]].get('if')))
 
 retrain = open('.github/workflows/retrain_leagues.yml', encoding='utf-8').read()
-ok('las ligas usan los 6 núcleos sólo en el servidor', "ENTRENAR_PROCESOS: ${{ vars.RUNNER_PESADO != '' && '6' || '1' }}" in retrain)
+VARIABLE_PROCESOS = "SERVIDOR_PROCESOS: ${{ vars.RUNNER_PESADO != '' && '6' || '1' }}"
+ok('las ligas usan los 6 núcleos sólo en el servidor', VARIABLE_PROCESOS in retrain)
+ok('el sitio también', VARIABLE_PROCESOS in open('.github/workflows/sitio_web.yml', encoding='utf-8').read())
 motores = retrain.split('Reentrenar MLB, tenis')[1].split('\n      - name:')[0]
 ok('los motores corren a la vez y el flujo los espera', motores.count(' &\n') == 5 and '\n          wait\n' in motores)
 ok('el histórico de la NBA va tras su motor', motores.index('engines.nba_engine') < motores.index('nba_historico.py'))
 
 import league_engine as le
 
-ok('sin la variable se entrena en serie, como hoy', 'ENTRENAR_PROCESOS' in open('league_engine.py', encoding='utf-8').read() and hasattr(le, '_entrenar_en_paralelo'))
+import subprocess
+import sys
+
+import reparto
+
+os.environ.pop('SERVIDOR_PROCESOS', None)
+ok('sin la variable todo va en serie, como hoy', reparto.procesos() == 1 and reparto.mapa(abs, [-1, -2]) == [1, 2])
+_con_dos = subprocess.run([sys.executable, '-c', "import os, reparto; os.environ['SERVIDOR_PROCESOS'] = '2'; print(reparto.mapa(abs, [-3, -1, -2, -4]))"], capture_output=True, text=True)
+ok('con procesos sale igual y en el mismo orden', _con_dos.stdout.strip() == '[3, 1, 2, 4]')
+ok('las ligas usan esa variable', 'reparto.procesos()' in open('league_engine.py', encoding='utf-8').read() and hasattr(le, '_entrenar_en_paralelo'))
+ok('los hilos también dan cada resultado en su lugar', reparto.hilos(abs, [-1, -2]) == [1, 2])
 ok('una liga que falla no tumba a las demás', le._entrenar_una('liga_que_no_existe')[1] == 'fallo')
 ok('las copas agrupadas esperan a sus ligas', all(c in le.LEAGUES for k in le.LEAGUES for c in (le.LEAGUES[k].get('agrupar_con') or [])) and all(not le.LEAGUES[c].get('agrupar_con') for k in le.LEAGUES for c in (le.LEAGUES[k].get('agrupar_con') or [])))
 

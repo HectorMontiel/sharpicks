@@ -107,6 +107,15 @@ def _fila(p: Dict, estado: str, ligas: Dict = None) -> Dict:
     return f
 
 
+def _decidir_uno(p: Dict) -> Optional[Dict]:
+    import decisiones_dia as dd
+    try:
+        return {'llave': dd._llave(p), **dd.decidir(p)}
+    except Exception as e:
+        logger.debug('[web] decisión de %s: %s', p.get('partido'), e)
+        return None
+
+
 def decidir_lo_que_falta(datos: Dict) -> int:
     """v406 — LAS DECISIONES QUE FALTAN SE CALCULAN AQUÍ.
 
@@ -131,13 +140,12 @@ def decidir_lo_que_falta(datos: Dict) -> int:
         nombres_ligas.aplicar(datos)
     except Exception as e:
         logger.debug('[web] nombres de liga: %s', e)
+    import reparto
     n = 0
-    for p in faltan:
-        try:
-            p[dd.CLAVE_PICK] = {'llave': dd._llave(p), **dd.decidir(p)}
+    for p, d in zip(faltan, reparto.mapa(_decidir_uno, faltan)):
+        if d:
+            p[dd.CLAVE_PICK] = d
             n += 1
-        except Exception as e:
-            logger.debug('[web] decisión de %s: %s', p.get('partido'), e)
     logger.info('[web] %d decisiones calculadas aquí (las del precálculo no valían)', n)
     return n
 
@@ -429,15 +437,17 @@ def construir() -> Dict:
     try:
         import errores_web
         errores_web.RED_CASA = True       # v477 — lo que no esté en mercado_dia.json se pide a Playdoit en vivo
-        memo = {}
         claves = {p.get('partido'): p.get('clave_liga') for p in prons if p.get('clave_liga')}
+        unicos = {}
         for f in picks + analisis:
             k = f.get('partido')
-            if f.get('deporte') == 'Fútbol':
-                if k not in memo:
-                    memo[k] = errores_web.contexto(dict(f, clave_liga=f.get('clave_liga') or claves.get(k)))
-                if memo[k]:
-                    f['ctx'] = memo[k]
+            if f.get('deporte') == 'Fútbol' and k not in unicos:
+                unicos[k] = dict(f, clave_liga=f.get('clave_liga') or claves.get(k))
+        import reparto
+        memo = dict(zip(unicos, reparto.mapa(errores_web.contexto, unicos.values())))
+        for f in picks + analisis:
+            if f.get('deporte') == 'Fútbol' and memo.get(f.get('partido')):
+                f['ctx'] = memo[f.get('partido')]
         print('web: líneas de la casa conservadas al empezar: %d' % conservar_lin_casa(picks + analisis, _lin_publicadas()))
         print('web: copas con la sugerencia de la casa: %d' % sugerencia_de_la_casa(analisis, solo, claves))
     except Exception as e:
@@ -463,28 +473,31 @@ def construir() -> Dict:
     # `espn`, y antes de este orden ningún partido recibía contexto en producción.
     try:
         import contexto_deportes
-        memo_dep = {}
+        import reparto
+        unicos_dep = {}
         for f in picks + analisis:
             if f.get('deporte') in contexto_deportes.DEPORTES:
-                k = f.get('partido')
-                if k not in memo_dep:
-                    memo_dep[k] = contexto_deportes.contexto(f)
-                if memo_dep[k]:
-                    f['ctx'] = memo_dep[k]
+                unicos_dep.setdefault(f.get('partido'), f)
+        memo_dep = dict(zip(unicos_dep, reparto.hilos(contexto_deportes.contexto, unicos_dep.values())))
+        for f in picks + analisis:
+            if f.get('deporte') in contexto_deportes.DEPORTES and memo_dep.get(f.get('partido')):
+                f['ctx'] = memo_dep[f.get('partido')]
         print('web: contexto de otros deportes: %d de %d partidos' % (sum(1 for v in memo_dep.values() if v), len(memo_dep)))
     except Exception as e:
         logger.warning('[web] sin contexto de otros deportes: %s', e)
     # v571 — tenis y béisbol de invierno, desde 365Scores: primero el béisbol (son pocos), luego lo que tiene pick y lo más cercano
     try:
         import contexto_365
-        previo, memo_365 = contexto_365.publicados(), {}
+        import reparto
+        previo, unicos_365 = contexto_365.publicados(), {}
         for f in sorted((x for x in picks + analisis if x.get('deporte') in contexto_365.DEPORTES),
                         key=lambda x: (x.get('deporte') != 'Béisbol', bool(x.get('solo_analisis')), str(x.get('inicio')))):
-            k = f.get('partido')
-            if k not in memo_365:
-                memo_365[k] = contexto_365.contexto(f, previo.get(k))
-            if memo_365[k]:
-                f['ctx'] = memo_365[k]
+            unicos_365.setdefault(f.get('partido'), f)
+        memo_365 = dict(zip(unicos_365, reparto.hilos(lambda f: contexto_365.contexto(f, previo.get(f.get('partido'))),
+                                                      unicos_365.values())))
+        for f in picks + analisis:
+            if f.get('deporte') in contexto_365.DEPORTES and memo_365.get(f.get('partido')):
+                f['ctx'] = memo_365[f.get('partido')]
         print('web: contexto de tenis y béisbol: %d de %d partidos' % (sum(1 for v in memo_365.values() if v), len(memo_365)))
     except Exception as e:
         logger.warning('[web] sin contexto de 365Scores: %s', e)

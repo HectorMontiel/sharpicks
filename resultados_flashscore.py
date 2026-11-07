@@ -257,6 +257,20 @@ def cargar(recargar: bool = False) -> pd.DataFrame:
     return df
 
 
+def _traer_liga(trabajo) -> List:
+    liga, ruta, paginas, completa = trabajo
+    nuevas = []
+    for p in paginas:
+        t = _get(WEB + p + 'results/')
+        if t:
+            nuevas += _partidos(t, liga if p == ruta else '', ruta)
+            # la primera vez, la temporada entera (no sólo lo reciente)
+            if completa:
+                for t2 in paginas_siguientes(t):
+                    nuevas += _partidos(t2, liga if p == ruta else '', ruta)
+    return nuevas
+
+
 def actualizar(ligas: Optional[List[str]] = None, historia: bool = True) -> int:
     """Pone al día la base con las competiciones `ligas` (por defecto, las del
     tablero de casas). Las que no estaban se traen con sus dos temporadas
@@ -274,7 +288,7 @@ def actualizar(ligas: Optional[List[str]] = None, historia: bool = True) -> int:
             ya = set(json.load(open(HISTORIA, encoding='utf-8')))
         except Exception:
             ya = set()
-        nuevas = []
+        trabajos = []
         adivinadas = {}
         for liga in ligas:
             ruta = rt.get(liga)
@@ -290,14 +304,9 @@ def actualizar(ligas: Optional[List[str]] = None, historia: bool = True) -> int:
             if completa:
                 paginas += _temporadas_previas(ruta)
                 ya.add(ruta)
-            for p in paginas:
-                t = _get(WEB + p + 'results/')
-                if t:
-                    nuevas += _partidos(t, liga if p == ruta else '', ruta)
-                    # la primera vez, la temporada entera (no sólo lo reciente)
-                    if completa:
-                        for t2 in paginas_siguientes(t):
-                            nuevas += _partidos(t2, liga if p == ruta else '', ruta)
+            trabajos.append((liga, ruta, paginas, completa))
+        import reparto
+        nuevas = [x for lote in reparto.hilos(_traer_liga, trabajos) for x in lote]
         try:
             json.dump(sorted(ya), open(HISTORIA, 'w', encoding='utf-8'),
                       ensure_ascii=False, indent=0)

@@ -3148,8 +3148,8 @@ def _entrenar_en_paralelo(claves, con_ratings: bool, procesos: int):
     import multiprocessing as mp
     from concurrent.futures import ProcessPoolExecutor
 
-    for var in ('LOKY_MAX_CPU_COUNT', 'OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS'):
-        os.environ[var] = '1'
+    import reparto
+    reparto.un_hilo_por_proceso()
     primero = [c for c in claves if not LEAGUES[c].get('agrupar_con')]
     despues = [c for c in claves if LEAGUES[c].get('agrupar_con')]
     resultados = []
@@ -3185,7 +3185,8 @@ if __name__ == '__main__':
             if objetivo and clave != objetivo:
                 continue
             _claves.append(clave)
-        _procesos = int(os.environ.get('ENTRENAR_PROCESOS') or 1)
+        import reparto
+        _procesos = reparto.procesos()
         if _procesos > 1 and len(_claves) > 1:
             _resultados = _entrenar_en_paralelo(_claves, con_ratings, _procesos)
         else:
