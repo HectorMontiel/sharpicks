@@ -95,7 +95,7 @@ if [ "$ESTADO" != activo ] && [ "$SECO" = 0 ]; then
   SECO=1
 fi
 
-# Sólo GitHub puede leer esas dos fuentes (v594). Cada 2 h: en privado, cada hora se pasaría de los 2,000 min gratis.
+# Sólo GitHub puede leer esas dos fuentes (v594). La pide el relevo antes de cada barrido; esto es la red si el relevo se cae.
 revisa_cada_hora foto_precios.yml '{"ref":"main"}' 115
 revisa_cada_hora cuotas_mx.yml '{"ref":"main","inputs":{"forzar":"false"}}'
 revisa_cada_hora sitio_web.yml '{"ref":"main"}'

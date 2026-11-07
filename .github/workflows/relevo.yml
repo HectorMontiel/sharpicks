@@ -99,7 +99,16 @@ jobs:
           if [ "$ESPERA" -lt $(( MINIMO_MIN * 60 )) ]; then ESPERA=$(( MINIMO_MIN * 60 )); fi
           if [ "$ESPERA" -gt $(( MAXIMO_MIN * 60 )) ]; then ESPERA=$(( MAXIMO_MIN * 60 )); fi
           echo "Duermo $(( ESPERA / 60 )) min (hasta $(date -u -d "@$(( AHORA + ESPERA ))" +%H:%MZ))."
-          sleep "$ESPERA"
+          # En el servidor, cada barrido arranca con su foto recién hecha en GitHub (tarda ~3 min): mismo
+          # ritmo que hoy. Son unos 1,350 min al mes de los 2,000 gratis en privado.
+          FOTO_ANTES=${{ vars.RUNNER_PESADO != '' && '240' || '0' }}
+          if [ "$FOTO_ANTES" -gt 0 ]; then
+            sleep $(( ESPERA - FOTO_ANTES ))
+            gh workflow run foto_precios.yml --repo "${{ github.repository }}" --ref main || echo "::warning::no se pudo pedir la foto"
+            sleep "$FOTO_ANTES"
+          else
+            sleep "$ESPERA"
+          fi
 
       - name: Disparar el barrido
         env:

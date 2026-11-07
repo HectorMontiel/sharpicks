@@ -26,6 +26,11 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
 apt-get install -y -qq gh git curl jq unzip build-essential libgomp1 libicu-dev ca-certificates ufw unattended-upgrades
 
+# Los parches de seguridad siguen entrando, pero needrestart no toca a los runners. Medido: el 7-nov reinició los
+# cuatro a las 06:21 y canceló todo lo que corría. Toman las librerías nuevas al arrancar el siguiente reinicio.
+mkdir -p /etc/needrestart/conf.d
+echo '$nrconf{override_rc}{qr(^actions\.runner\.)} = 0;' > /etc/needrestart/conf.d/sharpicks-runners.conf
+
 # memoria de respaldo: el reentreno y el precálculo tienen picos
 if [ ! -f /swapfile ]; then
   fallocate -l 8G /swapfile && chmod 600 /swapfile && mkswap /swapfile >/dev/null && swapon /swapfile
