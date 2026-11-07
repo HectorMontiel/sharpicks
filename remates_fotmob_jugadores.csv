@@ -36610,22 +36610,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 5803554,2026-08-29,jpn_j1,Urawa Red Diamonds,Harumi Minamino,1365945,F,0,22,1,1,1,0.22,,3.0,332315.0
 5803554,2026-08-29,jpn_j1,Urawa Red Diamonds,Eiichi Katayama,622088,D,0,1,0,0,0,0.0,,1.0,147127.0
 5803554,2026-08-29,jpn_j1,Urawa Red Diamonds,Kotaro Hayashi,1437139,M,0,1,0,0,0,0.0,,2.0,699153.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Svend Brodersen,538435,G,1,90,0,0,0,0.0,11.0,0.0,652709.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Reon Yamahara,1292274,D,1,83,0,0,0,0.0,32.0,1.0,518459.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Pedro Romano,1521407,D,1,83,0,0,0,0.0,34.0,1.0,
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Hiroto Taniguchi,1337314,D,1,90,0,0,0,0.0,36.0,1.0,557741.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Asahi Sasaki,1336965,D,1,90,0,0,0,0.0,38.0,1.0,915869.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Kento Tachibanada,1227819,M,1,90,1,0,0,0.01,64.0,2.0,731672.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Yuki Yamamoto,1134465,M,1,90,0,0,0,0.0,66.0,2.0,741432.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Tatsuya Ito,843782,F,1,90,7,1,1,0.53,83.0,3.0,733762.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Yasuto Wakizaka,915101,M,1,90,3,3,1,0.5,85.0,2.0,1038921.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Marcinho,853613,F,1,57,1,1,1,0.56,87.0,3.0,566731.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Lazar Romanic,978089,F,1,6,0,0,0,0.0,115.0,3.0,783277.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Derik Lacerda,1088118,F,0,51,3,1,1,0.55,,3.0,1282081.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Sota Miura,1337487,D,0,33,0,0,0,0.0,,1.0,1072670.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Rin Homma,2154755,F,0,33,0,0,0,0.0,,3.0,
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,Yuichi Maruyama,298352,D,0,7,0,0,0,0.0,,1.0,182172.0
-5803549,2026-08-29,jpn_j1,Kawasaki Frontale,So Kawahara,1244298,M,0,7,0,0,0,0.0,,2.0,547127.0
 5803549,2026-08-29,jpn_j1,JEF United Chiba,José Suárez,573761,G,1,90,0,0,0,0.0,11.0,0.0,154334.0
 5803549,2026-08-29,jpn_j1,JEF United Chiba,Takahiro Iida,824570,D,1,79,0,0,0,0.0,32.0,1.0,144490.0
 5803549,2026-08-29,jpn_j1,JEF United Chiba,Daniel Hall,1217244,D,1,90,0,0,0,0.0,34.0,1.0,305316.0
@@ -36748,22 +36732,6 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000014544,2026-08-29,liga_mx,Cruz Azul,Alán Montes,1170826,D,0,6,0,0,0,0.0,,1.0,1031675.0
 1000014544,2026-08-29,liga_mx,Cruz Azul,Christian Ebere,692891,F,0,6,0,0,0,0.0,,3.0,748423.0
 1000014544,2026-08-29,liga_mx,Cruz Azul,Josué Díaz,1283439,D,0,4,0,0,0,0.0,,1.0,494676.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Ryosuke Kojima,848282,G,1,90,0,0,0,0.0,11.0,0.0,670299.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Wataru Harada,1267663,D,1,90,0,0,0,0.0,33.0,1.0,414150.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Taiyo Koga,758052,D,1,90,0,0,0,0.0,35.0,1.0,862318.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Daiki Sugioka,826020,D,1,90,1,0,0,0.02,37.0,1.0,247786.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Tojiro Kubo,1299353,M,1,89,3,0,0,0.87,72.0,2.0,819849.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Koki Kumasaka,1611173,M,1,90,0,0,0,0.0,74.0,2.0,306007.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Nobuteru Nakagawa,1716158,M,1,90,2,1,0,0.14,76.0,2.0,675138.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Keita Endo,727873,M,1,70,0,0,0,0.0,78.0,2.0,272736.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Yoshio Koizumi,1012227,M,1,70,1,0,0,0.03,103.0,2.0,582156.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Yuki Kakita,727819,F,1,45,1,0,0,0.08,105.0,3.0,546084.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Hinata Yamauchi,1611176,M,1,57,1,0,0,0.04,107.0,2.0,277399.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Yusuke Segawa,728766,M,0,45,2,0,0,0.43,,2.0,240740.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Mao Hosoya,1035013,F,0,33,5,1,0,0.45,,3.0,1473080.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Kenshin Yuba,1642583,M,0,20,1,1,0,0.06,,2.0,326343.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Koya Yuruki,459495,M,0,20,0,0,0,0.0,,2.0,282321.0
-5803553,2026-08-29,jpn_j1,Kashiwa Reysol,Seiya Baba,1134756,D,0,1,0,0,0,0.0,,1.0,354044.0
 5115966,2026-08-29,argentina,Boca Juniors,Álvaro Montero,498457,G,1,90,0,0,0,0.0,11.0,0.0,1854924.0
 5115966,2026-08-29,argentina,Boca Juniors,Dylan Gorosito,1661230,D,1,90,1,0,0,0.04,32.0,1.0,
 5115966,2026-08-29,argentina,Boca Juniors,Lautaro Di Lollo,1385954,D,1,90,0,0,0,0.0,34.0,1.0,6482476.0
@@ -177199,3 +177167,34 @@ match_id,fecha,liga,equipo,jugador,jugador_id,posicion,titular,minutos,tiros,a_p
 1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Corban Piper,1680420,F,1,90,0,0,0,0.0,104.0,3.0,227097.0
 1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Rafael Durán,861895,F,1,73,3,1,0,0.37,106.0,3.0,351369.0
 1000017576,2026-11-07,aus_aleague,Wellington Phoenix,Riley Bidois,1353588,F,0,17,0,0,0,0.0,,3.0,254832.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Kengo Nagai,431791,G,1,90,0,0,0,0.0,11.0,0.0,142910.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Wataru Harada,1267663,D,1,90,0,0,0,0.0,33.0,1.0,414807.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Taiyo Koga,758052,D,1,90,1,1,0,0.03,35.0,1.0,695573.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Daiki Sugioka,826020,D,1,90,0,0,0,0.0,37.0,1.0,222323.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Kenshin Yuba,1642583,M,1,90,1,0,0,0.01,62.0,2.0,277153.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Nobuteru Nakagawa,1716158,M,1,90,5,2,0,0.26,64.0,2.0,460184.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Sachiro Toshima,928684,M,1,63,0,0,0,0.0,66.0,2.0,165755.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Keita Endo,727873,M,1,72,3,1,0,0.17,68.0,2.0,274508.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Yoshio Koizumi,1012227,M,1,90,2,0,0,0.21,84.0,2.0,591595.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Hinata Yamauchi,1611176,M,1,72,5,3,2,0.47,86.0,2.0,272974.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Yuki Kakita,727819,F,1,63,2,1,0,0.16,105.0,3.0,317260.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Riki Harakawa,431525,M,0,27,0,0,0,0.0,,2.0,281377.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Mao Hosoya,1035013,F,0,27,1,0,0,0.03,,3.0,1285092.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Tojiro Kubo,1299353,M,0,18,1,0,0,0.05,,2.0,728722.0
+5803652,2026-11-07,jpn_j1,Kashiwa Reysol,Yusuke Segawa,728766,M,0,18,1,1,0,0.19,,2.0,166774.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Svend Brodersen,538435,G,1,90,0,0,0,0.0,11.0,0.0,712081.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Reon Yamahara,1292274,D,1,71,1,0,0,0.05,32.0,1.0,496485.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Pedro Romano,1521407,D,1,90,1,1,1,0.47,34.0,1.0,
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Yuichi Maruyama,298352,D,1,90,1,0,0,0.01,36.0,1.0,157811.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Asahi Sasaki,1336965,D,1,90,2,2,0,0.09,38.0,1.0,767719.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Kento Tachibanada,1227819,M,1,61,0,0,0,0.0,64.0,2.0,851943.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Yuto Ozeki,1436716,M,1,61,0,0,0,0.0,66.0,2.0,764535.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Tatsuya Ito,843782,F,1,90,1,0,0,0.03,83.0,3.0,738935.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Yasuto Wakizaka,915101,M,1,81,1,0,0,0.07,85.0,2.0,1073839.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Marcinho,853613,F,1,90,1,0,0,0.17,87.0,3.0,491441.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Kyosuke Mochiyama,1803988,F,1,71,0,0,0,0.0,115.0,3.0,288284.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,So Kawahara,1244298,M,0,29,0,0,0,0.0,,2.0,454906.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Yuki Yamamoto,1134465,M,0,29,0,0,0,0.0,,2.0,837854.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Sota Miura,1337487,D,0,19,0,0,0,0.0,,1.0,975148.0
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Shuto Yamaichi,1859408,F,0,19,1,0,0,0.09,,3.0,
+5803652,2026-11-07,jpn_j1,Kawasaki Frontale,Yu Kobayashi,196255,F,0,9,0,0,0,0.0,,3.0,176785.0
